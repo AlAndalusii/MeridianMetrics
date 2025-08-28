@@ -24,101 +24,125 @@ import {
   XCircle,
 } from "lucide-react"
 import Link from "next/link"
+import { MeridianLogo } from "@/components/logo/MeridianLogo"
 
-// Sophisticated MeridianMetrics Logo Component with M Focus
+// Fortune 500 Premium Logo Component - World-Class Design
 const MeridianMetricsLogo = ({ className = "w-12 h-12" }: { className?: string }) => (
   <div className="flex items-center space-x-4">
     <div className="relative">
-      <svg className={className} viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Outer sophisticated frame */}
-        <rect
-          x="2"
-          y="2"
-          width="56"
-          height="56"
-          rx="12"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          className="text-emerald-700"
+      <svg className={className} viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Premium geometric outer ring */}
+        <circle
+          cx="40"
+          cy="40"
+          r="38"
           fill="none"
+          stroke="url(#emeraldGradient)"
+          strokeWidth="2"
+          className="opacity-20"
+        />
+        
+        {/* Precision inner ring */}
+        <circle
+          cx="40"
+          cy="40"
+          r="32"
+          fill="none"
+          stroke="url(#emeraldGradient)"
+          strokeWidth="1.5"
+          className="opacity-40"
         />
 
-        {/* Inner precision frame */}
-        <rect
-          x="8"
-          y="8"
-          width="44"
-          height="44"
-          rx="6"
-          stroke="currentColor"
+        {/* Main logo container - sophisticated hexagonal base */}
+        <path
+          d="M40 8 L62 24 L62 56 L40 72 L18 56 L18 24 Z"
+          fill="url(#primaryGradient)"
+          stroke="url(#accentGradient)"
           strokeWidth="1"
-          className="text-emerald-600"
-          fill="none"
+          className="drop-shadow-lg"
         />
 
-        {/* Stylized M - Main structure */}
+        {/* Inner architectural frame */}
         <path
-          d="M18 42 L18 18 L24 30 L30 18 L36 30 L42 18 L42 42"
-          stroke="currentColor"
-          strokeWidth="3"
-          className="text-emerald-800"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          d="M40 16 L56 28 L56 52 L40 64 L24 52 L24 28 Z"
           fill="none"
+          stroke="url(#innerGradient)"
+          strokeWidth="0.8"
+          opacity="0.6"
         />
 
-        {/* M - Inner details for sophistication */}
-        <path
-          d="M20 20 L22 26 L26 20"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          className="text-emerald-600"
-          strokeLinecap="round"
-          fill="none"
-        />
-        <path
-          d="M34 20 L38 26 L40 20"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          className="text-emerald-600"
-          strokeLinecap="round"
-          fill="none"
-        />
+        {/* The Premium 'M' - Masterpiece Typography */}
+        <g transform="translate(40, 40)">
+          {/* Main M structure - Bold and architectural */}
+          <path
+            d="M-16 -14 L-16 14 M-16 -14 L-4 6 M-4 6 L8 -14 M8 -14 L8 14 M-4 6 L4 -4"
+            stroke="#065f46"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+            className="drop-shadow-sm"
+          />
+          
+          {/* Sophisticated inner details */}
+          <path
+            d="M-14 -10 L-8 2 M6 -10 L10 -2"
+            stroke="#059669"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            opacity="0.8"
+          />
+          
+          {/* Premium accent lines */}
+          <path
+            d="M-16 12 L-12 12 M6 12 L10 12"
+            stroke="#10b981"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            opacity="0.9"
+          />
+          
+          {/* Center precision point */}
+          <circle
+            cx="0"
+            cy="2"
+            r="1.5"
+            fill="#065f46"
+            className="drop-shadow-sm"
+          />
+        </g>
 
-        {/* Precision dots */}
-        <circle cx="30" cy="30" r="2" fill="currentColor" className="text-emerald-700" />
-        <circle cx="24" cy="24" r="1" fill="currentColor" className="text-emerald-500" />
-        <circle cx="36" cy="24" r="1" fill="currentColor" className="text-emerald-500" />
+        {/* Precision corner markers - Fortune 500 attention to detail */}
+        <g opacity="0.4">
+          <path d="M20 20 L24 20 L24 24" stroke="#059669" strokeWidth="1.2" strokeLinecap="round"/>
+          <path d="M60 20 L56 20 L56 24" stroke="#059669" strokeWidth="1.2" strokeLinecap="round"/>
+          <path d="M20 60 L24 60 L24 56" stroke="#059669" strokeWidth="1.2" strokeLinecap="round"/>
+          <path d="M60 60 L56 60 L56 56" stroke="#059669" strokeWidth="1.2" strokeLinecap="round"/>
+        </g>
 
-        {/* Corner precision markers */}
-        <path
-          d="M6 6 L10 6 L10 10"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          className="text-emerald-500"
-          strokeLinecap="round"
-        />
-        <path
-          d="M54 6 L50 6 L50 10"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          className="text-emerald-500"
-          strokeLinecap="round"
-        />
-        <path
-          d="M6 54 L10 54 L10 50"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          className="text-emerald-500"
-          strokeLinecap="round"
-        />
-        <path
-          d="M54 54 L50 54 L50 50"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          className="text-emerald-500"
-          strokeLinecap="round"
-        />
+        {/* Gradients for premium finish */}
+        <defs>
+          <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#ecfdf5" stopOpacity="0.95"/>
+            <stop offset="50%" stopColor="#d1fae5" stopOpacity="0.9"/>
+            <stop offset="100%" stopColor="#a7f3d0" stopOpacity="0.85"/>
+          </linearGradient>
+          
+          <linearGradient id="emeraldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#059669"/>
+            <stop offset="100%" stopColor="#065f46"/>
+          </linearGradient>
+          
+          <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#10b981"/>
+            <stop offset="100%" stopColor="#059669"/>
+          </linearGradient>
+          
+          <linearGradient id="innerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#6ee7b7" stopOpacity="0.8"/>
+            <stop offset="100%" stopColor="#34d399" stopOpacity="0.6"/>
+          </linearGradient>
+        </defs>
       </svg>
     </div>
     <div className="flex flex-col">
@@ -220,7 +244,7 @@ export default function MeridianMetricsWebsite() {
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl z-50 border-b border-emerald-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <MeridianMetricsLogo />
+            <MeridianLogo size="md" variant="modern" />
             <div className="hidden md:flex items-center space-x-8">
               <Button className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                 Get Audit-Ready in 30 Days
@@ -389,14 +413,13 @@ export default function MeridianMetricsWebsite() {
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section className="py-20 bg-red-50 relative">
+      {/* Problem Section - Seamlessly blended */}
+      <section className="py-20 bg-gradient-to-b from-emerald-50 via-red-50 to-red-100 relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="poppins-bold text-5xl mb-6 text-red-900">PPT Is Killing Your Operations Budget</h2>
+            <h2 className="poppins-bold text-5xl mb-6 text-red-900">The Unseen Costs Bleeding Your Budget</h2>
             <p className="poppins-regular text-xl text-red-700 max-w-3xl mx-auto">
-              Every month without proper PPT systems costs you money, reputation, and investor confidence. The penalties
-              are severe. The audit risk is real.
+              It's not just a line item. It's the hidden risk that stalls funding rounds, drains operational hours, and puts your reputation on the line with every audit.
             </p>
           </div>
 
@@ -404,26 +427,26 @@ export default function MeridianMetricsWebsite() {
             {[
               {
                 icon: AlertTriangle,
-                title: "£200/tonne Penalties",
+                title: "💰 £47,000 Penalty Risk",
                 description:
-                  "HMRC penalties start at £200 per tonne of non-compliant packaging. Average penalty: £47,000.",
+                  "One compliance slip can trigger fines your finance team never budgeted.",
                 gradient: "from-red-50 to-red-100",
                 border: "border-red-200",
                 iconColor: "text-red-600",
               },
               {
                 icon: XCircle,
-                title: "Funding Round Risk",
-                description: "VCs are rejecting deals over PPT compliance gaps. Due diligence now includes PPT audits.",
+                title: "🚫 Funding Deal Killer",
+                description: "Investors pull back fast when your compliance data doesn't hold up.",
                 gradient: "from-orange-50 to-orange-100",
                 border: "border-orange-200",
                 iconColor: "text-orange-600",
               },
               {
                 icon: Clock,
-                title: "Operational Chaos",
+                title: "⏳ 40+ Hours Lost Monthly",
                 description:
-                  "Manual PPT tracking consumes 40+ hours monthly. Spreadsheet errors create audit nightmares.",
+                  "Ops teams buried in spreadsheets instead of scaling the business.",
                 gradient: "from-yellow-50 to-yellow-100",
                 border: "border-yellow-200",
                 iconColor: "text-yellow-600",
@@ -656,7 +679,7 @@ export default function MeridianMetricsWebsite() {
               {/* Company Info */}
               <div className="lg:col-span-2">
                 <div className="flex items-center space-x-3 mb-6">
-                  <MeridianMetricsLogo className="w-10 h-10 text-emerald-400" />
+                  <MeridianLogo size="md" variant="icon" className="text-emerald-400" />
                 </div>
                 <p className="poppins-regular text-emerald-200 mb-6 text-lg leading-relaxed max-w-md">
                   The UK's leading PPT compliance specialists. We build audit-proof systems that eliminate penalties,

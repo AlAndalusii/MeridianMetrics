@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
@@ -255,8 +256,30 @@ export default function MeridianMetricsWebsite() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 relative">
-        <div className="max-w-7xl mx-auto">
+      <section className="pt-32 pb-20 px-6 relative overflow-hidden group/hero">
+        {/* Sophisticated background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.05)_0%,transparent_70%)] animate-pulse-slow"></div>
+          <div className="absolute top-0 w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,rgba(6,95,70,0.02)_0deg,rgba(16,185,129,0.02)_120deg,rgba(6,95,70,0.02)_240deg)] animate-spin-slower"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:20px_20px] animate-shimmer"></div>
+        </div>
+
+        {/* Premium floating elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Geometric shapes */}
+          <div className="absolute top-1/4 left-10 w-24 h-24 animate-float-slow">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/10 to-emerald-300/5 rounded-[30px] rotate-[10deg] backdrop-blur-sm"></div>
+          </div>
+          <div className="absolute bottom-1/4 right-10 w-32 h-32 animate-float-slow-reverse delay-1000">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/10 to-emerald-300/5 rounded-full backdrop-blur-sm"></div>
+          </div>
+          
+          {/* Light beams */}
+          <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-emerald-200/20 to-transparent animate-beam-slide"></div>
+          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-emerald-200/20 to-transparent animate-beam-slide-reverse delay-500"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div
               className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
@@ -288,7 +311,7 @@ export default function MeridianMetricsWebsite() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4" />
-                    <span className="poppins-medium text-sm">No-Obligation Diagnosis</span>
+                    <span className="poppins-medium text-sm">Book a 15-Min Intro Call</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4" />
@@ -413,12 +436,46 @@ export default function MeridianMetricsWebsite() {
         </div>
       </section>
 
-      {/* Problem Section - Seamlessly blended */}
-      <section className="py-20 bg-gradient-to-b from-emerald-50 via-red-50 to-red-100 relative">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Problem Section - Premium Red Theme */}
+      <section className="py-20 bg-gradient-to-b from-red-50/80 via-white to-red-50/80 relative overflow-hidden group/problem">
+        {/* Sophisticated background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(220,38,38,0.03)_0%,transparent_70%)] animate-pulse-slow"></div>
+          <div className="absolute top-0 w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,rgba(185,28,28,0.02)_0deg,rgba(239,68,68,0.02)_120deg,rgba(185,28,28,0.02)_240deg)] animate-spin-slower"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:20px_20px] animate-shimmer"></div>
+        </div>
+
+        {/* Premium floating elements with red theme */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Geometric shapes */}
+          <div className="absolute top-1/4 left-10 w-24 h-24 animate-float-slow">
+            <div className="absolute inset-0 bg-gradient-to-br from-red-200/10 to-red-300/5 rounded-[30px] rotate-[10deg] backdrop-blur-sm"></div>
+          </div>
+          <div className="absolute bottom-1/4 right-10 w-32 h-32 animate-float-slow-reverse delay-1000">
+            <div className="absolute inset-0 bg-gradient-to-br from-red-200/10 to-red-300/5 rounded-full backdrop-blur-sm"></div>
+          </div>
+          
+          {/* Light beams with red tint */}
+          <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-red-200/20 to-transparent animate-beam-slide"></div>
+          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-red-200/20 to-transparent animate-beam-slide-reverse delay-500"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="poppins-bold text-5xl mb-6 text-red-900">The Unseen Costs Bleeding Your Budget</h2>
-            <p className="poppins-regular text-xl text-red-700 max-w-3xl mx-auto">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100/90 backdrop-blur-xl border border-red-200/80 shadow-lg mb-8 group-hover/problem:scale-105 transition-all duration-500 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-red-50/0 via-red-50/80 to-red-50/0 animate-shine"></div>
+              <AlertTriangle className="w-5 h-5 text-red-600 mr-2 animate-pulse" />
+              <span className="poppins-medium text-sm text-red-800">Critical Risk Alert</span>
+            </div>
+            
+            <h2 className="poppins-bold text-5xl mb-6 text-red-900 tracking-tight relative animate-fade-in-up">
+              The Unseen Costs
+              <span className="block mt-2 bg-gradient-to-r from-red-600 via-red-500 to-red-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
+                Bleeding Your Budget
+              </span>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-gradient-to-r from-red-300/0 via-red-400 to-red-300/0 animate-pulse"></div>
+            </h2>
+            <p className="poppins-regular text-xl text-red-700 max-w-3xl mx-auto leading-relaxed">
               It's not just a line item. It's the hidden risk that stalls funding rounds, drains operational hours, and puts your reputation on the line with every audit.
             </p>
           </div>
@@ -427,41 +484,49 @@ export default function MeridianMetricsWebsite() {
             {[
               {
                 icon: AlertTriangle,
-                title: "💰 £47,000 Penalty Risk",
+                title: "£47,000 Penalty Risk",
                 description:
                   "One compliance slip can trigger fines your finance team never budgeted.",
-                gradient: "from-red-50 to-red-100",
+                gradient: "from-red-50/90 to-red-100/90",
                 border: "border-red-200",
                 iconColor: "text-red-600",
+                iconBg: "bg-red-100",
               },
               {
                 icon: XCircle,
-                title: "🚫 Funding Deal Killer",
+                title: "Funding Deal Killer",
                 description: "Investors pull back fast when your compliance data doesn't hold up.",
-                gradient: "from-orange-50 to-orange-100",
-                border: "border-orange-200",
-                iconColor: "text-orange-600",
+                gradient: "from-red-50/80 to-red-100/80",
+                border: "border-red-200",
+                iconColor: "text-red-600",
+                iconBg: "bg-red-100",
               },
               {
                 icon: Clock,
-                title: "⏳ 40+ Hours Lost Monthly",
+                title: "40+ Hours Lost Monthly",
                 description:
                   "Ops teams buried in spreadsheets instead of scaling the business.",
-                gradient: "from-yellow-50 to-yellow-100",
-                border: "border-yellow-200",
-                iconColor: "text-yellow-600",
+                gradient: "from-red-50/70 to-red-100/70",
+                border: "border-red-200",
+                iconColor: "text-red-600",
+                iconBg: "bg-red-100",
               },
             ].map((item, index) => (
               <Card
                 key={index}
-                className={`bg-gradient-to-br ${item.gradient} backdrop-blur-xl border ${item.border} shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:scale-105 group`}
+                className={`bg-gradient-to-br ${item.gradient} backdrop-blur-xl border ${item.border} shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:scale-105 group overflow-hidden`}
               >
-                <CardContent className="p-8 text-center">
-                  <item.icon
-                    className={`h-12 w-12 ${item.iconColor} mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
-                  />
-                  <h3 className="poppins-semibold text-xl text-gray-900 mb-3">{item.title}</h3>
-                  <p className="poppins-regular text-gray-700">{item.description}</p>
+                <CardContent className="p-8 text-center relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-100/0 via-red-100/30 to-red-100/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative">
+                    <div className={`w-16 h-16 ${item.iconBg} rounded-2xl mx-auto mb-6 flex items-center justify-center border ${item.border} shadow-md group-hover:shadow-red-500/20 transition-all duration-300`}>
+                      <item.icon
+                        className={`h-8 w-8 ${item.iconColor} group-hover:scale-110 transition-transform duration-300`}
+                      />
+                    </div>
+                    <h3 className="poppins-semibold text-xl text-red-900 mb-3">{item.title}</h3>
+                    <p className="poppins-regular text-red-700">{item.description}</p>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -470,8 +535,30 @@ export default function MeridianMetricsWebsite() {
       </section>
 
       {/* Solution Section */}
-      <section id="solution" className="py-20 bg-white relative">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="solution" className="py-20 bg-gradient-to-b from-emerald-50 via-white to-emerald-50 relative overflow-hidden group/solution">
+        {/* Sophisticated background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.05)_0%,transparent_70%)] animate-pulse-slow"></div>
+          <div className="absolute top-0 w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,rgba(6,95,70,0.02)_0deg,rgba(16,185,129,0.02)_120deg,rgba(6,95,70,0.02)_240deg)] animate-spin-slower"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:20px_20px] animate-shimmer"></div>
+        </div>
+
+        {/* Premium floating elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Geometric shapes */}
+          <div className="absolute top-1/4 left-10 w-24 h-24 animate-float-slow">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/10 to-emerald-300/5 rounded-[30px] rotate-[10deg] backdrop-blur-sm"></div>
+          </div>
+          <div className="absolute bottom-1/4 right-10 w-32 h-32 animate-float-slow-reverse delay-1000">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/10 to-emerald-300/5 rounded-full backdrop-blur-sm"></div>
+          </div>
+          
+          {/* Light beams */}
+          <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-emerald-200/20 to-transparent animate-beam-slide"></div>
+          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-emerald-200/20 to-transparent animate-beam-slide-reverse delay-500"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <Badge className="mb-6 bg-emerald-100 text-emerald-800 border-emerald-200">
@@ -557,8 +644,30 @@ export default function MeridianMetricsWebsite() {
       </section>
 
       {/* Process Section */}
-      <section id="process" className="py-20 bg-emerald-50 relative">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="process" className="py-20 bg-gradient-to-b from-emerald-50 via-white to-emerald-50 relative overflow-hidden group/process">
+        {/* Sophisticated background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.05)_0%,transparent_70%)] animate-pulse-slow"></div>
+          <div className="absolute top-0 w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,rgba(6,95,70,0.02)_0deg,rgba(16,185,129,0.02)_120deg,rgba(6,95,70,0.02)_240deg)] animate-spin-slower"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:20px_20px] animate-shimmer"></div>
+        </div>
+
+        {/* Premium floating elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Geometric shapes */}
+          <div className="absolute top-1/4 left-10 w-24 h-24 animate-float-slow">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/10 to-emerald-300/5 rounded-[30px] rotate-[10deg] backdrop-blur-sm"></div>
+          </div>
+          <div className="absolute bottom-1/4 right-10 w-32 h-32 animate-float-slow-reverse delay-1000">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/10 to-emerald-300/5 rounded-full backdrop-blur-sm"></div>
+          </div>
+          
+          {/* Light beams */}
+          <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-emerald-200/20 to-transparent animate-beam-slide"></div>
+          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-emerald-200/20 to-transparent animate-beam-slide-reverse delay-500"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <h2 className="poppins-bold text-5xl mb-6 text-emerald-900">30-Day Implementation Process</h2>
             <p className="poppins-regular text-xl text-emerald-700 max-w-3xl mx-auto">
@@ -624,264 +733,375 @@ export default function MeridianMetricsWebsite() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-emerald-800 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-800 to-green-700"></div>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10">
-            <Shield className="w-32 h-32 text-white/20 animate-pulse" />
-          </div>
-          <div className="absolute bottom-10 right-10">
-            <Calculator className="w-24 h-24 text-white/20 animate-pulse delay-1000" />
-          </div>
-          <div className="absolute top-1/2 left-1/4">
-            <FileCheck className="w-16 h-16 text-white/20 animate-pulse delay-2000" />
-          </div>
-        </div>
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h2 className="poppins-bold text-5xl mb-6">Stop PPT Penalties. Start Saving Money.</h2>
-          <p className="poppins-regular text-xl text-emerald-100 mb-8">
-            Every day without proper PPT systems costs you money and increases audit risk. Get audit-ready in 30 days
-            with our proven PPT Command Centre.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="poppins-semibold bg-white text-emerald-800 hover:bg-emerald-50 border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-            >
-              Book PPT Risk Assessment
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="poppins-medium border-white text-white hover:bg-white hover:text-emerald-800 transition-all duration-300 hover:scale-105 bg-transparent"
-            >
-              Calculate Your PPT Liability
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-emerald-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-full h-full">
-            <svg className="w-full h-full" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 200C200 100 400 300 600 200C800 100 1000 300 1200 200V400H0V200Z" fill="currentColor" />
-            </svg>
-          </div>
+      {/* Ultra Premium Founder Section */}
+      <section className="py-16 mt-8 bg-gradient-to-b from-emerald-50 via-white to-emerald-50 relative overflow-hidden group/founder">
+        {/* Apple-style glass morphism background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.05)_0%,transparent_70%)] animate-pulse-slow"></div>
+          <div className="absolute top-0 w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,rgba(6,95,70,0.02)_0deg,rgba(16,185,129,0.02)_120deg,rgba(6,95,70,0.02)_240deg)] animate-spin-slower"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:20px_20px] animate-shimmer"></div>
         </div>
 
-        <div className="relative z-10">
-          {/* Main footer content */}
-          <div className="max-w-7xl mx-auto px-6 py-16">
-            <div className="grid lg:grid-cols-5 md:grid-cols-3 gap-12">
-              {/* Company Info */}
-              <div className="lg:col-span-2">
-                <div className="flex items-center space-x-3 mb-6">
-                  <MeridianLogo size="md" variant="icon" className="text-emerald-400" />
-                </div>
-                <p className="poppins-regular text-emerald-200 mb-6 text-lg leading-relaxed max-w-md">
-                  The UK's leading PPT compliance specialists. We build audit-proof systems that eliminate penalties,
-                  satisfy HMRC, and unlock hidden tax savings for operations teams and investors.
-                </p>
+        {/* Premium floating elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Geometric shapes */}
+          <div className="absolute top-1/4 left-10 w-24 h-24 animate-float-slow">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/10 to-emerald-300/5 rounded-[30px] rotate-[10deg] backdrop-blur-sm"></div>
+          </div>
+          <div className="absolute bottom-1/4 right-10 w-32 h-32 animate-float-slow-reverse delay-1000">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/10 to-emerald-300/5 rounded-full backdrop-blur-sm"></div>
+          </div>
+          
+          {/* Light beams */}
+          <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-emerald-200/20 to-transparent animate-beam-slide"></div>
+          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-emerald-200/20 to-transparent animate-beam-slide-reverse delay-500"></div>
+        </div>
 
-                {/* Contact Info */}
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3 group">
-                    <div className="w-10 h-10 bg-emerald-800 rounded-lg flex items-center justify-center group-hover:bg-emerald-700 transition-colors duration-300">
-                      <Phone className="h-5 w-5 text-emerald-300" />
-                    </div>
-                    <div>
-                      <p className="poppins-medium text-emerald-300 text-sm">PPT Hotline</p>
-                      <p className="poppins-semibold text-white">+44 (0) 121 456 7890</p>
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            {/* Left Column - Ultra Premium Identity */}
+            <div className="text-center lg:text-left space-y-8 pt-10">
+              {/* Premium badge with glass effect */}
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/80 backdrop-blur-xl border border-emerald-100/80 shadow-lg group-hover/founder:scale-105 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-50/0 via-emerald-50/80 to-emerald-50/0 animate-shine"></div>
+                <Shield className="w-4 h-4 text-emerald-600 mr-2 animate-pulse" />
+                <span className="poppins-medium text-sm text-emerald-800">About the Founder</span>
+              </div>
+              
+              {/* Enhanced heading with sophisticated animations */}
+              <div className="relative">
+                <h2 className="poppins-bold text-5xl mb-10 tracking-tight relative animate-fade-in-up">
+                  <span className="block text-emerald-900 mb-2">The Specialist</span>
+                  <span className="block text-emerald-900">Behind</span>
+                  <span className="relative inline-block mt-2">
+                    <span className="relative z-10 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-[length:200%_100%] animate-gradient-x bg-clip-text text-transparent">
+                      the System
+                    </span>
+                    <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-gradient-to-r from-emerald-300/0 via-emerald-400 to-emerald-300/0 animate-pulse"></div>
+                  </span>
+                </h2>
+              </div>
+
+              {/* Ultra Premium Founder Image */}
+              <div className="relative inline-block group">
+                <div className="absolute -inset-4 bg-gradient-to-br from-emerald-500/10 to-emerald-600/10 rounded-full blur-2xl transform group-hover:scale-110 transition-transform duration-700"></div>
+                <div className="relative">
+                  {/* Main image container with premium border */}
+                  <div className="w-48 h-48 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full p-1 shadow-[0_8px_32px_rgba(6,95,70,0.25)] transform group-hover:scale-105 transition-all duration-500">
+                    <div className="w-full h-full rounded-full bg-white p-1">
+                      <Image
+                        src="/D7622D45-9B41-4CD9-ABAB-97252155B6A8.jpeg"
+                        alt="Zak Jama"
+                        width={180}
+                        height={180}
+                        className="rounded-full object-cover w-full h-full"
+                      />
                     </div>
                   </div>
-
-                  <div className="flex items-center space-x-3 group">
-                    <div className="w-10 h-10 bg-emerald-800 rounded-lg flex items-center justify-center group-hover:bg-emerald-700 transition-colors duration-300">
-                      <Mail className="h-5 w-5 text-emerald-300" />
-                    </div>
-                    <div>
-                      <p className="poppins-medium text-emerald-300 text-sm">PPT Support</p>
-                      <p className="poppins-semibold text-white">ppt@meridianmetrics.com</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-3 group">
-                    <div className="w-10 h-10 bg-emerald-800 rounded-lg flex items-center justify-center group-hover:bg-emerald-700 transition-colors duration-300">
-                      <MapPin className="h-5 w-5 text-emerald-300" />
-                    </div>
-                    <div>
-                      <p className="poppins-medium text-emerald-300 text-sm">Address</p>
-                      <p className="poppins-semibold text-white">
-                        Birmingham Business Park
-                        <br />
-                        Birmingham, B37 7YE
-                      </p>
-                    </div>
-                  </div>
+                  
+                  {/* Premium animated rings */}
+                  <div className="absolute -inset-2 border border-emerald-200/40 rounded-full animate-spin-slow"></div>
+                  <div className="absolute -inset-4 border border-emerald-100/30 rounded-full animate-reverse-spin"></div>
+                  <div className="absolute -inset-6 border border-emerald-100/20 rounded-full animate-spin-slower"></div>
+                  
+                  {/* Floating accent elements */}
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-full shadow-lg animate-float-slow"></div>
+                  <div className="absolute -bottom-1 -left-1 w-6 h-6 bg-gradient-to-br from-emerald-300 to-emerald-400 rounded-full shadow-lg animate-float-slow-reverse"></div>
                 </div>
               </div>
 
-              {/* PPT Services */}
-              <div>
-                <h3 className="poppins-bold mb-6 text-white text-lg">PPT Services</h3>
-                <div className="space-y-3">
-                  {[
-                    "PPT Risk Assessment",
-                    "Command Centre Setup",
-                    "HMRC Audit Support",
-                    "Supplier Integration",
-                    "Penalty Protection",
-                    "Tax Optimization",
-                    "Compliance Monitoring",
-                    "Emergency PPT Fix",
-                  ].map((item, index) => (
-                    <div key={index} className="group">
-                      <Link
-                        href="#"
-                        className="poppins-regular text-emerald-200 hover:text-white transition-colors duration-300 flex items-center space-x-2"
-                      >
-                        <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <span>{item}</span>
-                      </Link>
-                    </div>
-                  ))}
-                </div>
+              <div className="space-y-2">
+                <h3 className="poppins-bold text-2xl text-emerald-900">Zak Jama</h3>
+                <p className="poppins-medium text-emerald-700 tracking-wide">Founder & PPT Systems Specialist</p>
               </div>
+            </div>
 
-              {/* Company */}
-              <div>
-                <h3 className="poppins-bold mb-6 text-white text-lg">Company</h3>
-                <div className="space-y-3">
-                  {[
-                    "About Us",
-                    "PPT Experts",
-                    "Case Studies",
-                    "Client Success",
-                    "PPT News",
-                    "HMRC Updates",
-                    "Partnerships",
-                    "Contact",
-                  ].map((item, index) => (
-                    <div key={index} className="group">
-                      <Link
-                        href="#"
-                        className="poppins-regular text-emerald-200 hover:text-white transition-colors duration-300 flex items-center space-x-2"
-                      >
-                        <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <span>{item}</span>
-                      </Link>
+            {/* Right Column - Ultra Premium Bio */}
+            <div className="relative group/card">
+              {/* Premium glass card */}
+              <div className="relative bg-white/90 backdrop-blur-2xl rounded-3xl p-10 border border-emerald-100 shadow-[0_8px_32px_rgba(6,95,70,0.08)] hover:shadow-[0_16px_48px_rgba(6,95,70,0.12)] transition-all duration-500 animate-fade-in-up overflow-hidden">
+                {/* Subtle background animation */}
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Content with enhanced typography */}
+                <div className="relative space-y-8">
+                  <div className="space-y-5">
+                    <p className="poppins-regular text-emerald-900 leading-relaxed text-base">
+                      I founded Meridian Metrics after seeing the gap between official guidance and the messy reality of Plastic Packaging Tax.
+                    </p>
+                    <p className="poppins-regular text-emerald-900 leading-relaxed text-base">
+                      My experience in UK government services, including HMRC, showed me where systems break down. With sustainability training from the University of Cambridge, I help businesses build practical, audit-ready data systems that work in the real world.
+                    </p>
+                  </div>
+
+                  {/* Ultra Premium Credentials */}
+                  <div className="space-y-6">
+                    {/* Cambridge credential */}
+                    <div className="group/item">
+                      <div className="flex items-center gap-6 p-5 rounded-2xl bg-gradient-to-r from-emerald-50/80 to-transparent border border-emerald-100/50 hover:border-emerald-200/50 transition-all duration-300 hover:translate-x-2">
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-emerald-600/10 rounded-full blur-sm"></div>
+                          <div className="relative w-16 h-16 bg-white rounded-full flex items-center justify-center border border-emerald-200/50 shadow-md group-hover/item:shadow-emerald-500/20 transition-all duration-300 p-3">
+                            <Image
+                              src="/University of Cambridge new Logo Vector.svg"
+                              alt="University of Cambridge Logo"
+                              width={40}
+                              height={40}
+                              className="object-contain w-full h-full group-hover/item:scale-110 transition-transform duration-300"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="poppins-semibold text-emerald-900 text-base mb-1.5">Cambridge-Trained Strategist</h4>
+                          <p className="poppins-regular text-emerald-700 leading-relaxed text-sm">
+                            Trained at the University of Cambridge (CISL) to turn complex sustainability challenges into clear, actionable business strategies.
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* Resources & Newsletter */}
-              <div>
-                <h3 className="poppins-bold mb-6 text-white text-lg">PPT Resources</h3>
-                <div className="space-y-3 mb-8">
-                  {[
-                    "PPT Calculator",
-                    "Compliance Checklist",
-                    "HMRC Guidelines",
-                    "Penalty Guide",
-                    "PPT Webinars",
-                    "Expert Blog",
-                  ].map((item, index) => (
-                    <div key={index} className="group">
-                      <Link
-                        href="#"
-                        className="poppins-regular text-emerald-200 hover:text-white transition-colors duration-300 flex items-center space-x-2"
-                      >
-                        <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <span>{item}</span>
-                      </Link>
+                    {/* HMRC credential */}
+                    <div className="group/item">
+                      <div className="flex items-center gap-6 p-5 rounded-2xl bg-gradient-to-r from-emerald-50/80 to-transparent border border-emerald-100/50 hover:border-emerald-200/50 transition-all duration-300 hover:translate-x-2">
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-emerald-600/10 rounded-full blur-sm"></div>
+                          <div className="relative w-16 h-16 bg-white rounded-full flex items-center justify-center border border-emerald-200/50 shadow-md group-hover/item:shadow-emerald-500/20 transition-all duration-300 p-3">
+                            <Image
+                              src="/hm-revenue-customs-svgrepo-com.svg"
+                              alt="HMRC Systems Experience"
+                              width={40}
+                              height={40}
+                              className="object-contain w-full h-full group-hover/item:scale-110 transition-transform duration-300"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="poppins-semibold text-emerald-900 text-base mb-1.5">HMRC Systems Experience</h4>
+                          <p className="poppins-regular text-emerald-700 leading-relaxed text-sm">
+                            Worked within HMRC-facing services, guiding businesses on online systems and processes that underpin compliance today.
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  ))}
-                </div>
-
-                {/* Newsletter Signup */}
-                <div className="bg-emerald-800/50 rounded-2xl p-6 border border-emerald-700/50 backdrop-blur-sm">
-                  <h4 className="poppins-semibold text-white mb-3 flex items-center">
-                    <Mail className="w-4 h-4 mr-2 text-emerald-400" />
-                    PPT Updates
-                  </h4>
-                  <p className="poppins-regular text-emerald-200 text-sm mb-4">
-                    Get critical PPT updates and penalty alerts.
-                  </p>
-                  <div className="space-y-3">
-                    <Input
-                      placeholder="Enter your email"
-                      className="bg-emerald-900/50 border-emerald-600 text-white placeholder-emerald-300 focus:border-emerald-400 focus:ring-emerald-400"
-                    />
-                    <Button className="poppins-semibold w-full bg-emerald-600 hover:bg-emerald-500 text-white border-0 transition-all duration-300 hover:scale-105">
-                      Get PPT Alerts
-                    </Button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Bottom section */}
-        <div className="border-t border-emerald-800">
-          <div className="max-w-7xl mx-auto px-6 py-8">
-            <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
-              <div className="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 lg:space-x-8">
-                <p className="poppins-regular text-emerald-300 text-sm">
-                  &copy; 2025 MeridianMetrics Ltd. All rights reserved.
-                </p>
-                <div className="flex items-center space-x-6 text-sm">
-                  <Link
-                    href="#"
-                    className="poppins-regular text-emerald-200 hover:text-white transition-colors duration-300"
-                  >
-                    Privacy Policy
-                  </Link>
-                  <Link
-                    href="#"
-                    className="poppins-regular text-emerald-200 hover:text-white transition-colors duration-300"
-                  >
-                    Terms of Service
-                  </Link>
-                  <Link
-                    href="#"
-                    className="poppins-regular text-emerald-200 hover:text-white transition-colors duration-300"
-                  >
-                    PPT Disclaimer
-                  </Link>
-                </div>
-              </div>
+      {/* Premium CTA Section */}
+      <section className="py-20 bg-gradient-to-b from-emerald-50 via-white to-emerald-50 relative overflow-hidden group/cta">
+        {/* Sophisticated background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.08)_0%,transparent_50%)] animate-gradient-shift"></div>
+          <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(6,95,70,0.08)_0%,transparent_50%)] animate-gradient-shift-reverse"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%)] bg-[length:40px_40px] animate-shimmer"></div>
+        </div>
 
-              {/* Certifications & Social */}
-              <div className="flex items-center space-x-6">
-                {/* Certifications */}
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-emerald-700 rounded-lg flex items-center justify-center">
-                    <Shield className="w-4 h-4 text-emerald-300" />
+        {/* Premium animated accents */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Floating geometric shapes */}
+          <div className="absolute top-1/4 left-10 w-24 h-24 animate-float-slow">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/20 to-emerald-300/10 rounded-xl transform rotate-45"></div>
+            <div className="absolute inset-2 bg-white/50 backdrop-blur-sm rounded-lg transform -rotate-12 animate-spin-slow"></div>
+          </div>
+          <div className="absolute bottom-1/4 right-10 w-32 h-32 animate-float-slow-reverse">
+            <div className="absolute inset-0 bg-gradient-to-br from-green-200/20 to-emerald-300/10 rounded-full"></div>
+            <div className="absolute inset-2 bg-white/50 backdrop-blur-sm rounded-full transform animate-pulse"></div>
+          </div>
+          
+          {/* Dynamic light beams */}
+          <div className="absolute top-0 left-1/4 w-1 h-32 bg-gradient-to-b from-emerald-200/0 via-emerald-300/20 to-emerald-200/0 transform -rotate-45 animate-beam-slide"></div>
+          <div className="absolute bottom-0 right-1/4 w-1 h-32 bg-gradient-to-b from-emerald-200/0 via-emerald-300/20 to-emerald-200/0 transform rotate-45 animate-beam-slide-reverse"></div>
+        </div>
+
+        {/* Main content container with premium animations */}
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center relative">
+            {/* Premium badge with enhanced animation */}
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/80 mb-8 group-hover/cta:scale-105 transition-all duration-500 relative">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-200/0 via-emerald-200/30 to-emerald-200/0 animate-shine"></div>
+              <Shield className="w-5 h-5 text-emerald-600 mr-2 animate-pulse" />
+              <span className="poppins-medium text-sm text-emerald-800">Premium PPT Solutions</span>
+            </div>
+
+            {/* Enhanced headline with animated gradient */}
+            <h2 className="poppins-bold text-5xl mb-6 text-emerald-900 tracking-tight relative animate-fade-in-up">
+              <span className="inline-block">Stay </span>
+              <span className="inline-block bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-[length:200%_100%] animate-gradient-x bg-clip-text text-transparent">
+                Audit-Proof
+              </span>
+              <span className="inline-block">, Always</span>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-emerald-300/0 via-emerald-400/50 to-emerald-300/0 animate-pulse"></div>
+            </h2>
+
+            {/* Enhanced description with fade-in animation */}
+            <p className="poppins-regular text-xl text-emerald-700 max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-in-up delay-100">
+              We design sophisticated PPT compliance systems that eliminate penalties, 
+              <br className="hidden md:block" />
+              exceed HMRC audit standards, and empower your team.
+            </p>
+
+            {/* Premium CTA buttons with enhanced animations */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-fade-in-up delay-200">
+              <Button
+                size="lg"
+                className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-500 hover:scale-105 group/button relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
+                <span className="relative z-10 flex items-center">
+                  Book Your Strategy Call
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover/button:translate-x-1 transition-transform duration-500" />
+                </span>
+              </Button>
+
+              <Button
+                size="lg"
+                variant="outline"
+                className="poppins-semibold group/button bg-white/90 backdrop-blur-sm border border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-300 transition-all duration-500 hover:scale-105"
+              >
+                <span className="relative z-10 flex items-center">
+                  Watch Demo
+                  <div className="ml-2 w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center group-hover/button:bg-emerald-200 transition-colors duration-500">
+                    <div className="w-2 h-2 bg-emerald-700 rounded-full group-hover/button:scale-110 transition-transform duration-500"></div>
                   </div>
-                  <span className="poppins-regular text-emerald-200 text-xs">HMRC Approved</span>
-                </div>
+                </span>
+              </Button>
+            </div>
 
-                {/* Social Media */}
+            {/* Premium decorative elements */}
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-emerald-200/30 to-green-300/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-gradient-to-br from-green-200/30 to-emerald-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          </div>
+        </div>
+
+        {/* Premium geometric patterns */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 opacity-20">
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-emerald-300/10 to-emerald-500/10"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%)] bg-[length:20px_20px] animate-shimmer"></div>
+        </div>
+      </section>
+
+      {/* Refined Footer */}
+      <footer className="bg-gradient-to-b from-emerald-50 via-emerald-50 to-emerald-100/50 relative overflow-hidden">
+        {/* Sophisticated background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.03)_0%,transparent_50%)]"></div>
+          <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(6,95,70,0.03)_0%,transparent_50%)]"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:40px_40px] animate-shimmer"></div>
+        </div>
+
+        <div className="relative z-10">
+          {/* Main footer content */}
+          <div className="max-w-7xl mx-auto px-6 py-16">
+            <div className="grid lg:grid-cols-4 gap-12">
+              {/* Brand Column */}
+              <div className="lg:col-span-1">
+                <div className="mb-5">
+                  <MeridianLogo size="md" variant="modern" className="text-emerald-700" />
+                </div>
+                <p className="text-emerald-700 mb-5 text-sm leading-relaxed">
+                  We help businesses like yours handle plastic packaging tax without the headache. Making PPT data collection simple, so you can focus on what matters.
+                </p>
                 <div className="flex items-center space-x-3">
                   {[
                     { name: "LinkedIn", icon: "💼" },
                     { name: "Twitter", icon: "🐦" },
-                    { name: "YouTube", icon: "📺" },
                   ].map((social, index) => (
                     <Link
                       key={index}
                       href="#"
-                      className="w-10 h-10 bg-emerald-800 hover:bg-emerald-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+                      className="w-7 h-7 bg-emerald-100 hover:bg-emerald-200 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105"
                       title={social.name}
                     >
                       <span className="text-sm">{social.icon}</span>
                     </Link>
                   ))}
+                </div>
+              </div>
+
+              {/* Services */}
+              <div>
+                <h3 className="poppins-semibold text-emerald-900 mb-5 text-sm tracking-wider uppercase">Services</h3>
+                <div className="space-y-3">
+                  {[
+                    "PPT Strategy & Advisory",
+                    "Compliance Architecture",
+                    "Systems Integration",
+                    "Risk Management",
+                  ].map((item, index) => (
+                    <Link
+                      key={index}
+                      href="#"
+                      className="block text-emerald-700 hover:text-emerald-900 text-sm transition-colors duration-300"
+                    >
+                      {item}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Expertise */}
+              <div>
+                <h3 className="poppins-semibold text-emerald-900 mb-5 text-sm tracking-wider uppercase">Expertise</h3>
+                <div className="space-y-3">
+                  {[
+                    "Industry Insights",
+                    "Client Success Stories",
+                    "Thought Leadership",
+                    "Research & Publications",
+                  ].map((item, index) => (
+                    <Link
+                      key={index}
+                      href="#"
+                      className="block text-emerald-700 hover:text-emerald-900 text-sm transition-colors duration-300"
+                    >
+                      {item}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Contact */}
+              <div>
+                <h3 className="poppins-semibold text-emerald-900 mb-5 text-sm tracking-wider uppercase">Connect</h3>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-emerald-800 text-sm poppins-medium">London</p>
+                    <p className="text-emerald-700 text-sm">One Canada Square, Canary Wharf</p>
+                  </div>
+                  <div>
+                    <p className="text-emerald-800 text-sm poppins-medium">Enquiries</p>
+                    <p className="text-emerald-700 text-sm">enquiries@meridianmetrics.com</p>
+                  </div>
+                  <div>
+                    <p className="text-emerald-800 text-sm poppins-medium">Advisory Team</p>
+                    <p className="text-emerald-700 text-sm">+44 (0) 20 7123 4567</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="border-t border-emerald-200/80">
+            <div className="max-w-7xl mx-auto px-6 py-4">
+              <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+                <div className="flex items-center">
+                  <span className="text-emerald-700 text-xs">&copy; 2024 MeridianMetrics Ltd. All rights reserved.</span>
+                </div>
+                <div className="flex items-center space-x-6 text-xs">
+                  <Link href="#" className="text-emerald-700 hover:text-emerald-900 transition-colors duration-300">
+                    Privacy Policy
+                  </Link>
+                  <Link href="#" className="text-emerald-700 hover:text-emerald-900 transition-colors duration-300">
+                    Terms of Service
+                  </Link>
+                  <Link href="#" className="text-emerald-700 hover:text-emerald-900 transition-colors duration-300">
+                    Cookie Settings
+                  </Link>
                 </div>
               </div>
             </div>

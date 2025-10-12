@@ -518,8 +518,8 @@ export default function MillstoneComplianceWebsite() {
 
         {/* Floating Data Visualization Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Animated floating cards */}
-          <div className="absolute top-20 right-[10%] w-32 h-24 bg-white/60 backdrop-blur-md rounded-xl border border-emerald-100/50 shadow-lg animate-float-slow p-4">
+          {/* Animated floating cards - Hidden on mobile to prevent collision */}
+          <div className="hidden md:block absolute top-20 right-[10%] w-32 h-24 bg-white/60 backdrop-blur-md rounded-xl border border-emerald-100/50 shadow-lg animate-float-slow p-4">
             <div className="text-xs text-emerald-600 poppins-semibold mb-1">Compliance</div>
             <div className="text-2xl poppins-bold text-emerald-900">94%</div>
             <div className="w-full bg-emerald-100 h-1 rounded-full mt-2">
@@ -527,7 +527,7 @@ export default function MillstoneComplianceWebsite() {
             </div>
           </div>
           
-          <div className="absolute bottom-32 left-[8%] w-36 h-28 bg-white/60 backdrop-blur-md rounded-xl border border-green-100/50 shadow-lg animate-float-slow-reverse p-4">
+          <div className="hidden md:block absolute bottom-32 left-[8%] w-36 h-28 bg-white/60 backdrop-blur-md rounded-xl border border-green-100/50 shadow-lg animate-float-slow-reverse p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="text-xs text-green-600 poppins-semibold">Risk Score</div>
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -752,8 +752,8 @@ export default function MillstoneComplianceWebsite() {
 
         {/* Floating premium data visualization */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Glassmorphic floating progress indicator */}
-          <div className="absolute top-32 right-[8%] w-36 h-32 bg-white/60 backdrop-blur-2xl rounded-2xl border border-emerald-100/50 shadow-[0_8px_32px_rgba(6,95,70,0.08)] animate-float-slow p-4">
+          {/* Glassmorphic floating progress indicator - Hidden on mobile to prevent collision */}
+          <div className="hidden lg:block absolute top-32 right-[8%] w-36 h-32 bg-white/60 backdrop-blur-2xl rounded-2xl border border-emerald-100/50 shadow-[0_8px_32px_rgba(6,95,70,0.08)] animate-float-slow p-4">
             <div className="text-[10px] text-emerald-600 poppins-semibold uppercase tracking-wider mb-2">Progress</div>
             <div className="flex items-baseline gap-1 mb-3">
               <div className="text-3xl poppins-bold text-emerald-900">3</div>
@@ -945,11 +945,11 @@ export default function MillstoneComplianceWebsite() {
 
                 {/* HMRC Credential */}
                 <div className="group/item relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent rounded-2xl opacity-0 group-hover/item:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative flex items-start gap-5 p-6 rounded-2xl border border-emerald-100/30 hover:border-emerald-200/50 transition-all duration-500 bg-white/40 backdrop-blur-sm">
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent rounded-xl sm:rounded-2xl opacity-0 group-hover/item:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative flex items-start gap-3 sm:gap-4 md:gap-5 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl border border-emerald-100/30 hover:border-emerald-200/50 transition-all duration-500 bg-white/40 backdrop-blur-sm">
                     <div className="relative flex-shrink-0">
-                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-emerald-600/10 rounded-2xl blur-lg"></div>
-                      <div className="relative w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-emerald-100/50 shadow-sm group-hover/item:shadow-md transition-all duration-500 p-2">
+                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-emerald-600/10 rounded-xl sm:rounded-2xl blur-lg"></div>
+                      <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center border border-emerald-100/50 shadow-sm group-hover/item:shadow-md transition-all duration-500 p-2 sm:p-3">
                         <Image
                           src="/Screenshot 2025-08-31 at 21.43.30.png"
                           alt="HMRC Systems Experience"
@@ -960,8 +960,8 @@ export default function MillstoneComplianceWebsite() {
                       </div>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="poppins-semibold text-emerald-900 text-base mb-2">HMRC Systems Experience</h4>
-                      <p className="poppins-regular text-emerald-700 text-sm leading-relaxed">
+                      <h4 className="poppins-semibold text-emerald-900 text-sm sm:text-base mb-1 sm:mb-2">HMRC Systems Experience</h4>
+                      <p className="poppins-regular text-emerald-700 text-xs sm:text-sm leading-relaxed">
                         Direct experience with UK tax authority systems, providing insight into compliance requirements and audit standards.
                       </p>
                     </div>
@@ -1027,11 +1027,11 @@ export default function MillstoneComplianceWebsite() {
 
             {/* Enhanced headline with animated gradient */}
             <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-6 text-emerald-900 tracking-tight relative animate-fade-in-up">
-              <span className="inline-block">Remain </span>
+              <span className="inline-block">Remain</span>{" "}
               <span className="inline-block bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-[length:200%_100%] animate-gradient-x bg-clip-text text-transparent">
-                Audit-Ready
-              </span>
-              <span className="inline-block">, Always</span>
+                Audit-Ready,
+              </span>{" "}
+              <span className="inline-block">Always</span>
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-emerald-300/0 via-emerald-400/50 to-emerald-300/0 animate-pulse"></div>
             </h2>
 

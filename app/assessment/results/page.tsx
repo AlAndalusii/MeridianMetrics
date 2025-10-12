@@ -21,6 +21,7 @@ import {
   Sparkles,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
+import { CONTACT_INFO } from "@/lib/constants"
 
 interface Gap {
   title: string
@@ -39,60 +40,73 @@ export default function ResultsPage() {
   const [userInfo, setUserInfo] = useState({ name: "", email: "", company: "" })
 
   useEffect(() => {
-    // Load results from localStorage
-    const savedScore = localStorage.getItem("ppt_assessment_score")
-    const savedAnswers = localStorage.getItem("ppt_assessment_answers")
-    
-    if (!savedScore || !savedAnswers) {
-      // Redirect back to assessment if no results
+    try {
+      // Load results from localStorage
+      const savedScore = localStorage.getItem("ppt_assessment_score")
+      const savedAnswers = localStorage.getItem("ppt_assessment_answers")
+      
+      if (!savedScore || !savedAnswers) {
+        // Redirect back to assessment if no results
+        console.warn("No assessment results found, redirecting to assessment")
+        router.push("/assessment")
+        return
+      }
+
+      const parsedAnswers = JSON.parse(savedAnswers)
+      setAnswers(parsedAnswers)
+      setScore(parseInt(savedScore))
+      
+      // Get user info with validation
+      setUserInfo({
+        name: parsedAnswers[1] || "Valued Client",
+        email: parsedAnswers[2] || "no-email@provided.com",
+        company: parsedAnswers[3] || "Your Company",
+      })
+
+      // Calculate gaps and strengths
+      calculateGapsAndStrengths(parsedAnswers)
+
+      setIsLoading(false)
+
+      // Animate score
+      animateScore(parseInt(savedScore))
+    } catch (error) {
+      console.error("Error loading assessment results:", error)
+      // Redirect to assessment on error
       router.push("/assessment")
-      return
     }
-
-    const parsedAnswers = JSON.parse(savedAnswers)
-    setAnswers(parsedAnswers)
-    setScore(parseInt(savedScore))
-    
-    // Get user info
-    setUserInfo({
-      name: parsedAnswers[1] || "Valued Client",
-      email: parsedAnswers[2] || "",
-      company: parsedAnswers[3] || "Your Company",
-    })
-
-    // Calculate gaps and strengths
-    calculateGapsAndStrengths(parsedAnswers)
-
-    setIsLoading(false)
-
-    // Animate score
-    animateScore(parseInt(savedScore))
   }, [router])
 
   const animateScore = (targetScore: number) => {
-    const duration = 2000
-    const steps = 60
-    const stepDuration = duration / steps
-    let currentStep = 0
+    try {
+      const duration = 2000
+      const steps = 60
+      const stepDuration = duration / steps
+      let currentStep = 0
 
-    const interval = setInterval(() => {
-      currentStep++
-      const progress = currentStep / steps
-      const easeOut = 1 - Math.pow(1 - progress, 3)
-      setAnimatedScore(Math.round(targetScore * easeOut))
+      const interval = setInterval(() => {
+        currentStep++
+        const progress = currentStep / steps
+        const easeOut = 1 - Math.pow(1 - progress, 3)
+        setAnimatedScore(Math.round(targetScore * easeOut))
 
-      if (currentStep >= steps) {
-        clearInterval(interval)
-      }
-    }, stepDuration)
+        if (currentStep >= steps) {
+          clearInterval(interval)
+        }
+      }, stepDuration)
+    } catch (error) {
+      console.error("Error animating score:", error)
+      setAnimatedScore(targetScore)
+    }
   }
 
   const calculateGapsAndStrengths = (answers: Record<number, string>) => {
-    const identifiedGaps: Gap[] = []
-    const identifiedStrengths: string[] = []
+    try {
+      const identifiedGaps: Gap[] = []
+      const identifiedStrengths: string[] = []
 
-    // Check Q5 - Certificates
-    if (answers[5] === "no" || answers[5] === "not_sure") {
+      // Check Q5 - Certificates
+      if (answers[5] === "no" || answers[5] === "not_sure") {
       identifiedGaps.push({
         title: "Missing recycled content certificates",
         description: "You don't have complete certificates for all packaging with recycled content claims",
@@ -198,8 +212,13 @@ export default function ResultsPage() {
       identifiedStrengths.push("Nation data tracking in place")
     }
 
-    setGaps(identifiedGaps)
-    setStrenghts(identifiedStrengths)
+      setGaps(identifiedGaps)
+      setStrenghts(identifiedStrengths)
+    } catch (error) {
+      console.error("Error calculating gaps and strengths:", error)
+      setGaps([])
+      setStrenghts([])
+    }
   }
 
   const getScoreLevel = () => {
@@ -550,14 +569,14 @@ export default function ResultsPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
               <Button
-                onClick={() => (window.location.href = "mailto:hello@millstonecompliance.com")}
+                onClick={() => (window.location.href = CONTACT_INFO.mailto)}
                 className="poppins-medium bg-white border-2 border-emerald-200 text-emerald-700 hover:border-emerald-400 hover:bg-emerald-50 active:scale-95 w-full sm:w-auto text-sm px-6 py-3.5 min-h-[48px]"
               >
                 <Mail className="w-4 h-4 mr-2" />
                 Email Us
               </Button>
               <Button
-                onClick={() => (window.location.href = "tel:+44YOURPHONE")}
+                onClick={() => (window.location.href = CONTACT_INFO.tel)}
                 className="poppins-medium bg-white border-2 border-emerald-200 text-emerald-700 hover:border-emerald-400 hover:bg-emerald-50 active:scale-95 w-full sm:w-auto text-sm px-6 py-3.5 min-h-[48px]"
               >
                 <Phone className="w-4 h-4 mr-2" />

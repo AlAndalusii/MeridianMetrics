@@ -22,6 +22,7 @@ import {
   RefreshCw,
   Target,
   Sparkles,
+  XCircle,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 
@@ -311,6 +312,8 @@ export default function AssessmentPage() {
   const [showFeedback, setShowFeedback] = useState(false)
   const [feedbackType, setFeedbackType] = useState<"correct" | "gap" | "neutral">("neutral")
   const [isContactInfoPhase, setIsContactInfoPhase] = useState(true)
+  const [validationError, setValidationError] = useState<string>("")
+  const [storageError, setStorageError] = useState(false)
 
   const currentQuestion = questions[currentStep]
   const totalQuestions = questions.length
@@ -322,25 +325,67 @@ export default function AssessmentPage() {
     ? ((currentStep + 1) / contactInfoQuestions) * 100
     : ((currentStep - contactInfoQuestions + 1) / assessmentQuestions) * 100
 
-  // Auto-save to localStorage
+  // Auto-save to localStorage with error handling
   useEffect(() => {
-    const savedAnswers = localStorage.getItem("ppt_assessment_answers")
-    const savedStep = localStorage.getItem("ppt_assessment_step")
-    
-    if (savedAnswers) {
-      setAnswers(JSON.parse(savedAnswers))
-    }
-    if (savedStep && parseInt(savedStep) > 0) {
-      setCurrentStep(parseInt(savedStep))
+    try {
+      const savedAnswers = localStorage.getItem("ppt_assessment_answers")
+      const savedStep = localStorage.getItem("ppt_assessment_step")
+      
+      if (savedAnswers) {
+        setAnswers(JSON.parse(savedAnswers))
+      }
+      if (savedStep && parseInt(savedStep) > 0) {
+        setCurrentStep(parseInt(savedStep))
+      }
+    } catch (error) {
+      console.error("Failed to load saved progress:", error)
+      setStorageError(true)
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem("ppt_assessment_answers", JSON.stringify(answers))
-    localStorage.setItem("ppt_assessment_step", currentStep.toString())
+    try {
+      localStorage.setItem("ppt_assessment_answers", JSON.stringify(answers))
+      localStorage.setItem("ppt_assessment_step", currentStep.toString())
+      setStorageError(false)
+    } catch (error) {
+      console.error("Failed to save progress:", error)
+      setStorageError(true)
+    }
   }, [answers, currentStep])
 
+  // Email validation helper
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
+  // Phone validation helper (optional UK format)
+  const validatePhone = (phone: string): boolean => {
+    if (!phone) return true // Phone is optional
+    const phoneRegex = /^(\+44|0)[0-9]{9,10}$/
+    return phoneRegex.test(phone.replace(/\s/g, ''))
+  }
+
   const handleAnswer = (value: string) => {
+    setValidationError("")
+    
+    // Validate email on question 2
+    if (currentQuestion.id === 2 && value) {
+      if (!validateEmail(value)) {
+        setValidationError("Please enter a valid email address")
+        return
+      }
+    }
+    
+    // Validate phone on question 4 (if provided)
+    if (currentQuestion.id === 4 && value) {
+      if (!validatePhone(value)) {
+        setValidationError("Please enter a valid UK phone number (e.g., +44 7XXX XXXXXX or 07XXX XXXXXX)")
+        return
+      }
+    }
+    
     setAnswers({ ...answers, [currentQuestion.id]: value })
     
     // Show feedback animation
@@ -364,9 +409,29 @@ export default function AssessmentPage() {
   }
 
   const handleNext = () => {
+    setValidationError("")
+    
     // Allow skipping phone number (question 4) and textarea questions (question 19)
     const isOptional = currentQuestion.type === "textarea" || currentQuestion.id === 4
-    if (!answers[currentQuestion.id] && !isOptional) return
+    const currentAnswer = answers[currentQuestion.id]
+    
+    if (!currentAnswer && !isOptional) return
+    
+    // Validate email before proceeding
+    if (currentQuestion.id === 2 && currentAnswer) {
+      if (!validateEmail(currentAnswer)) {
+        setValidationError("Please enter a valid email address before continuing")
+        return
+      }
+    }
+    
+    // Validate phone before proceeding (if provided)
+    if (currentQuestion.id === 4 && currentAnswer) {
+      if (!validatePhone(currentAnswer)) {
+        setValidationError("Please enter a valid UK phone number or skip this field")
+        return
+      }
+    }
 
     setIsAnimating(true)
     setTimeout(() => {
@@ -430,63 +495,73 @@ export default function AssessmentPage() {
   }
 
   const calculateAndRedirectToResults = () => {
-    // Calculate compliance score
-    let score = 0
-    let maxScore = 0
+    try {
+      // Calculate compliance score
+      let score = 0
+      let maxScore = 0
 
-    // Questions 5-14 are compliance questions (10 points each)
-    for (let i = 5; i <= 14; i++) {
-      const answer = answers[i]
-      const question = questions.find(q => q.id === i)
-      
-      if (question && question.options) {
-        const selectedOption = question.options.find(opt => opt.value === answer)
+      // Questions 5-14 are compliance questions (10 points each)
+      for (let i = 5; i <= 14; i++) {
+        const answer = answers[i]
+        const question = questions.find(q => q.id === i)
         
-        // Skip if question was skipped
-        if (answer === "no_exemptions" && (i === 5 || i === 6 || i === 7)) {
-          continue
-        }
-        if (answer === "no_export" && i === 13) {
-          continue
-        }
-        if (answer === "one_nation" && i === 14) {
-          score += 10
+        if (question && question.options) {
+          const selectedOption = question.options.find(opt => opt.value === answer)
+          
+          // Skip if question was skipped
+          if (answer === "no_exemptions" && (i === 5 || i === 6 || i === 7)) {
+            continue
+          }
+          if (answer === "no_export" && i === 13) {
+            continue
+          }
+          if (answer === "one_nation" && i === 14) {
+            score += 10
+            maxScore += 10
+            continue
+          }
+          if (answer === "never_changed" && i === 10) {
+            score += 10
+            maxScore += 10
+            continue
+          }
+          
           maxScore += 10
-          continue
-        }
-        if (answer === "never_changed" && i === 10) {
-          score += 10
-          maxScore += 10
-          continue
-        }
-        
-        maxScore += 10
-        
-        if (selectedOption?.isCorrect) {
-          score += 10
-        } else if (selectedOption?.isGap) {
-          score += 0
-        } else if (answer === "scales_only" && i === 11) {
-          score += 5
-        } else if (answer === "unsure" && i === 12) {
-          score += 5
-        } else if (answer === "maybe" && i === 8) {
-          score += 6
-        } else {
-          score += 3
+          
+          if (selectedOption?.isCorrect) {
+            score += 10
+          } else if (selectedOption?.isGap) {
+            score += 0
+          } else if (answer === "scales_only" && i === 11) {
+            score += 5
+          } else if (answer === "unsure" && i === 12) {
+            score += 5
+          } else if (answer === "maybe" && i === 8) {
+            score += 6
+          } else {
+            score += 3
+          }
         }
       }
+
+      // Calculate percentage
+      const percentage = Math.round((score / maxScore) * 100)
+
+      // Save results with error handling
+      try {
+        localStorage.setItem("ppt_assessment_score", percentage.toString())
+        localStorage.setItem("ppt_assessment_complete", "true")
+      } catch (storageError) {
+        console.error("Failed to save results:", storageError)
+        // Continue anyway - results page will handle missing data
+      }
+
+      // Redirect to results
+      router.push("/assessment/results")
+    } catch (error) {
+      console.error("Error calculating results:", error)
+      setValidationError("An error occurred. Please try again.")
     }
-
-    // Calculate percentage
-    const percentage = Math.round((score / maxScore) * 100)
-
-    // Save results
-    localStorage.setItem("ppt_assessment_score", percentage.toString())
-    localStorage.setItem("ppt_assessment_complete", "true")
-
-    // Redirect to results
-    router.push("/assessment/results")
   }
 
   const getSectionIcon = () => {
@@ -576,6 +651,15 @@ export default function AssessmentPage() {
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-200/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 
               <div className="relative z-10">
+                {/* Storage Error Warning */}
+                {storageError && (
+                  <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-amber-50 border border-amber-200 rounded-lg sm:rounded-xl">
+                    <p className="text-xs sm:text-sm text-amber-800 poppins-medium">
+                      ⚠️ Unable to save progress. Your answers won't be saved if you leave this page.
+                    </p>
+                  </div>
+                )}
+                
                 {/* Question */}
                 <h1 className="poppins-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-emerald-900 mb-3 sm:mb-4 leading-tight">
                   {currentQuestion.question}
@@ -585,6 +669,16 @@ export default function AssessmentPage() {
                   <p className="poppins-regular text-sm sm:text-base md:text-lg text-emerald-700 mb-6 sm:mb-8 leading-relaxed whitespace-pre-line">
                     {currentQuestion.subtitle}
                   </p>
+                )}
+                
+                {/* Validation Error */}
+                {validationError && (
+                  <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg sm:rounded-xl animate-fade-in-up">
+                    <p className="text-xs sm:text-sm text-red-800 poppins-medium flex items-center">
+                      <XCircle className="w-4 h-4 mr-2 flex-shrink-0" />
+                      {validationError}
+                    </p>
+                  </div>
                 )}
 
                 {/* Answer Input */}

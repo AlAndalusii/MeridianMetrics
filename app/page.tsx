@@ -27,6 +27,7 @@ import {
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
+import { CONTACT_INFO } from "@/lib/constants"
 
 // Fortune 500 Premium Logo Component - World-Class Design
 const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: string }) => (
@@ -263,12 +264,13 @@ export default function MillstoneComplianceWebsite() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl z-50 border-b border-emerald-100 shadow-sm">
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl z-50 border-b border-emerald-100 shadow-sm" role="navigation" aria-label="Main navigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <MillstoneLogo size="sm" variant="modern" />
             <Button 
               onClick={() => router.push("/assessment")}
+              aria-label="Start your free PPT compliance assessment"
               className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px]">
               <span className="hidden xs:inline">START YOUR FREE ASSESSMENT</span>
               <span className="xs:hidden">START ASSESSMENT</span>
@@ -278,7 +280,7 @@ export default function MillstoneComplianceWebsite() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-20 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 relative overflow-hidden group/hero">
+      <section className="pt-20 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 relative overflow-hidden group/hero" aria-label="Hero section">
         {/* Sophisticated background elements */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.05)_0%,transparent_70%)] animate-pulse-slow"></div>
@@ -494,7 +496,7 @@ export default function MillstoneComplianceWebsite() {
       </section>
 
       {/* Intelligence Assessment Section - World-Class Consultancy Design */}
-      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-emerald-50 via-white to-emerald-50 relative overflow-hidden group/assessment">
+      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-emerald-50 via-white to-emerald-50 relative overflow-hidden group/assessment" aria-labelledby="assessment-heading">
         {/* Sophisticated background elements matching site theme */}
         <div className="absolute inset-0">
           {/* Animated gradient orbs - emerald theme */}
@@ -569,7 +571,7 @@ export default function MillstoneComplianceWebsite() {
             </div>
             
             {/* Headline - Ultra Premium */}
-            <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-4 sm:mb-6 md:mb-8 text-emerald-900 tracking-tight relative animate-fade-in-up leading-[1.1]">
+            <h2 id="assessment-heading" className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-4 sm:mb-6 md:mb-8 text-emerald-900 tracking-tight relative animate-fade-in-up leading-[1.1]">
               Your Compliance Intelligence
               <span className="block mt-2 sm:mt-3 leading-tight pb-2 sm:pb-3 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
                 Diagnostic Report
@@ -1146,6 +1148,7 @@ export default function MillstoneComplianceWebsite() {
               {/* Close button */}
               <button
                 onClick={() => setShowCallPopup(false)}
+                aria-label="Close popup"
                 className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-50/80 backdrop-blur-sm border border-emerald-100/50 flex items-center justify-center group/close hover:bg-emerald-100 transition-all duration-300 hover:scale-110 hover:rotate-90 z-10 min-h-[44px] min-w-[44px]"
               >
                 <svg
@@ -1184,8 +1187,7 @@ export default function MillstoneComplianceWebsite() {
                   size="lg"
                   className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-500 sm:hover:scale-105 group/button w-full relative overflow-hidden py-5 sm:py-6 min-h-[54px]"
                   onClick={() => {
-                    // Add your booking logic here
-                    window.location.href = 'tel:+44YOURPHONE' // Replace with your phone or booking link
+                    window.location.href = CONTACT_INFO.tel
                   }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
@@ -1219,7 +1221,7 @@ export default function MillstoneComplianceWebsite() {
       )}
 
       {/* Premium Sophisticated Footer */}
-      <footer className="bg-gradient-to-b from-emerald-50 via-emerald-50/80 to-white relative overflow-hidden border-t border-emerald-100/50 px-safe">
+      <footer className="bg-gradient-to-b from-emerald-50 via-emerald-50/80 to-white relative overflow-hidden border-t border-emerald-100/50 px-safe" role="contentinfo" aria-label="Site footer">
         {/* Sophisticated background elements */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.03)_0%,transparent_70%)] animate-pulse-slow"></div>

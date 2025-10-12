@@ -587,3 +587,34 @@ body, html {
     font-size: 16px !important;
   }
 }
+
+/* Respect user's motion preferences for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-pulse,
+  .animate-spin,
+  .animate-bounce,
+  .animate-pulse-slow,
+  .animate-spin-slow,
+  .animate-spin-slower,
+  .animate-shimmer,
+  .animate-float-slow,
+  .animate-float-slow-reverse,
+  .animate-gradient-x,
+  .animate-shine,
+  .animate-beam-slide,
+  .animate-beam-slide-reverse,
+  .animate-scan,
+  .animate-gradient-shift,
+  .animate-gradient-shift-reverse {
+    animation: none !important;
+  }
+}

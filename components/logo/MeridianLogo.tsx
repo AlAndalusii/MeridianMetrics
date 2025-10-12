@@ -317,7 +317,7 @@ const LogoIconModern = ({ size = 'md', className = '' }: { size: string, classNa
 )
 
 // Main Logo Component - Fortune 500 Grade
-export const MeridianLogo: React.FC<LogoProps> = ({
+export const MillstoneLogo: React.FC<LogoProps> = ({
   size = 'md',
   variant = 'full',
   className = '',
@@ -341,10 +341,10 @@ export const MeridianLogo: React.FC<LogoProps> = ({
             {showText && (
               <div className="flex flex-col">
                 <span className={`poppins-bold ${textSizeClasses[size as keyof typeof textSizeClasses]} text-emerald-800 tracking-tight leading-none`}>
-                  MeridianMetrics
+                  Millstone Compliance
                 </span>
                 <span className="poppins-medium text-xs text-emerald-600 tracking-widest uppercase mt-1">
-                  PPT Compliance Systems
+                  PPT Compliance Solutions
                 </span>
               </div>
             )}
@@ -358,10 +358,10 @@ export const MeridianLogo: React.FC<LogoProps> = ({
             {showText && (
               <div className="flex flex-col">
                 <span className={`poppins-bold ${textSizeClasses[size as keyof typeof textSizeClasses]} text-emerald-800 tracking-tight leading-none`}>
-                  MeridianMetrics
+                  Millstone Compliance
                 </span>
                 <span className="poppins-medium text-xs text-emerald-600 tracking-widest uppercase mt-1">
-                  PPT Compliance Systems
+                  PPT Compliance Solutions
                 </span>
               </div>
             )}
@@ -376,10 +376,10 @@ export const MeridianLogo: React.FC<LogoProps> = ({
             {showText && (
               <div className="flex flex-col">
                 <span className={`poppins-bold ${textSizeClasses[size as keyof typeof textSizeClasses]} text-emerald-800 tracking-tight leading-none`}>
-                  MeridianMetrics
+                  Millstone Compliance
                 </span>
                 <span className="poppins-medium text-xs text-emerald-600 tracking-widest uppercase mt-1">
-                  PPT Compliance Systems
+                  PPT Compliance Solutions
                 </span>
               </div>
             )}
@@ -391,4 +391,7 @@ export const MeridianLogo: React.FC<LogoProps> = ({
   return renderLogo()
 }
 
-export default MeridianLogo
+// Keep backward compatibility
+export const MeridianLogo = MillstoneLogo
+
+export default MillstoneLogo

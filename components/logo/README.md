@@ -1,4 +1,4 @@
-# MeridianMetrics Logo Suite
+# Millstone Compliance Logo Suite
 ## Fortune 500 Premium Brand Identity
 
 ### Overview
@@ -90,35 +90,35 @@ Simplified version for small sizes
 
 ```tsx
 // Standard website header (Classic)
-<MeridianLogo size="md" variant="full" />
+<MillstoneLogo size="md" variant="full" />
 
 // Modern tech-forward header
-<MeridianLogo size="md" variant="modern" />
+<MillstoneLogo size="md" variant="modern" />
 
 // Navigation bar (Classic)
-<MeridianLogo size="sm" variant="horizontal" />
+<MillstoneLogo size="sm" variant="horizontal" />
 
 // Mobile favicon
-<MeridianLogo size="sm" variant="minimal" />
+<MillstoneLogo size="sm" variant="minimal" />
 
 // Large hero section (Classic)
-<MeridianLogo size="2xl" variant="full" />
+<MillstoneLogo size="2xl" variant="full" />
 
 // Large modern hero section
-<MeridianLogo size="2xl" variant="modern" />
+<MillstoneLogo size="2xl" variant="modern" />
 
 // Classic icon only for traditional contexts
-<MeridianLogo size="lg" variant="icon" showText={false} />
+<MillstoneLogo size="lg" variant="icon" showText={false} />
 
 // Modern icon for digital platforms
-<MeridianLogo size="lg" variant="modern-icon" showText={false} />
+<MillstoneLogo size="lg" variant="modern-icon" showText={false} />
 
 // Software interface or app
-<MeridianLogo size="md" variant="modern-icon" />
+<MillstoneLogo size="md" variant="modern-icon" />
 ```
 
 ### Brand Protection
-This logo represents significant design investment and should be used consistently across all brand touchpoints. The sophisticated geometric architecture and premium color palette position MeridianMetrics as a Fortune 500 caliber organization.
+This logo represents significant design investment and should be used consistently across all brand touchpoints. The sophisticated geometric architecture and premium color palette position Millstone Compliance as a Fortune 500 caliber organization.
 
 ### Clear Space
 Maintain minimum clear space of 1x the logo height on all sides for optimal visual impact and brand recognition.
@@ -130,4 +130,4 @@ Maintain minimum clear space of 1x the logo height on all sides for optimal visu
 - Don't use sizes smaller than minimum specifications
 - Don't modify the geometric proportions
 
-This logo suite establishes MeridianMetrics as a premium, trustworthy brand worthy of Fortune 500 confidence.
+This logo suite establishes Millstone Compliance as a premium, trustworthy brand worthy of Fortune 500 confidence.

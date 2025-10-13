@@ -1,6 +1,27 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "PPT Compliance Results | Your Plastic Packaging Tax Assessment Report",
+  description: "View your personalized PPT compliance assessment results. Get detailed analysis of your plastic packaging tax gaps, strengths, and recommended next steps for HMRC compliance.",
+  keywords: [
+    "PPT compliance results",
+    "plastic packaging tax report",
+    "PPT assessment results",
+    "plastic tax compliance score",
+    "PPT audit results",
+    "HMRC compliance report",
+    "plastic packaging tax gaps",
+    "PPT compliance recommendations"
+  ],
+  openGraph: {
+    title: "PPT Compliance Results | Your Plastic Packaging Tax Assessment Report",
+    description: "View your personalized PPT compliance assessment results. Get detailed analysis of your plastic packaging tax gaps, strengths, and recommended next steps.",
+    type: "website",
+  },
+}
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import {
@@ -317,7 +338,7 @@ export default function ResultsPage() {
       </nav>
 
       {/* Main Content */}
-      <div className="pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 relative z-10">
+      <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 relative z-10">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8 sm:mb-10 md:mb-12">

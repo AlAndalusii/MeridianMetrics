@@ -547,6 +547,18 @@
     min-height: 44px;
     min-width: 44px;
   }
+  
+  /* Better touch feedback */
+  button:active,
+  a:active {
+    opacity: 0.8;
+  }
+  
+  /* Prevent text selection on buttons */
+  button {
+    -webkit-user-select: none;
+    user-select: none;
+  }
 }
 
 /* Prevent horizontal scroll on all devices */
@@ -585,6 +597,24 @@ body, html {
   textarea,
   select {
     font-size: 16px !important;
+    -webkit-appearance: none;
+    border-radius: 12px;
+  }
+  
+  /* Better focus states for mobile */
+  input:focus,
+  textarea:focus {
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+  
+  /* Prevent input zoom on iOS */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    -webkit-user-select: text;
+    user-select: text;
   }
 }
 

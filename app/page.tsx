@@ -271,7 +271,7 @@ export default function MillstoneComplianceWebsite() {
             <Button 
               onClick={() => router.push("/assessment")}
               aria-label="Start your free PPT compliance assessment"
-              className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px]">
+              className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap">
               <span className="hidden xs:inline">START YOUR FREE ASSESSMENT</span>
               <span className="xs:hidden">START ASSESSMENT</span>
             </Button>
@@ -280,7 +280,7 @@ export default function MillstoneComplianceWebsite() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-20 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 relative overflow-hidden group/hero" aria-label="Hero section">
+      <section className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 relative overflow-hidden group/hero" aria-label="Hero section">
         {/* Sophisticated background elements */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.05)_0%,transparent_70%)] animate-pulse-slow"></div>
@@ -308,10 +308,9 @@ export default function MillstoneComplianceWebsite() {
             <div
               className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
-              <h1 className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-4 sm:mb-6 leading-tight">
-                <span className="text-emerald-900">Worried about PPT audits?</span>
-                <br />
-                <span className="text-emerald-600">We find gaps before HMRC does.</span>
+              <h1 className="poppins-bold text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-4 sm:mb-6 leading-tight">
+                <span className="text-emerald-900 block">Worried about PPT audits?</span>
+                <span className="text-emerald-600 block">We find gaps before HMRC does.</span>
               </h1>
               <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 mb-6 sm:mb-8 leading-relaxed">
                 Get your free PPT compliance assessment—identify missing certificates and reporting errors in 3 minutes, before HMRC does.

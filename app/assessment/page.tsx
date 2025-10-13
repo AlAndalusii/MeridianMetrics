@@ -1,6 +1,28 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Free PPT Compliance Assessment | Plastic Packaging Tax Audit Check",
+  description: "Get your free Plastic Packaging Tax compliance assessment. Identify gaps in your PPT documentation, certificates, and HMRC reporting in just 3 minutes. No obligation.",
+  keywords: [
+    "PPT compliance assessment",
+    "plastic packaging tax audit",
+    "free PPT check",
+    "PPT compliance test",
+    "plastic tax assessment",
+    "PPT documentation review",
+    "HMRC compliance check",
+    "plastic packaging tax gaps",
+    "PPT audit checklist"
+  ],
+  openGraph: {
+    title: "Free PPT Compliance Assessment | Plastic Packaging Tax Audit Check",
+    description: "Get your free Plastic Packaging Tax compliance assessment. Identify gaps in your PPT documentation, certificates, and HMRC reporting in just 3 minutes.",
+    type: "website",
+  },
+}
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -623,7 +645,7 @@ export default function AssessmentPage() {
       </div>
 
       {/* Main Content */}
-      <div className="pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 relative z-10">
+      <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 relative z-10">
         <div className="max-w-3xl mx-auto">
           {/* Section Badge */}
           <div className="flex justify-center mb-6 sm:mb-8">
@@ -685,11 +707,13 @@ export default function AssessmentPage() {
                 <div className="mt-6 sm:mt-8 space-y-3 sm:space-y-4">
                   {currentQuestion.type === "text" && (
                     <Input
-                      type="text"
+                      type={currentQuestion.id === 2 ? "email" : currentQuestion.id === 4 ? "tel" : "text"}
                       value={answers[currentQuestion.id] || ""}
                       onChange={(e) => handleAnswer(e.target.value)}
                       placeholder={currentQuestion.placeholder}
-                      className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-base sm:text-lg border-2 border-emerald-200 rounded-xl sm:rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 poppins-regular min-h-[54px]"
+                      className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-base sm:text-lg border-2 border-emerald-200 rounded-xl sm:rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 poppins-regular min-h-[54px] focus:outline-none"
+                      autoComplete={currentQuestion.id === 2 ? "email" : currentQuestion.id === 4 ? "tel" : "name"}
+                      inputMode={currentQuestion.id === 4 ? "tel" : "text"}
                     />
                   )}
 
@@ -699,7 +723,7 @@ export default function AssessmentPage() {
                       onChange={(e) => handleAnswer(e.target.value)}
                       placeholder={currentQuestion.placeholder}
                       rows={6}
-                      className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base border-2 border-emerald-200 rounded-xl sm:rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 poppins-regular resize-none"
+                      className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base border-2 border-emerald-200 rounded-xl sm:rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 poppins-regular resize-none focus:outline-none"
                     />
                   )}
 

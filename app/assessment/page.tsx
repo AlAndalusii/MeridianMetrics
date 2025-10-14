@@ -370,24 +370,10 @@ export default function AssessmentPage() {
   }
 
   const handleAnswer = (value: string) => {
+    // Clear validation error when user starts typing
     setValidationError("")
     
-    // Validate email on question 2
-    if (currentQuestion.id === 2 && value) {
-      if (!validateEmail(value)) {
-        setValidationError("Please enter a valid email address")
-        return
-      }
-    }
-    
-    // Validate phone on question 4 (if provided) - but don't block input, just show warning
-    if (currentQuestion.id === 4 && value) {
-      if (!validatePhone(value)) {
-        setValidationError("Please enter a valid UK phone number (e.g., +44 7XXX XXXXXX or 07XXX XXXXXX)")
-        // Don't return here - allow the value to be set even if invalid
-      }
-    }
-    
+    // Always set the answer first - don't block input
     setAnswers({ ...answers, [currentQuestion.id]: value })
     
     // Show feedback animation
@@ -408,6 +394,21 @@ export default function AssessmentPage() {
     }
 
     setTimeout(() => setShowFeedback(false), 2000)
+  }
+
+  const handleInputBlur = (value: string) => {
+    // Only validate on blur (when user finishes typing and moves away)
+    if (currentQuestion.id === 2 && value) {
+      if (!validateEmail(value)) {
+        setValidationError("Please enter a valid email address")
+      }
+    }
+    
+    if (currentQuestion.id === 4 && value) {
+      if (!validatePhone(value)) {
+        setValidationError("Please enter a valid UK phone number (e.g., +44 7XXX XXXXXX or 07XXX XXXXXX)")
+      }
+    }
   }
 
   const handleNext = () => {
@@ -690,6 +691,7 @@ export default function AssessmentPage() {
                       type={currentQuestion.id === 2 ? "email" : currentQuestion.id === 4 ? "tel" : "text"}
                       value={answers[currentQuestion.id] || ""}
                       onChange={(e) => handleAnswer(e.target.value)}
+                      onBlur={(e) => handleInputBlur(e.target.value)}
                       onClick={() => {
                         // Ensure input is focusable and clickable
                         console.log('Input clicked for question:', currentQuestion.id)
@@ -711,6 +713,7 @@ export default function AssessmentPage() {
                     <Textarea
                       value={answers[currentQuestion.id] || ""}
                       onChange={(e) => handleAnswer(e.target.value)}
+                      onBlur={(e) => handleInputBlur(e.target.value)}
                       placeholder={currentQuestion.placeholder}
                       rows={6}
                       className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base border-2 border-emerald-200 rounded-xl sm:rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 poppins-regular resize-none focus:outline-none touch-manipulation"

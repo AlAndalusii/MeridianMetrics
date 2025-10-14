@@ -271,7 +271,12 @@ export default function MillstoneComplianceWebsite() {
             <Button 
               onClick={() => router.push("/assessment")}
               aria-label="Start your free PPT compliance assessment"
-              className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap">
+              className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap touch-manipulation"
+              style={{ 
+                pointerEvents: 'auto',
+                touchAction: 'manipulation',
+                WebkitTapHighlightColor: 'transparent'
+              }}>
               <span className="hidden xs:inline">START YOUR FREE ASSESSMENT</span>
               <span className="xs:hidden">START ASSESSMENT</span>
             </Button>
@@ -308,7 +313,7 @@ export default function MillstoneComplianceWebsite() {
             <div
               className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
-              <h1 className="poppins-bold text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-4 sm:mb-6 leading-tight">
+              <h1 className="poppins-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 leading-tight">
                 <span className="text-emerald-900 block">Worried about PPT audits?</span>
                 <span className="text-emerald-600 block">We find gaps before HMRC does.</span>
               </h1>
@@ -319,7 +324,12 @@ export default function MillstoneComplianceWebsite() {
                 <Button
                   size="lg"
                   onClick={() => router.push("/assessment")}
-                  className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 group w-full sm:w-fit text-sm sm:text-base py-5 sm:py-6 px-6 sm:px-8 min-h-[54px]"
+                  className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 group w-full sm:w-fit text-sm sm:text-base py-5 sm:py-6 px-6 sm:px-8 min-h-[54px] touch-manipulation"
+                  style={{ 
+                    pointerEvents: 'auto',
+                    touchAction: 'manipulation',
+                    WebkitTapHighlightColor: 'transparent'
+                  }}
                 >
                   START YOUR FREE ASSESSMENT
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

@@ -695,10 +695,15 @@ export default function AssessmentPage() {
                         console.log('Input clicked for question:', currentQuestion.id)
                       }}
                       placeholder={currentQuestion.placeholder}
-                      className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-base sm:text-lg border-2 border-emerald-200 rounded-xl sm:rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 poppins-regular min-h-[54px] focus:outline-none relative z-10"
+                      className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-base sm:text-lg border-2 border-emerald-200 rounded-xl sm:rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 poppins-regular min-h-[54px] focus:outline-none relative z-10 touch-manipulation"
                       autoComplete={currentQuestion.id === 2 ? "email" : currentQuestion.id === 4 ? "tel" : "name"}
-                      inputMode={currentQuestion.id === 4 ? "tel" : "text"}
-                      style={{ pointerEvents: 'auto' }}
+                      inputMode={currentQuestion.id === 4 ? "tel" : currentQuestion.id === 2 ? "email" : "text"}
+                      style={{ 
+                        pointerEvents: 'auto',
+                        WebkitAppearance: 'none',
+                        MozAppearance: 'textfield',
+                        touchAction: 'manipulation'
+                      }}
                     />
                   )}
 
@@ -708,7 +713,12 @@ export default function AssessmentPage() {
                       onChange={(e) => handleAnswer(e.target.value)}
                       placeholder={currentQuestion.placeholder}
                       rows={6}
-                      className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base border-2 border-emerald-200 rounded-xl sm:rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 poppins-regular resize-none focus:outline-none"
+                      className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base border-2 border-emerald-200 rounded-xl sm:rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 poppins-regular resize-none focus:outline-none touch-manipulation"
+                      style={{ 
+                        pointerEvents: 'auto',
+                        WebkitAppearance: 'none',
+                        touchAction: 'manipulation'
+                      }}
                     />
                   )}
 
@@ -723,7 +733,7 @@ export default function AssessmentPage() {
                           <button
                             key={index}
                             onClick={() => handleAnswer(option.value)}
-                            className={`w-full text-left px-4 sm:px-5 md:px-6 py-4 sm:py-4.5 md:py-5 rounded-xl sm:rounded-2xl border-2 transition-all duration-300 group relative overflow-hidden min-h-[66px] active:scale-98 ${
+                            className={`w-full text-left px-4 sm:px-5 md:px-6 py-4 sm:py-4.5 md:py-5 rounded-xl sm:rounded-2xl border-2 transition-all duration-300 group relative overflow-hidden min-h-[66px] active:scale-98 touch-manipulation ${
                               isSelected
                                 ? isCorrectAnswer
                                   ? "border-green-400 bg-green-50/80 shadow-lg shadow-green-500/20"
@@ -732,6 +742,11 @@ export default function AssessmentPage() {
                                   : "border-emerald-500 bg-emerald-50/80 shadow-lg shadow-emerald-500/20"
                                 : "border-emerald-100 bg-white/50 hover:border-emerald-300 hover:bg-emerald-50/50 hover:shadow-md"
                             }`}
+                            style={{ 
+                              pointerEvents: 'auto',
+                              touchAction: 'manipulation',
+                              WebkitTapHighlightColor: 'transparent'
+                            }}
                           >
                             {/* Shimmer effect on hover */}
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer"></div>
@@ -838,11 +853,16 @@ export default function AssessmentPage() {
                   <Button
                     onClick={handleBack}
                     disabled={currentStep === 0}
-                    className={`poppins-semibold px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 rounded-xl sm:rounded-2xl transition-all duration-300 min-h-[54px] text-sm sm:text-base ${
+                    className={`poppins-semibold px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 rounded-xl sm:rounded-2xl transition-all duration-300 min-h-[54px] text-sm sm:text-base touch-manipulation ${
                       currentStep === 0
                         ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                         : "bg-white border-2 border-emerald-200 text-emerald-700 hover:border-emerald-400 hover:bg-emerald-50 shadow-md hover:shadow-lg active:scale-95"
                     }`}
+                    style={{ 
+                      pointerEvents: 'auto',
+                      touchAction: 'manipulation',
+                      WebkitTapHighlightColor: 'transparent'
+                    }}
                   >
                     <ArrowLeft className="w-4 sm:w-5 h-4 sm:h-5 mr-1.5 sm:mr-2" />
                     <span className="hidden xs:inline">Back</span>
@@ -851,11 +871,16 @@ export default function AssessmentPage() {
                 <Button
                   onClick={handleNext}
                   disabled={!answers[currentQuestion.id] && currentQuestion.type !== "textarea" && currentQuestion.id !== 4}
-                  className={`poppins-semibold px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 rounded-xl sm:rounded-2xl transition-all duration-300 relative overflow-hidden group min-h-[54px] text-sm sm:text-base flex-1 sm:flex-initial ${
+                  className={`poppins-semibold px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 rounded-xl sm:rounded-2xl transition-all duration-300 relative overflow-hidden group min-h-[54px] text-sm sm:text-base flex-1 sm:flex-initial touch-manipulation ${
                     !answers[currentQuestion.id] && currentQuestion.type !== "textarea" && currentQuestion.id !== 4
                       ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                       : "bg-gradient-to-r from-emerald-600 to-emerald-700 text-white hover:shadow-xl hover:shadow-emerald-500/30 sm:hover:scale-105 active:scale-95"
                   }`}
+                  style={{ 
+                    pointerEvents: 'auto',
+                    touchAction: 'manipulation',
+                    WebkitTapHighlightColor: 'transparent'
+                  }}
                 >
                   {(answers[currentQuestion.id] || currentQuestion.type === "textarea" || currentQuestion.id === 4) ? (
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>

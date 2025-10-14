@@ -363,8 +363,10 @@ export default function AssessmentPage() {
   // Phone validation helper (optional UK format)
   const validatePhone = (phone: string): boolean => {
     if (!phone) return true // Phone is optional
+    // More flexible UK phone validation - allows spaces, dashes, parentheses
+    const cleanPhone = phone.replace(/[\s\-\(\)]/g, '')
     const phoneRegex = /^(\+44|0)[0-9]{9,10}$/
-    return phoneRegex.test(phone.replace(/\s/g, ''))
+    return phoneRegex.test(cleanPhone)
   }
 
   const handleAnswer = (value: string) => {
@@ -378,11 +380,11 @@ export default function AssessmentPage() {
       }
     }
     
-    // Validate phone on question 4 (if provided)
+    // Validate phone on question 4 (if provided) - but don't block input, just show warning
     if (currentQuestion.id === 4 && value) {
       if (!validatePhone(value)) {
         setValidationError("Please enter a valid UK phone number (e.g., +44 7XXX XXXXXX or 07XXX XXXXXX)")
-        return
+        // Don't return here - allow the value to be set even if invalid
       }
     }
     
@@ -682,16 +684,21 @@ export default function AssessmentPage() {
                 )}
 
                 {/* Answer Input */}
-                <div className="mt-6 sm:mt-8 space-y-3 sm:space-y-4">
+                <div className="mt-6 sm:mt-8 space-y-3 sm:space-y-4 relative z-10">
                   {currentQuestion.type === "text" && (
                     <Input
                       type={currentQuestion.id === 2 ? "email" : currentQuestion.id === 4 ? "tel" : "text"}
                       value={answers[currentQuestion.id] || ""}
                       onChange={(e) => handleAnswer(e.target.value)}
+                      onClick={() => {
+                        // Ensure input is focusable and clickable
+                        console.log('Input clicked for question:', currentQuestion.id)
+                      }}
                       placeholder={currentQuestion.placeholder}
-                      className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-base sm:text-lg border-2 border-emerald-200 rounded-xl sm:rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 poppins-regular min-h-[54px] focus:outline-none"
+                      className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-base sm:text-lg border-2 border-emerald-200 rounded-xl sm:rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 poppins-regular min-h-[54px] focus:outline-none relative z-10"
                       autoComplete={currentQuestion.id === 2 ? "email" : currentQuestion.id === 4 ? "tel" : "name"}
                       inputMode={currentQuestion.id === 4 ? "tel" : "text"}
+                      style={{ pointerEvents: 'auto' }}
                     />
                   )}
 

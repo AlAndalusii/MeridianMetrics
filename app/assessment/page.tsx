@@ -25,6 +25,7 @@ import {
   XCircle,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
+import ErrorBoundary from "@/components/ErrorBoundary"
 
 // Question types and data
 interface Question {
@@ -304,7 +305,7 @@ const questions: Question[] = [
   },
 ]
 
-export default function AssessmentPage() {
+function AssessmentPageContent() {
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
@@ -938,6 +939,14 @@ export default function AssessmentPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function AssessmentPage() {
+  return (
+    <ErrorBoundary>
+      <AssessmentPageContent />
+    </ErrorBoundary>
   )
 }
 

@@ -13,6 +13,28 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
+  webpack: (config, { dev, isServer }) => {
+    // Fix for chunk loading issues in development
+    if (dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          default: {
+            minChunks: 1,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            priority: -10,
+            chunks: 'all',
+          },
+        },
+      }
+    }
+    return config
+  },
 }
 
 export default nextConfig

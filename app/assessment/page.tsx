@@ -315,6 +315,7 @@ function AssessmentPageContent() {
   const [isContactInfoPhase, setIsContactInfoPhase] = useState(true)
   const [validationError, setValidationError] = useState<string>("")
   const [storageError, setStorageError] = useState(false)
+  const [sessionId, setSessionId] = useState<string>("")
 
   const currentQuestion = questions[currentStep]
   const totalQuestions = questions.length
@@ -326,9 +327,17 @@ function AssessmentPageContent() {
     ? ((currentStep + 1) / contactInfoQuestions) * 100
     : ((currentStep - contactInfoQuestions + 1) / assessmentQuestions) * 100
 
-  // Auto-save to localStorage with error handling
+  // Generate or retrieve session ID
   useEffect(() => {
     try {
+      let savedSessionId = localStorage.getItem("ppt_session_id")
+      if (!savedSessionId) {
+        savedSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+        localStorage.setItem("ppt_session_id", savedSessionId)
+      }
+      setSessionId(savedSessionId)
+
+      // Load saved progress from localStorage
       const savedAnswers = localStorage.getItem("ppt_assessment_answers")
       const savedStep = localStorage.getItem("ppt_assessment_step")
       
@@ -344,16 +353,45 @@ function AssessmentPageContent() {
     }
   }, [])
 
+  // Auto-save to localStorage AND database
   useEffect(() => {
-    try {
-      localStorage.setItem("ppt_assessment_answers", JSON.stringify(answers))
-      localStorage.setItem("ppt_assessment_step", currentStep.toString())
-      setStorageError(false)
-    } catch (error) {
-      console.error("Failed to save progress:", error)
-      setStorageError(true)
+    const saveProgress = async () => {
+      try {
+        // Save to localStorage
+        localStorage.setItem("ppt_assessment_answers", JSON.stringify(answers))
+        localStorage.setItem("ppt_assessment_step", currentStep.toString())
+        setStorageError(false)
+
+        // Save to database (if we have answers and a session ID)
+        if (sessionId && Object.keys(answers).length > 0) {
+          await fetch('/api/assessment/save', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              sessionId,
+              name: answers[1] || null,
+              email: answers[2] || null,
+              company: answers[3] || null,
+              phone: answers[4] || null,
+              answers,
+              currentQuestion: currentStep,
+              isComplete: false,
+            }),
+          }).catch(error => {
+            console.error('Failed to save to database:', error)
+            // Don't set error state - localStorage still works
+          })
+        }
+      } catch (error) {
+        console.error("Failed to save progress:", error)
+        setStorageError(true)
+      }
     }
-  }, [answers, currentStep])
+
+    saveProgress()
+  }, [answers, currentStep, sessionId])
 
   // Email validation helper
   const validateEmail = (email: string): boolean => {
@@ -498,7 +536,7 @@ function AssessmentPageContent() {
     return startIndex
   }
 
-  const calculateAndRedirectToResults = () => {
+  const calculateAndRedirectToResults = async () => {
     try {
       // Calculate compliance score
       let score = 0
@@ -557,7 +595,32 @@ function AssessmentPageContent() {
         localStorage.setItem("ppt_assessment_complete", "true")
       } catch (storageError) {
         console.error("Failed to save results:", storageError)
-        // Continue anyway - results page will handle missing data
+      }
+
+      // Save completed assessment to database
+      if (sessionId) {
+        try {
+          await fetch('/api/assessment/save', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              sessionId,
+              name: answers[1] || null,
+              email: answers[2] || null,
+              company: answers[3] || null,
+              phone: answers[4] || null,
+              answers,
+              currentQuestion: totalQuestions - 1,
+              isComplete: true,
+              score: percentage,
+            }),
+          })
+        } catch (dbError) {
+          console.error('Failed to save completion to database:', dbError)
+          // Don't block user - continue to results
+        }
       }
 
       // Redirect to results

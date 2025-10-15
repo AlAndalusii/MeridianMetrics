@@ -37,7 +37,9 @@ export default function ResultsPage() {
   const [gaps, setGaps] = useState<Gap[]>([])
   const [strengths, setStrenghts] = useState<string[]>([])
   const [answers, setAnswers] = useState<Record<number, string>>({})
-  const [userInfo, setUserInfo] = useState({ name: "", email: "", company: "" })
+  const [userInfo, setUserInfo] = useState({ name: "", email: "", company: "", phone: "" })
+  const [emailSent, setEmailSent] = useState(false)
+  const [emailError, setEmailError] = useState(false)
 
   useEffect(() => {
     try {
@@ -57,19 +59,27 @@ export default function ResultsPage() {
       setScore(parseInt(savedScore))
       
       // Get user info with validation
-      setUserInfo({
+      const userInfoData = {
         name: parsedAnswers[1] || "Valued Client",
         email: parsedAnswers[2] || "no-email@provided.com",
         company: parsedAnswers[3] || "Your Company",
-      })
+        phone: parsedAnswers[4] || "",
+      }
+      setUserInfo(userInfoData)
 
       // Calculate gaps and strengths
-      calculateGapsAndStrengths(parsedAnswers)
+      const { gaps: calculatedGaps, strengths: calculatedStrengths } = calculateGapsAndStrengths(parsedAnswers)
 
       setIsLoading(false)
 
       // Animate score
       animateScore(parseInt(savedScore))
+      
+      // Send results via email (only if email is valid and not already sent)
+      const emailSentFlag = localStorage.getItem("ppt_assessment_email_sent")
+      if (userInfoData.email && userInfoData.email !== "no-email@provided.com" && !emailSentFlag) {
+        sendResultsEmail(userInfoData, parseInt(savedScore), calculatedGaps, calculatedStrengths, parsedAnswers)
+      }
     } catch (error) {
       console.error("Error loading assessment results:", error)
       // Redirect to assessment on error
@@ -97,6 +107,42 @@ export default function ResultsPage() {
     } catch (error) {
       console.error("Error animating score:", error)
       setAnimatedScore(targetScore)
+    }
+  }
+
+  const sendResultsEmail = async (
+    userInfo: any,
+    score: number,
+    gaps: Gap[],
+    strengths: string[],
+    answers: Record<number, string>
+  ) => {
+    try {
+      const response = await fetch('/api/send-result', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userInfo,
+          score,
+          gaps,
+          strengths,
+          answers,
+        }),
+      })
+
+      if (response.ok) {
+        setEmailSent(true)
+        localStorage.setItem("ppt_assessment_email_sent", "true")
+        console.log('Results email sent successfully')
+      } else {
+        console.error('Failed to send results email')
+        setEmailError(true)
+      }
+    } catch (error) {
+      console.error('Error sending results email:', error)
+      setEmailError(true)
     }
   }
 
@@ -214,10 +260,13 @@ export default function ResultsPage() {
 
       setGaps(identifiedGaps)
       setStrenghts(identifiedStrengths)
+      
+      return { gaps: identifiedGaps, strengths: identifiedStrengths }
     } catch (error) {
       console.error("Error calculating gaps and strengths:", error)
       setGaps([])
       setStrenghts([])
+      return { gaps: [], strengths: [] }
     }
   }
 
@@ -546,18 +595,26 @@ export default function ResultsPage() {
             <div className="bg-white/80 backdrop-blur-2xl rounded-2xl sm:rounded-3xl md:rounded-[32px] p-5 sm:p-6 md:p-8 border border-emerald-100/50 shadow-[0_8px_32px_rgba(6,95,70,0.08)]">
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
                 <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600" />
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    emailSent ? 'bg-emerald-100' : emailError ? 'bg-amber-100' : 'bg-gray-100'
+                  }`}>
+                    <Mail className={`w-5 h-5 sm:w-6 sm:h-6 ${
+                      emailSent ? 'text-emerald-600' : emailError ? 'text-amber-600' : 'text-gray-400'
+                    }`} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="poppins-semibold text-emerald-900 text-sm sm:text-base">Report emailed to:</h3>
+                    <h3 className="poppins-semibold text-emerald-900 text-sm sm:text-base">
+                      {emailSent ? 'Report emailed to:' : emailError ? 'Email pending...' : 'Sending report to:'}
+                    </h3>
                     <p className="poppins-regular text-emerald-700 text-xs sm:text-sm truncate">{userInfo.email}</p>
+                    {emailSent && (
+                      <p className="poppins-regular text-emerald-600 text-xs mt-1">✓ Email sent successfully!</p>
+                    )}
+                    {emailError && (
+                      <p className="poppins-regular text-amber-600 text-xs mt-1">Check your spam folder or contact us</p>
+                    )}
                   </div>
                 </div>
-                <Button className="poppins-medium bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white w-full sm:w-auto text-xs sm:text-sm px-4 sm:px-6 py-3 sm:py-3.5 min-h-[48px]">
-                  <Download className="w-3 sm:w-4 h-3 sm:h-4 mr-2" />
-                  Download PDF
-                </Button>
               </div>
             </div>
           </div>

@@ -33,23 +33,29 @@ export async function POST(request: Request) {
     const scoreLevel = getScoreLevel(score);
     const recommendation = getRecommendation(score);
 
-    // Use batch send to send both emails at once (more efficient)
+    // TEMPORARY: Send both emails to business owner until domain is verified
+    // This ensures you don't miss any leads while setting up domain verification
     const batchResult = await resend.batch.send([
-      // 1. Professional results email to the user
-      {
-        from: 'Millstone Compliance <onboarding@resend.dev>', // Change to your verified domain later
-        to: [userInfo.email],
-        subject: `${userInfo.name}, Your PPT Compliance Assessment Results - ${score}/100`,
-        html: generateUserEmail(userInfo, score, scoreLevel, gaps, strengths, recommendation),
-      },
-      // 2. Notification to business owner with full details
+      // 1. Business notification with all details (goes to you)
       {
         from: 'Assessment System <onboarding@resend.dev>',
         to: [process.env.BUSINESS_EMAIL || 'zak@millstonecompliance.com'],
         subject: `🆕 New Assessment: ${userInfo.name} (${userInfo.company}) - Score: ${score}/100`,
         html: generateBusinessEmail(userInfo, score, scoreLevel, gaps, strengths, answers, recommendation),
-        // Optional: Add CC to ensure you receive it
-        cc: ['zak@millstonecompliance.com'],
+      },
+      // 2. User's results email (also sent to you for now)
+      // NOTE: After domain verification, change 'to' to [userInfo.email]
+      {
+        from: 'Millstone Compliance <onboarding@resend.dev>',
+        to: [process.env.BUSINESS_EMAIL || 'zak@millstonecompliance.com'], // TODO: Change to [userInfo.email] after domain verification
+        subject: `${userInfo.name}, Your PPT Compliance Assessment Results - ${score}/100`,
+        html: `
+          <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin-bottom: 20px;">
+            <strong>⚠️ IMPORTANT - Forward this email to: ${userInfo.email}</strong><br>
+            <small>Domain verification pending. Once verified, emails will send automatically to customers.</small>
+          </div>
+          ${generateUserEmail(userInfo, score, scoreLevel, gaps, strengths, recommendation)}
+        `,
       },
     ]);
 

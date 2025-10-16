@@ -11,7 +11,6 @@ import {
   CheckCircle,
   XCircle,
   AlertTriangle,
-  Download,
   Mail,
   Phone,
   FileCheck,
@@ -41,7 +40,6 @@ export default function ResultsPage() {
   const [userInfo, setUserInfo] = useState({ name: "", email: "", company: "", phone: "" })
   const [emailSent, setEmailSent] = useState(false)
   const [emailError, setEmailError] = useState(false)
-  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false)
 
   useEffect(() => {
     try {
@@ -312,40 +310,6 @@ export default function ResultsPage() {
     }
   }
 
-  const handleDownloadPDF = async () => {
-    setIsGeneratingPDF(true)
-    try {
-      // Dynamically import the PDF generator to reduce initial bundle size
-      const { generateCompliancePDF } = await import('@/lib/pdfGenerator')
-      
-      // Prepare data for PDF
-      const pdfData = {
-        userName: userInfo.name,
-        userEmail: userInfo.email,
-        company: userInfo.company,
-        score: score,
-        gaps: gaps,
-        strengths: strengths,
-        date: new Date().toLocaleDateString('en-GB', { 
-          day: '2-digit', 
-          month: 'long', 
-          year: 'numeric' 
-        }),
-      }
-      
-      // Generate and download PDF
-      generateCompliancePDF(pdfData)
-    } catch (error) {
-      console.error('Error generating PDF:', error)
-      alert('Failed to generate PDF. Please try again.')
-    } finally {
-      setIsGeneratingPDF(false)
-    }
-  }
-
-  const scoreLevel = getScoreLevel()
-  const recommendation = getRecommendation()
-
   const getScoreColor = () => {
     if (score >= 90) return "text-green-600"
     if (score >= 70) return "text-yellow-600"
@@ -370,6 +334,9 @@ export default function ResultsPage() {
       </div>
     )
   }
+
+  const scoreLevel = getScoreLevel()
+  const recommendation = getRecommendation()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 relative overflow-hidden">
@@ -625,57 +592,51 @@ export default function ResultsPage() {
             </div>
           </div>
 
-          {/* Download PDF & Email Confirmation */}
+          {/* Email Confirmation */}
           <div className="mb-8 sm:mb-10 md:mb-12 animate-fade-in-up delay-700">
-            <div className="bg-white/80 backdrop-blur-2xl rounded-2xl sm:rounded-3xl md:rounded-[32px] p-5 sm:p-6 md:p-8 border border-emerald-100/50 shadow-[0_8px_32px_rgba(6,95,70,0.08)]">
-              {/* Download PDF Button */}
-              <div className="mb-6">
-                <Button
-                  onClick={handleDownloadPDF}
-                  disabled={isGeneratingPDF}
-                  className="poppins-semibold w-full bg-gradient-to-r from-emerald-600 to-emerald-700 text-white hover:shadow-xl hover:shadow-emerald-500/30 sm:hover:scale-105 active:scale-95 transition-all duration-300 py-5 sm:py-6 text-sm sm:text-base min-h-[54px] rounded-xl sm:rounded-2xl group relative overflow-hidden"
-                >
-                  {isGeneratingPDF ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                      Generating PDF...
-                    </>
-                  ) : (
-                    <>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
-                      <Download className="w-5 h-5 mr-2 group-hover:translate-y-0.5 transition-transform" />
-                      <span className="relative z-10">Download Professional PDF Report</span>
-                    </>
-                  )}
-                </Button>
-                <p className="text-center text-emerald-600 text-xs sm:text-sm poppins-regular mt-3">
-                  Download a beautifully designed, consultancy-grade PDF report
-                </p>
-              </div>
-
-              {/* Email Confirmation */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 pt-6 border-t border-emerald-100">
-                <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
-                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    emailSent ? 'bg-emerald-100' : emailError ? 'bg-amber-100' : 'bg-gray-100'
-                  }`}>
-                    <Mail className={`w-5 h-5 sm:w-6 sm:h-6 ${
-                      emailSent ? 'text-emerald-600' : emailError ? 'text-amber-600' : 'text-gray-400'
-                    }`} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="poppins-semibold text-emerald-900 text-sm sm:text-base">
-                      {emailSent ? 'Report emailed to:' : emailError ? 'Email pending...' : 'Sending report to:'}
-                    </h3>
-                    <p className="poppins-regular text-emerald-700 text-xs sm:text-sm truncate">{userInfo.email}</p>
-                    {emailSent && (
-                      <p className="poppins-regular text-emerald-600 text-xs mt-1">✓ Email sent successfully!</p>
-                    )}
-                    {emailError && (
-                      <p className="poppins-regular text-amber-600 text-xs mt-1">Check your spam folder or contact us</p>
-                    )}
-                  </div>
+            <div className="bg-white/80 backdrop-blur-2xl rounded-2xl sm:rounded-3xl md:rounded-[32px] p-6 sm:p-8 md:p-10 border border-emerald-100/50 shadow-[0_8px_32px_rgba(6,95,70,0.08)]">
+              <div className="flex flex-col items-center text-center">
+                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-4 sm:mb-6 ${
+                  emailSent ? 'bg-emerald-100' : emailError ? 'bg-amber-100' : 'bg-gray-100'
+                }`}>
+                  <Mail className={`w-8 h-8 sm:w-10 sm:h-10 ${
+                    emailSent ? 'text-emerald-600' : emailError ? 'text-amber-600' : 'text-gray-400'
+                  }`} />
                 </div>
+                
+                <h3 className="poppins-bold text-xl sm:text-2xl text-emerald-900 mb-2">
+                  {emailSent ? 'Your Report Has Been Emailed!' : emailError ? 'Email In Progress...' : 'Sending Your Report...'}
+                </h3>
+                
+                <p className="poppins-regular text-emerald-700 text-sm sm:text-base mb-4">
+                  {emailSent 
+                    ? `We've sent your personalized compliance report to:` 
+                    : emailError 
+                    ? 'We\'re working on sending your report to:' 
+                    : 'Your personalized report is being sent to:'}
+                </p>
+                
+                <div className="bg-emerald-50 rounded-xl px-6 py-3 mb-6">
+                  <p className="poppins-semibold text-emerald-900 text-base sm:text-lg">{userInfo.email}</p>
+                </div>
+                
+                {emailSent && (
+                  <div className="bg-emerald-100 border border-emerald-200 rounded-xl p-4 sm:p-5 w-full max-w-md">
+                    <p className="poppins-semibold text-emerald-900 text-sm sm:text-base mb-2">✓ Email Sent Successfully!</p>
+                    <p className="poppins-regular text-emerald-700 text-xs sm:text-sm">
+                      Check your inbox for your personalized compliance report. Don't forget to check your spam folder if you don't see it.
+                    </p>
+                  </div>
+                )}
+                
+                {emailError && (
+                  <div className="bg-amber-100 border border-amber-200 rounded-xl p-4 sm:p-5 w-full max-w-md">
+                    <p className="poppins-semibold text-amber-900 text-sm sm:text-base mb-2">⚠️ Email Pending</p>
+                    <p className="poppins-regular text-amber-700 text-xs sm:text-sm">
+                      If you don't receive your report within a few minutes, please check your spam folder or contact us directly.
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

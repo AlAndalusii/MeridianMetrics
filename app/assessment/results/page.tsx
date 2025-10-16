@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
   ArrowRight,
@@ -40,6 +41,7 @@ export default function ResultsPage() {
   const [userInfo, setUserInfo] = useState({ name: "", email: "", company: "", phone: "" })
   const [emailSent, setEmailSent] = useState(false)
   const [emailError, setEmailError] = useState(false)
+  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false)
 
   useEffect(() => {
     try {
@@ -310,6 +312,37 @@ export default function ResultsPage() {
     }
   }
 
+  const handleDownloadPDF = async () => {
+    setIsGeneratingPDF(true)
+    try {
+      // Dynamically import the PDF generator to reduce initial bundle size
+      const { generateCompliancePDF } = await import('@/lib/pdfGenerator')
+      
+      // Prepare data for PDF
+      const pdfData = {
+        userName: userInfo.name,
+        userEmail: userInfo.email,
+        company: userInfo.company,
+        score: score,
+        gaps: gaps,
+        strengths: strengths,
+        date: new Date().toLocaleDateString('en-GB', { 
+          day: '2-digit', 
+          month: 'long', 
+          year: 'numeric' 
+        }),
+      }
+      
+      // Generate and download PDF
+      generateCompliancePDF(pdfData)
+    } catch (error) {
+      console.error('Error generating PDF:', error)
+      alert('Failed to generate PDF. Please try again.')
+    } finally {
+      setIsGeneratingPDF(false)
+    }
+  }
+
   const scoreLevel = getScoreLevel()
   const recommendation = getRecommendation()
 
@@ -350,7 +383,9 @@ export default function ResultsPage() {
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl z-50 border-b border-emerald-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <MillstoneLogo size="sm" variant="modern" />
+            <Link href="/" className="hover:opacity-80 transition-opacity cursor-pointer">
+              <MillstoneLogo size="sm" variant="modern" />
+            </Link>
             <div className="flex items-center space-x-2 sm:space-x-4">
               <Button
                 size="sm"
@@ -590,10 +625,36 @@ export default function ResultsPage() {
             </div>
           </div>
 
-          {/* Email Confirmation */}
+          {/* Download PDF & Email Confirmation */}
           <div className="mb-8 sm:mb-10 md:mb-12 animate-fade-in-up delay-700">
             <div className="bg-white/80 backdrop-blur-2xl rounded-2xl sm:rounded-3xl md:rounded-[32px] p-5 sm:p-6 md:p-8 border border-emerald-100/50 shadow-[0_8px_32px_rgba(6,95,70,0.08)]">
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+              {/* Download PDF Button */}
+              <div className="mb-6">
+                <Button
+                  onClick={handleDownloadPDF}
+                  disabled={isGeneratingPDF}
+                  className="poppins-semibold w-full bg-gradient-to-r from-emerald-600 to-emerald-700 text-white hover:shadow-xl hover:shadow-emerald-500/30 sm:hover:scale-105 active:scale-95 transition-all duration-300 py-5 sm:py-6 text-sm sm:text-base min-h-[54px] rounded-xl sm:rounded-2xl group relative overflow-hidden"
+                >
+                  {isGeneratingPDF ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                      Generating PDF...
+                    </>
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                      <Download className="w-5 h-5 mr-2 group-hover:translate-y-0.5 transition-transform" />
+                      <span className="relative z-10">Download Professional PDF Report</span>
+                    </>
+                  )}
+                </Button>
+                <p className="text-center text-emerald-600 text-xs sm:text-sm poppins-regular mt-3">
+                  Download a beautifully designed, consultancy-grade PDF report
+                </p>
+              </div>
+
+              {/* Email Confirmation */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 pt-6 border-t border-emerald-100">
                 <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
                   <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
                     emailSent ? 'bg-emerald-100' : emailError ? 'bg-amber-100' : 'bg-gray-100'

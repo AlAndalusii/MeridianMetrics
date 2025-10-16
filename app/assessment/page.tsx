@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -316,6 +317,7 @@ function AssessmentPageContent() {
   const [validationError, setValidationError] = useState<string>("")
   const [storageError, setStorageError] = useState(false)
   const [sessionId, setSessionId] = useState<string>("")
+  const [showQuestionNav, setShowQuestionNav] = useState(false)
 
   const currentQuestion = questions[currentStep]
   const totalQuestions = questions.length
@@ -648,6 +650,28 @@ function AssessmentPageContent() {
     }
   }
 
+  const handleQuestionJump = (questionIndex: number) => {
+    setIsAnimating(true)
+    setTimeout(() => {
+      setCurrentStep(questionIndex)
+      setShowQuestionNav(false)
+      // Update phase based on which question we're jumping to
+      if (questionIndex < contactInfoQuestions) {
+        setIsContactInfoPhase(true)
+      } else {
+        setIsContactInfoPhase(false)
+      }
+      setIsAnimating(false)
+    }, 300)
+  }
+
+  const getQuestionStatus = (questionIndex: number) => {
+    const questionId = questions[questionIndex].id
+    if (answers[questionId]) return "answered"
+    if (questionIndex === currentStep) return "current"
+    return "unanswered"
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 relative overflow-hidden">
       {/* Animated Background */}
@@ -661,8 +685,17 @@ function AssessmentPageContent() {
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl z-50 border-b border-emerald-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <MillstoneLogo size="sm" variant="modern" />
+            <Link href="/" className="hover:opacity-80 transition-opacity cursor-pointer">
+              <MillstoneLogo size="sm" variant="modern" />
+            </Link>
             <div className="flex items-center space-x-2 sm:space-x-4">
+              <Button
+                size="sm"
+                onClick={() => setShowQuestionNav(!showQuestionNav)}
+                className="poppins-medium bg-white border-2 border-emerald-200 text-emerald-700 hover:border-emerald-400 hover:bg-emerald-50 active:scale-95 text-xs sm:text-sm px-2 sm:px-3 py-2 min-h-[44px]"
+              >
+                <Package className="w-3 sm:w-4 h-3 sm:h-4" />
+              </Button>
               <div className="flex items-center space-x-1.5 sm:space-x-2 px-2 sm:px-4 py-1.5 sm:py-2 bg-emerald-50/80 rounded-full border border-emerald-100">
                 <Shield className="w-3 sm:w-4 h-3 sm:h-4 text-emerald-600" />
                 <span className="text-[10px] sm:text-sm poppins-medium text-emerald-700">
@@ -676,6 +709,80 @@ function AssessmentPageContent() {
           </div>
         </div>
       </nav>
+
+      {/* Question Navigation Sidebar */}
+      {showQuestionNav && (
+        <>
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[60] animate-fade-in"
+            onClick={() => setShowQuestionNav(false)}
+          />
+          
+          {/* Sidebar */}
+          <div className="fixed right-0 top-0 bottom-0 w-full sm:w-96 bg-white z-[70] shadow-2xl overflow-y-auto animate-slide-in-right">
+            <div className="sticky top-0 bg-white border-b border-emerald-100 p-4 sm:p-6">
+              <div className="flex items-center justify-between mb-2">
+                <h2 className="poppins-bold text-lg sm:text-xl text-emerald-900">Questions</h2>
+                <button
+                  onClick={() => setShowQuestionNav(false)}
+                  className="p-2 hover:bg-emerald-50 rounded-lg transition-colors"
+                >
+                  <XCircle className="w-5 h-5 text-emerald-600" />
+                </button>
+              </div>
+              <p className="poppins-regular text-xs sm:text-sm text-emerald-600">
+                Jump to any question - your progress is saved
+              </p>
+            </div>
+
+            <div className="p-4 sm:p-6 space-y-2">
+              {questions.map((q, index) => {
+                const status = getQuestionStatus(index)
+                const isCurrent = index === currentStep
+                
+                return (
+                  <button
+                    key={q.id}
+                    onClick={() => handleQuestionJump(index)}
+                    className={`w-full text-left p-3 sm:p-4 rounded-xl border-2 transition-all duration-200 ${
+                      isCurrent
+                        ? "border-emerald-500 bg-emerald-50 shadow-md"
+                        : status === "answered"
+                        ? "border-green-200 bg-green-50/50 hover:bg-green-50"
+                        : "border-emerald-100 bg-white hover:bg-emerald-50/50"
+                    }`}
+                  >
+                    <div className="flex items-start space-x-3">
+                      <div className={`flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm poppins-semibold ${
+                        isCurrent
+                          ? "bg-emerald-500 text-white"
+                          : status === "answered"
+                          ? "bg-green-500 text-white"
+                          : "bg-emerald-100 text-emerald-600"
+                      }`}>
+                        {status === "answered" ? "✓" : q.id}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className={`poppins-medium text-xs sm:text-sm mb-1 ${
+                          isCurrent ? "text-emerald-900" : "text-emerald-700"
+                        }`}>
+                          {q.section}
+                        </p>
+                        <p className={`poppins-regular text-xs line-clamp-2 ${
+                          isCurrent ? "text-emerald-700" : "text-emerald-600"
+                        }`}>
+                          {q.question}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Progress Bar */}
       <div className="fixed top-[61px] sm:top-[73px] left-0 right-0 z-40">

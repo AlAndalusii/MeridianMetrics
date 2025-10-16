@@ -164,14 +164,17 @@ function generateUserEmail(
             </td>
           </tr>
           
-          <!-- Greeting -->
+          <!-- Personalized Greeting -->
           <tr>
             <td style="padding: 30px;">
               <h2 style="margin: 0 0 20px; color: #064e3b; font-size: 22px;">
-                Hi ${userInfo.name},
+                Dear ${userInfo.name},
               </h2>
-              <p style="margin: 0 0 20px; color: #047857; font-size: 16px;">
-                Thank you for completing the PPT Compliance Assessment for <strong>${userInfo.company}</strong>.
+              <p style="margin: 0 0 15px; color: #047857; font-size: 16px; line-height: 1.6;">
+                Thank you for completing your PPT Compliance Assessment. We've prepared this personalized report to help you understand where you stand and what steps you can take to protect <strong>${userInfo.company}</strong> from HMRC penalties.
+              </p>
+              <p style="margin: 0; color: #047857; font-size: 15px; line-height: 1.6;">
+                The good news? Most compliance gaps are straightforward to fix once you know what they are. Let's walk through your results together.
               </p>
             </td>
           </tr>
@@ -193,17 +196,20 @@ function generateUserEmail(
           </tr>
           
           ${gaps.length > 0 ? `
-          <!-- Critical Gaps -->
+          <!-- Areas to Address -->
           <tr>
             <td style="padding: 0 30px 30px;">
-              <h3 style="margin: 0 0 15px; color: #b45309; font-size: 18px; display: flex; align-items: center;">
-                ⚠️ Critical Gaps (${gaps.length})
+              <h3 style="margin: 0 0 10px; color: #b45309; font-size: 18px; display: flex; align-items: center;">
+                ⚠️ Areas to Address (${gaps.length})
               </h3>
-              ${gaps.map((gap: any) => `
+              <p style="margin: 0 0 15px; color: #047857; font-size: 14px;">
+                We've identified ${gaps.length} area${gaps.length > 1 ? 's' : ''} that need your attention. Don't worry - these are common issues, and we can help you fix them.
+              </p>
+              ${gaps.map((gap: any, index: number) => `
                 <div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin-bottom: 12px; border-radius: 8px;">
-                  <div style="font-weight: 600; color: #92400e; margin-bottom: 5px;">${gap.title}</div>
-                  <div style="font-size: 14px; color: #b45309;">${gap.description}</div>
-                  ${gap.exposure ? `<div style="font-size: 13px; color: #dc2626; margin-top: 8px; font-weight: 600;">Exposure: ${gap.exposure}</div>` : ''}
+                  <div style="font-weight: 600; color: #92400e; margin-bottom: 5px;">${index + 1}. ${gap.title}</div>
+                  <div style="font-size: 14px; color: #b45309; line-height: 1.5;">${gap.description}</div>
+                  ${gap.exposure ? `<div style="background-color: #f59e0b; color: #ffffff; display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 12px; margin-top: 8px; font-weight: 600;">Risk: ${gap.exposure}</div>` : ''}
                 </div>
               `).join('')}
             </td>
@@ -211,29 +217,40 @@ function generateUserEmail(
           ` : ''}
           
           ${strengths.length > 0 ? `
-          <!-- Your Strengths -->
+          <!-- What You're Doing Well -->
           <tr>
             <td style="padding: 0 30px 30px;">
-              <h3 style="margin: 0 0 15px; color: #059669; font-size: 18px;">
-                ✅ Your Strengths (${strengths.length})
+              <h3 style="margin: 0 0 10px; color: #059669; font-size: 18px;">
+                ✅ What You're Doing Well (${strengths.length})
               </h3>
+              <p style="margin: 0 0 15px; color: #047857; font-size: 14px;">
+                Great work! You already have these important compliance elements in place:
+              </p>
               ${strengths.map((strength: string) => `
                 <div style="background-color: #d1fae5; border-left: 4px solid #10b981; padding: 12px; margin-bottom: 8px; border-radius: 8px;">
-                  <div style="font-size: 14px; color: #065f46;">✓ ${strength}</div>
+                  <div style="font-size: 14px; color: #065f46; line-height: 1.5;">✓ ${strength}</div>
                 </div>
               `).join('')}
             </td>
           </tr>
           ` : ''}
           
-          <!-- Recommendation -->
+          <!-- Personalized Recommendation -->
           <tr>
             <td style="padding: 0 30px 30px;">
               <div style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); border-radius: 12px; padding: 30px; color: #ffffff;">
                 <h3 style="margin: 0 0 15px; font-size: 20px;">✨ Recommended Next Step</h3>
                 <div style="background-color: rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; margin-bottom: 20px;">
                   <div style="font-size: 24px; font-weight: 700; margin-bottom: 10px;">${recommendation.service}</div>
-                  <div style="font-size: 15px; margin-bottom: 15px; opacity: 0.95;">${recommendation.description}</div>
+                  <div style="font-size: 15px; margin-bottom: 15px; opacity: 0.95; line-height: 1.5;">
+                    ${score >= 90 
+                      ? 'Your compliance is excellent! We recommend quarterly reviews to keep everything audit-ready and stay ahead of regulatory changes.'
+                      : score >= 70 
+                      ? 'You\'re close to full compliance. We\'ll review your documentation, identify the remaining gaps, and provide a clear action plan to fix them.'
+                      : score >= 50 
+                      ? 'Let\'s get your compliance sorted. We\'ll conduct a full review, organize your records, and provide hands-on support to make you audit-ready.'
+                      : 'We understand this feels urgent - and it is. We\'ll organize everything for you, get your documentation in order, and make you compliant quickly.'}
+                  </div>
                   <div style="font-size: 32px; font-weight: 800;">${recommendation.price.split('→')[1] || recommendation.price}</div>
                 </div>
                 <table role="presentation" style="width: 100%;">
@@ -241,11 +258,14 @@ function generateUserEmail(
                     <td style="text-align: center;">
                       <a href="mailto:zak@millstonecompliance.com?subject=Assessment Follow-up: ${userInfo.name} - ${userInfo.company}" 
                          style="display: inline-block; background-color: #ffffff; color: #059669; padding: 16px 40px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 16px; margin-top: 10px;">
-                        Book Your Audit Now →
+                        Get Started Now →
                       </a>
                     </td>
                   </tr>
                 </table>
+                <p style="margin: 20px 0 0; text-align: center; font-size: 14px; opacity: 0.9;">
+                  Ready to get started? Email us or call for a free consultation - we're here to help.
+                </p>
               </div>
             </td>
           </tr>

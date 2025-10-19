@@ -22,6 +22,7 @@ import {
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { CONTACT_INFO } from "@/lib/constants"
+import { CalendlyModal } from "@/components/CalendlyWidget"
 
 interface Gap {
   title: string
@@ -31,11 +32,12 @@ interface Gap {
 
 export default function ResultsPage() {
   const router = useRouter()
+  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
   const [score, setScore] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [animatedScore, setAnimatedScore] = useState(0)
   const [gaps, setGaps] = useState<Gap[]>([])
-  const [strengths, setStrenghts] = useState<string[]>([])
+  const [strengths, setStrengths] = useState<string[]>([])
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [userInfo, setUserInfo] = useState({ name: "", email: "", company: "", phone: "" })
   const [emailSent, setEmailSent] = useState(false)
@@ -259,13 +261,13 @@ export default function ResultsPage() {
     }
 
       setGaps(identifiedGaps)
-      setStrenghts(identifiedStrengths)
+      setStrengths(identifiedStrengths)
       
       return { gaps: identifiedGaps, strengths: identifiedStrengths }
     } catch (error) {
       console.error("Error calculating gaps and strengths:", error)
       setGaps([])
-      setStrenghts([])
+      setStrengths([])
       return { gaps: [], strengths: [] }
     }
   }
@@ -648,23 +650,29 @@ export default function ResultsPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
               <Button
-                onClick={() => (window.location.href = CONTACT_INFO.mailto)}
+                onClick={() => (window.location.href = CONTACT_INFO.emailWithTemplate)}
                 className="poppins-medium bg-white border-2 border-emerald-200 text-emerald-700 hover:border-emerald-400 hover:bg-emerald-50 active:scale-95 w-full sm:w-auto text-sm px-6 py-3.5 min-h-[48px]"
               >
                 <Mail className="w-4 h-4 mr-2" />
                 Email Us
               </Button>
               <Button
-                onClick={() => (window.location.href = CONTACT_INFO.tel)}
+                onClick={() => setShowCalendlyModal(true)}
                 className="poppins-medium bg-white border-2 border-emerald-200 text-emerald-700 hover:border-emerald-400 hover:bg-emerald-50 active:scale-95 w-full sm:w-auto text-sm px-6 py-3.5 min-h-[48px]"
               >
                 <Phone className="w-4 h-4 mr-2" />
-                Call Us
+                Schedule a Call
               </Button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Calendly Modal */}
+      <CalendlyModal 
+        isOpen={showCalendlyModal} 
+        onClose={() => setShowCalendlyModal(false)} 
+      />
     </div>
   )
 }

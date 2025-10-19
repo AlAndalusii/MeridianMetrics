@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Poppins } from "next/font/google"
 import "./globals.css"
+import CalendlyWidget from "@/components/CalendlyWidget"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -79,7 +80,10 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        {children}
+        <CalendlyWidget />
+      </body>
     </html>
   )
 }

@@ -8,19 +8,19 @@ export interface LogoProps {
 }
 
 const sizeClasses = {
-  sm: 'w-8 h-8',
-  md: 'w-12 h-12',
-  lg: 'w-16 h-16',
-  xl: 'w-24 h-24',
-  '2xl': 'w-32 h-32'
+  sm: 'w-8 h-8 sm:w-10 sm:h-10',
+  md: 'w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16',
+  lg: 'w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20',
+  xl: 'w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28',
+  '2xl': 'w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36'
 }
 
 const textSizeClasses = {
-  sm: 'text-lg',
-  md: 'text-2xl',
-  lg: 'text-3xl',
-  xl: 'text-4xl',
-  '2xl': 'text-5xl'
+  sm: 'text-sm sm:text-base md:text-lg lg:text-xl',
+  md: 'text-xl sm:text-2xl md:text-3xl',
+  lg: 'text-2xl sm:text-3xl md:text-4xl',
+  xl: 'text-3xl sm:text-4xl md:text-5xl',
+  '2xl': 'text-4xl sm:text-5xl md:text-6xl'
 }
 
 // Premium Fortune 500 Logo Icon
@@ -66,46 +66,55 @@ const LogoIcon = ({ size = 'md', className = '' }: { size: string, className?: s
       opacity="0.6"
     />
 
-    {/* The Premium 'M' - Masterpiece Typography */}
-    <g transform="translate(40, 40)">
-      {/* Main M structure - Bold and architectural */}
-      <path
-        d="M-16 -14 L-16 14 M-16 -14 L-4 6 M-4 6 L8 -14 M8 -14 L8 14 M-4 6 L4 -4"
-        stroke="#065f46"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-        className="drop-shadow-sm"
-      />
-      
-      {/* Sophisticated inner details */}
-      <path
-        d="M-14 -10 L-8 2 M6 -10 L10 -2"
-        stroke="#059669"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        opacity="0.8"
-      />
-      
-      {/* Premium accent lines */}
-      <path
-        d="M-16 12 L-12 12 M6 12 L10 12"
-        stroke="#10b981"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        opacity="0.9"
-      />
-      
-      {/* Center precision point */}
-      <circle
-        cx="0"
-        cy="2"
-        r="1.5"
-        fill="#065f46"
-        className="drop-shadow-sm"
-      />
-    </g>
+        {/* The Premium 'M' - Masterpiece Typography - Maximum Size */}
+        <g transform="translate(40, 40)">
+          {/* Main M structure - Bold and architectural - Maximum Big */}
+          <path
+            d="M-22 -20 L-22 20 M-22 -20 L-10 12 M-10 12 L14 -20 M14 -20 L14 20 M-10 12 L10 -10"
+            stroke="#065f46"
+            strokeWidth="5.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+            className="drop-shadow-lg"
+          />
+          
+          {/* Sophisticated inner details - Enhanced */}
+          <path
+            d="M-20 -16 L-14 8 M12 -16 L16 -8"
+            stroke="#059669"
+            strokeWidth="2.8"
+            strokeLinecap="round"
+            opacity="0.9"
+          />
+          
+          {/* Premium accent lines - Enhanced */}
+          <path
+            d="M-22 18 L-18 18 M12 18 L16 18"
+            stroke="#10b981"
+            strokeWidth="4.0"
+            strokeLinecap="round"
+            opacity="0.95"
+          />
+          
+          {/* Center precision point - Enhanced */}
+          <circle
+            cx="0"
+            cy="2"
+            r="3.0"
+            fill="#065f46"
+            className="drop-shadow-md"
+          />
+          
+          {/* Additional premium details */}
+          <path
+            d="M-16 -12 L-12 4 M8 -12 L12 4"
+            stroke="#34d399"
+            strokeWidth="2.0"
+            strokeLinecap="round"
+            opacity="0.7"
+          />
+        </g>
 
     {/* Precision corner markers - Fortune 500 attention to detail */}
     <g opacity="0.4">
@@ -336,14 +345,14 @@ export const MillstoneLogo: React.FC<LogoProps> = ({
         
       case 'modern':
         return (
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
             <LogoIconModern size={size} className={className} />
             {showText && (
-              <div className="flex flex-col">
-                <span className={`poppins-bold ${textSizeClasses[size as keyof typeof textSizeClasses]} text-emerald-800 tracking-tight leading-none`}>
+              <div className="flex flex-col min-w-0">
+                <span className={`poppins-bold ${textSizeClasses[size as keyof typeof textSizeClasses]} text-emerald-800 tracking-tight leading-none truncate`}>
                   Millstone Compliance
                 </span>
-                <span className="poppins-medium text-xs text-emerald-600 tracking-widest uppercase mt-1">
+                <span className="poppins-medium text-[10px] sm:text-xs text-emerald-600 tracking-widest uppercase mt-0.5 sm:mt-1 truncate">
                   PPT Compliance Solutions
                 </span>
               </div>
@@ -353,14 +362,14 @@ export const MillstoneLogo: React.FC<LogoProps> = ({
         
       case 'horizontal':
         return (
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
             <LogoIcon size={size} className={className} />
             {showText && (
-              <div className="flex flex-col">
-                <span className={`poppins-bold ${textSizeClasses[size as keyof typeof textSizeClasses]} text-emerald-800 tracking-tight leading-none`}>
+              <div className="flex flex-col min-w-0">
+                <span className={`poppins-bold ${textSizeClasses[size as keyof typeof textSizeClasses]} text-emerald-800 tracking-tight leading-none truncate`}>
                   Millstone Compliance
                 </span>
-                <span className="poppins-medium text-xs text-emerald-600 tracking-widest uppercase mt-1">
+                <span className="poppins-medium text-[10px] sm:text-xs text-emerald-600 tracking-widest uppercase mt-0.5 sm:mt-1 truncate">
                   PPT Compliance Solutions
                 </span>
               </div>
@@ -371,14 +380,14 @@ export const MillstoneLogo: React.FC<LogoProps> = ({
       case 'full':
       default:
         return (
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
             <LogoIcon size={size} className={className} />
             {showText && (
-              <div className="flex flex-col">
-                <span className={`poppins-bold ${textSizeClasses[size as keyof typeof textSizeClasses]} text-emerald-800 tracking-tight leading-none`}>
+              <div className="flex flex-col min-w-0">
+                <span className={`poppins-bold ${textSizeClasses[size as keyof typeof textSizeClasses]} text-emerald-800 tracking-tight leading-none truncate`}>
                   Millstone Compliance
                 </span>
-                <span className="poppins-medium text-xs text-emerald-600 tracking-widest uppercase mt-1">
+                <span className="poppins-medium text-[10px] sm:text-xs text-emerald-600 tracking-widest uppercase mt-0.5 sm:mt-1 truncate">
                   PPT Compliance Solutions
                 </span>
               </div>

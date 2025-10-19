@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import { getAllSubmissions, getSubmissionStats } from '@/lib/db';
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 // Get all submissions (with optional filtering)
 export async function GET(request: Request) {
   try {

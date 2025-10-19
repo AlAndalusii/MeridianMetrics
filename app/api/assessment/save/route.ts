@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import { saveAssessmentProgress } from '@/lib/db';
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();

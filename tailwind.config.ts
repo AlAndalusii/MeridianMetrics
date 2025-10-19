@@ -14,6 +14,11 @@ const config: Config = {
   	extend: {
   		screens: {
   			'xs': '475px',
+  			'sm': '576px',
+  			'md': '768px',
+  			'lg': '992px',
+  			'xl': '1200px',
+  			'2xl': '1400px',
   		},
   		colors: {
   			background: 'hsl(var(--background))',

@@ -28,6 +28,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { CONTACT_INFO } from "@/lib/constants"
+import { CalendlyModal } from "@/components/CalendlyWidget"
 
 // Fortune 500 Premium Logo Component - World-Class Design
 const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: string }) => (
@@ -163,6 +164,7 @@ export default function MillstoneComplianceWebsite() {
   const [activeStep, setActiveStep] = useState(0)
   const [showCallPopup, setShowCallPopup] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
+  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
   const [dashboardMetrics, setDashboardMetrics] = useState({
     pptLiability: 0,
     complianceScore: 0,
@@ -267,7 +269,9 @@ export default function MillstoneComplianceWebsite() {
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl z-50 border-b border-emerald-100 shadow-sm" role="navigation" aria-label="Main navigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <MillstoneLogo size="sm" variant="modern" />
+            <Link href="/" className="group/logo transition-transform duration-300 hover:scale-105">
+              <MillstoneLogo size="sm" variant="modern" />
+            </Link>
             <Button 
               onClick={() => router.push("/assessment")}
               aria-label="Start your free PPT compliance assessment"
@@ -983,14 +987,9 @@ export default function MillstoneComplianceWebsite() {
 
               {/* Founder Attribution */}
               <div className="mt-10 pt-8 border-t border-emerald-100/50">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="poppins-semibold text-emerald-900 text-base">Founder & Principal Consultant</p>
-                    <p className="poppins-regular text-emerald-600 text-sm mt-1">PPT Intelligence Analyst</p>
-                  </div>
-                  <div className="transition-transform duration-500 hover:scale-105">
-                    <MillstoneLogo size="sm" variant="modern-icon" />
-                  </div>
+                <div>
+                  <p className="poppins-semibold text-emerald-900 text-base">Founder & Principal Consultant</p>
+                  <p className="poppins-regular text-emerald-600 text-sm mt-1">PPT Intelligence Analyst</p>
                 </div>
               </div>
 
@@ -1107,7 +1106,7 @@ export default function MillstoneComplianceWebsite() {
             </div>
 
             {/* Premium CTA buttons with enhanced animations */}
-            <div className="flex justify-center animate-fade-in-up delay-200 px-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up delay-200 px-4">
               <Button
                 size="lg"
                 onClick={() => router.push("/assessment")}
@@ -1116,6 +1115,17 @@ export default function MillstoneComplianceWebsite() {
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
                 <span className="relative z-10 flex items-center">
                   START YOUR FREE ASSESSMENT
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover/button:translate-x-1 transition-transform duration-500" />
+                </span>
+              </Button>
+              <Button
+                size="lg"
+                onClick={() => setShowCalendlyModal(true)}
+                className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-500 sm:hover:scale-105 group/button relative overflow-hidden w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 min-h-[54px] text-sm sm:text-base"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
+                <span className="relative z-10 flex items-center">
+                  BOOK A COMPLIANCE REVIEW
                   <ArrowRight className="ml-2 h-5 w-5 group-hover/button:translate-x-1 transition-transform duration-500" />
                 </span>
               </Button>
@@ -1195,9 +1205,7 @@ export default function MillstoneComplianceWebsite() {
                 <Button
                   size="lg"
                   className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-500 sm:hover:scale-105 group/button w-full relative overflow-hidden py-5 sm:py-6 min-h-[54px]"
-                  onClick={() => {
-                    window.location.href = CONTACT_INFO.tel
-                  }}
+                  onClick={() => setShowCalendlyModal(true)}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
                   <span className="relative z-10 flex items-center justify-center text-sm sm:text-base">
@@ -1229,155 +1237,205 @@ export default function MillstoneComplianceWebsite() {
         </div>
       )}
 
-      {/* Premium Sophisticated Footer */}
-      <footer className="bg-gradient-to-b from-emerald-50 via-emerald-50/80 to-white relative overflow-hidden border-t border-emerald-100/50 px-safe" role="contentinfo" aria-label="Site footer">
-        {/* Sophisticated background elements */}
+      {/* Futuristic Sophisticated Footer */}
+      <footer className="relative overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-emerald-50/50" role="contentinfo" aria-label="Site footer">
+        {/* Futuristic Background Effects */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.03)_0%,transparent_70%)] animate-pulse-slow"></div>
-          <div className="absolute top-0 w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,rgba(6,95,70,0.02)_0deg,rgba(16,185,129,0.02)_120deg,rgba(6,95,70,0.02)_240deg)] animate-spin-slower"></div>
-          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:20px_20px] animate-shimmer"></div>
+          {/* Animated gradient mesh */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.05)_0%,transparent_50%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(6,95,70,0.03)_0%,transparent_50%)]"></div>
+          {/* Tech grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.02)_1px,transparent_1px)] bg-[size:60px_60px] opacity-50"></div>
+          {/* Glowing scan lines */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-emerald-400 to-transparent animate-scan"></div>
+          </div>
         </div>
 
-        <div className="relative z-10">
-          {/* Main footer content */}
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 md:py-12">
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        {/* Elegant top border with glow */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-300/60 to-transparent"></div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Main Footer Content - Minimalist & Modern */}
+          <div className="pt-12 pb-8">
+            
+            {/* Navigation Section */}
+            <div className="py-8 grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-12">
               
-              {/* Get up-to-date */}
+              {/* Services */}
               <div>
-                <h3 className="poppins-semibold text-emerald-900 text-xs sm:text-sm tracking-wider uppercase mb-3 sm:mb-4 relative">
-                  Get up-to-date
-                  <div className="absolute -bottom-1 left-0 w-8 h-px bg-gradient-to-r from-emerald-400 to-emerald-400/0"></div>
+                <h3 className="poppins-semibold text-emerald-900 text-xs uppercase tracking-widest mb-4 relative">
+                  Services
+                  <div className="absolute -bottom-2 left-0 w-8 h-[2px] bg-gradient-to-r from-emerald-500 to-transparent"></div>
                 </h3>
-                <div className="space-y-1.5 sm:space-y-2">
+                <ul className="space-y-2.5">
                   {[
-                    { label: "Privacy statement", href: "#" },
-                    { label: "Policies", href: "#" },
-                    { label: "Manage cookies", href: "#" },
-                    { label: "Cookie policy", href: "#" },
-                    { label: "Website terms", href: "#" }
+                    { label: "Assessment", href: "/assessment" },
+                    { label: "Compliance Audit", href: "#" },
+                    { label: "Documentation", href: "#" },
+                    { label: "Support", href: "#" }
                   ].map((item, index) => (
-                    <Link
-                      key={index}
-                      href={item.href}
-                      className="flex items-center text-emerald-600 hover:text-emerald-800 text-xs sm:text-sm poppins-regular transition-all duration-300 hover:translate-x-1 min-h-[44px] sm:min-h-0 sm:inline-flex"
-                    >
-                      {item.label}
-                    </Link>
+                    <li key={index}>
+                      <Link
+                        href={item.href}
+                        className="group flex items-center text-emerald-700/80 hover:text-emerald-900 text-sm poppins-regular transition-all duration-200"
+                      >
+                        <span className="relative">
+                          {item.label}
+                          <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-emerald-500 group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
 
-              {/* Get involved */}
+              {/* Resources */}
               <div>
-                <h3 className="poppins-semibold text-emerald-900 text-sm tracking-wider uppercase mb-4 relative">
-                  Get involved
-                  <div className="absolute -bottom-1 left-0 w-8 h-px bg-gradient-to-r from-emerald-400 to-emerald-400/0"></div>
+                <h3 className="poppins-semibold text-emerald-900 text-xs uppercase tracking-widest mb-4 relative">
+                  Resources
+                  <div className="absolute -bottom-2 left-0 w-8 h-[2px] bg-gradient-to-r from-emerald-500 to-transparent"></div>
                 </h3>
-                <div className="space-y-2">
+                <ul className="space-y-2.5">
                   {[
-                    { label: "Media", href: "#" },
-                    { label: "Careers", href: "#" },
-                    { label: "Partners", href: "#" },
-                    { label: "Case Studies", href: "#" },
-                    { label: "Sitemap", href: "#" }
+                    { label: "PPT Guide", href: "#" },
+                    { label: "Checklist", href: "#" },
+                    { label: "HMRC Info", href: "#" },
+                    { label: "Blog", href: "#" }
                   ].map((item, index) => (
-                    <Link
-                      key={index}
-                      href={item.href}
-                      className="flex items-center text-emerald-600 hover:text-emerald-800 text-xs sm:text-sm poppins-regular transition-all duration-300 hover:translate-x-1 min-h-[44px] sm:min-h-0 sm:inline-flex"
-                    >
-                      {item.label}
-                    </Link>
+                    <li key={index}>
+                      <Link
+                        href={item.href}
+                        className="group flex items-center text-emerald-700/80 hover:text-emerald-900 text-sm poppins-regular transition-all duration-200"
+                      >
+                        <span className="relative">
+                          {item.label}
+                          <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-emerald-500 group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
 
-              {/* Get in touch */}
+              {/* Company */}
               <div>
-                <h3 className="poppins-semibold text-emerald-900 text-sm tracking-wider uppercase mb-4 relative">
-                  Get in touch
-                  <div className="absolute -bottom-1 left-0 w-8 h-px bg-gradient-to-r from-emerald-400 to-emerald-400/0"></div>
+                <h3 className="poppins-semibold text-emerald-900 text-xs uppercase tracking-widest mb-4 relative">
+                  Company
+                  <div className="absolute -bottom-2 left-0 w-8 h-[2px] bg-gradient-to-r from-emerald-500 to-transparent"></div>
                 </h3>
-                <div className="space-y-2">
+                <ul className="space-y-2.5">
                   {[
-                    { label: "Enquiries", href: "#" },
-                    { label: "myMillstone", href: "#" },
-                    { label: "PPT Audit Solutions", href: "#" },
-                    { label: "Audit-Ready Documentation", href: "#" },
-                    { label: "Supplier Data Management", href: "#" }
+                    { label: "About", href: "#" },
+                    { label: "Approach", href: "#" },
+                    { label: "Team", href: "#" },
+                    { label: "Careers", href: "#" }
                   ].map((item, index) => (
-                    <Link
-                      key={index}
-                      href={item.href}
-                      className="flex items-center text-emerald-600 hover:text-emerald-800 text-xs sm:text-sm poppins-regular transition-all duration-300 hover:translate-x-1 min-h-[44px] sm:min-h-0 sm:inline-flex"
-                    >
-                      {item.label}
-                    </Link>
+                    <li key={index}>
+                      <Link
+                        href={item.href}
+                        className="group flex items-center text-emerald-700/80 hover:text-emerald-900 text-sm poppins-regular transition-all duration-200"
+                      >
+                        <span className="relative">
+                          {item.label}
+                          <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-emerald-500 group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
 
-              {/* Follow Us */}
+              {/* Contact */}
               <div>
-                <h3 className="poppins-semibold text-emerald-900 text-sm tracking-wider uppercase mb-4 relative">
-                  FOLLOW US:
-                  <div className="absolute -bottom-1 left-0 w-8 h-px bg-gradient-to-r from-emerald-400 to-emerald-400/0"></div>
+                <h3 className="poppins-semibold text-emerald-900 text-xs uppercase tracking-widest mb-4 relative">
+                  Contact
+                  <div className="absolute -bottom-2 left-0 w-8 h-[2px] bg-gradient-to-r from-emerald-500 to-transparent"></div>
                 </h3>
-                <div className="flex items-center space-x-3">
-                  {[
-                    { name: "Twitter", icon: "𝕏", href: "#" },
-                    { name: "LinkedIn", icon: "💼", href: "#" },
-                    { name: "Facebook", icon: "📘", href: "#" },
-                    { name: "Instagram", icon: "📷", href: "#" },
-                    { name: "Phone", icon: "📞", href: "#" }
-                  ].map((social, index) => (
-                    <Link
-                      key={index}
-                      href={social.href}
-                      className="group/social relative w-10 h-10 bg-emerald-50/80 backdrop-blur-sm rounded-xl flex items-center justify-center border border-emerald-100/50 transition-all duration-500 hover:border-emerald-200 hover:bg-white/80 hover:shadow-[0_8px_16px_rgba(6,95,70,0.1)] overflow-hidden"
+                <ul className="space-y-3">
+                  <li>
+                    <a 
+                      href={CONTACT_INFO.tel}
+                      className="group flex items-center gap-2 text-emerald-700/80 hover:text-emerald-900 transition-colors duration-200"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/0 via-emerald-50/50 to-emerald-50/0 opacity-0 group-hover/social:opacity-100 transition-opacity duration-500"></div>
-                      <span className="text-lg relative z-10 group-hover/social:scale-110 transition-transform duration-300">{social.icon}</span>
-                    </Link>
-                  ))}
-                </div>
+                      <Phone className="h-4 w-4 text-emerald-600" />
+                      <span className="text-sm poppins-regular">{CONTACT_INFO.phone}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a 
+                      href={CONTACT_INFO.mailto}
+                      className="group flex items-center gap-2 text-emerald-700/80 hover:text-emerald-900 transition-colors duration-200"
+                    >
+                      <Mail className="h-4 w-4 text-emerald-600" />
+                      <span className="text-sm poppins-regular break-all">{CONTACT_INFO.email}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <div className="flex items-center gap-2 text-emerald-700/80">
+                      <MapPin className="h-4 w-4 text-emerald-600" />
+                      <span className="text-sm poppins-regular">UK Nationwide</span>
+                    </div>
+                  </li>
+                </ul>
               </div>
 
             </div>
-          </div>
 
-          {/* Premium Bottom Bar */}
-          <div className="border-t border-emerald-100/50 bg-white/20 backdrop-blur-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 sm:py-6">
-              <div className="flex flex-col sm:flex-row lg:flex-row justify-between items-center gap-4 sm:gap-6">
-                {/* Logo */}
-                <div className="group">
-                  <MillstoneLogo size="sm" variant="modern" className="text-emerald-700 transition-transform duration-500 group-hover:scale-105" />
+            {/* Bottom Section - Minimalist Legal */}
+            <div className="pt-8 border-t border-emerald-200/40 mt-8">
+              <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                {/* Copyright & Legal */}
+                <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
+                  <p className="text-emerald-700/60 text-xs poppins-regular">
+                    © {new Date().getFullYear()} Millstone Compliance
+                  </p>
+                  <div className="flex items-center gap-4">
+                    {[
+                      { label: "Privacy", href: "#" },
+                      { label: "Terms", href: "#" },
+                      { label: "Cookies", href: "#" }
+                    ].map((item, index) => (
+                      <Link
+                        key={index}
+                        href={item.href}
+                        className="text-emerald-700/60 hover:text-emerald-900 text-xs poppins-regular transition-colors duration-200"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
                 
-                {/* Copyright */}
-                <span className="text-emerald-600 text-[10px] sm:text-xs poppins-regular text-center sm:text-left">© 2025 Millstone Compliance. All rights reserved.</span>
-                
-                {/* Get a quote button */}
-                <div className="relative w-full sm:w-auto">
-                  <Button
-                    size="lg"
-                    onClick={() => router.push("/assessment")}
-                    className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 sm:hover:scale-105 group/button relative overflow-hidden px-4 sm:px-6 md:px-8 py-4 sm:py-3 min-h-[54px] w-full sm:w-auto text-xs sm:text-sm"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
-                    <span className="relative z-10 flex items-center">
-                      START YOUR FREE ASSESSMENT
-                      <ArrowRight className="ml-2 h-5 w-5 group-hover/button:translate-x-1 transition-transform duration-500" />
-                    </span>
-                  </Button>
+                {/* Badges */}
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">
+                    <Shield className="h-3 w-3 text-emerald-600" />
+                    <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">HMRC</span>
+                  </div>
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">
+                    <CheckCircle className="h-3 w-3 text-emerald-600" />
+                    <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">GDPR</span>
+                  </div>
                 </div>
+                
               </div>
             </div>
+
           </div>
         </div>
+
+        {/* Glowing bottom accent */}
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-300/40 to-transparent"></div>
       </footer>
+
+      {/* Calendly Modal */}
+      <CalendlyModal 
+        isOpen={showCalendlyModal} 
+        onClose={() => setShowCalendlyModal(false)} 
+      />
     </div>
   )
 }

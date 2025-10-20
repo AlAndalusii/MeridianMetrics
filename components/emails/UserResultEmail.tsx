@@ -33,8 +33,9 @@ interface UserResultEmailProps {
   recommendation: {
     title: string;
     service: string;
-    price: string;
     description: string;
+    whatWeProvide: string[];
+    ctaMessage: string;
   };
 }
 
@@ -70,14 +71,14 @@ export function UserResultEmail({
                       </td>
                     </tr>
                     
-                    {/* Personalized Greeting */}
+                    {/* Personalised Greeting */}
                     <tr>
                       <td style={{ padding: '30px' }}>
                         <h2 style={{ margin: '0 0 20px', color: '#064e3b', fontSize: '22px' }}>
                           Dear {userInfo.name},
                         </h2>
                         <p style={{ margin: '0 0 15px', color: '#047857', fontSize: '16px', lineHeight: 1.6 }}>
-                          Thank you for completing your PPT Compliance Assessment. We've prepared this personalized report to help you understand where you stand and what steps you can take to protect <strong>{userInfo.company}</strong> from HMRC penalties.
+                          Thank you for completing your PPT Compliance Assessment. We've prepared this personalised report to help you understand where you stand and what steps you can take to protect <strong>{userInfo.company}</strong> from HMRC penalties.
                         </p>
                         <p style={{ margin: 0, color: '#047857', fontSize: '15px', lineHeight: 1.6 }}>
                           The good news? Most compliance gaps are straightforward to fix once you know what they are. Let's walk through your results together.
@@ -147,38 +148,42 @@ export function UserResultEmail({
                       </tr>
                     )}
                     
-                    {/* Personalized Recommendation */}
+                    {/* Personalised Recommendation */}
                     <tr>
                       <td style={{ padding: '0 30px 30px' }}>
                         <div style={{ background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)', borderRadius: '12px', padding: '30px', color: '#ffffff' }}>
-                          <h3 style={{ margin: '0 0 15px', fontSize: '20px' }}>✨ Recommended Next Step</h3>
+                          <h3 style={{ margin: '0 0 15px', fontSize: '20px' }}>✨ Recommended Solution</h3>
                           <div style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '8px', padding: '20px', marginBottom: '20px' }}>
                             <div style={{ fontSize: '24px', fontWeight: 700, marginBottom: '10px' }}>{recommendation.service}</div>
                             <div style={{ fontSize: '15px', marginBottom: '15px', opacity: 0.95, lineHeight: 1.5 }}>
-                              {score >= 90 
-                                ? 'Your compliance is excellent! We recommend quarterly reviews to keep everything audit-ready and stay ahead of regulatory changes.'
-                                : score >= 70 
-                                ? "You're close to full compliance. We'll review your documentation, identify the remaining gaps, and provide a clear action plan to fix them."
-                                : score >= 50 
-                                ? "Let's get your compliance sorted. We'll conduct a full review, organize your records, and provide hands-on support to make you audit-ready."
-                                : "We understand this feels urgent - and it is. We'll organize everything for you, get your documentation in order, and make you compliant quickly."}
+                              {recommendation.description}
                             </div>
-                            <div style={{ fontSize: '32px', fontWeight: 800 }}>{recommendation.price.split('→')[1] || recommendation.price}</div>
+                            <div style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '8px', padding: '15px' }}>
+                              <div style={{ fontSize: '14px', fontWeight: 600, marginBottom: '10px', opacity: 0.9 }}>WHAT WE PROVIDE:</div>
+                              {recommendation.whatWeProvide.map((item, index) => (
+                                <div key={index} style={{ fontSize: '14px', marginBottom: '6px', paddingLeft: '5px', opacity: 0.95 }}>
+                                  ✓ {item}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          <div style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '8px', padding: '15px', marginBottom: '20px', textAlign: 'center', fontSize: '15px', lineHeight: 1.5 }}>
+                            {recommendation.ctaMessage}
                           </div>
                           <table role="presentation" style={{ width: '100%' }}>
                             <tbody>
                               <tr>
                                 <td style={{ textAlign: 'center' }}>
-                                  <a href="mailto:zak@millstonecompliance.com?subject=PPT Compliance Assessment - Let's Get Started"
+                                  <a href={`mailto:zak@millstonecompliance.com?subject=My PPT Assessment Results - Ready to Get Compliant&body=Hi Zak,%0D%0A%0D%0AI've just completed my PPT compliance assessment.%0D%0A%0D%0A📊 My Score: ${score}/100 - ${scoreLevel.level}%0D%0A🏢 Company: ${userInfo.company}%0D%0A%0D%0AI need help getting compliant.%0D%0A%0D%0AI'd like to discuss: ${recommendation.service}%0D%0A%0D%0ACan we arrange a quick call this week?%0D%0A%0D%0ABest time to reach me: [Your preferred time]%0D%0A%0D%0ACheers,%0D%0A${userInfo.name}%0D%0A${userInfo.phone || ''}%0D%0A${userInfo.email}`}
                                      style={{ display: 'inline-block', backgroundColor: '#ffffff', color: '#059669', padding: '16px 40px', textDecoration: 'none', borderRadius: '8px', fontWeight: 700, fontSize: '16px', marginTop: '10px' }}>
-                                    Get Started Now →
+                                    Get My Custom Proposal →
                                   </a>
                                 </td>
                               </tr>
                             </tbody>
                           </table>
                           <p style={{ margin: '20px 0 0', textAlign: 'center', fontSize: '14px', opacity: 0.9 }}>
-                            Ready to get started? Email us or call for a free consultation - we're here to help.
+                            ⚡ Most clients get their proposal within 4 hours
                           </p>
                         </div>
                       </td>

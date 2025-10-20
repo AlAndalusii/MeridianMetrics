@@ -1299,10 +1299,10 @@ export default function MillstoneComplianceWebsite() {
                 </h3>
                 <ul className="space-y-2.5">
                   {[
-                    { label: "PPT Guide", href: "#" },
+                    { label: "PPT Guide", href: "/resources/plastic-packaging-tax" },
+                    { label: "All Resources", href: "/resources" },
                     { label: "Checklist", href: "#" },
-                    { label: "HMRC Info", href: "#" },
-                    { label: "Blog", href: "#" }
+                    { label: "HMRC Info", href: "#" }
                   ].map((item, index) => (
                     <li key={index}>
                       <Link
@@ -1327,7 +1327,7 @@ export default function MillstoneComplianceWebsite() {
                 </h3>
                 <ul className="space-y-2.5">
                   {[
-                    { label: "About", href: "#" },
+                    { label: "About", href: "/about" },
                     { label: "Approach", href: "#" },
                     { label: "Team", href: "#" },
                     { label: "Careers", href: "#" }
@@ -1413,11 +1413,11 @@ export default function MillstoneComplianceWebsite() {
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">
                     <Shield className="h-3 w-3 text-emerald-600" />
-                    <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">HMRC</span>
+                    <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">UK Compliant</span>
                   </div>
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">
                     <CheckCircle className="h-3 w-3 text-emerald-600" />
-                    <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">GDPR</span>
+                    <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">Data Protected</span>
                   </div>
                 </div>
                 

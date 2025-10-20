@@ -130,7 +130,7 @@ const questions: Question[] = [
   },
   {
     id: 8,
-    section: "Documentation Organization",
+    section: "Documentation Organisation",
     icon: Database,
     question: "Can you access all your PPT documents within 10 minutes?",
     subtitle: "If HMRC rang right now requesting certificates, weight records, and past returns, could you locate everything quickly?",
@@ -257,7 +257,7 @@ const questions: Question[] = [
     type: "radio",
     options: [
       { label: "Fix documentation gaps before an HMRC audit occurs", value: "fix_gaps" },
-      { label: "Organise records so quarterly filing takes 30 minutes not 8 hours", value: "organize" },
+      { label: "Organise records so quarterly filing takes 30 minutes not 8 hours", value: "organise" },
       { label: "Set up a monitoring system to stay compliant automatically", value: "monitor" },
       { label: "Reduce time our team spends on PPT admin", value: "reduce_time" },
       { label: "Train internal team to handle this properly", value: "train" },
@@ -286,13 +286,13 @@ const questions: Question[] = [
     question: "How would you prefer to fix your PPT compliance?",
     type: "radio",
     options: [
-      { label: "DIY Guide - teach me how to do it myself (£100-200 budget)", value: "diy" },
-      { label: "Expert Audit - tell me exactly what's wrong and how to fix it (£300-500 budget)", value: "audit" },
-      { label: "Done-With-You - audit plus help implementing fixes (£500-1,000 budget)", value: "done_with" },
-      { label: "Done-For-You - ongoing service that keeps me compliant (£100-150/month budget)", value: "done_for" },
+      { label: "DIY Guide - teach me how to do it myself", value: "diy" },
+      { label: "Expert Audit - tell me exactly what's wrong and how to fix it", value: "audit" },
+      { label: "Done-With-You - audit plus help implementing fixes", value: "done_with" },
+      { label: "Done-For-You - ongoing service that keeps me compliant", value: "done_for" },
       { label: "Not sure yet - just want to know where I stand first", value: "not_sure" },
     ],
-    whyMatters: "This indicates your budget range and service preference",
+    whyMatters: "This helps us recommend the right service approach for your situation",
   },
   {
     id: 19,
@@ -639,7 +639,7 @@ function AssessmentPageContent() {
   }
 
   const getSectionProgress = () => {
-    const sections = ["Contact Information", "Certificate Compliance", "Documentation Organization", "Tax Point Knowledge", 
+    const sections = ["Contact Information", "Certificate Compliance", "Documentation Organisation", "Tax Point Knowledge", 
       "Supplier Management", "Weight Methodology", "Filing Compliance", "Export Documentation", "Nation Data Tracking",
       "Business Scale", "Your Goals", "Your Challenges", "Your Preferences", "Additional Information"]
     const uniqueSections = Array.from(new Set(questions.map(q => q.section)))

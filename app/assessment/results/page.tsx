@@ -185,7 +185,7 @@ export default function ResultsPage() {
       identifiedStrengths.push("Current certificates (within 12 months)")
     }
 
-    // Check Q8 - Document organization
+    // Check Q8 - Document organisation
     if (answers[8] === "no" || answers[8] === "not_sure") {
       identifiedGaps.push({
         title: "Records would take 20+ minutes to access",
@@ -282,33 +282,59 @@ export default function ResultsPage() {
   const getRecommendation = () => {
     if (score >= 90) {
       return {
-        title: "Maintenance & Monitoring",
-        service: "Quarterly Compliance Review",
-        price: "£100/month",
-        description: "Maintain your excellent systems audit-ready with quarterly reviews",
+        title: "Maintain Your Excellence",
+        service: "Quarterly Compliance Monitoring",
+        description: "Your systems are strong. We'll help you stay audit-ready with regular check-ins to track certificate expiry, filing deadlines, and regulatory changes.",
+        whatWeProvide: [
+          "Quarterly compliance health checks",
+          "Certificate expiry tracking and alerts",
+          "Regulatory update notifications",
+          "Priority email support"
+        ],
+        ctaMessage: "Keep your excellent compliance status with our monitoring service",
       }
     }
     if (score >= 70) {
       return {
-        title: "Documentation Audit",
-        service: "Expert Audit + Implementation Guide",
-        price: "£495 → £250 Early Client Rate",
-        description: "We'll identify and help you address those final gaps",
+        title: "Close The Gaps",
+        service: "Expert Documentation Audit",
+        description: "You have a solid foundation with 3-4 gaps to address. We'll review your documentation, identify exactly what's missing, and provide a detailed action plan you can implement yourself or with our help.",
+        whatWeProvide: [
+          "Complete audit of all PPT documentation",
+          "Written gap analysis report",
+          "Step-by-step remediation guide",
+          "Email support during implementation"
+        ],
+        ctaMessage: "Get your personalised compliance roadmap to address those final gaps",
       }
     }
     if (score >= 50) {
       return {
-        title: "Compliance Overhaul",
-        service: "Full Documentation Audit + Implementation Support",
-        price: "£750 → £495 Early Client Rate",
-        description: "Comprehensive review and hands-on help to get you audit-ready",
+        title: "Build Audit-Ready Systems",
+        service: "Full Compliance Implementation",
+        description: "You have significant gaps that need structured attention. We'll audit your current state, create organised systems for your documentation, and work with you to get everything audit-ready.",
+        whatWeProvide: [
+          "Comprehensive documentation review",
+          "Supplier certificate collection support",
+          "Organised filing system setup",
+          "Hands-on implementation guidance",
+          "Ongoing support until compliant"
+        ],
+        ctaMessage: "Let us help you build a compliance system that works",
       }
     }
     return {
-      title: "Emergency Compliance Package",
-      service: "Done-For-You Documentation + Urgent Support",
-      price: "£1,200 → £750 Emergency Rate",
-        description: "We'll organise everything and get you compliant quickly",
+      title: "Urgent Action Required",
+      service: "Done-For-You Compliance Setup",
+        description: "Your current exposure is high. We'll take immediate action to organise your documentation, collect missing certificates, and create a defensible system before HMRC comes knocking.",
+        whatWeProvide: [
+          "Emergency documentation organisation",
+        "Direct supplier certificate collection",
+        "Complete record system creation",
+        "Priority implementation support",
+        "HMRC correspondence assistance if needed"
+      ],
+      ctaMessage: "Get urgent help to protect your business from penalties",
     }
   }
 
@@ -331,7 +357,7 @@ export default function ResultsPage() {
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="poppins-medium text-emerald-700">Analyzing your compliance data...</p>
+          <p className="poppins-medium text-emerald-700">Analysing your compliance data...</p>
         </div>
       </div>
     )
@@ -548,47 +574,76 @@ export default function ResultsPage() {
               <div className="relative z-10 text-white">
                 <div className="flex items-center mb-4 sm:mb-5 md:mb-6">
                   <Sparkles className="w-5 sm:w-6 h-5 sm:h-6 mr-2 sm:mr-3" />
-                  <h2 className="poppins-bold text-xl sm:text-2xl">Recommended Next Step</h2>
+                  <h2 className="poppins-bold text-xl sm:text-2xl">Recommended Solution</h2>
                 </div>
 
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 mb-4 sm:mb-5 md:mb-6 border border-white/20">
-                  <h3 className="poppins-bold text-2xl sm:text-3xl mb-2">{recommendation.service}</h3>
-                  <p className="poppins-regular text-base sm:text-lg mb-3 sm:mb-4 text-emerald-50">{recommendation.description}</p>
-                  <div className="flex flex-wrap items-baseline gap-2 sm:gap-3">
-                    <span className="poppins-bold text-3xl sm:text-4xl">{recommendation.price.split("→")[1] || recommendation.price}</span>
-                    {recommendation.price.includes("→") && (
-                      <span className="poppins-medium text-base sm:text-lg line-through text-emerald-200">
-                        {recommendation.price.split("→")[0]}
-                      </span>
-                    )}
+                  <h3 className="poppins-bold text-2xl sm:text-3xl mb-3">{recommendation.service}</h3>
+                  <p className="poppins-regular text-base sm:text-lg mb-4 sm:mb-5 text-emerald-50 leading-relaxed">{recommendation.description}</p>
+                  
+                  {/* What We Provide List */}
+                  <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                    <h4 className="poppins-semibold text-sm text-emerald-100 mb-3 uppercase tracking-wide">What We Provide:</h4>
+                    <ul className="space-y-2">
+                      {recommendation.whatWeProvide.map((item, index) => (
+                        <li key={index} className="flex items-start text-sm sm:text-base">
+                          <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 text-emerald-300 flex-shrink-0 mt-0.5" />
+                          <span className="poppins-regular text-white">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
 
+                {/* CTA Message */}
+                <div className="bg-white/5 rounded-xl p-4 mb-4 sm:mb-5 border border-white/10">
+                  <p className="poppins-semibold text-center text-white text-base sm:text-lg mb-2">
+                    {recommendation.ctaMessage}
+                  </p>
+                  <p className="poppins-regular text-center text-emerald-100 text-sm">
+                    {score >= 90 
+                      ? "Let's keep you audit-ready with minimal effort on your part."
+                      : score >= 70 
+                      ? "We'll have you fully compliant within 2 weeks."
+                      : score >= 50 
+                      ? "Most clients are audit-ready within 30 days of starting."
+                      : "We can get you compliant before HMRC notices the gaps."}
+                  </p>
+                </div>
+
+                {/* Action Buttons */}
                 <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                   <Button
                     size="lg"
+                    onClick={() => {
+                      const subject = "My PPT Assessment Results - Ready to Get Compliant"
+                      const body = `Hi Zak,%0D%0A%0D%0AI've just completed my PPT compliance assessment.%0D%0A%0D%0A📊 My Score: ${score}/100 - ${scoreLevel.level}%0D%0A🏢 Company: ${userInfo.company}%0D%0A%0D%0A${gaps.length > 0 ? `I need help with ${gaps.length} compliance gap${gaps.length > 1 ? 's' : ''} you've identified.%0D%0A%0D%0A` : ''}I'd like to discuss: ${recommendation.service}%0D%0A%0D%0ACan we arrange a quick call this week?%0D%0A%0D%0ABest time to reach me: [Your preferred time]%0D%0A%0D%0ACheers,%0D%0A${userInfo.name}%0D%0A${userInfo.phone ? userInfo.phone : ''}%0D%0A${userInfo.email}`
+                      window.location.href = `mailto:${CONTACT_INFO.email}?subject=${subject}&body=${body}`
+                    }}
                     className="poppins-semibold bg-white text-emerald-700 hover:bg-emerald-50 active:scale-95 border-0 shadow-xl transition-all duration-300 sm:hover:scale-105 group w-full py-5 sm:py-6 text-sm sm:text-base min-h-[54px]"
                   >
                     <span className="flex items-center justify-center">
-                      Book Your Audit Now
+                      <Mail className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
+                      Get My Custom Proposal
                       <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </Button>
                   
                   <Button
                     size="lg"
+                    onClick={() => setShowCalendlyModal(true)}
                     className="poppins-semibold bg-emerald-800 text-white hover:bg-emerald-900 active:scale-95 border-2 border-white/20 shadow-xl transition-all duration-300 sm:hover:scale-105 group w-full py-5 sm:py-6 text-sm sm:text-base min-h-[54px]"
                   >
                     <span className="flex items-center justify-center">
                       <Phone className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
-                      <span className="hidden xs:inline">Book Strategy Call</span>
-                      <span className="xs:hidden">Call Us</span>
+                      <span className="hidden xs:inline">Book Your Free Call</span>
+                      <span className="xs:hidden">Book Call</span>
                     </span>
                   </Button>
                 </div>
 
                 <p className="text-center text-emerald-100 text-xs sm:text-sm poppins-regular mt-4 sm:mt-5 md:mt-6">
-                  Or start smaller: Book a £100 Roadmap Session to understand your options
+                  ⚡ Most clients get their proposal within 4 hours
                 </p>
               </div>
             </div>
@@ -598,7 +653,7 @@ export default function ResultsPage() {
           <div className="mb-8 sm:mb-10 md:mb-12 animate-fade-in-up delay-700">
             <div className="bg-white/80 backdrop-blur-2xl rounded-2xl sm:rounded-3xl md:rounded-[32px] p-6 sm:p-8 md:p-10 border border-emerald-100/50 shadow-[0_8px_32px_rgba(6,95,70,0.08)]">
               <div className="flex flex-col items-center text-center">
-                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-4 sm:mb-6 ${
+                  <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-4 sm:mb-6 ${
                   emailSent ? 'bg-emerald-100' : emailError ? 'bg-amber-100' : 'bg-gray-100'
                 }`}>
                   <Mail className={`w-8 h-8 sm:w-10 sm:h-10 ${
@@ -612,10 +667,10 @@ export default function ResultsPage() {
                 
                 <p className="poppins-regular text-emerald-700 text-sm sm:text-base mb-4">
                   {emailSent 
-                    ? `We've sent your personalized compliance report to:` 
+                    ? `We've sent your personalised compliance report to:` 
                     : emailError 
                     ? 'We\'re working on sending your report to:' 
-                    : 'Your personalized report is being sent to:'}
+                    : 'Your personalised report is being sent to:'}
                 </p>
                 
                 <div className="bg-emerald-50 rounded-xl px-6 py-3 mb-6">
@@ -626,7 +681,7 @@ export default function ResultsPage() {
                   <div className="bg-emerald-100 border border-emerald-200 rounded-xl p-4 sm:p-5 w-full max-w-md">
                     <p className="poppins-semibold text-emerald-900 text-sm sm:text-base mb-2">✓ Email Sent Successfully!</p>
                     <p className="poppins-regular text-emerald-700 text-xs sm:text-sm">
-                      Check your inbox for your personalized compliance report. Don't forget to check your spam folder if you don't see it.
+                      Check your inbox for your personalised compliance report. Don't forget to check your spam folder if you don't see it.
                     </p>
                   </div>
                 )}
@@ -645,25 +700,40 @@ export default function ResultsPage() {
 
           {/* Footer CTA */}
           <div className="text-center">
-            <p className="poppins-regular text-emerald-700 mb-4 text-sm sm:text-base px-4">
-              Have questions? Would you like to discuss your specific situation?
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
-              <Button
-                onClick={() => (window.location.href = CONTACT_INFO.emailWithTemplate)}
-                className="poppins-medium bg-white border-2 border-emerald-200 text-emerald-700 hover:border-emerald-400 hover:bg-emerald-50 active:scale-95 w-full sm:w-auto text-sm px-6 py-3.5 min-h-[48px]"
-              >
-                <Mail className="w-4 h-4 mr-2" />
-                Email Us
-              </Button>
-              <Button
-                onClick={() => setShowCalendlyModal(true)}
-                className="poppins-medium bg-white border-2 border-emerald-200 text-emerald-700 hover:border-emerald-400 hover:bg-emerald-50 active:scale-95 w-full sm:w-auto text-sm px-6 py-3.5 min-h-[48px]"
-              >
-                <Phone className="w-4 h-4 mr-2" />
-                Schedule a Call
-              </Button>
+            <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl p-6 sm:p-8 border-2 border-emerald-200 mb-6">
+              <h3 className="poppins-bold text-xl sm:text-2xl text-emerald-900 mb-3">
+                Ready to Get This Sorted?
+              </h3>
+              <p className="poppins-regular text-emerald-700 mb-6 text-sm sm:text-base px-4">
+                {score >= 70 
+                  ? "You're close to full compliance. Let's close those gaps before your next filing deadline."
+                  : "Every day you wait increases your risk. Let's get you protected."}
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
+                <Button
+                  onClick={() => {
+                    const subject = "My PPT Assessment Results - Ready to Get Compliant"
+                    const body = `Hi Zak,%0D%0A%0D%0AI've just completed my PPT compliance assessment.%0D%0A%0D%0A📊 My Score: ${score}/100 - ${scoreLevel.level}%0D%0A🏢 Company: ${userInfo.company}%0D%0A%0D%0A${gaps.length > 0 ? `I need help with ${gaps.length} compliance gap${gaps.length > 1 ? 's' : ''} you've identified.%0D%0A%0D%0A` : ''}I'd like to discuss: ${recommendation.service}%0D%0A%0D%0ACan we arrange a quick call this week?%0D%0A%0D%0ABest time to reach me: [Your preferred time]%0D%0A%0D%0ACheers,%0D%0A${userInfo.name}%0D%0A${userInfo.phone ? userInfo.phone : ''}%0D%0A${userInfo.email}`
+                    window.location.href = `mailto:${CONTACT_INFO.email}?subject=${subject}&body=${body}`
+                  }}
+                  className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white active:scale-95 w-full sm:w-auto text-sm px-8 py-4 min-h-[54px] shadow-lg hover:shadow-xl transition-all group"
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  Email for Proposal (4hr response)
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Button
+                  onClick={() => setShowCalendlyModal(true)}
+                  className="poppins-semibold bg-white border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50 active:scale-95 w-full sm:w-auto text-sm px-8 py-4 min-h-[54px] shadow-lg hover:shadow-xl transition-all"
+                >
+                  <Phone className="w-4 h-4 mr-2" />
+                  Book Free Strategy Call
+                </Button>
+              </div>
             </div>
+            <p className="poppins-regular text-emerald-600 text-xs sm:text-sm">
+              🔒 Your assessment data stays confidential • No sales pressure • Just honest advice
+            </p>
           </div>
         </div>
       </div>

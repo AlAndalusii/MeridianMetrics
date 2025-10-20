@@ -18,6 +18,6 @@ export const CONTACT_INFO = {
   email: SITE_CONFIG.companyEmail,
   mailto: `mailto:${SITE_CONFIG.companyEmail}`,
   tel: `tel:${SITE_CONFIG.companyPhone}`,
-  emailWithTemplate: `mailto:${SITE_CONFIG.companyEmail}?subject=Question about PPT Assessment&body=Hi there,%0D%0A%0D%0AI have a question about the PPT compliance assessment.%0D%0A%0D%0A[Please describe your question here]%0D%0A%0D%0AThanks,%0D%0A[Your name]`,
+  emailWithTemplate: `mailto:${SITE_CONFIG.companyEmail}?subject=PPT Assessment Results - Strategy Request&body=Hi there,%0D%0A%0D%0AI've just completed the PPT compliance assessment and would like to discuss the recommended solution.%0D%0A%0D%0AMy main compliance concerns are:%0D%0A[Please describe your situation]%0D%0A%0D%0AI'm interested in:%0D%0A[ ] Understanding the gaps in detail%0D%0A[ ] Getting a custom compliance strategy%0D%0A[ ] Learning about your services%0D%0A%0D%0ABest time to reach me:%0D%0A[Please specify]%0D%0A%0D%0AThanks,%0D%0A[Your name]`,
 } as const
 

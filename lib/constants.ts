@@ -1,7 +1,7 @@
 // Site constants and configuration
 export const SITE_CONFIG = {
   companyName: "Millstone Compliance",
-  companyPhone: process.env.NEXT_PUBLIC_COMPANY_PHONE || "+44YOURPHONE",
+  companyPhone: process.env.NEXT_PUBLIC_COMPANY_PHONE || "+447591092103",
   companyEmail: process.env.NEXT_PUBLIC_COMPANY_EMAIL || "hello@millstonecompliance.com",
   bookingLink: process.env.NEXT_PUBLIC_BOOKING_LINK || "#",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://millstonecompliance.com",

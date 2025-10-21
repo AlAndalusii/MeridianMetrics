@@ -29,6 +29,7 @@ import { useRouter } from "next/navigation"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { CONTACT_INFO } from "@/lib/constants"
 import { CalendlyModal } from "@/components/CalendlyWidget"
+import { EmailTemplateModal } from "@/components/EmailTemplateModal"
 
 // Fortune 500 Premium Logo Component - World-Class Design
 const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: string }) => (
@@ -165,6 +166,7 @@ export default function MillstoneComplianceWebsite() {
   const [showCallPopup, setShowCallPopup] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
   const [showCalendlyModal, setShowCalendlyModal] = useState(false)
+  const [showEmailTemplate, setShowEmailTemplate] = useState(false)
   const [dashboardMetrics, setDashboardMetrics] = useState({
     pptLiability: 0,
     complianceScore: 0,
@@ -1364,13 +1366,13 @@ export default function MillstoneComplianceWebsite() {
                     </a>
                   </li>
                   <li>
-                    <a 
-                      href={CONTACT_INFO.mailto}
-                      className="group flex items-center gap-2 text-emerald-700/80 hover:text-emerald-900 transition-colors duration-200"
+                    <button 
+                      onClick={() => setShowEmailTemplate(true)}
+                      className="group flex items-center gap-2 text-emerald-700/80 hover:text-emerald-900 transition-colors duration-200 cursor-pointer"
                     >
                       <Mail className="h-4 w-4 text-emerald-600" />
                       <span className="text-sm poppins-regular break-all">{CONTACT_INFO.email}</span>
-                    </a>
+                    </button>
                   </li>
                   <li>
                     <div className="flex items-center gap-2 text-emerald-700/80">
@@ -1435,6 +1437,12 @@ export default function MillstoneComplianceWebsite() {
       <CalendlyModal 
         isOpen={showCalendlyModal} 
         onClose={() => setShowCalendlyModal(false)} 
+      />
+
+      {/* Email Template Modal */}
+      <EmailTemplateModal 
+        isOpen={showEmailTemplate} 
+        onClose={() => setShowEmailTemplate(false)} 
       />
     </div>
   )

@@ -1396,7 +1396,7 @@ export default function MillstoneComplianceWebsite() {
                   </p>
                   <div className="flex items-center gap-4">
                     {[
-                      { label: "Privacy", href: "#" },
+                      { label: "Privacy", href: "/privacy" },
                       { label: "Terms", href: "#" },
                       { label: "Cookies", href: "#" }
                     ].map((item, index) => (

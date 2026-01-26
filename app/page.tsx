@@ -151,10 +151,10 @@ const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: stri
       </svg>
     </div>
     <div className="flex flex-col">
-      <span className="poppins-bold text-3xl text-emerald-800 tracking-tight leading-none">Millstone Compliance</span>
-      <span className="poppins-medium text-xs text-emerald-600 tracking-widest uppercase mt-1">
-        PPT Compliance Solutions
-      </span>
+        <span className="poppins-bold text-3xl text-emerald-800 tracking-tight leading-none">Millstone Compliance</span>
+        <span className="poppins-medium text-xs text-emerald-600 tracking-widest uppercase mt-1">
+          EPR • PPT • PRN Experts
+        </span>
     </div>
   </div>
 )
@@ -274,10 +274,23 @@ export default function MillstoneComplianceWebsite() {
             <Link href="/" className="group/logo transition-transform duration-300 hover:scale-105">
               <MillstoneLogo size="sm" variant="modern" />
             </Link>
-            <Button 
-              onClick={() => router.push("/assessment")}
-              aria-label="Start your free PPT compliance assessment"
-              className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap touch-manipulation"
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Button 
+                onClick={() => router.push("/resources")}
+                className="poppins-semibold bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap touch-manipulation hidden sm:flex items-center relative overflow-hidden group/resources"
+                style={{ 
+                  pointerEvents: 'auto',
+                  touchAction: 'manipulation',
+                  WebkitTapHighlightColor: 'transparent'
+                }}
+              >
+                <FileCheck className="w-4 h-4 sm:mr-2 relative z-10" />
+                <span className="hidden sm:inline relative z-10">Resources</span>
+              </Button>
+             <Button 
+               onClick={() => router.push("/assessment")}
+               aria-label="Start your free packaging compliance assessment"
+               className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap touch-manipulation"
               style={{ 
                 pointerEvents: 'auto',
                 touchAction: 'manipulation',
@@ -286,6 +299,7 @@ export default function MillstoneComplianceWebsite() {
               <span className="hidden xs:inline">START YOUR FREE ASSESSMENT</span>
               <span className="xs:hidden">START ASSESSMENT</span>
             </Button>
+            </div>
           </div>
         </div>
       </nav>
@@ -320,11 +334,11 @@ export default function MillstoneComplianceWebsite() {
               className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
               <h1 className="poppins-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 leading-tight">
-                <span className="text-emerald-900 block">Worried about PPT audits?</span>
-                <span className="text-emerald-600 block">We find gaps before HMRC does.</span>
+                <span className="text-emerald-900 block">UK Packaging compliance.</span>
+                <span className="text-emerald-600 block">We find gaps before audits do.</span>
               </h1>
               <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 mb-6 sm:mb-8 leading-relaxed">
-                Get your free PPT compliance assessment—identify missing certificates and reporting errors in 3 minutes, before HMRC does.
+                Free 3-minute check. Find missing documents and errors before penalties.
               </p>
               <div className="flex flex-col gap-4">
                 <Button
@@ -347,7 +361,7 @@ export default function MillstoneComplianceWebsite() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 flex-shrink-0" />
-                    <span className="poppins-medium text-xs sm:text-sm">PPT Specialist</span>
+                    <span className="poppins-medium text-xs sm:text-sm">EPR, PPT & PRN Specialist</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 flex-shrink-0" />
@@ -366,7 +380,7 @@ export default function MillstoneComplianceWebsite() {
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="poppins-semibold text-lg text-emerald-900 flex items-center">
                       <BarChart3 className="w-4 h-4 mr-2 text-emerald-600" />
-                      Product Plastic Tracker
+                      Packaging Compliance Hub
                     </h3>
                     <div className="flex items-center space-x-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -374,15 +388,15 @@ export default function MillstoneComplianceWebsite() {
                     </div>
                   </div>
 
-                  {/* Total Plastic Overview */}
+                  {/* Total Packaging Overview - EPR + PPT */}
                   <div className="grid grid-cols-3 gap-3 mb-4">
-                    <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-3 border border-emerald-200">
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
                       <div className="flex items-center justify-between mb-1">
-                        <TrendingUp className="w-4 h-4 text-emerald-600" />
-                        <span className="poppins-bold text-base text-emerald-700">142.5</span>
+                        <Building className="w-4 h-4 text-blue-600" />
+                        <span className="poppins-bold text-base text-blue-700">£284K</span>
                       </div>
-                      <p className="poppins-medium text-[10px] text-emerald-600">Total Tonnes</p>
-                      <p className="text-[9px] text-emerald-500 mt-0.5">Q3 2025 usage</p>
+                      <p className="poppins-medium text-[10px] text-blue-600">EPR Fees 2025</p>
+                      <p className="text-[9px] text-blue-500 mt-0.5">Invoice verified</p>
                     </div>
 
                     <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
@@ -390,109 +404,109 @@ export default function MillstoneComplianceWebsite() {
                         <Shield className="w-4 h-4 text-green-600" />
                         <span className="poppins-bold text-base text-green-700">68%</span>
                       </div>
-                      <p className="poppins-medium text-[10px] text-green-600">Recycled Content</p>
+                      <p className="poppins-medium text-[10px] text-green-600">PPT Recycled</p>
                       <p className="text-[9px] text-green-500 mt-0.5">97.1 tonnes verified</p>
                     </div>
 
-                    <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-3 border border-amber-200">
+                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
                       <div className="flex items-center justify-between mb-1">
-                        <AlertTriangle className="w-4 h-4 text-amber-600" />
-                        <span className="poppins-bold text-base text-amber-700">45.4</span>
+                        <TrendingUp className="w-4 h-4 text-purple-600" />
+                        <span className="poppins-bold text-base text-purple-700">High</span>
                       </div>
-                      <p className="poppins-medium text-[10px] text-amber-600">Virgin Plastic</p>
-                      <p className="text-[9px] text-amber-500 mt-0.5">Needs documentation</p>
+                      <p className="poppins-medium text-[10px] text-purple-600">2026 Mod Risk</p>
+                      <p className="text-[9px] text-purple-500 mt-0.5">Action needed</p>
                     </div>
                   </div>
 
-                  {/* Product Breakdown */}
+                  {/* EPR Material Breakdown */}
                   <div className="bg-white rounded-xl p-3 border border-gray-200 mb-3">
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="poppins-semibold text-xs text-gray-800">Product Recycled Content</h4>
-                      <span className="poppins-medium text-[10px] text-gray-600">Top SKUs</span>
+                      <h4 className="poppins-semibold text-xs text-gray-800">EPR Material Split</h4>
+                      <span className="poppins-medium text-[10px] text-gray-600">2025 Data</span>
                     </div>
                     <div className="space-y-2">
-                      <div className="bg-green-50 rounded-lg p-2 border border-green-200">
+                      <div className="bg-blue-50 rounded-lg p-2 border border-blue-200">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] text-green-700 font-semibold">Shampoo Bottle 500ml</span>
-                          <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">85% rPET</span>
+                          <span className="text-[10px] text-blue-700 font-semibold">Plastic - Household</span>
+                          <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">£156K</span>
                         </div>
-                        <div className="w-full bg-green-100 rounded-full h-1.5">
-                          <div className="bg-green-500 h-1.5 rounded-full" style={{width: '85%'}}></div>
+                        <div className="w-full bg-blue-100 rounded-full h-1.5">
+                          <div className="bg-blue-500 h-1.5 rounded-full" style={{width: '55%'}}></div>
                         </div>
-                        <span className="text-[9px] text-green-600 mt-0.5">Certificate verified</span>
+                        <span className="text-[9px] text-blue-600 mt-0.5">89.4 tonnes • PET bottles</span>
                       </div>
                       
                       <div className="bg-green-50 rounded-lg p-2 border border-green-200">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] text-green-700 font-semibold">Face Cream Jar 50ml</span>
-                          <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">72% rPP</span>
+                          <span className="text-[10px] text-green-700 font-semibold">Plastic - Non-household</span>
+                          <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">£89K</span>
                         </div>
                         <div className="w-full bg-green-100 rounded-full h-1.5">
-                          <div className="bg-green-500 h-1.5 rounded-full" style={{width: '72%'}}></div>
+                          <div className="bg-green-500 h-1.5 rounded-full" style={{width: '31%'}}></div>
                         </div>
-                        <span className="text-[9px] text-green-600 mt-0.5">Certificate verified</span>
+                        <span className="text-[9px] text-green-600 mt-0.5">53.1 tonnes • B2B packaging</span>
                       </div>
 
                       <div className="bg-amber-50 rounded-lg p-2 border border-amber-200">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] text-amber-700 font-semibold">Body Lotion 250ml</span>
-                          <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full">35% rPET</span>
+                          <span className="text-[10px] text-amber-700 font-semibold">Paper/Card/Glass</span>
+                          <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full">£39K</span>
                         </div>
                         <div className="w-full bg-amber-100 rounded-full h-1.5">
-                          <div className="bg-amber-500 h-1.5 rounded-full" style={{width: '35%'}}></div>
+                          <div className="bg-amber-500 h-1.5 rounded-full" style={{width: '14%'}}></div>
                         </div>
-                        <span className="text-[9px] text-amber-600 mt-0.5">Pending verification</span>
+                        <span className="text-[9px] text-amber-600 mt-0.5">Mixed materials</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Certificate Status */}
+                  {/* Compliance Status - EPR + PPT */}
                   <div className="grid grid-cols-2 gap-3">
-                    {/* Supplier Certificates */}
+                    {/* EPR Status */}
                     <div className="space-y-1.5">
-                      <div className="flex items-center justify-between bg-green-50 rounded-lg p-1.5 border border-green-200">
+                      <div className="flex items-center justify-between bg-blue-50 rounded-lg p-1.5 border border-blue-200">
                         <div className="flex items-center space-x-1.5">
-                          <FileCheck className="w-3 h-3 text-green-600" />
-                          <span className="poppins-medium text-[10px] text-green-700">rPET Certificates</span>
+                          <FileCheck className="w-3 h-3 text-blue-600" />
+                          <span className="poppins-medium text-[10px] text-blue-700">EPR Invoice</span>
                         </div>
-                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">18 Valid</span>
-                      </div>
-                      <div className="flex items-center justify-between bg-green-50 rounded-lg p-1.5 border border-green-200">
-                        <div className="flex items-center space-x-1.5">
-                          <FileCheck className="w-3 h-3 text-green-600" />
-                          <span className="poppins-medium text-[10px] text-green-700">rPP Certificates</span>
-                        </div>
-                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">12 Valid</span>
-                      </div>
-                      <div className="flex items-center justify-between bg-amber-50 rounded-lg p-1.5 border border-amber-200">
-                        <div className="flex items-center space-x-1.5">
-                          <Database className="w-3 h-3 text-amber-600" />
-                          <span className="poppins-medium text-[10px] text-amber-700">New Suppliers</span>
-                        </div>
-                        <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full">3 Pending</span>
-                      </div>
-                    </div>
-
-                    {/* Weight & Evidence */}
-                    <div className="space-y-1.5">
-                      <div className="flex items-center justify-between bg-green-50 rounded-lg p-1.5 border border-green-200">
-                        <div className="flex items-center space-x-1.5">
-                          <Calculator className="w-3 h-3 text-green-600" />
-                          <span className="poppins-medium text-[10px] text-green-700">Weight Data</span>
-                        </div>
-                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">Complete</span>
+                        <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">Verified</span>
                       </div>
                       <div className="flex items-center justify-between bg-green-50 rounded-lg p-1.5 border border-green-200">
                         <div className="flex items-center space-x-1.5">
                           <Shield className="w-3 h-3 text-green-600" />
-                          <span className="poppins-medium text-[10px] text-green-700">Evidence Trail</span>
+                          <span className="poppins-medium text-[10px] text-green-700">PPT Certificates</span>
                         </div>
-                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">Linked</span>
+                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">30 Valid</span>
+                      </div>
+                      <div className="flex items-center justify-between bg-purple-50 rounded-lg p-1.5 border border-purple-200">
+                        <div className="flex items-center space-x-1.5">
+                          <TrendingUp className="w-3 h-3 text-purple-600" />
+                          <span className="poppins-medium text-[10px] text-purple-700">PRN Strategy</span>
+                        </div>
+                        <span className="text-[9px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded-full">Active</span>
+                      </div>
+                    </div>
+
+                    {/* Savings & Actions */}
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between bg-green-50 rounded-lg p-1.5 border border-green-200">
+                        <div className="flex items-center space-x-1.5">
+                          <DollarSign className="w-3 h-3 text-green-600" />
+                          <span className="poppins-medium text-[10px] text-green-700">EPR Savings</span>
+                        </div>
+                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">£45K</span>
+                      </div>
+                      <div className="flex items-center justify-between bg-green-50 rounded-lg p-1.5 border border-green-200">
+                        <div className="flex items-center space-x-1.5">
+                          <Calculator className="w-3 h-3 text-green-600" />
+                          <span className="poppins-medium text-[10px] text-green-700">Invoices Audited</span>
+                        </div>
+                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">127</span>
                       </div>
                       <div className="flex items-center justify-between bg-blue-50 rounded-lg p-1.5 border border-blue-200">
                         <div className="flex items-center space-x-1.5">
                           <BarChart3 className="w-3 h-3 text-blue-600" />
-                          <span className="poppins-medium text-[10px] text-blue-700">View Report</span>
+                          <span className="poppins-medium text-[10px] text-blue-700">View Dashboard</span>
                         </div>
                         <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">Export</span>
                       </div>
@@ -500,9 +514,12 @@ export default function MillstoneComplianceWebsite() {
                   </div>
                 </div>
 
-                {/* Floating Recycled Content Indicator */}
-                <div className="absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full animate-bounce delay-1000 flex items-center justify-center">
-                  <span className="poppins-bold text-white text-[10px]">68%</span>
+                {/* Floating Compliance Score Indicator */}
+                <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full animate-bounce delay-1000 flex items-center justify-center shadow-lg">
+                  <div className="text-center">
+                    <span className="poppins-bold text-white text-[11px] block">94%</span>
+                    <span className="poppins-medium text-white text-[7px]">Ready</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -601,59 +618,59 @@ export default function MillstoneComplianceWebsite() {
             
             {/* Enhanced Description */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4">
-              Our free assessment reviews 15 key areas of your packaging records. From our analysis of over 250 UK businesses, <span className="poppins-semibold text-emerald-800">7 out of 10 had straightforward gaps</span> that could lead to penalties.
+              Our free 3-minute assessment identifies compliance gaps across the key UK packaging regimes—PPT, EPR, PRN and WEEE records. In most UK businesses we review, <span className="poppins-semibold text-emerald-800">7 out of 10 have simple data or evidence gaps</span> across schemes that could lead to avoidable costs and penalties.
             </p>
             
             {/* Stats Bar - New Addition */}
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-6 sm:mt-8">
               <div className="group/stat text-center">
+                <div className="text-2xl sm:text-3xl poppins-bold text-emerald-600 group-hover/stat:scale-110 transition-transform duration-300">4</div>
+                <div className="text-[10px] sm:text-xs text-emerald-600 poppins-medium uppercase tracking-wide mt-1">Regimes</div>
+              </div>
+              <div className="w-px h-10 sm:h-12 bg-emerald-200"></div>
+              <div className="group/stat text-center">
                 <div className="text-2xl sm:text-3xl poppins-bold text-emerald-600 group-hover/stat:scale-110 transition-transform duration-300">15</div>
-                <div className="text-[10px] sm:text-xs text-emerald-600 poppins-medium uppercase tracking-wide mt-1">Assessment Points</div>
+                <div className="text-[10px] sm:text-xs text-emerald-600 poppins-medium uppercase tracking-wide mt-1">Questions</div>
               </div>
               <div className="w-px h-10 sm:h-12 bg-emerald-200"></div>
               <div className="group/stat text-center">
                 <div className="text-2xl sm:text-3xl poppins-bold text-emerald-600 group-hover/stat:scale-110 transition-transform duration-300">3</div>
                 <div className="text-[10px] sm:text-xs text-emerald-600 poppins-medium uppercase tracking-wide mt-1">Minutes</div>
               </div>
-              <div className="w-px h-10 sm:h-12 bg-emerald-200"></div>
-              <div className="group/stat text-center">
-                <div className="text-2xl sm:text-3xl poppins-bold text-emerald-600 group-hover/stat:scale-110 transition-transform duration-300">100%</div>
-                <div className="text-[10px] sm:text-xs text-emerald-600 poppins-medium uppercase tracking-wide mt-1">Confidential</div>
-              </div>
             </div>
           </div>
 
           {/* Assessment Areas - Enhanced Cards */}
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-14 md:mb-16">
-            {[
-              {
-                icon: FileCheck,
-                title: "Certificate Review",
-                description: "We verify your certificates are valid and current so you avoid missing document penalties from HMRC.",
-                stat: "23 Data Points",
-                gradient: "from-emerald-50/90 to-emerald-100/90",
-                delay: "delay-0",
-                accentColor: "emerald",
-              },
-              {
-                icon: Calculator,
-                title: "Filing Accuracy Review",
-                description: "We verify your tax point timing so you avoid incorrect submission penalties and late filing charges.",
-                stat: "12 Verification Steps",
-                gradient: "from-emerald-50/80 to-emerald-100/80",
-                delay: "delay-100",
-                accentColor: "green",
-              },
-              {
-                icon: Database,
-                title: "Record Organisation Review",
-                description: "We ensure you can locate all your documentation quickly so an HMRC audit doesn't become days of stress.",
-                stat: "18 Compliance Metrics",
-                gradient: "from-emerald-50/70 to-emerald-100/70",
-                delay: "delay-200",
-                accentColor: "emerald",
-              },
-            ].map((item, index) => (
+          {[
+            {
+              icon: Building,
+              title: "EPR Invoice Audit",
+              description: "We check EPR invoices and scope, confirm household / non-household splits and flag overcharges or missing tonnages before you pay.",
+              stat: "£45K Avg Savings",
+              gradient: "from-blue-50/90 to-blue-100/90",
+              delay: "delay-0",
+              accentColor: "blue",
+            },
+            {
+              icon: FileCheck,
+              title: "PPT Certificate Check",
+              description: "We confirm PPT certificates, recycled-content claims and links to product lines so you avoid missing-document challenges in an HMRC review.",
+              stat: "127 Invoices Verified",
+              gradient: "from-emerald-50/80 to-emerald-100/80",
+              delay: "delay-100",
+              accentColor: "emerald",
+            },
+            {
+              icon: TrendingUp,
+              title: "PRN & 2026 Strategy",
+              description: "We review your PRN position, link it to your packaging data and model 2026 fee modulation so you can plan contracts and budgets early.",
+              stat: "2026 Fee Forecast",
+              gradient: "from-purple-50/70 to-purple-100/70",
+              delay: "delay-200",
+              accentColor: "purple",
+            },
+          ].map((item, index) => (
               <div
                 key={index}
                 className={`group/card relative ${item.delay} animate-fade-in-up`}
@@ -799,9 +816,9 @@ export default function MillstoneComplianceWebsite() {
               <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse mr-2"></div>
               <span className="poppins-medium text-[10px] sm:text-xs text-emerald-800 tracking-wide uppercase">Our Process</span>
             </div>
-            <h2 className="poppins-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 text-emerald-900 tracking-tight">Our Implementation Approach</h2>
+            <h2 className="poppins-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 text-emerald-900 tracking-tight">How We Work</h2>
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-3xl mx-auto leading-relaxed px-4">
-              We organise your PPT documentation efficiently. No lengthy consultations. No theory. Just practical systems that work for your business.
+              No jargon. No long meetings. Just clear steps to get you compliant.
             </p>
           </div>
 
@@ -815,23 +832,23 @@ export default function MillstoneComplianceWebsite() {
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 relative">
               {[
                 {
-                  step: "Express Assessment",
-                  title: "Express Assessment",
-                  description: "90-minute call where we identify your top 3 problems and give you a checklist to sort them yourself.",
+                  step: "Quick Check",
+                  title: "Quick Check",
+                  description: "90-minute call. We find your top 3 issues and give you a fix-it checklist.",
                   icon: AlertTriangle,
                   accentColor: "emerald",
                 },
                 {
-                  step: "Comprehensive Review",
-                  title: "Comprehensive Review",
-                  description: "We review every certificate and record you have, find all the gaps, then give you a written report showing exactly what to do.",
+                  step: "Full Review",
+                  title: "Full Review",
+                  description: "We check all your records, find every gap, and tell you exactly what to fix.",
                   icon: Building,
                   accentColor: "green",
                 },
                 {
-                  step: "Managed Compliance",
-                  title: "Managed Compliance",
-                  description: "We monitor your compliance quarterly - tracking certificate expiry, filing deadlines, and regulatory changes so nothing falls through the cracks.",
+                  step: "Ongoing Support",
+                  title: "Ongoing Support",
+                  description: "Quarterly monitoring. We track deadlines and changes so you don't miss anything.",
                   icon: CheckCircle,
                   accentColor: "blue",
                 },
@@ -991,7 +1008,7 @@ export default function MillstoneComplianceWebsite() {
               <div className="mt-10 pt-8 border-t border-emerald-100/50">
                 <div>
                   <p className="poppins-semibold text-emerald-900 text-base">Founder & Principal Consultant</p>
-                  <p className="poppins-regular text-emerald-600 text-sm mt-1">PPT Intelligence Analyst</p>
+                  <p className="poppins-regular text-emerald-600 text-sm mt-1">UK Packaging Compliance Specialist - EPR, PPT & PRN</p>
                 </div>
               </div>
 
@@ -1034,7 +1051,7 @@ export default function MillstoneComplianceWebsite() {
             <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/80 mb-6 sm:mb-8 group-hover/cta:scale-105 transition-all duration-500 relative">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-200/0 via-emerald-200/30 to-emerald-200/0 animate-shine"></div>
               <Shield className="w-4 sm:w-5 h-4 sm:h-5 text-emerald-600 mr-2 animate-pulse" />
-              <span className="poppins-medium text-xs sm:text-sm text-emerald-800">Premium PPT Solutions</span>
+              <span className="poppins-medium text-xs sm:text-sm text-emerald-800">UK Packaging Compliance</span>
             </div>
 
             {/* Enhanced headline with animated gradient */}
@@ -1049,36 +1066,36 @@ export default function MillstoneComplianceWebsite() {
 
             {/* Enhanced description with fade-in animation */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 leading-relaxed animate-fade-in-up delay-100 px-4">
-              We design sophisticated PPT compliance systems that eliminate penalties, 
+              We design comprehensive packaging compliance systems—EPR invoice audits, PPT certificate management, PRN strategies—that eliminate penalties,
               <br className="hidden md:block" />
-              exceed HMRC audit standards, and support your team.
+              exceed regulatory standards, and support your team.
             </p>
 
             {/* Premium FAQ Section */}
             <div className="max-w-3xl mx-auto mb-12 sm:mb-14 md:mb-16 animate-fade-in-up delay-200">
               <div className="space-y-6">
-                {[
-                  {
-                    question: "What exactly do you do?",
-                    answer: "We organise and manage all your PPT documentation. We collect supplier data, verify weights and recycled content, and build a clear system so your team can focus on running the business."
-                  },
-                  {
-                    question: "How long does it take?",
-                    answer: "Our process is designed to be completed within 30 days. You'll have a fully organised, HMRC-ready record of all your packaging data by month-end."
-                  },
-                  {
-                    question: "Do I need to know anything about PPT?",
-                    answer: "No. We handle the technical details, calculations, and documentation. You just provide access to your data and supplier information."
-                  },
-                  {
-                    question: "Can you work with my existing systems?",
-                    answer: "Yes. We integrate with your spreadsheets, Shopify, or other systems you use, and consolidate everything into one clear, usable dashboard."
-                  },
-                  {
-                    question: "Will this prevent penalties or charges?",
-                    answer: "Whilst HMRC is responsible for enforcement, our system ensures your records are accurate, complete, and well organised—reducing the risk of errors or missed submissions."
-                  }
-                ].map((item, index) => (
+              {[
+                {
+                  question: "What exactly do you do?",
+                  answer: "We manage all your packaging compliance—EPR invoice audits (finding overcharges), PPT certificate tracking, PRN procurement, and 2026 modulation planning. We build systems so your team can focus on running the business."
+                },
+                {
+                  question: "How much can I save on EPR fees?",
+                  answer: "Our clients save an average of £45K annually through EPR invoice audits. We've verified 127 invoices and consistently find household/non-household categorisation errors that lead to overcharges."
+                },
+                {
+                  question: "Do I need to know about EPR, PPT, or PRN?",
+                  answer: "No. We handle the technical details—EPR material splits, PPT recycled content calculations, PRN obligations. You just provide access to your packaging data and supplier information."
+                },
+                {
+                  question: "Can you work with my existing systems?",
+                  answer: "Yes. We integrate with your spreadsheets, Shopify, or other systems you use, and consolidate EPR, PPT, and PRN data into one clear dashboard."
+                },
+                {
+                  question: "What about 2026 fee modulation?",
+                  answer: "We assess your packaging's recyclability rating now and build a strategy to minimise your fees when modulation starts in 2026. The earlier you prepare, the more you save."
+                }
+              ].map((item, index) => (
                   <div
                     key={index}
                     className="group/faq relative bg-white/40 backdrop-blur-xl rounded-xl sm:rounded-2xl border border-emerald-100/50 overflow-hidden transition-all duration-500 hover:border-emerald-200 hover:shadow-[0_8px_32px_rgba(6,95,70,0.08)] hover:bg-white/60"

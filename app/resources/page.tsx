@@ -13,6 +13,14 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "What Is Plastic Packaging Tax?",
+      description: "A simple beginner's guide explaining the UK plastic packaging tax in plain English. Perfect for businesses new to PPT compliance in 2025.",
+      icon: Book,
+      href: "/resources/plastic-packaging-tax-explained",
+      badge: "New",
+      topics: ["Beginner", "PPT Basics", "2025 Rates", "Registration"]
+    },
+    {
       title: "Plastic Packaging Tax Guide",
       description: "Complete guide to records and accounts you must keep for Plastic Packaging Tax. Learn what HMRC requires in simple, easy-to-understand language.",
       icon: Book,
@@ -61,14 +69,12 @@ export default function ResourcesPage() {
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 sm:px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-emerald-100/80 border border-emerald-200 mb-6">
-            <Book className="w-4 h-4 text-emerald-600 mr-2" />
-            <span className="poppins-semibold text-sm text-emerald-900 uppercase tracking-wide">Resources</span>
-          </div>
-          
-          <h1 className="poppins-bold text-4xl sm:text-5xl md:text-6xl text-emerald-900 mb-6">
-            Plastic Packaging Tax Resources
+          <h1 className="poppins-bold text-4xl sm:text-5xl md:text-6xl text-emerald-900 mb-4">
+            RESOURCES
           </h1>
+          <h2 className="poppins-semibold text-2xl sm:text-3xl md:text-4xl text-emerald-700 mb-6">
+            Plastic Packaging Tax Resources
+          </h2>
           <p className="poppins-regular text-lg sm:text-xl text-emerald-700 max-w-3xl mx-auto leading-relaxed">
             Expert guides, checklists, and tools to help you stay compliant with UK Plastic Packaging Tax regulations
           </p>

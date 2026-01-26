@@ -24,6 +24,7 @@ import {
   Target,
   Sparkles,
   XCircle,
+  Building,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import ErrorBoundary from "@/components/ErrorBoundary"
@@ -43,7 +44,7 @@ interface Question {
 }
 
 const questions: Question[] = [
-  // PART 1: Contact Information
+  // PART 1: Contact Information (4 questions)
   {
     id: 1,
     section: "Contact Information",
@@ -84,225 +85,236 @@ const questions: Question[] = [
     placeholder: "+44 7XXX XXXXXX (you can skip this)",
   },
   
-  // PART 2: Compliance Best Practices
+  // PART 2: Business Profile & Scheme Identification (4 questions)
   {
     id: 5,
-    section: "Certificate Compliance",
-    icon: FileCheck,
-    question: "Do you have certificates for ALL packaging where you claim recycled content?",
+    section: "Business Profile",
+    icon: Package,
+    question: "What's your approximate annual revenue?",
+    subtitle: "Helps us understand your compliance obligations",
     type: "radio",
     options: [
-      { label: "Yes - we have certificates for everything we claim", value: "yes", isCorrect: true },
-      { label: "No - we're missing certificates for some products", value: "no", isGap: true },
-      { label: "Not sure - we need to check what we have", value: "not_sure", isGap: true },
-      { label: "We don't claim any recycled content exemptions", value: "no_exemptions" },
+      { label: "Under £500K (may be exempt from some schemes)", value: "under_500k" },
+      { label: "£500K - £2M (EPR likely applies)", value: "500k_2m" },
+      { label: "£2M - £10M (EPR + potential PPT obligations)", value: "2m_10m" },
+      { label: "£10M+ (full multi-scheme compliance required)", value: "10m_plus" },
+      { label: "Prefer not to say / Not sure", value: "not_sure" },
     ],
-    whyMatters: "HMRC requires 'sufficient supporting evidence' for all recycled content exemption claims",
+    whyMatters: "Revenue determines which UK packaging schemes apply to your business",
   },
   {
     id: 6,
-    section: "Certificate Compliance",
-    icon: FileCheck,
-    question: "Do your certificates show the EXACT recycled percentage?",
-    subtitle: "Example: '32% post-consumer recycled PET' (specific ✓) Not: 'Contains recycled materials' (too vague ✗)\n\nHMRC Formula: Recycled % = (recycled plastic weight ÷ total plastic weight) × 100",
+    section: "Business Profile",
+    icon: Building,
+    question: "What sector are you in?",
     type: "radio",
     options: [
-      { label: 'Yes - all certificates show exact percentages like "30% recycled"', value: "yes", isCorrect: true },
-      { label: 'No - most just say "eco-friendly" or "contains recycled content"', value: "no", isGap: true },
-      { label: "Not sure - we haven't checked the wording", value: "not_sure", isGap: true },
-      { label: "We don't have any certificates yet", value: "no_certificates", isGap: true },
+      { label: "Food & Drink (high packaging volume)", value: "food_drink" },
+      { label: "E-commerce / Retail (shipping materials)", value: "ecommerce" },
+      { label: "Manufacturing (product packaging)", value: "manufacturing" },
+      { label: "Healthcare / Pharmaceuticals (regulated packaging)", value: "healthcare" },
+      { label: "Other", value: "other" },
     ],
-    whyMatters: "Must show 'proportion of recycled plastic' - vague wording invalidates 30%+ exemption",
+    whyMatters: "Different sectors have specific packaging compliance challenges",
   },
   {
     id: 7,
-    section: "Certificate Compliance",
-    icon: Clock,
-    question: "Are your certificates current (issued within last 12 months)?",
+    section: "Packaging Volume",
+    icon: Scale,
+    question: "How much packaging do you handle annually across ALL materials?",
+    subtitle: "Include plastic, paper, cardboard, glass, aluminium, steel",
     type: "radio",
     options: [
-      { label: "Yes - all certificates are less than 12 months old", value: "yes", isCorrect: true },
-      { label: "No - some are older than 12 months", value: "no", isGap: true },
-      { label: "Not sure - we haven't checked the dates", value: "not_sure", isGap: true },
-      { label: "We don't have certificates to check", value: "no_certificates", isGap: true },
+      { label: "Under 25 tonnes (small obligated producer)", value: "under_25" },
+      { label: "25-50 tonnes (EPR full reporting required)", value: "25_50" },
+      { label: "50-200 tonnes (medium producer - all schemes likely)", value: "50_200" },
+      { label: "200+ tonnes (large producer - complex obligations)", value: "200_plus" },
+      { label: "Not sure - we haven't measured this", value: "not_sure", isGap: true },
     ],
-    whyMatters: "Records must show 'which dates evidence relates to' - outdated certs fail audits",
+    whyMatters: "Total packaging volume determines EPR, PPT, and PRN obligations - 50T+ triggers full requirements",
   },
   {
     id: 8,
-    section: "Documentation Organisation",
-    icon: Database,
-    question: "Can you access all your PPT documents within 10 minutes?",
-    subtitle: "If HMRC rang right now requesting certificates, weight records, and past returns, could you locate everything quickly?",
+    section: "Scheme Obligations",
+    icon: FileCheck,
+    question: "Which packaging compliance schemes do you currently deal with?",
+    subtitle: "Select the one that matches your situation",
     type: "radio",
     options: [
-      { label: "Yes - everything is organised in one place", value: "yes", isCorrect: true },
-      { label: "Probably - might take 20-30 minutes to gather everything", value: "maybe" },
-      { label: "No - we'd need a few hours or days to collect it all", value: "no", isGap: true },
-      { label: "Honestly not sure where everything is right now", value: "not_sure", isGap: true },
+      { label: "Just EPR (Extended Producer Responsibility)", value: "epr_only" },
+      { label: "Just PPT (Plastic Packaging Tax)", value: "ppt_only" },
+      { label: "EPR + PPT (both schemes)", value: "epr_ppt" },
+      { label: "EPR + PPT + PRN (all three schemes)", value: "all_three" },
+      { label: "Not sure which schemes apply to us", value: "not_sure", isGap: true },
     ],
-    whyMatters: "Must keep records 'for 6 years' in writing or digitally - accessible on demand",
+    whyMatters: "Identifies your current compliance scope and potential gaps - most businesses need multiple schemes",
   },
+  
+  // PART 3: EPR Compliance (3 questions)
   {
     id: 9,
-    section: "Tax Point Knowledge",
-    icon: Calculator,
-    question: "Do you know when your packaging becomes taxable?",
-    subtitle: "Plastic packaging is taxable when...",
+    section: "EPR Compliance",
+    icon: Database,
+    question: "Have you verified your EPR invoice is accurate?",
+    subtitle: "EPR fees average £423/tonne for plastic - household/non-household split affects your cost",
     type: "radio",
     options: [
-      { label: "Manufacturing completes", value: "manufacturing", isCorrect: true },
-      { label: "You fill it with your product", value: "filling", isGap: true },
-      { label: "You sell it to customers", value: "selling", isGap: true },
-      { label: "Not sure / Need to check", value: "not_sure", isGap: true },
+      { label: "Yes - we've audited and verified the invoice breakdown", value: "yes", isCorrect: true },
+      { label: "No - we just pay whatever the scheme sends us", value: "no", isGap: true },
+      { label: "Not sure - we don't know how to check this", value: "not_sure", isGap: true },
+      { label: "We're not yet registered for EPR", value: "not_registered", isGap: true },
     ],
-    whyMatters: "Tax due when component 'finished or imported' - not at filling or sale point",
+    whyMatters: "Most businesses overpay £5K-£15K annually due to incorrect household/non-household categorisation",
   },
   {
     id: 10,
-    section: "Supplier Management",
-    icon: RefreshCw,
-    question: "When you change suppliers, do you obtain new certificates?",
-    subtitle: "Example: You switched from Supplier A to Supplier B for same bottles",
+    section: "EPR Compliance",
+    icon: Calculator,
+    question: "Do you track packaging data by material type for EPR reporting?",
+    subtitle: "Plastic (household/non-household), Paper/Card, Glass, Aluminium, Steel, Wood",
     type: "radio",
     options: [
-      { label: "Yes - we always request new certificates when suppliers change", value: "yes", isCorrect: true },
-      { label: "No - we keep using the old supplier's certificates", value: "no", isGap: true },
-      { label: "Not sure - this hasn't come up yet", value: "not_sure" },
-      { label: "We've never changed packaging suppliers", value: "never_changed" },
+      { label: "Yes - we maintain detailed records by material type", value: "yes", isCorrect: true },
+      { label: "Partially - we track some but not all materials", value: "partial" },
+      { label: "No - we estimate or use supplier data", value: "no", isGap: true },
+      { label: "Not sure what data EPR requires", value: "not_sure", isGap: true },
     ],
-    whyMatters: "If 'specifications or materials change' must keep separate evidence for each",
+    whyMatters: "Environmental regulator requires accurate material-by-material data for annual submissions",
   },
   {
     id: 11,
-    section: "Weight Methodology",
-    icon: Scale,
-    question: "Do you have a written process for weighing packaging?",
+    section: "EPR Compliance",
+    icon: Clock,
+    question: "Are you ready for 2026 EPR modulation fees?",
+    subtitle: "Fees will vary based on recyclability ratings - non-recyclable packaging costs more",
     type: "radio",
     options: [
-      { label: "Yes - we have documented methodology for how we measure weights", value: "yes", isCorrect: true },
-      { label: "No - we estimate weights or use supplier data", value: "no", isGap: true },
-      { label: "We use scales but haven't written down the process", value: "scales_only" },
-      { label: "Not sure what this requirement means", value: "not_sure", isGap: true },
+      { label: "Yes - we've assessed our packaging recyclability", value: "yes", isCorrect: true },
+      { label: "No - we haven't looked at this yet", value: "no", isGap: true },
+      { label: "Not sure what modulation means for us", value: "not_sure", isGap: true },
+      { label: "This doesn't apply to us", value: "not_applicable" },
     ],
-    whyMatters: "Must 'record weight in tonnes, kilograms and grams' with written methodology",
+    whyMatters: "2026 modulation could increase your fees by 20-40% if packaging isn't recyclable - prepare now to save",
   },
+  
+  // PART 4: PPT Compliance (3 questions)
   {
     id: 12,
-    section: "Filing Compliance",
-    icon: CheckCircle,
-    question: "Have you submitted all quarterly PPT returns on time?",
+    section: "PPT Compliance",
+    icon: FileCheck,
+    question: "Do you have valid certificates for ALL packaging claiming 30%+ recycled content?",
+    subtitle: "PPT charges £210.82/tonne - proper certificates save you money",
     type: "radio",
     options: [
-      { label: "Yes - we've submitted every quarterly return by the deadline", value: "yes", isCorrect: true },
-      { label: "No - we've missed some deadlines or submitted late", value: "no", isGap: true },
-      { label: "We've submitted but aren't sure if they were accurate", value: "unsure" },
-      { label: "We haven't started submitting yet / Just registered", value: "not_started", isGap: true },
+      { label: "Yes - all certificates show exact percentages and are current", value: "yes", isCorrect: true },
+      { label: "Partially - we have some certificates but not all", value: "partial", isGap: true },
+      { label: "No - we're missing certificates or they're vague/outdated", value: "no", isGap: true },
+      { label: "Not applicable - we don't claim recycled content exemptions", value: "not_applicable" },
     ],
-    whyMatters: "Accounts must show 'how you've worked out each entry on quarterly tax return'",
+    whyMatters: "HMRC requires dated certificates showing exact recycled % - invalid certs trigger penalty + back tax",
   },
   {
     id: 13,
-    section: "Export Documentation",
-    icon: Globe,
-    question: "If you export products, do you have proof BEFORE manufacturing?",
-    subtitle: "To defer tax on exports, you need documented export intent BEFORE you make the packaging",
+    section: "PPT Compliance",
+    icon: CheckCircle,
+    question: "Can you locate all PPT records within 10 minutes if HMRC requests them?",
+    subtitle: "Certificates, weight records, quarterly returns, supplier documentation",
     type: "radio",
     options: [
-      { label: "Yes - we document export orders before manufacturing", value: "yes", isCorrect: true },
-      { label: "No - we haven't been tracking this", value: "no", isGap: true },
-      { label: "We don't export packaged goods", value: "no_export" },
-      { label: "Not sure what proof HMRC needs", value: "not_sure", isGap: true },
+      { label: "Yes - everything is organised in one accessible system", value: "yes", isCorrect: true },
+      { label: "Probably - might take 30 minutes to pull everything together", value: "maybe" },
+      { label: "No - we'd need hours or days to compile records", value: "no", isGap: true },
+      { label: "Not sure where all our PPT records are stored", value: "not_sure", isGap: true },
     ],
-    whyMatters: "Records must be 'dated at or before time of production/import' to defer tax",
+    whyMatters: "HMRC can request records anytime - must be 'readily accessible' or face penalties",
   },
   {
     id: 14,
-    section: "Nation Data Tracking",
+    section: "PPT Compliance",
     icon: Globe,
-    question: "Do you track where in the UK your packaging goes?",
-    subtitle: "Nation data: England vs Scotland vs Wales vs Northern Ireland",
+    question: "Have you submitted all PPT quarterly returns on time?",
     type: "radio",
     options: [
-      { label: "Yes - we track which UK nation receives our packaging", value: "yes", isCorrect: true },
-      { label: "No - we don't separate this in our records", value: "no", isGap: true },
-      { label: "Not sure - don't know this is required", value: "not_sure", isGap: true },
-      { label: "We only supply to one UK nation", value: "one_nation" },
+      { label: "Yes - all returns filed by deadline", value: "yes", isCorrect: true },
+      { label: "Mostly - we've missed one or two deadlines", value: "mostly", isGap: true },
+      { label: "No - we've had multiple late submissions", value: "no", isGap: true },
+      { label: "Not applicable - we're not registered for PPT yet", value: "not_registered" },
     ],
-    whyMatters: "Must keep 'breakdown of weight' by product line - nation tracking mandatory",
+    whyMatters: "Late PPT returns trigger automatic penalties - £100 minimum per missed deadline",
   },
   
-  // PART 3: Strategic Questions
+  // PART 5: PRN Strategy & Pain Points (3 questions)
   {
     id: 15,
-    section: "Business Scale",
-    icon: Package,
-    question: "How much plastic packaging does your business use annually?",
+    section: "PRN Strategy",
+    icon: TrendingUp,
+    question: "Do you have a strategy for meeting PRN obligations?",
+    subtitle: "Packaging Recovery Notes prove you've met recycling obligations - due January 31 annually",
     type: "radio",
     options: [
-      { label: "Under 10 tonnes (below PPT threshold - you may not need to register)", value: "under_10" },
-      { label: "10-50 tonnes (small producer - reporting only)", value: "10_50" },
-      { label: "50-200 tonnes (medium producer - need strong systems)", value: "50_200" },
-      { label: "200+ tonnes (large producer - complex compliance requirements)", value: "200_plus" },
-      { label: "Not sure - we haven't calculated this yet", value: "not_sure" },
+      { label: "Yes - we have a clear PRN procurement plan", value: "yes", isCorrect: true },
+      { label: "Partially - we buy PRNs but without a clear strategy", value: "partial" },
+      { label: "No - we haven't addressed PRN obligations yet", value: "no", isGap: true },
+      { label: "Not sure if PRN applies to us", value: "not_sure", isGap: true },
     ],
-    whyMatters: "Determines record-keeping requirements - 10T+ must register for PPT",
+    whyMatters: "PRN prices fluctuate - strategic procurement can save thousands vs last-minute panic buying",
   },
   {
     id: 16,
-    section: "Your Goals",
-    icon: Target,
-    question: "What's your primary goal for PPT compliance over the next 90 days?",
-    subtitle: "Select the most important outcome you want to achieve",
+    section: "Biggest Challenge",
+    icon: AlertTriangle,
+    question: "What's your biggest packaging compliance pain point right now?",
     type: "radio",
     options: [
-      { label: "Fix documentation gaps before an HMRC audit occurs", value: "fix_gaps" },
-      { label: "Organise records so quarterly filing takes 30 minutes not 8 hours", value: "organise" },
-      { label: "Set up a monitoring system to stay compliant automatically", value: "monitor" },
-      { label: "Reduce time our team spends on PPT admin", value: "reduce_time" },
-      { label: "Train internal team to handle this properly", value: "train" },
+      { label: "EPR invoice errors - overpaying or incorrect categorisation", value: "epr_invoice" },
+      { label: "PPT documentation chaos - missing certificates or poor records", value: "ppt_docs" },
+      { label: "PRN deadline stress - annual scramble to meet obligations", value: "prn_deadline" },
+      { label: "Multiple schemes - juggling EPR, PPT, PRN all at once", value: "multiple" },
+      { label: "Not sure if we're even compliant across all schemes", value: "uncertain", isGap: true },
     ],
-    whyMatters: "This tells us which service you need most",
+    whyMatters: "This reveals your primary pain point and helps us prioritise solutions",
   },
   {
     id: 17,
-    section: "Your Challenges",
-    icon: AlertTriangle,
-    question: "What's the biggest obstacle preventing you from getting PPT sorted?",
+    section: "Urgency Indicators",
+    icon: Clock,
+    question: "What best describes your situation?",
     type: "radio",
     options: [
-      { label: "Don't fully understand what HMRC requires", value: "understanding" },
-      { label: "Don't have time to organise documentation properly", value: "time" },
-      { label: "Suppliers won't provide proper certificates", value: "suppliers" },
-      { label: "Not sure if our current system would pass HMRC audit", value: "uncertain" },
-      { label: "We've had compliance issues flagged already", value: "flagged" },
+      { label: "Upcoming deadline - need to fix compliance gaps quickly", value: "deadline" },
+      { label: "HMRC enquiry or audit concern - need immediate support", value: "audit" },
+      { label: "Received compliance warning or penalty notice", value: "warning" },
+      { label: "Proactive - want systems in place before issues arise", value: "proactive" },
+      { label: "Just exploring - trying to understand requirements", value: "exploring" },
     ],
-    whyMatters: "This reveals your main pain point",
+    whyMatters: "Helps us recommend the right service tier and timeline for your needs",
   },
+  
+  // PART 6: Service Preference & Additional Context (2 questions)
   {
     id: 18,
     section: "Your Preferences",
-    icon: TrendingUp,
-    question: "How would you prefer to fix your PPT compliance?",
+    icon: Target,
+    question: "How would you prefer to handle your packaging compliance?",
     type: "radio",
     options: [
-      { label: "DIY Guide - teach me how to do it myself", value: "diy" },
-      { label: "Expert Audit - tell me exactly what's wrong and how to fix it", value: "audit" },
-      { label: "Done-With-You - audit plus help implementing fixes", value: "done_with" },
-      { label: "Done-For-You - ongoing service that keeps me compliant", value: "done_for" },
-      { label: "Not sure yet - just want to know where I stand first", value: "not_sure" },
+      { label: "Express Assessment - 90-minute audit of my top 3 compliance gaps", value: "express" },
+      { label: "Comprehensive Review - full audit with written action plan", value: "comprehensive" },
+      { label: "Managed Compliance - quarterly monitoring to keep me audit-ready", value: "managed" },
+      { label: "Multi-Scheme Fix - sort out EPR + PPT + PRN all at once", value: "multi_scheme" },
+      { label: "Not sure yet - just want to see my results first", value: "not_sure" },
     ],
     whyMatters: "This helps us recommend the right service approach for your situation",
   },
   {
     id: 19,
-    section: "Additional Information",
+    section: "Additional Context",
     icon: FileCheck,
-    question: "Anything else we should know about your PPT situation?",
-    subtitle: "Optional - but often the most valuable information",
+    question: "Anything else we should know about your compliance situation?",
+    subtitle: "Optional - but often reveals critical details",
     type: "textarea",
-    whyMatters: "Many people share critical details here that help us give better recommendations",
-    placeholder: "Examples of helpful information:\n\n• 'We have an HMRC enquiry pending'\n• 'Just changed suppliers last month'\n• 'Accountant said our documentation is weak'\n• 'Need this sorted before year-end'\n\nAny details that might help us understand your situation better...",
+    whyMatters: "Many businesses share important context here that helps us provide better recommendations",
+    placeholder: "Examples that help us help you:\n\n• 'HMRC compliance check scheduled next month'\n• 'Just received £15K EPR invoice - seems too high'\n• 'PRN deadline approaching and we're not ready'\n• 'Managing EPR, PPT, PRN across 3 different spreadsheets'\n• 'Accountant flagged documentation gaps'\n\nAny details about your situation, concerns, or upcoming deadlines...",
   },
 ]
 
@@ -516,13 +528,13 @@ function AssessmentPageContent() {
   const shouldSkipQuestion = (questionIndex: number): boolean => {
     const question = questions[questionIndex]
     
-    // Skip Q6 and Q7 if they answered "We don't claim exemptions" on Q5
-    if ((question.id === 6 || question.id === 7) && answers[5] === "no_exemptions") {
+    // Skip EPR questions (9-11) if they only do PPT
+    if ((question.id === 9 || question.id === 10 || question.id === 11) && answers[8] === "ppt_only") {
       return true
     }
     
-    // Skip Q13 if they don't export
-    if (question.id === 13 && answers[13] === "no_export") {
+    // Skip PPT questions (12-14) if they only do EPR
+    if ((question.id === 12 || question.id === 13 || question.id === 14) && answers[8] === "epr_only") {
       return true
     }
     
@@ -544,52 +556,56 @@ function AssessmentPageContent() {
       let score = 0
       let maxScore = 0
 
-      // Questions 5-14 are compliance questions (10 points each)
-      for (let i = 5; i <= 14; i++) {
+      // Questions 5-17 are assessment questions (excluding 18-19 which are preference/context)
+      // Q5-8: Business Profile (10 points each for clarity)
+      // Q9-17: Compliance questions (10 points each)
+      for (let i = 5; i <= 17; i++) {
         const answer = answers[i]
         const question = questions.find(q => q.id === i)
         
         if (question && question.options) {
           const selectedOption = question.options.find(opt => opt.value === answer)
           
-          // Skip if question was skipped
-          if (answer === "no_exemptions" && (i === 5 || i === 6 || i === 7)) {
-            continue
+          // Skip questions based on scheme selection
+          if (answers[8] === "ppt_only" && (i === 9 || i === 10 || i === 11)) {
+            continue // Skip EPR questions
           }
-          if (answer === "no_export" && i === 13) {
-            continue
+          if (answers[8] === "epr_only" && (i === 12 || i === 13 || i === 14)) {
+            continue // Skip PPT questions
           }
-          if (answer === "one_nation" && i === 14) {
-            score += 10
+          
+          // Business profile questions (5-8) - score for data quality
+          if (i >= 5 && i <= 8) {
             maxScore += 10
-            continue
-          }
-          if (answer === "never_changed" && i === 10) {
-            score += 10
-            maxScore += 10
+            if (selectedOption?.isGap || answer === "not_sure") {
+              score += 0 // Gap in business understanding
+            } else {
+              score += 8 // Good data
+            }
             continue
           }
           
+          // Compliance questions (9-17)
           maxScore += 10
           
           if (selectedOption?.isCorrect) {
-            score += 10
-          } else if (selectedOption?.isGap) {
-            score += 0
-          } else if (answer === "scales_only" && i === 11) {
-            score += 5
-          } else if (answer === "unsure" && i === 12) {
-            score += 5
-          } else if (answer === "maybe" && i === 8) {
-            score += 6
+            score += 10 // Perfect compliance
+          } else if (selectedOption?.isGap || answer === "not_sure") {
+            score += 0 // Clear gap
+          } else if (answer === "partial" || answer === "maybe" || answer === "mostly") {
+            score += 5 // Partial compliance
+          } else if (answer === "not_registered" || answer === "not_applicable") {
+            score += 10 // N/A is acceptable
+            maxScore += 10
+            continue
           } else {
-            score += 3
+            score += 3 // Some effort but needs work
           }
         }
       }
 
       // Calculate percentage
-      const percentage = Math.round((score / maxScore) * 100)
+      const percentage = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0
 
       // Save results with error handling
       try {

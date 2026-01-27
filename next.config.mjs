@@ -22,41 +22,6 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
-  
-  // Improved webpack configuration
-  webpack: (config, { dev, isServer }) => {
-    // Fix for chunk loading issues in development
-    if (dev && !isServer) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          default: {
-            minChunks: 1,
-            priority: -20,
-            reuseExistingChunk: true,
-          },
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            priority: -10,
-            chunks: 'all',
-          },
-        },
-      }
-    }
-    
-    // Improve caching to prevent webpack cache errors
-    if (dev) {
-      config.cache = {
-        type: 'filesystem',
-        buildDependencies: {
-          config: [__filename],
-        },
-      }
-    }
-    
-    return config
-  },
 }
 
 export default nextConfig

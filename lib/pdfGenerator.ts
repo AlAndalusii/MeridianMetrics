@@ -57,7 +57,7 @@ export const generateCompliancePDF = (data: PDFData) => {
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(209, 250, 229); // Light emerald (emerald-100)
-    doc.text('PPT COMPLIANCE SOLUTIONS', margin + 12, 27);
+    doc.text('YOUR REGULATORY ADVISORS', margin + 12, 27);
     
     // Report Title - Right aligned
     doc.setFontSize(32);
@@ -431,7 +431,7 @@ export const generateCompliancePDF = (data: PDFData) => {
     if (yPosition > pageHeight - 100) {
       doc.addPage();
       yPosition = margin + 10;
-      addFooter(doc.internal.getCurrentPageInfo().pageNumber);
+      addFooter(doc.getNumberOfPages());
     }
     
     doc.setFontSize(13);

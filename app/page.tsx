@@ -361,7 +361,7 @@ export default function MillstoneComplianceWebsite() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 flex-shrink-0" />
-                    <span className="poppins-medium text-xs sm:text-sm">EPR, PPT & PRN Specialist</span>
+                    <span className="poppins-medium text-xs sm:text-sm">EPR, PPT & PRN Advisors</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 flex-shrink-0" />

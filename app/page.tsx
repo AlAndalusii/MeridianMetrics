@@ -161,7 +161,7 @@ const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: stri
 
 export default function MillstoneComplianceWebsite() {
   const router = useRouter()
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
   const [activeStep, setActiveStep] = useState(0)
   const [showCallPopup, setShowCallPopup] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
@@ -331,7 +331,7 @@ export default function MillstoneComplianceWebsite() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <div
-              className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
               <h1 className="poppins-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 leading-tight">
                 <span className="text-emerald-900 block">UK Packaging compliance.</span>
@@ -373,7 +373,7 @@ export default function MillstoneComplianceWebsite() {
 
             {/* Product Recycled Plastic Tracking Dashboard */}
             <div
-              className={`transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} mt-8 lg:mt-0`}
+              className={`transition-all duration-200 delay-75 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} mt-8 lg:mt-0`}
             >
               <div className="relative">
                 <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-4 sm:p-6 border border-emerald-200 shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 lg:hover:scale-105">

@@ -515,14 +515,28 @@ function AssessmentPageContent() {
     if (currentStep > 0) {
       setIsAnimating(true)
       setTimeout(() => {
+        const prevIndex = getPrevQuestionIndex(currentStep - 1)
         // Check if moving back to contact info phase
-        if (currentStep === contactInfoQuestions) {
+        if (prevIndex < contactInfoQuestions) {
           setIsContactInfoPhase(true)
+        } else {
+          setIsContactInfoPhase(false)
         }
-        setCurrentStep(currentStep - 1)
+        setCurrentStep(prevIndex)
         setIsAnimating(false)
       }, 300)
     }
+  }
+
+  const handleGoToFirstPage = () => {
+    if (currentStep === 0) return
+    setIsAnimating(true)
+    setTimeout(() => {
+      setCurrentStep(0)
+      setIsContactInfoPhase(true)
+      setShowQuestionNav(false)
+      setIsAnimating(false)
+    }, 300)
   }
 
   const shouldSkipQuestion = (questionIndex: number): boolean => {
@@ -548,6 +562,15 @@ function AssessmentPageContent() {
       }
     }
     return startIndex
+  }
+
+  const getPrevQuestionIndex = (startIndex: number): number => {
+    for (let i = startIndex; i >= 0; i--) {
+      if (!shouldSkipQuestion(i)) {
+        return i
+      }
+    }
+    return 0
   }
 
   const calculateAndRedirectToResults = async () => {
@@ -750,6 +773,16 @@ function AssessmentPageContent() {
               <p className="poppins-regular text-xs sm:text-sm text-emerald-600">
                 Jump to any question - your progress is saved
               </p>
+              {currentStep > 0 && (
+                <Button
+                  onClick={handleGoToFirstPage}
+                  variant="outline"
+                  size="sm"
+                  className="mt-3 w-full poppins-medium border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                >
+                  ← Back to first page
+                </Button>
+              )}
             </div>
 
             <div className="p-4 sm:p-6 space-y-2">
@@ -1039,24 +1072,35 @@ function AssessmentPageContent() {
                 )}
 
                 {/* Navigation Buttons */}
-                <div className="mt-8 sm:mt-10 flex items-center justify-between gap-3 sm:gap-4">
-                  <Button
-                    onClick={handleBack}
-                    disabled={currentStep === 0}
-                    className={`poppins-semibold px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 rounded-xl sm:rounded-2xl transition-all duration-300 min-h-[54px] text-sm sm:text-base touch-manipulation ${
-                      currentStep === 0
-                        ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                        : "bg-white border-2 border-emerald-200 text-emerald-700 hover:border-emerald-400 hover:bg-emerald-50 shadow-md hover:shadow-lg active:scale-95"
-                    }`}
-                    style={{ 
-                      pointerEvents: 'auto',
-                      touchAction: 'manipulation',
-                      WebkitTapHighlightColor: 'transparent'
-                    }}
-                  >
-                    <ArrowLeft className="w-4 sm:w-5 h-4 sm:h-5 mr-1.5 sm:mr-2" />
-                    <span className="hidden xs:inline">Back</span>
-                  </Button>
+                <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+                  <div className="flex items-center gap-2">
+                    <Button
+                      onClick={handleBack}
+                      disabled={currentStep === 0}
+                      className={`poppins-semibold px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 rounded-xl sm:rounded-2xl transition-all duration-300 min-h-[54px] text-sm sm:text-base touch-manipulation ${
+                        currentStep === 0
+                          ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                          : "bg-white border-2 border-emerald-200 text-emerald-700 hover:border-emerald-400 hover:bg-emerald-50 shadow-md hover:shadow-lg active:scale-95"
+                      }`}
+                      style={{ 
+                        pointerEvents: 'auto',
+                        touchAction: 'manipulation',
+                        WebkitTapHighlightColor: 'transparent'
+                      }}
+                    >
+                      <ArrowLeft className="w-4 sm:w-5 h-4 sm:h-5 mr-1.5 sm:mr-2" />
+                      <span className="hidden xs:inline">Back</span>
+                    </Button>
+                    {currentStep > 0 && (
+                      <button
+                        type="button"
+                        onClick={handleGoToFirstPage}
+                        className="poppins-medium text-xs sm:text-sm text-emerald-600 hover:text-emerald-800 underline underline-offset-2 touch-manipulation py-2"
+                      >
+                        First page
+                      </button>
+                    )}
+                  </div>
 
                 <Button
                   onClick={handleNext}

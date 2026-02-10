@@ -288,8 +288,8 @@ export default function MillstoneComplianceWebsite() {
                 <span className="hidden sm:inline relative z-10">Resources</span>
               </Button>
              <Button 
-               onClick={() => router.push("/assessment")}
-               aria-label="Start your free packaging compliance assessment"
+              onClick={() => router.push("/quiz")}
+              aria-label="Start your free packaging compliance assessment"
                className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap touch-manipulation"
               style={{ 
                 pointerEvents: 'auto',
@@ -343,7 +343,7 @@ export default function MillstoneComplianceWebsite() {
               <div className="flex flex-col gap-4">
                 <Button
                   size="lg"
-                  onClick={() => router.push("/assessment")}
+                  onClick={() => router.push("/quiz")}
                   className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 group w-full sm:w-fit text-sm sm:text-base py-5 sm:py-6 px-6 sm:px-8 min-h-[54px] touch-manipulation"
                   style={{ 
                     pointerEvents: 'auto',
@@ -730,7 +730,7 @@ export default function MillstoneComplianceWebsite() {
               {/* Main CTA Button */}
               <Button
                 size="lg"
-                onClick={() => router.push("/assessment")}
+                onClick={() => router.push("/quiz")}
                 className="poppins-semibold bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-600 bg-[length:200%_100%] hover:bg-[length:100%_100%] active:scale-95 text-white border-0 shadow-[0_20px_60px_rgba(6,95,70,0.25)] hover:shadow-[0_25px_70px_rgba(6,95,70,0.35)] transition-all duration-700 sm:hover:scale-105 group/cta px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg relative overflow-hidden animate-fade-in-up delay-300 w-full sm:w-auto min-h-[54px]"
               >
                 {/* Button shine effect */}
@@ -1128,7 +1128,7 @@ export default function MillstoneComplianceWebsite() {
             <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up delay-200 px-4">
               <Button
                 size="lg"
-                onClick={() => router.push("/assessment")}
+                onClick={() => router.push("/quiz")}
                 className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-500 sm:hover:scale-105 group/button relative overflow-hidden w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 min-h-[54px] text-sm sm:text-base"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
@@ -1290,7 +1290,7 @@ export default function MillstoneComplianceWebsite() {
                 </h3>
                 <ul className="space-y-2.5">
                   {[
-                    { label: "Assessment", href: "/assessment" },
+                    { label: "Assessment", href: "/quiz" },
                     { label: "Compliance Audit", href: "#" },
                     { label: "Documentation", href: "#" },
                     { label: "Support", href: "#" }

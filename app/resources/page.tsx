@@ -56,7 +56,7 @@ export default function ResourcesPage() {
               <MillstoneLogo size="sm" variant="modern" />
             </Link>
             <Button 
-              onClick={() => router.push("/assessment")}
+              onClick={() => router.push("/quiz")}
               className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3"
             >
               <span className="hidden xs:inline">FREE COMPLIANCE CHECK</span>
@@ -138,7 +138,7 @@ export default function ResourcesPage() {
               Get a free assessment of your specific PPT compliance situation
             </p>
             <Button
-              onClick={() => router.push("/assessment")}
+              onClick={() => router.push("/quiz")}
               size="lg"
               className="bg-white text-emerald-700 hover:bg-emerald-50 poppins-semibold shadow-xl"
             >

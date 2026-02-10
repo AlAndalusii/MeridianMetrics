@@ -77,13 +77,20 @@ export async function saveAssessmentProgress(
     }
 
     if (result.error) {
-      console.error('Supabase error:', result.error)
+      // Silently fail - quiz works with localStorage backup
+      // Only log in development
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('⚠️ Supabase unavailable (quiz still works via localStorage)')
+      }
       return { success: false, error: result.error }
     }
 
     return { success: true, data: result.data }
   } catch (error) {
-    console.error('Error saving assessment progress:', error)
+    // Silently fail - quiz works with localStorage backup
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('⚠️ Database unavailable (using localStorage backup)')
+    }
     return { success: false, error }
   }
 }

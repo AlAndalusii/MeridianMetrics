@@ -17,7 +17,7 @@ export default function PlasticPackagingTaxExplained() {
             <Button 
               asChild
               className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-              <Link href="/assessment">Free Assessment</Link>
+              <Link href="/quiz">Free Assessment</Link>
             </Button>
           </div>
         </div>
@@ -217,7 +217,7 @@ export default function PlasticPackagingTaxExplained() {
               <Button 
                 asChild
                 className="poppins-semibold bg-white hover:bg-emerald-50 text-emerald-700 shadow-xl hover:shadow-2xl transition-all duration-300">
-                <Link href="/assessment">Start Your Free Assessment</Link>
+                <Link href="/quiz">Start Your Free Assessment</Link>
               </Button>
             </div>
 

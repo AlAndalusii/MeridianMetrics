@@ -42,7 +42,7 @@ export default function AboutPage() {
               <MillstoneLogo size="sm" variant="modern" />
             </Link>
             <Button 
-              onClick={() => router.push("/assessment")}
+              onClick={() => router.push("/quiz")}
               className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3"
             >
               <span className="hidden xs:inline">FREE COMPLIANCE CHECK</span>
@@ -294,7 +294,7 @@ export default function AboutPage() {
               Free 3-minute review. Instant feedback on your compliance status.
             </p>
             <Button
-              onClick={() => router.push("/assessment")}
+              onClick={() => router.push("/quiz")}
               className="bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold shadow-lg"
               size="lg"
             >

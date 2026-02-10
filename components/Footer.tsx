@@ -38,7 +38,7 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2.5">
                 {[
-                  { label: "Assessment", href: "/assessment" },
+                  { label: "Assessment", href: "/quiz" },
                   { label: "Compliance Audit", href: "#" },
                   { label: "Documentation", href: "#" },
                   { label: "Support", href: "#" }

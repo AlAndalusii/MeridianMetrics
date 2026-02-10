@@ -78,7 +78,7 @@ export default function PlasticPackagingTaxGuide() {
               <MillstoneLogo size="sm" variant="modern" />
             </Link>
             <Button 
-              onClick={() => router.push("/assessment")}
+              onClick={() => router.push("/quiz")}
               className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3"
             >
               <span className="hidden xs:inline">FREE COMPLIANCE CHECK</span>
@@ -143,7 +143,7 @@ export default function PlasticPackagingTaxGuide() {
           {/* Quick Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
             <Button
-              onClick={() => router.push("/assessment")}
+              onClick={() => router.push("/quiz")}
               className="bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold shadow-lg"
               size="lg"
             >
@@ -213,7 +213,7 @@ export default function PlasticPackagingTaxGuide() {
                       Get a free PPT compliance assessment
                     </p>
                     <Button
-                      onClick={() => router.push("/assessment")}
+                      onClick={() => router.push("/quiz")}
                       className="w-full bg-white text-emerald-700 hover:bg-emerald-50 text-xs poppins-semibold"
                       size="sm"
                     >
@@ -285,7 +285,7 @@ export default function PlasticPackagingTaxGuide() {
                     Our free 3-minute assessment checks if your records meet all requirements
                   </p>
                   <Button
-                    onClick={() => router.push("/assessment")}
+                    onClick={() => router.push("/quiz")}
                     className="bg-white text-emerald-700 hover:bg-emerald-50 poppins-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                     size="lg"
                   >
@@ -472,7 +472,7 @@ export default function PlasticPackagingTaxGuide() {
                         We help you collect and verify all recycled content certificates from your suppliers - saving you weeks of back-and-forth emails.
                       </p>
                       <Button
-                        onClick={() => router.push("/assessment")}
+                        onClick={() => router.push("/quiz")}
                         className="bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold shadow-md"
                       >
                         Get Expert Help
@@ -556,7 +556,7 @@ export default function PlasticPackagingTaxGuide() {
                       </p>
                       <div className="flex flex-col sm:flex-row gap-3">
                         <Button
-                          onClick={() => router.push("/assessment")}
+                          onClick={() => router.push("/quiz")}
                           className="bg-white text-blue-700 hover:bg-blue-50 poppins-semibold shadow-lg hover:shadow-xl transition-all"
                           size="lg"
                         >
@@ -683,7 +683,7 @@ export default function PlasticPackagingTaxGuide() {
                   
                   <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                     <Button
-                      onClick={() => router.push("/assessment")}
+                      onClick={() => router.push("/quiz")}
                       size="lg"
                       className="bg-white text-emerald-700 hover:bg-emerald-50 poppins-semibold shadow-xl hover:shadow-2xl transition-all"
                     >

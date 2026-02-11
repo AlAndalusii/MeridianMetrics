@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { 
@@ -14,6 +14,7 @@ import {
   Shield
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
+import { CalendlyModal } from "@/components/CalendlyWidget"
 
 const quizOptions = [
   {
@@ -41,6 +42,18 @@ const quizOptions = [
     isActive: true,
   },
   {
+    id: "simpler-recycling",
+    title: "Simpler Recycling - Workplace Waste",
+    description: "New rules (31 March 2025) require all businesses to separate waste into 3 bins. Are you compliant?",
+    icon: Trash2,
+    color: "green",
+    duration: "2 minutes",
+    questions: "10 questions",
+    targetAudience: "Businesses with 10+ employees",
+    link: "/quiz/simpler-recycling",
+    isActive: true,
+  },
+  {
     id: "weee",
     title: "WEEE - Waste Electronics Compliance",
     description: "Selling electronics, light bulbs, or anything with a plug? You might need WEEE registration.",
@@ -63,18 +76,6 @@ const quizOptions = [
     targetAudience: "Businesses with 50+ tonnes packaging and £2M+ turnover",
     link: "/quiz/prn",
     isActive: false,
-  },
-  {
-    id: "simpler-recycling",
-    title: "Simpler Recycling - Workplace Waste",
-    description: "New rules (31 March 2025) require all businesses to separate waste into 3 bins. Are you compliant?",
-    icon: Trash2,
-    color: "green",
-    duration: "2 minutes",
-    questions: "10 questions",
-    targetAudience: "Businesses with 10+ employees",
-    link: "/quiz/simpler-recycling",
-    isActive: true,
   },
 ]
 
@@ -117,6 +118,8 @@ const colorClasses = {
 }
 
 export default function QuizSelectorPage() {
+  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50">
       {/* Navigation Bar */}
@@ -252,6 +255,7 @@ export default function QuizSelectorPage() {
                 Book a free 15-minute consultation and we'll help you understand your compliance obligations
               </p>
               <Button
+                onClick={() => setShowCalendlyModal(true)}
                 className="poppins-semibold bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg"
               >
                 Book Free Consultation
@@ -260,6 +264,12 @@ export default function QuizSelectorPage() {
           </div>
         </div>
       </div>
+
+      {/* Calendly Modal */}
+      <CalendlyModal 
+        isOpen={showCalendlyModal} 
+        onClose={() => setShowCalendlyModal(false)} 
+      />
     </div>
   )
 }

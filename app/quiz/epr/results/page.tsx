@@ -17,6 +17,7 @@ import {
   Clock,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
+import { CalendlyModal } from "@/components/CalendlyWidget"
 
 export default function EPRResultsPage() {
   const router = useRouter()
@@ -25,6 +26,7 @@ export default function EPRResultsPage() {
   const [animatedScore, setAnimatedScore] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [userInfo, setUserInfo] = useState({ name: "", email: "", company: "", phone: "" })
+  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
 
   useEffect(() => {
     try {
@@ -339,6 +341,7 @@ export default function EPRResultsPage() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
+                onClick={() => setShowCalendlyModal(true)}
                 className="flex-1 poppins-semibold bg-white text-blue-700 hover:bg-blue-50 py-6 text-lg rounded-2xl shadow-lg"
               >
                 Book Free Consultation
@@ -420,7 +423,10 @@ export default function EPRResultsPage() {
                 Book a free 15-minute consultation to understand your EPR obligations and how we can help
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button className="poppins-semibold bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg rounded-2xl">
+                <Button 
+                  onClick={() => setShowCalendlyModal(true)}
+                  className="poppins-semibold bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg rounded-2xl"
+                >
                   <Phone className="w-5 h-5 mr-2" />
                   Book Free Call
                 </Button>
@@ -433,6 +439,12 @@ export default function EPRResultsPage() {
           </div>
         </div>
       </div>
+
+      {/* Calendly Modal */}
+      <CalendlyModal 
+        isOpen={showCalendlyModal} 
+        onClose={() => setShowCalendlyModal(false)} 
+      />
     </div>
   )
 }

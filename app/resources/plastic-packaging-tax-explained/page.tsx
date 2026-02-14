@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, CheckCircle, AlertCircle, FileText, Calculator } from "lucide-react"
+import { ArrowLeft, ArrowRight, CheckCircle, AlertCircle, FileText, Calculator } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 
 export default function PlasticPackagingTaxExplained() {
@@ -214,11 +214,20 @@ export default function PlasticPackagingTaxExplained() {
               <p className="poppins-regular mb-6 leading-relaxed">
                 The <strong>plastic packaging tax legislation</strong> can be tricky to get right. Our free assessment takes just 3 minutes and shows you exactly what you need to do to stay compliant.
               </p>
-              <Button 
-                asChild
-                className="poppins-semibold bg-white hover:bg-emerald-50 text-emerald-700 shadow-xl hover:shadow-2xl transition-all duration-300">
-                <Link href="/quiz">Start Your Free Assessment</Link>
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                <Button 
+                  asChild
+                  className="poppins-semibold bg-white hover:bg-emerald-50 text-emerald-700 shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <Link href="/quiz">Start Your Free Assessment</Link>
+                </Button>
+                <a
+                  href={`mailto:info@millstonecompliance.com?subject=Plastic Packaging Tax Help&body=Hello Millstone Compliance,%0D%0A%0D%0AI would like to discuss Plastic Packaging Tax compliance assistance.%0D%0A%0D%0AName: %0D%0ACompany: %0D%0AWhat I need help with: %0D%0A%0D%0APreferred contact date and time: %0D%0A%0D%0AThank you.`}
+                  className="bg-white/20 hover:bg-white/30 text-white border-2 border-white poppins-semibold shadow-xl px-6 py-3 rounded-md inline-flex items-center justify-center transition-all duration-300"
+                >
+                  Or Contact Us via Email
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </a>
+              </div>
             </div>
 
             <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-emerald-100 shadow-lg">

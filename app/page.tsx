@@ -1137,14 +1137,14 @@ export default function MillstoneComplianceWebsite() {
           </div>
 
           {/* Premium CTA Section - Link to Simpler Recycling */}
-          <div className="text-center relative animate-fade-in-up delay-400">
+          <div className="flex justify-center items-center relative animate-fade-in-up delay-400">
             {/* Decorative elements */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-r from-green-200/10 via-emerald-200/10 to-green-200/10 rounded-full blur-3xl pointer-events-none"></div>
             
-            <div className="relative bg-gradient-to-r from-green-50 via-emerald-50 to-green-50 backdrop-blur-xl border border-emerald-200/70 rounded-2xl p-8 sm:p-12 hover:border-emerald-300 transition-all duration-700 group/cta shadow-[0_8px_32px_rgba(16,185,129,0.1)]">
+            <div className="relative bg-gradient-to-r from-green-50 via-emerald-50 to-green-50 backdrop-blur-xl border border-emerald-200/70 rounded-2xl p-8 sm:p-12 hover:border-emerald-300 transition-all duration-700 group/cta shadow-[0_8px_32px_rgba(16,185,129,0.1)] w-full max-w-4xl">
               <div className="absolute inset-0 bg-gradient-to-br from-green-100/0 via-white/50 to-green-100/0 opacity-0 group-hover/cta:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
               
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col items-center text-center">
                 {/* Icon */}
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-200 border border-emerald-300 mb-6 group-hover/cta:scale-110 group-hover/cta:rotate-3 transition-all duration-500 shadow-lg">
                   <Sparkles className="w-8 h-8 text-emerald-700" />
@@ -1154,23 +1154,33 @@ export default function MillstoneComplianceWebsite() {
                   New: Simpler Recycling
                 </h3>
                 
-                <p className="text-emerald-700 poppins-regular text-lg mb-8 max-w-2xl mx-auto">
+                <p className="text-emerald-700 poppins-regular text-lg mb-8 max-w-2xl">
                   The latest regulation affecting all UK businesses. Mandatory 3-bin separation now in effect.
                 </p>
                 
-                <Button
-                  onClick={() => {
-                    const element = document.getElementById('recycling-heading')
-                    element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                  }}
-                  className="poppins-semibold bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-600 bg-[length:200%_100%] hover:bg-[length:100%_100%] active:scale-95 text-white border-0 shadow-[0_20px_60px_rgba(6,95,70,0.25)] hover:shadow-[0_25px_70px_rgba(6,95,70,0.35)] transition-all duration-700 sm:hover:scale-105 group/btn px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine"></div>
-                  <span className="relative z-10 flex items-center justify-center">
-                    <span className="mr-3">Learn About Simpler Recycling</span>
-                    <ArrowRight className="h-5 w-5 group-hover/btn:translate-x-2 transition-transform duration-500" />
-                  </span>
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
+                  <Button
+                    onClick={() => {
+                      const element = document.getElementById('recycling-heading')
+                      element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    }}
+                    className="poppins-semibold bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-600 bg-[length:200%_100%] hover:bg-[length:100%_100%] active:scale-95 text-white border-0 shadow-[0_20px_60px_rgba(6,95,70,0.25)] hover:shadow-[0_25px_70px_rgba(6,95,70,0.35)] transition-all duration-700 sm:hover:scale-105 group/btn px-8 py-5 text-base relative overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine"></div>
+                    <span className="relative z-10 flex items-center justify-center">
+                      <span className="mr-3">Learn About Simpler Recycling</span>
+                      <ArrowRight className="h-5 w-5 group-hover/btn:translate-x-2 transition-transform duration-500" />
+                    </span>
+                  </Button>
+                  
+                  <a
+                    href={`mailto:info@millstonecompliance.com?subject=Compliance Consultation Request&body=Hello Millstone Compliance,%0D%0A%0D%0AI would like to discuss compliance assistance.%0D%0A%0D%0AName: %0D%0ACompany: %0D%0AWhat I need help with: %0D%0A%0D%0APreferred contact date and time: %0D%0A%0D%0AThank you.`}
+                    className="poppins-semibold bg-white hover:bg-emerald-50 text-emerald-700 border-2 border-emerald-600 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 px-8 py-5 text-base rounded-md inline-flex items-center justify-center"
+                  >
+                    <span className="mr-3">Contact Us for Help</span>
+                    <ArrowRight className="h-5 w-5" />
+                  </a>
+                </div>
                 
                 {/* Deadline reminder */}
                 <div className="mt-6 inline-flex items-center gap-2 text-sm text-emerald-600">

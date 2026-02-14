@@ -3,7 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Book, FileCheck, Shield, Download } from "lucide-react"
+import { ArrowRight, ClipboardCheck, Recycle, Package, Calculator, ListChecks, FileSearch } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import Footer from "@/components/Footer"
@@ -13,25 +13,41 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "Waste Duty of Care Guide",
+      description: "Complete UK Duty of Care compliance guide covering legal requirements, Waste Transfer Notes, carrier verification, and how to avoid £300 penalties and prosecution.",
+      icon: ClipboardCheck,
+      href: "/resources/duty-of-care-waste",
+      badge: "New",
+      topics: ["Legal Requirements", "Documentation", "Penalties", "WTN"]
+    },
+    {
+      title: "Simpler Recycling for Businesses",
+      description: "Complete 2025 compliance guide covering deadlines, the 4 mandatory waste streams, penalties, and practical implementation steps for UK businesses.",
+      icon: Recycle,
+      href: "/resources/simpler-recycling-businesses",
+      badge: "Popular",
+      topics: ["Waste Compliance", "Deadlines", "Food Waste", "Regulations"]
+    },
+    {
       title: "What Is Plastic Packaging Tax?",
       description: "A simple beginner's guide explaining the UK plastic packaging tax in plain English. Perfect for businesses new to PPT compliance in 2025.",
-      icon: Book,
+      icon: Package,
       href: "/resources/plastic-packaging-tax-explained",
-      badge: "New",
+      badge: "Essential",
       topics: ["Beginner", "PPT Basics", "2025 Rates", "Registration"]
     },
     {
       title: "Plastic Packaging Tax Guide",
       description: "Complete guide to records and accounts you must keep for Plastic Packaging Tax. Learn what HMRC requires in simple, easy-to-understand language.",
-      icon: Book,
+      icon: Calculator,
       href: "/resources/plastic-packaging-tax",
-      badge: "Popular",
+      badge: "Essential",
       topics: ["Records", "Accounts", "Evidence", "Compliance"]
     },
     {
       title: "PPT Compliance Checklist",
       description: "Download our comprehensive checklist to ensure you have all the documentation HMRC requires. Perfect for quarterly reviews.",
-      icon: FileCheck,
+      icon: ListChecks,
       href: "#",
       badge: "Coming Soon",
       topics: ["Checklist", "Documentation", "Quarterly Review"]
@@ -39,7 +55,7 @@ export default function ResourcesPage() {
     {
       title: "HMRC Audit Preparation",
       description: "How to prepare for an HMRC audit and what to expect. Essential reading for businesses registered for PPT.",
-      icon: Shield,
+      icon: FileSearch,
       href: "#",
       badge: "Coming Soon",
       topics: ["Audit", "Preparation", "HMRC"]
@@ -73,10 +89,10 @@ export default function ResourcesPage() {
             RESOURCES
           </h1>
           <h2 className="poppins-semibold text-2xl sm:text-3xl md:text-4xl text-emerald-700 mb-6">
-            Plastic Packaging Tax Resources
+            Compliance Guides & Resources
           </h2>
           <p className="poppins-regular text-lg sm:text-xl text-emerald-700 max-w-3xl mx-auto leading-relaxed">
-            Expert guides, checklists, and tools to help you stay compliant with UK Plastic Packaging Tax regulations
+            Expert guides, checklists, and tools to help you stay compliant with UK packaging and waste regulations
           </p>
         </div>
 
@@ -135,7 +151,7 @@ export default function ResourcesPage() {
               Need personalised guidance?
             </h2>
             <p className="poppins-regular text-lg text-emerald-50 mb-8 max-w-2xl mx-auto">
-              Get a free assessment of your specific PPT compliance situation
+              Get a free assessment of your packaging and waste compliance situation
             </p>
             <Button
               onClick={() => router.push("/quiz")}

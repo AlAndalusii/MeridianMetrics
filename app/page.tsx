@@ -26,6 +26,17 @@ import {
   Trash2,
   Zap,
   Target,
+  FileText,
+  Archive,
+  Activity,
+  Wifi,
+  Calendar,
+  ChevronRight,
+  Sparkles,
+  Eye,
+  Lock,
+  ClipboardCheck,
+  Book,
 } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -337,8 +348,8 @@ export default function MillstoneComplianceWebsite() {
               className={`transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
               <h1 className="poppins-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 leading-tight">
-                <span className="text-emerald-900 block">UK Packaging compliance.</span>
-                <span className="text-emerald-600 block">We find gaps before audits do.</span>
+                <span className="text-emerald-900 block">UK Packaging & Waste Compliance.</span>
+                <span className="text-emerald-600 block">We find gaps before regulators do.</span>
               </h1>
               <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 mb-6 sm:mb-8 leading-relaxed">
                 Free 3-minute check. Find missing documents and errors before penalties.
@@ -360,11 +371,11 @@ export default function MillstoneComplianceWebsite() {
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 text-emerald-600">
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 flex-shrink-0" />
-                    <span className="poppins-medium text-xs sm:text-sm">HMRC Background</span>
+                    <span className="poppins-medium text-xs sm:text-sm">HMRC & EA Background</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 flex-shrink-0" />
-                    <span className="poppins-medium text-xs sm:text-sm">EPR, PPT & PRN Advisors</span>
+                    <span className="poppins-medium text-xs sm:text-sm">EPR, PPT, PRN & Waste Advisors</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 flex-shrink-0" />
@@ -621,7 +632,7 @@ export default function MillstoneComplianceWebsite() {
             
             {/* Enhanced Description */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4">
-              Our free 3-minute assessment identifies compliance gaps across the key UK packaging regimes—PPT, EPR, PRN and WEEE records. In most UK businesses we review, <span className="poppins-semibold text-emerald-800">7 out of 10 have simple data or evidence gaps</span> across schemes that could lead to avoidable costs and penalties.
+              Our free 3-minute assessment identifies compliance gaps across UK packaging (PPT, EPR, PRN, WEEE) and waste regulations (Duty of Care, Digital Tracking, Simpler Recycling). In most businesses we review, <span className="poppins-semibold text-emerald-800">7 out of 10 have gaps</span> that could lead to penalties.
             </p>
             
             {/* Stats Bar - New Addition */}
@@ -772,6 +783,399 @@ export default function MillstoneComplianceWebsite() {
                     <TrendingUp className="w-3 h-3 text-emerald-600" />
                   </div>
                   <span className="poppins-medium">Instant results</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Waste Regulations Section - Matching Site Design */}
+      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-white via-emerald-50/30 to-white relative overflow-hidden group/regulations" aria-labelledby="regulations-heading">
+        {/* Sophisticated background elements matching site theme */}
+        <div className="absolute inset-0">
+          {/* Animated gradient orbs - emerald theme */}
+          <div className="absolute top-0 right-1/4 w-[700px] h-[700px] bg-gradient-to-br from-emerald-200/20 via-green-100/15 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-tl from-green-300/15 via-emerald-100/10 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '1.5s'}}></div>
+          
+          {/* Radial gradient depth */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.04)_0%,transparent_65%)] animate-pulse-slow"></div>
+          
+          {/* Conic gradient rotation */}
+          <div className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,rgba(16,185,129,0.02)_0deg,rgba(34,197,94,0.02)_120deg,rgba(16,185,129,0.02)_240deg)] animate-spin-slower"></div>
+          
+          {/* Grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+          
+          {/* Shimmer overlay */}
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:20px_20px] animate-shimmer"></div>
+        </div>
+
+        {/* Floating geometric elements - matching site style */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="hidden md:block absolute top-20 right-[10%] w-20 h-20 opacity-20">
+            <div className="absolute inset-0 border-2 border-emerald-300 rounded-lg animate-spin-slow"></div>
+            <div className="absolute inset-2 border-2 border-green-300 rounded-lg animate-spin-slow-reverse"></div>
+          </div>
+          <div className="hidden md:block absolute bottom-32 left-[8%] w-24 h-24 opacity-15">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/40 to-green-200/40 rounded-full blur-xl animate-pulse-slow"></div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          {/* Premium Header */}
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            {/* Badge matching site style */}
+            <div className="inline-flex items-center px-5 sm:px-7 py-2.5 sm:py-3 rounded-2xl bg-gradient-to-r from-emerald-50 via-emerald-100/80 to-emerald-50 backdrop-blur-xl border border-emerald-200/70 shadow-[0_8px_32px_rgba(16,185,129,0.15)] mb-6 sm:mb-8 md:mb-10 group-hover/regulations:scale-105 transition-all duration-700 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-100/0 via-white/50 to-emerald-100/0 animate-shine"></div>
+              <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3 animate-pulse relative z-10"></div>
+              <span className="poppins-semibold text-xs sm:text-sm text-emerald-900 tracking-wide uppercase relative z-10">UK Compliance Framework</span>
+            </div>
+            
+            {/* Main Headline - matching site typography */}
+            <h2 id="regulations-heading" className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-5 sm:mb-7 md:mb-9 text-emerald-900 tracking-tight relative animate-fade-in-up leading-[1.1]">
+              Waste Regulations
+              <span className="block mt-2 sm:mt-3 leading-tight pb-2 sm:pb-3 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
+                Simplified
+              </span>
+            </h2>
+            
+            {/* Subheadline */}
+            <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4 animate-fade-in-up delay-100">
+              Navigate complex UK waste legislation with clarity. From hazardous waste to digital tracking, 
+              <span className="poppins-semibold text-emerald-800"> every regulation explained</span>.
+            </p>
+          </div>
+
+          {/* Regulations Grid - Premium Cards matching site style */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-16">
+            
+            {/* Hazardous Waste Regulations Card */}
+            <div className="group/reg relative bg-white/80 backdrop-blur-xl border border-amber-200/50 rounded-2xl overflow-hidden hover:border-amber-400/60 transition-all duration-700 hover:shadow-[0_20px_60px_rgba(245,158,11,0.2)] animate-fade-in-up">
+              {/* Card shine effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-50/50 via-white/50 to-amber-50/50 opacity-0 group-hover/reg:opacity-100 transition-opacity duration-700"></div>
+              
+              <div className="relative p-8 sm:p-10">
+                {/* Icon Container */}
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-100 to-amber-200 border border-amber-300 flex items-center justify-center group-hover/reg:scale-110 group-hover/reg:rotate-3 transition-all duration-500 shadow-lg">
+                    <AlertTriangle className="w-7 h-7 text-amber-700" />
+                  </div>
+                  <Badge className="bg-amber-100 text-amber-700 border-amber-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">Critical</Badge>
+                </div>
+                
+                {/* Title */}
+                <h3 className="poppins-bold text-2xl sm:text-3xl text-amber-900 mb-4 group-hover/reg:text-amber-800 transition-colors duration-300">
+                  Hazardous Waste
+                </h3>
+                
+                {/* Description */}
+                <p className="text-amber-800 poppins-regular text-base leading-relaxed mb-6">
+                  Strict documentation requirements for dangerous materials. Legal compliance isn't optional.
+                </p>
+                
+                {/* Requirements List */}
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-start gap-3 bg-amber-50/50 p-3 rounded-lg border border-amber-100/50">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <FileText className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-amber-900 text-sm poppins-medium">Consignment notes for every movement</span>
+                  </div>
+                  <div className="flex items-start gap-3 bg-amber-50/50 p-3 rounded-lg border border-amber-100/50">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <Archive className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-amber-900 text-sm poppins-medium">3-year record retention mandatory</span>
+                  </div>
+                  <div className="flex items-start gap-3 bg-amber-50/50 p-3 rounded-lg border border-amber-100/50">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <ClipboardCheck className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-amber-900 text-sm poppins-medium">Pre-acceptance audits required</span>
+                  </div>
+                </div>
+                
+                {/* Visual Mockup */}
+                <div className="relative h-48 rounded-xl bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-200 overflow-hidden group-hover/reg:border-amber-300 transition-colors duration-500 shadow-inner">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center space-y-3 p-6">
+                      <div className="w-16 h-16 rounded-lg bg-white border-2 border-amber-300 mx-auto flex items-center justify-center shadow-lg">
+                        <FileCheck className="w-8 h-8 text-amber-600" />
+                      </div>
+                      <div className="space-y-2">
+                        <div className="h-2 w-32 bg-amber-200 rounded mx-auto"></div>
+                        <div className="h-2 w-24 bg-amber-100 rounded mx-auto"></div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Document overlay effect */}
+                  <div className="absolute top-4 right-4 w-8 h-10 bg-white/80 border border-amber-300 rounded transform rotate-6 shadow-md"></div>
+                  <div className="absolute bottom-4 left-4 w-8 h-10 bg-white/80 border border-amber-300 rounded transform -rotate-3 shadow-md"></div>
+                </div>
+              </div>
+              
+              {/* Bottom accent */}
+              <div className="h-1.5 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400"></div>
+            </div>
+
+            {/* Duty of Care Card */}
+            <div className="group/reg relative bg-white/80 backdrop-blur-xl border border-green-200/50 rounded-2xl overflow-hidden hover:border-green-400/60 transition-all duration-700 hover:shadow-[0_20px_60px_rgba(34,197,94,0.2)] animate-fade-in-up delay-100">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-white/50 to-green-50/50 opacity-0 group-hover/reg:opacity-100 transition-opacity duration-700"></div>
+              
+              <div className="relative p-8 sm:p-10">
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-100 to-green-200 border border-green-300 flex items-center justify-center group-hover/reg:scale-110 group-hover/reg:rotate-3 transition-all duration-500 shadow-lg">
+                    <Book className="w-7 h-7 text-green-700" />
+                  </div>
+                  <Badge className="bg-green-100 text-green-700 border-green-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">Foundational</Badge>
+                </div>
+                
+                <h3 className="poppins-bold text-2xl sm:text-3xl text-green-900 mb-4 group-hover/reg:text-green-800 transition-colors duration-300">
+                  Duty of Care
+                </h3>
+                
+                <p className="text-green-800 poppins-regular text-base leading-relaxed mb-6">
+                  EPA 1990 Section 34 establishes your fundamental responsibilities. The bedrock of waste compliance.
+                </p>
+                
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-start gap-3 bg-green-50/50 p-3 rounded-lg border border-green-100/50">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <FileText className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-green-900 text-sm poppins-medium">Waste transfer notes for all waste</span>
+                  </div>
+                  <div className="flex items-start gap-3 bg-green-50/50 p-3 rounded-lg border border-green-100/50">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <CheckCircle className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-green-900 text-sm poppins-medium">Verified carrier registration</span>
+                  </div>
+                  <div className="flex items-start gap-3 bg-green-50/50 p-3 rounded-lg border border-green-100/50">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <Lock className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-green-900 text-sm poppins-medium">Prevent unauthorized disposal</span>
+                  </div>
+                </div>
+                
+                {/* Visual Mockup */}
+                <div className="relative h-48 rounded-xl bg-gradient-to-br from-green-50 to-green-100 border border-green-200 overflow-hidden group-hover/reg:border-green-300 transition-colors duration-500 shadow-inner">
+                  <div className="absolute inset-0 p-6">
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-3 p-3 bg-white/80 rounded-lg border border-green-200 shadow-sm">
+                        <div className="w-10 h-10 rounded bg-green-100 border border-green-300 flex items-center justify-center flex-shrink-0">
+                          <Building className="w-5 h-5 text-green-600" />
+                        </div>
+                        <div className="flex-1 space-y-1.5">
+                          <div className="h-2 w-24 bg-green-200 rounded"></div>
+                          <div className="h-1.5 w-16 bg-green-100 rounded"></div>
+                        </div>
+                      </div>
+                      <div className="flex justify-center">
+                        <ChevronRight className="w-5 h-5 text-green-400" />
+                      </div>
+                      <div className="flex items-center gap-3 p-3 bg-white/80 rounded-lg border border-green-200 shadow-sm">
+                        <div className="w-10 h-10 rounded bg-emerald-100 border border-emerald-300 flex items-center justify-center flex-shrink-0">
+                          <Trash2 className="w-5 h-5 text-emerald-600" />
+                        </div>
+                        <div className="flex-1 space-y-1.5">
+                          <div className="h-2 w-20 bg-green-200 rounded"></div>
+                          <div className="h-1.5 w-14 bg-green-100 rounded"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="h-1.5 bg-gradient-to-r from-green-400 via-green-500 to-green-400"></div>
+            </div>
+
+            {/* Digital Waste Tracking Card */}
+            <div className="group/reg relative bg-white/80 backdrop-blur-xl border border-emerald-200/50 rounded-2xl overflow-hidden hover:border-emerald-400/60 transition-all duration-700 hover:shadow-[0_20px_60px_rgba(16,185,129,0.2)] animate-fade-in-up delay-200">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-white/50 to-emerald-50/50 opacity-0 group-hover/reg:opacity-100 transition-opacity duration-700"></div>
+              
+              <div className="relative p-8 sm:p-10">
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-200 border border-emerald-300 flex items-center justify-center group-hover/reg:scale-110 group-hover/reg:rotate-3 transition-all duration-500 shadow-lg">
+                    <Wifi className="w-7 h-7 text-emerald-700" />
+                  </div>
+                  <Badge className="bg-red-100 text-red-700 border-red-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">Oct 2026</Badge>
+                </div>
+                
+                <h3 className="poppins-bold text-2xl sm:text-3xl text-emerald-900 mb-4 group-hover/reg:text-emerald-800 transition-colors duration-300">
+                  Digital Waste Tracking
+                </h3>
+                
+                <p className="text-emerald-800 poppins-regular text-base leading-relaxed mb-6">
+                  Paper records end October 2026. Mandatory electronic tracking connects waste producers to final destination.
+                </p>
+                
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-start gap-3 bg-emerald-50/50 p-3 rounded-lg border border-emerald-100/50">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <Database className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-emerald-900 text-sm poppins-medium">Electronic record-keeping mandatory</span>
+                  </div>
+                  <div className="flex items-start gap-3 bg-emerald-50/50 p-3 rounded-lg border border-emerald-100/50">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <Activity className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-emerald-900 text-sm poppins-medium">Real-time waste movement tracking</span>
+                  </div>
+                  <div className="flex items-start gap-3 bg-emerald-50/50 p-3 rounded-lg border border-emerald-100/50">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <Calendar className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-emerald-900 text-sm poppins-medium">Prepare systems before deadline</span>
+                  </div>
+                </div>
+                
+                {/* Visual Mockup - Digital Interface */}
+                <div className="relative h-48 rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 border border-emerald-200 overflow-hidden group-hover/reg:border-emerald-300 transition-colors duration-500 shadow-inner">
+                  <div className="absolute inset-0 p-6">
+                    {/* Simulated digital tracking interface */}
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between p-2.5 bg-white/80 rounded-lg border border-emerald-300 shadow-sm">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                          <div className="h-2 w-20 bg-emerald-200 rounded"></div>
+                        </div>
+                        <div className="h-2 w-12 bg-emerald-300 rounded"></div>
+                      </div>
+                      <div className="flex items-center justify-between p-2.5 bg-white/60 rounded-lg border border-emerald-200">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-gray-300"></div>
+                          <div className="h-2 w-24 bg-gray-200 rounded"></div>
+                        </div>
+                        <div className="h-2 w-10 bg-gray-200 rounded"></div>
+                      </div>
+                      <div className="flex items-center justify-between p-2.5 bg-white/60 rounded-lg border border-emerald-200">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-gray-300"></div>
+                          <div className="h-2 w-16 bg-gray-200 rounded"></div>
+                        </div>
+                        <div className="h-2 w-14 bg-gray-200 rounded"></div>
+                      </div>
+                    </div>
+                    {/* Digital wave effect */}
+                    <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-emerald-200/50 to-transparent"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="h-1.5 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400"></div>
+            </div>
+
+            {/* Clinical Waste Card */}
+            <div className="group/reg relative bg-white/80 backdrop-blur-xl border border-rose-200/50 rounded-2xl overflow-hidden hover:border-rose-400/60 transition-all duration-700 hover:shadow-[0_20px_60px_rgba(244,63,94,0.2)] animate-fade-in-up delay-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-rose-50/50 via-white/50 to-rose-50/50 opacity-0 group-hover/reg:opacity-100 transition-opacity duration-700"></div>
+              
+              <div className="relative p-8 sm:p-10">
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-rose-100 to-rose-200 border border-rose-300 flex items-center justify-center group-hover/reg:scale-110 group-hover/reg:rotate-3 transition-all duration-500 shadow-lg">
+                    <Activity className="w-7 h-7 text-rose-700" />
+                  </div>
+                  <Badge className="bg-rose-100 text-rose-700 border-rose-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">Healthcare</Badge>
+                </div>
+                
+                <h3 className="poppins-bold text-2xl sm:text-3xl text-rose-900 mb-4 group-hover/reg:text-rose-800 transition-colors duration-300">
+                  Clinical Waste
+                </h3>
+                
+                <p className="text-rose-800 poppins-regular text-base leading-relaxed mb-6">
+                  HTM 07-01 sets the standard for healthcare waste management. Stringent protocols protect public health.
+                </p>
+                
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-start gap-3 bg-rose-50/50 p-3 rounded-lg border border-rose-100/50">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <Shield className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-rose-900 text-sm poppins-medium">HTM 07-01 compliance mandatory</span>
+                  </div>
+                  <div className="flex items-start gap-3 bg-rose-50/50 p-3 rounded-lg border border-rose-100/50">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <Eye className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-rose-900 text-sm poppins-medium">Segregation and color-coding</span>
+                  </div>
+                  <div className="flex items-start gap-3 bg-rose-50/50 p-3 rounded-lg border border-rose-100/50">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <Lock className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-rose-900 text-sm poppins-medium">Secure storage and disposal</span>
+                  </div>
+                </div>
+                
+                {/* Visual Mockup - Color-coded bins */}
+                <div className="relative h-48 rounded-xl bg-gradient-to-br from-rose-50 to-rose-100 border border-rose-200 overflow-hidden group-hover/reg:border-rose-300 transition-colors duration-500 shadow-inner">
+                  <div className="absolute inset-0 flex items-center justify-center gap-4 p-6">
+                    {/* Color-coded waste bins visualization */}
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="w-16 h-20 rounded-lg bg-gradient-to-b from-amber-200 to-amber-300 border-2 border-amber-400 shadow-md"></div>
+                      <div className="h-1.5 w-12 bg-amber-300 rounded"></div>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="w-16 h-20 rounded-lg bg-gradient-to-b from-rose-300 to-rose-400 border-2 border-rose-500 shadow-md"></div>
+                      <div className="h-1.5 w-12 bg-rose-300 rounded"></div>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="w-16 h-20 rounded-lg bg-gradient-to-b from-blue-200 to-blue-300 border-2 border-blue-400 shadow-md"></div>
+                      <div className="h-1.5 w-12 bg-blue-300 rounded"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="h-1.5 bg-gradient-to-r from-rose-400 via-rose-500 to-rose-400"></div>
+            </div>
+
+          </div>
+
+          {/* Premium CTA Section - Link to Simpler Recycling */}
+          <div className="text-center relative animate-fade-in-up delay-400">
+            {/* Decorative elements */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-r from-green-200/10 via-emerald-200/10 to-green-200/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div className="relative bg-gradient-to-r from-green-50 via-emerald-50 to-green-50 backdrop-blur-xl border border-emerald-200/70 rounded-2xl p-8 sm:p-12 hover:border-emerald-300 transition-all duration-700 group/cta shadow-[0_8px_32px_rgba(16,185,129,0.1)]">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-100/0 via-white/50 to-green-100/0 opacity-0 group-hover/cta:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
+              
+              <div className="relative z-10">
+                {/* Icon */}
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-200 border border-emerald-300 mb-6 group-hover/cta:scale-110 group-hover/cta:rotate-3 transition-all duration-500 shadow-lg">
+                  <Sparkles className="w-8 h-8 text-emerald-700" />
+                </div>
+                
+                <h3 className="poppins-bold text-3xl sm:text-4xl text-emerald-900 mb-4">
+                  New: Simpler Recycling
+                </h3>
+                
+                <p className="text-emerald-700 poppins-regular text-lg mb-8 max-w-2xl mx-auto">
+                  The latest regulation affecting all UK businesses. Mandatory 3-bin separation now in effect.
+                </p>
+                
+                <Button
+                  onClick={() => {
+                    const element = document.getElementById('recycling-heading')
+                    element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  }}
+                  className="poppins-semibold bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-600 bg-[length:200%_100%] hover:bg-[length:100%_100%] active:scale-95 text-white border-0 shadow-[0_20px_60px_rgba(6,95,70,0.25)] hover:shadow-[0_25px_70px_rgba(6,95,70,0.35)] transition-all duration-700 sm:hover:scale-105 group/btn px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine"></div>
+                  <span className="relative z-10 flex items-center justify-center">
+                    <span className="mr-3">Learn About Simpler Recycling</span>
+                    <ArrowRight className="h-5 w-5 group-hover/btn:translate-x-2 transition-transform duration-500" />
+                  </span>
+                </Button>
+                
+                {/* Deadline reminder */}
+                <div className="mt-6 inline-flex items-center gap-2 text-sm text-emerald-600">
+                  <Clock className="w-4 h-4" />
+                  <span className="poppins-medium">Deadline: 31 March 2025 (passed)</span>
                 </div>
               </div>
             </div>
@@ -1326,9 +1730,7 @@ export default function MillstoneComplianceWebsite() {
 
             {/* Enhanced description with fade-in animation */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 leading-relaxed animate-fade-in-up delay-100 px-4">
-              We design comprehensive packaging compliance systems—EPR invoice audits, PPT certificate management, PRN strategies—that eliminate penalties,
-              <br className="hidden md:block" />
-              exceed regulatory standards, and support your team.
+              We handle packaging compliance for UK businesses—EPR, PPT, waste regulations—eliminating fines and paperwork so your team can focus on growth.
             </p>
 
             {/* Premium FAQ Section */}
@@ -1337,23 +1739,27 @@ export default function MillstoneComplianceWebsite() {
               {[
                 {
                   question: "What exactly do you do?",
-                  answer: "We manage all your packaging compliance—EPR invoice audits (finding overcharges), PPT certificate tracking, PRN procurement, and 2026 modulation planning. We build systems so your team can focus on running the business."
+                  answer: "We manage all your environmental compliance—packaging regulations (EPR invoice audits, PPT certificate tracking, PRN procurement, modulation planning) and waste regulations (Duty of Care documentation, Digital Waste Tracking preparation, hazardous waste compliance, Simpler Recycling). We build complete systems so your team can focus on running the business."
                 },
                 {
-                  question: "How much can I save on EPR fees?",
-                  answer: "Our clients save an average of £45K annually through EPR invoice audits. We've verified 127 invoices and consistently find household/non-household categorisation errors that lead to overcharges."
+                  question: "How much does this cost?",
+                  answer: "A basic waste audit costs £295. If you need packaging compliance help (EPR or PPT), that's £495. For ongoing monthly support where we handle everything, it's £499-799/month depending on how many locations you have."
                 },
                 {
-                  question: "Do I need to know about EPR, PPT, or PRN?",
-                  answer: "No. We handle the technical details—EPR material splits, PPT recycled content calculations, PRN obligations. You just provide access to your packaging data and supplier information."
+                  question: "What happens if I don't do this?",
+                  answer: "The Environment Agency can fine you £200-£5,000 for missing paperwork or wrong bins. If your waste goes to an illegal site, you're responsible even if you didn't know. We make sure that never happens."
+                },
+                {
+                  question: "How long does an audit take?",
+                  answer: "The audit itself takes 90 minutes at your site. We check your bins, look at your waste documents, and talk to your team. You get a full report within 24 hours showing what's working and what needs fixing."
+                },
+                {
+                  question: "Will this mess up my current waste collection?",
+                  answer: "No. We work with your existing waste company. We're just checking that everything's legal and properly documented. Most businesses keep the same bins and collector—we just make sure the paperwork is right."
                 },
                 {
                   question: "Can you work with my existing systems?",
-                  answer: "Yes. We integrate with your spreadsheets, Shopify, or other systems you use, and consolidate EPR, PPT, and PRN data into one clear dashboard."
-                },
-                {
-                  question: "What about 2026 fee modulation?",
-                  answer: "We assess your packaging's recyclability rating now and build a strategy to minimise your fees when modulation starts in 2026. The earlier you prepare, the more you save."
+                  answer: "Yes. We integrate with your spreadsheets, Shopify, waste contractors, and other systems you use. We consolidate packaging data (EPR, PPT, PRN) and waste documentation (transfer notes, consignment notes, tracking records) into one clear dashboard."
                 }
               ].map((item, index) => (
                   <div

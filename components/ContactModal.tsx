@@ -34,7 +34,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
       `Thank you.`
     )
     
-    window.location.href = `mailto:info@millstonecompliance.com?subject=${subject}&body=${body}`
+    window.location.href = `mailto:hello@millstonecompliance.com?subject=${subject}&body=${body}`
     
     // Reset form and close modal
     setFormData({ name: "", company: "", message: "", preferredDate: "" })

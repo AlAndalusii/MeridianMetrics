@@ -120,13 +120,13 @@ export const MobileMenu = memo(function MobileMenu() {
               <div className="pt-6 mt-6 border-t border-emerald-100">
                 <p className="poppins-medium text-sm text-emerald-600 mb-3">Quick Contact</p>
                 <a
-                  href="mailto:info@millstonecompliance.com"
+                  href="mailto:hello@millstonecompliance.com"
                   className="block px-4 py-3 bg-emerald-50 rounded-lg text-emerald-900 poppins-regular text-sm hover:bg-emerald-100 active:bg-emerald-200 transition-colors touch-manipulation"
                   style={{ 
                     WebkitTapHighlightColor: 'transparent'
                   }}
                 >
-                  info@millstonecompliance.com
+                  hello@millstonecompliance.com
                 </a>
               </div>
             </nav>

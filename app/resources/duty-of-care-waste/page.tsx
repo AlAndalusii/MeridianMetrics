@@ -835,7 +835,7 @@ export default function DutyOfCareWaste() {
                     <ArrowRight className="w-6 h-6 ml-2" />
                   </Button>
                   <a
-                    href={`mailto:info@millstonecompliance.com?subject=Duty of Care Compliance Help&body=Hello Millstone Compliance,%0D%0A%0D%0AI would like to discuss Duty of Care compliance assistance.%0D%0A%0D%0AName: %0D%0ACompany: %0D%0AWhat I need help with: %0D%0A%0D%0APreferred contact date and time: %0D%0A%0D%0AThank you.`}
+                    href={`mailto:hello@millstonecompliance.com?subject=Duty of Care Compliance Help&body=Hello Millstone Compliance,%0D%0A%0D%0AI would like to discuss Duty of Care compliance assistance.%0D%0A%0D%0AName: %0D%0ACompany: %0D%0AWhat I need help with: %0D%0A%0D%0APreferred contact date and time: %0D%0A%0D%0AThank you.`}
                     className="bg-white/20 hover:bg-white/30 text-white border-2 border-white poppins-semibold shadow-xl text-lg px-8 py-6 rounded-md inline-flex items-center justify-center transition-all duration-300"
                   >
                     Or Contact Us via Email

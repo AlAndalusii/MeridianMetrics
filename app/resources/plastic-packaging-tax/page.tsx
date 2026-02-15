@@ -695,7 +695,7 @@ export default function PlasticPackagingTaxGuide() {
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
                     <a
-                      href={`mailto:info@millstonecompliance.com?subject=Plastic Packaging Tax Compliance Help&body=Hello Millstone Compliance,%0D%0A%0D%0AI would like to discuss Plastic Packaging Tax compliance assistance.%0D%0A%0D%0AName: %0D%0ACompany: %0D%0AWhat I need help with: %0D%0A%0D%0APreferred contact date and time: %0D%0A%0D%0AThank you.`}
+                      href={`mailto:hello@millstonecompliance.com?subject=Plastic Packaging Tax Compliance Help&body=Hello Millstone Compliance,%0D%0A%0D%0AI would like to discuss Plastic Packaging Tax compliance assistance.%0D%0A%0D%0AName: %0D%0ACompany: %0D%0AWhat I need help with: %0D%0A%0D%0APreferred contact date and time: %0D%0A%0D%0AThank you.`}
                       className="border-2 border-white text-white hover:bg-white/10 poppins-semibold backdrop-blur-sm bg-transparent px-6 py-3 rounded-md inline-flex items-center justify-center transition-all duration-300"
                     >
                       <Calendar className="w-5 h-5 mr-2" />

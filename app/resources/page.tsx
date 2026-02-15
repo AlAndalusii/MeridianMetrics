@@ -3,7 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ClipboardCheck, Recycle, Package, Calculator, ListChecks, FileSearch } from "lucide-react"
+import { ArrowRight, ClipboardCheck, Recycle, Package, Calculator, ListChecks, FileSearch, Users } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import Footer from "@/components/Footer"
@@ -14,11 +14,19 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "Outsourced Compliance Team",
+      description: "Complete guide to outsourcing compliance vs hiring in-house. Compare costs, understand what's included, and see how to get expert support from £299/month.",
+      icon: Users,
+      href: "/resources/outsourced-compliance-team",
+      badge: "New",
+      topics: ["Cost Savings", "Expert Support", "Full Service", "Multi-Site"]
+    },
+    {
       title: "Waste Duty of Care Guide",
       description: "Complete UK Duty of Care compliance guide covering legal requirements, Waste Transfer Notes, carrier verification, and how to avoid £300 penalties and prosecution.",
       icon: ClipboardCheck,
       href: "/resources/duty-of-care-waste",
-      badge: "New",
+      badge: "Essential",
       topics: ["Legal Requirements", "Documentation", "Penalties", "WTN"]
     },
     {

@@ -1180,7 +1180,7 @@ export default function MillstoneComplianceWebsite() {
                   </Button>
                   
                   <a
-                    href={`mailto:info@millstonecompliance.com?subject=Compliance Consultation Request&body=Hello Millstone Compliance,%0D%0A%0D%0AI would like to discuss compliance assistance.%0D%0A%0D%0AName: %0D%0ACompany: %0D%0AWhat I need help with: %0D%0A%0D%0APreferred contact date and time: %0D%0A%0D%0AThank you.`}
+                    href={`mailto:hello@millstonecompliance.com?subject=Compliance Consultation Request&body=Hello Millstone Compliance,%0D%0A%0D%0AI would like to discuss compliance assistance.%0D%0A%0D%0AName: %0D%0ACompany: %0D%0AWhat I need help with: %0D%0A%0D%0APreferred contact date and time: %0D%0A%0D%0AThank you.`}
                     className="poppins-semibold bg-white hover:bg-emerald-50 text-emerald-700 border-2 border-emerald-600 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 px-8 py-5 text-base rounded-md inline-flex items-center justify-center"
                   >
                     <span className="mr-3">Contact Us for Help</span>

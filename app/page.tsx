@@ -44,6 +44,7 @@ import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { CONTACT_INFO } from "@/lib/constants"
 import { CalendlyModal } from "@/components/CalendlyWidget"
 import { EmailTemplateModal } from "@/components/EmailTemplateModal"
+import { MobileMenu } from "@/components/MobileMenu"
 
 // Fortune 500 Premium Logo Component - World-Class Design
 const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: string }) => (
@@ -289,9 +290,10 @@ export default function MillstoneComplianceWebsite() {
               <MillstoneLogo size="sm" variant="modern" />
             </Link>
             <div className="flex items-center gap-2 sm:gap-3">
+              {/* Desktop Navigation */}
               <Button 
                 onClick={() => router.push("/resources")}
-                className="poppins-semibold bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap touch-manipulation hidden sm:flex items-center relative overflow-hidden group/resources"
+                className="poppins-semibold bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap touch-manipulation hidden lg:flex items-center relative overflow-hidden group/resources"
                 style={{ 
                   pointerEvents: 'auto',
                   touchAction: 'manipulation',
@@ -301,18 +303,22 @@ export default function MillstoneComplianceWebsite() {
                 <FileCheck className="w-4 h-4 sm:mr-2 relative z-10" />
                 <span className="hidden sm:inline relative z-10">Resources</span>
               </Button>
-             <Button 
-              onClick={() => router.push("/quiz")}
-              aria-label="Start your free packaging compliance assessment"
-               className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap touch-manipulation"
-              style={{ 
-                pointerEvents: 'auto',
-                touchAction: 'manipulation',
-                WebkitTapHighlightColor: 'transparent'
-              }}>
-              <span className="hidden xs:inline">START YOUR FREE ASSESSMENT</span>
-              <span className="xs:hidden">START ASSESSMENT</span>
-            </Button>
+              <Button 
+                onClick={() => router.push("/quiz")}
+                aria-label="Start your free packaging compliance assessment"
+                className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap touch-manipulation"
+                style={{ 
+                  pointerEvents: 'auto',
+                  touchAction: 'manipulation',
+                  WebkitTapHighlightColor: 'transparent'
+                }}
+              >
+                <span className="hidden xs:inline">START YOUR FREE ASSESSMENT</span>
+                <span className="xs:hidden">START ASSESSMENT</span>
+              </Button>
+              
+              {/* Mobile Menu */}
+              <MobileMenu />
             </div>
           </div>
         </div>

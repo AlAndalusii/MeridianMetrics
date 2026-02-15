@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, CheckCircle, AlertCircle, Shield, FileText, Users, Scale, AlertTriangle, ArrowRight, XCircle, Clock, Building, Trash2, FileCheck, Lock } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { CalendlyModal } from "@/components/CalendlyWidget"
+import { MobileMenu } from "@/components/MobileMenu"
 
 export default function DutyOfCareWaste() {
   const [showCalendlyModal, setShowCalendlyModal] = useState(false)
@@ -19,13 +20,16 @@ export default function DutyOfCareWaste() {
             <Link href="/" className="group/logo transition-transform duration-300 hover:scale-105">
               <MillstoneLogo size="sm" variant="modern" />
             </Link>
-            <Button 
-              onClick={() => setShowCalendlyModal(true)}
-              className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3"
-            >
-              <span className="hidden xs:inline">BOOK COMPLIANCE AUDIT</span>
-              <span className="xs:hidden">BOOK AUDIT</span>
-            </Button>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Button 
+                onClick={() => setShowCalendlyModal(true)}
+                className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px]"
+              >
+                <span className="hidden xs:inline">BOOK COMPLIANCE AUDIT</span>
+                <span className="xs:hidden">BOOK AUDIT</span>
+              </Button>
+              <MobileMenu />
+            </div>
           </div>
         </div>
       </nav>

@@ -26,6 +26,7 @@ import {
 import { useRouter } from "next/navigation"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import Footer from "@/components/Footer"
+import { MobileMenu } from "@/components/MobileMenu"
 
 export default function PlasticPackagingTaxGuide() {
   const router = useRouter()
@@ -77,13 +78,16 @@ export default function PlasticPackagingTaxGuide() {
             <Link href="/" className="group/logo transition-transform duration-300 hover:scale-105">
               <MillstoneLogo size="sm" variant="modern" />
             </Link>
-            <Button 
-              onClick={() => router.push("/quiz")}
-              className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3"
-            >
-              <span className="hidden xs:inline">FREE COMPLIANCE CHECK</span>
-              <span className="xs:hidden">ASSESSMENT</span>
-            </Button>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Button 
+                onClick={() => router.push("/quiz")}
+                className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px]"
+              >
+                <span className="hidden xs:inline">FREE COMPLIANCE CHECK</span>
+                <span className="xs:hidden">ASSESSMENT</span>
+              </Button>
+              <MobileMenu />
+            </div>
           </div>
         </div>
       </nav>

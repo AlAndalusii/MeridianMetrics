@@ -1,8 +1,11 @@
+"use client"
+
 import React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, ArrowRight, CheckCircle, AlertCircle, FileText, Calculator } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
+import { MobileMenu } from "@/components/MobileMenu"
 
 export default function PlasticPackagingTaxExplained() {
   return (
@@ -14,11 +17,14 @@ export default function PlasticPackagingTaxExplained() {
             <Link href="/" className="group/logo transition-transform duration-300 hover:scale-105">
               <MillstoneLogo size="sm" variant="modern" />
             </Link>
-            <Button 
-              asChild
-              className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-              <Link href="/quiz">Free Assessment</Link>
-            </Button>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Button 
+                asChild
+                className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 min-h-[44px]">
+                <Link href="/quiz">Free Assessment</Link>
+              </Button>
+              <MobileMenu />
+            </div>
           </div>
         </div>
       </nav>

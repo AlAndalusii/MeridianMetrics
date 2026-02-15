@@ -1,6 +1,6 @@
 import React from "react"
 import Link from "next/link"
-import { Shield, CheckCircle, Phone, Mail, MapPin } from "lucide-react"
+import { Award, CheckCircle, Phone, Mail, MapPin } from "lucide-react"
 import { CONTACT_INFO } from "@/lib/constants"
 
 export default function Footer() {
@@ -179,7 +179,7 @@ export default function Footer() {
               {/* Badges */}
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">
-                  <Shield className="h-3 w-3 text-emerald-600" />
+                  <Award className="h-3 w-3 text-emerald-600" />
                   <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">UK Compliant</span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">

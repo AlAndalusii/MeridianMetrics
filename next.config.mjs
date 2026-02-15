@@ -25,7 +25,6 @@ const nextConfig = {
   poweredByHeader: false,
   
   // Performance optimizations
-  swcMinify: true,
   reactStrictMode: true,
   
   // Optimize production builds

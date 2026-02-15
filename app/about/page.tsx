@@ -9,24 +9,28 @@ import {
   Target,
   Brain,
   FileCheck,
-  Users,
-  Building,
-  Mail,
   CheckCircle,
   Clock,
   BarChart3,
   TrendingUp,
   Package,
-  Zap
+  Zap,
+  Settings,
+  Mail,
+  Building,
+  Users,
+  CheckCircle2
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import Footer from "@/components/Footer"
-import { CONTACT_INFO } from "@/lib/constants"
+import { MobileMenu } from "@/components/MobileMenu"
+import { ContactModal } from "@/components/ContactModal"
 
 export default function AboutPage() {
   const router = useRouter()
   const [isVisible, setIsVisible] = useState(false)
+  const [showContactModal, setShowContactModal] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
@@ -41,27 +45,30 @@ export default function AboutPage() {
             <Link href="/" className="group/logo transition-transform duration-300 hover:scale-105">
               <MillstoneLogo size="sm" variant="modern" />
             </Link>
-            <Button 
-              onClick={() => router.push("/quiz")}
-              className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3"
-            >
-              <span className="hidden xs:inline">FREE COMPLIANCE CHECK</span>
-              <span className="xs:hidden">ASSESSMENT</span>
-            </Button>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Button 
+                onClick={() => router.push("/quiz")}
+                className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px]"
+              >
+                <span className="hidden xs:inline">FREE COMPLIANCE CHECK</span>
+                <span className="xs:hidden">ASSESSMENT</span>
+              </Button>
+              <MobileMenu />
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
       <div className={`pt-32 pb-16 px-4 sm:px-6 max-w-5xl mx-auto transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="text-center mb-16">
-          <h1 className="poppins-bold text-4xl sm:text-5xl md:text-6xl text-emerald-900 mb-4 leading-tight">
-            About Millstone Compliance
-          </h1>
-          <p className="poppins-regular text-xl text-emerald-700">
-            Practical PPT compliance for UK businesses
-          </p>
-        </div>
+          <div className="text-center mb-16">
+            <h1 className="poppins-bold text-4xl sm:text-5xl md:text-6xl text-emerald-900 mb-4 leading-tight">
+              About Millstone Compliance
+            </h1>
+            <p className="poppins-regular text-xl text-emerald-700">
+              Packaging and waste compliance made simple
+            </p>
+          </div>
       </div>
 
       {/* Who We Are */}
@@ -77,13 +84,13 @@ export default function AboutPage() {
                 <h2 className="poppins-bold text-3xl text-emerald-900">Who We Are</h2>
               </div>
               <p className="poppins-regular text-base text-emerald-700 leading-relaxed mb-6">
-                We're PPT compliance specialists. Founded to provide practical help with Plastic Packaging Tax—not theory, just clear action.
+                We help UK businesses handle packaging and waste rules. Our focus: clear advice on what you need to do, no confusing jargon.
               </p>
               <div className="space-y-3">
                 {[
                   "UK government tax experience",
                   "Cambridge sustainability trained",
-                  "PPT-focused expertise"
+                  "Packaging and waste experts"
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
@@ -126,7 +133,7 @@ export default function AboutPage() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-emerald-600">PPT Focus</span>
+                    <span className="text-xs text-emerald-600">Packaging & Waste</span>
                     <span className="text-xs poppins-semibold text-emerald-900">100%</span>
                   </div>
                   <div className="w-full bg-emerald-100 rounded-full h-2">
@@ -140,51 +147,48 @@ export default function AboutPage() {
       </section>
 
       {/* What We Do */}
-      <section className="py-16 px-4 sm:px-6 bg-gradient-to-b from-white to-emerald-50/30">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center">
-                <Target className="w-6 h-6 text-emerald-600" />
-              </div>
-              <h2 className="poppins-bold text-3xl text-emerald-900">What We Do</h2>
-            </div>
-            <p className="poppins-regular text-base text-emerald-700 max-w-2xl mx-auto">
-              We identify gaps, organise documentation, and build audit-ready systems
+      <section className="py-20 px-4 sm:px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="poppins-bold text-4xl sm:text-5xl text-emerald-900 mb-4 tracking-tight">
+              What We Do
+            </h2>
+            <p className="poppins-regular text-lg text-emerald-700 max-w-xl mx-auto">
+              We help UK businesses stay compliant with packaging and waste regulations
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
             {[
               {
                 icon: FileCheck,
-                title: "Assessment",
-                description: "3-minute compliance review"
+                title: "Check",
+                description: "Quick 3-minute review of your setup"
               },
               {
                 icon: Brain,
-                title: "Analysis",
-                description: "Identify what needs fixing"
+                title: "Find gaps",
+                description: "Show you what's missing or wrong"
               },
               {
-                icon: Shield,
-                title: "Implementation",
-                description: "Organise your records"
+                icon: Settings,
+                title: "Fix it",
+                description: "Get your paperwork in order"
               },
               {
                 icon: Users,
-                title: "Support",
-                description: "Track changes & deadlines"
+                title: "Stay safe",
+                description: "Keep track of new rules"
               }
             ].map((item, index) => (
-              <div key={index} className="group relative">
-                <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-emerald-100 p-6 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl h-full">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                    <item.icon className="w-7 h-7 text-white" />
+              <div key={index} className="text-center">
+                <div className="flex items-center justify-center mb-4">
+                  <div className="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center">
+                    <item.icon className="w-8 h-8 text-emerald-600" strokeWidth={1.5} />
                   </div>
-                  <h3 className="poppins-semibold text-lg text-emerald-900 mb-2">{item.title}</h3>
-                  <p className="poppins-regular text-sm text-emerald-700">{item.description}</p>
                 </div>
+                <h3 className="poppins-semibold text-xl text-emerald-900 mb-2">{item.title}</h3>
+                <p className="poppins-regular text-sm text-emerald-700 leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
@@ -283,76 +287,116 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Get Started */}
-      <section className="py-16 px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl border border-emerald-100 p-8 sm:p-10 text-center">
-            <h2 className="poppins-bold text-2xl sm:text-3xl text-emerald-900 mb-4">
-              Start Your Assessment
-            </h2>
-            <p className="poppins-regular text-base text-emerald-700 mb-6">
-              Free 3-minute review. Instant feedback on your compliance status.
-            </p>
-            <Button
-              onClick={() => router.push("/quiz")}
-              className="bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold shadow-lg"
-              size="lg"
-            >
-              Get Started
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
+      {/* Premium CTA Section - World Class */}
+      <section className="py-24 px-4 sm:px-6 bg-gradient-to-b from-white via-emerald-50/30 to-white relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
-      </section>
 
-      {/* Contact */}
-      <section className="py-16 px-4 sm:px-6 bg-gradient-to-b from-emerald-50/30 to-white">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center">
-                <Mail className="w-6 h-6 text-emerald-600" />
-              </div>
-              <h2 className="poppins-bold text-3xl text-emerald-900">Contact</h2>
+        <div className="max-w-5xl mx-auto relative z-10">
+          {/* Badge */}
+          <div className="flex justify-center mb-6 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 shadow-lg">
+              <Zap className="w-4 h-4 text-white animate-pulse" />
+              <span className="poppins-semibold text-sm text-white uppercase tracking-wider">Take Action Now</span>
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-6">
-            <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-emerald-100 p-6 text-center">
-              <Mail className="w-6 h-6 text-emerald-600 mx-auto mb-3" />
-              <p className="poppins-medium text-xs text-emerald-600 mb-2">Email</p>
-              <a 
-                href={CONTACT_INFO.mailto}
-                className="poppins-regular text-sm text-emerald-900 hover:text-emerald-700 transition-colors break-all"
-              >
-                {CONTACT_INFO.email}
-              </a>
+          {/* Main Card */}
+          <div className="bg-gradient-to-br from-emerald-500 via-emerald-600 to-emerald-700 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden group animate-fade-in-up">
+            {/* Animated gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+            
+            {/* Floating particles effect */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute top-10 left-10 w-2 h-2 bg-white/30 rounded-full animate-float-slow"></div>
+              <div className="absolute top-20 right-20 w-3 h-3 bg-white/20 rounded-full animate-float-slow-reverse"></div>
+              <div className="absolute bottom-10 left-1/3 w-2 h-2 bg-white/30 rounded-full animate-float-slow"></div>
+              <div className="absolute bottom-20 right-1/4 w-2 h-2 bg-white/40 rounded-full animate-float-slow-reverse"></div>
             </div>
 
-            <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-emerald-100 p-6 text-center">
-              <Users className="w-6 h-6 text-emerald-600 mx-auto mb-3" />
-              <p className="poppins-medium text-xs text-emerald-600 mb-2">Phone</p>
-              <a 
-                href={CONTACT_INFO.tel}
-                className="poppins-regular text-sm text-emerald-900 hover:text-emerald-700 transition-colors"
-              >
-                {CONTACT_INFO.phone}
-              </a>
-            </div>
-
-            <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-emerald-100 p-6 text-center">
-              <Building className="w-6 h-6 text-emerald-600 mx-auto mb-3" />
-              <p className="poppins-medium text-xs text-emerald-600 mb-2">Location</p>
-              <p className="poppins-regular text-sm text-emerald-900">
-                United Kingdom
+            <div className="relative z-10">
+              {/* Heading */}
+              <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-white mb-4 text-center tracking-tight">
+                Ready to get compliant?
+              </h2>
+              
+              <p className="poppins-regular text-base sm:text-lg text-emerald-50 max-w-2xl mx-auto text-center mb-10 leading-relaxed">
+                Our free assessment checks all requirements and tells you exactly what you need to fix
               </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
+                <Button
+                  onClick={() => router.push("/quiz")}
+                  className="group/btn bg-white hover:bg-emerald-50 text-emerald-700 poppins-semibold shadow-xl hover:shadow-2xl transition-all duration-300 px-8 py-6 text-base sm:text-lg relative overflow-hidden min-w-[240px]"
+                >
+                  <span className="relative z-10 flex items-center justify-center">
+                    Start Free Assessment
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                  </span>
+                </Button>
+
+                <Button
+                  onClick={() => setShowContactModal(true)}
+                  className="group/btn bg-white hover:bg-emerald-50 text-emerald-700 poppins-semibold shadow-xl hover:shadow-2xl transition-all duration-300 px-8 py-6 text-base sm:text-lg relative overflow-hidden min-w-[240px]"
+                >
+                  <span className="relative z-10 flex items-center justify-center">
+                    <Mail className="w-5 h-5 mr-2" />
+                    Contact Us
+                  </span>
+                </Button>
+              </div>
+
+              {/* Feature Pills */}
+              <div className="flex flex-wrap items-center justify-center gap-6 pt-8 border-t border-white/20">
+                <div className="flex items-center gap-2 text-white/90 group/feature">
+                  <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover/feature:bg-white/20 transition-colors">
+                    <Clock className="w-5 h-5" />
+                  </div>
+                  <span className="poppins-medium text-sm">3 minutes</span>
+                </div>
+
+                <div className="w-px h-6 bg-white/30 hidden sm:block"></div>
+
+                <div className="flex items-center gap-2 text-white/90 group/feature">
+                  <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover/feature:bg-white/20 transition-colors">
+                    <CheckCircle2 className="w-5 h-5" />
+                  </div>
+                  <span className="poppins-medium text-sm">UK COMPLIANT</span>
+                </div>
+
+                <div className="w-px h-6 bg-white/30 hidden sm:block"></div>
+
+                <div className="flex items-center gap-2 text-white/90 group/feature">
+                  <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover/feature:bg-white/20 transition-colors">
+                    <Zap className="w-5 h-5" />
+                  </div>
+                  <span className="poppins-medium text-sm">Instant results</span>
+                </div>
+              </div>
             </div>
+          </div>
+
+          {/* Trust indicator */}
+          <div className="text-center mt-8 animate-fade-in">
+            <p className="poppins-regular text-sm text-emerald-600">
+              Join hundreds of UK businesses staying compliant
+            </p>
           </div>
         </div>
       </section>
 
       {/* Footer */}
       <Footer />
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={showContactModal}
+        onClose={() => setShowContactModal(false)}
+      />
     </div>
   )
 }

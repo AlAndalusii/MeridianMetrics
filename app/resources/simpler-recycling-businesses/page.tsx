@@ -3,7 +3,8 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, CheckCircle, AlertCircle, Calendar, Trash2, FileCheck, Users, Building, Coffee, Utensils, AlertTriangle, ArrowRight } from "lucide-react"
+import { ArrowLeft, CheckCircle, AlertCircle, Calendar, Trash2, FileCheck, Users, Building, Coffee, Utensils, AlertTriangle, ArrowRight, BarChart3, Zap,
+  BadgeCheck } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { CalendlyModal } from "@/components/CalendlyWidget"
 import { MobileMenu } from "@/components/MobileMenu"
@@ -58,6 +59,46 @@ export default function SimplerRecyclingBusinesses() {
               <span className="poppins-medium">Updated: February 2026</span>
               <span>•</span>
               <span className="poppins-medium">8 min read</span>
+            </div>
+          </div>
+
+          {/* Gap Analyser Hero CTA */}
+          <div className="mb-10 rounded-3xl overflow-hidden relative bg-gradient-to-r from-green-700 via-emerald-700 to-green-800 shadow-2xl shadow-green-900/20">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08)_0%,transparent_60%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.04)_0%,transparent_50%)]" />
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 p-7 sm:p-9">
+              {/* Left: icon + score badge */}
+              <div className="flex-shrink-0 flex flex-col items-center justify-center w-24 h-24 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm">
+                <BarChart3 className="w-8 h-8 text-green-200 mb-1" />
+                <span className="text-green-200 poppins-bold text-lg leading-none">0–10</span>
+                <span className="text-green-300 poppins-regular text-xs">Score</span>
+              </div>
+
+              {/* Middle: text */}
+              <div className="flex-1 text-center md:text-left">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/30 border border-green-400/40 mb-2">
+                  <Zap className="w-3 h-3 text-green-300" />
+                  <span className="poppins-semibold text-xs text-green-200 uppercase tracking-wide">AI-Powered Tool</span>
+                </div>
+                <h3 className="poppins-bold text-white text-xl sm:text-2xl mb-2 leading-tight">
+                  Find Out Exactly Where Your Business Stands
+                </h3>
+                <p className="poppins-regular text-green-200 text-sm leading-relaxed max-w-lg">
+                  Our Simpler Recycling Gap Analyser scores your compliance 0–10 using Gemini AI — identifying your critical gaps, penalty risks, and a personalised action plan in under 3 minutes.
+                </p>
+              </div>
+
+              {/* Right: CTA */}
+              <div className="flex-shrink-0 flex flex-col items-center gap-2">
+                <Link href="/simpler-recycling-gap-analyser">
+                  <Button className="poppins-bold bg-white text-green-800 hover:bg-green-50 px-7 py-5 text-sm rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 group whitespace-nowrap">
+                    <BarChart3 className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                    Try the Gap Analyser
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <span className="poppins-regular text-xs text-green-300">Free · AI-scored · Results emailed</span>
+              </div>
             </div>
           </div>
 
@@ -439,6 +480,23 @@ export default function SimplerRecyclingBusinesses() {
               </div>
             </div>
 
+            {/* Mid-article Gap Analyser CTA */}
+            <div className="mb-8 bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-5">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-green-500/25">
+                <BarChart3 className="w-7 h-7 text-white" />
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <p className="poppins-bold text-green-900 text-lg mb-1">Are any of these gaps affecting your business?</p>
+                <p className="poppins-regular text-green-700 text-sm">Our free Gap Analyser checks all 10 compliance areas and gives you an AI-scored report with your top 3 risks — in under 3 minutes.</p>
+              </div>
+              <Link href="/simpler-recycling-gap-analyser" className="flex-shrink-0">
+                <Button className="poppins-semibold bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 rounded-xl hover:shadow-lg hover:shadow-green-500/25 hover:scale-105 transition-all group whitespace-nowrap">
+                  Check My Compliance Score
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+
             {/* Why Independent Audits */}
             <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-emerald-100 shadow-lg mb-8">
               <h2 className="poppins-semibold text-2xl text-emerald-900 mb-4">Why Independent Compliance Audits Deliver ROI</h2>
@@ -486,44 +544,58 @@ export default function SimplerRecyclingBusinesses() {
               </div>
             </div>
 
-            {/* CTA Section - Free Screening */}
-            <div className="bg-gradient-to-br from-emerald-500 via-emerald-600 to-emerald-700 rounded-2xl p-8 text-white mb-8 relative overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
-              <div className="relative z-10">
-                <h3 className="poppins-bold text-2xl mb-4">Free Simpler Recycling Compliance Assessment</h3>
-                <p className="poppins-regular text-lg mb-4">
-                  Not sure if your business is compliant? We offer a 15-minute phone screening:
-                </p>
-                <div className="grid sm:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-                    <h4 className="poppins-semibold text-base mb-2">We'll ask you:</h4>
-                    <ul className="space-y-1 text-sm">
-                      <li>• How many FTE employees?</li>
-                      <li>• Do you have all 4 waste bins?</li>
-                      <li>• Can you produce Waste Transfer Notes?</li>
-                      <li>• Is your carrier registered?</li>
-                    </ul>
+            {/* CTA Section - Dual: Gap Analyser + Free Screening */}
+            <div className="mb-8 grid sm:grid-cols-2 gap-5">
+              {/* Gap Analyser card */}
+              <div className="bg-gradient-to-br from-green-600 to-emerald-700 rounded-2xl p-7 text-white relative overflow-hidden flex flex-col">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08)_0%,transparent_60%)]" />
+                <div className="relative z-10 flex-1">
+                  <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center mb-4">
+                    <BarChart3 className="w-5 h-5 text-white" />
                   </div>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-                    <h4 className="poppins-semibold text-base mb-2">You'll receive:</h4>
-                    <ul className="space-y-1 text-sm">
-                      <li>• Instant compliance status</li>
-                      <li>• Penalty risk assessment</li>
-                      <li>• Recommended next steps</li>
-                      <li>• Quote for full audit if needed</li>
-                    </ul>
+                  <h4 className="poppins-bold text-lg mb-2">AI Gap Analyser</h4>
+                  <p className="poppins-regular text-green-100 text-sm mb-5 leading-relaxed">
+                    10 questions. AI-scored 0–10 compliance report. Get your personalised gap analysis and action plan instantly — free.
+                  </p>
+                  <div className="space-y-1.5 mb-6 text-xs text-green-200">
+                    <div className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 flex-shrink-0" /> Under 3 minutes</div>
+                    <div className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 flex-shrink-0" /> Powered by Gemini AI</div>
+                    <div className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 flex-shrink-0" /> Results emailed instantly</div>
                   </div>
                 </div>
-                <p className="poppins-regular text-sm mb-6">
-                  No obligation. No sales pressure. Just clarity.
-                </p>
+                <Link href="/simpler-recycling-gap-analyser">
+                  <Button className="w-full poppins-bold bg-white text-green-800 hover:bg-green-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all group">
+                    <BarChart3 className="w-4 h-4 mr-2" />
+                    Try the Gap Analyser — Free
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Book audit card */}
+              <div className="bg-gradient-to-br from-emerald-500 via-emerald-600 to-emerald-700 rounded-2xl p-7 text-white relative overflow-hidden flex flex-col">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08)_0%,transparent_60%)]" />
+                <div className="relative z-10 flex-1">
+                  <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center mb-4">
+                    <BadgeCheck className="w-5 h-5 text-white" />
+                  </div>
+                  <h4 className="poppins-bold text-lg mb-2">£295 Compliance Audit</h4>
+                  <p className="poppins-regular text-emerald-100 text-sm mb-5 leading-relaxed">
+                    90-minute on-site review, written compliance report, legal risk assessment, and compliance certificate — everything you need to be inspection-ready.
+                  </p>
+                  <div className="space-y-1.5 mb-6 text-xs text-emerald-200">
+                    <div className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 flex-shrink-0" /> Full legal risk assessment</div>
+                    <div className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 flex-shrink-0" /> Written compliance certificate</div>
+                    <div className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 flex-shrink-0" /> Report within 24 hours</div>
+                  </div>
+                </div>
                 <Button
                   onClick={() => setShowCalendlyModal(true)}
-                  size="lg"
-                  className="bg-white text-emerald-700 hover:bg-emerald-50 poppins-semibold shadow-xl w-full sm:w-auto"
+                  className="w-full poppins-bold bg-white text-emerald-800 hover:bg-emerald-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all group"
                 >
-                  Book Free 15-Minute Compliance Screening
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <Calendar className="w-4 h-4 mr-2" />
+                  Book Compliance Audit
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
             </div>
@@ -659,25 +731,28 @@ export default function SimplerRecyclingBusinesses() {
                     </ul>
                   </div>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center flex-wrap">
+                  <Link href="/simpler-recycling-gap-analyser">
+                    <Button
+                      size="lg"
+                      className="bg-white text-emerald-700 hover:bg-emerald-50 poppins-bold shadow-xl text-base px-7 py-5 group border-2 border-white"
+                    >
+                      <BarChart3 className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                      Try the Free Gap Analyser
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
                   <Button
                     onClick={() => setShowCalendlyModal(true)}
                     size="lg"
-                    className="bg-white text-emerald-700 hover:bg-emerald-50 poppins-semibold shadow-xl text-lg px-8 py-6"
+                    className="bg-white/20 hover:bg-white/30 text-white border-2 border-white/60 poppins-semibold shadow-xl text-base px-7 py-5"
                   >
-                    Get Your Compliance Assessment
-                    <ArrowRight className="w-6 h-6 ml-2" />
+                    Book £295 Audit
+                    <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
-                  <a
-                    href={`mailto:hello@millstonecompliance.com?subject=Simpler Recycling Compliance Help&body=Hello Millstone Compliance,%0D%0A%0D%0AI would like to discuss Simpler Recycling compliance assistance.%0D%0A%0D%0AName: %0D%0ACompany: %0D%0AWhat I need help with: %0D%0A%0D%0APreferred contact date and time: %0D%0A%0D%0AThank you.`}
-                    className="bg-white/20 hover:bg-white/30 text-white border-2 border-white poppins-semibold shadow-xl text-lg px-8 py-6 rounded-md inline-flex items-center justify-center transition-all duration-300"
-                  >
-                    Or Contact Us via Email
-                    <ArrowRight className="w-6 h-6 ml-2" />
-                  </a>
                 </div>
                 <p className="poppins-regular text-sm mt-4 text-emerald-50">
-                  Book your free screening or full audit today. No obligation. No sales pressure.
+                  Gap Analyser is free · Audit from £295 · No sales pressure
                 </p>
               </div>
             </div>

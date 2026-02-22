@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import {
   ArrowRight,
   ArrowLeft,
-  Shield,
+  BadgeCheck,
   Users,
   Trash2,
   CheckCircle,
@@ -38,7 +38,7 @@ const questions: Question[] = [
   {
     id: 1,
     section: "Contact Information",
-    icon: Shield,
+    icon: BadgeCheck,
     question: "What's your name?",
     subtitle: "Let's start with the basics",
     type: "text",
@@ -48,7 +48,7 @@ const questions: Question[] = [
   {
     id: 2,
     section: "Contact Information",
-    icon: Shield,
+    icon: BadgeCheck,
     question: "What's your work email?",
     subtitle: "We'll send your detailed report here",
     type: "text",
@@ -58,7 +58,7 @@ const questions: Question[] = [
   {
     id: 3,
     section: "Contact Information",
-    icon: Shield,
+    icon: BadgeCheck,
     question: "What's your company name?",
     type: "text",
     whyMatters: "Helps us understand your business context",
@@ -67,7 +67,7 @@ const questions: Question[] = [
   {
     id: 4,
     section: "Contact Information",
-    icon: Shield,
+    icon: BadgeCheck,
     question: "Phone number (optional)",
     subtitle: "We will not call you unless you explicitly request a call",
     type: "text",
@@ -377,7 +377,7 @@ function SimplerRecyclingQuizContent() {
                 </Button>
               </Link>
               <div className="flex items-center space-x-2 px-4 py-2 bg-green-50/80 rounded-full border border-green-100">
-                <Shield className="w-4 h-4 text-green-600" />
+                <BadgeCheck className="w-4 h-4 text-green-600" />
                 <span className="text-sm poppins-medium text-green-700">
                   {isContactInfoPhase 
                     ? `${currentStep + 1}/${contactInfoQuestions}` 
@@ -602,7 +602,7 @@ function SimplerRecyclingQuizContent() {
                 {currentStep === 0 && (
                   <div className="mt-8 pt-6 border-t border-green-100">
                     <div className="flex items-center justify-center space-x-2 text-green-600">
-                      <Shield className="w-4 h-4" />
+                      <BadgeCheck className="w-4 h-4" />
                       <span className="poppins-medium text-sm">
                         🔒 Your information is confidential and never shared
                       </span>

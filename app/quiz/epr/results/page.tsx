@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
   ArrowRight,
-  Shield,
+  BadgeCheck,
   CheckCircle,
   AlertTriangle,
   Mail,
@@ -187,7 +187,7 @@ export default function EPRResultsPage() {
           {/* Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-200 mb-4">
-              <Shield className="w-4 h-4 text-blue-600 mr-2" />
+              <BadgeCheck className="w-4 h-4 text-blue-600 mr-2" />
               <span className="poppins-semibold text-sm text-blue-700">EPR Compliance Results</span>
             </div>
             

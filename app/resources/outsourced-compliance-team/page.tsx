@@ -3,7 +3,8 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, CheckCircle, Building, Users, Clock, Shield, TrendingDown, AlertTriangle, FileCheck, Target, Zap, Mail, ArrowRight, Phone } from "lucide-react"
+import { ArrowLeft, CheckCircle, Building, Users, Clock,
+  BadgeCheck, TrendingDown, AlertTriangle, FileCheck, Target, Zap, Mail, ArrowRight, Phone } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { ContactModal } from "@/components/ContactModal"
 import { MobileMenu } from "@/components/MobileMenu"
@@ -260,7 +261,7 @@ export default function OutsourcedComplianceTeam() {
                 },
                 {
                   step: "Step 3: Ongoing Management (Month 2+)",
-                  icon: Shield,
+                  icon: BadgeCheck,
                   items: [
                     "Collect and file all Waste Transfer Notes",
                     "Track regulatory changes",
@@ -388,7 +389,7 @@ export default function OutsourcedComplianceTeam() {
                 </div>
                 <div className="w-px h-6 bg-white/30 hidden sm:block"></div>
                 <div className="flex items-center gap-2">
-                  <Shield className="w-5 h-5" />
+                  <BadgeCheck className="w-5 h-5" />
                   <span className="text-sm poppins-medium">100% compliance</span>
                 </div>
                 <div className="w-px h-6 bg-white/30 hidden sm:block"></div>

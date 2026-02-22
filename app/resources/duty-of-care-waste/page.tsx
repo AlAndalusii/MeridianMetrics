@@ -3,7 +3,8 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, CheckCircle, AlertCircle, Shield, FileText, Users, Scale, AlertTriangle, ArrowRight, XCircle, Clock, Building, Trash2, FileCheck, Lock } from "lucide-react"
+import { ArrowLeft, CheckCircle, AlertCircle,
+  BadgeCheck, FileText, Users, Scale, AlertTriangle, ArrowRight, XCircle, Clock, Building, Trash2, FileCheck, Lock, BarChart3 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { CalendlyModal } from "@/components/CalendlyWidget"
 import { MobileMenu } from "@/components/MobileMenu"
@@ -190,7 +191,7 @@ export default function DutyOfCareWaste() {
 
                 <div className="bg-orange-50 rounded-xl p-5 border-l-4 border-orange-400">
                   <h3 className="poppins-semibold text-lg text-orange-900 mb-3 flex items-center gap-2">
-                    <Shield className="w-5 h-5" />
+                    <BadgeCheck className="w-5 h-5" />
                     2. Prevent Environmental Permit Breaches
                   </h3>
                   <p className="poppins-regular text-orange-800 text-sm mb-3">
@@ -601,6 +602,24 @@ export default function DutyOfCareWaste() {
               </div>
             </div>
 
+            {/* Gap Analyser inline CTA */}
+            <div className="mb-8 flex flex-col sm:flex-row items-center gap-5 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl p-6">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0 shadow-md shadow-green-500/20">
+                <BarChart3 className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <p className="poppins-bold text-green-900 text-base mb-1">Also need Simpler Recycling compliance?</p>
+                <p className="poppins-regular text-green-700 text-sm">Try our free AI Gap Analyser — 10 questions, instant 0–10 compliance score, and a personalised report emailed to you.</p>
+              </div>
+              <Link href="/simpler-recycling-gap-analyser" className="flex-shrink-0">
+                <Button className="poppins-semibold bg-gradient-to-r from-green-600 to-emerald-600 text-white px-5 py-3.5 rounded-xl hover:shadow-lg hover:shadow-green-500/25 hover:scale-105 transition-all group text-sm whitespace-nowrap">
+                  <BarChart3 className="w-4 h-4 mr-1.5" />
+                  Try Gap Analyser — Free
+                  <ArrowRight className="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+
             {/* CTA - Free Assessment */}
             <div className="bg-gradient-to-br from-emerald-500 via-emerald-600 to-emerald-700 rounded-2xl p-8 text-white mb-8 relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
@@ -820,30 +839,33 @@ export default function DutyOfCareWaste() {
                     <p className="text-sm">Written findings with compliance certificate or costed gap analysis</p>
                   </div>
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                    <Shield className="w-8 h-8 mx-auto mb-3" />
+                    <BadgeCheck className="w-8 h-8 mx-auto mb-3" />
                     <h4 className="poppins-semibold text-lg mb-2">30-Day Support</h4>
                     <p className="text-sm">Email and phone assistance to implement recommendations</p>
                   </div>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center flex-wrap">
+                  <Link href="/simpler-recycling-gap-analyser">
+                    <Button
+                      size="lg"
+                      className="bg-white text-green-800 hover:bg-green-50 poppins-bold shadow-xl text-base px-7 py-5 group"
+                    >
+                      <BarChart3 className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                      Free Gap Analyser
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
                   <Button
                     onClick={() => setShowCalendlyModal(true)}
                     size="lg"
-                    className="bg-white text-emerald-700 hover:bg-emerald-50 poppins-semibold shadow-xl text-lg px-8 py-6"
+                    className="bg-white/20 hover:bg-white/30 text-white border-2 border-white/60 poppins-semibold shadow-xl text-base px-7 py-5"
                   >
-                    Book Your £295 Duty of Care Audit
-                    <ArrowRight className="w-6 h-6 ml-2" />
+                    Book Your £295 Audit
+                    <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
-                  <a
-                    href={`mailto:hello@millstonecompliance.com?subject=Duty of Care Compliance Help&body=Hello Millstone Compliance,%0D%0A%0D%0AI would like to discuss Duty of Care compliance assistance.%0D%0A%0D%0AName: %0D%0ACompany: %0D%0AWhat I need help with: %0D%0A%0D%0APreferred contact date and time: %0D%0A%0D%0AThank you.`}
-                    className="bg-white/20 hover:bg-white/30 text-white border-2 border-white poppins-semibold shadow-xl text-lg px-8 py-6 rounded-md inline-flex items-center justify-center transition-all duration-300"
-                  >
-                    Or Contact Us via Email
-                    <ArrowRight className="w-6 h-6 ml-2" />
-                  </a>
                 </div>
                 <p className="poppins-regular text-sm mt-4 text-emerald-50">
-                  Fixed price. No hidden costs. Compliance guaranteed.
+                  Gap Analyser is free · Audit from £295 · No hidden costs
                 </p>
               </div>
             </div>

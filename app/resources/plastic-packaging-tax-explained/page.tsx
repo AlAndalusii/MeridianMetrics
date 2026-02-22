@@ -3,7 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ArrowRight, CheckCircle, AlertCircle, FileText, Calculator } from "lucide-react"
+import { ArrowLeft, ArrowRight, CheckCircle, AlertCircle, FileText, Calculator, Zap, BarChart3 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { MobileMenu } from "@/components/MobileMenu"
 
@@ -21,7 +21,7 @@ export default function PlasticPackagingTaxExplained() {
               <Button 
                 asChild
                 className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 min-h-[44px]">
-                <Link href="/quiz">Free Assessment</Link>
+                <Link href="/ppt-gap-analyser">Free PPT Assessment</Link>
               </Button>
               <MobileMenu />
             </div>
@@ -53,6 +53,56 @@ export default function PlasticPackagingTaxExplained() {
               <span className="poppins-medium">Updated: December 2024</span>
               <span>•</span>
               <span className="poppins-medium">5 min read</span>
+            </div>
+          </div>
+
+          {/* PPT Gap Analyser Featured Tool */}
+          <div className="mb-10 rounded-3xl bg-gradient-to-r from-green-700 via-emerald-700 to-green-800 overflow-hidden shadow-2xl shadow-green-900/20 relative">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08)_0%,transparent_60%)]" />
+            <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 p-7 sm:p-9">
+              {/* Score visual */}
+              <div className="flex-shrink-0 flex flex-col items-center">
+                <div className="relative w-24 h-24">
+                  <svg viewBox="0 0 120 120" className="-rotate-90 w-full h-full">
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="10" />
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="10"
+                      strokeDasharray="314" strokeDashoffset="31" strokeLinecap="round" />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="poppins-black text-2xl text-white leading-none">90</span>
+                    <span className="text-green-300 poppins-medium text-xs">/100</span>
+                  </div>
+                </div>
+                <span className="poppins-semibold text-xs text-green-300 mt-2 text-center">AI Compliance Score</span>
+              </div>
+
+              {/* Text */}
+              <div className="flex-1 text-center lg:text-left">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/30 border border-green-400/40 mb-3">
+                  <Zap className="w-3 h-3 text-green-300" />
+                  <span className="poppins-semibold text-xs text-green-200 uppercase tracking-wide">Featured Tool — Free</span>
+                </div>
+                <h2 className="poppins-bold text-white text-xl sm:text-2xl mb-2 leading-tight">
+                  PPT Gap Analyser
+                </h2>
+                <p className="poppins-regular text-green-200 text-sm leading-relaxed mb-4 max-w-xl">
+                  Answer 10 questions and our Gemini AI scores your PPT compliance 0–100, identifies your top 3 HMRC risk areas, and emails you a personalised action plan — in under 3 minutes.
+                </p>
+                <div className="flex flex-wrap justify-center lg:justify-start gap-3 text-xs text-green-300 mb-5">
+                  <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Under 3 minutes</div>
+                  <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Powered by Gemini AI</div>
+                  <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Free · Results emailed</div>
+                  <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />0–100 scoring</div>
+                </div>
+                <Link
+                  href="/ppt-gap-analyser"
+                  className="inline-flex items-center justify-center gap-2 poppins-bold bg-white text-green-800 hover:bg-green-50 px-6 py-3 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 group text-sm"
+                >
+                  <BarChart3 className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  Check My PPT Compliance
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -224,7 +274,7 @@ export default function PlasticPackagingTaxExplained() {
                 <Button 
                   asChild
                   className="poppins-semibold bg-white hover:bg-emerald-50 text-emerald-700 shadow-xl hover:shadow-2xl transition-all duration-300">
-                  <Link href="/quiz">Start Your Free Assessment</Link>
+                  <Link href="/ppt-gap-analyser">Start Your Free PPT Assessment</Link>
                 </Button>
                 <a
                   href={`mailto:hello@millstonecompliance.com?subject=Plastic Packaging Tax Help&body=Hello Millstone Compliance,%0D%0A%0D%0AI would like to discuss Plastic Packaging Tax compliance assistance.%0D%0A%0D%0AName: %0D%0ACompany: %0D%0AWhat I need help with: %0D%0A%0D%0APreferred contact date and time: %0D%0A%0D%0AThank you.`}

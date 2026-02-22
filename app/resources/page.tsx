@@ -3,7 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ClipboardCheck, Recycle, Package, Calculator, ListChecks, FileSearch, Users } from "lucide-react"
+import { ArrowRight, ClipboardCheck, Recycle, Package, Calculator, ListChecks, FileSearch, Users, BarChart3, Zap, CheckCircle } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import Footer from "@/components/Footer"
@@ -13,6 +13,14 @@ export default function ResourcesPage() {
   const router = useRouter()
 
   const resources = [
+    {
+      title: "EPR Packaging: A Plain English Guide for UK Businesses",
+      description: "What EPR is, whether it applies to your business, what you need to do, and the key dates you can't miss — explained simply. Includes 6 practical tips and common Q&As.",
+      icon: Recycle,
+      href: "/resources/epr-packaging",
+      badge: "New",
+      topics: ["EPR Basics", "2026 Deadlines", "Fees", "Tips"]
+    },
     {
       title: "Outsourced Compliance Team",
       description: "Complete guide to outsourcing compliance vs hiring in-house. Compare costs, understand what's included, and see how to get expert support from £299/month.",
@@ -36,6 +44,14 @@ export default function ResourcesPage() {
       href: "/resources/simpler-recycling-businesses",
       badge: "Popular",
       topics: ["Waste Compliance", "Deadlines", "Food Waste", "Regulations"]
+    },
+    {
+      title: "April 2027 PPT Changes: What UK Businesses Need to Know",
+      description: "Two major rule changes are coming to Plastic Packaging Tax in April 2027. Factory scraps will no longer count, and chemical recycling will count (with certification). Find out how to prepare.",
+      icon: Package,
+      href: "/resources/plastic-packaging-tax-2027",
+      badge: "New",
+      topics: ["2027 Changes", "Chemical Recycling", "Factory Scraps", "Action Plan"]
     },
     {
       title: "What Is Plastic Packaging Tax?",
@@ -108,6 +124,66 @@ export default function ResourcesPage() {
           </p>
         </div>
 
+        {/* Featured Tool: Gap Analyser */}
+        <div className="mb-12 rounded-3xl bg-gradient-to-r from-green-700 via-emerald-700 to-green-800 overflow-hidden shadow-2xl shadow-green-900/20 relative">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08)_0%,transparent_60%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.03)_0%,transparent_50%)]" />
+          <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 p-8 sm:p-10">
+            {/* Score visual */}
+            <div className="flex-shrink-0 flex flex-col items-center">
+              <div className="relative w-28 h-28">
+                <svg viewBox="0 0 120 120" className="-rotate-90 w-full h-full">
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="10" />
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="10"
+                    strokeDasharray="314" strokeDashoffset="94" strokeLinecap="round" />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <span className="poppins-black text-3xl text-white leading-none">7</span>
+                  <span className="text-green-300 poppins-medium text-xs">/10</span>
+                </div>
+              </div>
+              <span className="poppins-semibold text-xs text-green-300 mt-2 text-center">AI Compliance Score</span>
+            </div>
+
+            {/* Text */}
+            <div className="flex-1 text-center lg:text-left">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/30 border border-green-400/40 mb-3">
+                <Zap className="w-3 h-3 text-green-300" />
+                <span className="poppins-semibold text-xs text-green-200 uppercase tracking-wide">Featured Tool — Free</span>
+              </div>
+              <h2 className="poppins-bold text-white text-2xl sm:text-3xl mb-3 leading-tight">
+                Simpler Recycling Gap Analyser
+              </h2>
+              <p className="poppins-regular text-green-200 text-base leading-relaxed mb-5 max-w-xl">
+                Answer 10 questions and our Gemini AI scores your Simpler Recycling compliance 0–10, identifies your top 3 penalty risks, and emails you a personalised action plan — in under 3 minutes.
+              </p>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-xs text-green-300 mb-6">
+                <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Under 3 minutes</div>
+                <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Powered by Gemini AI</div>
+                <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Free · Results emailed</div>
+                <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Traffic-light scoring</div>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                <button
+                  onClick={() => router.push("/simpler-recycling-gap-analyser")}
+                  className="inline-flex items-center justify-center gap-2 poppins-bold bg-white text-green-800 hover:bg-green-50 px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 group text-sm"
+                >
+                  <BarChart3 className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  Analyse My Compliance Now
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+                <button
+                  onClick={() => router.push("/resources/simpler-recycling-businesses")}
+                  className="inline-flex items-center justify-center gap-2 poppins-semibold bg-white/15 hover:bg-white/25 text-white border border-white/30 px-6 py-4 rounded-2xl transition-all duration-300 text-sm"
+                >
+                  Read the Guide
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Resources Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {resources.map((resource, index) => (
@@ -156,23 +232,34 @@ export default function ResourcesPage() {
 
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
-        <div className="bg-gradient-to-br from-emerald-500 via-emerald-600 to-emerald-700 rounded-3xl p-12 text-white text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
+        <div className="bg-gradient-to-br from-emerald-600 via-green-700 to-emerald-700 rounded-3xl p-10 sm:p-12 text-white text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08)_0%,transparent_50%)]" />
           <div className="relative z-10">
             <h2 className="poppins-bold text-3xl sm:text-4xl mb-4">
-              Need personalised guidance?
+              Not sure where you stand?
             </h2>
-            <p className="poppins-regular text-lg text-emerald-50 mb-8 max-w-2xl mx-auto">
-              Get a free assessment of your packaging and waste compliance situation
+            <p className="poppins-regular text-lg text-emerald-100 mb-8 max-w-2xl mx-auto">
+              Start with our free AI-powered Gap Analyser — get your compliance score in 3 minutes, or book a full expert audit.
             </p>
-            <Button
-              onClick={() => router.push("/quiz")}
-              size="lg"
-              className="bg-white text-emerald-700 hover:bg-emerald-50 poppins-semibold shadow-xl"
-            >
-              Start Free Assessment
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+              <Button
+                onClick={() => router.push("/simpler-recycling-gap-analyser")}
+                size="lg"
+                className="poppins-bold bg-white text-green-800 hover:bg-green-50 shadow-xl px-8 py-5 text-base group"
+              >
+                <BarChart3 className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                Try the Free Gap Analyser
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button
+                onClick={() => router.push("/quiz")}
+                size="lg"
+                className="poppins-semibold bg-white/20 hover:bg-white/30 text-white border-2 border-white/40 shadow-lg px-8 py-5 text-base"
+              >
+                Full Compliance Assessment
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </div>
           </div>
         </div>
       </section>

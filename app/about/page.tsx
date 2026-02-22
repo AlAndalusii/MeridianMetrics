@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { 
   ArrowRight, 
-  Shield,
+  BadgeCheck,
   Target,
   Brain,
   FileCheck,
@@ -106,7 +106,7 @@ export default function AboutPage() {
               <div className="absolute top-0 right-0 bg-white/90 backdrop-blur-xl rounded-2xl border border-emerald-100 p-6 shadow-xl max-w-sm animate-float-slow">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-6 h-6 text-emerald-600" />
+                    <BadgeCheck className="w-6 h-6 text-emerald-600" />
                   </div>
                   <div>
                     <h3 className="poppins-semibold text-sm text-emerald-900">Credentials</h3>

@@ -11,7 +11,7 @@ import {
   Trash2,
   ArrowRight,
   Clock,
-  Shield
+  BadgeCheck
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { CalendlyModal } from "@/components/CalendlyWidget"
@@ -19,38 +19,38 @@ import { CalendlyModal } from "@/components/CalendlyWidget"
 const quizOptions = [
   {
     id: "ppt",
-    title: "PPT - Plastic Packaging Tax",
-    description: "£210/tonne tax on plastic packaging. Do you have valid recycled content certificates?",
+    title: "PPT - Gap Analyser",
+    description: "AI-scored PPT compliance check — 10 questions, 0–100 score, personalised gap report emailed instantly.",
     icon: Package,
     color: "emerald",
-    duration: "5 minutes",
-    questions: "19 questions",
-    targetAudience: "Businesses handling 10+ tonnes plastic packaging annually",
-    link: "/assessment",
+    duration: "3 minutes",
+    questions: "10 questions",
+    targetAudience: "Businesses manufacturing or importing 10+ tonnes of plastic packaging annually",
+    link: "/ppt-gap-analyser",
     isActive: true,
   },
   {
     id: "epr",
-    title: "EPR - Extended Producer Responsibility",
-    description: "New packaging fees launched January 2025. Are you registered? Are you overpaying?",
+    title: "EPR - Gap Analyser",
+    description: "AI-scored EPR compliance check — 10 questions, 0–100 score, fee overpayment analysis emailed instantly.",
     icon: Recycle,
     color: "blue",
-    duration: "2 minutes",
+    duration: "3 minutes",
     questions: "10 questions",
     targetAudience: "Businesses handling 25+ tonnes packaging with £1M+ turnover",
-    link: "/quiz/epr",
+    link: "/epr-gap-analyser",
     isActive: true,
   },
   {
     id: "simpler-recycling",
-    title: "Simpler Recycling - Workplace Waste",
-    description: "New rules (31 March 2025) require all businesses to separate waste into 3 bins. Are you compliant?",
+    title: "Simpler Recycling - Gap Analyser",
+    description: "AI-scored compliance check — 10 questions, 0–10 score, personalised gap report emailed instantly.",
     icon: Trash2,
     color: "green",
-    duration: "2 minutes",
+    duration: "3 minutes",
     questions: "10 questions",
     targetAudience: "Businesses with 10+ employees",
-    link: "/quiz/simpler-recycling",
+    link: "/simpler-recycling-gap-analyser",
     isActive: true,
   },
   {
@@ -150,7 +150,7 @@ export default function QuizSelectorPage() {
           {/* Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 mb-6">
-              <Shield className="w-4 h-4 text-emerald-600 mr-2" />
+              <BadgeCheck className="w-4 h-4 text-emerald-600 mr-2" />
               <span className="poppins-semibold text-sm text-emerald-700">
                 Millstone Compliance Assessments
               </span>

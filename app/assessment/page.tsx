@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import {
   ArrowRight,
   ArrowLeft,
-  Shield,
+  BadgeCheck,
   FileCheck,
   Calculator,
   Database,
@@ -48,7 +48,7 @@ const questions: Question[] = [
   {
     id: 1,
     section: "Contact Information",
-    icon: Shield,
+    icon: BadgeCheck,
     question: "What's your name?",
     subtitle: "Let's start with the basics",
     type: "text",
@@ -58,7 +58,7 @@ const questions: Question[] = [
   {
     id: 2,
     section: "Contact Information",
-    icon: Shield,
+    icon: BadgeCheck,
     question: "What's your work email?",
     subtitle: "We'll send your detailed report here",
     type: "text",
@@ -68,7 +68,7 @@ const questions: Question[] = [
   {
     id: 3,
     section: "Contact Information",
-    icon: Shield,
+    icon: BadgeCheck,
     question: "What's your company name?",
     type: "text",
     whyMatters: "Helps us understand your business context",
@@ -77,7 +77,7 @@ const questions: Question[] = [
   {
     id: 4,
     section: "Contact Information",
-    icon: Shield,
+    icon: BadgeCheck,
     question: "Phone number (optional)",
     subtitle: "We will not call you unless you explicitly request a call. This is purely for your convenience.",
     type: "text",
@@ -736,7 +736,7 @@ function AssessmentPageContent() {
                 <Package className="w-3 sm:w-4 h-3 sm:h-4" />
               </Button>
               <div className="flex items-center space-x-1.5 sm:space-x-2 px-2 sm:px-4 py-1.5 sm:py-2 bg-emerald-50/80 rounded-full border border-emerald-100">
-                <Shield className="w-3 sm:w-4 h-3 sm:h-4 text-emerald-600" />
+                <BadgeCheck className="w-3 sm:w-4 h-3 sm:h-4 text-emerald-600" />
                 <span className="text-[10px] sm:text-sm poppins-medium text-emerald-700">
                   {isContactInfoPhase 
                     ? `${currentStep + 1}/${contactInfoQuestions}` 
@@ -1145,7 +1145,7 @@ function AssessmentPageContent() {
                 {currentStep === 0 && (
                   <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-emerald-100">
                     <div className="flex items-center justify-center space-x-2 text-emerald-600">
-                      <Shield className="w-3 sm:w-4 h-3 sm:h-4 flex-shrink-0" />
+                      <BadgeCheck className="w-3 sm:w-4 h-3 sm:h-4 flex-shrink-0" />
                       <span className="poppins-medium text-xs sm:text-sm text-center">
                         🔒 Your information is confidential and never shared
                       </span>

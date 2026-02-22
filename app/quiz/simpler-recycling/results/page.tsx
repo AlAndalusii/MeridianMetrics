@@ -4,9 +4,10 @@ import React, { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
   ArrowRight,
-  Shield,
+  BadgeCheck,
   CheckCircle,
   AlertTriangle,
   Mail,
@@ -14,6 +15,8 @@ import {
   TrendingUp,
   Target,
   Clock,
+  Send,
+  Loader2,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { CalendlyModal } from "@/components/CalendlyWidget"
@@ -26,6 +29,11 @@ export default function SimplerRecyclingResultsPage() {
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [userInfo, setUserInfo] = useState({ name: "", email: "", company: "", phone: "" })
   const [showCalendlyModal, setShowCalendlyModal] = useState(false)
+  const [emailSending, setEmailSending] = useState(false)
+  const [emailSent, setEmailSent] = useState(false)
+  const [emailError, setEmailError] = useState("")
+  const [emailInput, setEmailInput] = useState("")
+  const [showEmailInput, setShowEmailInput] = useState(false)
 
   useEffect(() => {
     try {
@@ -81,48 +89,100 @@ export default function SimplerRecyclingResultsPage() {
     return { level: "Non-Compliant", color: "red", description: "Urgent action needed - you're breaking the law" }
   }
 
-  const getRecommendedService = () => {
-    if (score >= 80) {
-      return {
-        title: "Workplace Compliance Check - £295",
-        description: "Annual site assessment to verify ongoing compliance and identify any issues",
-        features: [
-          "Site visit and bin inspection",
-          "Waste contractor verification",
-          "Staff awareness check",
-          "Compliance documentation review",
-        ]
-      }
+  // Build findings array from answers for the email
+  const buildFindings = () => {
+    const findings: Array<{ status: 'compliant' | 'gap' | 'warning'; title: string; detail: string }> = []
+
+    // Employee deadline
+    if (answers[5] === "under_10") {
+      findings.push({ status: 'compliant', title: 'Micro-firm — 2027 Deadline', detail: 'You have until 31 March 2027 to comply with Simpler Recycling.' })
+    } else if (answers[5] === "not_sure") {
+      findings.push({ status: 'warning', title: 'Employee Count Uncertain', detail: 'You need to count full-time equivalents to confirm your legal deadline.' })
+    } else {
+      findings.push({ status: 'gap', title: 'Deadline Passed — 31 March 2025', detail: 'With 10+ employees, your compliance deadline has passed. Immediate action required.' })
     }
-    if (score >= 50) {
-      return {
-        title: "Simpler Recycling Audit - £295",
-        description: "On-site assessment with actionable plan to fix gaps within 7 days",
-        features: [
-          "Site assessment (we visit your premises)",
-          "Waste stream analysis",
-          "Contractor compliance check",
-          "Staff training materials",
-          "Compliance implementation plan",
-        ]
-      }
+
+    // Bins
+    if (answers[6] === "one" || answers[6] === "two") {
+      findings.push({ status: 'gap', title: 'Insufficient Waste Separation', detail: 'You need at least 3 separate bins: dry recyclables, food waste, and general waste.' })
+    } else if (answers[6] === "three_plus") {
+      findings.push({ status: 'compliant', title: 'Bin Separation in Place', detail: 'You have 3 or more separate waste streams — this meets the minimum requirement.' })
     }
-    return {
-      title: "Full Compliance Setup - £795",
-      description: "Complete setup to make you compliant within 14 days",
-      features: [
-        "Full site audit",
-        "New waste contract (if needed)",
-        "Bin procurement and installation",
-        "Staff training session delivered",
-        "Signage and labeling",
-        "Compliance documentation",
-      ]
+
+    // Food waste
+    if (answers[7] === "no") {
+      findings.push({ status: 'gap', title: 'Missing Food Waste Separation', detail: 'Food waste must be collected separately. This is the #1 gap found in EA inspections.' })
+    } else if (answers[7] === "yes" || answers[7] === "no_food") {
+      findings.push({ status: 'compliant', title: 'Food Waste Handled Correctly', detail: 'You have a dedicated food waste stream or confirmed no food waste is produced.' })
+    } else if (answers[7] === "partial") {
+      findings.push({ status: 'warning', title: 'Inconsistent Food Waste Separation', detail: 'Food waste must be separated at every location, not just some.' })
+    }
+
+    // Contractor
+    if (answers[8] === "no") {
+      findings.push({ status: 'gap', title: 'Contractor Not Collecting Separately', detail: 'Your waste contractor must collect each stream separately. This is a legal requirement.' })
+    } else if (answers[8] === "not_sure") {
+      findings.push({ status: 'warning', title: 'Contractor Compliance Unverified', detail: 'You need to confirm your contractor provides separate collections for each stream.' })
+    } else if (answers[8] === "yes") {
+      findings.push({ status: 'compliant', title: 'Contractor Collections Compliant', detail: 'Your contractor collects each waste stream separately — correct.' })
+    }
+
+    // Deadline knowledge
+    if (answers[9] !== "march_2025" && answers[5] !== "under_10") {
+      findings.push({ status: 'gap', title: 'Deadline Misunderstood', detail: 'The mandatory deadline was 31 March 2025. If you have 10+ employees, you should already be compliant.' })
+    }
+
+    // Inspection readiness
+    if (answers[10] !== "yes") {
+      findings.push({ status: 'warning', title: 'Not Inspection-Ready', detail: 'You need labelled bins, collection records, and staff training to pass an EA inspection.' })
+    } else {
+      findings.push({ status: 'compliant', title: 'Inspection-Ready Documentation', detail: 'You have labelled bins, collection records, and staff awareness in place.' })
+    }
+
+    return findings
+  }
+
+  const handleEmailResults = async (overrideEmail?: string) => {
+    const emailToUse = overrideEmail || userInfo.email || emailInput
+    if (!emailToUse || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailToUse)) {
+      setShowEmailInput(true)
+      return
+    }
+
+    setEmailSending(true)
+    setEmailError("")
+
+    try {
+      const riskLvl = getRiskLevel()
+      const res = await fetch("/api/simpler-recycling/email-results", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userInfo: { ...userInfo, email: emailToUse },
+          score,
+          riskLevel: riskLvl,
+          findings: buildFindings(),
+          answers,
+        }),
+      })
+
+      if (!res.ok) {
+        const err = await res.json()
+        throw new Error(err.error || "Failed to send email")
+      }
+
+      setEmailSent(true)
+      setShowEmailInput(false)
+    } catch (err) {
+      setEmailError(err instanceof Error ? err.message : "Could not send email. Please try again.")
+    } finally {
+      setEmailSending(false)
     }
   }
 
+  // Removed service-based recommendation — free call is always the first step
+
   const riskLevel = getRiskLevel()
-  const recommendedService = getRecommendedService()
 
   const colorClasses = {
     green: {
@@ -186,7 +246,7 @@ export default function SimplerRecyclingResultsPage() {
           {/* Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-50 border border-green-200 mb-4">
-              <Shield className="w-4 h-4 text-green-600 mr-2" />
+              <BadgeCheck className="w-4 h-4 text-green-600 mr-2" />
               <span className="poppins-semibold text-sm text-green-700">Simpler Recycling Results</span>
             </div>
             
@@ -356,29 +416,32 @@ export default function SimplerRecyclingResultsPage() {
             </div>
           </div>
 
-          {/* Recommended Service */}
+          {/* Recommended: Free Call */}
           <div className="bg-gradient-to-br from-green-600 to-green-700 rounded-3xl p-8 text-white shadow-xl mb-8">
             <div className="flex items-start space-x-4 mb-6">
               <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center flex-shrink-0">
                 <Target className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="poppins-bold text-2xl mb-2">Recommended For You</h2>
-                <p className="poppins-regular text-green-100">Based on your compliance score and answers</p>
+                <h2 className="poppins-bold text-2xl mb-1">Recommended For You</h2>
+                <p className="poppins-regular text-green-100 text-sm">Based on your compliance score and answers</p>
               </div>
             </div>
 
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-6">
-              <h3 className="poppins-bold text-3xl mb-3">{recommendedService.title}</h3>
-              <p className="poppins-regular text-lg text-green-100 mb-6">
-                {recommendedService.description}
+              <h3 className="poppins-bold text-2xl mb-2">Free 15-Minute Consultation</h3>
+              <p className="poppins-regular text-green-100 mb-5">
+                Get personalised advice on your compliance gaps
               </p>
-
-              <div className="space-y-3">
-                {recommendedService.features.map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-200 flex-shrink-0" />
-                    <span className="poppins-regular text-white">{feature}</span>
+              <div className="space-y-2.5">
+                {[
+                  "Discuss your results",
+                  "Calculate penalty exposure",
+                  "Create action plan",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center space-x-3">
+                    <CheckCircle className="w-4 h-4 text-green-200 flex-shrink-0" />
+                    <span className="poppins-regular text-white text-sm">{item}</span>
                   </div>
                 ))}
               </div>
@@ -389,14 +452,22 @@ export default function SimplerRecyclingResultsPage() {
                 onClick={() => setShowCalendlyModal(true)}
                 className="flex-1 poppins-semibold bg-white text-green-700 hover:bg-green-50 py-6 text-lg rounded-2xl shadow-lg"
               >
-                Book Free Consultation
+                Book Free Call
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
               <Button
+                onClick={() => handleEmailResults()}
+                disabled={emailSending || emailSent}
                 variant="outline"
-                className="flex-1 poppins-semibold border-2 border-white text-white hover:bg-white/10 py-6 text-lg rounded-2xl"
+                className="flex-1 poppins-semibold border-2 border-white text-white hover:bg-white/10 py-6 text-lg rounded-2xl disabled:opacity-60"
               >
-                Download Report
+                {emailSent ? (
+                  <><CheckCircle className="w-5 h-5 mr-2" />Sent ✓</>
+                ) : emailSending ? (
+                  <><Loader2 className="w-5 h-5 mr-2 animate-spin" />Sending…</>
+                ) : (
+                  <><Mail className="w-5 h-5 mr-2" />Email Report</>
+                )}
               </Button>
             </div>
           </div>
@@ -405,54 +476,70 @@ export default function SimplerRecyclingResultsPage() {
           <div className="bg-white rounded-3xl p-8 border-2 border-green-100 shadow-lg mb-8">
             <h2 className="poppins-bold text-2xl text-green-900 mb-6">All Service Options</h2>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {/* Option 1 */}
-              <div className="border-2 border-green-100 rounded-2xl p-6 hover:border-green-300 transition-all">
+            <div className="grid md:grid-cols-3 gap-5">
+              {/* Option 1 — Primary: Free Call */}
+              <div className="border-2 border-green-500 rounded-2xl p-6 bg-gradient-to-br from-green-50 to-green-100 flex flex-col">
+                <div className="text-center mb-4">
+                  <div className="poppins-bold text-3xl text-green-900 mb-1">Free</div>
+                  <div className="poppins-medium text-xs text-green-600 uppercase tracking-wide">Discovery Call</div>
+                </div>
+                <h3 className="poppins-bold text-base text-green-900 mb-2">15-Min Consultation</h3>
+                <ul className="space-y-1.5 mb-5 flex-1">
+                  {["Discuss your results", "Understand your gaps", "No obligation"].map((f, i) => (
+                    <li key={i} className="flex items-start gap-2 text-xs text-green-800">
+                      <CheckCircle className="w-3.5 h-3.5 text-green-600 flex-shrink-0 mt-0.5" />{f}
+                    </li>
+                  ))}
+                </ul>
+                <Button
+                  onClick={() => setShowCalendlyModal(true)}
+                  className="w-full poppins-semibold bg-green-600 hover:bg-green-700 text-white rounded-xl py-3"
+                >
+                  Book Free Call
+                </Button>
+              </div>
+
+              {/* Option 2 — £295 Audit */}
+              <div className="border-2 border-green-100 rounded-2xl p-6 hover:border-green-300 transition-all flex flex-col">
                 <div className="text-center mb-4">
                   <div className="poppins-bold text-3xl text-green-900 mb-1">£295</div>
-                  <div className="poppins-medium text-sm text-green-600">One-time</div>
+                  <div className="poppins-medium text-xs text-green-600 uppercase tracking-wide">One-time</div>
                 </div>
-                <h3 className="poppins-bold text-lg text-green-900 mb-2">Site Audit</h3>
-                <p className="poppins-regular text-sm text-green-700 mb-4">
-                  Assessment with action plan
-                </p>
-                <Button className="w-full poppins-medium bg-green-600 hover:bg-green-700 text-white rounded-xl">
+                <h3 className="poppins-bold text-base text-green-900 mb-2">Compliance Audit</h3>
+                <ul className="space-y-1.5 mb-5 flex-1">
+                  {["90-min on-site assessment", "Written report in 24 hours", "Penalty risk calculation", "Action plan included"].map((f, i) => (
+                    <li key={i} className="flex items-start gap-2 text-xs text-green-800">
+                      <CheckCircle className="w-3.5 h-3.5 text-green-600 flex-shrink-0 mt-0.5" />{f}
+                    </li>
+                  ))}
+                </ul>
+                <Button
+                  onClick={() => setShowCalendlyModal(true)}
+                  className="w-full poppins-medium bg-white border-2 border-green-600 text-green-700 hover:bg-green-50 rounded-xl py-3"
+                >
                   Book Audit
                 </Button>
               </div>
 
-              {/* Option 2 */}
-              <div className="border-2 border-green-500 rounded-2xl p-6 bg-green-50 relative">
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-green-500 text-white px-3 py-1 rounded-full text-xs poppins-semibold">
-                    Most Popular
-                  </span>
-                </div>
+              {/* Option 3 — £495 Audit + Support */}
+              <div className="border-2 border-green-100 rounded-2xl p-6 hover:border-green-300 transition-all flex flex-col">
                 <div className="text-center mb-4">
-                  <div className="poppins-bold text-3xl text-green-900 mb-1">£795</div>
-                  <div className="poppins-medium text-sm text-green-600">One-time</div>
+                  <div className="poppins-bold text-3xl text-green-900 mb-1">£495</div>
+                  <div className="poppins-medium text-xs text-green-600 uppercase tracking-wide">One-time</div>
                 </div>
-                <h3 className="poppins-bold text-lg text-green-900 mb-2">Full Setup</h3>
-                <p className="poppins-regular text-sm text-green-700 mb-4">
-                  Compliant within 14 days
-                </p>
-                <Button className="w-full poppins-medium bg-green-600 hover:bg-green-700 text-white rounded-xl">
-                  Get Setup
-                </Button>
-              </div>
-
-              {/* Option 3 */}
-              <div className="border-2 border-green-100 rounded-2xl p-6 hover:border-green-300 transition-all">
-                <div className="text-center mb-4">
-                  <div className="poppins-bold text-3xl text-green-900 mb-1">£499</div>
-                  <div className="poppins-medium text-sm text-green-600">Per month</div>
-                </div>
-                <h3 className="poppins-bold text-lg text-green-900 mb-2">Managed Service</h3>
-                <p className="poppins-regular text-sm text-green-700 mb-4">
-                  Ongoing compliance support
-                </p>
-                <Button className="w-full poppins-medium bg-green-600 hover:bg-green-700 text-white rounded-xl">
-                  Get Started
+                <h3 className="poppins-bold text-base text-green-900 mb-2">Audit + Support</h3>
+                <ul className="space-y-1.5 mb-5 flex-1">
+                  {["Everything in Audit", "30-day email & phone support", "Help sourcing contractors", "Follow-up compliance check"].map((f, i) => (
+                    <li key={i} className="flex items-start gap-2 text-xs text-green-800">
+                      <CheckCircle className="w-3.5 h-3.5 text-green-600 flex-shrink-0 mt-0.5" />{f}
+                    </li>
+                  ))}
+                </ul>
+                <Button
+                  onClick={() => setShowCalendlyModal(true)}
+                  className="w-full poppins-medium bg-white border-2 border-green-200 text-green-700 hover:bg-green-50 rounded-xl py-3 text-sm"
+                >
+                  See Setup Option
                 </Button>
               </div>
             </div>
@@ -470,9 +557,12 @@ export default function SimplerRecyclingResultsPage() {
                   <p className="poppins-regular text-red-800 mb-4">
                     The deadline passed on 31 March 2025. The Environment Agency can issue compliance notices and charge £118/hour for regulatory work. You need to fix this immediately.
                   </p>
-                  <Button className="poppins-semibold bg-red-600 hover:bg-red-700 text-white px-6 py-4 rounded-xl">
+                  <Button
+                    onClick={() => setShowCalendlyModal(true)}
+                    className="poppins-semibold bg-red-600 hover:bg-red-700 text-white px-6 py-4 rounded-xl"
+                  >
                     <Phone className="w-5 h-5 mr-2" />
-                    Call for Emergency Setup
+                    Book Urgent Consultation
                   </Button>
                 </div>
               </div>
@@ -486,8 +576,44 @@ export default function SimplerRecyclingResultsPage() {
                 Want to Discuss Your Results?
               </h3>
               <p className="poppins-regular text-green-700 mb-6 max-w-2xl mx-auto">
-                Book a free 15-minute consultation to understand your Simpler Recycling obligations
+                Book a free 15-minute consultation or send a full copy of this report to your inbox
               </p>
+
+              {/* Email input (shown when no email on file) */}
+              {showEmailInput && !emailSent && (
+                <div className="mb-5 max-w-sm mx-auto">
+                  <div className="flex gap-2">
+                    <Input
+                      type="email"
+                      value={emailInput}
+                      onChange={e => setEmailInput(e.target.value)}
+                      placeholder="Enter your email address"
+                      className="rounded-xl border-2 border-green-200 focus:border-green-500 poppins-regular text-sm py-3"
+                      onKeyDown={e => e.key === "Enter" && handleEmailResults(emailInput)}
+                    />
+                    <Button
+                      onClick={() => handleEmailResults(emailInput)}
+                      disabled={emailSending}
+                      className="poppins-semibold bg-green-600 hover:bg-green-700 text-white rounded-xl px-4 py-3 flex-shrink-0"
+                    >
+                      {emailSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                    </Button>
+                  </div>
+                  {emailError && <p className="text-xs text-red-600 mt-1.5 poppins-medium">{emailError}</p>}
+                </div>
+              )}
+
+              {/* Success state */}
+              {emailSent && (
+                <div className="mb-5 p-4 bg-green-50 border border-green-200 rounded-2xl max-w-sm mx-auto">
+                  <div className="flex items-center justify-center gap-2 text-green-700">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <p className="poppins-semibold text-sm">Report sent! Check your inbox.</p>
+                  </div>
+                  <p className="text-xs text-green-600 poppins-regular mt-1 text-center">Full compliance report with findings and next steps</p>
+                </div>
+              )}
+
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button 
                   onClick={() => setShowCalendlyModal(true)}
@@ -496,10 +622,36 @@ export default function SimplerRecyclingResultsPage() {
                   <Phone className="w-5 h-5 mr-2" />
                   Book Free Call
                 </Button>
-                <Button variant="outline" className="poppins-semibold border-2 border-green-300 text-green-700 hover:bg-green-50 px-8 py-6 text-lg rounded-2xl">
-                  <Mail className="w-5 h-5 mr-2" />
-                  Email Results
-                </Button>
+
+                {!emailSent ? (
+                  <Button
+                    onClick={() => handleEmailResults()}
+                    disabled={emailSending}
+                    variant="outline"
+                    className="poppins-semibold border-2 border-green-300 text-green-700 hover:bg-green-50 px-8 py-6 text-lg rounded-2xl disabled:opacity-60"
+                  >
+                    {emailSending ? (
+                      <>
+                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        Sending…
+                      </>
+                    ) : (
+                      <>
+                        <Mail className="w-5 h-5 mr-2" />
+                        Email My Results
+                      </>
+                    )}
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outline"
+                    disabled
+                    className="poppins-semibold border-2 border-green-300 text-green-600 px-8 py-6 text-lg rounded-2xl opacity-70"
+                  >
+                    <CheckCircle className="w-5 h-5 mr-2 text-green-500" />
+                    Report Sent ✓
+                  </Button>
+                )}
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@ import {
   CheckCircle, 
   FileCheck, 
   AlertTriangle,
-  Shield,
+  BadgeCheck,
   Book,
   Download,
   Calendar,
@@ -21,7 +21,9 @@ import {
   Clock,
   Sparkles,
   Target,
-  TrendingUp
+  TrendingUp,
+  Zap,
+  BarChart3,
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
@@ -80,7 +82,7 @@ export default function PlasticPackagingTaxGuide() {
             </Link>
             <div className="flex items-center gap-2 sm:gap-3">
               <Button 
-                onClick={() => router.push("/quiz")}
+                onClick={() => router.push("/ppt-gap-analyser")}
                 className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px]"
               >
                 <span className="hidden xs:inline">FREE COMPLIANCE CHECK</span>
@@ -147,7 +149,7 @@ export default function PlasticPackagingTaxGuide() {
           {/* Quick Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
             <Button
-              onClick={() => router.push("/quiz")}
+              onClick={() => router.push("/ppt-gap-analyser")}
               className="bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold shadow-lg"
               size="lg"
             >
@@ -163,6 +165,60 @@ export default function PlasticPackagingTaxGuide() {
               <Book className="w-4 h-4 mr-2" />
               Start Reading
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* PPT Gap Analyser Featured Tool */}
+      <section className="px-4 sm:px-6 pb-10 max-w-7xl mx-auto">
+        <div className="rounded-3xl bg-gradient-to-r from-green-700 via-emerald-700 to-green-800 overflow-hidden shadow-2xl shadow-green-900/20 relative">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08)_0%,transparent_60%)]" />
+          <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 p-8 sm:p-10">
+            {/* Score visual */}
+            <div className="flex-shrink-0 flex flex-col items-center">
+              <div className="relative w-28 h-28">
+                <svg viewBox="0 0 120 120" className="-rotate-90 w-full h-full">
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="10" />
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="10"
+                    strokeDasharray="314" strokeDashoffset="31" strokeLinecap="round" />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <span className="poppins-black text-3xl text-white leading-none">90</span>
+                  <span className="text-green-300 poppins-medium text-xs">/100</span>
+                </div>
+              </div>
+              <span className="poppins-semibold text-xs text-green-300 mt-2 text-center">AI Compliance Score</span>
+            </div>
+
+            {/* Text */}
+            <div className="flex-1 text-center lg:text-left">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/30 border border-green-400/40 mb-3">
+                <Zap className="w-3 h-3 text-green-300" />
+                <span className="poppins-semibold text-xs text-green-200 uppercase tracking-wide">Featured Tool — Free</span>
+              </div>
+              <h2 className="poppins-bold text-white text-2xl sm:text-3xl mb-3 leading-tight">
+                PPT Gap Analyser
+              </h2>
+              <p className="poppins-regular text-green-200 text-base leading-relaxed mb-5 max-w-xl">
+                Answer 10 questions and our Gemini AI scores your PPT compliance 0–100, identifies your top 3 HMRC risk areas, and emails you a personalised action plan — in under 3 minutes.
+              </p>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-xs text-green-300 mb-6">
+                <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Under 3 minutes</div>
+                <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Powered by Gemini AI</div>
+                <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Free · Results emailed</div>
+                <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />0–100 scoring</div>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                <button
+                  onClick={() => router.push("/ppt-gap-analyser")}
+                  className="inline-flex items-center justify-center gap-2 poppins-bold bg-white text-green-800 hover:bg-green-50 px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 group text-sm"
+                >
+                  <BarChart3 className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  Check My PPT Compliance
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -209,7 +265,7 @@ export default function PlasticPackagingTaxGuide() {
                 {/* CTA in Sidebar */}
                 <div className="mt-8 pt-6 border-t border-emerald-200">
                   <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-xl p-5 text-white shadow-lg">
-                    <Shield className="w-8 h-8 mb-3" />
+                    <BadgeCheck className="w-8 h-8 mb-3" />
                     <h3 className="poppins-semibold text-sm mb-2">
                       Need Expert Help?
                     </h3>
@@ -217,7 +273,7 @@ export default function PlasticPackagingTaxGuide() {
                       Get a free PPT compliance assessment
                     </p>
                     <Button
-                      onClick={() => router.push("/quiz")}
+                      onClick={() => router.push("/ppt-gap-analyser")}
                       className="w-full bg-white text-emerald-700 hover:bg-emerald-50 text-xs poppins-semibold"
                       size="sm"
                     >
@@ -289,7 +345,7 @@ export default function PlasticPackagingTaxGuide() {
                     Our free 3-minute assessment checks if your records meet all requirements
                   </p>
                   <Button
-                    onClick={() => router.push("/quiz")}
+                    onClick={() => router.push("/ppt-gap-analyser")}
                     className="bg-white text-emerald-700 hover:bg-emerald-50 poppins-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                     size="lg"
                   >
@@ -417,7 +473,7 @@ export default function PlasticPackagingTaxGuide() {
               <section id="recycled-plastic" className="mb-16 scroll-mt-24">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-green-600" />
+                    <BadgeCheck className="w-5 h-5 text-green-600" />
                   </div>
                   <h2 className="poppins-bold text-2xl sm:text-3xl text-emerald-900">Recycled plastic records</h2>
                 </div>
@@ -476,7 +532,7 @@ export default function PlasticPackagingTaxGuide() {
                         We help you collect and verify all recycled content certificates from your suppliers - saving you weeks of back-and-forth emails.
                       </p>
                       <Button
-                        onClick={() => router.push("/quiz")}
+                        onClick={() => router.push("/ppt-gap-analyser")}
                         className="bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold shadow-md"
                       >
                         Get Expert Help
@@ -560,7 +616,7 @@ export default function PlasticPackagingTaxGuide() {
                       </p>
                       <div className="flex flex-col sm:flex-row gap-3">
                         <Button
-                          onClick={() => router.push("/quiz")}
+                          onClick={() => router.push("/ppt-gap-analyser")}
                           className="bg-white text-blue-700 hover:bg-blue-50 poppins-semibold shadow-lg hover:shadow-xl transition-all"
                           size="lg"
                         >
@@ -687,7 +743,7 @@ export default function PlasticPackagingTaxGuide() {
                   
                   <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                     <Button
-                      onClick={() => router.push("/quiz")}
+                      onClick={() => router.push("/ppt-gap-analyser")}
                       size="lg"
                       className="bg-white text-emerald-700 hover:bg-emerald-50 poppins-semibold shadow-xl hover:shadow-2xl transition-all"
                     >
@@ -706,7 +762,7 @@ export default function PlasticPackagingTaxGuide() {
                   <div className="flex flex-wrap items-center justify-center gap-8 pt-8 border-t border-white/20">
                     {[
                       { icon: CheckCircle, text: "3 minutes" },
-                      { icon: Shield, text: "HMRC-compliant" },
+                      { icon: BadgeCheck, text: "HMRC-compliant" },
                       { icon: FileCheck, text: "Instant results" }
                     ].map((item, index) => (
                       <div key={index} className="flex items-center gap-3">

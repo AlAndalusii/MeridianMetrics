@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
   ArrowRight,
-  Shield,
+  BadgeCheck,
   TrendingUp,
   CheckCircle,
   Phone,
@@ -37,6 +37,10 @@ import {
   Lock,
   ClipboardCheck,
   Book,
+  Award,
+  Star,
+  Users,
+  GraduationCap,
 } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -421,7 +425,7 @@ export default function MillstoneComplianceWebsite() {
 
                     <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
                       <div className="flex items-center justify-between mb-1">
-                        <Shield className="w-4 h-4 text-green-600" />
+                        <BadgeCheck className="w-4 h-4 text-green-600" />
                         <span className="poppins-bold text-base text-green-700">68%</span>
                       </div>
                       <p className="poppins-medium text-[10px] text-green-600">PPT Recycled</p>
@@ -493,7 +497,7 @@ export default function MillstoneComplianceWebsite() {
                       </div>
                       <div className="flex items-center justify-between bg-green-50 rounded-lg p-1.5 border border-green-200">
                         <div className="flex items-center space-x-1.5">
-                          <Shield className="w-3 h-3 text-green-600" />
+                          <BadgeCheck className="w-3 h-3 text-green-600" />
                           <span className="poppins-medium text-[10px] text-green-700">PPT Certificates</span>
                         </div>
                         <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">30 Valid</span>
@@ -779,7 +783,7 @@ export default function MillstoneComplianceWebsite() {
                 <div className="w-px h-4 bg-emerald-200"></div>
                 <div className="flex items-center gap-2 group/trust">
                   <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center border border-emerald-200 group-hover/trust:scale-110 transition-transform duration-300">
-                    <Shield className="w-3 h-3 text-emerald-600" />
+                    <BadgeCheck className="w-3 h-3 text-emerald-600" />
                   </div>
                   <span className="poppins-medium">No card required</span>
                 </div>
@@ -1099,7 +1103,7 @@ export default function MillstoneComplianceWebsite() {
                 <div className="space-y-3 mb-8">
                   <div className="flex items-start gap-3 bg-rose-50/50 p-3 rounded-lg border border-rose-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
-                      <Shield className="w-3 h-3 text-white" />
+                      <BadgeCheck className="w-3 h-3 text-white" />
                     </div>
                     <span className="text-rose-900 text-sm poppins-medium">HTM 07-01 compliance mandatory</span>
                   </div>
@@ -1142,56 +1146,66 @@ export default function MillstoneComplianceWebsite() {
 
           </div>
 
-          {/* Premium CTA Section - Link to Simpler Recycling */}
+          {/* Featured Tool - Simpler Recycling Gap Analyser */}
           <div className="flex justify-center items-center relative animate-fade-in-up delay-400">
-            {/* Decorative elements */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-r from-green-200/10 via-emerald-200/10 to-green-200/10 rounded-full blur-3xl pointer-events-none"></div>
-            
-            <div className="relative bg-gradient-to-r from-green-50 via-emerald-50 to-green-50 backdrop-blur-xl border border-emerald-200/70 rounded-2xl p-8 sm:p-12 hover:border-emerald-300 transition-all duration-700 group/cta shadow-[0_8px_32px_rgba(16,185,129,0.1)] w-full max-w-4xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-100/0 via-white/50 to-green-100/0 opacity-0 group-hover/cta:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
-              
-              <div className="relative z-10 flex flex-col items-center text-center">
-                {/* Icon */}
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-200 border border-emerald-300 mb-6 group-hover/cta:scale-110 group-hover/cta:rotate-3 transition-all duration-500 shadow-lg">
-                  <Sparkles className="w-8 h-8 text-emerald-700" />
+            <div className="rounded-3xl bg-gradient-to-r from-green-700 via-emerald-700 to-green-800 overflow-hidden shadow-2xl shadow-green-900/20 relative w-full max-w-4xl">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08)_0%,transparent_60%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.03)_0%,transparent_50%)]" />
+              <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 p-8 sm:p-10">
+                {/* Score visual */}
+                <div className="flex-shrink-0 flex flex-col items-center">
+                  <div className="relative w-28 h-28">
+                    <svg viewBox="0 0 120 120" className="-rotate-90 w-full h-full">
+                      <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="10" />
+                      <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="10"
+                        strokeDasharray="314" strokeDashoffset="94" strokeLinecap="round" />
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="poppins-black text-3xl text-white leading-none">7</span>
+                      <span className="text-green-300 poppins-medium text-xs">/10</span>
+                    </div>
+                  </div>
+                  <span className="poppins-semibold text-xs text-green-300 mt-2 text-center">AI Compliance Score</span>
                 </div>
-                
-                <h3 className="poppins-bold text-3xl sm:text-4xl text-emerald-900 mb-4">
-                  New: Simpler Recycling
-                </h3>
-                
-                <p className="text-emerald-700 poppins-regular text-lg mb-8 max-w-2xl">
-                  The latest regulation affecting all UK businesses. Mandatory 3-bin separation now in effect.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
-                  <Button
-                    onClick={() => {
-                      const element = document.getElementById('recycling-heading')
-                      element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                    }}
-                    className="poppins-semibold bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-600 bg-[length:200%_100%] hover:bg-[length:100%_100%] active:scale-95 text-white border-0 shadow-[0_20px_60px_rgba(6,95,70,0.25)] hover:shadow-[0_25px_70px_rgba(6,95,70,0.35)] transition-all duration-700 sm:hover:scale-105 group/btn px-8 py-5 text-base relative overflow-hidden"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine"></div>
-                    <span className="relative z-10 flex items-center justify-center">
-                      <span className="mr-3">Learn About Simpler Recycling</span>
-                      <ArrowRight className="h-5 w-5 group-hover/btn:translate-x-2 transition-transform duration-500" />
-                    </span>
-                  </Button>
-                  
-                  <a
-                    href={`mailto:hello@millstonecompliance.com?subject=Compliance Consultation Request&body=Hello Millstone Compliance,%0D%0A%0D%0AI would like to discuss compliance assistance.%0D%0A%0D%0AName: %0D%0ACompany: %0D%0AWhat I need help with: %0D%0A%0D%0APreferred contact date and time: %0D%0A%0D%0AThank you.`}
-                    className="poppins-semibold bg-white hover:bg-emerald-50 text-emerald-700 border-2 border-emerald-600 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 px-8 py-5 text-base rounded-md inline-flex items-center justify-center"
-                  >
-                    <span className="mr-3">Contact Us for Help</span>
-                    <ArrowRight className="h-5 w-5" />
-                  </a>
-                </div>
-                
-                {/* Deadline reminder */}
-                <div className="mt-6 inline-flex items-center gap-2 text-sm text-emerald-600">
-                  <Clock className="w-4 h-4" />
-                  <span className="poppins-medium">Deadline: 31 March 2025 (passed)</span>
+
+                {/* Text */}
+                <div className="flex-1 text-center lg:text-left">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/30 border border-green-400/40 mb-3">
+                    <Zap className="w-3 h-3 text-green-300" />
+                    <span className="poppins-semibold text-xs text-green-200 uppercase tracking-wide">Featured Tool — Free</span>
+                  </div>
+                  <h2 className="poppins-bold text-white text-2xl sm:text-3xl mb-3 leading-tight">
+                    Simpler Recycling Gap Analyser
+                  </h2>
+                  <p className="poppins-regular text-green-200 text-base leading-relaxed mb-5 max-w-xl">
+                    Answer 10 questions and our Gemini AI scores your Simpler Recycling compliance 0–10, identifies your top 3 penalty risks, and emails you a personalised action plan — in under 3 minutes.
+                  </p>
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-xs text-green-300 mb-6">
+                    <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Under 3 minutes</div>
+                    <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Powered by Gemini AI</div>
+                    <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Free · Results emailed</div>
+                    <div className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" />Traffic-light scoring</div>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                    <Link
+                      href="/simpler-recycling-gap-analyser"
+                      className="inline-flex items-center justify-center gap-2 poppins-bold bg-white text-green-800 hover:bg-green-50 px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 group/btn text-sm"
+                    >
+                      <BarChart3 className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+                      Analyse My Compliance Now
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                    <button
+                      onClick={() => {
+                        const element = document.getElementById('recycling-heading')
+                        element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                      }}
+                      className="inline-flex items-center justify-center gap-2 poppins-semibold bg-white/15 hover:bg-white/25 text-white border border-white/30 px-6 py-4 rounded-2xl transition-all duration-300 text-sm"
+                    >
+                      Read the Guide
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1328,7 +1342,7 @@ export default function MillstoneComplianceWebsite() {
                 delay: "delay-100",
               },
               {
-                icon: Shield,
+                icon: BadgeCheck,
                 title: "Inspection Ready",
                 description: "Environment Agency can visit any time. We make sure you have labeled bins, records, and proof.",
                 stat: "Zero Fines",
@@ -1398,22 +1412,17 @@ export default function MillstoneComplianceWebsite() {
             
             <div className="relative">
               {/* Main CTA Button */}
-              <Link href="/quiz/simpler-recycling">
+              <Link href="/simpler-recycling-gap-analyser">
                 <Button
                   size="lg"
                   className="poppins-semibold bg-gradient-to-r from-green-600 via-green-700 to-green-600 bg-[length:200%_100%] hover:bg-[length:100%_100%] active:scale-95 text-white border-0 shadow-[0_20px_60px_rgba(34,197,94,0.3)] hover:shadow-[0_25px_70px_rgba(34,197,94,0.4)] transition-all duration-700 sm:hover:scale-105 group/cta px-8 sm:px-12 md:px-14 py-6 sm:py-7 md:py-8 text-base sm:text-lg md:text-xl relative overflow-hidden w-full sm:w-auto min-h-[60px]"
                 >
-                  {/* Button shine */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-shine"></div>
-                  
-                  {/* Button content */}
                   <span className="relative z-10 flex items-center justify-center">
                     <Trash2 className="w-5 h-5 sm:w-6 sm:h-6 mr-3" />
                     <span>Check If You're Compliant</span>
                     <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6 ml-3 group-hover/cta:translate-x-2 transition-transform duration-500" />
                   </span>
-                  
-                  {/* Animated border */}
                   <div className="absolute inset-0 rounded-lg opacity-0 group-hover/cta:opacity-100 transition-opacity duration-500">
                     <div className="absolute inset-0 rounded-lg border-2 border-white/30 animate-pulse-slow"></div>
                   </div>
@@ -1431,7 +1440,7 @@ export default function MillstoneComplianceWebsite() {
                 <div className="w-px h-4 bg-green-200"></div>
                 <div className="flex items-center gap-2 group/trust">
                   <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center border border-green-200 group-hover/trust:scale-110 transition-transform duration-300">
-                    <Shield className="w-3 h-3 text-green-600" />
+                    <BadgeCheck className="w-3 h-3 text-green-600" />
                   </div>
                   <span className="poppins-medium">Free assessment</span>
                 </div>
@@ -1444,8 +1453,22 @@ export default function MillstoneComplianceWebsite() {
                 </div>
               </div>
 
+              {/* Gap Analyser CTA */}
+              <div className="mt-6 sm:mt-8 flex justify-center">
+                <Link href="/simpler-recycling-gap-analyser">
+                  <Button
+                    variant="outline"
+                    className="poppins-semibold border-2 border-green-500 text-green-700 hover:bg-green-50 hover:border-green-600 px-8 py-4 text-sm rounded-xl transition-all group/gap"
+                  >
+                    <BarChart3 className="w-4 h-4 mr-2 group-hover/gap:scale-110 transition-transform" />
+                    Try the Gap Analyser — AI-Scored Report
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover/gap:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </div>
+
               {/* Urgency message */}
-              <div className="mt-6 sm:mt-8 inline-flex items-center px-5 py-3 rounded-xl bg-red-50/80 border border-red-200/60 backdrop-blur-sm">
+              <div className="mt-4 inline-flex items-center px-5 py-3 rounded-xl bg-red-50/80 border border-red-200/60 backdrop-blur-sm">
                 <AlertTriangle className="w-4 h-4 text-red-600 mr-2" />
                 <span className="poppins-medium text-sm text-red-800">
                   Environment Agency can inspect any time
@@ -1591,104 +1614,220 @@ export default function MillstoneComplianceWebsite() {
         </div>
       </section>
 
-      {/* Ultra Premium Founder Section - Apple-Inspired Design */}
-      <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-white via-emerald-50/30 to-white relative overflow-hidden group/founder">
-        {/* Minimalist Apple-style background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.02)_0%,transparent_70%)]"></div>
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.01)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+      {/* Expert-Led Compliance — World Class Design */}
+      <section className="py-16 sm:py-20 md:py-28 bg-gradient-to-b from-white via-emerald-50/30 to-white relative overflow-hidden group/expert">
+
+        {/* Apple-style minimal background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,rgba(16,185,129,0.05)_0%,transparent_55%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_60%,rgba(6,95,70,0.04)_0%,transparent_55%)]"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.012)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.012)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
+          <div className="absolute top-1/3 left-[2%] w-56 h-56 bg-emerald-100/20 rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute bottom-1/3 right-[2%] w-40 h-40 bg-emerald-200/15 rounded-full blur-3xl animate-float-slow"></div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-          {/* Centered Premium Header */}
-          <div className="text-center mb-10 sm:mb-14 md:mb-16">
-            <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full bg-emerald-50/80 backdrop-blur-xl border border-emerald-100/50 mb-4 sm:mb-6 transition-all duration-500">
-              <Shield className="w-3 sm:w-4 h-3 sm:h-4 text-emerald-600 mr-2" />
-              <span className="poppins-medium text-[10px] sm:text-xs text-emerald-800 tracking-wide uppercase">Leadership</span>
+        {/* ── Main content ── */}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+
+          {/* Badge + headline — 3-col on lg so side cards sit naturally beside the text */}
+          <div className="mb-8 sm:mb-10 md:mb-12">
+            <div className="lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-8">
+
+              {/* Left floating card */}
+              <div className="hidden lg:flex justify-end animate-float-slow">
+                <div className="w-44 bg-white/90 backdrop-blur-xl rounded-2xl border border-emerald-100/60 shadow-[0_8px_32px_rgba(6,95,70,0.10)] p-4">
+                  <div className="flex items-center gap-2 mb-2.5">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                    <span className="text-[10px] text-emerald-600 poppins-semibold uppercase tracking-wider">Certified</span>
+                  </div>
+                  <p className="poppins-bold text-emerald-900 text-sm leading-snug mb-0.5">Cambridge Institute</p>
+                  <p className="poppins-medium text-emerald-600 text-[11px]">Sustainability Leadership</p>
+                  <div className="mt-3 w-full h-0.5 bg-emerald-50 rounded-full overflow-hidden">
+                    <div className="h-0.5 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full w-full animate-shimmer"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Centre: pill + headline + subtext */}
+              <div className="text-center">
+                <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full bg-emerald-50/80 backdrop-blur-xl border border-emerald-100/50 mb-4 sm:mb-5 animate-fade-in">
+                  <GraduationCap className="w-3 sm:w-4 h-3 sm:h-4 text-emerald-600 mr-2" />
+                  <span className="poppins-medium text-[10px] sm:text-xs text-emerald-800 tracking-wide uppercase">World-Class Expertise</span>
+                </div>
+                <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-emerald-900 mb-3 sm:mb-4 animate-fade-in-up">
+                  Expert-Led
+                  <span className="block mt-1 bg-gradient-to-r from-emerald-600 via-emerald-500 to-green-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
+                    Compliance
+                  </span>
+                </h2>
+                <p className="poppins-regular text-base sm:text-lg text-emerald-700 max-w-xl mx-auto leading-relaxed animate-fade-in-up">
+                  We help UK businesses stay legal, avoid fines, and pass every inspection — without the stress of figuring it out alone.
+                </p>
+              </div>
+
+              {/* Right floating card */}
+              <div className="hidden lg:flex justify-start animate-float-slow-reverse">
+                <div className="w-40 bg-white/90 backdrop-blur-xl rounded-2xl border border-emerald-100/60 shadow-[0_8px_32px_rgba(6,95,70,0.10)] p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-[10px] text-green-700 poppins-semibold uppercase tracking-wider">Status</span>
+                  </div>
+                  <p className="poppins-bold text-emerald-900 text-2xl mb-0.5">100%</p>
+                  <p className="poppins-medium text-emerald-700 text-[11px]">Audit Pass Rate</p>
+                  <div className="mt-2.5 w-full h-1 bg-emerald-50 rounded-full">
+                    <div className="h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full w-full"></div>
+                  </div>
+                </div>
+              </div>
+
             </div>
-            
-            <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-3 sm:mb-4 tracking-tight text-emerald-900">
-              Expert-Led Compliance
-            </h2>
-            <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-2xl mx-auto leading-relaxed px-4">
-              Founded on deep regulatory insight and practical implementation expertise.
-            </p>
           </div>
 
-          {/* Premium Content Card */}
-          <div className="relative">
-            <div className="bg-white/60 backdrop-blur-xl rounded-2xl sm:rounded-3xl md:rounded-[32px] p-6 sm:p-8 md:p-12 border border-emerald-100/50 shadow-[0_8px_32px_rgba(6,95,70,0.06)] hover:shadow-[0_16px_48px_rgba(6,95,70,0.08)] transition-all duration-700">
-              
-              {/* Founder Statement */}
-              <div className="mb-8 sm:mb-10 md:mb-12">
-                <p className="poppins-regular text-emerald-900 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
-                  Millstone Compliance bridges the gap between regulatory requirements and operational reality. Our approach stems from direct experience within UK government services and advanced sustainability training.
-                </p>
-                <p className="poppins-regular text-emerald-700 text-sm sm:text-base leading-relaxed">
-                  We deliver audit-ready systems that integrate seamlessly with your existing operations—no theoretical frameworks, just proven methodologies that withstand regulatory scrutiny.
-                </p>
+          {/* What we cover pills */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 animate-fade-in-up">
+            {[
+              "Packaging Compliance",
+              "Packaging Tax",
+              "Waste Documentation",
+              "Bin Separation Rules",
+            ].map((label) => (
+              <div key={label} className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/70 backdrop-blur-xl border border-emerald-100/60 rounded-full shadow-sm hover:shadow-md hover:border-emerald-200/70 transition-all duration-300">
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse flex-shrink-0"></div>
+                <span className="poppins-medium text-emerald-800 text-xs sm:text-sm">{label}</span>
               </div>
+            ))}
+          </div>
 
-              {/* Premium Credentials Grid */}
-              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-                
-                {/* Cambridge Credential */}
-                <div className="group/item relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent rounded-xl sm:rounded-2xl opacity-0 group-hover/item:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative flex items-start gap-3 sm:gap-4 md:gap-5 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl border border-emerald-100/30 hover:border-emerald-200/50 transition-all duration-500 bg-white/40 backdrop-blur-sm">
-                    <div className="relative flex-shrink-0">
-                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-emerald-600/10 rounded-xl sm:rounded-2xl blur-lg"></div>
-                      <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center border border-emerald-100/50 shadow-sm group-hover/item:shadow-md transition-all duration-500 p-2 sm:p-3">
-                        <Image
-                          src="/University of Cambridge new Logo Vector.svg"
-                          alt="University of Cambridge"
-                          width={48}
-                          height={48}
-                          className="object-contain w-full h-full group-hover/item:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="poppins-semibold text-emerald-900 text-sm sm:text-base mb-1 sm:mb-2">Cambridge Institute for Sustainability Leadership</h4>
-                      <p className="poppins-regular text-emerald-700 text-xs sm:text-sm leading-relaxed">
-                        Advanced training in translating complex sustainability regulations into actionable business strategies.
-                      </p>
-                    </div>
+          {/* Stats row */}
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-12 mb-8 sm:mb-10 animate-fade-in-up">
+            {[
+              { value: "100%", label: "Audit Pass Rate" },
+              { value: "4", label: "Areas We Cover" },
+              { value: "Gov't", label: "Insider Experience" },
+              { value: "Zero", label: "Clients Ever Fined" },
+            ].map((stat, i) => (
+              <React.Fragment key={i}>
+                {i > 0 && <div className="w-px h-9 bg-emerald-100 hidden sm:block"></div>}
+                <div className="text-center group/stat cursor-default">
+                  <p className="text-2xl sm:text-3xl md:text-4xl poppins-bold text-emerald-900 group-hover/stat:scale-110 transition-transform duration-300">{stat.value}</p>
+                  <p className="text-[10px] sm:text-[11px] text-emerald-500 poppins-medium uppercase tracking-wide mt-1">{stat.label}</p>
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+
+          {/* Two-column */}
+          <div className="grid md:grid-cols-2 items-stretch gap-4 sm:gap-5">
+
+            {/* Left — founder story */}
+            <div className="bg-white/65 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-7 border border-emerald-100/50 shadow-[0_8px_32px_rgba(6,95,70,0.06)] hover:shadow-[0_16px_48px_rgba(6,95,70,0.10)] transition-all duration-700 group/card flex flex-col">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-9 h-9 bg-emerald-50 rounded-xl flex items-center justify-center border border-emerald-100 group-hover/card:scale-110 transition-transform duration-500">
+                    <Sparkles className="w-4 h-4 text-emerald-600" />
                   </div>
+                  <span className="poppins-semibold text-emerald-800 text-xs uppercase tracking-wide">Why We&apos;re Different</span>
                 </div>
 
-                {/* HMRC Credential */}
-                <div className="group/item relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent rounded-xl sm:rounded-2xl opacity-0 group-hover/item:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative flex items-start gap-3 sm:gap-4 md:gap-5 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl border border-emerald-100/30 hover:border-emerald-200/50 transition-all duration-500 bg-white/40 backdrop-blur-sm">
-                    <div className="relative flex-shrink-0">
-                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-emerald-600/10 rounded-xl sm:rounded-2xl blur-lg"></div>
-                      <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center border border-emerald-100/50 shadow-sm group-hover/item:shadow-md transition-all duration-500 p-2 sm:p-3">
-                        <Image
-                          src="/Screenshot 2025-08-31 at 21.43.30.png"
-                          alt="HMRC Systems Experience"
-                          width={64}
-                          height={64}
-                          className="object-contain w-full h-full group-hover/item:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="poppins-semibold text-emerald-900 text-sm sm:text-base mb-1 sm:mb-2">HMRC Systems Experience</h4>
-                      <p className="poppins-regular text-emerald-700 text-xs sm:text-sm leading-relaxed">
-                        Direct experience with UK tax authority systems, providing insight into compliance requirements and audit standards.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <h3 className="poppins-bold text-xl sm:text-2xl text-emerald-900 mb-4 leading-tight">
+                  We handle the complexity so you don&apos;t have to.
+                </h3>
 
+                <p className="poppins-regular text-emerald-700 text-sm sm:text-sm leading-relaxed mb-4">
+                  Packaging and waste rules in the UK are changing fast — and the consequences of getting it wrong are real. Fines, failed audits, and legal liability don&apos;t have to be your problem. We take it off your plate entirely.
+                </p>
+
+                <p className="poppins-regular text-emerald-600 text-sm leading-relaxed mb-5">
+                  We&apos;ve worked inside the government systems that enforce these rules. We know exactly what inspectors look for — and we make sure your business always has the right evidence, in the right place, before they ever come knocking.
+                </p>
+
+                {/* What we handle */}
+                <div className="space-y-2.5">
+                  {[
+                    "We register your business and keep your packaging data accurate",
+                    "We calculate what you owe and file it correctly, every time",
+                    "We source the certificates your business needs to stay legal",
+                    "We make sure your workplace waste separation is fully compliant",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-2.5">
+                      <div className="w-4 h-4 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle className="w-2.5 h-2.5 text-emerald-600" />
+                      </div>
+                      <span className="poppins-regular text-emerald-700 text-sm leading-snug">{item}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              {/* Founder Attribution */}
-              <div className="mt-10 pt-8 border-t border-emerald-100/50">
+              {/* Footer: founder + About Us button */}
+              <div className="mt-6 pt-5 border-t border-emerald-100/60 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div>
-                  <p className="poppins-semibold text-emerald-900 text-base">Founder & Principal Consultant</p>
-                  <p className="poppins-regular text-emerald-600 text-sm mt-1">UK Packaging Compliance Specialist - EPR, PPT & PRN</p>
+                  <p className="poppins-semibold text-emerald-900 text-sm">Founder &amp; Principal Consultant</p>
+                  <p className="poppins-regular text-emerald-500 text-xs mt-0.5">UK Packaging &amp; Waste Compliance Specialist</p>
+                </div>
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white poppins-semibold text-xs rounded-xl transition-all duration-300 hover:shadow-[0_4px_16px_rgba(6,95,70,0.30)] group/btn flex-shrink-0 w-fit"
+                >
+                  Meet the Team
+                  <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform duration-300" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right — credential + proof cards, flex-1 so each card shares the column height equally */}
+            <div className="flex flex-col gap-3">
+
+              {/* Cambridge */}
+              <div className="group/item flex-1 bg-white/65 backdrop-blur-xl rounded-2xl p-4 sm:p-5 border border-emerald-100/50 shadow-[0_4px_24px_rgba(6,95,70,0.06)] hover:shadow-[0_8px_32px_rgba(6,95,70,0.10)] hover:border-emerald-200/60 transition-all duration-500 flex items-start gap-4 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/0 to-emerald-50/50 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-300/60 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative flex-shrink-0 w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-emerald-100 shadow-sm group-hover/item:shadow-md transition-all duration-500 p-2">
+                  <Image src="/University of Cambridge new Logo Vector.svg" alt="University of Cambridge" width={32} height={32} className="object-contain w-full h-full group-hover/item:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="relative flex-1 min-w-0">
+                  <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Cambridge Institute for Sustainability Leadership</h4>
+                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">We studied how packaging and waste regulations actually work in practice — not just in theory — so we can translate the law into plain steps your team can follow.</p>
+                </div>
+              </div>
+
+              {/* HMRC */}
+              <div className="group/item flex-1 bg-white/65 backdrop-blur-xl rounded-2xl p-4 sm:p-5 border border-emerald-100/50 shadow-[0_4px_24px_rgba(6,95,70,0.06)] hover:shadow-[0_8px_32px_rgba(6,95,70,0.10)] hover:border-emerald-200/60 transition-all duration-500 flex items-start gap-4 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/0 to-emerald-50/50 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-300/60 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative flex-shrink-0 w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-emerald-100 shadow-sm group-hover/item:shadow-md transition-all duration-500 p-1.5">
+                  <Image src="/Screenshot 2025-08-31 at 21.43.30.png" alt="HMRC" width={36} height={36} className="object-contain w-full h-full group-hover/item:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="relative flex-1 min-w-0">
+                  <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Inside Government Experience</h4>
+                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">We&apos;ve worked inside HMRC. We know how government enforcement works from the inside — which means we know exactly what your business needs to have in place before an inspection.</p>
+                </div>
+              </div>
+
+              {/* Proven in live audits — dark */}
+              <div className="group/item flex-1 bg-gradient-to-br from-emerald-700 to-emerald-900 rounded-2xl p-4 sm:p-5 shadow-[0_4px_24px_rgba(6,95,70,0.22)] hover:shadow-[0_8px_40px_rgba(6,95,70,0.34)] transition-all duration-500 flex items-start gap-4 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.06)_0%,transparent_60%)] pointer-events-none"></div>
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                <div className="absolute inset-0 animate-shine pointer-events-none opacity-20"></div>
+                <div className="relative flex-shrink-0 w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center border border-white/20">
+                  <Target className="w-5 h-5 text-white" />
+                </div>
+                <div className="relative flex-1 min-w-0">
+                  <h4 className="poppins-semibold text-white text-sm mb-1.5">Proven in Live Audits</h4>
+                  <p className="poppins-regular text-emerald-100/90 text-sm leading-relaxed">Every system we build has been tested against real inspections. Not a single client has ever failed an audit. That&apos;s not luck — it&apos;s the result of building things properly from day one.</p>
+                </div>
+              </div>
+
+              {/* We Speak Plain English */}
+              <div className="group/item flex-1 bg-white/65 backdrop-blur-xl rounded-2xl p-4 sm:p-5 border border-emerald-100/50 shadow-[0_4px_24px_rgba(6,95,70,0.06)] hover:shadow-[0_8px_32px_rgba(6,95,70,0.10)] hover:border-emerald-200/60 transition-all duration-500 flex items-start gap-4 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/0 to-emerald-50/50 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-300/60 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative flex-shrink-0 w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center border border-emerald-100 group-hover/item:bg-emerald-100/60 transition-all duration-500">
+                  <Users className="w-5 h-5 text-emerald-600" />
+                </div>
+                <div className="relative flex-1 min-w-0">
+                  <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">We Speak Plain English</h4>
+                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">No jargon, no confusing legal language. We explain what your obligations are, what we&apos;re doing about them, and what it means for your business in straightforward terms.</p>
                 </div>
               </div>
 
@@ -1730,7 +1869,7 @@ export default function MillstoneComplianceWebsite() {
             {/* Premium badge with enhanced animation */}
             <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/80 mb-6 sm:mb-8 group-hover/cta:scale-105 transition-all duration-500 relative">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-200/0 via-emerald-200/30 to-emerald-200/0 animate-shine"></div>
-              <Shield className="w-4 sm:w-5 h-4 sm:h-5 text-emerald-600 mr-2 animate-pulse" />
+              <BadgeCheck className="w-4 sm:w-5 h-4 sm:h-5 text-emerald-600 mr-2 animate-pulse" />
               <span className="poppins-medium text-xs sm:text-sm text-emerald-800">UK Packaging Compliance</span>
             </div>
 
@@ -2113,7 +2252,7 @@ export default function MillstoneComplianceWebsite() {
                 {/* Badges */}
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">
-                    <Shield className="h-3 w-3 text-emerald-600" />
+                    <BadgeCheck className="h-3 w-3 text-emerald-600" />
                     <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">UK Compliant</span>
                   </div>
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">

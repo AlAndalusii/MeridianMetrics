@@ -70,7 +70,7 @@ export const generateCompliancePDF = (data: PDFData) => {
     yPosition = 60;
   };
 
-  // Personalized Welcome Message
+  // Personalised Welcome Message
   const addWelcomeMessage = () => {
     // Welcome message background
     doc.setFillColor(236, 253, 245); // Emerald-50
@@ -83,7 +83,7 @@ export const generateCompliancePDF = (data: PDFData) => {
     
     yPosition += 8;
     
-    // Personalized greeting
+    // Personalised greeting
     doc.setFontSize(11);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(6, 95, 70); // Emerald-800
@@ -93,7 +93,7 @@ export const generateCompliancePDF = (data: PDFData) => {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(6, 95, 70); // Emerald-800
-    const welcomeText = `Thank you for completing your PPT Compliance Assessment. We've prepared this personalized report to help you understand where you stand and what steps you can take to protect your business from HMRC penalties.`;
+    const welcomeText = `Thank you for completing your PPT Compliance Assessment. We've prepared this personalised report to help you understand where you stand and what steps you can take to protect your business from HMRC penalties.`;
     yPosition = addWrappedText(welcomeText, margin + 5, yPosition, contentWidth - 10, 9, 'normal');
     
     yPosition += 8;
@@ -205,7 +205,7 @@ export const generateCompliancePDF = (data: PDFData) => {
     const outOf100Width = doc.getTextWidth(outOf100);
     doc.text(outOf100, scoreX - (outOf100Width / 2), scoreY + 12);
     
-    // Score level with personalized message
+    // Score level with personalised message
     yPosition = scoreY + scoreRadius + 12;
     const scoreLevel = data.score >= 90 
       ? 'Audit-Ready - Excellent!'
@@ -425,7 +425,7 @@ export const generateCompliancePDF = (data: PDFData) => {
     doc.text(pageText, pageWidth / 2 - (pageTextWidth / 2), footerY + 2);
   };
 
-  // Recommendation Section with personalized advice
+  // Recommendation Section with personalised advice
   const addRecommendationSection = () => {
     // Check if we need a new page
     if (yPosition > pageHeight - 100) {

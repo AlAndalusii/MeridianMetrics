@@ -78,12 +78,12 @@ export default function ResourcesPage() {
       topics: ["Checklist", "Documentation", "Quarterly Review"]
     },
     {
-      title: "HMRC Audit Preparation",
-      description: "How to prepare for an HMRC audit and what to expect. Essential reading for businesses registered for PPT.",
+      title: "5 PPT Mistakes That Trigger an HMRC Audit",
+      description: "The 5 most common Plastic Packaging Tax mistakes that put businesses on HMRC's radar. Real-world examples, penalty figures, and how to protect yourself.",
       icon: FileSearch,
-      href: "#",
-      badge: "Coming Soon",
-      topics: ["Audit", "Preparation", "HMRC"]
+      href: "/resources/ppt-hmrc-audit-mistakes",
+      badge: "New",
+      topics: ["HMRC Audit", "Penalties", "Compliance", "Risk"]
     }
   ]
 

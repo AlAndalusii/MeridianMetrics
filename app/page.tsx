@@ -1111,7 +1111,7 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Eye className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-rose-900 text-sm poppins-medium">Segregation and color-coding</span>
+                    <span className="text-rose-900 text-sm poppins-medium">Segregation and colour-coding</span>
                   </div>
                   <div className="flex items-start gap-3 bg-rose-50/50 p-3 rounded-lg border border-rose-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
@@ -1121,10 +1121,10 @@ export default function MillstoneComplianceWebsite() {
                   </div>
                 </div>
                 
-                {/* Visual Mockup - Color-coded bins */}
+                {/* Visual Mockup - Colour-coded bins */}
                 <div className="relative h-48 rounded-xl bg-gradient-to-br from-rose-50 to-rose-100 border border-rose-200 overflow-hidden group-hover/reg:border-rose-300 transition-colors duration-500 shadow-inner">
                   <div className="absolute inset-0 flex items-center justify-center gap-4 p-6">
-                    {/* Color-coded waste bins visualization */}
+                    {/* Colour-coded waste bins visualization */}
                     <div className="flex flex-col items-center gap-2">
                       <div className="w-16 h-20 rounded-lg bg-gradient-to-b from-amber-200 to-amber-300 border-2 border-amber-400 shadow-md"></div>
                       <div className="h-1.5 w-12 bg-amber-300 rounded"></div>

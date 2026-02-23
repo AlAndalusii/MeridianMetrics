@@ -69,7 +69,7 @@ export const DownloadReport: React.FC<DownloadReportProps> = ({
           <div className="bg-emerald-50/50 rounded-xl p-4">
             <p className="poppins-regular text-sm text-emerald-800 leading-relaxed">
               Dear {userName}, thank you for completing your PPT Compliance Assessment. 
-              We've prepared this personalized report to help you understand where you stand 
+              We've prepared this personalised report to help you understand where you stand 
               and what steps you can take to protect your business from HMRC penalties.
             </p>
           </div>
@@ -145,7 +145,7 @@ export const DownloadReport: React.FC<DownloadReportProps> = ({
           
           <div className="mt-4 text-center">
             <p className="poppins-regular text-xs sm:text-sm text-emerald-600">
-              Get a beautifully designed, consultancy-grade PDF report with personalized recommendations
+              Get a beautifully designed, consultancy-grade PDF report with personalised recommendations
             </p>
           </div>
         </div>
@@ -158,7 +158,7 @@ export const DownloadReport: React.FC<DownloadReportProps> = ({
           <ul className="space-y-1 text-sm text-emerald-700">
             <li className="flex items-start">
               <span className="mr-2">•</span>
-              <span>Personalized welcome message and executive summary</span>
+              <span>Personalised welcome message and executive summary</span>
             </li>
             <li className="flex items-start">
               <span className="mr-2">•</span>

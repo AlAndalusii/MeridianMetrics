@@ -127,7 +127,7 @@ export default function PlasticPackagingTaxGuide() {
 
           {/* Enhanced Summary */}
           <p className="poppins-regular text-lg sm:text-xl text-emerald-700 mb-8 leading-relaxed max-w-4xl">
-            Everything you need to know about keeping proper records and accounts for Plastic Packaging Tax. Written in simple English, organized for easy understanding.
+            Everything you need to know about keeping proper records and accounts for Plastic Packaging Tax. Written in simple English, organised for easy understanding.
           </p>
 
           {/* Stats Bar */}

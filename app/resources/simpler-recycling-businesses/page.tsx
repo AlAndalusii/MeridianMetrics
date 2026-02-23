@@ -162,7 +162,7 @@ export default function SimplerRecyclingBusinesses() {
                   <AlertCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-1" />
                   <div>
                     <span className="poppins-semibold text-blue-900">31 March 2026</span>
-                    <span className="poppins-regular text-blue-800"> – All households must receive weekly food waste collections and standardized recycling services</span>
+                    <span className="poppins-regular text-blue-800"> – All households must receive weekly food waste collections and standardised recycling services</span>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 p-3 bg-amber-50 rounded-lg">
@@ -468,7 +468,7 @@ export default function SimplerRecyclingBusinesses() {
                 <div className="bg-purple-50 rounded-xl p-5 border-l-4 border-purple-400">
                   <h3 className="poppins-semibold text-lg text-purple-900 mb-2">4. Hazardous Waste in General Bins (31%)</h3>
                   <p className="poppins-regular text-purple-800 text-sm mb-2">
-                    <strong>Why it happens:</strong> Fluorescent tubes, batteries, paint tins not recognized as hazardous
+                    <strong>Why it happens:</strong> Fluorescent tubes, batteries, paint tins not recognised as hazardous
                   </p>
                   <p className="poppins-regular text-purple-800 text-sm mb-2">
                     <strong>The fix:</strong> Separate hazardous waste collection with consignment notes
@@ -625,7 +625,7 @@ export default function SimplerRecyclingBusinesses() {
                   <ul className="space-y-1">
                     <li className="poppins-regular text-orange-800 text-sm">• Food waste = your highest-risk stream (weekly collections recommended)</li>
                     <li className="poppins-regular text-orange-800 text-sm">• Customer-facing bins must also comply (separate streams for public waste)</li>
-                    <li className="poppins-regular text-orange-800 text-sm">• Multiple locations = standardized approach needed for consistency</li>
+                    <li className="poppins-regular text-orange-800 text-sm">• Multiple locations = standardised approach needed for consistency</li>
                   </ul>
                 </div>
 
@@ -725,7 +725,7 @@ export default function SimplerRecyclingBusinesses() {
                     <h4 className="poppins-semibold text-lg mb-3">If you manage multiple sites:</h4>
                     <ul className="space-y-2 text-sm text-left">
                       <li>• Request portfolio audit quote</li>
-                      <li>• Standardize compliance across locations</li>
+                      <li>• Standardise compliance across locations</li>
                       <li>• Consider managed compliance retainer</li>
                       <li>• We handle everything monthly</li>
                     </ul>

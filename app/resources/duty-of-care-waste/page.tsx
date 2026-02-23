@@ -75,7 +75,7 @@ export default function DutyOfCareWaste() {
                 Duty of Care is the cornerstone of UK waste law, established under <strong>Section 34 of the Environmental Protection Act 1990</strong>. It requires every business that produces, stores, transports, or manages waste to ensure it's handled safely and legally from creation to final disposal.
               </p>
               <p className="poppins-regular text-emerald-800 leading-relaxed mb-4">
-                Unlike Simpler Recycling (which focuses on physical waste separation), Duty of Care is about <strong>documentation, authorization, and legal accountability</strong> for your waste throughout its entire journey.
+                Unlike Simpler Recycling (which focuses on physical waste separation), Duty of Care is about <strong>documentation, authorisation, and legal accountability</strong> for your waste throughout its entire journey.
               </p>
               <p className="poppins-regular text-emerald-800 leading-relaxed mb-4">
                 This applies to every business in England and Wales that handles:
@@ -180,7 +180,7 @@ export default function DutyOfCareWaste() {
                   <ul className="space-y-1 mb-3">
                     <li className="poppins-regular text-red-800 text-sm">• Only use licensed waste carriers (verify on public register)</li>
                     <li className="poppins-regular text-red-800 text-sm">• Check waste facilities have proper permits</li>
-                    <li className="poppins-regular text-red-800 text-sm">• Never give waste to someone who can't provide authorization proof</li>
+                    <li className="poppins-regular text-red-800 text-sm">• Never give waste to someone who can't provide authorisation proof</li>
                     <li className="poppins-regular text-red-800 text-sm">• Report suspected illegal activity to Environment Agency</li>
                   </ul>
                   <div className="bg-red-100 rounded-lg p-3">
@@ -195,7 +195,7 @@ export default function DutyOfCareWaste() {
                     2. Prevent Environmental Permit Breaches
                   </h3>
                   <p className="poppins-regular text-orange-800 text-sm mb-3">
-                    Ensure waste goes to facilities authorized to accept your specific waste type.
+                    Ensure waste goes to facilities authorised to accept your specific waste type.
                   </p>
                   <p className="poppins-semibold text-orange-900 text-sm mb-2">What this means in practice:</p>
                   <ul className="space-y-1 mb-3">
@@ -234,12 +234,12 @@ export default function DutyOfCareWaste() {
                 <div className="bg-blue-50 rounded-xl p-5 border-l-4 border-blue-400">
                   <h3 className="poppins-semibold text-lg text-blue-900 mb-3 flex items-center gap-2">
                     <FileCheck className="w-5 h-5" />
-                    4. Transfer Only to Authorized Persons
+                    4. Transfer Only to Authorised Persons
                   </h3>
                   <p className="poppins-regular text-blue-800 text-sm mb-3">
-                    Every person who receives your waste must be legally authorized.
+                    Every person who receives your waste must be legally authorised.
                   </p>
-                  <p className="poppins-semibold text-blue-900 text-sm mb-2">How to check authorization:</p>
+                  <p className="poppins-semibold text-blue-900 text-sm mb-2">How to check authorisation:</p>
                   <ul className="space-y-1 mb-3">
                     <li className="poppins-regular text-blue-800 text-sm">• England: https://environment.data.gov.uk/public-register/view/index</li>
                     <li className="poppins-regular text-blue-800 text-sm">• Wales: https://naturalresources.wales/permits-and-permissions/</li>
@@ -535,7 +535,7 @@ export default function DutyOfCareWaste() {
                 </div>
 
                 <div className="bg-green-50 rounded-xl p-5 border border-green-200">
-                  <h3 className="poppins-semibold text-lg text-green-900 mb-3">Carrier Authorization:</h3>
+                  <h3 className="poppins-semibold text-lg text-green-900 mb-3">Carrier Authorisation:</h3>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
                       <div className="w-5 h-5 rounded border-2 border-green-400 flex-shrink-0 mt-0.5"></div>

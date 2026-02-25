@@ -452,7 +452,7 @@ function buildEmailHtml(payload: EmailPayload, date: string): string {
                   <table cellpadding="0" cellspacing="0" role="presentation">
                     <tr>
                       <td style="padding:0 12px;">
-                        <a href="tel:+447591092103" style="font-family:Arial,sans-serif;font-size:12px;color:#a7f3d0;text-decoration:none;">+44 7591 092103</a>
+                        <a href="tel:01217510551" style="font-family:Arial,sans-serif;font-size:12px;color:#a7f3d0;text-decoration:none;">0121 751 0551</a>
                       </td>
                       <td style="color:#6ee7b7;font-size:12px;">|</td>
                       <td style="padding:0 12px;">

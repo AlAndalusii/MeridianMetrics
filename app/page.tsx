@@ -170,8 +170,8 @@ const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: stri
       </svg>
     </div>
     <div className="flex flex-col">
-        <span className="poppins-bold text-3xl text-emerald-800 tracking-tight leading-none">Millstone Compliance</span>
-        <span className="poppins-medium text-xs text-emerald-600 tracking-widest uppercase mt-1">
+        <span className="poppins-bold text-xl sm:text-2xl md:text-3xl text-emerald-800 tracking-tight leading-none">Millstone Compliance</span>
+        <span className="poppins-medium text-[10px] sm:text-xs text-emerald-600 tracking-widest uppercase mt-1">
           EPR • PPT • PRN Experts
         </span>
     </div>
@@ -279,8 +279,8 @@ export default function MillstoneComplianceWebsite() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 text-emerald-900 overflow-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      {/* Animated Background — hidden on mobile (too GPU-heavy on small screens) */}
+      <div className="hidden sm:block fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-emerald-200/30 to-green-300/20 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-green-200/30 to-emerald-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-emerald-100/20 to-green-200/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
@@ -337,8 +337,8 @@ export default function MillstoneComplianceWebsite() {
           <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:20px_20px] animate-shimmer"></div>
         </div>
 
-        {/* Premium floating elements */}
-        <div className="absolute inset-0 overflow-hidden">
+        {/* Premium floating elements — tablet and above only */}
+        <div className="hidden sm:block absolute inset-0 overflow-hidden">
           {/* Geometric shapes */}
           <div className="absolute top-1/4 left-10 w-24 h-24 animate-float-slow">
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/10 to-emerald-300/5 rounded-[30px] rotate-[10deg] backdrop-blur-sm"></div>
@@ -395,9 +395,9 @@ export default function MillstoneComplianceWebsite() {
               </div>
             </div>
 
-            {/* Product Recycled Plastic Tracking Dashboard */}
+            {/* Product Recycled Plastic Tracking Dashboard — hidden on tiny phones */}
             <div
-              className={`transition-all duration-200 delay-75 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} mt-8 lg:mt-0`}
+              className={`hidden xs:block transition-all duration-200 delay-75 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} mt-8 lg:mt-0`}
             >
               <div className="relative">
                 <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-4 sm:p-6 border border-emerald-200 shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 lg:hover:scale-105">

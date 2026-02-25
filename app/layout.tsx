@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 const poppins = Poppins({ 
   subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700', '900'],
   variable: '--font-poppins',
   display: 'swap',
   preload: true,
@@ -74,8 +74,7 @@ export const metadata: Metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  maximumScale: 5,
   viewportFit: 'cover',
   themeColor: '#065f46',
 }

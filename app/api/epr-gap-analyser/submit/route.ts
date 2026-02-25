@@ -262,7 +262,7 @@ export async function POST(request: Request) {
       <div style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:16px;padding:24px;text-align:center;border:1px solid #bfdbfe;">
         <p style="color:#1e3a8a;font-weight:700;margin:0 0 8px;font-size:15px;">Have questions? Contact our EPR specialists</p>
         <p style="color:#374151;font-size:14px;margin:0 0 12px;">
-          📞 <a href="tel:+447591092103" style="color:#2563eb;text-decoration:none;font-weight:600;">+44 7591 092103</a>
+          📞 <a href="tel:01217510551" style="color:#2563eb;text-decoration:none;font-weight:600;">0121 751 0551</a>
           &nbsp;&nbsp;|&nbsp;&nbsp;
           📧 <a href="mailto:hello@millstonecompliance.com" style="color:#2563eb;text-decoration:none;font-weight:600;">hello@millstonecompliance.com</a>
         </p>

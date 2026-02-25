@@ -1,131 +1,164 @@
 "use client"
 
-import React, { useState, useEffect, useCallback, memo } from "react"
-import Link from "next/link"
+import React, { useState, useEffect, useCallback, useRef, memo } from "react"
 import { useRouter, usePathname } from "next/navigation"
-import { Menu, X, Home, FileCheck, ClipboardCheck } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import {
+  Menu, X, Home, FileCheck, ClipboardCheck,
+  Mail, Info, BarChart3
+} from "lucide-react"
 
 const menuItems = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/resources", label: "Resources", icon: FileCheck },
-  { href: "/quiz", label: "Free Assessment", icon: ClipboardCheck },
+  { href: "/",         label: "Home",            icon: Home },
+  { href: "/resources",label: "Resources",        icon: FileCheck },
+  { href: "/quiz",     label: "Free Assessment",  icon: ClipboardCheck },
+  { href: "/about",    label: "About Us",         icon: Info },
+  { href: "/ppt-gap-analyser", label: "PPT Gap Analyser", icon: BarChart3 },
 ]
 
 export const MobileMenu = memo(function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false)
-  const router = useRouter()
+  const router   = useRouter()
   const pathname = usePathname()
+  const savedScrollY = useRef(0)
 
-  // Close menu when route changes
+  /* Close when route changes */
   useEffect(() => {
     setIsOpen(false)
   }, [pathname])
 
-  // Prevent body scroll when menu is open
+  /* Scroll lock — overflow:hidden only (no position:fixed on body which breaks Link navigation) */
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
-      document.body.style.touchAction = 'none'
+      savedScrollY.current = window.scrollY
+      document.body.style.overflow = "hidden"
     } else {
-      document.body.style.overflow = 'unset'
-      document.body.style.touchAction = 'auto'
+      document.body.style.overflow = ""
     }
     return () => {
-      document.body.style.overflow = 'unset'
-      document.body.style.touchAction = 'auto'
+      document.body.style.overflow = ""
     }
   }, [isOpen])
 
-  const handleClose = useCallback(() => {
+  /* Navigate: restore scroll, close menu, then push route */
+  const navigateTo = useCallback(
+    (href: string) => {
+      // Synchronously restore body styles so nothing blocks navigation
+      document.body.style.overflow = ""
+      setIsOpen(false)
+      router.push(href)
+    },
+    [router]
+  )
+
+  const handleToggle = useCallback(() => setIsOpen(prev => !prev), [])
+  const handleClose  = useCallback(() => {
+    document.body.style.overflow = ""
     setIsOpen(false)
   }, [])
-
-  const handleToggle = useCallback(() => {
-    setIsOpen(prev => !prev)
-  }, [])
-
-  const handleQuizClick = useCallback(() => {
-    setIsOpen(false)
-    router.push("/quiz")
-  }, [router])
 
   return (
     <>
-      {/* Mobile Menu Button */}
-      <Button
+      {/* ── Hamburger button ───────────────────────────── */}
+      <button
+        type="button"
         onClick={handleToggle}
-        className="lg:hidden poppins-semibold bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-md p-2 min-h-[44px] min-w-[44px] touch-manipulation"
-        aria-label="Toggle menu"
+        className="lg:hidden flex items-center justify-center w-11 h-11 rounded-xl bg-white border border-emerald-200 shadow-md text-emerald-700 active:bg-emerald-50 transition-colors"
+        aria-label={isOpen ? "Close menu" : "Open menu"}
         aria-expanded={isOpen}
-        style={{ 
-          WebkitTapHighlightColor: 'transparent'
-        }}
+        aria-controls="mobile-nav-panel"
       >
-        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-      </Button>
+        {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </button>
 
-      {/* Mobile Menu Overlay */}
+      {/* ── Full-screen drawer ─────────────────────────── */}
       {isOpen && (
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 z-40 lg:hidden animate-fade-in"
+            className="fixed inset-0 bg-black/40 z-[90] lg:hidden"
             onClick={handleClose}
             aria-hidden="true"
           />
 
-          {/* Menu Panel */}
-          <div className="fixed top-[73px] left-0 right-0 bottom-0 bg-white z-50 lg:hidden overflow-y-auto animate-slide-in-right">
-            <nav className="px-4 py-6 space-y-2">
+          {/* Panel */}
+          <div
+            id="mobile-nav-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+            className="fixed inset-y-0 right-0 w-full max-w-xs z-[100] lg:hidden bg-white flex flex-col shadow-2xl"
+            style={{
+              animation: "mobileMenuSlideIn 240ms cubic-bezier(0.16,1,0.3,1) both",
+            }}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-emerald-100 bg-emerald-50/60">
+              <span className="poppins-bold text-emerald-900 text-lg tracking-tight">
+                Navigate
+              </span>
+              <button
+                type="button"
+                onClick={handleClose}
+                className="flex items-center justify-center w-10 h-10 rounded-xl bg-white border border-emerald-200 text-emerald-700 active:bg-emerald-100 transition-colors shadow-sm"
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Nav links */}
+            <nav className="flex-1 overflow-y-auto px-4 py-5 space-y-2">
               {menuItems.map((item) => {
-                const Icon = item.icon
+                const Icon    = item.icon
                 const isActive = pathname === item.href
+
                 return (
-                  <Link
+                  <button
                     key={item.href}
-                    href={item.href}
-                    onClick={handleClose}
+                    type="button"
+                    onClick={() => navigateTo(item.href)}
                     className={`
-                      flex items-center gap-4 px-4 py-4 rounded-xl transition-all duration-200 touch-manipulation
-                      ${isActive 
-                        ? 'bg-emerald-700 text-white shadow-lg' 
-                        : 'bg-emerald-50 text-emerald-900 hover:bg-emerald-100 active:bg-emerald-200'
+                      w-full flex items-center gap-3 px-4 py-4 rounded-xl
+                      text-left text-base poppins-semibold
+                      transition-colors active:scale-[0.98]
+                      ${isActive
+                        ? "bg-emerald-700 text-white shadow-md"
+                        : "bg-emerald-50 text-emerald-900 active:bg-emerald-100 hover:bg-emerald-100"
                       }
                     `}
-                    style={{ 
-                      WebkitTapHighlightColor: 'transparent'
-                    }}
                   >
-                    <Icon className="w-6 h-6" />
-                    <span className="poppins-semibold text-lg">{item.label}</span>
-                  </Link>
+                    <Icon className="w-5 h-5 flex-shrink-0" />
+                    {item.label}
+                    {isActive && (
+                      <span className="ml-auto w-1.5 h-1.5 rounded-full bg-white/80" />
+                    )}
+                  </button>
                 )
               })}
 
-              {/* CTA Button */}
-              <div className="pt-4">
-                <Button
-                  onClick={handleQuizClick}
-                  className="w-full poppins-semibold bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-6 text-lg shadow-xl touch-manipulation"
-                  style={{ 
-                    WebkitTapHighlightColor: 'transparent'
-                  }}
+              {/* CTA */}
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={() => navigateTo("/quiz")}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-4 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 text-white poppins-semibold text-base active:opacity-90 transition-opacity shadow-lg"
                 >
+                  <ClipboardCheck className="w-5 h-5" />
                   Start Free Assessment
-                </Button>
+                </button>
               </div>
 
-              {/* Quick Contact */}
-              <div className="pt-6 mt-6 border-t border-emerald-100">
-                <p className="poppins-medium text-sm text-emerald-600 mb-3">Quick Contact</p>
+              {/* Contact */}
+              <div className="pt-4 mt-2 border-t border-emerald-100 space-y-2">
+                <p className="poppins-medium text-xs text-emerald-500 uppercase tracking-wide px-1">
+                  Contact
+                </p>
                 <a
                   href="mailto:hello@millstonecompliance.com"
-                  className="block px-4 py-3 bg-emerald-50 rounded-lg text-emerald-900 poppins-regular text-sm hover:bg-emerald-100 active:bg-emerald-200 transition-colors touch-manipulation"
-                  style={{ 
-                    WebkitTapHighlightColor: 'transparent'
-                  }}
+                  onClick={handleClose}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-emerald-50 text-emerald-800 poppins-regular text-sm active:bg-emerald-100 transition-colors"
                 >
+                  <Mail className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                   hello@millstonecompliance.com
                 </a>
               </div>

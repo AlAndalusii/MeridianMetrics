@@ -290,6 +290,26 @@
   animation: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes mobileMenuSlideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 /* Shimmer animation for buttons and cards */
 @keyframes shimmer {
   0% {
@@ -548,26 +568,72 @@
 
 /* Mobile-specific optimizations */
 @media (max-width: 640px) {
-  /* Reduce animations on mobile for better performance */
-  .animate-pulse-slow,
+  /* Completely disable purely decorative background animations on mobile
+     These cost GPU/CPU but add no functional value on small screens */
   .animate-spin-slower,
+  .animate-spin-slow,
+  .animate-beam-slide,
+  .animate-beam-slide-reverse,
+  .animate-float-slow,
+  .animate-float-slow-reverse,
+  .animate-shimmer,
+  .animate-shine,
+  .animate-gradient-x,
   .animate-gradient-shift,
-  .animate-gradient-shift-reverse {
-    animation-duration: 8s;
+  .animate-gradient-shift-reverse,
+  .animate-scan {
+    animation: none !important;
   }
-  
-  /* Simplify blur effects on mobile */
+
+  /* Keep functional animations but slow them right down */
+  .animate-pulse-slow {
+    animation-duration: 6s;
+  }
+
+  /* Reduce backdrop blur — expensive on mobile GPUs */
   .backdrop-blur-xl {
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
-  
   .backdrop-blur-2xl {
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
-  
-  /* Optimize shadow rendering on mobile */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  /* Simplify heavy box shadows */
   .shadow-2xl {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Remove hover translation effects (irrelevant on touch) */
+  .sm\:hover\:-translate-y-3:hover {
+    transform: none !important;
+  }
+  .hover\:scale-105:hover {
+    transform: none !important;
+  }
+
+  /* Force GPU compositing on key animated elements */
+  .animate-pulse {
+    will-change: opacity;
+  }
+  .animate-bounce {
+    will-change: transform;
+  }
+
+  /* Drastically reduce huge decorative blurs — 700px blurred divs are very GPU-heavy on mobile */
+  .blur-3xl {
+    --tw-blur: blur(16px) !important;
+  }
+  .blur-2xl {
+    --tw-blur: blur(12px) !important;
+  }
+  .blur-xl {
+    --tw-blur: blur(8px) !important;
   }
 }
 
@@ -800,6 +866,38 @@ body, html {
 /* Prevent layout shift on load */
 .no-layout-shift {
   content-visibility: auto;
+}
+
+/* GPU compositing hints for animated elements — reduces main thread jank */
+.animate-spin-slow,
+.animate-spin-slower,
+.animate-float-slow,
+.animate-float-slow-reverse,
+.animate-gradient-x,
+.animate-fade-in-up {
+  will-change: transform;
+}
+
+.animate-pulse,
+.animate-pulse-slow,
+.animate-gradient-shift,
+.animate-gradient-shift-reverse {
+  will-change: opacity;
+}
+
+/* Content sections below the fold — browser can skip rendering until needed */
+.section-below-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* Improve text rendering on all devices */
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeSpeed;
+}
+
+p, span, li {
+  text-rendering: optimizeLegibility;
 }
 
 /* Respect user's motion preferences for accessibility */

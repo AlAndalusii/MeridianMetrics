@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
               <p><strong>Organisation:</strong> Millstone Compliance Ltd</p>
               <p><strong>Address:</strong> United Kingdom</p>
               <p><strong>Email:</strong> hello@millstonecompliance.com</p>
-              <p><strong>Phone:</strong> +447591092103</p>
+              <p><strong>Phone:</strong> 0121 751 0551</p>
               <p className="pt-4 text-sm italic">For data protection inquiries or to exercise your rights, please contact us using the details above.</p>
             </div>
           </div>

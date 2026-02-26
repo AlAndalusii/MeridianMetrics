@@ -41,6 +41,8 @@ import {
   Star,
   Users,
   GraduationCap,
+  Recycle,
+  Shield,
 } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -49,6 +51,7 @@ import { CONTACT_INFO } from "@/lib/constants"
 import { CalendlyModal } from "@/components/CalendlyWidget"
 import { EmailTemplateModal } from "@/components/EmailTemplateModal"
 import { MobileMenu } from "@/components/MobileMenu"
+import { Navigation } from "@/components/Navigation"
 
 // Fortune 500 Premium Logo Component - World-Class Design
 const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: string }) => (
@@ -287,49 +290,10 @@ export default function MillstoneComplianceWebsite() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl z-50 border-b border-emerald-100 shadow-sm" role="navigation" aria-label="Main navigation">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="group/logo transition-transform duration-300 hover:scale-105">
-              <MillstoneLogo size="sm" variant="modern" />
-            </Link>
-            <div className="flex items-center gap-2 sm:gap-3">
-              {/* Desktop Navigation */}
-              <Button 
-                onClick={() => router.push("/resources")}
-                className="poppins-semibold bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap touch-manipulation hidden lg:flex items-center relative overflow-hidden group/resources"
-                style={{ 
-                  pointerEvents: 'auto',
-                  touchAction: 'manipulation',
-                  WebkitTapHighlightColor: 'transparent'
-                }}
-              >
-                <FileCheck className="w-4 h-4 sm:mr-2 relative z-10" />
-                <span className="hidden sm:inline relative z-10">Resources</span>
-              </Button>
-              <Button 
-                onClick={() => router.push("/quiz")}
-                aria-label="Start your free packaging compliance assessment"
-                className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px] min-w-[44px] whitespace-nowrap touch-manipulation"
-                style={{ 
-                  pointerEvents: 'auto',
-                  touchAction: 'manipulation',
-                  WebkitTapHighlightColor: 'transparent'
-                }}
-              >
-                <span className="hidden xs:inline">START YOUR FREE ASSESSMENT</span>
-                <span className="xs:hidden">START ASSESSMENT</span>
-              </Button>
-              
-              {/* Mobile Menu */}
-              <MobileMenu />
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 relative overflow-hidden group/hero" aria-label="Hero section">
+      <section className="pt-24 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 relative overflow-hidden group/hero" aria-label="Hero section">
         {/* Sophisticated background elements */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.05)_0%,transparent_70%)] animate-pulse-slow"></div>
@@ -357,41 +321,57 @@ export default function MillstoneComplianceWebsite() {
             <div
               className={`transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
-              <h1 className="poppins-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 leading-tight">
-                <span className="text-emerald-900 block">UK Packaging & Waste Compliance.</span>
-                <span className="text-emerald-600 block">We find gaps before regulators do.</span>
+              {/* Eyebrow */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-xs poppins-semibold text-emerald-700 mb-5">
+                <BadgeCheck className="w-3.5 h-3.5 text-emerald-600" />
+                UK Waste &amp; Packaging Compliance
+              </div>
+
+              <h1 className="poppins-bold text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight mb-5">
+                <span className="text-slate-900 block">HMO Landlords:</span>
+                <span className="text-emerald-700 block">
+                  {Math.max(0, Math.floor((new Date("2026-03-31T23:59:59").getTime() - Date.now()) / (1000 * 60 * 60 * 24)))} Days to Avoid £5,000 Fines
+                </span>
               </h1>
-              <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 mb-6 sm:mb-8 leading-relaxed">
-                Free 3-minute check. Find missing documents and errors before penalties.
+
+              <p className="poppins-regular text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
+                March 31 Simpler Recycling deadline makes <span className="poppins-semibold text-slate-800">you liable</span> for your tenants&apos; waste mistakes. Cross-contamination = management failure = fine and licence revocation.
               </p>
-              <div className="flex flex-col gap-4">
-                <Button
-                  size="lg"
-                  onClick={() => router.push("/quiz")}
-                  className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 group w-full sm:w-fit text-sm sm:text-base py-5 sm:py-6 px-6 sm:px-8 min-h-[54px] touch-manipulation"
-                  style={{ 
-                    pointerEvents: 'auto',
-                    touchAction: 'manipulation',
-                    WebkitTapHighlightColor: 'transparent'
-                  }}
+
+              {/* Primary CTAs */}
+              <div className="flex flex-wrap gap-3 mb-5">
+                <Link
+                  href="/services#waste"
+                  className="inline-flex items-center gap-2 poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-sm hover:shadow-md"
                 >
-                  START YOUR FREE ASSESSMENT
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 text-emerald-600">
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 flex-shrink-0" />
-                    <span className="poppins-medium text-xs sm:text-sm">HMRC & EA Background</span>
+                  Book HMO Audit — £295 <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/quiz"
+                  className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95"
+                >
+                  Free Compliance Check
+                </Link>
+              </div>
+
+              {/* Also serving */}
+              <p className="text-xs text-slate-400 poppins-regular mb-5">
+                Also serving:{" "}
+                <span className="text-slate-600 poppins-medium">Businesses · Importers · Manufacturers</span>
+              </p>
+
+              {/* Trust signals */}
+              <div className="flex flex-wrap gap-4">
+                {[
+                  "Cambridge-Trained",
+                  "Weekend Availability",
+                  "48hr Reports",
+                ].map((t) => (
+                  <div key={t} className="flex items-center gap-1.5 text-xs text-emerald-700 poppins-medium">
+                    <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                    {t}
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 flex-shrink-0" />
-                    <span className="poppins-medium text-xs sm:text-sm">EPR, PPT, PRN & Waste Advisors</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 flex-shrink-0" />
-                    <span className="poppins-medium text-xs sm:text-sm">Audit-Ready Systems</span>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -642,7 +622,7 @@ export default function MillstoneComplianceWebsite() {
             
             {/* Enhanced Description */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4">
-              Our free 3-minute assessment identifies compliance gaps across UK packaging (PPT, EPR, PRN, WEEE) and waste regulations (Duty of Care, Digital Tracking, Simpler Recycling). In most businesses we review, <span className="poppins-semibold text-emerald-800">7 out of 10 have gaps</span> that could lead to penalties.
+              Our free 3-minute assessment identifies your compliance gaps across UK packaging regulations (EPR, PPT, PRN) and waste rules (Duty of Care, Simpler Recycling — including the <span className="poppins-semibold text-emerald-800">March 31 HMO landlord deadline</span>). Most businesses have gaps they don&apos;t know about — this tells you exactly where you stand.
             </p>
             
             {/* Stats Bar - New Addition */}
@@ -665,84 +645,64 @@ export default function MillstoneComplianceWebsite() {
           </div>
 
           {/* Assessment Areas - Enhanced Cards */}
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-14 md:mb-16">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-12 sm:mb-14 md:mb-16">
           {[
             {
               icon: Building,
+              label: "Packaging — Service 1",
+              badge: "EPR",
               title: "EPR Invoice Audit",
-              description: "We check EPR invoices and scope, confirm household / non-household splits and flag overcharges or missing tonnages before you pay.",
-              stat: "£45K Avg Savings",
-              gradient: "from-blue-50/90 to-blue-100/90",
-              delay: "delay-0",
-              accentColor: "blue",
+              description: "We check your EPR invoices and scope, confirm household / non-household splits, and flag overcharges or missing tonnages before you pay. You shouldn't be paying more than you owe.",
+              highlight: true,
             },
             {
               icon: FileCheck,
+              label: "Packaging — Service 2",
+              badge: "PPT",
               title: "PPT Certificate Check",
-              description: "We confirm PPT certificates, recycled-content claims and links to product lines so you avoid missing-document challenges in an HMRC review.",
-              stat: "127 Invoices Verified",
-              gradient: "from-emerald-50/80 to-emerald-100/80",
-              delay: "delay-100",
-              accentColor: "emerald",
+              description: "We confirm PPT certificates, recycled-content claims and their links to product lines — so you have the documentation to withstand an HMRC review without scrambling for paperwork.",
+              highlight: false,
             },
             {
-              icon: TrendingUp,
-              title: "PRN & 2026 Strategy",
-              description: "We review your PRN position, link it to your packaging data and model 2026 fee modulation so you can plan contracts and budgets early.",
-              stat: "2026 Fee Forecast",
-              gradient: "from-purple-50/70 to-purple-100/70",
-              delay: "delay-200",
-              accentColor: "purple",
+              icon: Recycle,
+              label: "Waste — Service 3",
+              badge: "Simpler Recycling",
+              title: "Simpler Recycling Check",
+              description: "Deadline passed 31 March 2026. All UK businesses and HMO landlords must now have 3 separate waste streams. EA inspections have started — we check your setup and tell you if you're compliant.",
+              highlight: false,
             },
           ].map((item, index) => (
-              <div
-                key={index}
-                className={`group/card relative ${item.delay} animate-fade-in-up`}
-              >
-                {/* Card glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/0 via-emerald-400/5 to-emerald-400/0 rounded-3xl blur-xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-700"></div>
-                
-                {/* Main card */}
-                <div className={`relative bg-gradient-to-br ${item.gradient} backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-emerald-200/60 shadow-[0_8px_32px_rgba(6,95,70,0.08)] hover:shadow-[0_20px_60px_rgba(6,95,70,0.15)] transition-all duration-700 sm:hover:-translate-y-3 overflow-hidden`}>
-                  {/* Animated border shimmer */}
-                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-700">
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-emerald-200/20 to-transparent animate-shimmer"></div>
+            <div
+              key={index}
+              className={`rounded-2xl overflow-hidden transition-all duration-300 ${
+                item.highlight
+                  ? "border border-emerald-400/40 shadow-[0_4px_32px_rgba(6,95,70,0.18)] bg-emerald-950"
+                  : "border border-slate-200/80 shadow-[0_2px_16px_rgba(6,95,70,0.06)] bg-white hover:shadow-[0_6px_32px_rgba(6,95,70,0.10)] hover:border-emerald-200"
+              }`}
+            >
+              <div className={`h-1 w-full ${item.highlight ? "bg-gradient-to-r from-emerald-400 to-emerald-300" : "bg-gradient-to-r from-emerald-600/40 to-emerald-500/20"}`} />
+              <div className="p-6">
+                <div className="flex items-start gap-3 mb-4">
+                  <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${item.highlight ? "bg-emerald-400/20 border border-emerald-400/30" : "bg-emerald-700"}`}>
+                    <item.icon className={`w-5 h-5 ${item.highlight ? "text-emerald-300" : "text-white"}`} />
                   </div>
-                  
-                  {/* Content */}
-                  <div className="relative p-5 sm:p-6 md:p-8">
-                    {/* Icon container with floating effect */}
-                    <div className="relative mb-4 sm:mb-5 md:mb-6 w-fit mx-auto">
-                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-emerald-400/20 rounded-2xl blur-xl group-hover/card:blur-2xl transition-all duration-700"></div>
-                      <div className={`relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-${item.accentColor}-100 to-${item.accentColor}-50 rounded-2xl flex items-center justify-center border border-${item.accentColor}-200/50 shadow-lg group-hover/card:shadow-xl group-hover/card:scale-110 transition-all duration-500`}>
-                        <item.icon className={`w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-${item.accentColor}-600 group-hover/card:scale-110 transition-transform duration-500`} />
-                      </div>
-                      {/* Floating badge */}
-                      <div className="absolute -top-2 -right-2 w-5 h-5 sm:w-6 sm:h-6 bg-emerald-500 rounded-full flex items-center justify-center border-2 border-white shadow-lg animate-pulse">
-                        <span className="text-white text-[10px] sm:text-xs poppins-bold">{index + 1}</span>
-                      </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className={`text-[10px] poppins-semibold uppercase tracking-widest ${item.highlight ? "text-emerald-400/60" : "text-slate-400"}`}>{item.label}</span>
+                      <span className={`text-[10px] poppins-semibold px-2 py-0.5 rounded-full border ${item.highlight ? "bg-emerald-400/15 text-emerald-300 border-emerald-400/30" : "bg-emerald-50 text-emerald-700 border-emerald-200"}`}>{item.badge}</span>
                     </div>
-                    
-                    {/* Title */}
-                    <h3 className="poppins-semibold text-base sm:text-lg md:text-xl text-emerald-900 mb-2 sm:mb-3 group-hover/card:text-emerald-700 transition-colors duration-300">{item.title}</h3>
-                    
-                    {/* Description */}
-                    <p className="poppins-regular text-emerald-700 leading-relaxed mb-3 sm:mb-4 text-xs sm:text-sm">{item.description}</p>
-                    
-                    {/* Stat badge */}
-                    <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-white/80 border border-emerald-200/50 group-hover/card:bg-emerald-50 group-hover/card:border-emerald-300/50 transition-all duration-300">
-                      <div className={`w-1.5 h-1.5 bg-${item.accentColor}-500 rounded-full mr-2 animate-pulse`}></div>
-                      <span className="text-xs poppins-semibold text-emerald-700 group-hover/card:text-emerald-800 transition-colors duration-300">{item.stat}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Progress indicator */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-emerald-100">
-                    <div className={`h-1 bg-gradient-to-r from-${item.accentColor}-400 to-${item.accentColor}-500 transition-all duration-700 group-hover/card:w-full`} style={{width: '0%'}}></div>
+                    <h3 className={`poppins-bold text-base leading-tight ${item.highlight ? "text-white" : "text-slate-900"}`}>{item.title}</h3>
                   </div>
                 </div>
+                <p className={`poppins-regular text-sm leading-relaxed ${item.highlight ? "text-emerald-100/70" : "text-slate-600"}`}>{item.description}</p>
               </div>
-            ))}
+              <div className={`px-6 py-3 border-t ${item.highlight ? "bg-emerald-900/40 border-emerald-700/40" : "bg-slate-50 border-slate-100"}`}>
+                <Link href="/services#packaging" className={`inline-flex items-center gap-1.5 text-xs poppins-semibold transition-colors ${item.highlight ? "text-emerald-300 hover:text-emerald-200" : "text-emerald-700 hover:text-emerald-800"}`}>
+                  Learn more <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+          ))}
           </div>
 
           {/* Premium CTA Section */}
@@ -1213,269 +1173,155 @@ export default function MillstoneComplianceWebsite() {
         </div>
       </section>
 
-      {/* Simpler Recycling Section - World-Class Design */}
-      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-white via-green-50/40 to-white relative overflow-hidden group/recycling" aria-labelledby="recycling-heading">
-        {/* Sophisticated animated background */}
-        <div className="absolute inset-0">
-          {/* Animated gradient orbs */}
-          <div className="absolute top-0 right-1/4 w-[700px] h-[700px] bg-gradient-to-br from-green-200/20 via-emerald-100/15 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
-          <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-tl from-green-300/15 via-green-100/10 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '1.5s'}}></div>
-          
-          {/* Radial gradient depth */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.04)_0%,transparent_65%)] animate-pulse-slow"></div>
-          
-          {/* Conic gradient rotation */}
-          <div className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,rgba(34,197,94,0.02)_0deg,rgba(16,185,129,0.02)_120deg,rgba(34,197,94,0.02)_240deg)] animate-spin-slower"></div>
-          
-          {/* Grid pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(34,197,94,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,197,94,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
-          
-          {/* Shimmer overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:20px_20px] animate-shimmer"></div>
-        </div>
+      {/* HMO Simpler Recycling Section */}
+      <section className="py-14 sm:py-20 bg-white border-t border-slate-100" aria-labelledby="recycling-heading">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
-        {/* Floating elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Deadline Alert Card - Floating */}
-          <div className="hidden lg:block absolute top-24 right-[8%] w-40 h-32 bg-white/70 backdrop-blur-xl rounded-2xl border border-red-200/60 shadow-[0_8px_32px_rgba(239,68,68,0.12)] animate-float-slow p-5">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-              <div className="text-[10px] text-red-600 poppins-semibold uppercase tracking-wider">Alert</div>
+          {/* Alert stats bar */}
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 mb-12 px-4 py-4 bg-red-50 border border-red-200 rounded-2xl">
+            <div className="text-center">
+              <div className="poppins-bold text-2xl text-red-600">31 Mar</div>
+              <div className="text-[10px] text-red-700 poppins-semibold uppercase tracking-wider mt-0.5">Deadline Passed</div>
             </div>
-            <div className="text-2xl poppins-bold text-red-600 mb-1">31 Mar</div>
-            <div className="text-xs poppins-medium text-red-700">Deadline Passed</div>
-            <div className="mt-2 w-full h-1 bg-red-100 rounded-full overflow-hidden">
-              <div className="h-1 bg-red-500 rounded-full animate-pulse" style={{width: '100%'}}></div>
+            <div className="w-px h-10 bg-red-200 hidden sm:block" />
+            <div className="text-center">
+              <div className="poppins-bold text-2xl text-slate-800">3</div>
+              <div className="text-[10px] text-slate-500 poppins-semibold uppercase tracking-wider mt-0.5">Waste Streams Required</div>
             </div>
-          </div>
-          
-          {/* Compliance Status Card - Floating */}
-          <div className="hidden lg:block absolute bottom-32 left-[6%] w-44 h-36 bg-white/70 backdrop-blur-xl rounded-2xl border border-green-200/60 shadow-[0_8px_32px_rgba(34,197,94,0.12)] animate-float-slow-reverse p-5">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-xs text-green-700 poppins-semibold">Businesses</div>
-              <Trash2 className="w-4 h-4 text-green-600" />
-            </div>
-            <div className="text-3xl poppins-bold text-green-600 mb-1">3</div>
-            <div className="text-xs poppins-medium text-green-700 mb-3">Waste Streams Required</div>
-            <div className="flex gap-1">
-              {[1,2,3].map((i) => (
-                <div key={i} className="flex-1 h-2 rounded-full bg-green-500/80"></div>
-              ))}
+            <div className="w-px h-10 bg-red-200 hidden sm:block" />
+            <div className="text-center">
+              <div className="poppins-bold text-2xl text-slate-800">£118</div>
+              <div className="text-[10px] text-slate-500 poppins-semibold uppercase tracking-wider mt-0.5">Per Hour EA Fine</div>
             </div>
           </div>
 
-          {/* Geometric shapes */}
-          <div className="absolute top-1/3 left-[18%] w-24 h-24 opacity-25">
-            <div className="absolute inset-0 border-2 border-green-300 rounded-lg animate-spin-slow"></div>
-            <div className="absolute inset-3 border-2 border-green-400 rounded-lg animate-spin-slow-reverse"></div>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          {/* Premium Header */}
-          <div className="text-center mb-12 sm:mb-16 md:mb-20">
-            {/* New Regulation Badge */}
-            <div className="inline-flex items-center px-5 sm:px-7 py-2.5 sm:py-3 rounded-2xl bg-gradient-to-r from-red-50 via-red-100/80 to-red-50 backdrop-blur-xl border border-red-200/70 shadow-[0_8px_32px_rgba(239,68,68,0.15)] mb-6 sm:mb-8 md:mb-10 group-hover/recycling:scale-105 transition-all duration-700 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-red-100/0 via-white/50 to-red-100/0 animate-shine"></div>
-              <div className="absolute inset-0 animate-pulse-slow">
-                <div className="absolute inset-0 rounded-2xl border border-red-300/40"></div>
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-12">
+            {/* Left: content */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-50 border border-red-200 rounded-full mb-5">
+                <AlertTriangle className="w-3.5 h-3.5 text-red-500 flex-shrink-0" />
+                <span className="text-xs poppins-semibold text-red-700">HMO Landlords — Action Required</span>
               </div>
-              <Zap className="w-4 sm:w-5 h-4 sm:h-5 text-red-600 mr-2 sm:mr-3 animate-pulse relative z-10" />
-              <span className="poppins-semibold text-xs sm:text-sm text-red-900 tracking-wide uppercase relative z-10">New Regulation Alert</span>
-              <div className="ml-2 sm:ml-3 px-2.5 py-1 bg-red-200/60 rounded-full relative z-10">
-                <span className="text-[10px] sm:text-xs text-red-900 font-bold">2025</span>
+              <h2 id="recycling-heading" className="poppins-bold text-3xl sm:text-4xl text-slate-900 tracking-tight leading-tight mb-4">
+                Simpler Recycling —{" "}
+                <span className="text-red-600">Your Tenants&apos; Bins Are Your Liability</span>
+              </h2>
+              <p className="poppins-regular text-slate-500 text-base leading-relaxed mb-6 max-w-md">
+                Cross-contamination by your tenants counts as a management failure. That&rsquo;s a £5,000 fine and an HMO licence review — even if you didn&rsquo;t touch a single bin.
+              </p>
+
+              {/* Quick book CTA */}
+              <div className="flex flex-wrap gap-3 mb-6">
+                <button
+                  onClick={() => setShowCalendlyModal(true)}
+                  className="inline-flex items-center gap-2 poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white px-5 py-3 rounded-xl transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  <Calendar className="w-4 h-4" /> Book a Free Call
+                </button>
+                <Link href="/services#simpler-recycling" className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white border border-slate-200 hover:border-emerald-300 text-slate-700 hover:text-emerald-700 px-5 py-3 rounded-xl transition-all duration-200 active:scale-95">
+                  See How We Help <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+
+              {/* Mini trust */}
+              <div className="flex flex-wrap gap-3 text-xs text-slate-400 poppins-regular">
+                <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> 15-min call</span>
+                <span>·</span>
+                <span className="flex items-center gap-1"><CheckCircle className="w-3.5 h-3.5 text-emerald-500" /> No obligation</span>
+                <span>·</span>
+                <span className="flex items-center gap-1"><AlertTriangle className="w-3.5 h-3.5 text-amber-500" /> EA inspections active</span>
               </div>
             </div>
-            
-            {/* Main Headline */}
-            <h2 id="recycling-heading" className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-5 sm:mb-7 md:mb-9 text-green-900 tracking-tight relative animate-fade-in-up leading-[1.1]">
-              Simpler Recycling
-              <span className="block mt-2 sm:mt-3 leading-tight pb-2 sm:pb-3 bg-gradient-to-r from-green-600 via-green-500 to-green-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
-                Are You Breaking the Law?
-              </span>
-            </h2>
-            
-            {/* Subheadline */}
-            <p className="poppins-regular text-base sm:text-lg md:text-xl text-green-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4 animate-fade-in-up delay-100">
-              Deadline was <span className="poppins-semibold text-red-600">31 March 2025</span>. All UK businesses with 10+ employees must now separate waste into <span className="poppins-semibold text-green-800">3 bins</span>. Environment Agency inspections have started.
-            </p>
-            
-            {/* Critical Stats Bar */}
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-6 sm:mt-8 animate-fade-in-up delay-200">
-              <div className="group/stat text-center">
-                <div className="text-3xl sm:text-4xl poppins-bold text-red-600 group-hover/stat:scale-110 transition-transform duration-300">31 Mar</div>
-                <div className="text-[10px] sm:text-xs text-red-700 poppins-medium uppercase tracking-wide mt-1">Deadline Passed</div>
-              </div>
-              <div className="w-px h-12 sm:h-14 bg-green-200"></div>
-              <div className="group/stat text-center">
-                <div className="text-3xl sm:text-4xl poppins-bold text-green-600 group-hover/stat:scale-110 transition-transform duration-300">3</div>
-                <div className="text-[10px] sm:text-xs text-green-700 poppins-medium uppercase tracking-wide mt-1">Waste Streams</div>
-              </div>
-              <div className="w-px h-12 sm:h-14 bg-green-200"></div>
-              <div className="group/stat text-center">
-                <div className="text-3xl sm:text-4xl poppins-bold text-green-600 group-hover/stat:scale-110 transition-transform duration-300">£118</div>
-                <div className="text-[10px] sm:text-xs text-green-700 poppins-medium uppercase tracking-wide mt-1">Per Hour Fine</div>
-              </div>
-            </div>
-          </div>
 
-          {/* What We Do - Minimal Cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-20">
-            {[
-              {
-                icon: Target,
-                title: "Check Your Setup",
-                description: "We visit your site, count your bins, check your waste contractor, and tell you if you're compliant.",
-                stat: "14-Day Fix",
-                gradient: "from-green-50/90 to-green-100/90",
-                accentColor: "green",
-                delay: "delay-0",
-              },
-              {
-                icon: Trash2,
-                title: "3-Bin System",
-                description: "Dry recyclables, food waste, and general waste. We set up the bins, signage, and staff training.",
-                stat: "Ready in 7 Days",
-                gradient: "from-emerald-50/90 to-emerald-100/90",
-                accentColor: "emerald",
-                delay: "delay-100",
-              },
-              {
-                icon: BadgeCheck,
-                title: "Inspection Ready",
-                description: "Environment Agency can visit any time. We make sure you have labeled bins, records, and proof.",
-                stat: "Zero Fines",
-                gradient: "from-blue-50/90 to-blue-100/90",
-                accentColor: "blue",
-                delay: "delay-200",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className={`group/card relative ${item.delay} animate-fade-in-up`}
-              >
-                {/* Card glow */}
-                <div className="absolute -inset-2 bg-gradient-to-br from-green-400/0 via-green-400/10 to-green-400/0 rounded-3xl blur-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-700"></div>
-                
-                {/* Main card */}
-                <div className={`relative bg-gradient-to-br ${item.gradient} backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-green-200/60 shadow-[0_8px_32px_rgba(34,197,94,0.08)] hover:shadow-[0_20px_60px_rgba(34,197,94,0.15)] transition-all duration-700 sm:hover:-translate-y-3 overflow-hidden`}>
-                  {/* Shimmer effect on hover */}
-                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-700">
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-green-200/30 to-transparent animate-shimmer"></div>
+            {/* Right: animated property compliance mockup */}
+            <div className="relative">
+              <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50">
+                {/* Header bar */}
+                <div className="bg-slate-800 px-4 py-3 flex items-center justify-between border-b border-slate-700">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                    <span className="text-xs poppins-semibold text-white">HMO Compliance Scan</span>
                   </div>
-                  
-                  {/* Content */}
-                  <div className="relative p-6 sm:p-7 md:p-8">
-                    {/* Icon */}
-                    <div className="relative mb-5 sm:mb-6 w-fit mx-auto">
-                      <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-green-400/10 rounded-2xl blur-xl group-hover/card:blur-2xl transition-all duration-700"></div>
-                      <div className={`relative w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-${item.accentColor}-100 to-${item.accentColor}-50 rounded-2xl flex items-center justify-center border border-${item.accentColor}-200/50 shadow-lg group-hover/card:shadow-2xl group-hover/card:scale-110 transition-all duration-500`}>
-                        <item.icon className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-${item.accentColor}-600 group-hover/card:scale-110 transition-transform duration-500`} />
+                  <span className="text-[10px] text-slate-400 poppins-regular">14 Laburnum Close — 6 tenants</span>
+                </div>
+
+                {/* Bin rows */}
+                <div className="p-4 space-y-2">
+                  {[
+                    { icon: Recycle, name: "Dry Recyclables", detail: "Paper, plastic, glass", ok: true, delay: "0s" },
+                    { icon: Trash2, name: "Food Waste", detail: "No caddy found — GAP", ok: false, delay: "0.4s" },
+                    { icon: Trash2, name: "General Waste", detail: "Correctly labelled", ok: true, delay: "0.8s" },
+                  ].map((bin) => (
+                    <div
+                      key={bin.name}
+                      className={`flex items-center justify-between rounded-xl px-4 py-3 border ${bin.ok ? "bg-emerald-950/60 border-emerald-800/40" : "bg-amber-950/40 border-amber-700/40"}`}
+                      style={{ animation: `fadeInUp 0.4s ease both`, animationDelay: bin.delay }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${bin.ok ? "bg-emerald-800/50" : "bg-amber-800/40"}`}>
+                          <bin.icon className={`w-4 h-4 ${bin.ok ? "text-emerald-400" : "text-amber-400"}`} />
+                        </div>
+                        <div>
+                          <p className={`text-xs poppins-semibold ${bin.ok ? "text-emerald-100" : "text-amber-100"}`}>{bin.name}</p>
+                          <p className={`text-[10px] poppins-regular ${bin.ok ? "text-emerald-400/70" : "text-amber-400/70"}`}>{bin.detail}</p>
+                        </div>
+                      </div>
+                      <div className={`flex items-center gap-1 px-2 py-1 rounded-full ${bin.ok ? "bg-emerald-700/40" : "bg-amber-700/40 animate-pulse"}`}>
+                        {bin.ok
+                          ? <><CheckCircle className="w-3 h-3 text-emerald-400" /><span className="text-[10px] text-emerald-300 poppins-semibold">OK</span></>
+                          : <><AlertTriangle className="w-3 h-3 text-amber-400" /><span className="text-[10px] text-amber-300 poppins-semibold">GAP</span></>
+                        }
                       </div>
                     </div>
-                    
-                    {/* Title */}
-                    <h3 className="poppins-semibold text-lg sm:text-xl text-green-900 mb-3 text-center group-hover/card:text-green-700 transition-colors duration-300">
-                      {item.title}
-                    </h3>
-                    
-                    {/* Description */}
-                    <p className="poppins-regular text-green-700 leading-relaxed mb-4 text-sm text-center">
-                      {item.description}
-                    </p>
-                    
-                    {/* Stat badge */}
-                    <div className="flex justify-center">
-                      <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/90 border border-green-200/50 group-hover/card:bg-green-50 group-hover/card:border-green-300/50 transition-all duration-300">
-                        <div className={`w-1.5 h-1.5 bg-${item.accentColor}-500 rounded-full mr-2 animate-pulse`}></div>
-                        <span className="text-xs poppins-semibold text-green-700 group-hover/card:text-green-800 transition-colors duration-300">
-                          {item.stat}
-                        </span>
-                      </div>
-                    </div>
+                  ))}
+                </div>
+
+                {/* Score + CTA */}
+                <div className="px-4 pb-4">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[10px] text-slate-400 poppins-regular">Compliance Score</span>
+                    <span className="text-xs poppins-bold text-amber-400">67%</span>
                   </div>
-                  
-                  {/* Bottom progress line */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-green-100">
-                    <div className={`h-1 bg-gradient-to-r from-${item.accentColor}-400 to-${item.accentColor}-500 w-0 group-hover/card:w-full transition-all duration-700`}></div>
+                  <div className="w-full bg-slate-800 rounded-full h-2 mb-3">
+                    <div className="h-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-400 transition-all duration-1000" style={{ width: "67%" }} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <p className="text-[10px] text-amber-400/80 poppins-regular">⚠ 1 issue — food waste bin required</p>
+                    <button
+                      onClick={() => setShowCalendlyModal(true)}
+                      className="text-[10px] poppins-semibold text-emerald-400 hover:text-emerald-300 underline transition-colors"
+                    >
+                      Fix this →
+                    </button>
                   </div>
                 </div>
+              </div>
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white border border-slate-200 rounded-full px-4 py-1.5 shadow-sm text-[11px] poppins-semibold text-slate-500">
+                Example compliance scan
+              </div>
+            </div>
+          </div>
+
+          {/* 3 feature cards */}
+          <div className="grid sm:grid-cols-3 gap-4 pt-4 pb-2">
+            {[
+              { icon: Target, title: "Check Your Setup", desc: "We visit, count your bins, and verify your contractor. Written report in 48 hours.", tag: "£295", tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200" },
+              { icon: Trash2, title: "14-Day 3-Bin Fix", desc: "Dry recyclables, food waste, general waste. We scope the right setup for your property.", tag: "Ready in 7 Days", tagColor: "bg-blue-50 text-blue-700 border-blue-200" },
+              { icon: Shield, title: "Inspection Ready", desc: "Labelled bins, contractor records, written proof. Hand it over the moment an inspector arrives.", tag: "Zero Fines", tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200" },
+            ].map((card) => (
+              <div key={card.title} className="bg-[#f8faf9] border border-slate-200 rounded-xl p-5 hover:border-emerald-200 hover:shadow-[0_4px_20px_rgba(6,95,70,0.08)] transition-all duration-200">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-700 flex items-center justify-center flex-shrink-0">
+                    <card.icon className="w-4 h-4 text-white" />
+                  </div>
+                  <span className={`text-[10px] poppins-semibold px-2 py-0.5 rounded-full border ${card.tagColor}`}>{card.tag}</span>
+                </div>
+                <h3 className="poppins-bold text-sm text-slate-900 mb-1.5">{card.title}</h3>
+                <p className="poppins-regular text-xs text-slate-500 leading-relaxed">{card.desc}</p>
               </div>
             ))}
           </div>
 
-          {/* Premium CTA */}
-          <div className="text-center relative animate-fade-in-up delay-300">
-            {/* Glow effect behind CTA */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-gradient-to-r from-green-200/15 via-green-300/20 to-green-200/15 rounded-full blur-3xl pointer-events-none"></div>
-            
-            <div className="relative">
-              {/* Main CTA Button */}
-              <Link href="/simpler-recycling-gap-analyser">
-                <Button
-                  size="lg"
-                  className="poppins-semibold bg-gradient-to-r from-green-600 via-green-700 to-green-600 bg-[length:200%_100%] hover:bg-[length:100%_100%] active:scale-95 text-white border-0 shadow-[0_20px_60px_rgba(34,197,94,0.3)] hover:shadow-[0_25px_70px_rgba(34,197,94,0.4)] transition-all duration-700 sm:hover:scale-105 group/cta px-8 sm:px-12 md:px-14 py-6 sm:py-7 md:py-8 text-base sm:text-lg md:text-xl relative overflow-hidden w-full sm:w-auto min-h-[60px]"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-shine"></div>
-                  <span className="relative z-10 flex items-center justify-center">
-                    <Trash2 className="w-5 h-5 sm:w-6 sm:h-6 mr-3" />
-                    <span>Check If You're Compliant</span>
-                    <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6 ml-3 group-hover/cta:translate-x-2 transition-transform duration-500" />
-                  </span>
-                  <div className="absolute inset-0 rounded-lg opacity-0 group-hover/cta:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 rounded-lg border-2 border-white/30 animate-pulse-slow"></div>
-                  </div>
-                </Button>
-              </Link>
-              
-              {/* Trust indicators */}
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-6 sm:mt-8 text-xs sm:text-sm text-green-700">
-                <div className="flex items-center gap-2 group/trust">
-                  <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center border border-green-200 group-hover/trust:scale-110 transition-transform duration-300">
-                    <Clock className="w-3 h-3 text-green-600" />
-                  </div>
-                  <span className="poppins-medium">2 minutes</span>
-                </div>
-                <div className="w-px h-4 bg-green-200"></div>
-                <div className="flex items-center gap-2 group/trust">
-                  <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center border border-green-200 group-hover/trust:scale-110 transition-transform duration-300">
-                    <BadgeCheck className="w-3 h-3 text-green-600" />
-                  </div>
-                  <span className="poppins-medium">Free assessment</span>
-                </div>
-                <div className="w-px h-4 bg-green-200"></div>
-                <div className="flex items-center gap-2 group/trust">
-                  <div className="w-5 h-5 rounded-full bg-red-100 flex items-center justify-center border border-red-200 group-hover/trust:scale-110 transition-transform duration-300">
-                    <AlertTriangle className="w-3 h-3 text-red-600" />
-                  </div>
-                  <span className="poppins-medium">Deadline passed</span>
-                </div>
-              </div>
-
-              {/* Gap Analyser CTA */}
-              <div className="mt-6 sm:mt-8 flex justify-center">
-                <Link href="/simpler-recycling-gap-analyser">
-                  <Button
-                    variant="outline"
-                    className="poppins-semibold border-2 border-green-500 text-green-700 hover:bg-green-50 hover:border-green-600 px-8 py-4 text-sm rounded-xl transition-all group/gap"
-                  >
-                    <BarChart3 className="w-4 h-4 mr-2 group-hover/gap:scale-110 transition-transform" />
-                    Try the Gap Analyser — AI-Scored Report
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover/gap:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-              </div>
-
-              {/* Urgency message */}
-              <div className="mt-4 inline-flex items-center px-5 py-3 rounded-xl bg-red-50/80 border border-red-200/60 backdrop-blur-sm">
-                <AlertTriangle className="w-4 h-4 text-red-600 mr-2" />
-                <span className="poppins-medium text-sm text-red-800">
-                  Environment Agency can inspect any time
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -1799,8 +1645,8 @@ export default function MillstoneComplianceWebsite() {
                   <Image src="/Screenshot 2025-08-31 at 21.43.30.png" alt="HMRC" width={36} height={36} className="object-contain w-full h-full group-hover/item:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="relative flex-1 min-w-0">
-                  <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Inside Government Experience</h4>
-                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">We&apos;ve worked inside HMRC. We know how government enforcement works from the inside — which means we know exactly what your business needs to have in place before an inspection.</p>
+                  <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Regulatory Systems Background</h4>
+                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">Our background in public sector systems means we understand how enforcement operates — and exactly what documentation your business needs in place before an inspection ever happens.</p>
                 </div>
               </div>
 
@@ -1813,8 +1659,8 @@ export default function MillstoneComplianceWebsite() {
                   <Target className="w-5 h-5 text-white" />
                 </div>
                 <div className="relative flex-1 min-w-0">
-                  <h4 className="poppins-semibold text-white text-sm mb-1.5">Proven in Live Audits</h4>
-                  <p className="poppins-regular text-emerald-100/90 text-sm leading-relaxed">Every system we build has been tested against real inspections. Not a single client has ever failed an audit. That&apos;s not luck — it&apos;s the result of building things properly from day one.</p>
+                  <h4 className="poppins-semibold text-white text-sm mb-1.5">Built on Solid Foundations</h4>
+                  <p className="poppins-regular text-emerald-100/90 text-sm leading-relaxed">Every engagement produces documentation built to withstand scrutiny — written reports, clear gap analysis, and action plans designed around what councils, HMRC, and the EA actually want to see.</p>
                 </div>
               </div>
 
@@ -1893,28 +1739,28 @@ export default function MillstoneComplianceWebsite() {
               <div className="space-y-6">
               {[
                 {
-                  question: "What exactly do you do?",
-                  answer: "We manage all your environmental compliance—packaging regulations (EPR invoice audits, PPT certificate tracking, PRN procurement, modulation planning) and waste regulations (Duty of Care documentation, Digital Waste Tracking preparation, hazardous waste compliance, Simpler Recycling). We build complete systems so your team can focus on running the business."
+                  question: "Do I need an HMO compliance audit?",
+                  answer: "If you rent out an HMO, yes — urgently. New Simpler Recycling rules (enforced from March 31, 2026) make landlords directly liable for tenant waste mistakes. Cross-contamination can mean a £5,000 fine and an HMO licence review. Our audit identifies the gaps and gives you the written report councils need to see."
                 },
                 {
-                  question: "How much does this cost?",
-                  answer: "A basic waste audit costs £295. If you need packaging compliance help (EPR or PPT), that's £495. For ongoing monthly support where we handle everything, it's £499-799/month depending on how many locations you have."
+                  question: "What does a business waste audit cover?",
+                  answer: "We assess your current waste streams against the 3-stream Simpler Recycling requirement, verify your waste contractors are EA-registered, check your Duty of Care documentation, and produce a written compliance report with a 90-day action plan. Starts at £295 for a single site."
                 },
                 {
-                  question: "What happens if I don't do this?",
-                  answer: "The Environment Agency can fine you £200-£5,000 for missing paperwork or wrong bins. If your waste goes to an illegal site, you're responsible even if you didn't know. We make sure that never happens."
+                  question: "What is packaging compliance and do I need it?",
+                  answer: "If your business uses, imports or manufactures packaging, you likely have legal obligations under EPR (Extended Producer Responsibility) and PPT (Plastic Packaging Tax). We determine your liability, register you with HMRC where needed, and make sure all your documentation is in order — so you're never caught out."
                 },
                 {
-                  question: "How long does an audit take?",
-                  answer: "The audit itself takes 90 minutes at your site. We check your bins, look at your waste documents, and talk to your team. You get a full report within 24 hours showing what's working and what needs fixing."
+                  question: "How much does it cost?",
+                  answer: "Waste audits start at £295 (single HMO or business site). Packaging compliance reviews start at £395. Everything is scoped to your exact situation before we start — no hidden extras and no surprises."
                 },
                 {
-                  question: "Will this mess up my current waste collection?",
-                  answer: "No. We work with your existing waste company. We're just checking that everything's legal and properly documented. Most businesses keep the same bins and collector—we just make sure the paperwork is right."
+                  question: "How quickly do I get my report?",
+                  answer: "Within 48 hours of the assessment — or your next audit is free. Every report is a PDF you can show councils, HMRC, or the Environment Agency immediately."
                 },
                 {
-                  question: "Can you work with my existing systems?",
-                  answer: "Yes. We integrate with your spreadsheets, Shopify, waste contractors, and other systems you use. We consolidate packaging data (EPR, PPT, PRN) and waste documentation (transfer notes, consignment notes, tracking records) into one clear dashboard."
+                  question: "Are you independent advisors?",
+                  answer: "Yes. We don't sell bins, waste collection services, or packaging. We have no financial incentive to recommend anything other than what's right for your situation. Cambridge-trained, ex-government systems background."
                 }
               ].map((item, index) => (
                   <div

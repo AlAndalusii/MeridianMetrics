@@ -726,8 +726,8 @@ export default function SimplerRecyclingBusinesses() {
                     <ul className="space-y-2 text-sm text-left">
                       <li>• Request portfolio audit quote</li>
                       <li>• Standardise compliance across locations</li>
-                      <li>• Consider managed compliance retainer</li>
-                      <li>• We handle everything monthly</li>
+                      <li>• Ongoing documentation support available</li>
+                      <li>• We handle audit prep and reporting</li>
                     </ul>
                   </div>
                 </div>

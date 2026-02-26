@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import Footer from "@/components/Footer"
 import { MobileMenu } from "@/components/MobileMenu"
+import { Navigation } from "@/components/Navigation"
 
 /* ─── Data ────────────────────────────────────────────────────────────── */
 
@@ -316,24 +317,7 @@ export default function ResourcesPage() {
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50">
 
       {/* ── Nav ──────────────────────────────────────────────────────── */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl z-50 border-b border-emerald-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="hover:scale-105 transition-transform duration-300">
-              <MillstoneLogo size="sm" variant="modern" />
-            </Link>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <Button
-                onClick={() => router.push("/quiz")}
-                className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg min-h-[44px] text-sm px-6"
-              >
-                Free Compliance Check
-              </Button>
-              <MobileMenu />
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="pt-32 pb-10 px-4 sm:px-6 max-w-7xl mx-auto">

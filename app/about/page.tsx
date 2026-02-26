@@ -26,6 +26,7 @@ import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import Footer from "@/components/Footer"
 import { MobileMenu } from "@/components/MobileMenu"
 import { ContactModal } from "@/components/ContactModal"
+import { Navigation } from "@/components/Navigation"
 
 export default function AboutPage() {
   const router = useRouter()
@@ -39,25 +40,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl z-50 border-b border-emerald-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="group/logo transition-transform duration-300 hover:scale-105">
-              <MillstoneLogo size="sm" variant="modern" />
-            </Link>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <Button 
-                onClick={() => router.push("/quiz")}
-                className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px]"
-              >
-                <span className="hidden xs:inline">FREE COMPLIANCE CHECK</span>
-                <span className="xs:hidden">ASSESSMENT</span>
-              </Button>
-              <MobileMenu />
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero */}
       <div className={`pt-32 pb-16 px-4 sm:px-6 max-w-5xl mx-auto transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>

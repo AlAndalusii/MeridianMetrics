@@ -17,6 +17,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://millstonecompliance.com"),
   title: "UK Packaging & Waste Compliance | EPR, PPT, Waste Regulations",
   description:
     "Millstone Compliance helps UK businesses with packaging (PPT, EPR, PRN) and waste regulations (Duty of Care, Digital Waste Tracking, Hazardous Waste, Simpler Recycling). Free compliance assessment.",

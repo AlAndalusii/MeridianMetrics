@@ -5,14 +5,18 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
   Menu, X, Home, ClipboardCheck,
-  Info, Shield, Mail, FileCheck
+  Info, Shield, Mail, FileCheck, FileText, Phone,
+  Headphones, ArrowRight,
 } from "lucide-react"
+import { CONTACT_INFO } from "@/lib/constants"
 
 const navItems = [
   { href: "/",          label: "Home",      icon: Home },
   { href: "/about",     label: "About Us",  icon: Info },
   { href: "/services",  label: "Services",  icon: Shield },
+  { href: "/templates", label: "Templates", icon: FileText, badge: "From £27" },
   { href: "/resources", label: "Resources", icon: FileCheck },
+  { href: "/support",   label: "Support",   icon: Headphones },
 ]
 
 export const MobileMenu = memo(function MobileMenu() {
@@ -104,8 +108,10 @@ export const MobileMenu = memo(function MobileMenu() {
           </button>
         </div>
 
-        {/* Nav items */}
-        <nav className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
+        {/* Scrollable content */}
+        <nav className="flex-1 overflow-y-auto px-4 py-4 space-y-1 pb-safe">
+
+          {/* Nav items */}
           {navItems.map((item) => {
             const Icon = item.icon
             const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
@@ -124,12 +130,17 @@ export const MobileMenu = memo(function MobileMenu() {
               >
                 <Icon className="w-5 h-5 flex-shrink-0" />
                 {item.label}
+                {"badge" in item && !active && (
+                  <span className="ml-auto text-[10px] poppins-medium bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">
+                    {item.badge}
+                  </span>
+                )}
                 {active && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-white/70" />}
               </Link>
             )
           })}
 
-          {/* CTA */}
+          {/* Free Assessment CTA */}
           <div className="pt-3">
             <Link
               href="/quiz"
@@ -142,20 +153,43 @@ export const MobileMenu = memo(function MobileMenu() {
             </Link>
           </div>
 
-          {/* Contact */}
-          <div className="pt-4 mt-2 border-t border-slate-100 space-y-1">
+          {/* Contact — phone first, most prominent */}
+          <div className="pt-4 mt-2 border-t border-slate-100 space-y-2">
             <p className="poppins-medium text-[10px] text-slate-400 uppercase tracking-widest px-1 pb-1">
-              Contact
+              Contact Us
             </p>
+
+            {/* Call — primary action for mobile users */}
             <a
-              href="mailto:hello@millstonecompliance.com"
+              href={CONTACT_INFO.tel}
               onClick={handleClose}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-50 text-slate-700 poppins-regular text-sm active:bg-slate-100 transition-colors"
+              className="flex items-center gap-3 px-4 py-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 active:bg-emerald-100 transition-colors"
+              style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}
+            >
+              <div className="w-9 h-9 rounded-lg bg-emerald-700 flex items-center justify-center flex-shrink-0">
+                <Phone className="w-4 h-4 text-white" />
+              </div>
+              <div className="min-w-0">
+                <p className="poppins-bold text-sm text-emerald-900">Call Now</p>
+                <p className="poppins-regular text-xs text-emerald-700">{CONTACT_INFO.phone}</p>
+              </div>
+              <ArrowRight className="w-4 h-4 text-emerald-600 ml-auto flex-shrink-0" />
+            </a>
+
+            {/* Email */}
+            <a
+              href={CONTACT_INFO.mailto}
+              onClick={handleClose}
+              className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-50 text-slate-700 active:bg-slate-100 transition-colors"
               style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}
             >
               <Mail className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-              hello@millstonecompliance.com
+              <span className="poppins-regular text-sm truncate">{CONTACT_INFO.email}</span>
             </a>
+
+            <p className="poppins-regular text-[10px] text-slate-400 text-center pt-1">
+              Mon–Fri · 9am–5:30pm
+            </p>
           </div>
         </nav>
       </div>

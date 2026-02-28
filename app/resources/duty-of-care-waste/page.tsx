@@ -171,7 +171,7 @@ export default function DutyOfCareWaste() {
                 <div className="bg-red-50 rounded-xl p-5 border-l-4 border-red-400">
                   <h3 className="poppins-semibold text-lg text-red-900 mb-3 flex items-center gap-2">
                     <XCircle className="w-5 h-5" />
-                    1. Prevent Unauthorized or Harmful Disposal
+                    1. Prevent Unauthorised or Harmful Disposal
                   </h3>
                   <p className="poppins-regular text-red-800 text-sm mb-3">
                     You must ensure waste doesn't go to illegal sites or get fly-tipped.
@@ -215,7 +215,7 @@ export default function DutyOfCareWaste() {
                     3. Prevent Waste Escape
                   </h3>
                   <p className="poppins-regular text-amber-800 text-sm mb-3">
-                    Keep waste secure so it doesn't blow away, leak, or get accessed by unauthorized people.
+                    Keep waste secure so it doesn't blow away, leak, or get accessed by unauthorised people.
                   </p>
                   <p className="poppins-semibold text-amber-900 text-sm mb-2">What this means in practice:</p>
                   <ul className="space-y-1 mb-3">
@@ -874,7 +874,7 @@ export default function DutyOfCareWaste() {
             <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-emerald-100 shadow-lg">
               <h2 className="poppins-semibold text-2xl text-emerald-900 mb-4">About Milestone Compliance</h2>
               <p className="poppins-regular text-emerald-800 leading-relaxed mb-4">
-                We're an independent waste compliance consultancy specializing in Simpler Recycling, Duty of Care, and packaging regulations (EPR/PPT). Unlike waste collection companies, we have no financial interest in selling you bins or services—our only focus is keeping you legally compliant.
+                We're an independent waste compliance consultancy specialising in Simpler Recycling, Duty of Care, and packaging regulations (EPR/PPT). Unlike waste collection companies, we have no financial interest in selling you bins or services—our only focus is keeping you legally compliant.
               </p>
               <div className="bg-emerald-50 rounded-xl p-5 border border-emerald-200 mb-4">
                 <p className="poppins-semibold text-emerald-900 mb-2">Our commitment:</p>

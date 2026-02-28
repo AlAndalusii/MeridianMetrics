@@ -38,10 +38,10 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2.5">
                 {[
-                  { label: "Assessment", href: "/quiz" },
-                  { label: "Compliance Audit", href: "#" },
-                  { label: "Documentation", href: "#" },
-                  { label: "Support", href: "#" }
+                  { label: "Compliance Services", href: "/services" },
+                  { label: "Documentation", href: "/services/documentation" },
+                  { label: "Templates", href: "/templates" },
+                  { label: "Support", href: "/support" }
                 ].map((item, index) => (
                   <li key={index}>
                     <Link
@@ -67,9 +67,9 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {[
                   { label: "PPT Guide", href: "/resources/plastic-packaging-tax" },
-                  { label: "All Resources", href: "/resources" },
-                  { label: "Checklist", href: "#" },
-                  { label: "HMRC Info", href: "#" }
+                  { label: "Documentation Guide", href: "/resources/waste-packaging-documentation" },
+                  { label: "HMO Checklist", href: "/templates/hmo-compliance-checklist" },
+                  { label: "All Resources", href: "/resources" }
                 ].map((item, index) => (
                   <li key={index}>
                     <Link
@@ -94,10 +94,10 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2.5">
                 {[
-                  { label: "About", href: "/about" },
-                  { label: "Approach", href: "#" },
-                  { label: "Team", href: "#" },
-                  { label: "Careers", href: "#" }
+                  { label: "About Us", href: "/about" },
+                  { label: "Our Services", href: "/services" },
+                  { label: "Templates", href: "/templates" },
+                  { label: "Privacy Policy", href: "/privacy" }
                 ].map((item, index) => (
                   <li key={index}>
                     <Link
@@ -161,9 +161,9 @@ export default function Footer() {
                 </p>
                 <div className="flex items-center gap-4">
                   {[
-                    { label: "Privacy", href: "#" },
-                    { label: "Terms", href: "#" },
-                    { label: "Cookies", href: "#" }
+                    { label: "Privacy", href: "/privacy" },
+                    { label: "Terms", href: "/privacy" },
+                    { label: "Cookies", href: "/privacy" }
                   ].map((item, index) => (
                     <Link
                       key={index}

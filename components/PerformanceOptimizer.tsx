@@ -24,7 +24,13 @@ export function PerformanceOptimizer() {
       const connection = (navigator as any).connection
       // Only prefetch on fast connections
       if (connection && connection.effectiveType === '4g') {
-        const criticalPages = ['/resources', '/quiz']
+        const criticalPages = [
+          '/resources',
+          '/quiz',
+          '/support',
+          '/services',
+          '/templates',
+        ]
         criticalPages.forEach(page => {
           const link = document.createElement('link')
           link.rel = 'prefetch'

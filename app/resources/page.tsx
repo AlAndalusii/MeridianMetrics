@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
   ArrowRight, ClipboardCheck, Recycle, Package, Calculator,
-  ListChecks, FileSearch, Users, BarChart3, Zap, CheckCircle,
+  ListChecks, FileSearch, FileCheck, Users, BarChart3, Zap, CheckCircle,
   Leaf, Trash2, BookOpen, ChevronRight, Sparkles, Truck,
 } from "lucide-react"
 import { useRouter } from "next/navigation"
@@ -155,15 +155,15 @@ const articles: {
     readTime: "8 min",
   },
   {
-    title: "PPT Compliance Checklist",
-    description: "Our comprehensive checklist to ensure you have all the documentation HMRC requires. Perfect for quarterly reviews.",
+    title: "HMO Compliance Checklist",
+    description: "The 20-question pre-audit framework we use with clients — traffic-light scoring across 5 risk sections. Know your gaps before an inspector does.",
     icon: ListChecks,
-    href: "#",
-    badge: "Coming Soon",
-    badgeColor: "bg-gray-100 text-gray-600",
-    topics: ["Checklist", "Documentation", "Quarterly Review"],
-    category: "ppt",
-    readTime: "—",
+    href: "/templates/hmo-compliance-checklist",
+    badge: "Template",
+    badgeColor: "bg-emerald-100 text-emerald-700",
+    topics: ["20 Questions", "Traffic-Light Scoring", "Gap Identification", "Pre-Audit"],
+    category: "waste",
+    readTime: "Self-assess",
   },
   /* ── EPR ── */
   {
@@ -212,6 +212,17 @@ const articles: {
     readTime: "10 min",
   },
   /* ── Waste & Duty of Care ── */
+  {
+    title: "Waste & Packaging Documentation: The Complete UK Guide",
+    description: "Every document UK businesses and landlords are legally required to hold — Waste Transfer Notes, PPT records, EPR files, and HMO plans. What each is, why you need it, and the penalty for missing it.",
+    icon: FileCheck,
+    href: "/resources/waste-packaging-documentation",
+    badge: "Essential",
+    badgeColor: "bg-blue-100 text-blue-700",
+    topics: ["WTNs", "PPT Records", "EPR Files", "HMO Documentation", "Penalties"],
+    category: "waste",
+    readTime: "15 min",
+  },
   {
     title: "Waste Duty of Care: Complete UK Business Compliance Guide",
     description: "Everything UK businesses need to know about Duty of Care — legal requirements, Waste Transfer Notes, carrier verification, and avoiding £300 penalties.",

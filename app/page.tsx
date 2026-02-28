@@ -52,6 +52,7 @@ import { CalendlyModal } from "@/components/CalendlyWidget"
 import { EmailTemplateModal } from "@/components/EmailTemplateModal"
 import { MobileMenu } from "@/components/MobileMenu"
 import { Navigation } from "@/components/Navigation"
+import Footer from "@/components/Footer"
 
 // Fortune 500 Premium Logo Component - World-Class Design
 const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: string }) => (
@@ -328,14 +329,12 @@ export default function MillstoneComplianceWebsite() {
               </div>
 
               <h1 className="poppins-bold text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight mb-5">
-                <span className="text-slate-900 block">HMO Landlords:</span>
-                <span className="text-emerald-700 block">
-                  {Math.max(0, Math.floor((new Date("2026-03-31T23:59:59").getTime() - Date.now()) / (1000 * 60 * 60 * 24)))} Days to Avoid £5,000 Fines
-                </span>
+                <span className="text-slate-900 block">UK Sites &amp; Landlords:</span>
+                <span className="text-emerald-700 block">The Waste Deadline Has Passed</span>
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
-                March 31 Simpler Recycling deadline makes <span className="poppins-semibold text-slate-800">you liable</span> for your tenants&apos; waste mistakes. Cross-contamination = management failure = fine and licence revocation.
+                Simpler Recycling is live. If bins get contaminated, you&apos;re still accountable — fines, notices, and follow-up inspections.
               </p>
 
               {/* Primary CTAs */}
@@ -375,7 +374,7 @@ export default function MillstoneComplianceWebsite() {
               </div>
             </div>
 
-            {/* Product Recycled Plastic Tracking Dashboard — hidden on tiny phones */}
+            {/* Business Waste & Compliance Dashboard — hidden on tiny phones */}
             <div
               className={`hidden xs:block transition-all duration-200 delay-75 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} mt-8 lg:mt-0`}
             >
@@ -383,8 +382,8 @@ export default function MillstoneComplianceWebsite() {
                 <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-4 sm:p-6 border border-emerald-200 shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 lg:hover:scale-105">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="poppins-semibold text-lg text-emerald-900 flex items-center">
-                      <BarChart3 className="w-4 h-4 mr-2 text-emerald-600" />
-                      Packaging Compliance Hub
+                      <Recycle className="w-4 h-4 mr-2 text-emerald-600" />
+                      Waste &amp; Compliance Tracker
                     </h3>
                     <div className="flex items-center space-x-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -392,127 +391,125 @@ export default function MillstoneComplianceWebsite() {
                     </div>
                   </div>
 
-                  {/* Total Packaging Overview - EPR + PPT */}
+                  {/* Top KPI cards */}
                   <div className="grid grid-cols-3 gap-3 mb-4">
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
+                    <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-3 border border-slate-200">
                       <div className="flex items-center justify-between mb-1">
-                        <Building className="w-4 h-4 text-blue-600" />
-                        <span className="poppins-bold text-base text-blue-700">£284K</span>
+                        <Trash2 className="w-4 h-4 text-slate-500" />
+                        <span className="poppins-bold text-base text-slate-700">↓ 12%</span>
                       </div>
-                      <p className="poppins-medium text-[10px] text-blue-600">EPR Fees 2025</p>
-                      <p className="text-[9px] text-blue-500 mt-0.5">Invoice verified</p>
+                      <p className="poppins-medium text-[10px] text-slate-600">General Waste</p>
+                      <p className="text-[9px] text-slate-400 mt-0.5">vs last quarter</p>
                     </div>
 
                     <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
                       <div className="flex items-center justify-between mb-1">
-                        <BadgeCheck className="w-4 h-4 text-green-600" />
-                        <span className="poppins-bold text-base text-green-700">68%</span>
+                        <Recycle className="w-4 h-4 text-green-600" />
+                        <span className="poppins-bold text-base text-green-700">73%</span>
                       </div>
-                      <p className="poppins-medium text-[10px] text-green-600">PPT Recycled</p>
-                      <p className="text-[9px] text-green-500 mt-0.5">97.1 tonnes verified</p>
+                      <p className="poppins-medium text-[10px] text-green-600">Recycling Rate</p>
+                      <p className="text-[9px] text-green-500 mt-0.5">Target: 75%</p>
                     </div>
 
-                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
+                    <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-3 border border-emerald-200">
                       <div className="flex items-center justify-between mb-1">
-                        <TrendingUp className="w-4 h-4 text-purple-600" />
-                        <span className="poppins-bold text-base text-purple-700">High</span>
+                        <Shield className="w-4 h-4 text-emerald-600" />
+                        <span className="poppins-bold text-base text-emerald-700">91%</span>
                       </div>
-                      <p className="poppins-medium text-[10px] text-purple-600">2026 Mod Risk</p>
-                      <p className="text-[9px] text-purple-500 mt-0.5">Action needed</p>
+                      <p className="poppins-medium text-[10px] text-emerald-600">Compliance Score</p>
+                      <p className="text-[9px] text-emerald-500 mt-0.5">Audit-ready</p>
                     </div>
                   </div>
 
-                  {/* EPR Material Breakdown */}
+                  {/* Waste Stream Breakdown */}
                   <div className="bg-white rounded-xl p-3 border border-gray-200 mb-3">
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="poppins-semibold text-xs text-gray-800">EPR Material Split</h4>
-                      <span className="poppins-medium text-[10px] text-gray-600">2025 Data</span>
+                      <h4 className="poppins-semibold text-xs text-gray-800">Waste Stream Breakdown</h4>
+                      <span className="poppins-medium text-[10px] text-gray-500">This month</span>
                     </div>
                     <div className="space-y-2">
-                      <div className="bg-blue-50 rounded-lg p-2 border border-blue-200">
+                      <div className="bg-slate-50 rounded-lg p-2 border border-slate-200">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] text-blue-700 font-semibold">Plastic - Household</span>
-                          <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">£156K</span>
+                          <span className="text-[10px] text-slate-700 font-semibold">General Waste</span>
+                          <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full">18 collections</span>
                         </div>
-                        <div className="w-full bg-blue-100 rounded-full h-1.5">
-                          <div className="bg-blue-500 h-1.5 rounded-full" style={{width: '55%'}}></div>
+                        <div className="w-full bg-slate-100 rounded-full h-1.5">
+                          <div className="bg-slate-400 h-1.5 rounded-full" style={{width: '27%'}}></div>
                         </div>
-                        <span className="text-[9px] text-blue-600 mt-0.5">89.4 tonnes • PET bottles</span>
+                        <span className="text-[9px] text-slate-500 mt-0.5">4.2 tonnes • landfill route</span>
                       </div>
-                      
+
                       <div className="bg-green-50 rounded-lg p-2 border border-green-200">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] text-green-700 font-semibold">Plastic - Non-household</span>
-                          <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">£89K</span>
+                          <span className="text-[10px] text-green-700 font-semibold">Dry Recyclables</span>
+                          <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">24 collections</span>
                         </div>
                         <div className="w-full bg-green-100 rounded-full h-1.5">
-                          <div className="bg-green-500 h-1.5 rounded-full" style={{width: '31%'}}></div>
+                          <div className="bg-green-500 h-1.5 rounded-full" style={{width: '49%'}}></div>
                         </div>
-                        <span className="text-[9px] text-green-600 mt-0.5">53.1 tonnes • B2B packaging</span>
+                        <span className="text-[9px] text-green-600 mt-0.5">7.6 tonnes • paper, plastic, cans</span>
                       </div>
 
                       <div className="bg-amber-50 rounded-lg p-2 border border-amber-200">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] text-amber-700 font-semibold">Paper/Card/Glass</span>
-                          <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full">£39K</span>
+                          <span className="text-[10px] text-amber-700 font-semibold">Food Waste</span>
+                          <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full">Weekly</span>
                         </div>
                         <div className="w-full bg-amber-100 rounded-full h-1.5">
-                          <div className="bg-amber-500 h-1.5 rounded-full" style={{width: '14%'}}></div>
+                          <div className="bg-amber-500 h-1.5 rounded-full" style={{width: '24%'}}></div>
                         </div>
-                        <span className="text-[9px] text-amber-600 mt-0.5">Mixed materials</span>
+                        <span className="text-[9px] text-amber-600 mt-0.5">3.7 tonnes • AD facility</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Compliance Status - EPR + PPT */}
+                  {/* Compliance Status + Actions */}
                   <div className="grid grid-cols-2 gap-3">
-                    {/* EPR Status */}
                     <div className="space-y-1.5">
+                      <div className="flex items-center justify-between bg-emerald-50 rounded-lg p-1.5 border border-emerald-200">
+                        <div className="flex items-center space-x-1.5">
+                          <BadgeCheck className="w-3 h-3 text-emerald-600" />
+                          <span className="poppins-medium text-[10px] text-emerald-700">Simpler Recycling</span>
+                        </div>
+                        <span className="text-[9px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full">Setup</span>
+                      </div>
                       <div className="flex items-center justify-between bg-blue-50 rounded-lg p-1.5 border border-blue-200">
                         <div className="flex items-center space-x-1.5">
                           <FileCheck className="w-3 h-3 text-blue-600" />
-                          <span className="poppins-medium text-[10px] text-blue-700">EPR Invoice</span>
+                          <span className="poppins-medium text-[10px] text-blue-700">Contractor</span>
                         </div>
-                        <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">Verified</span>
+                        <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">Audited</span>
                       </div>
                       <div className="flex items-center justify-between bg-green-50 rounded-lg p-1.5 border border-green-200">
                         <div className="flex items-center space-x-1.5">
-                          <BadgeCheck className="w-3 h-3 text-green-600" />
-                          <span className="poppins-medium text-[10px] text-green-700">PPT Certificates</span>
+                          <ClipboardCheck className="w-3 h-3 text-green-600" />
+                          <span className="poppins-medium text-[10px] text-green-700">Bin Labelling</span>
                         </div>
-                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">30 Valid</span>
-                      </div>
-                      <div className="flex items-center justify-between bg-purple-50 rounded-lg p-1.5 border border-purple-200">
-                        <div className="flex items-center space-x-1.5">
-                          <TrendingUp className="w-3 h-3 text-purple-600" />
-                          <span className="poppins-medium text-[10px] text-purple-700">PRN Strategy</span>
-                        </div>
-                        <span className="text-[9px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded-full">Active</span>
+                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">Compliant</span>
                       </div>
                     </div>
 
-                    {/* Savings & Actions */}
                     <div className="space-y-1.5">
                       <div className="flex items-center justify-between bg-green-50 rounded-lg p-1.5 border border-green-200">
                         <div className="flex items-center space-x-1.5">
-                          <DollarSign className="w-3 h-3 text-green-600" />
-                          <span className="poppins-medium text-[10px] text-green-700">EPR Savings</span>
+                          <TrendingUp className="w-3 h-3 text-green-600" />
+                          <span className="poppins-medium text-[10px] text-green-700">CO₂ Saved</span>
                         </div>
-                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">£45K</span>
+                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">4.2t</span>
                       </div>
-                      <div className="flex items-center justify-between bg-green-50 rounded-lg p-1.5 border border-green-200">
+                      <div className="flex items-center justify-between bg-slate-50 rounded-lg p-1.5 border border-slate-200">
                         <div className="flex items-center space-x-1.5">
-                          <Calculator className="w-3 h-3 text-green-600" />
-                          <span className="poppins-medium text-[10px] text-green-700">Invoices Audited</span>
+                          <Archive className="w-3 h-3 text-slate-500" />
+                          <span className="poppins-medium text-[10px] text-slate-600">Collections Logged</span>
                         </div>
-                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">127</span>
+                        <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full">48</span>
                       </div>
-                      <div className="flex items-center justify-between bg-blue-50 rounded-lg p-1.5 border border-blue-200">
+                      <div className="flex items-center justify-between bg-amber-50 rounded-lg p-1.5 border border-amber-200">
                         <div className="flex items-center space-x-1.5">
-                          <BarChart3 className="w-3 h-3 text-blue-600" />
-                          <span className="poppins-medium text-[10px] text-blue-700">View Dashboard</span>
+                          <Calendar className="w-3 h-3 text-amber-600" />
+                          <span className="poppins-medium text-[10px] text-amber-700">Next Audit</span>
                         </div>
-                        <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">Export</span>
+                        <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full">Mar 31</span>
                       </div>
                     </div>
                   </div>
@@ -521,7 +518,7 @@ export default function MillstoneComplianceWebsite() {
                 {/* Floating Compliance Score Indicator */}
                 <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full animate-bounce delay-1000 flex items-center justify-center shadow-lg">
                   <div className="text-center">
-                    <span className="poppins-bold text-white text-[11px] block">94%</span>
+                    <span className="poppins-bold text-white text-[11px] block">91%</span>
                     <span className="poppins-medium text-white text-[7px]">Ready</span>
                   </div>
                 </div>
@@ -926,7 +923,7 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Lock className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-green-900 text-sm poppins-medium">Prevent unauthorized disposal</span>
+                    <span className="text-green-900 text-sm poppins-medium">Prevent unauthorised disposal</span>
                   </div>
                 </div>
                 
@@ -1923,199 +1920,7 @@ export default function MillstoneComplianceWebsite() {
         </div>
       )}
 
-      {/* Futuristic Sophisticated Footer */}
-      <footer className="relative overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-emerald-50/50" role="contentinfo" aria-label="Site footer">
-        {/* Futuristic Background Effects */}
-        <div className="absolute inset-0">
-          {/* Animated gradient mesh */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.05)_0%,transparent_50%)]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(6,95,70,0.03)_0%,transparent_50%)]"></div>
-          {/* Tech grid pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.02)_1px,transparent_1px)] bg-[size:60px_60px] opacity-50"></div>
-          {/* Glowing scan lines */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-emerald-400 to-transparent animate-scan"></div>
-          </div>
-        </div>
-
-        {/* Elegant top border with glow */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-300/60 to-transparent"></div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Main Footer Content - Minimalist & Modern */}
-          <div className="pt-12 pb-8">
-            
-            {/* Navigation Section */}
-            <div className="py-8 grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-12">
-              
-              {/* Services */}
-              <div>
-                <h3 className="poppins-semibold text-emerald-900 text-xs uppercase tracking-widest mb-4 relative">
-                  Services
-                  <div className="absolute -bottom-2 left-0 w-8 h-[2px] bg-gradient-to-r from-emerald-500 to-transparent"></div>
-                </h3>
-                <ul className="space-y-2.5">
-                  {[
-                    { label: "Assessment", href: "/quiz" },
-                    { label: "Compliance Audit", href: "#" },
-                    { label: "Documentation", href: "#" },
-                    { label: "Support", href: "#" }
-                  ].map((item, index) => (
-                    <li key={index}>
-                      <Link
-                        href={item.href}
-                        className="group flex items-center text-emerald-700/80 hover:text-emerald-900 text-sm poppins-regular transition-all duration-200"
-                      >
-                        <span className="relative">
-                          {item.label}
-                          <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-emerald-500 group-hover:w-full transition-all duration-300"></span>
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Resources */}
-              <div>
-                <h3 className="poppins-semibold text-emerald-900 text-xs uppercase tracking-widest mb-4 relative">
-                  Resources
-                  <div className="absolute -bottom-2 left-0 w-8 h-[2px] bg-gradient-to-r from-emerald-500 to-transparent"></div>
-                </h3>
-                <ul className="space-y-2.5">
-                  {[
-                    { label: "PPT Guide", href: "/resources/plastic-packaging-tax" },
-                    { label: "All Resources", href: "/resources" },
-                    { label: "Checklist", href: "#" },
-                    { label: "HMRC Info", href: "#" }
-                  ].map((item, index) => (
-                    <li key={index}>
-                      <Link
-                        href={item.href}
-                        className="group flex items-center text-emerald-700/80 hover:text-emerald-900 text-sm poppins-regular transition-all duration-200"
-                      >
-                        <span className="relative">
-                          {item.label}
-                          <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-emerald-500 group-hover:w-full transition-all duration-300"></span>
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Company */}
-              <div>
-                <h3 className="poppins-semibold text-emerald-900 text-xs uppercase tracking-widest mb-4 relative">
-                  Company
-                  <div className="absolute -bottom-2 left-0 w-8 h-[2px] bg-gradient-to-r from-emerald-500 to-transparent"></div>
-                </h3>
-                <ul className="space-y-2.5">
-                  {[
-                    { label: "About", href: "/about" },
-                    { label: "Approach", href: "#" },
-                    { label: "Team", href: "#" },
-                    { label: "Careers", href: "#" }
-                  ].map((item, index) => (
-                    <li key={index}>
-                      <Link
-                        href={item.href}
-                        className="group flex items-center text-emerald-700/80 hover:text-emerald-900 text-sm poppins-regular transition-all duration-200"
-                      >
-                        <span className="relative">
-                          {item.label}
-                          <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-emerald-500 group-hover:w-full transition-all duration-300"></span>
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Contact */}
-              <div>
-                <h3 className="poppins-semibold text-emerald-900 text-xs uppercase tracking-widest mb-4 relative">
-                  Contact
-                  <div className="absolute -bottom-2 left-0 w-8 h-[2px] bg-gradient-to-r from-emerald-500 to-transparent"></div>
-                </h3>
-                <ul className="space-y-3">
-                  <li>
-                    <a 
-                      href={CONTACT_INFO.tel}
-                      className="group flex items-center gap-2 text-emerald-700/80 hover:text-emerald-900 transition-colors duration-200"
-                    >
-                      <Phone className="h-4 w-4 text-emerald-600" />
-                      <span className="text-sm poppins-regular">{CONTACT_INFO.phone}</span>
-                    </a>
-                  </li>
-                  <li>
-                    <button 
-                      onClick={() => setShowEmailTemplate(true)}
-                      className="group flex items-center gap-2 text-emerald-700/80 hover:text-emerald-900 transition-colors duration-200 cursor-pointer"
-                    >
-                      <Mail className="h-4 w-4 text-emerald-600" />
-                      <span className="text-sm poppins-regular break-all">{CONTACT_INFO.email}</span>
-                    </button>
-                  </li>
-                  <li>
-                    <div className="flex items-center gap-2 text-emerald-700/80">
-                      <MapPin className="h-4 w-4 text-emerald-600" />
-                      <span className="text-sm poppins-regular">UK Nationwide</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-            </div>
-
-            {/* Bottom Section - Minimalist Legal */}
-            <div className="pt-8 border-t border-emerald-200/40 mt-8">
-              <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                
-                {/* Copyright & Legal */}
-                <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
-                  <p className="text-emerald-700/60 text-xs poppins-regular">
-                    © {new Date().getFullYear()} Millstone Compliance
-                  </p>
-                  <div className="flex items-center gap-4">
-                    {[
-                      { label: "Privacy", href: "/privacy" },
-                      { label: "Terms", href: "#" },
-                      { label: "Cookies", href: "#" }
-                    ].map((item, index) => (
-                      <Link
-                        key={index}
-                        href={item.href}
-                        className="text-emerald-700/60 hover:text-emerald-900 text-xs poppins-regular transition-colors duration-200"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Badges */}
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">
-                    <BadgeCheck className="h-3 w-3 text-emerald-600" />
-                    <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">UK Compliant</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">
-                    <CheckCircle className="h-3 w-3 text-emerald-600" />
-                    <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">Data Protected</span>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Glowing bottom accent */}
-        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-300/40 to-transparent"></div>
-      </footer>
+      <Footer />
 
       {/* Calendly Modal */}
       <CalendlyModal 

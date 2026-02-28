@@ -77,6 +77,8 @@ export const viewport = {
   maximumScale: 5,
   viewportFit: 'cover',
   themeColor: '#065f46',
+  // Prevents the viewport shrinking when the mobile keyboard opens
+  interactiveWidget: 'resizes-content',
 }
 
 export default function RootLayout({
@@ -90,6 +92,8 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        {/* Leadsy AI tracking pixel */}
+        <script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="VQZIvjTxZsSFes9D" data-version="062024" />
       </head>
       <body className={poppins.className}>
         <PerformanceOptimizer />

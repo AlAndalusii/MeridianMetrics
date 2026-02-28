@@ -3,6 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { ChevronDown, Briefcase, FileText } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { MobileMenu } from "@/components/MobileMenu"
 
@@ -15,6 +16,9 @@ export function Navigation() {
         ? "text-emerald-700"
         : "text-slate-600 hover:text-emerald-700"
     }`
+
+  const isServicesActive =
+    pathname.startsWith("/services") || pathname.startsWith("/templates")
 
   return (
     <nav
@@ -33,7 +37,58 @@ export function Navigation() {
           <div className="hidden lg:flex items-center gap-8">
             <Link href="/" className={linkClass("/")}>Home</Link>
             <Link href="/about" className={linkClass("/about")}>About Us</Link>
-            <Link href="/services" className={linkClass("/services")}>Services</Link>
+
+            {/* Services dropdown */}
+            <div className="relative group">
+              <button
+                type="button"
+                className={`flex items-center gap-1 poppins-medium text-sm tracking-wide transition-colors duration-200 ${
+                  isServicesActive ? "text-emerald-700" : "text-slate-600 hover:text-emerald-700"
+                }`}
+              >
+                Services
+                <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
+              </button>
+
+              {/* Dropdown panel */}
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 translate-y-1 group-hover:translate-y-0 z-50">
+                <div className="bg-white rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/60 overflow-hidden min-w-[220px] p-1.5">
+                  <Link
+                    href="/services"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
+                      pathname.startsWith("/services") && !pathname.startsWith("/templates")
+                        ? "bg-emerald-50 text-emerald-700"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-emerald-700"
+                    }`}
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                      <Briefcase className="w-3.5 h-3.5 text-emerald-600" />
+                    </div>
+                    <div>
+                      <p className="poppins-semibold text-sm leading-none mb-0.5">Services</p>
+                      <p className="poppins-regular text-[11px] text-slate-400">Audits &amp; compliance</p>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/templates"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
+                      pathname.startsWith("/templates")
+                        ? "bg-emerald-50 text-emerald-700"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-emerald-700"
+                    }`}
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center flex-shrink-0">
+                      <FileText className="w-3.5 h-3.5 text-amber-600" />
+                    </div>
+                    <div>
+                      <p className="poppins-semibold text-sm leading-none mb-0.5">Templates</p>
+                      <p className="poppins-regular text-[11px] text-slate-400">Instant downloads from £27</p>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
             <Link href="/resources" className={linkClass("/resources")}>Resources</Link>
           </div>
 

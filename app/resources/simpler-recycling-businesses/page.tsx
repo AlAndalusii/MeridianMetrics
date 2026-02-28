@@ -761,7 +761,7 @@ export default function SimplerRecyclingBusinesses() {
             <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-emerald-100 shadow-lg">
               <h2 className="poppins-semibold text-2xl text-emerald-900 mb-4">About Milestone Compliance</h2>
               <p className="poppins-regular text-emerald-800 leading-relaxed mb-4">
-                We're an independent waste compliance consultancy specializing in Simpler Recycling, Duty of Care, and packaging regulations (EPR/PPT). Unlike waste collection companies, we have no financial interest in selling you bins or services—our only focus is keeping you legally compliant.
+                We're an independent waste compliance consultancy specialising in Simpler Recycling, Duty of Care, and packaging regulations (EPR/PPT). Unlike waste collection companies, we have no financial interest in selling you bins or services—our only focus is keeping you legally compliant.
               </p>
               <div className="bg-emerald-50 rounded-xl p-5 border border-emerald-200 mb-4">
                 <p className="poppins-semibold text-emerald-900 mb-2">Our commitment:</p>

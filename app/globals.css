@@ -90,6 +90,8 @@
     /* Prevent text size adjustment on orientation change */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    /* Prevent pull-to-refresh bounce interfering with fixed nav */
+    overscroll-behavior-y: contain;
   }
   
   /* Ensure all containers don't overflow */
@@ -566,6 +568,26 @@
   animation-delay: 2s;
 }
 
+/* Primary CTA buttons — always tappable on mobile */
+@media (max-width: 576px) {
+  /* Ensure hero CTAs stack and go full-width */
+  .flex-wrap.gap-3 > a,
+  .flex-wrap.gap-3 > button {
+    min-height: 48px;
+  }
+
+  /* Clamp very large hero headlines so they never overflow */
+  h1 {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Prevent long email addresses from breaking layout */
+  a[href^="mailto"] {
+    word-break: break-all;
+  }
+}
+
 /* Mobile-specific optimizations */
 @media (max-width: 640px) {
   /* Completely disable purely decorative background animations on mobile
@@ -678,6 +700,11 @@ body, html {
 .px-safe {
   padding-left: max(1rem, env(safe-area-inset-left));
   padding-right: max(1rem, env(safe-area-inset-right));
+}
+
+/* Safe area bottom — for notched/Dynamic Island phones (iPhone 14 Pro, etc.) */
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
 /* Better scrollbar styling for mobile */

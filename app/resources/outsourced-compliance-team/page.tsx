@@ -177,7 +177,7 @@ export default function OutsourcedComplianceTeam() {
                   solution: [
                     "Complete compliance audit (all regulations)",
                     "Gap analysis showing exactly what's missing",
-                    "Prioritized action plan with penalty risks quantified",
+                    "Prioritised action plan with penalty risks quantified",
                     "Implementation support until fully compliant"
                   ],
                   timeline: "2-4 weeks from audit to full compliance"

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import {
   Menu, X, Home, ClipboardCheck,
   Info, Shield, Mail, FileCheck, FileText, Phone,
-  Headphones, ArrowRight,
+  Headphones, ArrowRight, Building2,
 } from "lucide-react"
 import { CONTACT_INFO } from "@/lib/constants"
 
@@ -15,6 +15,7 @@ const navItems = [
   { href: "/about",     label: "About Us",  icon: Info },
   { href: "/services",  label: "Services",  icon: Shield },
   { href: "/templates", label: "Templates", icon: FileText, badge: "From £27" },
+  { href: "/care-homes", label: "Care Homes", icon: Building2 },
   { href: "/resources", label: "Resources", icon: FileCheck },
   { href: "/support",   label: "Support",   icon: Headphones },
 ]

@@ -3,7 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ChevronDown, Briefcase, FileText } from "lucide-react"
+import { ChevronDown, Briefcase, FileText, Building2 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { MobileMenu } from "@/components/MobileMenu"
 
@@ -18,7 +18,9 @@ export function Navigation() {
     }`
 
   const isServicesActive =
-    pathname.startsWith("/services") || pathname.startsWith("/templates")
+    pathname.startsWith("/services") ||
+    pathname.startsWith("/templates") ||
+    pathname.startsWith("/care-homes")
 
   return (
     <nav
@@ -56,7 +58,7 @@ export function Navigation() {
                   <Link
                     href="/services"
                     className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
-                      pathname.startsWith("/services") && !pathname.startsWith("/templates")
+                      pathname.startsWith("/services") && !pathname.startsWith("/templates") && !pathname.startsWith("/care-homes")
                         ? "bg-emerald-50 text-emerald-700"
                         : "text-slate-700 hover:bg-slate-50 hover:text-emerald-700"
                     }`}
@@ -65,8 +67,8 @@ export function Navigation() {
                       <Briefcase className="w-3.5 h-3.5 text-emerald-600" />
                     </div>
                     <div>
-                      <p className="poppins-semibold text-sm leading-none mb-0.5">Services</p>
-                      <p className="poppins-regular text-[11px] text-slate-400">Audits &amp; compliance</p>
+                      <p className="poppins-semibold text-sm leading-none mb-0.5">Property</p>
+                      <p className="poppins-regular text-[11px] text-slate-400">HMO &amp; landlord audits</p>
                     </div>
                   </Link>
                   <Link
@@ -83,6 +85,22 @@ export function Navigation() {
                     <div>
                       <p className="poppins-semibold text-sm leading-none mb-0.5">Templates</p>
                       <p className="poppins-regular text-[11px] text-slate-400">Instant downloads from £27</p>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/care-homes"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
+                      pathname.startsWith("/care-homes")
+                        ? "bg-emerald-50 text-emerald-700"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-emerald-700"
+                    }`}
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-rose-50 flex items-center justify-center flex-shrink-0">
+                      <Building2 className="w-3.5 h-3.5 text-rose-600" />
+                    </div>
+                    <div>
+                      <p className="poppins-semibold text-sm leading-none mb-0.5">Care Homes</p>
+                      <p className="poppins-regular text-[11px] text-slate-400">Waste &amp; compliance</p>
                     </div>
                   </Link>
                 </div>

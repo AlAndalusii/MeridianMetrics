@@ -123,7 +123,7 @@ export async function POST(request: Request) {
 
       <div style="background:#f0fdf4;border-radius:8px;padding:20px;margin:24px 0;text-align:center;">
         <p style="color:#065f46;font-weight:700;margin:0 0 4px;">Need help? Contact Millstone Compliance</p>
-        <p style="color:#374151;font-size:14px;margin:8px 0;">📞 <a href="tel:01217510551" style="color:#059669;">0121 751 0551</a> &nbsp;|&nbsp; 📧 <a href="mailto:hello@millstonecompliance.com" style="color:#059669;">hello@millstonecompliance.com</a></p>
+        <p style="color:#374151;font-size:14px;margin:8px 0;">📞 <a href="tel:01217512262" style="color:#059669;">0121 751 2262</a> &nbsp;|&nbsp; 📧 <a href="mailto:hello@millstonecompliance.com" style="color:#059669;">hello@millstonecompliance.com</a></p>
       </div>
     </div>
 

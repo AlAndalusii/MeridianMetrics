@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useCallback, useRef, memo } from "react"
+import { createPortal } from "react-dom"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
@@ -22,8 +23,14 @@ const navItems = [
 
 export const MobileMenu = memo(function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
   const savedScrollY = useRef(0)
+
+  /* Mount guard — ensures createPortal only runs client-side */
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   /* Close when route changes */
   useEffect(() => {
@@ -59,25 +66,22 @@ export const MobileMenu = memo(function MobileMenu() {
 
   const handleToggle = useCallback(() => setIsOpen((prev) => !prev), [])
 
-  return (
+  /*
+   * The overlay (backdrop + panel) is portaled to document.body.
+   *
+   * WHY: The <Navigation> component applies `backdrop-filter: blur()` to the
+   * <nav> element. In iOS Safari (and Chrome on mobile), backdrop-filter
+   * creates a new containing block for position:fixed descendants — meaning
+   * the panel was clipped to the nav bar height (~60px) instead of filling
+   * the viewport. Portaling to <body> escapes that stacking context entirely.
+   */
+  const overlay = (
     <>
-      {/* Hamburger button */}
-      <button
-        type="button"
-        onClick={handleToggle}
-        className="lg:hidden flex items-center justify-center w-11 h-11 rounded-xl bg-white border border-emerald-200 shadow-sm text-emerald-700 active:bg-emerald-50 transition-colors"
-        aria-label={isOpen ? "Close menu" : "Open menu"}
-        aria-expanded={isOpen}
-        aria-controls="mobile-nav-panel"
-        style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}
-      >
-        {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-      </button>
-
       {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/40 z-[90] lg:hidden"
+          className="fixed inset-0 bg-black/40 lg:hidden"
+          style={{ zIndex: 9990 }}
           onClick={handleClose}
           aria-hidden="true"
         />
@@ -89,9 +93,10 @@ export const MobileMenu = memo(function MobileMenu() {
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"
-        className={`fixed inset-y-0 right-0 w-full max-w-xs z-[100] lg:hidden bg-white flex flex-col shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`fixed inset-y-0 right-0 w-full max-w-xs lg:hidden bg-white flex flex-col shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{ zIndex: 9999 }}
       >
         {/* Panel header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
@@ -194,6 +199,29 @@ export const MobileMenu = memo(function MobileMenu() {
           </div>
         </nav>
       </div>
+    </>
+  )
+
+  return (
+    <>
+      {/* Hamburger button — stays inside <nav> for correct header layout */}
+      <button
+        type="button"
+        onClick={handleToggle}
+        className="lg:hidden flex items-center justify-center w-11 h-11 rounded-xl bg-white border border-emerald-200 shadow-sm text-emerald-700 active:bg-emerald-50 transition-colors"
+        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isOpen}
+        aria-controls="mobile-nav-panel"
+        style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}
+      >
+        {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </button>
+
+      {/*
+       * Overlay portaled to <body> — escapes the nav's backdrop-filter
+       * stacking context so the panel covers the full viewport on iOS Safari.
+       */}
+      {mounted && createPortal(overlay, document.body)}
     </>
   )
 })

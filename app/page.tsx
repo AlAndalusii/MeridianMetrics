@@ -1736,28 +1736,28 @@ export default function MillstoneComplianceWebsite() {
               <div className="space-y-6">
               {[
                 {
-                  question: "Do I need an HMO compliance audit?",
-                  answer: "If you rent out an HMO, yes — urgently. New Simpler Recycling rules (enforced from March 31, 2026) make landlords directly liable for tenant waste mistakes. Cross-contamination can mean a £5,000 fine and an HMO licence review. Our audit identifies the gaps and gives you the written report councils need to see."
+                  question: "The Simpler Recycling deadline has passed — am I already non-compliant?",
+                  answer: "Potentially yes. If your site doesn't have three separate waste streams set up (dry recyclables, food waste, and general waste), you're non-compliant right now. Environment Agency inspection visits have started. For HMO landlords, a tenant contaminating a bin counts as your management failure — that's a £5,000 fine and an HMO licence review. An audit tells you exactly where you stand and gets it fixed fast."
                 },
                 {
-                  question: "What does a business waste audit cover?",
-                  answer: "We assess your current waste streams against the 3-stream Simpler Recycling requirement, verify your waste contractors are EA-registered, check your Duty of Care documentation, and produce a written compliance report with a 90-day action plan. Starts at £295 for a single site."
+                  question: "I manage a care home — does this apply to us?",
+                  answer: "Yes, and care homes face some of the strictest waste obligations in the UK. Clinical waste must meet HTM 07-01 standards, all waste streams need Duty of Care records and EA-registered contractors, Simpler Recycling applies to your whole site, and digital waste tracking becomes mandatory in October 2026. CQC inspections increasingly include waste management. Our care home audit covers every stream and delivers an inspection-ready report in 48 hours."
                 },
                 {
-                  question: "What is packaging compliance and do I need it?",
-                  answer: "If your business uses, imports or manufactures packaging, you likely have legal obligations under EPR (Extended Producer Responsibility) and PPT (Plastic Packaging Tax). We determine your liability, register you with HMRC where needed, and make sure all your documentation is in order — so you're never caught out."
+                  question: "What is EPR and does my business need to register?",
+                  answer: "Extended Producer Responsibility (EPR) applies to any UK business that handles, imports, or manufactures packaging above the legal threshold. If you qualify, you must register, submit data, and pay fees — failure can trigger significant Environment Agency fines. We determine your liability, handle registration, and keep your packaging data accurate year-round so you're never caught out."
                 },
                 {
-                  question: "How much does it cost?",
-                  answer: "Waste audits start at £295 (single HMO or business site). Packaging compliance reviews start at £395. Everything is scoped to your exact situation before we start — no hidden extras and no surprises."
+                  question: "How much does an audit cost?",
+                  answer: "Waste and Simpler Recycling audits start at £295 for a single site — HMO, business, or care home. Packaging compliance reviews and multi-site work are scoped to your exact situation before we start. Everything is a fixed fee agreed upfront. No hidden extras, no surprises."
                 },
                 {
-                  question: "How quickly do I get my report?",
-                  answer: "Within 48 hours of the assessment — or your next audit is free. Every report is a PDF you can show councils, HMRC, or the Environment Agency immediately."
+                  question: "How quickly will I get my compliance report?",
+                  answer: "Within 48 hours of the assessment — or your next audit is free. Every report is a signed PDF you can show a council inspector, the Environment Agency, or CQC immediately. No waiting, no chasing."
                 },
                 {
-                  question: "Are you independent advisors?",
-                  answer: "Yes. We don't sell bins, waste collection services, or packaging. We have no financial incentive to recommend anything other than what's right for your situation. Cambridge-trained, ex-government systems background."
+                  question: "Are you selling something, or giving independent advice?",
+                  answer: "Independent advice only. We don't sell bins, waste contracts, or packaging services — our income comes solely from advisory fees. That means the only thing we ever recommend is what's right for your situation. Cambridge-trained, former government enforcement background."
                 }
               ].map((item, index) => (
                   <div

@@ -329,12 +329,12 @@ export default function MillstoneComplianceWebsite() {
               </div>
 
               <h1 className="poppins-bold text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight mb-5">
-                <span className="text-slate-900 block">UK Sites &amp; Landlords:</span>
-                <span className="text-emerald-700 block">The Waste Deadline Has Passed</span>
+                <span className="text-slate-900 block">Independent Waste Compliance Audits.</span>
+                <span className="text-emerald-700 block">48hr Reports</span>
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
-                Simpler Recycling is live. If bins get contaminated, you&apos;re still accountable — fines, notices, and follow-up inspections.
+                We audit HMO properties, care homes, and businesses before councils inspect. Prevent £300-5,000 fines and enforcement.
               </p>
 
               {/* Primary CTAs */}
@@ -1304,7 +1304,7 @@ export default function MillstoneComplianceWebsite() {
             {[
               { icon: Target, title: "Check Your Setup", desc: "We visit, count your bins, and verify your contractor. Written report in 48 hours.", tag: "£295", tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200" },
               { icon: Trash2, title: "14-Day 3-Bin Fix", desc: "Dry recyclables, food waste, general waste. We scope the right setup for your property.", tag: "Ready in 7 Days", tagColor: "bg-blue-50 text-blue-700 border-blue-200" },
-              { icon: Shield, title: "Inspection Ready", desc: "Labelled bins, contractor records, written proof. Hand it over the moment an inspector arrives.", tag: "Zero Fines", tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200" },
+              { icon: ClipboardCheck, title: "Inspection Ready", desc: "Labelled bins, contractor records, written proof. Hand it over the moment an inspector arrives.", tag: "Zero Fines", tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200" },
             ].map((card) => (
               <div key={card.title} className="bg-[#f8faf9] border border-slate-200 rounded-xl p-5 hover:border-emerald-200 hover:shadow-[0_4px_20px_rgba(6,95,70,0.08)] transition-all duration-200">
                 <div className="flex items-center gap-2 mb-3">

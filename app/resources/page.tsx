@@ -499,40 +499,40 @@ export default function ResourcesPage() {
       {/* ── Bottom CTA ───────────────────────────────────────────────── */}
       <section className="px-4 sm:px-6 pb-24">
         <div className="max-w-5xl mx-auto">
-          <div className="relative overflow-hidden bg-slate-900 rounded-3xl px-8 sm:px-14 py-16 text-center">
-            {/* Radial glow */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.15)_0%,transparent_65%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(16,185,129,0.08)_0%,transparent_65%)] pointer-events-none" />
+          <div className="relative overflow-hidden bg-emerald-50 border border-emerald-200 rounded-3xl px-8 sm:px-14 py-16 text-center">
+            {/* Subtle radial glow */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.12)_0%,transparent_65%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(16,185,129,0.07)_0%,transparent_65%)] pointer-events-none" />
             {/* Dot grid */}
             <div
-              className="absolute inset-0 opacity-[0.035] pointer-events-none"
+              className="absolute inset-0 opacity-[0.06] pointer-events-none"
               style={{
-                backgroundImage: "radial-gradient(rgba(255,255,255,0.9) 1px, transparent 1px)",
+                backgroundImage: "radial-gradient(rgba(6,95,70,0.8) 1px, transparent 1px)",
                 backgroundSize: "28px 28px",
               }}
             />
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/8 border border-white/10 mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="poppins-semibold text-[10px] text-emerald-400 uppercase tracking-[0.15em]">Get Started</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                <span className="poppins-semibold text-[10px] text-emerald-700 uppercase tracking-[0.15em]">Get Started</span>
               </div>
-              <h2 className="poppins-bold text-[36px] sm:text-[48px] text-white mb-4 leading-[1.05] tracking-tight">
+              <h2 className="poppins-bold text-[36px] sm:text-[48px] text-slate-900 mb-4 leading-[1.05] tracking-tight">
                 Not sure where you stand?
               </h2>
-              <p className="poppins-regular text-[16px] text-white/50 mb-10 max-w-sm mx-auto leading-relaxed">
+              <p className="poppins-regular text-[16px] text-slate-500 mb-10 max-w-sm mx-auto leading-relaxed">
                 3 minutes. Every regulation covered. Full compliance picture in one go.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
                 <button
                   onClick={() => router.push("/quiz")}
-                  className="group inline-flex items-center justify-center gap-2.5 bg-white text-slate-900 hover:bg-slate-50 poppins-bold text-[13px] px-8 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-xl shadow-black/30 w-full sm:w-auto"
+                  className="group inline-flex items-center justify-center gap-2.5 bg-emerald-700 text-white hover:bg-emerald-800 poppins-bold text-[13px] px-8 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-lg shadow-emerald-900/20 w-full sm:w-auto"
                 >
                   Full Compliance Check — Free
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                 </button>
                 <button
                   onClick={() => router.push("/ppt-gap-analyser")}
-                  className="inline-flex items-center justify-center gap-2 border border-white/15 hover:border-white/30 bg-white/6 hover:bg-white/10 text-white poppins-semibold text-[13px] px-8 py-3.5 rounded-xl transition-all duration-200 active:scale-95 w-full sm:w-auto"
+                  className="inline-flex items-center justify-center gap-2 border border-emerald-300 hover:border-emerald-400 bg-white hover:bg-emerald-50 text-emerald-700 poppins-semibold text-[13px] px-8 py-3.5 rounded-xl transition-all duration-200 active:scale-95 w-full sm:w-auto"
                 >
                   <BarChart3 className="w-4 h-4 opacity-70" />
                   PPT Gap Analyser

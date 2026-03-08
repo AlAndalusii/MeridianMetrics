@@ -66,9 +66,9 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2.5">
                 {[
-                  { label: "PPT Guide", href: "/resources/plastic-packaging-tax" },
+                  { label: "HMO Waste Checklist", href: "/resources/hmo-waste-compliance-checklist" },
                   { label: "Documentation Guide", href: "/resources/waste-packaging-documentation" },
-                  { label: "HMO Checklist", href: "/templates/hmo-compliance-checklist" },
+                  { label: "HMO Recycling Fines", href: "/resources/hmo-recycling-fines" },
                   { label: "All Resources", href: "/resources" }
                 ].map((item, index) => (
                   <li key={index}>

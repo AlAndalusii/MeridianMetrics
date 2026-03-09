@@ -1728,7 +1728,7 @@ export default function MillstoneComplianceWebsite() {
 
             {/* Enhanced description with fade-in animation */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 leading-relaxed animate-fade-in-up delay-100 px-4">
-              We handle packaging compliance for UK businesses—EPR, PPT, waste regulations—eliminating fines and paperwork so your team can focus on growth.
+              We handle packaging and waste compliance for UK property portfolios and care homes, so you avoid fines, failed inspections and licence issues.
             </p>
 
             {/* Premium FAQ Section */}
@@ -1736,28 +1736,28 @@ export default function MillstoneComplianceWebsite() {
               <div className="space-y-6">
               {[
                 {
-                  question: "The Simpler Recycling deadline has passed — am I already non-compliant?",
-                  answer: "Potentially yes. If your site doesn't have three separate waste streams set up (dry recyclables, food waste, and general waste), you're non-compliant right now. Environment Agency inspection visits have started. For HMO landlords, a tenant contaminating a bin counts as your management failure — that's a £5,000 fine and an HMO licence review. An audit tells you exactly where you stand and gets it fixed fast."
+                  question: "Could Simpler Recycling already put my HMO licence at risk?",
+                  answer: "If your HMOs don't have the right bin setup and written tenant instructions, you're exposed to council fines and licence reviews. Our audit checks every property, fixes gaps and leaves you with documents you can show an inspector the same day."
                 },
                 {
-                  question: "I manage a care home — does this apply to us?",
-                  answer: "Yes, and care homes face some of the strictest waste obligations in the UK. Clinical waste must meet HTM 07-01 standards, all waste streams need Duty of Care records and EA-registered contractors, Simpler Recycling applies to your whole site, and digital waste tracking becomes mandatory in October 2026. CQC inspections increasingly include waste management. Our care home audit covers every stream and delivers an inspection-ready report in 48 hours."
+                  question: "Are our care home waste systems safe for CQC and the Environment Agency?",
+                  answer: "Care homes sit under some of the strictest waste rules: clinical waste, Simpler Recycling, Duty of Care and CQC scrutiny. We audit every stream, check contractors and paperwork, and give you a 48‑hour, inspection‑ready report."
                 },
                 {
-                  question: "What is EPR and does my business need to register?",
-                  answer: "Extended Producer Responsibility (EPR) applies to any UK business that handles, imports, or manufactures packaging above the legal threshold. If you qualify, you must register, submit data, and pay fees — failure can trigger significant Environment Agency fines. We determine your liability, handle registration, and keep your packaging data accurate year-round so you're never caught out."
+                  question: "Do we really need to care about packaging EPR as an agent or landlord?",
+                  answer: "If your group handles packaging for welcome packs, deliveries or own‑brand products, you may be caught by packaging EPR. We check your position once, register you if needed, and run the data and submissions so it never becomes another job for your team."
                 },
                 {
-                  question: "How much does an audit cost?",
-                  answer: "Waste and Simpler Recycling audits start at £295 for a single site — HMO, business, or care home. Packaging compliance reviews and multi-site work are scoped to your exact situation before we start. Everything is a fixed fee agreed upfront. No hidden extras, no surprises."
+                  question: "What do your compliance audits cost?",
+                  answer: "Single‑site waste and Simpler Recycling audits start at £295. Portfolios, care homes and packaging work are priced upfront on a fixed‑fee basis, so you know the total cost before we start."
                 },
                 {
-                  question: "How quickly will I get my compliance report?",
-                  answer: "Within 48 hours of the assessment — or your next audit is free. Every report is a signed PDF you can show a council inspector, the Environment Agency, or CQC immediately. No waiting, no chasing."
+                  question: "When will I have something I can show my council, CQC or the EA?",
+                  answer: "You get a signed PDF report within 48 hours of the assessment, ready to show a council inspector, CQC or the Environment Agency. If we miss the deadline, your next audit is free."
                 },
                 {
-                  question: "Are you selling something, or giving independent advice?",
-                  answer: "Independent advice only. We don't sell bins, waste contracts, or packaging services — our income comes solely from advisory fees. That means the only thing we ever recommend is what's right for your situation. Cambridge-trained, former government enforcement background."
+                  question: "Are you just trying to sell bins and contracts?",
+                  answer: "No. We don't sell bins or waste collections. We act as an independent compliance auditor, then you can use our report to push your existing contractors or tender the work however you like."
                 }
               ].map((item, index) => (
                   <div

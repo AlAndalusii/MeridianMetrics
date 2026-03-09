@@ -5,7 +5,7 @@ import Link from "next/link"
 import {
   ArrowRight, ClipboardCheck, Recycle, Package, Calculator,
   ListChecks, FileSearch, FileCheck, Users, BarChart3, Zap,
-  Leaf, Trash2, BookOpen, Sparkles, Truck, Clock,
+  Leaf, Trash2, BookOpen, Sparkles, Truck, Clock, Heart,
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import Footer from "@/components/Footer"
@@ -187,6 +187,13 @@ const articles: {
     icon: ClipboardCheck, href: "/resources/duty-of-care-waste",
     badge: "Essential", topics: ["Legal Requirements", "Documentation", "WTN"],
     category: "waste", readTime: "10 min",
+  },
+  {
+    title: "Care Home Waste Compliance Checklist",
+    description: "Free 16-question checklist for care home managers. Covers clinical waste, Simpler Recycling, HTM 07-01, and CQC requirements — with free PDF download.",
+    icon: Heart, href: "/resources/care-home-waste-compliance-checklist",
+    badge: "New", topics: ["Care Homes", "Clinical Waste", "Free Checklist"],
+    category: "waste", readTime: "5 min",
   },
   {
     title: "HMO Landlords Face £5,000 Fines Under New Recycling Rules",

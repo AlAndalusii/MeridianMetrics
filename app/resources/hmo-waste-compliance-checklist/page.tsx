@@ -341,7 +341,7 @@ export default function HmoWasteChecklistPage() {
             <div className="flex flex-wrap gap-6 mt-6 pt-6 border-t border-emerald-100">
               {[
                 { icon: Globe,  text: "millstonecompliance.com/services", href: "https://millstonecompliance.com/services", breakAll: false },
-                { icon: Phone,  text: "0121 751 0551",                    href: "tel:01217510551",                         breakAll: false },
+                { icon: Phone,  text: "0121 751 2262",                    href: "tel:01217512262",                         breakAll: false },
                 { icon: Mail,   text: "hello@millstonecompliance.com",    href: "mailto:hello@millstonecompliance.com",    breakAll: true  },
               ].map(({ icon: Icon, text, href, breakAll }) => (
                 <a

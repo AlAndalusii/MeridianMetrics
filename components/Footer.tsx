@@ -68,7 +68,7 @@ export default function Footer() {
                 {[
                   { label: "HMO Waste Checklist", href: "/resources/hmo-waste-compliance-checklist" },
                   { label: "Documentation Guide", href: "/resources/waste-packaging-documentation" },
-                  { label: "HMO Recycling Fines", href: "/resources/hmo-recycling-fines" },
+                  { label: "Care Home Checklist", href: "/resources/care-home-waste-compliance-checklist" },
                   { label: "All Resources", href: "/resources" }
                 ].map((item, index) => (
                   <li key={index}>

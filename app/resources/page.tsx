@@ -3,332 +3,401 @@
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import {
-  ArrowRight, ClipboardCheck, Recycle, Package, Calculator,
-  ListChecks, FileSearch, FileCheck, Users, BarChart3, Zap,
-  Leaf, Trash2, BookOpen, Sparkles, Truck, Clock, Heart,
+  ArrowRight, ArrowUpRight, ClipboardCheck, Recycle,
+  ListChecks, FileCheck, Leaf, Trash2, Truck, Heart,
+  Clock, Zap, BookOpen, Shield, BadgeCheck, Sparkles,
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import Footer from "@/components/Footer"
 import { Navigation } from "@/components/Navigation"
 
-/* ─── Types ──────────────────────────────────────────────────────────── */
-type Category = "all" | "ppt" | "epr" | "simpler-recycling" | "waste"
+/* ─── Types ──────────────────────────────────────────────────── */
+type Category = "all" | "duty-of-care" | "simpler-recycling" | "care-homes" | "hmo"
 
-/* ─── Category meta — every Tailwind class written in full for JIT ───── */
+/* ─── Category meta — all Tailwind classes in full for JIT ───── */
 const catMeta: Record<Category, {
   label: string
-  shortLabel: string
-  icon: React.ElementType
-  description: string
-  /* filter pill */
   pillActive: string
   pillInactive: string
-  dotColor: string
-  /* card accent */
-  borderLeft: string          /* left accent bar */
-  iconBg: string              /* icon circle bg */
-  iconColor: string           /* icon colour */
-  labelColor: string          /* category label above title */
-  topicBg: string             /* topic pill bg */
-  topicText: string           /* topic pill text */
-  ctaColor: string            /* "Read guide" colour */
-  /* hover shadow — full arbitrary value needed for JIT */
-  hoverShadow: string
+  dot: string
+  cardBar: string
+  tagBg: string
+  tagText: string
+  ctaText: string
 }> = {
   all: {
-    label: "All Guides", shortLabel: "All", icon: BookOpen,
-    description: "Browse everything",
-    pillActive:   "bg-slate-900 text-white shadow-lg shadow-slate-900/20",
-    pillInactive: "bg-white/70 text-slate-600 hover:bg-white hover:text-slate-900 border border-slate-200",
-    dotColor: "bg-slate-400",
-    borderLeft:  "border-l-emerald-500",
-    iconBg:      "bg-emerald-50",   iconColor:   "text-emerald-600",
-    labelColor:  "text-emerald-600", topicBg: "bg-emerald-50", topicText: "text-emerald-700",
-    ctaColor:    "text-emerald-600",
-    hoverShadow: "hover:shadow-[0_24px_48px_-10px_rgba(5,150,105,0.18)]",
+    label: "All Guides",
+    pillActive:   "bg-emerald-900 text-white shadow-sm",
+    pillInactive: "bg-white/60 text-emerald-700 hover:bg-white hover:text-emerald-900 border border-emerald-200",
+    dot:          "bg-emerald-600",
+    cardBar:      "bg-emerald-600",
+    tagBg:        "bg-emerald-50", tagText: "text-emerald-700", ctaText: "text-emerald-700",
   },
-  ppt: {
-    label: "Plastic Packaging Tax", shortLabel: "PPT", icon: Package,
-    description: "HMRC · PPT · Recycled content",
-    pillActive:   "bg-blue-600 text-white shadow-lg shadow-blue-600/25",
-    pillInactive: "bg-white/70 text-blue-600 hover:bg-blue-50 hover:text-blue-700 border border-blue-200",
-    dotColor: "bg-blue-500",
-    borderLeft:  "border-l-blue-500",
-    iconBg:      "bg-blue-50",    iconColor:   "text-blue-600",
-    labelColor:  "text-blue-600",  topicBg: "bg-blue-50", topicText: "text-blue-700",
-    ctaColor:    "text-blue-600",
-    hoverShadow: "hover:shadow-[0_24px_48px_-10px_rgba(37,99,235,0.18)]",
-  },
-  epr: {
-    label: "Extended Producer Responsibility", shortLabel: "EPR", icon: Recycle,
-    description: "Packaging fees · PRN · 2026",
-    pillActive:   "bg-violet-600 text-white shadow-lg shadow-violet-600/25",
-    pillInactive: "bg-white/70 text-violet-600 hover:bg-violet-50 hover:text-violet-700 border border-violet-200",
-    dotColor: "bg-violet-500",
-    borderLeft:  "border-l-violet-500",
-    iconBg:      "bg-violet-50",  iconColor:   "text-violet-600",
-    labelColor:  "text-violet-600", topicBg: "bg-violet-50", topicText: "text-violet-700",
-    ctaColor:    "text-violet-600",
-    hoverShadow: "hover:shadow-[0_24px_48px_-10px_rgba(124,58,237,0.18)]",
+  "duty-of-care": {
+    label: "Duty of Care",
+    pillActive:   "bg-emerald-700 text-white shadow-sm",
+    pillInactive: "bg-white/60 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-900 border border-emerald-200",
+    dot:          "bg-emerald-600",
+    cardBar:      "bg-emerald-600",
+    tagBg:        "bg-emerald-50", tagText: "text-emerald-700", ctaText: "text-emerald-700",
   },
   "simpler-recycling": {
-    label: "Simpler Recycling", shortLabel: "Simpler Recycling", icon: Leaf,
-    description: "Waste streams · Food waste · 2025",
-    pillActive:   "bg-green-600 text-white shadow-lg shadow-green-600/25",
-    pillInactive: "bg-white/70 text-green-700 hover:bg-green-50 border border-green-200",
-    dotColor: "bg-green-500",
-    borderLeft:  "border-l-green-500",
-    iconBg:      "bg-green-50",   iconColor:   "text-green-600",
-    labelColor:  "text-green-700", topicBg: "bg-green-50", topicText: "text-green-700",
-    ctaColor:    "text-green-700",
-    hoverShadow: "hover:shadow-[0_24px_48px_-10px_rgba(22,163,74,0.18)]",
+    label: "Simpler Recycling",
+    pillActive:   "bg-green-700 text-white shadow-sm",
+    pillInactive: "bg-white/60 text-green-700 hover:bg-green-50 hover:text-green-900 border border-green-200",
+    dot:          "bg-green-600",
+    cardBar:      "bg-green-600",
+    tagBg:        "bg-green-50", tagText: "text-green-700", ctaText: "text-green-700",
   },
-  waste: {
-    label: "Waste & Duty of Care", shortLabel: "Waste", icon: Trash2,
-    description: "WTN · Carriers · Hazardous",
-    pillActive:   "bg-amber-500 text-white shadow-lg shadow-amber-500/25",
-    pillInactive: "bg-white/70 text-amber-700 hover:bg-amber-50 border border-amber-200",
-    dotColor: "bg-amber-500",
-    borderLeft:  "border-l-amber-500",
-    iconBg:      "bg-amber-50",   iconColor:   "text-amber-600",
-    labelColor:  "text-amber-700", topicBg: "bg-amber-50", topicText: "text-amber-700",
-    ctaColor:    "text-amber-700",
-    hoverShadow: "hover:shadow-[0_24px_48px_-10px_rgba(217,119,6,0.18)]",
+  "care-homes": {
+    label: "Care Homes",
+    pillActive:   "bg-emerald-800 text-white shadow-sm",
+    pillInactive: "bg-white/60 text-emerald-800 hover:bg-emerald-50 hover:text-emerald-900 border border-emerald-200",
+    dot:          "bg-emerald-500",
+    cardBar:      "bg-emerald-500",
+    tagBg:        "bg-emerald-50", tagText: "text-emerald-800", ctaText: "text-emerald-800",
+  },
+  hmo: {
+    label: "HMO & Estates",
+    pillActive:   "bg-amber-600 text-white shadow-sm",
+    pillInactive: "bg-white/60 text-amber-700 hover:bg-amber-50 hover:text-amber-900 border border-amber-200",
+    dot:          "bg-amber-500",
+    cardBar:      "bg-amber-500",
+    tagBg:        "bg-amber-50", tagText: "text-amber-700", ctaText: "text-amber-700",
   },
 }
 
-/* ─── Badge styles ───────────────────────────────────────────────────── */
 const badgeStyles: Record<string, string> = {
-  Essential: "bg-blue-50 text-blue-700 border border-blue-200",
-  New:       "bg-emerald-50 text-emerald-700 border border-emerald-200",
-  Popular:   "bg-amber-50 text-amber-700 border border-amber-200",
-  Template:  "bg-violet-50 text-violet-700 border border-violet-200",
+  "Free Checklist": "bg-emerald-50 text-emerald-700 border border-emerald-200",
+  Essential:        "bg-emerald-50 text-emerald-700 border border-emerald-200",
+  Urgent:           "bg-amber-50 text-amber-700 border border-amber-200",
+  Popular:          "bg-emerald-50 text-emerald-700 border border-emerald-200",
+  Template:         "bg-emerald-50 text-emerald-800 border border-emerald-200",
+  New:              "bg-emerald-50 text-emerald-700 border border-emerald-200",
 }
 
-/* ─── Article data ───────────────────────────────────────────────────── */
+/* ─── Visible articles (waste-only) ─────────────────────────── */
 const articles: {
-  title: string; description: string; icon: React.ElementType
-  href: string; badge: string; topics: string[]
-  category: Category; readTime: string
+  title: string
+  description: string
+  icon: React.ElementType
+  href: string
+  badge: string
+  topics: string[]
+  category: Category
+  readTime: string
+  featured?: boolean
 }[] = [
   {
-    title: "What Is Plastic Packaging Tax?",
-    description: "Plain-English guide — rates, registration, and what HMRC expects.",
-    icon: Package, href: "/resources/plastic-packaging-tax-explained",
-    badge: "Essential", topics: ["Beginner", "PPT Basics", "Registration"],
-    category: "ppt", readTime: "6 min",
-  },
-  {
-    title: "Plastic Packaging Tax: Records & Accounts Guide",
-    description: "Exactly what records and accounts HMRC requires, explained simply.",
-    icon: Calculator, href: "/resources/plastic-packaging-tax",
-    badge: "Essential", topics: ["Records", "Accounts", "Compliance"],
-    category: "ppt", readTime: "10 min",
-  },
-  {
-    title: "5 PPT Mistakes That Trigger an HMRC Audit",
-    description: "The five most common PPT errors on HMRC's radar — with penalty figures.",
-    icon: FileSearch, href: "/resources/ppt-hmrc-audit-mistakes",
-    badge: "New", topics: ["HMRC Audit", "Penalties", "Risk"],
-    category: "ppt", readTime: "12 min",
-  },
-  {
-    title: "April 2027 PPT Changes",
-    description: "Factory scraps rule change and chemical recycling recognition — how to prepare now.",
-    icon: Package, href: "/resources/plastic-packaging-tax-2027",
-    badge: "New", topics: ["2027 Changes", "Chemical Recycling", "Action Plan"],
-    category: "ppt", readTime: "8 min",
-  },
-  {
-    title: "HMO Compliance Checklist",
-    description: "20-question pre-audit framework with traffic-light scoring across 5 risk sections.",
-    icon: ListChecks, href: "/templates/hmo-compliance-checklist",
-    badge: "Template", topics: ["20 Questions", "Gap Identification", "Pre-Audit"],
-    category: "waste", readTime: "Self-assess",
-  },
-  {
-    title: "EPR Packaging: A Plain English Guide",
-    description: "What EPR is, whether it applies, and the key dates you can't miss.",
-    icon: Recycle, href: "/resources/epr-packaging",
-    badge: "New", topics: ["EPR Basics", "2026 Deadlines", "Fees"],
-    category: "epr", readTime: "9 min",
-  },
-  {
-    title: "Outsourced Compliance Team",
-    description: "Compare outsourcing vs in-house — costs, what's included, expert support from £299/month.",
-    icon: Users, href: "/resources/outsourced-compliance-team",
-    badge: "New", topics: ["Cost Savings", "Full Service", "Multi-Site"],
-    category: "epr", readTime: "7 min",
-  },
-  {
-    title: "Two-Thirds of UK Businesses Aren't Ready for Simpler Recycling",
-    description: "64% missed the March 2025 deadline. What's required and how to get compliant in 60 days.",
-    icon: Leaf, href: "/resources/simpler-recycling-2025",
-    badge: "New", topics: ["Readiness Check", "60-Day Plan", "Enforcement"],
-    category: "simpler-recycling", readTime: "15 min",
-  },
-  {
-    title: "Simpler Recycling for Businesses: Complete 2025 Guide",
-    description: "Deadlines, 5 mandatory waste streams, penalties, and practical implementation steps.",
-    icon: Recycle, href: "/resources/simpler-recycling-businesses",
-    badge: "Popular", topics: ["Waste Compliance", "Food Waste", "Regulations"],
-    category: "simpler-recycling", readTime: "10 min",
-  },
-  {
-    title: "Waste & Packaging Documentation: Complete UK Guide",
-    description: "Every document legally required — WTNs, PPT records, EPR files, and HMO plans.",
-    icon: FileCheck, href: "/resources/waste-packaging-documentation",
-    badge: "Essential", topics: ["WTNs", "PPT Records", "EPR Files", "Penalties"],
-    category: "waste", readTime: "15 min",
+    title: "Care Home Waste Compliance Checklist",
+    description: "Free 16-question checklist for care home managers. Covers clinical waste, Simpler Recycling, HTM 07-01 and CQC requirements — with free PDF download.",
+    icon: Heart,
+    href: "/resources/care-home-waste-compliance-checklist",
+    badge: "Free Checklist",
+    topics: ["Care Homes", "Clinical Waste", "CQC Ready"],
+    category: "care-homes",
+    readTime: "5 min",
+    featured: true,
   },
   {
     title: "Waste Duty of Care: Complete UK Compliance Guide",
-    description: "Legal requirements, Waste Transfer Notes, carrier verification, and avoiding £300 penalties.",
-    icon: ClipboardCheck, href: "/resources/duty-of-care-waste",
-    badge: "Essential", topics: ["Legal Requirements", "Documentation", "WTN"],
-    category: "waste", readTime: "10 min",
+    description: "Legal requirements, Waste Transfer Notes, carrier verification, and how to avoid £300 fixed penalties before enforcement knocks.",
+    icon: ClipboardCheck,
+    href: "/resources/duty-of-care-waste",
+    badge: "Essential",
+    topics: ["Legal Requirements", "WTN", "Carrier Licences"],
+    category: "duty-of-care",
+    readTime: "10 min",
   },
   {
-    title: "Care Home Waste Compliance Checklist",
-    description: "Free 16-question checklist for care home managers. Covers clinical waste, Simpler Recycling, HTM 07-01, and CQC requirements — with free PDF download.",
-    icon: Heart, href: "/resources/care-home-waste-compliance-checklist",
-    badge: "New", topics: ["Care Homes", "Clinical Waste", "Free Checklist"],
-    category: "waste", readTime: "5 min",
+    title: "Waste Documentation: Complete UK Guide",
+    description: "Every document legally required — Waste Transfer Notes, carrier licences, clinical waste consignment notes and Simpler Recycling records.",
+    icon: FileCheck,
+    href: "/resources/waste-packaging-documentation",
+    badge: "Essential",
+    topics: ["WTNs", "Carrier Licences", "Audit Trail"],
+    category: "duty-of-care",
+    readTime: "15 min",
+  },
+  {
+    title: "Two-Thirds of UK Businesses Aren't Ready for Simpler Recycling",
+    description: "64% missed the March 2025 deadline. What's required, enforcement risk, and how to get compliant in 60 days.",
+    icon: Leaf,
+    href: "/resources/simpler-recycling-2025",
+    badge: "Urgent",
+    topics: ["Readiness Check", "60-Day Plan", "Enforcement"],
+    category: "simpler-recycling",
+    readTime: "15 min",
+  },
+  {
+    title: "Simpler Recycling for Businesses: Complete 2025 Guide",
+    description: "Mandatory waste streams, 31 March 2026 deadline, EA enforcement and practical steps for your service.",
+    icon: Recycle,
+    href: "/resources/simpler-recycling-businesses",
+    badge: "Popular",
+    topics: ["Waste Streams", "Food Waste", "Regulations"],
+    category: "simpler-recycling",
+    readTime: "10 min",
+  },
+  {
+    title: "HMO Compliance Checklist",
+    description: "20-question pre-audit framework with traffic-light scoring across 5 risk sections. Know your gaps before the council does.",
+    icon: ListChecks,
+    href: "/templates/hmo-compliance-checklist",
+    badge: "Template",
+    topics: ["20 Questions", "Gap Analysis", "Pre-Audit"],
+    category: "hmo",
+    readTime: "Self-assess",
   },
   {
     title: "HMO Landlords Face £5,000 Fines Under New Recycling Rules",
-    description: "Simpler Recycling extends to all HMOs from March 2026 — landlords are legally liable.",
-    icon: Trash2, href: "/resources/hmo-recycling-fines",
-    badge: "New", topics: ["HMO Compliance", "£5K Fines", "Licence Risk"],
-    category: "waste", readTime: "18 min",
+    description: "Simpler Recycling now covers all HMOs. Landlords are legally liable — and council inspections have started.",
+    icon: Trash2,
+    href: "/resources/hmo-recycling-fines",
+    badge: "New",
+    topics: ["HMO Compliance", "£5K Fines", "Licence Risk"],
+    category: "hmo",
+    readTime: "18 min",
   },
   {
     title: "Landlord Fly-Tipping Fines Hit Record Highs",
-    description: "1.15M incidents in 2023/24. Landlords face £600 fines for using unlicensed carriers.",
-    icon: Truck, href: "/resources/landlord-fly-tipping-fines",
-    badge: "New", topics: ["Fly-Tipping", "Carrier Licence", "£600 Fine"],
-    category: "waste", readTime: "20 min",
+    description: "1.15M incidents in 2023/24. Landlords face £600 fines for using unlicensed waste carriers — here's how to stay clean.",
+    icon: Truck,
+    href: "/resources/landlord-fly-tipping-fines",
+    badge: "New",
+    topics: ["Fly-Tipping", "Carrier Licence", "£600 Fine"],
+    category: "hmo",
+    readTime: "20 min",
   },
 ]
 
-/* ─── Tool cards ─────────────────────────────────────────────────────── */
-const tools: {
-  label: string; description: string; href: string
-  icon: React.ElementType; gradient: string; tag: string; tagColor: string
-}[] = [
+/* ─── Tools (waste-only) ─────────────────────────────────────── */
+const tools = [
   {
-    label: "PPT Gap Analyser",
-    description: "AI compliance score 0–100 with your top HMRC risk areas.",
-    href: "/ppt-gap-analyser", icon: Package,
-    gradient: "from-blue-600 to-blue-800",
-    tag: "Plastic Packaging Tax", tagColor: "bg-blue-500/20 text-blue-200",
+    label: "Simpler Recycling Check",
+    description: "Instant compliance score showing which waste streams you're missing and your enforcement risk level.",
+    href: "/simpler-recycling-gap-analyser",
+    icon: Leaf,
+    tag: "Simpler Recycling · Free",
+    num: "01",
   },
   {
-    label: "EPR Gap Analyser",
-    description: "Check EPR status in under 3 minutes — tonnage, PRN, 2026 readiness.",
-    href: "/epr-gap-analyser", icon: Recycle,
-    gradient: "from-violet-600 to-violet-800",
-    tag: "Extended Producer Responsibility", tagColor: "bg-violet-500/20 text-violet-200",
-  },
-  {
-    label: "Simpler Recycling Analyser",
-    description: "Instant score showing which streams you're missing and your enforcement risk.",
-    href: "/simpler-recycling-gap-analyser", icon: Leaf,
-    gradient: "from-green-600 to-green-800",
-    tag: "Simpler Recycling", tagColor: "bg-green-500/20 text-green-200",
-  },
-  {
-    label: "Full Compliance Assessment",
-    description: "All regulations in one — PPT, EPR, Duty of Care, Simpler Recycling.",
-    href: "/quiz", icon: ClipboardCheck,
-    gradient: "from-emerald-600 to-emerald-800",
-    tag: "All Regulations", tagColor: "bg-emerald-500/20 text-emerald-200",
+    label: "Waste Compliance Assessment",
+    description: "Duty of Care, clinical waste and Simpler Recycling — all three in one free 3-minute check.",
+    href: "/quiz",
+    icon: ClipboardCheck,
+    tag: "All Waste Regulations · Free",
+    num: "02",
   },
 ]
 
-/* ─── Page ────────────────────────────────────────────────────────────── */
+const catKeys = Object.keys(catMeta) as Category[]
+
+/* ─── Page ───────────────────────────────────────────────────── */
 export default function ResourcesPage() {
-  const router = useRouter()
+  const router   = useRouter()
   const [selected, setSelected] = useState<Category>("all")
-  const [visible, setVisible] = useState(false)
+  const [visible,  setVisible]  = useState(false)
 
-  /* Initial mount animation */
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 80)
+    const t = setTimeout(() => setVisible(true), 60)
     return () => clearTimeout(t)
   }, [])
 
-  /* Re-animate cards when filter changes */
   const handleSelect = (key: Category) => {
     if (key === selected) return
     setVisible(false)
     setSelected(key)
-    setTimeout(() => setVisible(true), 60)
+    setTimeout(() => setVisible(true), 50)
   }
 
-  const filtered = selected === "all" ? articles : articles.filter(a => a.category === selected)
-  const activeMeta = catMeta[selected]
-  const catKeys = Object.keys(catMeta) as Category[]
+  const featured    = articles.find(a => a.featured)!
+  const nonFeatured = articles.filter(a => !a.featured)
+  const filtered    = selected === "all"
+    ? nonFeatured
+    : nonFeatured.filter(a => a.category === selected)
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7]">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50">
       <Navigation />
 
-      {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="pt-36 pb-14 px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto text-center">
+      {/* ── Hero ─────────────────────────────────────────────────── */}
+      <section className="bg-gradient-to-br from-emerald-900 via-emerald-950 to-emerald-900 pt-36 pb-24 px-4 sm:px-6 relative overflow-hidden">
+        {/* Radial glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(16,185,129,0.18),transparent)] pointer-events-none" />
+        {/* Dot mesh */}
+        <div
+          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "32px 32px" }}
+        />
+        {/* Shine line */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent" />
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          {/* Eyebrow */}
           <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-7"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-700/60 bg-emerald-800/40 backdrop-blur-sm mb-8"
             style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(10px)", transition: "opacity 0.5s ease, transform 0.5s ease" }}
           >
-            <Sparkles className="w-3 h-3 text-emerald-500" />
-            <span className="poppins-semibold text-[11px] text-slate-600 uppercase tracking-[0.12em]">Free UK Compliance Guides</span>
+            <BadgeCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="poppins-semibold text-[10px] text-emerald-300 uppercase tracking-[0.18em]">UK Waste Compliance Intelligence</span>
           </div>
 
+          {/* Headline */}
           <h1
-            className="poppins-bold text-[52px] sm:text-[68px] md:text-[80px] text-slate-900 leading-[1.0] tracking-[-0.03em] mb-5"
-            style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(14px)", transition: "opacity 0.55s ease 60ms, transform 0.55s ease 60ms" }}
+            className="poppins-bold text-[52px] sm:text-[68px] md:text-[84px] text-white leading-[0.95] tracking-[-0.03em] mb-6"
+            style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(16px)", transition: "opacity 0.55s ease 60ms, transform 0.55s ease 60ms" }}
           >
-            Resources
+            Waste<br />
+            <span className="bg-gradient-to-r from-emerald-300 via-emerald-200 to-green-300 bg-clip-text text-transparent">
+              Intelligence.
+            </span>
           </h1>
 
+          {/* Sub */}
           <p
-            className="poppins-regular text-[17px] sm:text-lg text-slate-500 max-w-md mx-auto leading-relaxed"
+            className="poppins-regular text-[16px] sm:text-[18px] text-emerald-200/70 max-w-lg leading-relaxed mb-12"
             style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(12px)", transition: "opacity 0.55s ease 120ms, transform 0.55s ease 120ms" }}
           >
-            Plain-English guides for every UK compliance regulation.
+            Expert guides for care homes, children&apos;s homes and estate agents — plain English, inspection-ready, free.
           </p>
+
+          {/* Stats strip */}
+          <div
+            className="flex flex-wrap items-center gap-8 sm:gap-12"
+            style={{ opacity: visible ? 1 : 0, transition: "opacity 0.55s ease 200ms" }}
+          >
+            {[
+              { value: "8",    label: "Free Guides" },
+              { value: "2",    label: "Free Tools" },
+              { value: "48hr", label: "Report Turnaround" },
+              { value: "£0",   label: "To Get Started" },
+            ].map((s, i) => (
+              <div key={i}>
+                <p className="poppins-bold text-[22px] sm:text-[26px] text-white leading-none">{s.value}</p>
+                <p className="poppins-regular text-[10px] text-emerald-400/70 uppercase tracking-[0.14em] mt-1">{s.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── Category filter ───────────────────────────────────────────── */}
+      {/* ── Featured article ─────────────────────────────────────── */}
+      <section className="px-4 sm:px-6 py-14">
+        <div className="max-w-6xl mx-auto">
+          <Link
+            href={featured.href}
+            className="group relative flex flex-col lg:flex-row overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900 to-emerald-950 border border-emerald-700/40 hover:border-emerald-500/60 transition-all duration-500 hover:shadow-[0_32px_80px_-12px_rgba(6,95,70,0.35)]"
+            style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(20px)", transition: "opacity 0.55s ease 240ms, transform 0.55s ease 240ms" }}
+          >
+            {/* Shine overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent animate-shine pointer-events-none" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent" />
+
+            {/* Left content */}
+            <div className="flex-1 p-8 sm:p-10 lg:p-14 flex flex-col justify-between relative z-10">
+              <div>
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-400/15 border border-emerald-400/30 text-emerald-300 text-[10px] poppins-bold uppercase tracking-[0.15em]">
+                    <Sparkles className="w-2.5 h-2.5" />
+                    Featured Guide
+                  </span>
+                  <span className="flex items-center gap-1.5 text-emerald-500/60 text-[11px] poppins-medium">
+                    <Clock className="w-3 h-3" />
+                    {featured.readTime}
+                  </span>
+                </div>
+
+                <p className="poppins-semibold text-[10px] text-emerald-400/70 uppercase tracking-[0.18em] mb-3">
+                  Care Homes
+                </p>
+
+                <h2 className="poppins-bold text-[26px] sm:text-[32px] lg:text-[38px] text-white leading-[1.1] tracking-tight mb-5">
+                  {featured.title}
+                </h2>
+
+                <p className="poppins-regular text-[15px] text-emerald-200/60 leading-relaxed max-w-xl">
+                  {featured.description}
+                </p>
+              </div>
+
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <div className="inline-flex items-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-white poppins-bold text-[13px] px-6 py-3 rounded-xl transition-colors duration-300 shadow-lg shadow-emerald-900/40">
+                  Read the guide
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {featured.topics.map((t) => (
+                    <span key={t} className="px-2.5 py-1 rounded-lg bg-emerald-800/50 text-emerald-300/70 text-[10px] poppins-semibold border border-emerald-700/40">{t}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right decorative panel */}
+            <div className="hidden lg:flex w-[320px] flex-shrink-0 relative bg-emerald-950/60 items-center justify-center p-10 border-l border-emerald-800/40">
+              <div
+                className="absolute inset-0 opacity-[0.05]"
+                style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)", backgroundSize: "36px 36px" }}
+              />
+              <div className="relative z-10 flex flex-col items-center gap-5">
+                <div className="w-20 h-20 rounded-2xl bg-emerald-800/60 border border-emerald-700/50 flex items-center justify-center">
+                  <Heart className="w-10 h-10 text-emerald-400" strokeWidth={1.5} />
+                </div>
+                <div className="space-y-2.5 w-full">
+                  {["CQC Ready", "HTM 07-01", "Clinical Waste", "Simpler Recycling"].map((tag) => (
+                    <div key={tag} className="flex items-center gap-2.5 bg-emerald-900/60 rounded-xl px-4 py-2.5 border border-emerald-800/50">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span className="poppins-medium text-[12px] text-emerald-300/70">{tag}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-600/5 rounded-full blur-3xl pointer-events-none" />
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* ── Category filter ─────────────────────────────────────── */}
       <section
-        className="px-4 sm:px-6 mb-10"
-        style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(10px)", transition: "opacity 0.55s ease 180ms, transform 0.55s ease 180ms" }}
+        className="px-4 sm:px-6 pb-8"
+        style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(8px)", transition: "opacity 0.5s ease 300ms, transform 0.5s ease 300ms" }}
       >
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-1.5 shadow-sm inline-flex flex-wrap gap-1 w-full sm:w-auto">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center gap-2.5">
+              <BookOpen className="w-4 h-4 text-emerald-500" />
+              <span className="poppins-bold text-[15px] text-emerald-900 tracking-tight">Browse Guides</span>
+              <span className="poppins-regular text-[13px] text-emerald-500">
+                — {filtered.length + (selected === "all" ? 1 : 0)} articles
+              </span>
+            </div>
+            {selected !== "all" && (
+              <button
+                type="button"
+                onClick={() => handleSelect("all")}
+                className="poppins-medium text-[12px] text-emerald-500 hover:text-emerald-700 transition-colors flex items-center gap-1"
+              >
+                View all <ArrowRight className="w-3 h-3" />
+              </button>
+            )}
+          </div>
+
+          <div className="bg-white/70 backdrop-blur-sm border border-emerald-100 rounded-2xl p-1.5 shadow-sm inline-flex flex-wrap gap-1 w-full sm:w-auto">
             {catKeys.map(key => {
-              const meta = catMeta[key]
-              const Icon = meta.icon
-              const count = key === "all" ? articles.length : articles.filter(a => a.category === key).length
+              const meta    = catMeta[key]
+              const count   = key === "all" ? articles.length : articles.filter(a => a.category === key).length
               const isActive = selected === key
               return (
                 <button
                   key={key}
                   type="button"
                   onClick={() => handleSelect(key)}
-                  className={`
-                    flex items-center gap-2 px-4 py-2.5 rounded-xl poppins-semibold text-[13px]
-                    transition-all duration-200 flex-shrink-0
-                    ${isActive ? meta.pillActive : meta.pillInactive}
-                  `}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl poppins-semibold text-[12px] transition-all duration-200 flex-shrink-0 ${isActive ? meta.pillActive : meta.pillInactive}`}
                 >
-                  <Icon className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>{meta.shortLabel}</span>
-                  <span className={`text-[11px] poppins-medium ${isActive ? "opacity-70" : "opacity-40"}`}>
-                    {count}
-                  </span>
+                  {meta.label}
+                  <span className={`text-[10px] poppins-medium ${isActive ? "opacity-60" : "opacity-40"}`}>{count}</span>
                 </button>
               )
             })}
@@ -336,164 +405,172 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* ── Section header ────────────────────────────────────────────── */}
-      <section className="px-4 sm:px-6 mb-5">
-        <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <span className={`w-2 h-2 rounded-full ${activeMeta.dotColor}`} />
-            <span className="poppins-bold text-[15px] text-slate-800">
-              {selected === "all" ? "All Guides" : activeMeta.label}
-            </span>
-            <span className="poppins-regular text-[13px] text-slate-400">
-              — {filtered.length} {filtered.length === 1 ? "article" : "articles"}
-            </span>
+      {/* ── Article grid ─────────────────────────────────────────── */}
+      <section className="px-4 sm:px-6 pb-20">
+        <div className="max-w-6xl mx-auto">
+
+          {/* Featured row item in "all" view */}
+          {selected === "all" && (
+            <div className="mb-4">
+              <Link
+                href={featured.href}
+                className="group flex items-center justify-between bg-white rounded-2xl border border-emerald-100 shadow-sm px-6 py-4 hover:border-emerald-300 hover:shadow-md transition-all duration-300"
+                style={{ opacity: visible ? 1 : 0, transition: "opacity 0.4s ease 0ms" }}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0">
+                    <Heart className="w-4 h-4 text-emerald-600" />
+                  </div>
+                  <div>
+                    <span className="poppins-semibold text-[10px] text-emerald-600 uppercase tracking-[0.14em]">Featured · Care Homes</span>
+                    <p className="poppins-bold text-[14px] text-emerald-900 mt-0.5">{featured.title}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 flex-shrink-0">
+                  <span className="hidden sm:block text-[10px] poppins-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    {featured.badge}
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-emerald-400 group-hover:text-emerald-700 transition-colors" />
+                </div>
+              </Link>
+            </div>
+          )}
+
+          {/* Main grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filtered.map((article, i) => {
+              const meta = catMeta[article.category]
+              const Icon = article.icon
+              const num  = String(i + 1 + (selected === "all" ? 1 : 0)).padStart(2, "0")
+              return (
+                <Link
+                  key={`${selected}-${article.href}`}
+                  href={article.href}
+                  className="group relative flex flex-col bg-white rounded-2xl overflow-hidden border border-emerald-100 shadow-sm hover:border-emerald-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_-8px_rgba(6,95,70,0.15)] transition-all duration-300"
+                  style={{
+                    opacity:    visible ? 1 : 0,
+                    transform:  visible ? "translateY(0)" : "translateY(16px)",
+                    transition: `opacity 0.4s ease ${i * 60}ms, transform 0.4s ease ${i * 60}ms, box-shadow 0.3s ease, translate 0.3s ease`,
+                  }}
+                >
+                  {/* Category colour bar */}
+                  <div className={`h-[3px] w-full ${meta.cardBar}`} />
+
+                  <div className="flex flex-col flex-1 p-6">
+                    {/* Number + badge row */}
+                    <div className="flex items-start justify-between mb-5">
+                      <span className="poppins-bold text-[32px] leading-none text-emerald-50 select-none">{num}</span>
+                      <div className="flex flex-col items-end gap-2">
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] poppins-bold ${badgeStyles[article.badge] ?? "bg-emerald-50 text-emerald-700 border border-emerald-200"}`}>
+                          {article.badge}
+                        </span>
+                        <span className="flex items-center gap-1 text-[10px] poppins-medium text-emerald-400">
+                          <Clock className="w-2.5 h-2.5" />
+                          {article.readTime}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Category label */}
+                    <p className={`poppins-semibold text-[10px] tracking-[0.15em] uppercase mb-2 ${meta.tagText}`}>
+                      {meta.label}
+                    </p>
+
+                    {/* Title */}
+                    <h2 className="poppins-bold text-[15px] sm:text-[15px] text-emerald-900 mb-3 leading-snug group-hover:text-emerald-700 transition-colors line-clamp-2">
+                      {article.title}
+                    </h2>
+
+                    {/* Description */}
+                    <p className="poppins-regular text-[13px] text-emerald-600/80 leading-relaxed flex-1 mb-5 line-clamp-3">
+                      {article.description}
+                    </p>
+
+                    {/* Topics */}
+                    <div className="flex flex-wrap gap-1.5 mb-5">
+                      {article.topics.slice(0, 3).map((t) => (
+                        <span key={t} className={`px-2 py-0.5 rounded-md text-[10px] poppins-semibold ${meta.tagBg} ${meta.tagText}`}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* CTA */}
+                    <div className={`flex items-center gap-1.5 poppins-bold text-[12px] mt-auto ${meta.ctaText}`}>
+                      Read guide
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                    </div>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
-          {selected !== "all" && (
-            <button
-              type="button"
-              onClick={() => handleSelect("all")}
-              className="poppins-medium text-[13px] text-slate-400 hover:text-slate-700 transition-colors flex items-center gap-1"
-            >
-              View all
-              <ArrowRight className="w-3 h-3" />
-            </button>
+
+          {filtered.length === 0 && (
+            <p className="text-center poppins-regular text-[14px] text-emerald-500 py-12">
+              No guides in this category yet.
+            </p>
           )}
         </div>
       </section>
 
-      {/* ── Article grid ──────────────────────────────────────────────── */}
-      <section className="px-4 sm:px-6 mb-24">
-        <div className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((article, i) => {
-            const meta = catMeta[article.category]
-            const Icon = article.icon
-            return (
-              <Link
-                key={`${selected}-${article.href}`}
-                href={article.href}
-                className={`
-                  group relative flex flex-col bg-white rounded-2xl overflow-hidden
-                  border-l-[3px] ${meta.borderLeft}
-                  shadow-sm hover:-translate-y-1.5 hover:shadow-xl
-                  ${meta.hoverShadow}
-                  transition-all duration-300
-                `}
-                style={{
-                  opacity: visible ? 1 : 0,
-                  transform: visible ? "translateY(0)" : "translateY(18px)",
-                  transition: `opacity 0.45s ease ${i * 55}ms, transform 0.45s ease ${i * 55}ms, box-shadow 0.3s ease, translate 0.3s ease`,
-                }}
-              >
-                <div className="flex flex-col flex-1 p-5 pt-5">
+      {/* ── Free Tools — emerald dark section ────────────────────── */}
+      <section className="bg-gradient-to-b from-emerald-900 to-emerald-950 px-4 sm:px-6 py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(16,185,129,0.12),transparent)] pointer-events-none" />
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
+        />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
 
-                  {/* Top row: icon + badge + read time */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div className={`w-10 h-10 rounded-xl ${meta.iconBg} flex items-center justify-center flex-shrink-0`}>
-                      <Icon className={`w-5 h-5 ${meta.iconColor}`} />
-                    </div>
-                    <div className="flex flex-col items-end gap-1.5 ml-3">
-                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] poppins-bold ${badgeStyles[article.badge] ?? "bg-slate-100 text-slate-600"}`}>
-                        {article.badge}
-                      </span>
-                      <span className="flex items-center gap-1 text-[10px] poppins-medium text-slate-400">
-                        <Clock className="w-2.5 h-2.5" />
-                        {article.readTime}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Category label */}
-                  <p className={`poppins-semibold text-[10px] tracking-[0.14em] uppercase mb-1.5 ${meta.labelColor}`}>
-                    {meta.shortLabel}
-                  </p>
-
-                  {/* Title */}
-                  <h2 className="poppins-bold text-[14px] sm:text-[15px] text-slate-900 mb-2 leading-snug group-hover:text-slate-700 transition-colors line-clamp-2">
-                    {article.title}
-                  </h2>
-
-                  {/* Description */}
-                  <p className="poppins-regular text-[13px] text-slate-500 leading-relaxed flex-1 mb-4 line-clamp-2">
-                    {article.description}
-                  </p>
-
-                  {/* Topics */}
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {article.topics.slice(0, 3).map((t, j) => (
-                      <span
-                        key={j}
-                        className={`px-2 py-0.5 rounded-md text-[10px] poppins-semibold ${meta.topicBg} ${meta.topicText}`}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* CTA */}
-                  <div className={`flex items-center gap-1.5 poppins-bold text-[12px] ${meta.ctaColor} mt-auto`}>
-                    Read guide
-                    <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-1.5" />
-                  </div>
-                </div>
-              </Link>
-            )
-          })}
-        </div>
-      </section>
-
-      {/* ── Free Tools ────────────────────────────────────────────────── */}
-      <section className="px-4 sm:px-6 mb-24">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-7">
-            <div className="w-8 h-8 rounded-xl bg-slate-900 flex items-center justify-center">
-              <Zap className="w-3.5 h-3.5 text-white" />
-            </div>
+        <div className="max-w-6xl mx-auto relative z-10">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
             <div>
-              <h2 className="poppins-bold text-[17px] text-slate-900 tracking-tight">Free Tools & Analysers</h2>
-              <p className="poppins-regular text-[12px] text-slate-400 mt-0.5">Instant compliance score — no card required</p>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-700/60 bg-emerald-800/40 mb-4">
+                <Zap className="w-3 h-3 text-emerald-400" />
+                <span className="poppins-semibold text-[10px] text-emerald-300 uppercase tracking-[0.16em]">Free Interactive Tools</span>
+              </div>
+              <h2 className="poppins-bold text-[26px] sm:text-[34px] text-white tracking-tight leading-tight">
+                Know where you stand<br />
+                <span className="text-emerald-400/70">in under 3 minutes.</span>
+              </h2>
             </div>
+            <p className="poppins-regular text-[13px] text-emerald-300/50 max-w-xs sm:text-right leading-relaxed">
+              No card required. Instant results. Built for care homes, HMO landlords and estate agents.
+            </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {/* Tool cards */}
+          <div className="grid sm:grid-cols-2 gap-4">
             {tools.map((tool, i) => {
               const Icon = tool.icon
               return (
                 <Link
                   key={i}
                   href={tool.href}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/20"
-                  style={{
-                    opacity: visible ? 1 : 0,
-                    transform: visible ? "translateY(0)" : "translateY(14px)",
-                    transition: `opacity 0.45s ease ${280 + i * 60}ms, transform 0.45s ease ${280 + i * 60}ms`,
-                  }}
+                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-emerald-800/30 border border-emerald-700/40 hover:border-emerald-500/60 hover:bg-emerald-800/50 transition-all duration-300 hover:shadow-[0_20px_60px_-12px_rgba(6,95,70,0.5)] p-8"
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient}`} />
-                  {/* Subtle dot grid */}
-                  <div
-                    className="absolute inset-0 opacity-[0.07]"
-                    style={{
-                      backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px)",
-                      backgroundSize: "18px 18px",
-                    }}
-                  />
-                  {/* Top-right glow */}
-                  <div className="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full blur-2xl -translate-y-8 translate-x-8 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/0 via-emerald-600/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-400/5 rounded-full blur-3xl pointer-events-none group-hover:bg-emerald-400/10 transition-colors duration-500" />
 
-                  <div className="relative p-5 flex flex-col flex-1">
-                    <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center mb-4">
-                      <Icon className="w-4.5 h-4.5 text-white" />
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-7">
+                      <div className="w-12 h-12 rounded-2xl bg-emerald-700/50 border border-emerald-600/40 flex items-center justify-center group-hover:bg-emerald-700/70 transition-colors duration-300">
+                        <Icon className="w-6 h-6 text-emerald-300" strokeWidth={1.5} />
+                      </div>
+                      <span className="poppins-bold text-[40px] text-emerald-800/60 leading-none select-none group-hover:text-emerald-700/80 transition-colors duration-300">{tool.num}</span>
                     </div>
-                    <span className={`self-start poppins-semibold text-[9px] tracking-widest uppercase px-2 py-0.5 rounded-full mb-2.5 ${tool.tagColor}`}>
+
+                    <span className="block poppins-semibold text-[10px] text-emerald-400/70 uppercase tracking-[0.18em] mb-2">
                       {tool.tag}
                     </span>
-                    <h3 className="poppins-bold text-[14px] text-white leading-snug mb-1.5">{tool.label}</h3>
-                    <p className="poppins-regular text-[11px] text-white/60 leading-relaxed flex-1 mb-4">
-                      {tool.description}
-                    </p>
-                    <div className="flex items-center gap-1.5 poppins-bold text-[12px] text-white/80 group-hover:text-white transition-colors">
-                      Use free tool
-                      <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-1.5" />
+                    <h3 className="poppins-bold text-[20px] sm:text-[22px] text-white mb-3 leading-snug">{tool.label}</h3>
+                    <p className="poppins-regular text-[13px] text-emerald-300/50 leading-relaxed mb-7">{tool.description}</p>
+
+                    <div className="flex items-center gap-2 poppins-bold text-[13px] text-emerald-400 group-hover:text-emerald-300 transition-colors duration-200">
+                      Start free check
+                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                     </div>
                   </div>
                 </Link>
@@ -503,48 +580,55 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* ── Bottom CTA ───────────────────────────────────────────────── */}
-      <section className="px-4 sm:px-6 pb-24">
+      {/* ── Bottom CTA ───────────────────────────────────────────── */}
+      <section className="bg-gradient-to-b from-emerald-50 via-white to-emerald-50 px-4 sm:px-6 py-20 sm:py-28">
         <div className="max-w-5xl mx-auto">
-          <div className="relative overflow-hidden bg-emerald-50 border border-emerald-200 rounded-3xl px-8 sm:px-14 py-16 text-center">
-            {/* Subtle radial glow */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.12)_0%,transparent_65%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(16,185,129,0.07)_0%,transparent_65%)] pointer-events-none" />
+          <div className="relative overflow-hidden bg-gradient-to-br from-emerald-700 via-emerald-800 to-emerald-900 rounded-3xl px-8 sm:px-14 py-16 sm:py-20 text-center shadow-2xl shadow-emerald-900/30">
+            {/* Animated shine */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer pointer-events-none" />
+            {/* Glow */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(52,211,153,0.15),transparent)] pointer-events-none" />
             {/* Dot grid */}
             <div
               className="absolute inset-0 opacity-[0.06] pointer-events-none"
-              style={{
-                backgroundImage: "radial-gradient(rgba(6,95,70,0.8) 1px, transparent 1px)",
-                backgroundSize: "28px 28px",
-              }}
+              style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
             />
+            {/* Top shine line */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-300/40 to-transparent" />
+
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-                <span className="poppins-semibold text-[10px] text-emerald-700 uppercase tracking-[0.15em]">Get Started</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-600/30 mb-7">
+                <Shield className="w-3 h-3 text-emerald-300" />
+                <span className="poppins-semibold text-[10px] text-emerald-200/80 uppercase tracking-[0.16em]">Inspection-Ready in 48 Hours</span>
               </div>
-              <h2 className="poppins-bold text-[36px] sm:text-[48px] text-slate-900 mb-4 leading-[1.05] tracking-tight">
-                Not sure where you stand?
+
+              <h2 className="poppins-bold text-[34px] sm:text-[48px] text-white leading-[1.05] tracking-tight mb-5">
+                Not sure where<br />you stand?
               </h2>
-              <p className="poppins-regular text-[16px] text-slate-500 mb-10 max-w-sm mx-auto leading-relaxed">
-                3 minutes. Every regulation covered. Full compliance picture in one go.
+
+              <p className="poppins-regular text-[16px] text-emerald-100/60 mb-10 max-w-md mx-auto leading-relaxed">
+                3 minutes. Duty of Care, clinical waste and Simpler Recycling covered. Full waste compliance picture — free.
               </p>
+
               <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
                 <button
                   onClick={() => router.push("/quiz")}
-                  className="group inline-flex items-center justify-center gap-2.5 bg-emerald-700 text-white hover:bg-emerald-800 poppins-bold text-[13px] px-8 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-lg shadow-emerald-900/20 w-full sm:w-auto"
+                  className="group inline-flex items-center justify-center gap-2.5 bg-white text-emerald-800 hover:bg-emerald-50 poppins-bold text-[14px] px-8 py-4 rounded-xl transition-all duration-200 active:scale-95 shadow-xl shadow-emerald-900/20 w-full sm:w-auto"
                 >
-                  Full Compliance Check — Free
+                  Free Waste Compliance Check
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                 </button>
                 <button
-                  onClick={() => router.push("/ppt-gap-analyser")}
-                  className="inline-flex items-center justify-center gap-2 border border-emerald-300 hover:border-emerald-400 bg-white hover:bg-emerald-50 text-emerald-700 poppins-semibold text-[13px] px-8 py-3.5 rounded-xl transition-all duration-200 active:scale-95 w-full sm:w-auto"
+                  onClick={() => router.push("/services")}
+                  className="inline-flex items-center justify-center gap-2 border border-emerald-500/40 hover:border-emerald-400/60 bg-emerald-700/30 hover:bg-emerald-700/50 text-emerald-100 poppins-semibold text-[14px] px-8 py-4 rounded-xl transition-all duration-200 active:scale-95 w-full sm:w-auto"
                 >
-                  <BarChart3 className="w-4 h-4 opacity-70" />
-                  PPT Gap Analyser
+                  View Our Services
                 </button>
               </div>
+
+              <p className="mt-8 poppins-regular text-[11px] text-emerald-300/40">
+                No card required · Instant results · Trusted by care homes and agencies across the UK
+              </p>
             </div>
           </div>
         </div>

@@ -1,33 +1,33 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Free Simpler Recycling Gap Analyser | UK Compliance Score',
-  description: "Get an AI-powered Simpler Recycling compliance score 0–10, your top 3 penalty risks under the UK's waste separation regulations, and a personalised action plan — free, in under 3 minutes.",
+  title: 'Free Simpler Recycling Gap Analyser | UK Business Compliance Check 2026',
+  description: 'Is your business meeting the Simpler Recycling requirements? Free 10-question compliance check covering food waste separation, recycling streams, bin labelling and collection frequency — score 0–100, under 3 minutes.',
   keywords: [
     'simpler recycling gap analyser',
     'simpler recycling compliance check',
-    'simpler recycling score',
+    'simpler recycling score 2026',
     'UK simpler recycling assessment',
     'free simpler recycling tool',
     'simpler recycling penalty risk',
     'workplace recycling compliance UK',
-    'simpler recycling regulations checker',
+    'food waste separation compliance',
     'waste separation compliance UK',
-    'simpler recycling businesses',
-    '3-bin recycling compliance',
-    'free simpler recycling assessment',
+    'simpler recycling businesses 2026',
+    'recycling streams compliance check',
+    'simpler recycling bin labelling',
   ],
   openGraph: {
-    title: 'Free Simpler Recycling Gap Analyser | UK Compliance Score',
-    description: "Get an AI-powered Simpler Recycling compliance score 0–10, your top 3 penalty risks under UK waste separation regulations, and a personalised action plan — free.",
+    title: 'Free Simpler Recycling Gap Analyser | UK Business Compliance Check 2026',
+    description: 'Free 10-question Simpler Recycling compliance check — food waste, recycling streams, bin labelling and collection frequency. Score 0–100, instant results.',
     type: 'website',
     locale: 'en_GB',
     siteName: 'Millstone Compliance',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Simpler Recycling Gap Analyser | UK Compliance Score',
-    description: "Get an AI-powered Simpler Recycling compliance score 0–10, your top 3 penalty risks under UK waste separation regulations, and a personalised action plan — free.",
+    title: 'Free Simpler Recycling Gap Analyser | UK Business Compliance Check 2026',
+    description: 'Free 10-question Simpler Recycling compliance check — food waste, recycling streams, bin labelling and collection frequency. Score 0–100, instant results.',
   },
 }
 

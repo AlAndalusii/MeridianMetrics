@@ -325,7 +325,7 @@ export default function MillstoneComplianceWebsite() {
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-xs poppins-semibold text-emerald-700 mb-5">
                 <BadgeCheck className="w-3.5 h-3.5 text-emerald-600" />
-                UK Waste &amp; Packaging Compliance
+                UK Waste &amp; Recycling Compliance
               </div>
 
               <h1 className="poppins-bold text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight mb-5">
@@ -334,7 +334,7 @@ export default function MillstoneComplianceWebsite() {
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
-                We audit HMO properties, care homes, and businesses before councils inspect. Prevent £300-5,000 fines and enforcement.
+                We audit care homes, children's homes and estate agents before councils inspect. Prevent £300-5,000 fines and enforcement.
               </p>
 
               {/* Primary CTAs */}
@@ -343,27 +343,27 @@ export default function MillstoneComplianceWebsite() {
                   href="/services#waste"
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-sm hover:shadow-md"
                 >
-                  Book HMO Audit — £295 <ArrowRight className="w-4 h-4" />
+                  Book Care Home Audit — £295 <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/quiz"
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95"
                 >
-                  Free Compliance Check
+                  Free Waste Risk Check
                 </Link>
               </div>
 
               {/* Also serving */}
               <p className="text-xs text-slate-400 poppins-regular mb-5">
                 Also serving:{" "}
-                <span className="text-slate-600 poppins-medium">Businesses · Importers · Manufacturers</span>
+                <span className="text-slate-600 poppins-medium">Social Care · Children's Homes · Agencies</span>
               </p>
 
               {/* Trust signals */}
               <div className="flex flex-wrap gap-4">
                 {[
-                  "Cambridge-Trained",
-                  "Weekend Availability",
+                  "Independent Experts",
+                  "Remote Nationwide",
                   "48hr Reports",
                 ].map((t) => (
                   <div key={t} className="flex items-center gap-1.5 text-xs text-emerald-700 poppins-medium">
@@ -528,6 +528,102 @@ export default function MillstoneComplianceWebsite() {
         </div>
       </section>
 
+      {/* ─── WHAT YOU CAN EXPECT — Editorial Value Section ───────────────────── */}
+      <section className="relative bg-white border-t border-b border-emerald-100 py-16 sm:py-20 overflow-hidden">
+
+        {/* Subtle radial wash — barely visible, just adds warmth */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_60%_50%,rgba(209,250,229,0.35)_0%,transparent_70%)] pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+
+          {/* Two-column editorial layout */}
+          <div className="grid lg:grid-cols-[1fr_1px_1fr] gap-0 items-start">
+
+            {/* Left — Bold claim */}
+            <div className="lg:pr-16 pb-12 lg:pb-0">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="h-px w-8 bg-emerald-400" />
+                <span className="poppins-semibold text-[11px] text-emerald-600 uppercase tracking-[0.22em]">What every client receives</span>
+              </div>
+
+              <h2 className="poppins-bold text-3xl sm:text-4xl md:text-[2.75rem] text-emerald-950 leading-[1.1] mb-6">
+                You&apos;ll know exactly where you stand{' '}
+                <em className="not-italic bg-gradient-to-r from-emerald-700 to-emerald-500 bg-clip-text text-transparent">
+                  before the inspector arrives.
+                </em>
+              </h2>
+
+              <p className="poppins-regular text-emerald-700/65 text-base sm:text-lg leading-relaxed max-w-md mb-10">
+                Independent. Site-specific. Plain English. Every audit delivers the same uncompromising standard — because your inspection readiness is not something to guess at.
+              </p>
+
+              {/* Outcome pills row */}
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { label: '100% pass rate', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
+                  { label: '48hr turnaround', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
+                  { label: '£295 fixed fee', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
+                  { label: 'CQC · Ofsted · EA', color: 'bg-emerald-900 border-emerald-900 text-emerald-100' },
+                ].map(({ label, color }) => (
+                  <span key={label} className={`inline-flex items-center px-3.5 py-1.5 rounded-full border text-xs poppins-medium ${color}`}>
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Vertical divider — desktop only */}
+            <div className="hidden lg:block w-px self-stretch bg-gradient-to-b from-transparent via-emerald-200 to-transparent" />
+
+            {/* Right — Stacked deliverables list */}
+            <div className="lg:pl-16">
+              {[
+                {
+                  num: '01',
+                  title: 'Written Gap Report',
+                  desc: 'Site-specific. Regulatory citations included. Delivered in 48 hours — not a template, not a checklist.',
+                },
+                {
+                  num: '02',
+                  title: 'Prioritised Action Plan',
+                  desc: 'Ranked by risk. What to fix first, by when, and who is responsible. No ambiguity.',
+                },
+                {
+                  num: '03',
+                  title: 'Inspection-Ready Templates',
+                  desc: 'WTN, clinical waste log, staff training records — formatted for CQC, Ofsted and EA standards.',
+                },
+                {
+                  num: '04',
+                  title: '30-Day Expert Access',
+                  desc: 'Direct line to your specialist. Unlimited questions. There when you need us — no clock running.',
+                },
+              ].map((item, i, arr) => (
+                <div
+                  key={item.num}
+                  className={`group flex gap-5 py-5 transition-colors duration-200 ${i < arr.length - 1 ? 'border-b border-emerald-100' : ''}`}
+                >
+                  {/* Number */}
+                  <span className="poppins-bold text-xs text-emerald-400 tabular-nums mt-1 flex-shrink-0 w-6 text-right">{item.num}</span>
+
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <p className="poppins-semibold text-sm text-emerald-900 group-hover:text-emerald-700 transition-colors duration-200">{item.title}</p>
+                      {/* Animated underline on hover */}
+                      <div className="h-px flex-1 bg-emerald-100 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                    </div>
+                    <p className="poppins-regular text-sm text-emerald-600/65 leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
       {/* Intelligence Assessment Section - World-Class Consultancy Design */}
       <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-emerald-50 via-white to-emerald-50 relative overflow-hidden group/assessment" aria-labelledby="assessment-heading">
         {/* Sophisticated background elements matching site theme */}
@@ -605,7 +701,7 @@ export default function MillstoneComplianceWebsite() {
             
             {/* Headline - Ultra Premium */}
             <h2 id="assessment-heading" className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-4 sm:mb-6 md:mb-8 text-emerald-900 tracking-tight relative animate-fade-in-up leading-[1.1]">
-              Your Compliance Intelligence
+              Your Waste Compliance
               <span className="block mt-2 sm:mt-3 leading-tight pb-2 sm:pb-3 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
                 Diagnostic Report
               </span>
@@ -619,14 +715,14 @@ export default function MillstoneComplianceWebsite() {
             
             {/* Enhanced Description */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4">
-              Our free 3-minute assessment identifies your compliance gaps across UK packaging regulations (EPR, PPT, PRN) and waste rules (Duty of Care, Simpler Recycling — including the <span className="poppins-semibold text-emerald-800">March 31 HMO landlord deadline</span>). Most businesses have gaps they don&apos;t know about — this tells you exactly where you stand.
+              Our free 3-minute check finds waste compliance gaps in your business (Duty of Care, Simpler Recycling and clinical waste). Most care homes and agencies have risks they don&apos;t see — this shows you exactly where you stand.
             </p>
             
             {/* Stats Bar - New Addition */}
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-6 sm:mt-8">
               <div className="group/stat text-center">
                 <div className="text-2xl sm:text-3xl poppins-bold text-emerald-600 group-hover/stat:scale-110 transition-transform duration-300">4</div>
-                <div className="text-[10px] sm:text-xs text-emerald-600 poppins-medium uppercase tracking-wide mt-1">Regimes</div>
+                <div className="text-[10px] sm:text-xs text-emerald-600 poppins-medium uppercase tracking-wide mt-1">Check Areas</div>
               </div>
               <div className="w-px h-10 sm:h-12 bg-emerald-200"></div>
               <div className="group/stat text-center">
@@ -646,18 +742,18 @@ export default function MillstoneComplianceWebsite() {
           {[
             {
               icon: Building,
-              label: "Packaging — Service 1",
-              badge: "EPR",
-              title: "EPR Invoice Audit",
-              description: "We check your EPR invoices and scope, confirm household / non-household splits, and flag overcharges or missing tonnages before you pay. You shouldn't be paying more than you owe.",
+              label: "Waste — Service 1",
+              badge: "Duty of Care",
+              title: "Duty of Care Audit",
+              description: "We check your waste contracts, carrier licences and transfer notes, and flag missing records or risky contractors. You get a clear action list so the EA or council can't catch you out.",
               highlight: true,
             },
             {
               icon: FileCheck,
-              label: "Packaging — Service 2",
-              badge: "PPT",
-              title: "PPT Certificate Check",
-              description: "We confirm PPT certificates, recycled-content claims and their links to product lines — so you have the documentation to withstand an HMRC review without scrambling for paperwork.",
+              label: "Waste — Service 2",
+              badge: "Clinical",
+              title: "Clinical Waste Check",
+              description: "We review how you store and segregate clinical waste, sharps and medicines, and confirm your contractor paperwork. Designed for CQC and Ofsted registered services needing assurance.",
               highlight: false,
             },
             {
@@ -665,7 +761,7 @@ export default function MillstoneComplianceWebsite() {
               label: "Waste — Service 3",
               badge: "Simpler Recycling",
               title: "Simpler Recycling Check",
-              description: "Deadline passed 31 March 2026. All UK businesses and HMO landlords must now have 3 separate waste streams. EA inspections have started — we check your setup and tell you if you're compliant.",
+              description: "Deadline passed 31 March 2026. All UK businesses must now separate key waste streams. We review your bins, labels and contracts, and tell you exactly what to fix to be compliant.",
               highlight: false,
             },
           ].map((item, index) => (
@@ -1500,11 +1596,11 @@ export default function MillstoneComplianceWebsite() {
                 <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-emerald-900 mb-3 sm:mb-4 animate-fade-in-up">
                   Expert-Led
                   <span className="block mt-1 bg-gradient-to-r from-emerald-600 via-emerald-500 to-green-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
-                    Compliance
+                    Waste Compliance
                   </span>
                 </h2>
                 <p className="poppins-regular text-base sm:text-lg text-emerald-700 max-w-xl mx-auto leading-relaxed animate-fade-in-up">
-                  We help UK businesses stay legal, avoid fines, and pass every inspection — without the stress of figuring it out alone.
+                  We help UK care homes and agencies stay compliant, avoid fines, and pass inspections — without the stress of figuring it out alone.
                 </p>
               </div>
 
@@ -1529,8 +1625,8 @@ export default function MillstoneComplianceWebsite() {
           {/* What we cover pills */}
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 animate-fade-in-up">
             {[
-              "Packaging Compliance",
-              "Packaging Tax",
+              "Duty of Care",
+              "Clinical Waste",
               "Waste Documentation",
               "Bin Separation Rules",
             ].map((label) => (
@@ -1573,23 +1669,23 @@ export default function MillstoneComplianceWebsite() {
                 </div>
 
                 <h3 className="poppins-bold text-xl sm:text-2xl text-emerald-900 mb-4 leading-tight">
-                  We handle the complexity so you don&apos;t have to.
+                  We handle the waste rules so you don&apos;t have to.
                 </h3>
 
                 <p className="poppins-regular text-emerald-700 text-sm sm:text-sm leading-relaxed mb-4">
-                  Packaging and waste rules in the UK are changing fast — and the consequences of getting it wrong are real. Fines, failed audits, and legal liability don&apos;t have to be your problem. We take it off your plate entirely.
+                  Waste rules for care homes and agencies are changing fast — and the consequences of getting it wrong are real. Fines, failed inspections and legal liability don&apos;t have to be your problem. We take it off your plate.
                 </p>
 
                 <p className="poppins-regular text-emerald-600 text-sm leading-relaxed mb-5">
-                  We&apos;ve worked inside the government systems that enforce these rules. We know exactly what inspectors look for — and we make sure your business always has the right evidence, in the right place, before they ever come knocking.
+                  We&apos;ve worked alongside the systems that enforce these rules. We know what inspectors look for — and we make sure your service always has the right evidence, in the right place, before they ever come knocking.
                 </p>
 
                 {/* What we handle */}
                 <div className="space-y-2.5">
                   {[
-                    "We register your business and keep your packaging data accurate",
-                    "We calculate what you owe and file it correctly, every time",
-                    "We source the certificates your business needs to stay legal",
+                    "We review your waste setup and keep your documentation accurate",
+                    "We identify your risks and give you clear, practical actions",
+                    "We confirm your contractors and licences keep you legal",
                     "We make sure your workplace waste separation is fully compliant",
                   ].map((item) => (
                     <div key={item} className="flex items-start gap-2.5">
@@ -1606,7 +1702,7 @@ export default function MillstoneComplianceWebsite() {
               <div className="mt-6 pt-5 border-t border-emerald-100/60 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div>
                   <p className="poppins-semibold text-emerald-900 text-sm">Founder &amp; Principal Consultant</p>
-                  <p className="poppins-regular text-emerald-500 text-xs mt-0.5">UK Packaging &amp; Waste Compliance Specialist</p>
+                  <p className="poppins-regular text-emerald-500 text-xs mt-0.5">UK Health &amp; Waste Compliance Specialist</p>
                 </div>
                 <Link
                   href="/about"
@@ -1630,7 +1726,7 @@ export default function MillstoneComplianceWebsite() {
                 </div>
                 <div className="relative flex-1 min-w-0">
                   <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Cambridge Institute for Sustainability Leadership</h4>
-                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">We studied how packaging and waste regulations actually work in practice — not just in theory — so we can translate the law into plain steps your team can follow.</p>
+                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">We studied how health and waste regulations work in practice — not just in theory — so we can translate the law into plain steps your team can follow.</p>
                 </div>
               </div>
 
@@ -1643,7 +1739,7 @@ export default function MillstoneComplianceWebsite() {
                 </div>
                 <div className="relative flex-1 min-w-0">
                   <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Regulatory Systems Background</h4>
-                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">Our background in public sector systems means we understand how enforcement operates — and exactly what documentation your business needs in place before an inspection ever happens.</p>
+                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">Our background in public sector systems means we understand how enforcement operates — and exactly what documentation your service needs in place before an inspection ever happens.</p>
                 </div>
               </div>
 
@@ -1657,7 +1753,7 @@ export default function MillstoneComplianceWebsite() {
                 </div>
                 <div className="relative flex-1 min-w-0">
                   <h4 className="poppins-semibold text-white text-sm mb-1.5">Built on Solid Foundations</h4>
-                  <p className="poppins-regular text-emerald-100/90 text-sm leading-relaxed">Every engagement produces documentation built to withstand scrutiny — written reports, clear gap analysis, and action plans designed around what councils, HMRC, and the EA actually want to see.</p>
+                  <p className="poppins-regular text-emerald-100/90 text-sm leading-relaxed">Every engagement produces documentation built to withstand scrutiny — written reports, clear gap analysis, and action plans shaped around what councils, CQC, Ofsted and the EA actually want to see.</p>
                 </div>
               </div>
 
@@ -1670,7 +1766,7 @@ export default function MillstoneComplianceWebsite() {
                 </div>
                 <div className="relative flex-1 min-w-0">
                   <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">We Speak Plain English</h4>
-                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">No jargon, no confusing legal language. We explain what your obligations are, what we&apos;re doing about them, and what it means for your business in straightforward terms.</p>
+                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">No jargon, no confusing legal language. We explain what your obligations are, what we&apos;re doing about them, and what it means for your service in straightforward terms.</p>
                 </div>
               </div>
 
@@ -1713,14 +1809,14 @@ export default function MillstoneComplianceWebsite() {
             <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/80 mb-6 sm:mb-8 group-hover/cta:scale-105 transition-all duration-500 relative">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-200/0 via-emerald-200/30 to-emerald-200/0 animate-shine"></div>
               <BadgeCheck className="w-4 sm:w-5 h-4 sm:h-5 text-emerald-600 mr-2 animate-pulse" />
-              <span className="poppins-medium text-xs sm:text-sm text-emerald-800">UK Packaging Compliance</span>
+              <span className="poppins-medium text-xs sm:text-sm text-emerald-800">UK Waste Compliance</span>
             </div>
 
             {/* Enhanced headline with animated gradient */}
             <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-6 text-emerald-900 tracking-tight relative animate-fade-in-up">
-              <span className="inline-block">Remain</span>{" "}
+              <span className="inline-block">Stay</span>{" "}
               <span className="inline-block bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-[length:200%_100%] animate-gradient-x bg-clip-text text-transparent">
-                Audit-Ready,
+                Inspection-Ready,
               </span>{" "}
               <span className="inline-block">Always</span>
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-emerald-300/0 via-emerald-400/50 to-emerald-300/0 animate-pulse"></div>
@@ -1728,7 +1824,7 @@ export default function MillstoneComplianceWebsite() {
 
             {/* Enhanced description with fade-in animation */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 leading-relaxed animate-fade-in-up delay-100 px-4">
-              We handle packaging and waste compliance for UK property portfolios and care homes, so you avoid fines, failed inspections and licence issues.
+              We handle waste compliance for UK care homes, children&apos;s homes and estate agents, so you avoid fines, failed inspections and licence issues.
             </p>
 
             {/* Premium FAQ Section */}
@@ -1736,28 +1832,28 @@ export default function MillstoneComplianceWebsite() {
               <div className="space-y-6">
               {[
                 {
-                  question: "Could Simpler Recycling already put my HMO licence at risk?",
-                  answer: "If your HMOs don't have the right bin setup and written tenant instructions, you're exposed to council fines and licence reviews. Our audit checks every property, fixes gaps and leaves you with documents you can show an inspector the same day."
+                  question: "Could our waste setup already put our HMO licence at risk?",
+                  answer: "If your HMOs lack the right bin setup and written tenant instructions, you're exposed to council fines and licence reviews. Our audit checks every property, fixes gaps and leaves you with documents you can show an inspector the same day."
                 },
                 {
-                  question: "Are our care home waste systems safe for CQC and the Environment Agency?",
-                  answer: "Care homes sit under some of the strictest waste rules: clinical waste, Simpler Recycling, Duty of Care and CQC scrutiny. We audit every stream, check contractors and paperwork, and give you a 48‑hour, inspection‑ready report."
+                  question: "Are our care or children's home waste systems safe for CQC, Ofsted and the EA?",
+                  answer: "Care and children's homes sit under strict waste rules: clinical waste, Simpler Recycling, Duty of Care and CQC or Ofsted scrutiny. We audit every stream, check contractors and paperwork, and give you a 48‑hour, inspection‑ready report."
                 },
                 {
-                  question: "Do we really need to care about packaging EPR as an agent or landlord?",
-                  answer: "If your group handles packaging for welcome packs, deliveries or own‑brand products, you may be caught by packaging EPR. We check your position once, register you if needed, and run the data and submissions so it never becomes another job for your team."
+                  question: "Do we really need to care about waste regulations as an agent or landlord?",
+                  answer: "If your group manages HMOs or portfolios, you're caught by Duty of Care and Simpler Recycling. We check your position once, fix weak spots, and leave you with clear actions so waste never becomes another job for your team."
                 },
                 {
                   question: "What do your compliance audits cost?",
-                  answer: "Single‑site waste and Simpler Recycling audits start at £295. Portfolios, care homes and packaging work are priced upfront on a fixed‑fee basis, so you know the total cost before we start."
+                  answer: "Single‑site waste and Simpler Recycling audits start at £295. Portfolios, care and children's homes are priced upfront on a fixed‑fee basis, so you know the total cost before we start."
                 },
                 {
                   question: "When will I have something I can show my council, CQC or the EA?",
-                  answer: "You get a signed PDF report within 48 hours of the assessment, ready to show a council inspector, CQC or the Environment Agency. If we miss the deadline, your next audit is free."
+                  answer: "You get a signed PDF report within 48 hours of the assessment, ready to show a council inspector, CQC, Ofsted or the Environment Agency. If we miss the deadline, your next audit is free."
                 },
                 {
                   question: "Are you just trying to sell bins and contracts?",
-                  answer: "No. We don't sell bins or waste collections. We act as an independent compliance auditor, then you can use our report to push your existing contractors or tender the work however you like."
+                  answer: "No. We don't sell bins or waste collections. We act as an independent compliance auditor, and you use our report to push your existing contractors or tender the work however you like."
                 }
               ].map((item, index) => (
                   <div
@@ -1808,7 +1904,7 @@ export default function MillstoneComplianceWebsite() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
                 <span className="relative z-10 flex items-center">
-                  BOOK A COMPLIANCE REVIEW
+                  BOOK A WASTE COMPLIANCE REVIEW
                   <ArrowRight className="ml-2 h-5 w-5 group-hover/button:translate-x-1 transition-transform duration-500" />
                 </span>
               </Button>

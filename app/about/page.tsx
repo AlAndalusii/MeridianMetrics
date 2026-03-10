@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { 
-  ArrowRight, 
+import {
+  ArrowRight,
   BadgeCheck,
   Target,
   Brain,
@@ -13,7 +13,7 @@ import {
   Clock,
   BarChart3,
   TrendingUp,
-  Package,
+  Recycle,
   Zap,
   Settings,
   Mail,
@@ -49,7 +49,7 @@ export default function AboutPage() {
               About Millstone Compliance
             </h1>
             <p className="poppins-regular text-xl text-emerald-700">
-              Packaging and waste compliance made simple
+              Waste compliance for care homes, children&apos;s homes and agencies
             </p>
           </div>
       </div>
@@ -67,13 +67,13 @@ export default function AboutPage() {
                 <h2 className="poppins-bold text-3xl text-emerald-900">Who We Are</h2>
               </div>
               <p className="poppins-regular text-base text-emerald-700 leading-relaxed mb-6">
-                We help UK businesses handle packaging and waste rules. Our focus: clear advice on what you need to do, no confusing jargon.
+                We help UK care homes, children&apos;s homes and estate agents handle waste rules. Our focus: clear advice on what you need to do, no confusing jargon.
               </p>
               <div className="space-y-3">
                 {[
-                  "UK government tax experience",
+                  "UK government regulatory experience",
                   "Cambridge sustainability trained",
-                  "Packaging and waste experts"
+                  "Independent waste compliance experts"
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
@@ -116,7 +116,7 @@ export default function AboutPage() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-emerald-600">Packaging & Waste</span>
+                    <span className="text-xs text-emerald-600">Waste Compliance</span>
                     <span className="text-xs poppins-semibold text-emerald-900">100%</span>
                   </div>
                   <div className="w-full bg-emerald-100 rounded-full h-2">
@@ -137,7 +137,7 @@ export default function AboutPage() {
               What We Do
             </h2>
             <p className="poppins-regular text-lg text-emerald-700 max-w-xl mx-auto">
-              We help UK businesses stay compliant with packaging and waste regulations
+              We help UK care homes and agencies stay compliant with waste regulations
             </p>
           </div>
 
@@ -196,7 +196,7 @@ export default function AboutPage() {
 
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-emerald-700">Supplier Certificates</span>
+                    <span className="text-xs text-emerald-700">Waste Transfer Notes</span>
                     <CheckCircle className="w-4 h-4 text-green-500" />
                   </div>
                   <div className="w-full bg-emerald-100 rounded-full h-2">
@@ -204,7 +204,7 @@ export default function AboutPage() {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-emerald-700">Weight Records</span>
+                    <span className="text-xs text-emerald-700">Carrier Licences</span>
                     <CheckCircle className="w-4 h-4 text-green-500" />
                   </div>
                   <div className="w-full bg-emerald-100 rounded-full h-2">
@@ -212,7 +212,7 @@ export default function AboutPage() {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-emerald-700">Export Documentation</span>
+                    <span className="text-xs text-emerald-700">Clinical Waste Records</span>
                     <Clock className="w-4 h-4 text-amber-500" />
                   </div>
                   <div className="w-full bg-emerald-100 rounded-full h-2">
@@ -254,7 +254,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { icon: Zap, label: "3 minutes", value: "Fast" },
-                  { icon: Package, label: "15+ checks", value: "Thorough" },
+                  { icon: Recycle, label: "15+ checks", value: "Thorough" },
                   { icon: CheckCircle, label: "Instant report", value: "Clear" },
                   { icon: Target, label: "Action plan", value: "Practical" }
                 ].map((item, index) => (
@@ -307,7 +307,7 @@ export default function AboutPage() {
               </h2>
               
               <p className="poppins-regular text-base sm:text-lg text-emerald-50 max-w-2xl mx-auto text-center mb-10 leading-relaxed">
-                Our free assessment checks all requirements and tells you exactly what you need to fix
+                Our free 3-minute check finds waste compliance gaps and tells you exactly what to fix — before a council, CQC or Ofsted visit does
               </p>
 
               {/* Action Buttons */}
@@ -366,7 +366,7 @@ export default function AboutPage() {
           {/* Trust indicator */}
           <div className="text-center mt-8 animate-fade-in">
             <p className="poppins-regular text-sm text-emerald-600">
-              Join hundreds of UK businesses staying compliant
+              Trusted by care homes, children&apos;s homes and agencies across the UK
             </p>
           </div>
         </div>

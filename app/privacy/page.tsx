@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
                 <ul className="list-disc list-inside space-y-1 mt-2 ml-4">
                   <li>Name and contact details (email address, phone number)</li>
                   <li>Company name and business information</li>
-                  <li>Information about your packaging and compliance needs</li>
+                  <li>Information about your waste compliance needs</li>
                   <li>Assessment responses and compliance data</li>
                   <li>Payment information (processed securely by third-party providers)</li>
                   <li>Communication history and enquiry records</li>
@@ -126,7 +126,7 @@ export default function PrivacyPolicyPage() {
               <div className="space-y-3">
                 <div className="bg-emerald-50/50 p-4 rounded-lg border border-emerald-100">
                   <h3 className="text-emerald-900 font-semibold mb-1">Service Delivery</h3>
-                  <p className="text-sm">Providing PPT compliance assessments, audit support, and related services</p>
+                  <p className="text-sm">Providing waste compliance assessments, audit support, and related services</p>
                 </div>
                 
                 <div className="bg-emerald-50/50 p-4 rounded-lg border border-emerald-100">

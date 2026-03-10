@@ -3,12 +3,13 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { 
-  Package, 
-  Recycle, 
-  Zap, 
-  FileText, 
+import {
+  ClipboardList,
+  Recycle,
+  Zap,
+  FileText,
   Trash2,
+  HeartPulse,
   ArrowRight,
   Clock,
   BadgeCheck
@@ -18,27 +19,27 @@ import { CalendlyModal } from "@/components/CalendlyWidget"
 
 const quizOptions = [
   {
-    id: "ppt",
-    title: "PPT - Gap Analyser",
-    description: "AI-scored PPT compliance check — 10 questions, 0–100 score, personalised gap report emailed instantly.",
-    icon: Package,
+    id: "duty-of-care",
+    title: "Duty of Care - Gap Analyser",
+    description: "Compliance check for waste transfer notes, carrier licences and documentation — 10 questions, 0–100 score, personalised gap report.",
+    icon: ClipboardList,
     color: "emerald",
     duration: "3 minutes",
     questions: "10 questions",
-    targetAudience: "Businesses manufacturing or importing 10+ tonnes of plastic packaging annually",
-    link: "/ppt-gap-analyser",
+    targetAudience: "Care homes, children's homes, estate agents and any business producing controlled waste",
+    link: "/duty-of-care-analyser",
     isActive: true,
   },
   {
-    id: "epr",
-    title: "EPR - Gap Analyser",
-    description: "AI-scored EPR compliance check — 10 questions, 0–100 score, fee overpayment analysis emailed instantly.",
-    icon: Recycle,
+    id: "clinical-waste",
+    title: "Clinical Waste - Gap Analyser",
+    description: "HTM 07-01 and CQC/Ofsted compliance check covering segregation, sharps, consignment notes and staff training — 10 questions, 0–100 score.",
+    icon: HeartPulse,
     color: "blue",
     duration: "3 minutes",
     questions: "10 questions",
-    targetAudience: "Businesses handling 25+ tonnes packaging with £1M+ turnover",
-    link: "/epr-gap-analyser",
+    targetAudience: "Care homes, children's homes, GP surgeries and any setting producing clinical or hazardous waste",
+    link: "/clinical-waste-analyser",
     isActive: true,
   },
   {
@@ -157,11 +158,11 @@ export default function QuizSelectorPage() {
             </div>
             
             <h1 className="poppins-bold text-4xl sm:text-5xl md:text-6xl text-emerald-900 mb-6">
-              Which Regulation Do You Need Help With?
+              Which Waste Compliance Check Do You Need?
             </h1>
-            
+
             <p className="poppins-regular text-lg sm:text-xl text-emerald-700 max-w-3xl mx-auto">
-              Take our 2-minute assessment to find out if you're compliant and what steps you need to take
+              Take our free 3-minute assessment to get your compliance score and a personalised gap report
             </p>
           </div>
 

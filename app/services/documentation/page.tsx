@@ -16,7 +16,7 @@ import {
   Zap,
   Building2,
   Trash2,
-  Package,
+  HeartPulse,
   Recycle,
   Users,
   Calendar,
@@ -52,31 +52,31 @@ const docCategories = [
     ],
   },
   {
-    icon: Package,
-    label: "Packaging Tax (PPT)",
+    icon: HeartPulse,
+    label: "Clinical Waste",
     color: "blue",
-    headline: "HMRC-Ready PPT Accounts, Records & Quarterly Returns",
+    headline: "HTM 07-01 Records, Consignment Notes & CQC-Ready Files",
     docs: [
-      "PPT liability calculation workbooks",
-      "Recycled content evidence file",
-      "Exemption and exclusion registers",
-      "Quarterly return supporting records",
-      "Weight measurement methodology notes",
-      "Supplier declaration templates",
+      "Clinical waste consignment notes",
+      "HTM 07-01 segregation records",
+      "Sharps management log",
+      "Contractor licence verification file",
+      "Waste disposal frequency log",
+      "CQC / Ofsted inspection-ready summary",
     ],
   },
   {
     icon: Recycle,
-    label: "EPR Packaging",
+    label: "Simpler Recycling",
     color: "purple",
-    headline: "Producer Registration, PRN Records & Scheme Compliance",
+    headline: "4-Stream Evidence, Collection Records & Staff Instructions",
     docs: [
-      "EPR producer registration evidence",
-      "Packaging tonnage activity logs",
-      "PRN / PERN purchase records",
-      "Scheme membership compliance file",
-      "Annual data submission support",
-      "Small producer threshold monitoring",
+      "Waste stream separation evidence",
+      "Food waste collection records",
+      "Recycling contractor verification",
+      "Staff instruction notices",
+      "Compliance monitoring log",
+      "Annual review documentation",
     ],
   },
 ]
@@ -94,7 +94,7 @@ const steps = [
     num: "01",
     icon: ScanLine,
     title: "We Audit Your Current Position",
-    body: "We review what documentation you currently hold, identify the gaps, and map every record against your legal obligations — waste, PPT, or EPR.",
+    body: "We review what documentation you currently hold, identify the gaps, and map every record against your legal obligations — duty of care, clinical waste, or Simpler Recycling.",
   },
   {
     num: "02",
@@ -122,9 +122,9 @@ function DocumentStack() {
   const [active, setActive] = useState(0)
   const docs = [
     { label: "Waste Transfer Note", type: "WTN", color: "emerald" },
-    { label: "PPT Quarterly Return", type: "PPT", color: "blue" },
+    { label: "Clinical Waste Consignment Note", type: "CWN", color: "blue" },
     { label: "HMO Waste Management Plan", type: "WMP", color: "amber" },
-    { label: "EPR Producer Record", type: "EPR", color: "purple" },
+    { label: "Simpler Recycling Evidence File", type: "SRE", color: "purple" },
     { label: "Duty of Care Evidence File", type: "DOC", color: "rose" },
   ]
   const typeColors: Record<string, string> = {
@@ -252,8 +252,8 @@ export default function DocumentationPage() {
               </h1>
 
               <p className="poppins-regular text-xl text-slate-500 leading-relaxed mb-10 max-w-lg">
-                Waste, PPT, and EPR compliance documentation — produced, organised, and maintained by our team. 
-                Ready the moment an inspector or HMRC asks for it.
+                Waste duty of care, clinical waste, and Simpler Recycling documentation — produced, organised, and maintained by our team.
+                Ready the moment an EA inspector, CQC, or council asks for it.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
@@ -319,7 +319,7 @@ export default function DocumentationPage() {
               {[
                 { stat: "£300", label: "Fixed penalty for missing Waste Transfer Notes", color: "text-red-400" },
                 { stat: "£5,000", label: "Maximum fine for HMO waste non-compliance", color: "text-amber-400" },
-                { stat: "£20,000", label: "HMRC penalty for PPT record failures", color: "text-rose-400" },
+                { stat: "Unlimited", label: "Court fine for duty of care record failures", color: "text-rose-400" },
               ].map(({ stat, label, color }) => (
                 <div key={stat} className="rounded-2xl bg-white/5 border border-white/10 p-6">
                   <p className={`poppins-bold text-4xl ${color} mb-2`}>{stat}</p>
@@ -342,7 +342,7 @@ export default function DocumentationPage() {
                 <span className="text-emerald-700"> Every Regulation.</span>
               </h2>
               <p className="poppins-regular text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">
-                Three compliance frameworks. Complete documentation for each.
+                Three waste compliance frameworks. Complete documentation for each.
               </p>
             </div>
           </FadeIn>
@@ -449,9 +449,9 @@ export default function DocumentationPage() {
                   Your Protection.
                 </h2>
                 <p className="poppins-regular text-lg text-slate-500 leading-relaxed mb-7">
-                  Across waste, packaging, and HMO obligations, regulators don't just inspect what you do —
-                  they inspect what you can demonstrate. Whether it's an EA site visit, an HMRC packaging
-                  tax audit, or a council licensing review, the outcome turns on whether your records exist,
+                  Across waste duty of care, clinical waste, and HMO obligations, regulators don't just inspect what you do —
+                  they inspect what you can demonstrate. Whether it's an EA site visit, a CQC inspection,
+                  or a council licensing review, the outcome turns on whether your records exist,
                   are dated, and hold up to scrutiny.
                 </p>
                 <p className="poppins-regular text-lg text-slate-500 leading-relaxed mb-10">
@@ -460,7 +460,7 @@ export default function DocumentationPage() {
                 </p>
                 <div className="space-y-3">
                   {[
-                    "Covers waste, packaging (PPT & EPR), and HMO obligations",
+                    "Covers duty of care, clinical waste, and Simpler Recycling obligations",
                     "Each document references the relevant legislation",
                     "Formatted to match what regulators expect to see",
                     "Includes all required signatory and date fields",
@@ -485,7 +485,7 @@ export default function DocumentationPage() {
                   </p>
                   <div className="space-y-4">
                     {[
-                      { label: "Complete evidence file", sub: "Waste, packaging, and HMO records — organised and hand-over ready" },
+                      { label: "Complete evidence file", sub: "Duty of care, clinical waste, and HMO records — organised and hand-over ready" },
                       { label: "Finished, compliant documents", sub: "Produced and completed by us — not blank templates" },
                       { label: "Legislation referenced throughout", sub: "Every document cites the rule it satisfies" },
                       { label: "Ongoing maintenance included", sub: "We update your records when regulations or circumstances change" },
@@ -518,10 +518,10 @@ export default function DocumentationPage() {
             </p>
           </FadeIn>
           <div className="grid sm:grid-cols-3 gap-5">
-            {[
-              { title: "Waste & Packaging Documentation Guide", href: "/resources/waste-packaging-documentation", badge: "Guide", desc: "Every document you're legally required to hold — and how to produce them." },
-              { title: "Waste Duty of Care Compliance",         href: "/resources/duty-of-care-waste",               badge: "Essential", desc: "Legal requirements, WTNs, and carrier verification explained." },
-              { title: "PPT Records & Accounts Guide",          href: "/resources/plastic-packaging-tax",            badge: "Essential", desc: "Exactly what HMRC requires you to keep for Plastic Packaging Tax." },
+            [
+              { title: "Waste Documentation Guide UK 2026", href: "/resources/waste-packaging-documentation", badge: "Guide", desc: "Every document you're legally required to hold — WTNs, consignment notes, and HMO plans." },
+              { title: "Waste Duty of Care Compliance",     href: "/resources/duty-of-care-waste",           badge: "Essential", desc: "Legal requirements, WTNs, and carrier verification explained." },
+              { title: "Care Home Waste Compliance",        href: "/resources/care-home-waste-compliance-checklist", badge: "Essential", desc: "CQC and Ofsted inspection-ready waste records for care homes and children's homes." },
             ].map(({ title, href, badge, desc }, idx) => (
               <FadeIn key={title} delay={idx * 80}>
                 <Link href={href} className="group block bg-white rounded-2xl border border-slate-100 p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">

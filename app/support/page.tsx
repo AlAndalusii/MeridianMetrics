@@ -13,7 +13,7 @@ import {
   Clock,
   Lock,
   Recycle,
-  Package,
+  HeartPulse,
   Trash2,
   ScanSearch,
   FolderOpen,
@@ -77,26 +77,26 @@ function ServiceCardMockup() {
   const cards = [
     {
       icon: Trash2,
-      title: "Waste Compliance",
+      title: "Duty of Care",
       status: "Active",
-      items: ["WTN Records Current", "EA Carrier Verified", "HMO Plan Filed"],
+      items: ["WTN Records Current", "EA Carrier Verified", "EWC Codes Accurate"],
       score: 94,
       color: "#10b981",
     },
     {
-      icon: Package,
-      title: "Plastic Packaging Tax",
-      status: "Monitored",
-      items: ["Q1 Return Submitted", "Recycled Content Logged", "HMRC Audit-Ready"],
-      score: 88,
-      color: "#3b82f6",
+      icon: HeartPulse,
+      title: "Clinical Waste",
+      status: "Compliant",
+      items: ["HTM 07-01 Segregation", "Consignment Notes Filed", "CQC Inspection-Ready"],
+      score: 89,
+      color: "#0ea5e9",
     },
     {
       icon: Recycle,
-      title: "EPR Packaging",
+      title: "Simpler Recycling",
       status: "Registered",
-      items: ["Producer Registered", "Tonnage Tracked", "PRNs Acquired"],
-      score: 91,
+      items: ["4-Stream Separation", "Food Waste Collected", "Evidence Records Held"],
+      score: 92,
       color: "#a855f7",
     },
   ]
@@ -258,7 +258,7 @@ const services = [
 const faqs = [
   {
     q: "What Does A Compliance Audit Actually Cover?",
-    a: "We review your waste duty of care records, PPT accounts, EPR registration status, and — where applicable — your HMO waste plan. You receive a written report showing exactly where you stand and what needs fixing.",
+    a: "We review your waste duty of care records, clinical waste documentation, Simpler Recycling compliance, and — where applicable — your HMO waste management plan. You receive a written report showing exactly where you stand and what needs fixing.",
   },
   {
     q: "How Long Before I Have Proper Documentation In Place?",
@@ -270,7 +270,7 @@ const faqs = [
   },
   {
     q: "Do You Work With Both HMO Landlords And Businesses?",
-    a: "Yes. We support HMO landlords (waste plans, tenant instructions, licensing compliance) and businesses of all sizes (waste duty of care, PPT records, EPR obligations). Same team, tailored approach.",
+    a: "Yes. We support HMO landlords (waste plans, tenant instructions, licensing compliance) and businesses of all sizes (waste duty of care records, clinical waste management, Simpler Recycling evidence). Same team, tailored approach.",
   },
 ]
 
@@ -323,7 +323,7 @@ export default function SupportPage() {
               </h1>
 
               <p className="poppins-regular text-lg text-slate-600 leading-relaxed mb-10 max-w-lg">
-                Waste, packaging, and HMO compliance — audited, documented, and maintained.
+                Waste duty of care, clinical waste, and HMO compliance — audited, documented, and maintained.
                 We protect UK businesses from fines, prosecution, and licence loss.
               </p>
 
@@ -358,7 +358,7 @@ export default function SupportPage() {
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <StatCounter target={48} suffix="h" label="Avg Audit Turnaround" />
-            <StatCounter target={3} label="Regulation Frameworks" />
+            <StatCounter target={3} label="Waste Frameworks Covered" />
             <StatCounter target={5000} suffix="+" label="Max Fine Prevented (£)" />
             <StatCounter target={100} suffix="%" label="Audit-Ready Records" />
           </div>
@@ -427,9 +427,9 @@ export default function SupportPage() {
               <div className="bg-white border-x border-b border-slate-100 p-8">
                 {/* Score rings */}
                 <div className="grid grid-cols-3 gap-4 mb-7 pb-7 border-b border-slate-100">
-                  <ScoreRing score={94} label="Waste" color="#059669" />
-                  <ScoreRing score={88} label="PPT" color="#2563eb" />
-                  <ScoreRing score={91} label="EPR" color="#7c3aed" />
+                  <ScoreRing score={94} label="Duty of Care" color="#059669" />
+                  <ScoreRing score={89} label="Clinical" color="#0ea5e9" />
+                  <ScoreRing score={92} label="Recycling" color="#7c3aed" />
                 </div>
 
                 {/* Activity log */}
@@ -437,9 +437,9 @@ export default function SupportPage() {
                 <div className="space-y-2.5">
                   {[
                     { label: "Waste Transfer Notes Filed", time: "Today", dot: "#059669" },
-                    { label: "PPT Q1 Return Submitted", time: "3 Days Ago", dot: "#2563eb" },
+                    { label: "Clinical Waste Consignment Logged", time: "3 Days Ago", dot: "#0ea5e9" },
                     { label: "HMO Waste Plan Updated", time: "1 Week Ago", dot: "#d97706" },
-                    { label: "EA Carrier Licence Verified", time: "2 Weeks Ago", dot: "#7c3aed" },
+                    { label: "Simpler Recycling Evidence Saved", time: "2 Weeks Ago", dot: "#7c3aed" },
                   ].map(({ label, time, dot }) => (
                     <div key={label} className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
                       <div className="flex items-center gap-2.5">
@@ -461,13 +461,13 @@ export default function SupportPage() {
                 <span className="text-emerald-700"> Compliance Score.</span>
               </h2>
               <p className="poppins-regular text-lg text-slate-600 leading-relaxed mb-7">
-                We give every client a clear view of their compliance position across all three regulatory frameworks —
+                We give every client a clear view of their compliance position across waste duty of care, clinical waste, and Simpler Recycling —
                 and we keep it current as legislation changes.
               </p>
 
               <div className="space-y-3 mb-8">
                 {[
-                  { icon: Target,     text: "Gap Analysis Across Waste, PPT, And EPR Frameworks" },
+                  { icon: Target,     text: "Gap Analysis Across Duty of Care, Clinical Waste & Simpler Recycling" },
                   { icon: TrendingUp, text: "Continuous Monitoring As Regulations Evolve" },
                   { icon: Clock,      text: "48-Hour Turnaround On All Compliance Audits" },
                   { icon: Lock,       text: "Written Evidence That Holds Up Under Regulatory Scrutiny" },

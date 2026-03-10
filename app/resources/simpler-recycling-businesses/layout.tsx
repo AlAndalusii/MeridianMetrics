@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Simpler Recycling UK: Business Compliance Guide 2025',
-  description: 'UK Simpler Recycling legislation guide: March 2025 deadlines, 4 mandatory waste streams, penalties & compliance. Free audit. Avoid £200-£5,000 fines.',
+  title: 'Simpler Recycling for UK Businesses: Full Compliance Guide 2026',
+  description: 'The complete UK Simpler Recycling guide for businesses — 4 mandatory waste streams, who is affected, collection deadlines, penalty levels and step-by-step compliance checklist. Avoid fines of up to £5,000.',
   keywords: [
     'simpler recycling',
     'simpler recycling legislation',
@@ -23,16 +23,16 @@ export const metadata: Metadata = {
     'environment agency waste compliance',
   ],
   openGraph: {
-    title: 'Simpler Recycling UK: Business Compliance Guide 2025',
-    description: 'UK Simpler Recycling legislation: March 2025 deadlines, 4 mandatory waste streams, penalties & compliance solutions. Free audit available.',
+    title: 'Simpler Recycling for UK Businesses: Full Compliance Guide 2026',
+    description: 'The complete guide to Simpler Recycling for businesses — 4 mandatory waste streams, who is affected, penalties and step-by-step compliance checklist.',
     type: 'article',
     locale: 'en_GB',
     siteName: 'Millstone Compliance',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Simpler Recycling UK: Business Compliance Guide 2025',
-    description: 'UK Simpler Recycling legislation: March 2025 deadlines, 4 mandatory waste streams, penalties & compliance solutions. Free audit available.',
+    title: 'Simpler Recycling for UK Businesses: Full Compliance Guide 2026',
+    description: 'The complete guide to Simpler Recycling for businesses — 4 mandatory waste streams, who is affected, penalties and step-by-step compliance checklist.',
   },
 }
 

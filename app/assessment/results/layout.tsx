@@ -1,22 +1,29 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "PPT Compliance Results | Your Plastic Packaging Tax Assessment Report",
-  description: "View your personalised PPT compliance assessment results. Get detailed analysis of your plastic packaging tax gaps, strengths, and recommended next steps for HMRC compliance.",
+  title: "Waste Compliance Results | Your Gap Analysis Report | Millstone Compliance",
+  description: "View your personalised waste compliance assessment results. Includes your compliance score, top gaps in Duty of Care and Simpler Recycling, and a prioritised action plan for care homes and businesses.",
   keywords: [
-    "PPT compliance results",
-    "plastic packaging tax report",
-    "PPT assessment results",
-    "plastic tax compliance score",
-    "PPT audit results",
-    "HMRC compliance report",
-    "plastic packaging tax gaps",
-    "PPT compliance recommendations"
+    "waste compliance results",
+    "waste compliance score report",
+    "duty of care gap report",
+    "waste compliance assessment results",
+    "simpler recycling compliance score",
+    "waste audit results",
+    "care home compliance report",
+    "waste compliance recommendations"
   ],
   openGraph: {
-    title: "PPT Compliance Results | Your Plastic Packaging Tax Assessment Report",
-    description: "View your personalised PPT compliance assessment results. Get detailed analysis of your plastic packaging tax gaps, strengths, and recommended next steps.",
+    title: "Waste Compliance Results | Your Gap Analysis Report | Millstone Compliance",
+    description: "Your personalised waste compliance score, top gaps and prioritised action plan — covering Duty of Care, Simpler Recycling and clinical waste.",
     type: "website",
+    locale: "en_GB",
+    siteName: "Millstone Compliance",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Waste Compliance Results | Your Gap Analysis Report | Millstone Compliance",
+    description: "Your personalised waste compliance score, top gaps and prioritised action plan — covering Duty of Care, Simpler Recycling and clinical waste.",
   },
 }
 

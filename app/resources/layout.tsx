@@ -1,19 +1,19 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'PPT, EPR & PRN Resources | UK Packaging Compliance Guides',
-  description: 'Free expert guides on Plastic Packaging Tax, EPR and PRN compliance. Learn what records HMRC requires and how to avoid penalties. UK business compliance resources.',
+  title: 'Waste Compliance Guides | UK Care Home & HMO Resources',
+  description: 'Free expert guides on Duty of Care, Simpler Recycling and clinical waste compliance. Designed for care homes, children\'s homes and estate agents. Plain English, inspection-ready.',
   openGraph: {
-    title: 'PPT, EPR & PRN Resources | UK Packaging Compliance Guides',
-    description: 'Free expert guides on Plastic Packaging Tax, EPR and PRN compliance. Learn what records HMRC requires and how to avoid penalties.',
+    title: 'Waste Compliance Guides | UK Care Home & HMO Resources',
+    description: 'Free expert guides on Duty of Care, Simpler Recycling and clinical waste compliance. Designed for care homes, children\'s homes and estate agents.',
     type: 'website',
     locale: 'en_GB',
     siteName: 'Millstone Compliance',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PPT, EPR & PRN Resources | UK Packaging Compliance Guides',
-    description: 'Free expert guides on Plastic Packaging Tax, EPR and PRN compliance. Learn what records HMRC requires and how to avoid penalties.',
+    title: 'Waste Compliance Guides | UK Care Home & HMO Resources',
+    description: 'Free expert guides on Duty of Care, Simpler Recycling and clinical waste compliance.',
   },
 }
 

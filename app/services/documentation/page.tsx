@@ -518,7 +518,7 @@ export default function DocumentationPage() {
             </p>
           </FadeIn>
           <div className="grid sm:grid-cols-3 gap-5">
-            [
+            {[
               { title: "Waste Documentation Guide UK 2026", href: "/resources/waste-packaging-documentation", badge: "Guide", desc: "Every document you're legally required to hold — WTNs, consignment notes, and HMO plans." },
               { title: "Waste Duty of Care Compliance",     href: "/resources/duty-of-care-waste",           badge: "Essential", desc: "Legal requirements, WTNs, and carrier verification explained." },
               { title: "Care Home Waste Compliance",        href: "/resources/care-home-waste-compliance-checklist", badge: "Essential", desc: "CQC and Ofsted inspection-ready waste records for care homes and children's homes." },

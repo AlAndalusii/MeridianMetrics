@@ -316,7 +316,7 @@ export default function CareHomeWasteChecklistPage() {
                     variant="outline"
                     className="border-white/30 text-white hover:bg-white/10 poppins-semibold px-7 py-3.5 rounded-xl text-sm bg-transparent min-h-[44px]"
                   >
-                    Book a Care Home Audit from £295
+                    Book a Care Home Audit
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
@@ -616,10 +616,6 @@ export default function CareHomeWasteChecklistPage() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-              <div>
-                <span className="poppins-bold text-3xl text-emerald-900">£295</span>
-                <span className="poppins-regular text-emerald-600 text-sm ml-2">per facility · one-time</span>
-              </div>
               <Button
                 onClick={() => setShowCalendlyModal(true)}
                 size="lg"

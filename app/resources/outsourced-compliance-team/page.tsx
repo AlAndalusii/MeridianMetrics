@@ -246,7 +246,7 @@ export default function OutsourcedComplianceTeam() {
                     "Written compliance report (15-20 pages)",
                     "Traffic light status (compliant/minor gaps/serious violations)"
                   ],
-                  investment: "£295-795"
+                  investment: "Fixed fee"
                 },
                 {
                   step: "Step 2: Remediation (Week 2-4)",
@@ -336,14 +336,10 @@ export default function OutsourcedComplianceTeam() {
                   Outsourced Compliance
                 </h3>
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="poppins-regular text-emerald-800">Monthly retainer:</span>
-                    <span className="poppins-semibold text-emerald-900">£499</span>
-                  </div>
                   <div className="pt-3 border-t-2 border-emerald-300">
                     <div className="flex justify-between items-center">
-                      <span className="poppins-bold text-emerald-900">Annual cost:</span>
-                      <span className="poppins-bold text-xl text-emerald-900">£5,988</span>
+                      <span className="poppins-bold text-emerald-900">Fixed-fee retainer</span>
+                      <span className="poppins-bold text-xl text-emerald-900">Get a quote</span>
                     </div>
                   </div>
                   <div className="mt-4 p-4 bg-emerald-100 rounded-lg">

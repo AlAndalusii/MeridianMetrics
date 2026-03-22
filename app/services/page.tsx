@@ -1,860 +1,1084 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import {
   ArrowRight,
   CheckCircle,
-  Home,
-  Package,
-  Clock,
-  AlertTriangle,
-  ChevronDown,
-  BadgeCheck,
   FileText,
   Shield,
-  Mail,
-  User,
-  MessageSquare,
-  Calendar,
-  Star,
-  Trash2,
-  Recycle,
-  XCircle,
+  Eye,
   Zap,
+  MapPin,
+  Wifi,
+  Camera,
+  Users,
+  ClipboardCheck,
+  AlertTriangle,
+  BadgeCheck,
+  ChevronRight,
+  ChevronDown,
+  Mail,
   Building2,
+  Trash2,
+  FileCheck,
+  Search,
+  Lock,
+  Home,
+  Heart,
+  Stethoscope,
+  Leaf,
+  LayoutDashboard,
+  GraduationCap,
+  Truck,
+  BarChart3,
+  UtensilsCrossed,
+  Package,
+  HardHat,
+  Sparkles,
 } from "lucide-react"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
+import { EmailTemplateModal } from "@/components/EmailTemplateModal"
 
-// ─── Deadline counter ────────────────────────────────────────────────────────
-const DEADLINE = new Date("2026-03-31T23:59:59")
-
-function useDeadlineCounter() {
-  const [days, setDays] = useState(0)
-
+/* ─── Intersection observer hook ─────────────────────────────────────────── */
+function useReveal(threshold = 0.12) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
   useEffect(() => {
-    const update = () => {
-      const diff = DEADLINE.getTime() - Date.now()
-      setDays(Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24))))
-    }
-    update()
-    const id = setInterval(update, 60_000)
-    return () => clearInterval(id)
-  }, [])
-
-  return days
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect() } },
+      { threshold }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [threshold])
+  return { ref, visible }
 }
 
-// ─── Service tiers ───────────────────────────────────────────────────────────
-const tiers = [
+/* ─── Animated counter ────────────────────────────────────────────────────── */
+function Counter({ target, suffix = "", duration = 1800 }: { target: number; suffix?: string; duration?: number }) {
+  const [count, setCount] = useState(0)
+  const { ref, visible } = useReveal(0.3)
+  useEffect(() => {
+    if (!visible) return
+    const start = performance.now()
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / duration, 1)
+      const ease = 1 - Math.pow(1 - p, 3)
+      setCount(Math.round(ease * target))
+      if (p < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  }, [visible, target, duration])
+  return <span ref={ref}>{count}{suffix}</span>
+}
+
+/* ─── Data ────────────────────────────────────────────────────────────────── */
+const legislation = [
+  { code: "EPA 1990",  name: "Duty of Care",          icon: Shield,        accent: "from-emerald-500 to-emerald-700", glow: "rgba(16,185,129,0.15)", desc: "Every business must manage its waste responsibly. We verify transfer notes, carrier licences, and chain of custody." },
+  { code: "SR 2026",   name: "Simpler Recycling",     icon: Leaf,          accent: "from-teal-500 to-emerald-600",   glow: "rgba(20,184,166,0.15)", desc: "Mandatory food, dry recyclable and residual separation for all UK businesses. We verify bin setup, labelling and collection contracts." },
+  { code: "HTM 07-01", name: "Clinical Waste",        icon: Stethoscope,   accent: "from-emerald-600 to-teal-700",   glow: "rgba(16,185,129,0.15)", desc: "Healthcare-specific guidance covering segregation, colour-coding, storage and consignment notes for infectious and hazardous clinical waste." },
+  { code: "HWR 2005",  name: "Hazardous Waste",       icon: AlertTriangle, accent: "from-amber-500 to-orange-600",   glow: "rgba(245,158,11,0.15)", desc: "Pre-acceptance procedures, consignment note trails and disposal site authorisation checks for any business producing hazardous waste." },
+  { code: "CWR 2012",  name: "Controlled Waste",      icon: Trash2,        accent: "from-emerald-500 to-green-700",  glow: "rgba(16,185,129,0.15)", desc: "Classification and handling rules for household, industrial and commercial waste — ensuring the right treatment route for every stream." },
+  { code: "EA Reg",    name: "Carrier Registration",  icon: BadgeCheck,    accent: "from-teal-400 to-emerald-600",   glow: "rgba(20,184,166,0.15)", desc: "We cross-check every contractor against the Environment Agency's public register to confirm they are legally authorised to carry your waste." },
+]
+
+const auditSteps = [
+  { num: "01", icon: Search,       title: "Scope & Brief",          body: "We agree the site type, waste streams, and any known concerns. Remote clients send documentation ahead; on-site clients book a visit. No long onboarding — we move in 48 hours." },
+  { num: "02", icon: ClipboardCheck, title: "Documentation Review", body: "Every Waste Transfer Note, consignment record, carrier licence, and waste management policy is checked for completeness and legal compliance." },
+  { num: "03", icon: Eye,          title: "Inspection",             body: "On-site: we inspect waste stores, label legibility, bin placement, and interview staff. Remote: we review photos, policies, and contractor evidence." },
+  { num: "04", icon: AlertTriangle, title: "Gap Analysis",          body: "Every finding is RAG-rated — Red (urgent), Amber (action required), Green (compliant). We identify the root cause, not just the symptom." },
+  { num: "05", icon: FileCheck,    title: "Written Report — 48hr",  body: "A signed PDF with a RAG summary, specific recommendations, and suggested actions — ready to hand to a CQC inspector, EA officer, or your board." },
+]
+
+const usedBy = [
+  { icon: Stethoscope,     label: "CQC Inspections" },
+  { icon: Leaf,            label: "EA Enquiries" },
+  { icon: LayoutDashboard, label: "Internal Governance" },
+  { icon: GraduationCap,   label: "Ofsted Scrutiny" },
+  { icon: Truck,           label: "Pre-Acceptance" },
+  { icon: BarChart3,       label: "Board Reporting" },
+]
+
+const sectors = [
+  "Care Homes", "Children's Homes", "HMO Properties",
+  "Offices", "Warehouses", "Retail Operations",
+  "Letting Agents", "Estate Agents", "Multi-Site Portfolios",
+]
+
+/* ─── Sector accordion items ─────────────────────────────────────────────── */
+const sectorAccordions = [
   {
-    id: "waste",
+    id: "hmo",
     icon: Home,
-    label: "Tier 1",
-    badge: "Waste & Property",
-    badgeColor: "bg-amber-50 text-amber-700 border-amber-200",
-    title: "Waste Compliance Audit",
-    subtitle: "HMO landlords, letting agents & business property managers",
-    tagline: "Simpler Recycling · March 2026 · EA Enforcement",
-    description:
-      "Whether you manage HMO properties or run a business premises, new Simpler Recycling rules create direct legal liability. Landlords face £5,000 fines and HMO licence risk. Businesses face £118/hour EA investigation charges. We audit your setup, verify your contractors, and give you the written documentation councils and inspectors need to see — scoped to your property type.",
-    pricing: [
-      { label: "Single HMO property", price: "£295" },
-      { label: "3–5 HMO properties", price: "£495" },
-      { label: "Business site (single)", price: "£295" },
-      { label: "Multi-site (3+ locations)", price: "£795" },
+    eyebrow: "HMO Landlords & Letting Agents",
+    headline: "Avoid Fines & Licence Revocation",
+    sub: "Simpler Recycling makes you personally liable for your tenants' waste mistakes. One failed inspection can trigger a fine and a licence review.",
+    bullets: [
+      "Bin setup verified against Simpler Recycling requirements",
+      "Waste Transfer Notes and carrier licences checked",
+      "Written tenant instructions reviewed and templated",
+      "Council collection contracts confirmed",
+      "48-hour inspection-ready written report",
     ],
-    timeline: "3–7 days",
-    deliveryNote: "Remote assessment available",
-    included: [
-      "Property & occupancy type assessment",
-      "4-stream separation verification",
-      "Bins-per-occupant ratio check",
-      "EA carrier registration verification",
-      "Waste Transfer Note audit",
-      "Cross-contamination risk analysis",
-      "Tenant / staff instruction templates",
-      "Written compliance report",
-      "Priority-ranked action list",
-      "Council inspection documentation",
-    ],
-    cta: "Book Waste Audit",
-    ctaHref: "/quiz",
-    highlight: true,
+    cta: "View HMO Compliance Checklist",
+    ctaHref: "/resources/hmo-waste-compliance-checklist",
+    secondaryCta: "Book an HMO Audit",
+    pal: {
+      eyebrow: "#b45309",
+      bg: "linear-gradient(135deg,rgba(255,251,235,0.65) 0%,rgba(255,255,255,0.98) 100%)",
+      bar: "linear-gradient(to bottom,#fbbf24,#d97706)",
+      iconBg: "#fef3c7", iconColor: "#b45309",
+      pill: "#fef3c7", pillText: "#92400e",
+      divider: "#fcd34d",
+      checkBg: "#fef9c3", checkColor: "#ca8a04",
+      ctaBg: "#d97706",
+    },
   },
   {
-    id: "packaging",
+    id: "carehomes",
+    icon: Heart,
+    eyebrow: "Care Homes & Children's Homes",
+    headline: "New Rules. Real Fines. One Audit.",
+    sub: "CQC, Ofsted and the Environment Agency all scrutinise waste. Clinical waste, Simpler Recycling and Duty of Care must all be correct — simultaneously.",
+    bullets: [
+      "Clinical waste segregation and HTM 07-01 compliance",
+      "All waste streams checked against EA and CQC requirements",
+      "Contractor licences, consignment notes and manifests reviewed",
+      "Waste Management Plan assessed or created",
+      "48-hour signed report accepted by CQC and EA",
+    ],
+    cta: "View Care Home Compliance Checklist",
+    ctaHref: "/resources/care-home-waste-compliance-checklist",
+    secondaryCta: "Book a Care Home Audit",
+    pal: {
+      eyebrow: "#be185d",
+      bg: "linear-gradient(135deg,rgba(255,228,230,0.55) 0%,rgba(255,255,255,0.98) 100%)",
+      bar: "linear-gradient(to bottom,#fb7185,#be185d)",
+      iconBg: "#ffe4e6", iconColor: "#be185d",
+      pill: "#ffe4e6", pillText: "#9f1239",
+      divider: "#fda4af",
+      checkBg: "#fff1f2", checkColor: "#e11d48",
+      ctaBg: "#be185d",
+    },
+  },
+  {
+    id: "hospitality",
+    icon: UtensilsCrossed,
+    eyebrow: "Hospitality",
+    headline: "Hotels, Restaurants, Pubs & Cafes",
+    sub: "Food businesses are among the most exposed under Simpler Recycling. Mandatory food waste separation, correct bin labelling, and Duty of Care documentation are all legally required.",
+    bullets: [
+      "Food waste stream verified against Simpler Recycling rules",
+      "Separate dry recycling and residual waste streams checked",
+      "Duty of Care transfer notes and carrier licences audited",
+      "Grease trap and specialist waste contractor records reviewed",
+      "48-hour written report ready for council or EA inspection",
+    ],
+    cta: null,
+    ctaHref: null,
+    secondaryCta: "Book a Hospitality Audit",
+    pal: {
+      eyebrow: "#c2410c",
+      bg: "linear-gradient(135deg,rgba(255,237,213,0.6) 0%,rgba(255,255,255,0.98) 100%)",
+      bar: "linear-gradient(to bottom,#fb923c,#ea580c)",
+      iconBg: "#ffedd5", iconColor: "#c2410c",
+      pill: "#ffedd5", pillText: "#9a3412",
+      divider: "#fdba74",
+      checkBg: "#fff7ed", checkColor: "#ea580c",
+      ctaBg: "#ea580c",
+    },
+  },
+  {
+    id: "logistics",
     icon: Package,
-    label: "Tier 2",
-    badge: "Packaging Compliance",
-    badgeColor: "bg-purple-50 text-purple-700 border-purple-200",
-    title: "Packaging Compliance Service",
-    subtitle: "Manufacturers, importers, retailers & brand owners",
-    tagline: "EPR · PPT · HMRC · Packaging Regulations",
-    description:
-      "If your business uses, imports or manufactures packaging, you have legal obligations under Extended Producer Responsibility (EPR) and Plastic Packaging Tax (PPT). We do the admin for you — determining your liability, filing your registrations, and making sure every piece of documentation is in order so you are never caught out.",
-    pricing: [
-      { label: "Compliance review", price: "£395" },
-      { label: "Full admin & registration service", price: "£795" },
+    eyebrow: "Logistics & Warehousing",
+    headline: "Distribution Centres & Fulfilment Operations",
+    sub: "High-volume waste producers face the greatest Duty of Care exposure. Packaging waste, mixed streams, and multiple contractor relationships all create compliance risk that's easily missed.",
+    bullets: [
+      "All waste streams classified and mapped to correct treatment routes",
+      "Packaging waste obligations assessed under EPR rules",
+      "Every contractor cross-checked against EA public register",
+      "Waste Transfer Notes audited for completeness and accuracy",
+      "48-hour report with prioritised gap list for operations teams",
     ],
-    timeline: "7–14 days",
-    deliveryNote: "Remote — document review + consultation call",
-    included: [
-      "EPR producer registration & annual reporting",
-      "Plastic Packaging Tax liability assessment",
-      "PPT registration with HMRC",
-      "30% recycled content verification",
-      "Packaging tonnage calculations",
-      "Labelling compliance check (OPRL)",
-      "Supplier certification review",
-      "Ongoing documentation & record-keeping",
-      "Annual return preparation",
+    cta: null,
+    ctaHref: null,
+    secondaryCta: "Book a Logistics Audit",
+    pal: {
+      eyebrow: "#1d4ed8",
+      bg: "linear-gradient(135deg,rgba(219,234,254,0.55) 0%,rgba(255,255,255,0.98) 100%)",
+      bar: "linear-gradient(to bottom,#60a5fa,#2563eb)",
+      iconBg: "#dbeafe", iconColor: "#1d4ed8",
+      pill: "#dbeafe", pillText: "#1e40af",
+      divider: "#93c5fd",
+      checkBg: "#eff6ff", checkColor: "#2563eb",
+      ctaBg: "#2563eb",
+    },
+  },
+  {
+    id: "construction",
+    icon: HardHat,
+    eyebrow: "Construction",
+    headline: "Housebuilders, Contractors & Developers",
+    sub: "Construction sites generate controlled, hazardous, and inert waste — all under different legal regimes. A single mislabelled skip or unregistered carrier can trigger EA enforcement.",
+    bullets: [
+      "Controlled waste classification and treatment routes verified",
+      "Hazardous waste consignment notes and pre-acceptance audited",
+      "Skip hire and waste carrier EA registrations confirmed",
+      "Site waste management documentation reviewed",
+      "48-hour report ready for principal contractor or client",
     ],
-    cta: "Get Packaging Compliance Help",
-    ctaHref: "/quiz",
-    highlight: false,
+    cta: null,
+    ctaHref: null,
+    secondaryCta: "Book a Construction Audit",
+    pal: {
+      eyebrow: "#854d0e",
+      bg: "linear-gradient(135deg,rgba(254,249,195,0.6) 0%,rgba(255,255,255,0.98) 100%)",
+      bar: "linear-gradient(to bottom,#facc15,#ca8a04)",
+      iconBg: "#fef9c3", iconColor: "#854d0e",
+      pill: "#fef9c3", pillText: "#713f12",
+      divider: "#fde047",
+      checkBg: "#fefce8", checkColor: "#a16207",
+      ctaBg: "#ca8a04",
+    },
+  },
+  {
+    id: "other",
+    icon: Sparkles,
+    eyebrow: "Every Other Regulated Business",
+    headline: "Don't See Your Sector? We Still Cover You.",
+    sub: "UK waste law applies to every business that produces waste — regardless of sector. If you have a Duty of Care obligation, contractor relationships, or waste streams to manage, we can audit it. Get in touch and we'll scope it for you.",
+    bullets: [
+      "Offices, retail, education, healthcare, manufacturing",
+      "Any business with a waste contractor relationship",
+      "Multi-site portfolios across mixed sectors",
+      "Any organisation facing EA, council or regulator scrutiny",
+      "Fixed-fee quote agreed before we start — no surprises",
+    ],
+    cta: null,
+    ctaHref: null,
+    secondaryCta: "Discuss Your Requirements",
+    pal: {
+      eyebrow: "#047857",
+      bg: "linear-gradient(135deg,rgba(209,250,229,0.55) 0%,rgba(255,255,255,0.98) 100%)",
+      bar: "linear-gradient(to bottom,#34d399,#059669)",
+      iconBg: "#d1fae5", iconColor: "#047857",
+      pill: "#d1fae5", pillText: "#065f46",
+      divider: "#6ee7b7",
+      checkBg: "#ecfdf5", checkColor: "#059669",
+      ctaBg: "#059669",
+    },
   },
 ]
 
-// ─── Service card ─────────────────────────────────────────────────────────────
-function TierCard({ tier }: { tier: (typeof tiers)[0] }) {
-  const [open, setOpen] = useState(false)
-  const Icon = tier.icon
-
-  return (
-    <div
-      id={tier.id}
-      className={`scroll-mt-28 rounded-2xl overflow-hidden transition-all duration-300 ${
-        tier.highlight
-          ? "border border-emerald-400/40 shadow-[0_4px_32px_rgba(6,95,70,0.18)] bg-emerald-950"
-          : "border border-slate-200/80 shadow-[0_2px_16px_rgba(6,95,70,0.06)] bg-white hover:shadow-[0_6px_32px_rgba(6,95,70,0.10)] hover:border-emerald-200"
-      }`}
-    >
-      {/* Top accent bar */}
-      <div className={`h-1 w-full ${tier.highlight ? "bg-gradient-to-r from-emerald-400 to-emerald-300" : "bg-gradient-to-r from-emerald-600/40 to-emerald-500/20"}`} />
-
-      <div className="p-6 sm:p-8">
-        {/* Header */}
-        <div className="flex items-start gap-4 mb-5">
-          <div
-            className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
-              tier.highlight ? "bg-emerald-400/20 border border-emerald-400/30" : "bg-emerald-700"
-            }`}
-          >
-            <Icon className={`w-6 h-6 ${tier.highlight ? "text-emerald-300" : "text-white"}`} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex flex-wrap items-center gap-2 mb-1">
-              <span className={`poppins-semibold text-[10px] uppercase tracking-widest ${tier.highlight ? "text-emerald-400/60" : "text-slate-400"}`}>
-                {tier.label}
-              </span>
-              <span
-                className={`text-[10px] poppins-semibold px-2 py-0.5 rounded-full border ${
-                  tier.highlight
-                    ? "bg-emerald-400/15 text-emerald-300 border-emerald-400/30"
-                    : tier.badgeColor
-                }`}
-              >
-                {tier.badge}
-              </span>
-              {tier.highlight && (
-                <span className="text-[10px] poppins-semibold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">
-                  Most Urgent
-                </span>
-              )}
-            </div>
-            <h2 className={`poppins-bold text-xl leading-tight ${tier.highlight ? "text-white" : "text-slate-900"}`}>{tier.title}</h2>
-            <p className={`poppins-regular text-xs mt-0.5 ${tier.highlight ? "text-emerald-300/60" : "text-slate-400"}`}>{tier.subtitle}</p>
-          </div>
-        </div>
-
-        {/* Regulation tag */}
-        <div className={`flex items-center gap-1.5 mb-4 px-3 py-2 rounded-lg w-fit ${tier.highlight ? "bg-amber-500/10 border border-amber-400/20" : "bg-amber-50 border border-amber-100"}`}>
-          <AlertTriangle className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
-          <span className={`text-xs poppins-medium ${tier.highlight ? "text-amber-300" : "text-amber-700"}`}>{tier.tagline}</span>
-        </div>
-
-        <p className={`poppins-regular text-sm leading-relaxed mb-6 ${tier.highlight ? "text-emerald-100/70" : "text-slate-600"}`}>
-          {tier.description}
-        </p>
-
-        {/* Pricing grid */}
-        <div className="mb-2">
-          <p className={`poppins-semibold text-[10px] uppercase tracking-widest mb-2 ${tier.highlight ? "text-emerald-400/60" : "text-slate-400"}`}>
-            Pricing
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {tier.pricing.map((p) => (
-              <div
-                key={p.label}
-                className={`flex items-center justify-between px-4 py-3 rounded-xl border ${
-                  tier.highlight
-                    ? "bg-emerald-900/50 border-emerald-700/40"
-                    : "bg-slate-50 border-slate-100"
-                }`}
-              >
-                <span className={`poppins-regular text-xs ${tier.highlight ? "text-emerald-300/70" : "text-slate-500"}`}>{p.label}</span>
-                <span className={`poppins-bold text-sm ${tier.highlight ? "text-emerald-300" : "text-emerald-700"}`}>{p.price}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Timeline */}
-        <div className="flex items-center gap-4 mt-4 mb-5 px-1">
-          <div className={`flex items-center gap-1.5 text-xs poppins-regular ${tier.highlight ? "text-emerald-300/70" : "text-slate-500"}`}>
-            <Clock className={`w-3.5 h-3.5 ${tier.highlight ? "text-emerald-400" : "text-emerald-500"}`} />
-            <span>
-              <span className={`poppins-semibold ${tier.highlight ? "text-emerald-200" : "text-slate-700"}`}>Timeline:</span> {tier.timeline}
-            </span>
-          </div>
-          <span className={tier.highlight ? "text-emerald-700" : "text-slate-200"}>|</span>
-          <span className={`text-xs poppins-regular ${tier.highlight ? "text-emerald-400/50" : "text-slate-400"}`}>{tier.deliveryNote}</span>
-        </div>
-
-        {/* What's included toggle */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className={`flex items-center gap-1.5 text-sm poppins-semibold transition-colors mb-1 ${
-            tier.highlight ? "text-emerald-300 hover:text-emerald-200" : "text-emerald-700 hover:text-emerald-800"
-          }`}
-          style={{ touchAction: "manipulation" }}
-        >
-          <ChevronDown
-            className={`w-4 h-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-          />
-          What&rsquo;s included
-        </button>
-
-        {open && (
-          <ul className="mt-3 space-y-2">
-            {tier.included.map((item) => (
-              <li key={item} className="flex items-start gap-2.5">
-                <CheckCircle className={`w-4 h-4 flex-shrink-0 mt-0.5 ${tier.highlight ? "text-emerald-400" : "text-emerald-500"}`} />
-                <span className={`poppins-regular text-sm ${tier.highlight ? "text-emerald-100/80" : "text-slate-600"}`}>{item}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-
-      {/* Card footer */}
-      <div className={`px-6 sm:px-8 py-4 border-t flex items-center justify-between gap-4 ${
-        tier.highlight
-          ? "bg-emerald-900/40 border-emerald-700/40"
-          : "bg-slate-50 border-slate-100"
-      }`}>
-        <p className={`text-xs poppins-regular ${tier.highlight ? "text-emerald-400/50" : "text-slate-400"}`}>
-          Scoped to your exact situation before we start.
-        </p>
-        <Link
-          href={tier.ctaHref}
-          className={`inline-flex items-center gap-1.5 poppins-semibold text-sm px-4 py-2 rounded-lg transition-all duration-200 active:scale-95 whitespace-nowrap ${
-            tier.highlight
-              ? "bg-emerald-400 hover:bg-emerald-300 text-emerald-950"
-              : "bg-emerald-700 hover:bg-emerald-800 text-white"
-          }`}
-        >
-          {tier.cta} <ArrowRight className="w-4 h-4" />
-        </Link>
-      </div>
-    </div>
-  )
-}
-
-// ─── Inline contact form ──────────────────────────────────────────────────────
-function ContactSection() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    service: "HMO Waste Compliance Audit",
-    message: "",
-  })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const subject = encodeURIComponent(`Compliance Enquiry — ${form.service}`)
-    const body = encodeURIComponent(
-      `Hi Millstone Compliance,\n\n` +
-      `I'd like to enquire about: ${form.service}\n\n` +
-      `Name: ${form.name}\n` +
-      `Email: ${form.email}\n\n` +
-      `Message:\n${form.message}\n\n` +
-      `Thank you.`
-    )
-    window.location.href = `mailto:hello@millstonecompliance.com?subject=${subject}&body=${body}`
-  }
-
-  const inputClass =
-    "w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15 outline-none transition-all poppins-regular text-sm text-slate-800 bg-white placeholder:text-slate-400"
-  const labelClass = "block poppins-medium text-sm text-slate-700 mb-1.5"
-
-  return (
-    <section id="contact" className="scroll-mt-28 px-4 sm:px-6 py-16 sm:py-20 bg-white border-t border-emerald-100/60">
-      <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
-        {/* Left: text */}
-        <div>
-          <p className="poppins-semibold text-xs text-emerald-600 uppercase tracking-widest mb-3">
-            Get in Touch
-          </p>
-          <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900 mb-4 tracking-tight leading-tight">
-            Not Sure Which Service You Need?
-          </h2>
-          <p className="poppins-regular text-slate-500 text-base leading-relaxed mb-8">
-            Tell us about your situation and we&rsquo;ll point you in the right direction — no sales pitch.
-          </p>
-
-          {/* Credentials */}
-          <div className="space-y-3">
-            {[
-              "Cambridge-trained compliance specialist",
-              "Ex-government systems background",
-              "48-hour report turnaround — or your next audit is free",
-              "Based in Birmingham — weekend audits available",
-              "Independent advisor — we never sell bins or waste services",
-            ].map((c) => (
-              <div key={c} className="flex items-start gap-2.5">
-                <BadgeCheck className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
-                <span className="poppins-regular text-sm text-slate-600">{c}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right: form */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label htmlFor="ct-name" className={labelClass}>
-                <span className="flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-emerald-500" /> Your Name
-                </span>
-              </label>
-              <input
-                id="ct-name"
-                type="text"
-                required
-                placeholder="John Smith"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className={inputClass}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="ct-email" className={labelClass}>
-                <span className="flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-emerald-500" /> Email Address
-                </span>
-              </label>
-              <input
-                id="ct-email"
-                type="email"
-                required
-                placeholder="john@example.com"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className={inputClass}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="ct-service" className={labelClass}>
-                <span className="flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5 text-emerald-500" /> Service Interested In
-                </span>
-              </label>
-              <select
-                id="ct-service"
-                value={form.service}
-                onChange={(e) => setForm({ ...form, service: e.target.value })}
-                className={inputClass}
-              >
-                <option>HMO Waste Compliance Audit</option>
-                <option>Business Waste Compliance Audit</option>
-                <option>Packaging Compliance Service</option>
-                <option>Not sure — help me decide</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor="ct-message" className={labelClass}>
-                <span className="flex items-center gap-1.5">
-                  <MessageSquare className="w-3.5 h-3.5 text-emerald-500" /> Your Message
-                </span>
-              </label>
-              <textarea
-                id="ct-message"
-                required
-                rows={4}
-                placeholder="Tell us about your properties or business and what you need help with..."
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className={`${inputClass} resize-none`}
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full inline-flex items-center justify-center gap-2 poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white py-3.5 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 active:scale-95"
-            >
-              <Mail className="w-4 h-4" />
-              Send Enquiry
-            </button>
-
-            <p className="text-[11px] text-center text-slate-400 poppins-regular">
-              Opens your email client with your message pre-filled. We reply within 24 hours.
-            </p>
-          </form>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── Simpler Recycling section ────────────────────────────────────────────────
-function SimplerRecyclingSection() {
-  const [scanStep, setScanStep] = useState<number>(0)
-
-  useEffect(() => {
-    const id = setInterval(() => setScanStep((s) => (s + 1) % 5), 1800)
-    return () => clearInterval(id)
-  }, [])
-
-  const binStatus = (threshold: number) => {
-    if (scanStep === 0) return "idle"
-    if (scanStep >= threshold + 1) return "ok"
-    if (scanStep === threshold) return "gap"
-    return "pending"
-  }
-
-  const bins = [
-    { name: "Dry Recyclables", detail: "Paper, plastic, glass, metal", icon: Recycle, threshold: 1 },
-    { name: "Food Waste", detail: "Separate caddy required", icon: Trash2, threshold: 2 },
-    { name: "General Waste", detail: "Non-recyclable residual", icon: Trash2, threshold: 3 },
-  ]
-
-  const scoreMap = [0, 33, 67, 100, 100]
-  const score = scoreMap[scanStep] ?? 100
-
-  return (
-    <section id="simpler-recycling" className="scroll-mt-28">
-      {/* Alert banner */}
-      <div className="bg-red-600 text-white px-4 sm:px-6 py-3">
-        <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-center">
-          <div className="flex items-center gap-2">
-            <span className="poppins-bold text-sm">31 MAR</span>
-            <span className="bg-white/20 text-white text-[10px] poppins-semibold px-2 py-0.5 rounded-full">DEADLINE PASSED</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="poppins-bold text-2xl">3</span>
-            <span className="poppins-regular text-xs text-red-100 leading-tight">WASTE STREAMS<br/>REQUIRED</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="poppins-bold text-2xl">£118</span>
-            <span className="poppins-regular text-xs text-red-100 leading-tight">PER HOUR<br/>EA FINE</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main content */}
-      <div className="bg-white px-4 sm:px-6 pt-12 sm:pt-16 pb-0">
-        <div className="max-w-5xl mx-auto">
-          {/* Top: headline + mockup */}
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-14">
-            {/* Left */}
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-50 border border-red-200 rounded-full mb-5">
-                <AlertTriangle className="w-3.5 h-3.5 text-red-500 flex-shrink-0" />
-                <span className="text-xs poppins-semibold text-red-700">Enforcement Active — EA Inspections Started</span>
-              </div>
-              <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900 tracking-tight leading-tight mb-4">
-                Simpler Recycling —{" "}
-                <span className="text-red-600">Are You Breaking the Law?</span>
-              </h2>
-              <p className="poppins-regular text-slate-500 text-base leading-relaxed mb-6">
-                The deadline was 31 March 2026. All UK businesses with 10+ employees and all HMO landlords must now separate waste into 3 streams. Environment Agency inspections have started — and your tenants&rsquo; bin habits are your legal responsibility.
-              </p>
-              <div className="flex flex-wrap gap-3 mb-8">
-                <Link href="/quiz" className="inline-flex items-center gap-2 poppins-semibold text-sm bg-red-600 hover:bg-red-700 text-white px-5 py-3 rounded-xl transition-all duration-200 active:scale-95 shadow-sm">
-                  Try the Gap Analyser <ArrowRight className="w-4 h-4" />
-                </Link>
-                <a href="#waste" className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white border border-slate-200 hover:border-emerald-300 text-slate-700 hover:text-emerald-700 px-5 py-3 rounded-xl transition-all duration-200 active:scale-95">
-                  Book a Site Check
-                </a>
-              </div>
-              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400 poppins-regular">
-                <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> 2 minutes</span>
-                <span>·</span>
-                <span className="flex items-center gap-1"><CheckCircle className="w-3.5 h-3.5 text-emerald-500" /> Free assessment</span>
-                <span>·</span>
-                <span className="flex items-center gap-1"><AlertTriangle className="w-3.5 h-3.5 text-amber-500" /> Deadline passed</span>
-              </div>
-            </div>
-
-            {/* Right: animated compliance mockup */}
-            <div className="relative">
-              <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50">
-                {/* Top bar */}
-                <div className="bg-slate-800 px-4 py-3 flex items-center justify-between border-b border-slate-700">
-                  <div className="flex items-center gap-2">
-                    <div className={`w-2 h-2 rounded-full ${scanStep === 0 ? "bg-slate-500" : "bg-red-500 animate-pulse"}`} />
-                    <span className="text-xs poppins-semibold text-white">
-                      {scanStep === 0 ? "Ready to Scan" : "Compliance Scan Running"}
-                    </span>
-                  </div>
-                  <span className="text-[10px] text-slate-400 poppins-regular">23 Mill Road — HMO</span>
-                </div>
-
-                <div className="p-4 space-y-2">
-                  {bins.map((bin) => {
-                    const status = binStatus(bin.threshold)
-                    return (
-                      <div
-                        key={bin.name}
-                        className={`flex items-center justify-between rounded-xl px-4 py-3 border transition-all duration-700 ${
-                          status === "ok"
-                            ? "bg-emerald-950/60 border-emerald-800/40"
-                            : status === "gap"
-                            ? "bg-amber-950/40 border-amber-700/40"
-                            : "bg-slate-800 border-slate-700"
-                        }`}
-                      >
-                        <div className="flex items-center gap-2.5">
-                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors duration-700 ${
-                            status === "ok" ? "bg-emerald-800/50" : status === "gap" ? "bg-amber-800/40" : "bg-slate-700"
-                          }`}>
-                            <bin.icon className={`w-4 h-4 transition-colors duration-700 ${
-                              status === "ok" ? "text-emerald-400" : status === "gap" ? "text-amber-400" : "text-slate-500"
-                            }`} />
-                          </div>
-                          <div>
-                            <p className={`text-xs poppins-semibold transition-colors duration-700 ${
-                              status === "ok" ? "text-emerald-100" : status === "gap" ? "text-amber-100" : "text-slate-400"
-                            }`}>{bin.name}</p>
-                            <p className={`text-[10px] poppins-regular transition-colors duration-700 ${
-                              status === "ok" ? "text-emerald-400/70" : status === "gap" ? "text-amber-400/70" : "text-slate-600"
-                            }`}>{bin.detail}</p>
-                          </div>
-                        </div>
-                        <div className={`flex items-center gap-1 px-2 py-1 rounded-full transition-all duration-700 ${
-                          status === "ok" ? "bg-emerald-700/40" : status === "gap" ? "bg-amber-700/40 animate-pulse" : "bg-slate-700"
-                        }`}>
-                          {status === "ok" ? (
-                            <><CheckCircle className="w-3 h-3 text-emerald-400" /><span className="text-[10px] text-emerald-300 poppins-semibold">OK</span></>
-                          ) : status === "gap" ? (
-                            <><AlertTriangle className="w-3 h-3 text-amber-400" /><span className="text-[10px] text-amber-300 poppins-semibold">GAP</span></>
-                          ) : status === "idle" ? (
-                            <span className="text-[10px] text-slate-500 poppins-regular">—</span>
-                          ) : (
-                            <span className="text-[10px] text-slate-500 poppins-regular animate-pulse">...</span>
-                          )}
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-
-                {/* Score bar */}
-                <div className="px-4 pb-4">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[10px] text-slate-400 poppins-regular">Compliance Score</span>
-                    <span className={`text-xs poppins-bold transition-colors duration-700 ${score === 100 ? "text-emerald-400" : score > 0 ? "text-amber-400" : "text-slate-500"}`}>
-                      {score}%
-                    </span>
-                  </div>
-                  <div className="w-full bg-slate-800 rounded-full h-2">
-                    <div
-                      className={`h-2 rounded-full transition-all duration-700 ${score === 100 ? "bg-gradient-to-r from-emerald-500 to-emerald-400" : "bg-gradient-to-r from-amber-500 to-amber-400"}`}
-                      style={{ width: `${score}%` }}
-                    />
-                  </div>
-                  <p className={`text-[10px] poppins-regular mt-2 transition-colors duration-700 ${score === 100 ? "text-emerald-400/70" : score > 0 ? "text-amber-400/70" : "text-slate-500"}`}>
-                    {score === 0 ? "Click to start assessment" : score === 100 ? "✓ All 3 streams compliant — inspection ready" : `⚠ ${3 - Math.round(score / 34)} issue${3 - Math.round(score / 34) !== 1 ? "s" : ""} found — action required`}
-                  </p>
-                </div>
-              </div>
-
-              {/* Floating label */}
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white border border-slate-200 rounded-full px-4 py-1.5 shadow-sm text-[11px] poppins-semibold text-slate-600">
-                Live compliance scan simulation
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom: 3 service feature cards */}
-          <div className="grid sm:grid-cols-3 gap-4 pt-8 pb-14">
-            {[
-              {
-                icon: CheckCircle,
-                title: "Check Your Setup",
-                tag: "Zero Fines",
-                tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-                desc: "We visit your property, count your bins, verify your waste contractor, and tell you exactly whether you are compliant — in writing.",
-                timeline: "Ready in 3 days",
-              },
-              {
-                icon: Zap,
-                title: "14-Day Fix — 3-Bin System",
-                tag: "Ready in 7 Days",
-                tagColor: "bg-blue-50 text-blue-700 border-blue-200",
-                desc: "Dry recyclables, food waste, and general waste. We scope the correct bins for your property, provide signage templates, and draft tenant instructions.",
-                timeline: "Fast turnaround",
-              },
-              {
-                icon: Shield,
-                title: "Inspection Ready",
-                tag: "Zero Fines",
-                tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-                desc: "EA officers can visit any time. We make sure you have labelled bins, contractor records, and written proof of compliance you can hand over on the day.",
-                timeline: "Ongoing cover",
-              },
-            ].map((card) => (
-              <div key={card.title} className="bg-[#f8faf9] border border-slate-200 rounded-xl p-5 hover:border-emerald-200 hover:shadow-[0_4px_20px_rgba(6,95,70,0.08)] transition-all duration-200">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center flex-shrink-0">
-                    <card.icon className="w-4.5 h-4.5 text-emerald-700" />
-                  </div>
-                  <span className={`text-[10px] poppins-semibold px-2 py-0.5 rounded-full border ${card.tagColor}`}>{card.tag}</span>
-                </div>
-                <h3 className="poppins-bold text-sm text-slate-900 mb-2 leading-tight">{card.title}</h3>
-                <p className="poppins-regular text-xs text-slate-500 leading-relaxed mb-3">{card.desc}</p>
-                <div className="flex items-center gap-1 text-[10px] text-slate-400 poppins-regular">
-                  <Clock className="w-3 h-3" /> {card.timeline}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function ServicesPage() {
-  const daysLeft = useDeadlineCounter()
+  const [showEmail, setShowEmail] = useState(false)
+  const [activeStep, setActiveStep] = useState(0)
+  const [deliveryMode, setDeliveryMode] = useState<"remote" | "onsite">("remote")
+  const [openAccordion, setOpenAccordion] = useState<string | null>(null)
+
+  const hero     = useReveal(0.05)
+  const legRef   = useReveal(0.1)
+  const sectorRef = useReveal(0.1)
+  const processRef = useReveal(0.1)
+  const deliveryRef = useReveal(0.1)
+  const reportRef = useReveal(0.1)
+  const whoRef   = useReveal(0.1)
+  const tplRef   = useReveal(0.1)
 
   return (
-    <div className="min-h-screen bg-[#f8faf9] text-slate-900">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       <Navigation />
 
-      {/* ── Hero ────────────────────────────────────────────────────────────── */}
-      <section className="relative bg-white overflow-hidden pt-24 sm:pt-28 pb-10 sm:pb-14 border-b border-emerald-100/60">
-        {/* Subtle background tint */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.06)_0%,transparent_65%)] pointer-events-none" />
+      {/* ── HERO ───────────────────────────────────────────────────────────── */}
+      <section className="relative pt-32 pb-20 px-6 bg-gradient-to-b from-emerald-50 via-white to-white overflow-hidden">
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
-          {/* Top breadcrumb */}
-          <div className="flex items-center gap-2 text-slate-400 text-xs poppins-regular mb-6">
-            <Link href="/" className="hover:text-emerald-700 transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-emerald-700">Services</span>
+        {/* Subtle grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.04)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
+
+        {/* Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-emerald-100/60 rounded-full blur-[80px] pointer-events-none" />
+
+        <div
+          ref={hero.ref}
+          className="max-w-5xl mx-auto relative z-10 text-center"
+        >
+          {/* Badge */}
+          <div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-200 shadow-sm mb-7 transition-all duration-700"
+            style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(12px)" }}
+          >
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Independent Compliance Audits · UK</span>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            {/* Left: main headline */}
-            <div>
-              {/* Deadline pill */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs poppins-semibold mb-6">
-                <AlertTriangle className="w-3.5 h-3.5 text-amber-500" />
-                {daysLeft} days to the March 31 enforcement deadline
-              </div>
+          {/* Headline */}
+          <h1
+            className="poppins-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight text-slate-900 mb-5 transition-all duration-700 delay-100"
+            style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(20px)" }}
+          >
+            What We{" "}
+            <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent bg-[length:200%_100%] animate-[gradientX_3s_ease_infinite]">
+              Deliver.
+            </span>
+          </h1>
 
-              <h1 className="poppins-bold text-4xl sm:text-5xl lg:text-6xl leading-tight tracking-tight text-slate-900 mb-5">
-                HMO Landlords:{" "}
-                <span className="text-emerald-700">Avoid £5,000 Fines</span>{" "}
-                & Licence Revocation
-              </h1>
+          <p
+            className="poppins-regular text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-700 delay-200"
+            style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(16px)" }}
+          >
+            Independent waste compliance audits for UK businesses of every type — remotely or on-site, with a signed written report within 48 hours.
+          </p>
 
-              <p className="poppins-regular text-lg text-slate-500 max-w-xl leading-relaxed mb-8">
-                New Simpler Recycling rules make you liable for your tenants&rsquo; waste mistakes.
-                Cross-contamination = management failure = fine and licence at risk.
+          {/* CTAs */}
+          <div
+            className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-12 transition-all duration-700 delay-300"
+            style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(12px)" }}
+          >
+            <button
+              onClick={() => setShowEmail(true)}
+              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white poppins-bold text-sm rounded-xl shadow-lg hover:shadow-emerald-700/20 transition-all duration-300 active:scale-95"
+            >
+              Book an Audit
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+            <Link
+              href="/quiz"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 poppins-semibold text-sm rounded-xl transition-all duration-300"
+            >
+              Free Risk Check
+            </Link>
+          </div>
+
+          {/* Sector pills */}
+          <div
+            className="flex flex-wrap justify-center gap-2 transition-all duration-700 delay-400"
+            style={{ opacity: hero.visible ? 1 : 0 }}
+          >
+            {sectors.map((s) => (
+              <span key={s} className="px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-500 text-xs poppins-medium shadow-sm">
+                {s}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── STAT BAR ───────────────────────────────────────────────────────── */}
+      <section className="py-12 px-6 bg-white border-y border-slate-100">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-0">
+          {[
+            { val: 48,  suf: "hr", label: "Report turnaround" },
+            { val: 100, suf: "%",  label: "Audit pass rate" },
+            { val: 6,   suf: "",   label: "Legislation areas" },
+            { val: 0,   suf: "",   label: "Clients ever fined" },
+          ].map((s, i) => (
+            <div key={s.label} className={`text-center px-4 ${i > 0 ? "border-l border-slate-100" : ""}`}>
+              <p className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-emerald-700 tabular-nums">
+                <Counter target={s.val} suffix={s.suf} />
               </p>
-
-              {/* CTAs */}
-              <div className="flex flex-wrap gap-3 mb-10">
-                <Link
-                  href="/quiz"
-                  className="inline-flex items-center gap-2 poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-sm hover:shadow-md"
-                >
-                  Free HMO Compliance Checklist <ArrowRight className="w-4 h-4" />
-                </Link>
-                <a
-                  href="#waste"
-                  className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95"
-                >
-                  Book £295 Audit
-                </a>
-              </div>
-
-              {/* Trust signals row */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-3">
-                {[
-                  { icon: AlertTriangle, text: `${daysLeft} days to deadline`, color: "text-amber-500" },
-                  { icon: Home, text: "Multi-tenant property experts", color: "text-emerald-600" },
-                  { icon: Calendar, text: "Weekend audits available", color: "text-emerald-600" },
-                  { icon: FileText, text: "Reports for council inspections", color: "text-emerald-600" },
-                  { icon: Shield, text: "Independent advisors", color: "text-emerald-600" },
-                  { icon: Star, text: "Cambridge sustainability trained", color: "text-emerald-600" },
-                ].map(({ icon: Icon, text, color }) => (
-                  <div key={text} className="flex items-start gap-2 min-h-[28px]">
-                    <Icon className={`w-3.5 h-3.5 flex-shrink-0 mt-0.5 ${color}`} />
-                    <span className="text-xs poppins-regular text-slate-500 leading-snug">{text}</span>
-                  </div>
-                ))}
-              </div>
+              <p className="poppins-regular text-[10px] sm:text-xs text-slate-400 mt-1.5 uppercase tracking-widest">{s.label}</p>
             </div>
+          ))}
+        </div>
+      </section>
 
-            {/* Right: what you receive card */}
-            <div className="hidden lg:block">
-              <div className="relative bg-white border border-emerald-200 rounded-2xl p-6 shadow-[0_4px_32px_rgba(6,95,70,0.10)]">
-                <div className="absolute -top-3.5 left-6">
-                  <span className="poppins-semibold text-[10px] uppercase tracking-widest bg-emerald-700 text-white px-3 py-1.5 rounded-full shadow-sm">
-                    Every Audit Includes
-                  </span>
+      {/* ── SECTOR DROPDOWNS ───────────────────────────────────────────────── */}
+      <section className="py-24 px-6 bg-gradient-to-b from-emerald-50/60 via-white to-white relative overflow-hidden">
+        {/* Emerald grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.045)_1px,transparent_1px)] bg-[size:56px_56px] pointer-events-none" />
+        {/* Top glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[260px] bg-emerald-100/70 rounded-full blur-[100px] pointer-events-none" />
+        {/* Decorative orbs */}
+        <div className="absolute top-32 left-[8%] w-40 h-40 bg-teal-100/50 rounded-full blur-[60px] pointer-events-none" />
+        <div className="absolute top-48 right-[6%] w-32 h-32 bg-emerald-200/40 rounded-full blur-[50px] pointer-events-none" />
+
+        <div ref={sectorRef.ref} className="max-w-4xl mx-auto relative z-10">
+          <div
+            className="text-center mb-14 transition-all duration-700"
+            style={{ opacity: sectorRef.visible ? 1 : 0, transform: sectorRef.visible ? "none" : "translateY(20px)" }}
+          >
+            {/* Pill badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-200 shadow-sm mb-4">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Your sector</span>
+            </div>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
+              We audit every{" "}
+              <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
+                regulated sector.
+              </span>
+            </h2>
+            <p className="poppins-regular text-slate-500 text-base mt-3 max-w-xl mx-auto leading-relaxed">
+              Select your sector to see exactly what we check — and how we protect you.
+            </p>
+            {/* Accent divider */}
+            <div className="mt-6 flex justify-center gap-1.5">
+              <div className="w-8 h-[3px] rounded-full bg-emerald-400" />
+              <div className="w-4 h-[3px] rounded-full bg-emerald-200" />
+              <div className="w-2 h-[3px] rounded-full bg-emerald-100" />
+            </div>
+          </div>
+
+          <div className="space-y-2.5">
+            {sectorAccordions.map((item, i) => {
+              const Icon = item.icon
+              const isOpen = openAccordion === item.id
+              const p = item.pal
+              return (
+                <div
+                  key={item.id}
+                  className="relative rounded-2xl overflow-hidden transition-all duration-500"
+                  style={{
+                    opacity: sectorRef.visible ? 1 : 0,
+                    transform: sectorRef.visible ? "none" : "translateY(20px)",
+                    transitionDelay: `${i * 80}ms`,
+                    transitionDuration: "600ms",
+                    boxShadow: isOpen
+                      ? "0 8px 32px rgba(0,0,0,0.09), 0 0 0 1.5px rgba(0,0,0,0.07)"
+                      : "0 1px 3px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.06)",
+                  }}
+                >
+                  {/* Animated open background */}
+                  <div
+                    className="absolute inset-0 transition-opacity duration-500"
+                    style={{ background: p.bg, opacity: isOpen ? 1 : 0 }}
+                  />
+                  {/* White closed background */}
+                  <div
+                    className="absolute inset-0 bg-white transition-opacity duration-500"
+                    style={{ opacity: isOpen ? 0 : 1 }}
+                  />
+
+                  {/* Left accent bar */}
+                  <div
+                    className="absolute left-0 top-0 bottom-0 w-[3px] transition-all duration-500"
+                    style={{ background: p.bar, opacity: isOpen ? 1 : 0, transform: isOpen ? "scaleY(1)" : "scaleY(0)" }}
+                  />
+
+                  {/* Header button */}
+                  <button
+                    className="relative z-10 w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+                    onClick={() => setOpenAccordion(isOpen ? null : item.id)}
+                  >
+                    <div className="flex items-center gap-4 min-w-0">
+                      {/* Step number */}
+                      <span
+                        className="poppins-bold text-[11px] tracking-[0.1em] tabular-nums flex-shrink-0 transition-colors duration-300 w-6 text-center"
+                        style={{ color: isOpen ? p.eyebrow : "#94a3b8" }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+
+                      {/* Icon */}
+                      <div
+                        className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300"
+                        style={{
+                          background: isOpen ? p.iconBg : "#f8fafc",
+                          border: `1px solid ${isOpen ? "transparent" : "#e2e8f0"}`,
+                        }}
+                      >
+                        <Icon
+                          className="w-5 h-5 transition-colors duration-300"
+                          style={{ color: isOpen ? p.iconColor : "#64748b" }}
+                          strokeWidth={1.75}
+                        />
+                      </div>
+
+                      {/* Text */}
+                      <div className="min-w-0">
+                        <p
+                          className="poppins-semibold text-[11px] uppercase tracking-[0.12em] mb-0.5 transition-colors duration-300"
+                          style={{ color: isOpen ? p.eyebrow : "#94a3b8" }}
+                        >
+                          {item.eyebrow}
+                        </p>
+                        <p className="poppins-bold text-base sm:text-lg text-slate-900 leading-snug">{item.headline}</p>
+                      </div>
+                    </div>
+
+                    {/* Right: pill + chevron */}
+                    <div className="flex items-center gap-2.5 flex-shrink-0">
+                      <span
+                        className="hidden sm:inline-flex poppins-semibold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-lg transition-all duration-300"
+                        style={{
+                          background: isOpen ? p.pill : "#f1f5f9",
+                          color: isOpen ? p.pillText : "#94a3b8",
+                        }}
+                      >
+                        {item.bullets.length} checks
+                      </span>
+                      <div
+                        className="w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300"
+                        style={{ background: isOpen ? p.iconBg : "#f1f5f9" }}
+                      >
+                        <ChevronDown
+                          className="w-4 h-4 transition-all duration-400"
+                          style={{
+                            color: isOpen ? p.iconColor : "#94a3b8",
+                            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* Expandable body */}
+                  <div
+                    className="relative z-10 overflow-hidden transition-all duration-500 ease-in-out"
+                    style={{ maxHeight: isOpen ? "640px" : "0px" }}
+                  >
+                    <div className="px-6 pb-7">
+                      {/* Divider */}
+                      <div
+                        className="h-px mb-5 transition-all duration-700"
+                        style={{
+                          background: `linear-gradient(to right, ${p.divider}, transparent)`,
+                          opacity: isOpen ? 1 : 0,
+                        }}
+                      />
+
+                      <div className="grid sm:grid-cols-[1fr_auto] gap-6">
+                        {/* Left: description + bullets */}
+                        <div>
+                          <p
+                            className="poppins-regular text-sm text-slate-600 leading-relaxed mb-5 transition-all duration-500"
+                            style={{
+                              opacity: isOpen ? 1 : 0,
+                              transform: isOpen ? "none" : "translateY(8px)",
+                              transitionDelay: isOpen ? "80ms" : "0ms",
+                            }}
+                          >
+                            {item.sub}
+                          </p>
+
+                          <div className="space-y-2.5">
+                            {item.bullets.map((b, j) => (
+                              <div
+                                key={b}
+                                className="flex items-start gap-3"
+                                style={{
+                                  opacity: isOpen ? 1 : 0,
+                                  transform: isOpen ? "none" : "translateX(-10px)",
+                                  transition: "opacity 0.35s ease, transform 0.35s ease",
+                                  transitionDelay: isOpen ? `${160 + j * 55}ms` : "0ms",
+                                }}
+                              >
+                                <div
+                                  className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                                  style={{ background: p.checkBg }}
+                                >
+                                  <CheckCircle className="w-3.5 h-3.5" style={{ color: p.checkColor }} />
+                                </div>
+                                <span className="poppins-regular text-sm text-slate-700 leading-snug">{b}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Right: CTA block */}
+                        <div
+                          className="w-full sm:w-52 flex flex-col gap-2.5 sm:justify-end"
+                          style={{
+                            opacity: isOpen ? 1 : 0,
+                            transform: isOpen ? "none" : "translateY(14px)",
+                            transition: "all 0.45s ease",
+                            transitionDelay: isOpen ? "320ms" : "0ms",
+                          }}
+                        >
+                          {item.cta && item.ctaHref && (
+                            <Link
+                              href={item.ctaHref}
+                              className="inline-flex items-center justify-center gap-2 px-4 py-3 text-white poppins-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 shadow-sm hover:brightness-110"
+                              style={{ background: p.ctaBg }}
+                            >
+                              {item.cta}
+                              <ArrowRight className="w-4 h-4" />
+                            </Link>
+                          )}
+                          <button
+                            onClick={() => setShowEmail(true)}
+                            className="inline-flex items-center justify-center gap-2 px-4 py-3 poppins-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 hover:brightness-110"
+                            style={
+                              item.cta
+                                ? { background: "white", border: `1px solid ${p.divider}`, color: p.eyebrow }
+                                : { background: p.ctaBg, color: "white" }
+                            }
+                          >
+                            {item.secondaryCta}
+                            <ArrowRight className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <ul className="mt-4 space-y-0 divide-y divide-slate-100">
-                  {[
-                    "PDF compliance report (15–20 pages)",
-                    "Gap analysis with priority ranking",
-                    "Step-by-step action checklist",
-                    "Tenant instruction templates",
-                    "Bin capacity calculator",
-                    "Contractor recommendations",
-                    "30-min debrief call included",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-3 py-3">
-                      <CheckCircle className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                      <span className="poppins-regular text-sm text-slate-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-4 pt-4 border-t border-slate-100">
-                  <p className="text-xs text-slate-400 poppins-regular">
-                    Reports delivered within 48 hours — or your next audit is free.
-                  </p>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── LEGISLATION GRID ───────────────────────────────────────────────── */}
+      <section className="py-20 px-6 bg-white overflow-hidden">
+        <div ref={legRef.ref} className="max-w-6xl mx-auto">
+          <div
+            className="text-center mb-12 transition-all duration-700"
+            style={{ opacity: legRef.visible ? 1 : 0, transform: legRef.visible ? "none" : "translateY(20px)" }}
+          >
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">The legal framework</p>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
+              We audit against six areas of UK law.
+            </h2>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {legislation.map((leg, i) => {
+              const Icon = leg.icon
+              return (
+                <div
+                  key={leg.code}
+                  className="group relative bg-white rounded-2xl border border-slate-100 overflow-hidden cursor-default"
+                  style={{
+                    opacity: legRef.visible ? 1 : 0,
+                    transform: legRef.visible ? "none" : "translateY(28px) scale(0.97)",
+                    transitionDelay: `${i * 80}ms`,
+                    transitionDuration: "650ms",
+                    transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)",
+                    height: "240px",
+                  }}
+                >
+                  {/* Animated glow blob — grows on hover */}
+                  <div
+                    className="absolute -top-10 -right-10 w-36 h-36 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-150"
+                    style={{ background: `radial-gradient(circle, ${leg.glow}, transparent 70%)` }}
+                  />
+
+                  {/* Top accent bar */}
+                  <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${leg.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+
+                  {/* Shimmer sweep on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                    style={{ background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%)", backgroundSize: "200% 100%", animation: "shimmerSweep 1.4s ease forwards" }}
+                  />
+
+                  {/* Card border glow on hover */}
+                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{ boxShadow: `0 0 0 1px rgba(16,185,129,0.25), 0 12px 40px ${leg.glow}` }}
+                  />
+
+                  <div className="relative z-10 p-6 flex flex-col h-full">
+                    {/* Icon + code row */}
+                    <div className="flex items-center justify-between mb-5">
+                      {/* Gradient icon circle */}
+                      <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${leg.accent} flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:scale-105 transition-all duration-400`}>
+                        <Icon className="w-5 h-5 text-white" strokeWidth={1.75} />
+                      </div>
+
+                      {/* Code badge */}
+                      <span className="poppins-bold text-[10px] text-slate-400 tracking-[0.18em] uppercase bg-slate-50 border border-slate-100 px-2.5 py-1 rounded-lg group-hover:border-emerald-100 group-hover:text-emerald-600 group-hover:bg-emerald-50 transition-all duration-400">
+                        {leg.code}
+                      </span>
+                    </div>
+
+                    {/* Name */}
+                    <h3 className="poppins-bold text-base text-slate-900 mb-2.5 group-hover:text-emerald-800 transition-colors duration-300 leading-snug">
+                      {leg.name}
+                    </h3>
+
+                    {/* Desc — fades up slightly on hover */}
+                    <p className="poppins-regular text-sm text-slate-500 leading-relaxed flex-1 group-hover:text-slate-600 transition-colors duration-300">
+                      {leg.desc}
+                    </p>
+
+                    {/* Bottom reveal line */}
+                    <div className={`mt-4 h-px bg-gradient-to-r ${leg.accent} scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500`} />
+                  </div>
                 </div>
-              </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── AUDIT PROCESS ──────────────────────────────────────────────────── */}
+      <section className="py-20 px-6 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+        <div ref={processRef.ref} className="max-w-5xl mx-auto">
+          <div
+            className="text-center mb-14 transition-all duration-700"
+            style={{ opacity: processRef.visible ? 1 : 0, transform: processRef.visible ? "none" : "translateY(20px)" }}
+          >
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">The audit process</p>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
+              Five steps. Zero ambiguity.
+            </h2>
+          </div>
+
+          <div className="relative">
+            {/* Vertical connecting line */}
+            <div className="absolute left-6 top-6 bottom-6 w-px bg-gradient-to-b from-emerald-200 via-emerald-400 to-emerald-200 hidden sm:block" style={{ left: "calc(50% - 0.5px)" }} />
+
+            <div className="space-y-5">
+              {auditSteps.map((step, i) => {
+                const Icon = step.icon
+                const isLeft = i % 2 === 0
+                const isActive = activeStep === i
+                return (
+                  <div
+                    key={step.num}
+                    className={`relative flex items-center gap-0 ${isLeft ? "sm:flex-row" : "sm:flex-row-reverse"}`}
+                    style={{
+                      opacity: processRef.visible ? 1 : 0,
+                      transform: processRef.visible ? "none" : `translateX(${isLeft ? -20 : 20}px)`,
+                      transitionDelay: `${i * 100}ms`,
+                      transitionDuration: "600ms",
+                    }}
+                    onMouseEnter={() => setActiveStep(i)}
+                  >
+                    <div className={`flex-1 ${isLeft ? "sm:pr-10" : "sm:pl-10"}`}>
+                      <div
+                        className={`group w-full max-w-md ${isLeft ? "sm:ml-auto" : ""} bg-white rounded-2xl border p-5 transition-all duration-300 cursor-default ${
+                          isActive ? "border-emerald-300 shadow-[0_4px_24px_rgba(16,185,129,0.12)]" : "border-slate-100 shadow-sm hover:border-emerald-200"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${isActive ? "bg-emerald-700" : "bg-emerald-50"}`}>
+                            <Icon className={`w-4 h-4 transition-colors duration-300 ${isActive ? "text-white" : "text-emerald-600"}`} />
+                          </div>
+                          <span className="poppins-bold text-slate-900 text-sm">{step.title}</span>
+                        </div>
+                        <p className="poppins-regular text-sm text-slate-500 leading-relaxed">{step.body}</p>
+                      </div>
+                    </div>
+
+                    {/* Centre node */}
+                    <div className="hidden sm:flex absolute left-1/2 -translate-x-1/2 z-10">
+                      <div className={`w-9 h-9 rounded-full border-2 flex items-center justify-center transition-all duration-300 shadow-sm ${isActive ? "border-emerald-600 bg-emerald-700 scale-110" : "border-emerald-200 bg-white"}`}>
+                        <span className={`poppins-bold text-[11px] transition-colors duration-300 ${isActive ? "text-white" : "text-emerald-500"}`}>{step.num}</span>
+                      </div>
+                    </div>
+
+                    <div className="hidden sm:block flex-1" />
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Secondary nav strip (IBM-style) ────────────────────────────────── */}
-      <nav className="sticky top-[64px] sm:top-[72px] z-40 bg-white border-b border-slate-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center gap-6 overflow-x-auto scrollbar-hide py-0">
-            {[
-              { href: "#waste", label: "Waste Audit" },
-              { href: "#simpler-recycling", label: "Simpler Recycling" },
-              { href: "#packaging", label: "Packaging" },
-              { href: "#our-promise", label: "Our Promise" },
-              { href: "#contact", label: "Contact Us" },
-            ].map(({ href, label }) => (
-              <a
-                key={href}
-                href={href}
-                className="flex-shrink-0 poppins-medium text-sm text-slate-500 hover:text-emerald-700 border-b-2 border-transparent hover:border-emerald-600 py-3.5 transition-all duration-150 whitespace-nowrap"
-              >
-                {label}
-              </a>
-            ))}
+      {/* ── REMOTE vs ON-SITE ──────────────────────────────────────────────── */}
+      <section className="py-20 px-6 bg-white">
+        <div ref={deliveryRef.ref} className="max-w-5xl mx-auto">
+          <div
+            className="text-center mb-10 transition-all duration-700"
+            style={{ opacity: deliveryRef.visible ? 1 : 0, transform: deliveryRef.visible ? "none" : "translateY(20px)" }}
+          >
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Delivery methods</p>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
+              Two ways to audit. Same rigour.
+            </h2>
+          </div>
+
+          {/* Toggle */}
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex bg-slate-100 rounded-xl p-1">
+              {(["remote", "onsite"] as const).map((mode) => (
+                <button
+                  key={mode}
+                  onClick={() => setDeliveryMode(mode)}
+                  className={`px-7 py-2.5 rounded-lg poppins-semibold text-sm transition-all duration-300 ${
+                    deliveryMode === mode
+                      ? "bg-white text-emerald-700 shadow-sm border border-emerald-100"
+                      : "text-slate-500 hover:text-slate-700"
+                  }`}
+                >
+                  {mode === "remote" ? "Remote" : "On-Site"}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div
+            className="grid sm:grid-cols-2 gap-5 transition-all duration-500"
+            style={{ opacity: deliveryRef.visible ? 1 : 0, transform: deliveryRef.visible ? "none" : "translateY(20px)" }}
+          >
+            {deliveryMode === "remote" ? (
+              <>
+                <div className="bg-white rounded-2xl border border-slate-100 p-7 shadow-sm">
+                  <div className="w-11 h-11 bg-emerald-50 rounded-xl flex items-center justify-center mb-5">
+                    <Wifi className="w-5 h-5 text-emerald-600" />
+                  </div>
+                  <h3 className="poppins-bold text-lg text-slate-900 mb-4">How it works</h3>
+                  <div className="space-y-3">
+                    {["You submit documentation, policies, and contractor records","We review all materials against applicable legislation","Written RAG report delivered within 48 hours","No travel required — nationwide coverage from day one"].map((t) => (
+                      <div key={t} className="flex gap-3">
+                        <CheckCircle className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                        <p className="poppins-regular text-sm text-slate-600 leading-snug">{t}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-emerald-700 rounded-2xl p-7 shadow-[0_8px_32px_rgba(5,150,105,0.2)]">
+                  <div className="w-11 h-11 bg-white/10 rounded-xl flex items-center justify-center mb-5">
+                    <FileText className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="poppins-bold text-lg text-white mb-4">Best suited for</h3>
+                  <div className="space-y-3">
+                    {["Multi-site portfolios needing simultaneous coverage","Documentation and policy-focused audits","Pre-inspection compliance reviews","Businesses with strong internal evidence already assembled"].map((t) => (
+                      <div key={t} className="flex gap-3">
+                        <CheckCircle className="w-4 h-4 text-emerald-200 flex-shrink-0 mt-0.5" />
+                        <p className="poppins-regular text-sm text-white/80 leading-snug">{t}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="bg-white rounded-2xl border border-slate-100 p-7 shadow-sm">
+                  <div className="w-11 h-11 bg-emerald-50 rounded-xl flex items-center justify-center mb-5">
+                    <MapPin className="w-5 h-5 text-emerald-600" />
+                  </div>
+                  <h3 className="poppins-bold text-lg text-slate-900 mb-4">How it works</h3>
+                  <div className="space-y-3">
+                    {["Auditor attends site and inspects all waste storage areas","Bin setup, labelling, and separation verified physically","Staff are interviewed on waste handling procedures","Photographic evidence captured and included in report"].map((t) => (
+                      <div key={t} className="flex gap-3">
+                        <CheckCircle className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                        <p className="poppins-regular text-sm text-slate-600 leading-snug">{t}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-emerald-700 rounded-2xl p-7 shadow-[0_8px_32px_rgba(5,150,105,0.2)]">
+                  <div className="w-11 h-11 bg-white/10 rounded-xl flex items-center justify-center mb-5">
+                    <Camera className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="poppins-bold text-lg text-white mb-4">Best suited for</h3>
+                  <div className="space-y-3">
+                    {["Care homes, clinical environments and regulated premises","Sites with complex or high-risk waste streams","Pre-CQC, pre-EA or pre-Ofsted inspection preparation","Businesses where physical evidence is critical"].map((t) => (
+                      <div key={t} className="flex gap-3">
+                        <CheckCircle className="w-4 h-4 text-emerald-200 flex-shrink-0 mt-0.5" />
+                        <p className="poppins-regular text-sm text-white/80 leading-snug">{t}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
-      </nav>
+      </section>
 
-      {/* ── Service tiers ───────────────────────────────────────────────────── */}
-      <section className="px-4 sm:px-6 py-14 sm:py-20 bg-[#f8faf9]">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <div>
-              <p className="poppins-semibold text-xs text-emerald-600 uppercase tracking-widest mb-2">
-                Services & Pricing
-              </p>
-              <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900 tracking-tight">
-                Two Services. Fixed Prices. Fast Turnaround.
-              </h2>
+      {/* ── THE REPORT ─────────────────────────────────────────────────────── */}
+      <section className="py-20 px-6 bg-gradient-to-b from-slate-50 to-white">
+        <div ref={reportRef.ref} className="max-w-5xl mx-auto">
+          <div
+            className="text-center mb-12 transition-all duration-700"
+            style={{ opacity: reportRef.visible ? 1 : 0, transform: reportRef.visible ? "none" : "translateY(20px)" }}
+          >
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">What you receive</p>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
+              A signed report. Within 48 hours.
+            </h2>
+          </div>
+
+          <div
+            className="grid lg:grid-cols-2 gap-8 items-start transition-all duration-700 delay-100"
+            style={{ opacity: reportRef.visible ? 1 : 0, transform: reportRef.visible ? "none" : "translateY(24px)" }}
+          >
+            {/* Report mockup */}
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-lg overflow-hidden">
+              <div className="bg-emerald-700 px-5 py-4 flex items-center justify-between">
+                <div>
+                  <p className="poppins-bold text-white text-sm">Waste Compliance Audit Report</p>
+                  <p className="poppins-regular text-emerald-200 text-xs mt-0.5">Issued within 48 hours · Signed PDF</p>
+                </div>
+                <span className="px-2.5 py-1 bg-white/15 rounded-lg text-white poppins-semibold text-[10px] uppercase tracking-wider">Confidential</span>
+              </div>
+
+              <div className="p-5">
+                <p className="poppins-semibold text-slate-400 text-xs uppercase tracking-widest mb-3">RAG Status Summary</p>
+                <div className="space-y-3">
+                  {[
+                    { label: "Waste Transfer Notes", status: "green", pct: 100 },
+                    { label: "Carrier Registration",  status: "green", pct: 100 },
+                    { label: "Clinical Waste Records", status: "amber", pct: 60 },
+                    { label: "Bin Labelling",          status: "red",   pct: 25 },
+                    { label: "Segregation Setup",      status: "amber", pct: 70 },
+                    { label: "Consignment Notes",      status: "green", pct: 90 },
+                  ].map((row) => (
+                    <div key={row.label}>
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-slate-600 text-xs poppins-regular">{row.label}</span>
+                        <span className={`text-[10px] poppins-bold uppercase tracking-wider ${row.status === "green" ? "text-emerald-600" : row.status === "amber" ? "text-amber-500" : "text-red-500"}`}>
+                          {row.status === "green" ? "Compliant" : row.status === "amber" ? "Action Required" : "Urgent"}
+                        </span>
+                      </div>
+                      <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                        <div
+                          className={`h-1.5 rounded-full transition-all duration-1000 ${row.status === "green" ? "bg-emerald-500" : row.status === "amber" ? "bg-amber-400" : "bg-red-500"}`}
+                          style={{ width: reportRef.visible ? `${row.pct}%` : "0%" }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center gap-2 mt-5 pt-4 border-t border-slate-100">
+                  <BadgeCheck className="w-4 h-4 text-emerald-600" />
+                  <span className="poppins-regular text-slate-400 text-xs">Independent · Signed · Inspection-ready</span>
+                </div>
+              </div>
             </div>
-            <p className="poppins-regular text-sm text-slate-500 sm:text-right sm:max-w-xs">
-              Each service is scoped to your exact situation — no hidden extras.
+
+            {/* What's inside */}
+            <div className="space-y-3">
+              {[
+                { icon: FileCheck,    title: "RAG-Rated Findings",         desc: "Every item is Red (urgent), Amber (action required), or Green (compliant). No ambiguity about priority." },
+                { icon: Search,      title: "Root Cause, Not Symptoms",    desc: "We identify why a gap exists — expired licence, missing form, wrong container — so the fix is obvious." },
+                { icon: ClipboardCheck, title: "Specific Recommendations", desc: "Each finding includes a named action, a suggested timeline, and the legislation it relates to." },
+                { icon: Shield,      title: "Regulator-Ready Format",      desc: "Accepted by CQC, Ofsted, the Environment Agency and councils as evidence of due diligence." },
+              ].map((item) => {
+                const Icon = item.icon
+                return (
+                  <div key={item.title} className="group flex gap-4 p-5 rounded-2xl border border-slate-100 bg-white hover:border-emerald-200 hover:shadow-[0_4px_20px_rgba(16,185,129,0.08)] transition-all duration-300">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-100 transition-colors">
+                      <Icon className="w-4 h-4 text-emerald-600" />
+                    </div>
+                    <div>
+                      <p className="poppins-semibold text-slate-900 text-sm mb-1">{item.title}</p>
+                      <p className="poppins-regular text-slate-500 text-xs leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── WHO USES OUR REPORTS ───────────────────────────────────────────── */}
+      <section className="py-20 px-6 bg-white">
+        <div ref={whoRef.ref} className="max-w-5xl mx-auto">
+          <div
+            className="text-center mb-12 transition-all duration-700"
+            style={{ opacity: whoRef.visible ? 1 : 0, transform: whoRef.visible ? "none" : "translateY(20px)" }}
+          >
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">How clients use the report</p>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">One report. Six use cases.</h2>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
+            {usedBy.map((item, i) => {
+              const Icon = item.icon
+              return (
+                <div
+                  key={item.label}
+                  className="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-slate-100 hover:border-emerald-200 hover:shadow-[0_4px_24px_rgba(16,185,129,0.08)] transition-all duration-300 text-center"
+                  style={{
+                    opacity: whoRef.visible ? 1 : 0,
+                    transform: whoRef.visible ? "none" : "translateY(16px)",
+                    transitionDelay: `${i * 60}ms`,
+                    transitionDuration: "500ms",
+                  }}
+                >
+                  <div className="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-700 flex items-center justify-center transition-all duration-300">
+                    <Icon className="w-5 h-5 text-emerald-600 group-hover:text-white transition-colors duration-300" />
+                  </div>
+                  <p className="poppins-semibold text-sm text-slate-700">{item.label}</p>
+                </div>
+              )
+            })}
+          </div>
+
+          <div
+            className="p-7 rounded-2xl bg-slate-50 border border-slate-100 text-center transition-all duration-700 delay-400"
+            style={{ opacity: whoRef.visible ? 1 : 0, transform: whoRef.visible ? "none" : "translateY(12px)" }}
+          >
+            <Lock className="w-5 h-5 text-emerald-600 mx-auto mb-3" />
+            <p className="poppins-bold text-slate-900 text-base mb-2">Fully independent. Always.</p>
+            <p className="poppins-regular text-slate-500 text-sm max-w-lg mx-auto leading-relaxed">
+              We sell no bins, no collections and no contracts. Our only product is honest compliance advice. You use our report to manage your own contractors, satisfy regulators, and govern your business — entirely on your own terms.
             </p>
           </div>
-          <div className="space-y-6">
-            {tiers.map((tier) => (
-              <TierCard key={tier.id} tier={tier} />
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* ── Simpler Recycling ───────────────────────────────────────────────── */}
-      <SimplerRecyclingSection />
-
-      {/* ── Our Promise ─────────────────────────────────────────────────────── */}
-      <section
-        id="our-promise"
-        className="scroll-mt-28 px-4 sm:px-6 py-14 sm:py-20 bg-emerald-950 text-white"
-      >
-        <div className="max-w-5xl mx-auto">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="sm:col-span-2 lg:col-span-1 flex flex-col justify-center mb-4 sm:mb-0">
-              <p className="poppins-semibold text-xs text-emerald-400 uppercase tracking-widest mb-3">
-                Our Promise
-              </p>
-              <h2 className="poppins-bold text-3xl text-white mb-3 tracking-tight">
-                What You Can Expect From Us.
-              </h2>
-              <p className="poppins-regular text-emerald-100/60 text-sm leading-relaxed">
-                We&rsquo;re independent advisors. We don&rsquo;t sell waste collection services —
-                we have no financial incentive to recommend anything other than what&rsquo;s right for you.
-
-              </p>
+      {/* ── TEMPLATES CTA ──────────────────────────────────────────────────── */}
+      <section className="py-16 px-6 bg-gradient-to-b from-amber-50/60 to-white">
+        <div ref={tplRef.ref} className="max-w-4xl mx-auto">
+          <div
+            className="rounded-2xl border border-amber-200 bg-white p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm transition-all duration-700"
+            style={{ opacity: tplRef.visible ? 1 : 0, transform: tplRef.visible ? "none" : "translateY(16px)" }}
+          >
+            <div className="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center flex-shrink-0">
+              <FileText className="w-7 h-7 text-amber-600" />
             </div>
-
-            {[
-              {
-                icon: Clock,
-                title: "Reports Within 48 Hours",
-                desc: "Or your next audit is free. We don't hold you up.",
-              },
-              {
-                icon: FileText,
-                title: "Written Documentation",
-                desc: "Every engagement produces a PDF report you can show councils, HMRC, or the EA.",
-              },
-              {
-                icon: Shield,
-                title: "No Upselling",
-                desc: "Independent advisors only. We never receive commission from contractors.",
-              },
-              {
-                icon: BadgeCheck,
-                title: "Clear Action Plans",
-                desc: "No jargon. Every report includes a numbered checklist you can action immediately.",
-              },
-            ].map(({ icon: Icon, title, desc }) => (
-              <div
-                key={title}
-                className="bg-emerald-900/50 border border-emerald-700/40 rounded-xl p-5"
-              >
-                <div className="w-9 h-9 rounded-lg bg-emerald-700/60 flex items-center justify-center mb-3">
-                  <Icon className="w-5 h-5 text-emerald-300" />
-                </div>
-                <h3 className="poppins-semibold text-sm text-white mb-1">{title}</h3>
-                <p className="poppins-regular text-xs text-emerald-100/60 leading-relaxed">{desc}</p>
-              </div>
-            ))}
+            <div className="flex-1 text-center sm:text-left">
+              <p className="poppins-semibold text-xs text-amber-600 uppercase tracking-wider mb-1">Templates</p>
+              <h3 className="poppins-bold text-xl text-slate-900 mb-1">Need documentation to start?</h3>
+              <p className="poppins-regular text-sm text-slate-500">Download ready-made waste management plans, tenant instruction letters, and compliance checklists — instantly usable on any device.</p>
+            </div>
+            <Link
+              href="/templates"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white poppins-bold text-sm rounded-xl transition-all duration-200 active:scale-95 flex-shrink-0 shadow-sm"
+            >
+              Browse Templates
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── Contact form ─────────────────────────────────────────────────────── */}
-      <ContactSection />
+      {/* ── CTA ────────────────────────────────────────────────────────────── */}
+      <section className="py-20 px-6 bg-emerald-700 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:48px_48px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-emerald-500/30 rounded-full blur-[80px]" />
+        <div className="max-w-3xl mx-auto relative z-10 text-center">
+          <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5 leading-tight">
+            Ready to know where you actually stand?
+          </h2>
+          <p className="poppins-regular text-emerald-100 text-lg mb-9 max-w-xl mx-auto">
+            Book an audit or run a free risk check. We'll tell you exactly what's compliant, what isn't, and what to do next.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <button
+              onClick={() => setShowEmail(true)}
+              className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white hover:bg-emerald-50 text-emerald-700 poppins-bold text-sm rounded-xl transition-all duration-300 shadow-lg active:scale-95"
+            >
+              <Mail className="w-4 h-4" />
+              Book an Audit
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+            <Link
+              href="/quiz"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 poppins-semibold text-sm rounded-xl transition-all duration-300"
+            >
+              Free Risk Check
+              <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <Footer />
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes gradientX {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        @keyframes shimmerSweep {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      ` }} />
+
+      <EmailTemplateModal isOpen={showEmail} onClose={() => setShowEmail(false)} />
     </div>
   )
 }

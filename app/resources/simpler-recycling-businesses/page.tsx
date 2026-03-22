@@ -212,7 +212,7 @@ export default function SimplerRecyclingBusinesses() {
                   </div>
                 </div>
                 <p className="poppins-regular text-sm mb-6 bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                  <strong>Real example:</strong> A 25-employee warehouse received a £200 fixed penalty for missing food waste bins, plus £450 in rejected collection fees when they tried to put food waste in general waste. Total unexpected cost: £650 for a £295 problem.
+                  <strong>Real example:</strong> A 25-employee warehouse received a £200 fixed penalty for missing food waste bins, plus £450 in rejected collection fees when they tried to put food waste in general waste. A compliance audit would have cost a fraction of the fine.
                 </p>
                 <Button
                   onClick={() => setShowCalendlyModal(true)}
@@ -517,7 +517,7 @@ export default function SimplerRecyclingBusinesses() {
                 </div>
 
                 <div className="bg-emerald-50 rounded-xl p-5 border-2 border-emerald-300">
-                  <h3 className="poppins-semibold text-lg text-emerald-900 mb-4">Milestone Compliance Audit (£295):</h3>
+                  <h3 className="poppins-semibold text-lg text-emerald-900 mb-4">Millstone Compliance Audit:</h3>
                   <ul className="space-y-2">
                     <li className="poppins-regular text-emerald-800 text-sm">• Duration: 90 minutes comprehensive site review</li>
                     <li className="poppins-regular text-emerald-800 text-sm">• Focus: Legal compliance across all regulations</li>
@@ -538,7 +538,7 @@ export default function SimplerRecyclingBusinesses() {
                 </div>
                 <div className="bg-white rounded-lg p-4">
                   <p className="poppins-semibold text-emerald-900 text-lg mb-1">Total value: £1,225-£6,025</p>
-                  <p className="poppins-regular text-emerald-800 text-sm mb-1">Investment: £295</p>
+
                   <p className="poppins-bold text-emerald-700 text-xl">ROI: 4.2X to 20.4X</p>
                 </div>
               </div>
@@ -579,7 +579,7 @@ export default function SimplerRecyclingBusinesses() {
                   <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center mb-4">
                     <BadgeCheck className="w-5 h-5 text-white" />
                   </div>
-                  <h4 className="poppins-bold text-lg mb-2">£295 Compliance Audit</h4>
+                  <h4 className="poppins-bold text-lg mb-2">Compliance Audit</h4>
                   <p className="poppins-regular text-emerald-100 text-sm mb-5 leading-relaxed">
                     90-minute on-site review, written compliance report, legal risk assessment, and compliance certificate — everything you need to be inspection-ready.
                   </p>
@@ -747,12 +747,12 @@ export default function SimplerRecyclingBusinesses() {
                     size="lg"
                     className="bg-white/20 hover:bg-white/30 text-white border-2 border-white/60 poppins-semibold shadow-xl text-base px-7 py-5"
                   >
-                    Book £295 Audit
+                    Book an Audit
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </div>
                 <p className="poppins-regular text-sm mt-4 text-emerald-50">
-                  Gap Analyser is free · Audit from £295 · No sales pressure
+                  Gap Analyser is free · Fixed-fee audit · No sales pressure
                 </p>
               </div>
             </div>

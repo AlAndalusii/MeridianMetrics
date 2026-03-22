@@ -38,7 +38,7 @@ export default function AboutPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 overflow-x-hidden">
       {/* Navigation */}
       <Navigation />
 
@@ -49,7 +49,7 @@ export default function AboutPage() {
               About Millstone Compliance
             </h1>
             <p className="poppins-regular text-xl text-emerald-700">
-              Waste compliance for care homes, children&apos;s homes and agencies
+              Independent waste compliance for regulated businesses across the UK
             </p>
           </div>
       </div>
@@ -67,7 +67,7 @@ export default function AboutPage() {
                 <h2 className="poppins-bold text-3xl text-emerald-900">Who We Are</h2>
               </div>
               <p className="poppins-regular text-base text-emerald-700 leading-relaxed mb-6">
-                We help UK care homes, children&apos;s homes and estate agents handle waste rules. Our focus: clear advice on what you need to do, no confusing jargon.
+                We help UK businesses stay on top of waste regulations — from care homes and children's homes to landlords, agents and commercial premises. Our focus: clear advice on what you need to do, with no confusing jargon.
               </p>
               <div className="space-y-3">
                 {[
@@ -137,7 +137,7 @@ export default function AboutPage() {
               What We Do
             </h2>
             <p className="poppins-regular text-lg text-emerald-700 max-w-xl mx-auto">
-              We help UK care homes and agencies stay compliant with waste regulations
+              We help UK businesses stay compliant with waste regulations — whoever you are, wherever you operate
             </p>
           </div>
 
@@ -366,7 +366,7 @@ export default function AboutPage() {
           {/* Trust indicator */}
           <div className="text-center mt-8 animate-fade-in">
             <p className="poppins-regular text-sm text-emerald-600">
-              Trusted by care homes, children&apos;s homes and agencies across the UK
+              Trusted by regulated businesses across the UK
             </p>
           </div>
         </div>

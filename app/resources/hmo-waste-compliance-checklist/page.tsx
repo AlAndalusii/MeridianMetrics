@@ -112,7 +112,7 @@ export default function HmoWasteChecklistPage() {
                 variant="outline"
                 className="border-white/30 text-white hover:bg-white/10 poppins-semibold px-7 py-3.5 rounded-xl text-sm bg-transparent min-h-[44px]"
               >
-                Book an HMO Audit from £295
+                Book an HMO Audit
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
@@ -155,7 +155,7 @@ export default function HmoWasteChecklistPage() {
             {[
               { value: "£5,000",  label: "Maximum fine",        sub: "Fixed penalty notice",   color: "bg-red-50 border-red-200",   val: "text-red-700"  },
               { value: "16",      label: "Checklist questions",  sub: "10 HIGH · 6 MED risk",   color: "bg-emerald-50 border-emerald-200", val: "text-emerald-700" },
-              { value: "£295",    label: "Full HMO Audit",       sub: "48-hour written report", color: "bg-blue-50 border-blue-200", val: "text-blue-700" },
+              { value: "48hr",    label: "Full HMO Audit",       sub: "Written report turnaround", color: "bg-blue-50 border-blue-200", val: "text-blue-700" },
             ].map((s) => (
               <div key={s.label} className={`rounded-2xl border p-5 text-center ${s.color}`}>
                 <p className={`poppins-bold text-3xl mb-1 ${s.val}`}>{s.value}</p>
@@ -323,10 +323,6 @@ export default function HmoWasteChecklistPage() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-              <div>
-                <span className="poppins-bold text-3xl text-emerald-900">£295</span>
-                <span className="poppins-regular text-emerald-600 text-sm ml-2">per property · one-time</span>
-              </div>
               <Button
                 onClick={() => setShowCalendlyModal(true)}
                 size="lg"

@@ -190,7 +190,7 @@ export default function CareHomesPage() {
                   className="group inline-flex items-center justify-center gap-2.5 bg-emerald-700 hover:bg-emerald-800 text-white poppins-bold text-sm px-7 py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg shadow-emerald-700/20"
                 >
                   <Calendar className="w-4 h-4" />
-                  Book Site Audit — £295
+                  Book a Site Audit
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </button>
                 <Link
@@ -467,7 +467,7 @@ export default function CareHomesPage() {
               className="group inline-flex items-center justify-center gap-2.5 bg-white hover:bg-emerald-50 text-emerald-800 poppins-bold text-sm px-8 py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-xl shadow-black/20"
             >
               <Calendar className="w-4 h-4" />
-              Book Site Audit — £295
+              Book a Site Audit
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
             </button>
             <Link

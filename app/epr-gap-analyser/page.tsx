@@ -199,7 +199,7 @@ const questions: Question[] = [
       { label: "Never reviewed — we rely on our compliance scheme's calculation", value: "never_reviewed", score: 2, flag: "gap" },
       { label: "Never reviewed — we're not sure an independent review is possible", value: "never_unaware", score: 1, flag: "gap" },
     ],
-    whyMatters: "Industry data shows over 60% of businesses are overpaying EPR fees due to incorrect household/non-household splits, misclassified materials, or erroneous tonnage figures. An independent fee audit typically costs £295 and pays for itself within weeks through fee reductions.",
+    whyMatters: "Industry data shows over 60% of businesses are overpaying EPR fees due to incorrect household/non-household splits, misclassified materials, or erroneous tonnage figures. An independent fee audit pays for itself within weeks through fee reductions.",
   },
 ]
 

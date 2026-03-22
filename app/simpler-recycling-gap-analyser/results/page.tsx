@@ -324,7 +324,7 @@ function ResultsContent() {
               className="w-full poppins-bold py-5 text-base bg-white text-red-700 hover:bg-red-50 rounded-2xl transition-all hover:shadow-lg group"
             >
               <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-              BOOK YOUR £295 COMPLIANCE AUDIT
+              BOOK YOUR COMPLIANCE AUDIT
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
             <p className="text-center text-xs text-red-300 mt-3 poppins-regular">Limited availability — priority booking for high-risk businesses</p>

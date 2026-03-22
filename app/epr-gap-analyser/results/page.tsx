@@ -295,7 +295,7 @@ function ResultsContent() {
             </div>
             <Button onClick={() => setShowCalendly(true)} className="w-full poppins-bold py-5 text-base bg-white text-red-700 hover:bg-red-50 rounded-2xl transition-all hover:shadow-lg group">
               <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-              BOOK YOUR £295 COMPLIANCE AUDIT
+              BOOK YOUR COMPLIANCE AUDIT
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
             <p className="text-center text-xs text-red-300 mt-3 poppins-regular">Limited availability — priority booking for high-risk businesses</p>
@@ -344,7 +344,7 @@ function ResultsContent() {
 
           <div className="space-y-3">
             <div className="border border-blue-200 rounded-2xl p-5 bg-white">
-              <p className="poppins-bold text-blue-900">£295 — Compliance Audit</p>
+              <p className="poppins-bold text-blue-900">Compliance Audit</p>
               <p className="poppins-regular text-xs text-gray-500 mt-0.5 mb-3">90-minute on-site assessment</p>
               <ul className="space-y-1 mb-4">
                 {["Identifies all EPR compliance gaps", "Written report within 24 hours", "Fee overpayment analysis", "Penalty risk calculation"].map((f, i) => (
@@ -357,7 +357,7 @@ function ResultsContent() {
             </div>
 
             <div className="border border-gray-200 rounded-2xl p-5 bg-white">
-              <p className="poppins-bold text-gray-900">£495 — Audit + Implementation Support</p>
+              <p className="poppins-bold text-gray-900">Audit + Implementation Support</p>
               <p className="poppins-regular text-xs text-gray-500 mt-0.5 mb-3">Everything in Compliance Audit, plus</p>
               <ul className="space-y-1 mb-4">
                 {["30-day email/phone support", "Help correcting EPR data submissions", "Record-keeping templates", "Follow-up compliance check"].map((f, i) => (

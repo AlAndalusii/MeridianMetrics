@@ -425,7 +425,7 @@ export default function CareHomeChecklistPrintPage() {
         <div className="pdf-footer">
           <div className="pdf-footer-left">
             <strong>Millstone Compliance Ltd</strong> · hello@millstonecompliance.com · 0121 751 2262<br />
-            millstonecompliance.com · Full care home audits from £295 · Updated March 2026
+            millstonecompliance.com · Independent care home compliance audits · Updated March 2026
           </div>
           <div className="pdf-footer-right">millstonecompliance.com/resources</div>
         </div>

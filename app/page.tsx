@@ -45,14 +45,17 @@ import {
   Shield,
 } from "lucide-react"
 import Link from "next/link"
+import dynamic from "next/dynamic"
 import { useRouter } from "next/navigation"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { CONTACT_INFO } from "@/lib/constants"
-import { CalendlyModal } from "@/components/CalendlyWidget"
-import { EmailTemplateModal } from "@/components/EmailTemplateModal"
 import { MobileMenu } from "@/components/MobileMenu"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
+
+// Defer heavy modal bundles — loaded only when first opened
+const CalendlyModal = dynamic(() => import("@/components/CalendlyWidget").then(m => ({ default: m.CalendlyModal })), { ssr: false })
+const EmailTemplateModal = dynamic(() => import("@/components/EmailTemplateModal").then(m => ({ default: m.EmailTemplateModal })), { ssr: false })
 
 // Fortune 500 Premium Logo Component - World-Class Design
 const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: string }) => (
@@ -282,7 +285,7 @@ export default function MillstoneComplianceWebsite() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 text-emerald-900 overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 text-emerald-900 overflow-x-hidden">
       {/* Animated Background — hidden on mobile (too GPU-heavy on small screens) */}
       <div className="hidden sm:block fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-emerald-200/30 to-green-300/20 rounded-full blur-3xl animate-pulse"></div>
@@ -334,17 +337,17 @@ export default function MillstoneComplianceWebsite() {
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
-                We audit care homes, children's homes and estate agents before councils inspect. Prevent £300-5,000 fines and enforcement.
+                We audit regulated businesses before councils and inspectors arrive. Prevent fines, enforcement notices and the cost of reactive compliance.
               </p>
 
               {/* Primary CTAs */}
               <div className="flex flex-wrap gap-3 mb-5">
-                <Link
-                  href="/services#waste"
+                <button
+                  onClick={() => setShowEmailTemplate(true)}
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-sm hover:shadow-md"
                 >
-                  Book Care Home Audit — £295 <ArrowRight className="w-4 h-4" />
-                </Link>
+                  Book a Compliance Audit <ArrowRight className="w-4 h-4" />
+                </button>
                 <Link
                   href="/quiz"
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95"
@@ -355,8 +358,8 @@ export default function MillstoneComplianceWebsite() {
 
               {/* Also serving */}
               <p className="text-xs text-slate-400 poppins-regular mb-5">
-                Also serving:{" "}
-                <span className="text-slate-600 poppins-medium">Social Care · Children's Homes · Agencies</span>
+                Serving:{" "}
+                <span className="text-slate-600 poppins-medium">Care Homes · Children's Homes · Landlords · Agents</span>
               </p>
 
               {/* Trust signals */}
@@ -562,7 +565,7 @@ export default function MillstoneComplianceWebsite() {
                 {[
                   { label: '100% pass rate', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
                   { label: '48hr turnaround', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
-                  { label: '£295 fixed fee', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
+                  { label: 'Fixed Fee', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
                   { label: 'CQC · Ofsted · EA', color: 'bg-emerald-900 border-emerald-900 text-emerald-100' },
                 ].map(({ label, color }) => (
                   <span key={label} className={`inline-flex items-center px-3.5 py-1.5 rounded-full border text-xs poppins-medium ${color}`}>
@@ -1398,7 +1401,7 @@ export default function MillstoneComplianceWebsite() {
           {/* 3 feature cards */}
           <div className="grid sm:grid-cols-3 gap-4 pt-4 pb-2">
             {[
-              { icon: Target, title: "Check Your Setup", desc: "We visit, count your bins, and verify your contractor. Written report in 48 hours.", tag: "£295", tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200" },
+              { icon: Target, title: "Check Your Setup", desc: "We visit, count your bins, and verify your contractor. Written report in 48 hours.", tag: "Fixed Fee", tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200" },
               { icon: Trash2, title: "14-Day 3-Bin Fix", desc: "Dry recyclables, food waste, general waste. We scope the right setup for your property.", tag: "Ready in 7 Days", tagColor: "bg-blue-50 text-blue-700 border-blue-200" },
               { icon: ClipboardCheck, title: "Inspection Ready", desc: "Labelled bins, contractor records, written proof. Hand it over the moment an inspector arrives.", tag: "Zero Fines", tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200" },
             ].map((card) => (
@@ -1600,7 +1603,7 @@ export default function MillstoneComplianceWebsite() {
                   </span>
                 </h2>
                 <p className="poppins-regular text-base sm:text-lg text-emerald-700 max-w-xl mx-auto leading-relaxed animate-fade-in-up">
-                  We help UK care homes and agencies stay compliant, avoid fines, and pass inspections — without the stress of figuring it out alone.
+                  We help UK regulated businesses stay compliant, avoid fines, and pass inspections — without the stress of figuring it out alone.
                 </p>
               </div>
 
@@ -1673,7 +1676,7 @@ export default function MillstoneComplianceWebsite() {
                 </h3>
 
                 <p className="poppins-regular text-emerald-700 text-sm sm:text-sm leading-relaxed mb-4">
-                  Waste rules for care homes and agencies are changing fast — and the consequences of getting it wrong are real. Fines, failed inspections and legal liability don&apos;t have to be your problem. We take it off your plate.
+                  Waste regulations are tightening across every regulated sector — and the consequences of getting it wrong are real. Fines, failed inspections and legal liability don&apos;t have to be your problem. We take it off your plate.
                 </p>
 
                 <p className="poppins-regular text-emerald-600 text-sm leading-relaxed mb-5">
@@ -1722,7 +1725,7 @@ export default function MillstoneComplianceWebsite() {
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/0 to-emerald-50/50 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-300/60 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative flex-shrink-0 w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-emerald-100 shadow-sm group-hover/item:shadow-md transition-all duration-500 p-2">
-                  <Image src="/University of Cambridge new Logo Vector.svg" alt="University of Cambridge" width={32} height={32} className="object-contain w-full h-full group-hover/item:scale-105 transition-transform duration-500" />
+                  <Image src="/University of Cambridge new Logo Vector.svg" alt="University of Cambridge" width={32} height={32} loading="lazy" className="object-contain w-full h-full group-hover/item:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="relative flex-1 min-w-0">
                   <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Cambridge Institute for Sustainability Leadership</h4>
@@ -1735,7 +1738,7 @@ export default function MillstoneComplianceWebsite() {
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/0 to-emerald-50/50 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-300/60 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative flex-shrink-0 w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-emerald-100 shadow-sm group-hover/item:shadow-md transition-all duration-500 p-1.5">
-                  <Image src="/Screenshot 2025-08-31 at 21.43.30.png" alt="HMRC" width={36} height={36} className="object-contain w-full h-full group-hover/item:scale-105 transition-transform duration-500" />
+                  <Image src="/Screenshot 2025-08-31 at 21.43.30.png" alt="HMRC" width={36} height={36} loading="lazy" className="object-contain w-full h-full group-hover/item:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="relative flex-1 min-w-0">
                   <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Regulatory Systems Background</h4>
@@ -1824,7 +1827,7 @@ export default function MillstoneComplianceWebsite() {
 
             {/* Enhanced description with fade-in animation */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 leading-relaxed animate-fade-in-up delay-100 px-4">
-              We handle waste compliance for UK care homes, children&apos;s homes and estate agents, so you avoid fines, failed inspections and licence issues.
+              We handle waste compliance for regulated businesses across the UK — so you avoid fines, failed inspections and licence issues.
             </p>
 
             {/* Premium FAQ Section */}
@@ -1832,28 +1835,28 @@ export default function MillstoneComplianceWebsite() {
               <div className="space-y-6">
               {[
                 {
-                  question: "Could our waste setup already put our HMO licence at risk?",
-                  answer: "If your HMOs lack the right bin setup and written tenant instructions, you're exposed to council fines and licence reviews. Our audit checks every property, fixes gaps and leaves you with documents you can show an inspector the same day."
+                  question: "How do I know if my organisation is at risk of a waste compliance fine?",
+                  answer: "If you can't immediately produce Waste Transfer Notes, confirm your carrier's licence, or show your bin setup meets current Simpler Recycling rules — you're at risk. Our free Waste Risk Check takes five minutes and tells you exactly where you stand."
                 },
                 {
-                  question: "Are our care or children's home waste systems safe for CQC, Ofsted and the EA?",
-                  answer: "Care and children's homes sit under strict waste rules: clinical waste, Simpler Recycling, Duty of Care and CQC or Ofsted scrutiny. We audit every stream, check contractors and paperwork, and give you a 48‑hour, inspection‑ready report."
+                  question: "What types of organisations do you work with?",
+                  answer: "We work with any regulated business that handles waste: care homes, children's homes, HMO landlords, letting agents, estate agents, multi-site portfolios and commercial premises. If you have a waste obligation, we can audit it."
                 },
                 {
-                  question: "Do we really need to care about waste regulations as an agent or landlord?",
-                  answer: "If your group manages HMOs or portfolios, you're caught by Duty of Care and Simpler Recycling. We check your position once, fix weak spots, and leave you with clear actions so waste never becomes another job for your team."
+                  question: "What does a compliance audit actually cover?",
+                  answer: "We review your waste streams, bin setup, Duty of Care documentation, contractor licences and Waste Transfer Notes. You get a signed PDF report within 48 hours, with a prioritised action list you can hand to an inspector the same day."
                 },
                 {
                   question: "What do your compliance audits cost?",
-                  answer: "Single‑site waste and Simpler Recycling audits start at £295. Portfolios, care and children's homes are priced upfront on a fixed‑fee basis, so you know the total cost before we start."
+                  answer: "All audits are priced upfront on a fixed‑fee basis, so you know the total cost before we start. Get in touch for a quote tailored to your site or portfolio."
                 },
                 {
-                  question: "When will I have something I can show my council, CQC or the EA?",
-                  answer: "You get a signed PDF report within 48 hours of the assessment, ready to show a council inspector, CQC, Ofsted or the Environment Agency. If we miss the deadline, your next audit is free."
+                  question: "When will I have something I can show a council, CQC, Ofsted or the EA?",
+                  answer: "You get a signed PDF report within 48 hours of the assessment, ready to show any inspector or regulator. If we miss the deadline, your next audit is free."
                 },
                 {
-                  question: "Are you just trying to sell bins and contracts?",
-                  answer: "No. We don't sell bins or waste collections. We act as an independent compliance auditor, and you use our report to push your existing contractors or tender the work however you like."
+                  question: "Are you independent, or do you sell bins and contracts?",
+                  answer: "Completely independent. We don't sell bins, collections or contractor deals. Our only job is to give you an honest audit and a clear report — you decide what to do with your contractors afterwards."
                 }
               ].map((item, index) => (
                   <div

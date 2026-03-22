@@ -1,0 +1,36 @@
+<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark background -->
+  <rect width="60" height="60" fill="#0a1628"/>
+
+  <!-- Simplified hexagonal container -->
+  <path
+    d="M30 4 L50 16 L50 44 L30 56 L10 44 L10 16 Z"
+    fill="url(#minimalGradientDark)"
+    stroke="#34d399"
+    stroke-width="1.5"
+    filter="url(#dropShadowDark)"
+  />
+
+  <!-- Clean M letterform -->
+  <g transform="translate(30, 30)">
+    <path
+      d="M-12 -10 L-12 10 M-12 -10 L-2 4 M-2 4 L8 -10 M8 -10 L8 10"
+      stroke="#34d399"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+    />
+  </g>
+
+  <defs>
+    <linearGradient id="minimalGradientDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#065f46"/>
+    </linearGradient>
+
+    <filter id="dropShadowDark" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#10b981" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+</svg>

@@ -323,7 +323,7 @@ function ResultsContent() {
               className="w-full poppins-bold py-5 text-base bg-white text-red-700 hover:bg-red-50 rounded-2xl transition-all hover:shadow-lg group"
             >
               <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-              BOOK YOUR £295 COMPLIANCE AUDIT
+              BOOK YOUR COMPLIANCE AUDIT
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
             <p className="text-center text-xs text-red-300 mt-3 poppins-regular">Limited availability — priority booking for high-risk businesses</p>
@@ -383,11 +383,11 @@ function ResultsContent() {
 
           {/* Service tiers */}
           <div className="space-y-3">
-            {/* £295 Audit */}
+            {/* Audit */}
             <div className="border border-emerald-200 rounded-2xl p-5 bg-white">
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <p className="poppins-bold text-emerald-900">£295 — Compliance Audit</p>
+                  <p className="poppins-bold text-emerald-900">Compliance Audit</p>
                   <p className="poppins-regular text-xs text-gray-500 mt-0.5">90-minute on-site assessment</p>
                 </div>
               </div>
@@ -413,11 +413,11 @@ function ResultsContent() {
               </Button>
             </div>
 
-            {/* £495 Setup */}
+            {/* Audit + Support */}
             <div className="border border-gray-200 rounded-2xl p-5 bg-white">
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <p className="poppins-bold text-gray-900">£495 — Audit + Implementation Support</p>
+                  <p className="poppins-bold text-gray-900">Audit + Implementation Support</p>
                   <p className="poppins-regular text-xs text-gray-500 mt-0.5">Everything in Compliance Audit, plus</p>
                 </div>
               </div>

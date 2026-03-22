@@ -85,7 +85,7 @@ export default function EPRResultsPage() {
   const getRecommendedService = () => {
     if (score >= 80) {
       return {
-        title: "EPR Health Check - £295",
+        title: "EPR Health Check",
         description: "Annual review to ensure ongoing compliance and identify potential savings",
         features: [
           "Fee calculation review",
@@ -97,7 +97,7 @@ export default function EPRResultsPage() {
     }
     if (score >= 50) {
       return {
-        title: "EPR Fee Review - £795",
+        title: "EPR Fee Review",
         description: "Comprehensive audit of your EPR invoices and potential overcharges",
         features: [
           "Full invoice audit (household/non-household split)",
@@ -109,7 +109,7 @@ export default function EPRResultsPage() {
       }
     }
     return {
-      title: "Managed EPR Compliance - £499/month",
+      title: "Managed EPR Compliance",
       description: "We handle all your EPR obligations - registration, data, fees, and reporting",
       features: [
         "Complete EPR registration setup",
@@ -363,10 +363,6 @@ export default function EPRResultsPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {/* Option 1 */}
               <div className="border-2 border-blue-100 rounded-2xl p-6 hover:border-blue-300 transition-all">
-                <div className="text-center mb-4">
-                  <div className="poppins-bold text-3xl text-blue-900 mb-1">£295</div>
-                  <div className="poppins-medium text-sm text-blue-600">One-time</div>
-                </div>
                 <h3 className="poppins-bold text-lg text-blue-900 mb-2">EPR Audit</h3>
                 <p className="poppins-regular text-sm text-blue-700 mb-4">
                   90-minute assessment of your EPR setup
@@ -383,10 +379,6 @@ export default function EPRResultsPage() {
                     Most Popular
                   </span>
                 </div>
-                <div className="text-center mb-4">
-                  <div className="poppins-bold text-3xl text-blue-900 mb-1">£795</div>
-                  <div className="poppins-medium text-sm text-blue-600">One-time</div>
-                </div>
                 <h3 className="poppins-bold text-lg text-blue-900 mb-2">Fee Review</h3>
                 <p className="poppins-regular text-sm text-blue-700 mb-4">
                   Full invoice audit + £5K-£15K savings
@@ -398,10 +390,6 @@ export default function EPRResultsPage() {
 
               {/* Option 3 */}
               <div className="border-2 border-blue-100 rounded-2xl p-6 hover:border-blue-300 transition-all">
-                <div className="text-center mb-4">
-                  <div className="poppins-bold text-3xl text-blue-900 mb-1">£499</div>
-                  <div className="poppins-medium text-sm text-blue-600">Per month</div>
-                </div>
                 <h3 className="poppins-bold text-lg text-blue-900 mb-2">Managed Service</h3>
                 <p className="poppins-regular text-sm text-blue-700 mb-4">
                   We handle everything ongoing

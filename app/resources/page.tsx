@@ -218,142 +218,137 @@ export default function ResourcesPage() {
     : nonFeatured.filter(a => a.category === selected)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       <Navigation />
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="bg-gradient-to-br from-emerald-900 via-emerald-950 to-emerald-900 pt-36 pb-24 px-4 sm:px-6 relative overflow-hidden">
-        {/* Radial glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(16,185,129,0.18),transparent)] pointer-events-none" />
-        {/* Dot mesh */}
-        <div
-          className="absolute inset-0 opacity-[0.05] pointer-events-none"
-          style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "32px 32px" }}
-        />
-        {/* Shine line */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent" />
+      <section className="relative pt-32 pb-20 px-4 sm:px-6 bg-gradient-to-b from-emerald-50 via-white to-white overflow-hidden">
+        {/* Subtle grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.04)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
+        {/* Top glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[280px] bg-emerald-100/70 rounded-full blur-[90px] pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-10">
-          {/* Eyebrow */}
-          <div
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-700/60 bg-emerald-800/40 backdrop-blur-sm mb-8"
-            style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(10px)", transition: "opacity 0.5s ease, transform 0.5s ease" }}
-          >
-            <BadgeCheck className="w-3.5 h-3.5 text-emerald-400" />
-            <span className="poppins-semibold text-[10px] text-emerald-300 uppercase tracking-[0.18em]">UK Waste Compliance Intelligence</span>
-          </div>
+          <div className="max-w-3xl">
+            {/* Badge */}
+            <div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-200 shadow-sm mb-7"
+              style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(10px)", transition: "opacity 0.5s ease, transform 0.5s ease" }}
+            >
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">UK Waste Compliance Intelligence</span>
+            </div>
 
-          {/* Headline */}
-          <h1
-            className="poppins-bold text-[52px] sm:text-[68px] md:text-[84px] text-white leading-[0.95] tracking-[-0.03em] mb-6"
-            style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(16px)", transition: "opacity 0.55s ease 60ms, transform 0.55s ease 60ms" }}
-          >
-            Waste<br />
-            <span className="bg-gradient-to-r from-emerald-300 via-emerald-200 to-green-300 bg-clip-text text-transparent">
-              Intelligence.
-            </span>
-          </h1>
+            {/* Headline */}
+            <h1
+              className="poppins-bold text-5xl sm:text-6xl md:text-7xl leading-[0.95] tracking-tight text-slate-900 mb-5"
+              style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(16px)", transition: "opacity 0.55s ease 60ms, transform 0.55s ease 60ms" }}
+            >
+              Waste{" "}
+              <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
+                Intelligence.
+              </span>
+            </h1>
 
-          {/* Sub */}
-          <p
-            className="poppins-regular text-[16px] sm:text-[18px] text-emerald-200/70 max-w-lg leading-relaxed mb-12"
-            style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(12px)", transition: "opacity 0.55s ease 120ms, transform 0.55s ease 120ms" }}
-          >
-            Expert guides for care homes, children&apos;s homes and estate agents — plain English, inspection-ready, free.
-          </p>
+            {/* Sub */}
+            <p
+              className="poppins-regular text-lg sm:text-xl text-slate-500 max-w-xl leading-relaxed mb-10"
+              style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(12px)", transition: "opacity 0.55s ease 120ms, transform 0.55s ease 120ms" }}
+            >
+              Expert guides for UK businesses — plain English, inspection-ready, free.
+            </p>
 
-          {/* Stats strip */}
-          <div
-            className="flex flex-wrap items-center gap-8 sm:gap-12"
-            style={{ opacity: visible ? 1 : 0, transition: "opacity 0.55s ease 200ms" }}
-          >
-            {[
-              { value: "8",    label: "Free Guides" },
-              { value: "2",    label: "Free Tools" },
-              { value: "48hr", label: "Report Turnaround" },
-              { value: "£0",   label: "To Get Started" },
-            ].map((s, i) => (
-              <div key={i}>
-                <p className="poppins-bold text-[22px] sm:text-[26px] text-white leading-none">{s.value}</p>
-                <p className="poppins-regular text-[10px] text-emerald-400/70 uppercase tracking-[0.14em] mt-1">{s.label}</p>
-              </div>
-            ))}
+            {/* Stats strip */}
+            <div
+              className="flex flex-wrap items-center gap-8 sm:gap-12"
+              style={{ opacity: visible ? 1 : 0, transition: "opacity 0.55s ease 200ms" }}
+            >
+              {[
+                { value: "8",    label: "Free Guides" },
+                { value: "2",    label: "Free Tools" },
+                { value: "48hr", label: "Report Turnaround" },
+                { value: "£0",   label: "To Get Started" },
+              ].map((s, i) => (
+                <div key={i} className="flex flex-col">
+                  <p className="poppins-bold text-3xl sm:text-4xl text-emerald-700 leading-none">{s.value}</p>
+                  <p className="poppins-regular text-[10px] text-slate-400 uppercase tracking-[0.14em] mt-1.5">{s.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── Featured article ─────────────────────────────────────── */}
-      <section className="px-4 sm:px-6 py-14">
+      <section className="px-4 sm:px-6 pt-4 pb-10">
         <div className="max-w-6xl mx-auto">
           <Link
             href={featured.href}
-            className="group relative flex flex-col lg:flex-row overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900 to-emerald-950 border border-emerald-700/40 hover:border-emerald-500/60 transition-all duration-500 hover:shadow-[0_32px_80px_-12px_rgba(6,95,70,0.35)]"
+            className="group relative flex flex-col lg:flex-row overflow-hidden rounded-3xl bg-white border border-slate-200 hover:border-emerald-300 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(16,185,129,0.15)] shadow-sm"
             style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(20px)", transition: "opacity 0.55s ease 240ms, transform 0.55s ease 240ms" }}
           >
-            {/* Shine overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent animate-shine pointer-events-none" />
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent" />
+            {/* Top emerald accent bar */}
+            <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-emerald-500 via-emerald-400 to-teal-400" />
 
             {/* Left content */}
-            <div className="flex-1 p-8 sm:p-10 lg:p-14 flex flex-col justify-between relative z-10">
+            <div className="flex-1 p-8 sm:p-10 lg:p-14 flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-3 mb-8">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-400/15 border border-emerald-400/30 text-emerald-300 text-[10px] poppins-bold uppercase tracking-[0.15em]">
+                <div className="flex items-center gap-3 mb-7">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] poppins-bold uppercase tracking-[0.15em]">
                     <Sparkles className="w-2.5 h-2.5" />
                     Featured Guide
                   </span>
-                  <span className="flex items-center gap-1.5 text-emerald-500/60 text-[11px] poppins-medium">
+                  <span className="flex items-center gap-1.5 text-slate-400 text-[11px] poppins-medium">
                     <Clock className="w-3 h-3" />
                     {featured.readTime}
                   </span>
                 </div>
 
-                <p className="poppins-semibold text-[10px] text-emerald-400/70 uppercase tracking-[0.18em] mb-3">
+                <p className="poppins-semibold text-[10px] text-emerald-600 uppercase tracking-[0.18em] mb-3">
                   Care Homes
                 </p>
 
-                <h2 className="poppins-bold text-[26px] sm:text-[32px] lg:text-[38px] text-white leading-[1.1] tracking-tight mb-5">
+                <h2 className="poppins-bold text-[26px] sm:text-[32px] lg:text-[36px] text-slate-900 leading-[1.1] tracking-tight mb-4 group-hover:text-emerald-800 transition-colors duration-300">
                   {featured.title}
                 </h2>
 
-                <p className="poppins-regular text-[15px] text-emerald-200/60 leading-relaxed max-w-xl">
+                <p className="poppins-regular text-[15px] text-slate-500 leading-relaxed max-w-xl">
                   {featured.description}
                 </p>
               </div>
 
-              <div className="mt-10 flex flex-wrap items-center gap-3">
-                <div className="inline-flex items-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-white poppins-bold text-[13px] px-6 py-3 rounded-xl transition-colors duration-300 shadow-lg shadow-emerald-900/40">
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <div className="inline-flex items-center gap-2.5 bg-emerald-700 group-hover:bg-emerald-800 text-white poppins-bold text-[13px] px-6 py-3 rounded-xl transition-all duration-300 shadow-md shadow-emerald-700/20">
                   Read the guide
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {featured.topics.map((t) => (
-                    <span key={t} className="px-2.5 py-1 rounded-lg bg-emerald-800/50 text-emerald-300/70 text-[10px] poppins-semibold border border-emerald-700/40">{t}</span>
+                    <span key={t} className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-[10px] poppins-semibold border border-emerald-200">{t}</span>
                   ))}
                 </div>
               </div>
             </div>
 
             {/* Right decorative panel */}
-            <div className="hidden lg:flex w-[320px] flex-shrink-0 relative bg-emerald-950/60 items-center justify-center p-10 border-l border-emerald-800/40">
+            <div className="hidden lg:flex w-[300px] flex-shrink-0 relative bg-emerald-50 items-center justify-center p-10 border-l border-emerald-100">
               <div
-                className="absolute inset-0 opacity-[0.05]"
-                style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)", backgroundSize: "36px 36px" }}
+                className="absolute inset-0 opacity-[0.4]"
+                style={{ backgroundImage: "linear-gradient(rgba(16,185,129,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.07) 1px, transparent 1px)", backgroundSize: "36px 36px" }}
               />
-              <div className="relative z-10 flex flex-col items-center gap-5">
-                <div className="w-20 h-20 rounded-2xl bg-emerald-800/60 border border-emerald-700/50 flex items-center justify-center">
-                  <Heart className="w-10 h-10 text-emerald-400" strokeWidth={1.5} />
+              <div className="relative z-10 flex flex-col items-center gap-4">
+                <div className="w-16 h-16 rounded-2xl bg-white border border-emerald-200 shadow-sm flex items-center justify-center">
+                  <Heart className="w-8 h-8 text-emerald-600" strokeWidth={1.5} />
                 </div>
-                <div className="space-y-2.5 w-full">
+                <div className="space-y-2 w-full">
                   {["CQC Ready", "HTM 07-01", "Clinical Waste", "Simpler Recycling"].map((tag) => (
-                    <div key={tag} className="flex items-center gap-2.5 bg-emerald-900/60 rounded-xl px-4 py-2.5 border border-emerald-800/50">
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                      <span className="poppins-medium text-[12px] text-emerald-300/70">{tag}</span>
+                    <div key={tag} className="flex items-center gap-2.5 bg-white rounded-xl px-4 py-2.5 border border-emerald-200 shadow-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      <span className="poppins-medium text-[12px] text-emerald-700">{tag}</span>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-600/5 rounded-full blur-3xl pointer-events-none" />
             </div>
           </Link>
         </div>
@@ -361,7 +356,7 @@ export default function ResourcesPage() {
 
       {/* ── Category filter ─────────────────────────────────────── */}
       <section
-        className="px-4 sm:px-6 pb-8"
+        className="px-4 sm:px-6 pb-6"
         style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(8px)", transition: "opacity 0.5s ease 300ms, transform 0.5s ease 300ms" }}
       >
         <div className="max-w-6xl mx-auto">
@@ -384,7 +379,7 @@ export default function ResourcesPage() {
             )}
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border border-emerald-100 rounded-2xl p-1.5 shadow-sm inline-flex flex-wrap gap-1 w-full sm:w-auto">
+          <div className="bg-white border border-slate-200 rounded-2xl p-1.5 shadow-sm inline-flex flex-wrap gap-1 w-full sm:w-auto">
             {catKeys.map(key => {
               const meta    = catMeta[key]
               const count   = key === "all" ? articles.length : articles.filter(a => a.category === key).length
@@ -406,7 +401,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* ── Article grid ─────────────────────────────────────────── */}
-      <section className="px-4 sm:px-6 pb-20">
+      <section className="px-4 sm:px-6 pb-16">
         <div className="max-w-6xl mx-auto">
 
           {/* Featured row item in "all" view */}
@@ -414,7 +409,7 @@ export default function ResourcesPage() {
             <div className="mb-4">
               <Link
                 href={featured.href}
-                className="group flex items-center justify-between bg-white rounded-2xl border border-emerald-100 shadow-sm px-6 py-4 hover:border-emerald-300 hover:shadow-md transition-all duration-300"
+                className="group flex items-center justify-between bg-white rounded-2xl border border-slate-200 shadow-sm px-6 py-4 hover:border-emerald-300 hover:shadow-md transition-all duration-300"
                 style={{ opacity: visible ? 1 : 0, transition: "opacity 0.4s ease 0ms" }}
               >
                 <div className="flex items-center gap-4">
@@ -446,7 +441,7 @@ export default function ResourcesPage() {
                 <Link
                   key={`${selected}-${article.href}`}
                   href={article.href}
-                  className="group relative flex flex-col bg-white rounded-2xl overflow-hidden border border-emerald-100 shadow-sm hover:border-emerald-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_-8px_rgba(6,95,70,0.15)] transition-all duration-300"
+                  className="group relative flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:border-emerald-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_-8px_rgba(16,185,129,0.12)] transition-all duration-300"
                   style={{
                     opacity:    visible ? 1 : 0,
                     transform:  visible ? "translateY(0)" : "translateY(16px)",
@@ -459,7 +454,7 @@ export default function ResourcesPage() {
                   <div className="flex flex-col flex-1 p-6">
                     {/* Number + badge row */}
                     <div className="flex items-start justify-between mb-5">
-                      <span className="poppins-bold text-[32px] leading-none text-emerald-50 select-none">{num}</span>
+                      <span className="poppins-bold text-[32px] leading-none text-slate-100 select-none">{num}</span>
                       <div className="flex flex-col items-end gap-2">
                         <span className={`px-2.5 py-0.5 rounded-full text-[10px] poppins-bold ${badgeStyles[article.badge] ?? "bg-emerald-50 text-emerald-700 border border-emerald-200"}`}>
                           {article.badge}
@@ -477,12 +472,12 @@ export default function ResourcesPage() {
                     </p>
 
                     {/* Title */}
-                    <h2 className="poppins-bold text-[15px] sm:text-[15px] text-emerald-900 mb-3 leading-snug group-hover:text-emerald-700 transition-colors line-clamp-2">
+                    <h2 className="poppins-bold text-[15px] sm:text-[15px] text-slate-900 mb-3 leading-snug group-hover:text-emerald-700 transition-colors line-clamp-2">
                       {article.title}
                     </h2>
 
                     {/* Description */}
-                    <p className="poppins-regular text-[13px] text-emerald-600/80 leading-relaxed flex-1 mb-5 line-clamp-3">
+                    <p className="poppins-regular text-[13px] text-slate-500 leading-relaxed flex-1 mb-5 line-clamp-3">
                       {article.description}
                     </p>
 
@@ -514,30 +509,28 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* ── Free Tools — emerald dark section ────────────────────── */}
-      <section className="bg-gradient-to-b from-emerald-900 to-emerald-950 px-4 sm:px-6 py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(16,185,129,0.12),transparent)] pointer-events-none" />
-        <div
-          className="absolute inset-0 opacity-[0.04] pointer-events-none"
-          style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
-        />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
+      {/* ── Free Tools ───────────────────────────────────────────── */}
+      <section className="px-4 sm:px-6 py-20 bg-gradient-to-b from-emerald-50/50 via-white to-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.04)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-emerald-100/60 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-700/60 bg-emerald-800/40 mb-4">
-                <Zap className="w-3 h-3 text-emerald-400" />
-                <span className="poppins-semibold text-[10px] text-emerald-300 uppercase tracking-[0.16em]">Free Interactive Tools</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-200 shadow-sm mb-5">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Free Interactive Tools</span>
               </div>
-              <h2 className="poppins-bold text-[26px] sm:text-[34px] text-white tracking-tight leading-tight">
-                Know where you stand<br />
-                <span className="text-emerald-400/70">in under 3 minutes.</span>
+              <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900 tracking-tight leading-tight">
+                Know where you stand{" "}
+                <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
+                  in under 3 minutes.
+                </span>
               </h2>
             </div>
-            <p className="poppins-regular text-[13px] text-emerald-300/50 max-w-xs sm:text-right leading-relaxed">
-              No card required. Instant results. Built for care homes, HMO landlords and estate agents.
+            <p className="poppins-regular text-[13px] text-slate-400 max-w-xs sm:text-right leading-relaxed">
+              No card required. Instant results. Built for UK businesses of every type.
             </p>
           </div>
 
@@ -549,26 +542,28 @@ export default function ResourcesPage() {
                 <Link
                   key={i}
                   href={tool.href}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-emerald-800/30 border border-emerald-700/40 hover:border-emerald-500/60 hover:bg-emerald-800/50 transition-all duration-300 hover:shadow-[0_20px_60px_-12px_rgba(6,95,70,0.5)] p-8"
+                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 transition-all duration-300 hover:shadow-[0_16px_48px_-8px_rgba(16,185,129,0.15)] p-8"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/0 via-emerald-600/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-400/5 rounded-full blur-3xl pointer-events-none group-hover:bg-emerald-400/10 transition-colors duration-500" />
+                  {/* Top accent */}
+                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-emerald-500 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                  {/* Glow blob */}
+                  <div className="absolute -top-6 -right-6 w-32 h-32 bg-emerald-100/0 group-hover:bg-emerald-100/60 rounded-full blur-[50px] transition-all duration-500 pointer-events-none" />
 
                   <div className="relative z-10">
                     <div className="flex items-start justify-between mb-7">
-                      <div className="w-12 h-12 rounded-2xl bg-emerald-700/50 border border-emerald-600/40 flex items-center justify-center group-hover:bg-emerald-700/70 transition-colors duration-300">
-                        <Icon className="w-6 h-6 text-emerald-300" strokeWidth={1.5} />
+                      <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center group-hover:bg-emerald-700 group-hover:border-transparent transition-all duration-300">
+                        <Icon className="w-6 h-6 text-emerald-600 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
                       </div>
-                      <span className="poppins-bold text-[40px] text-emerald-800/60 leading-none select-none group-hover:text-emerald-700/80 transition-colors duration-300">{tool.num}</span>
+                      <span className="poppins-bold text-[40px] text-slate-100 leading-none select-none group-hover:text-emerald-100 transition-colors duration-300">{tool.num}</span>
                     </div>
 
-                    <span className="block poppins-semibold text-[10px] text-emerald-400/70 uppercase tracking-[0.18em] mb-2">
+                    <span className="block poppins-semibold text-[10px] text-emerald-600 uppercase tracking-[0.18em] mb-2">
                       {tool.tag}
                     </span>
-                    <h3 className="poppins-bold text-[20px] sm:text-[22px] text-white mb-3 leading-snug">{tool.label}</h3>
-                    <p className="poppins-regular text-[13px] text-emerald-300/50 leading-relaxed mb-7">{tool.description}</p>
+                    <h3 className="poppins-bold text-[20px] sm:text-[22px] text-slate-900 mb-3 leading-snug group-hover:text-emerald-800 transition-colors duration-300">{tool.label}</h3>
+                    <p className="poppins-regular text-[13px] text-slate-500 leading-relaxed mb-7">{tool.description}</p>
 
-                    <div className="flex items-center gap-2 poppins-bold text-[13px] text-emerald-400 group-hover:text-emerald-300 transition-colors duration-200">
+                    <div className="flex items-center gap-2 poppins-bold text-[13px] text-emerald-600 group-hover:text-emerald-700 transition-colors duration-200">
                       Start free check
                       <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                     </div>
@@ -581,56 +576,43 @@ export default function ResourcesPage() {
       </section>
 
       {/* ── Bottom CTA ───────────────────────────────────────────── */}
-      <section className="bg-gradient-to-b from-emerald-50 via-white to-emerald-50 px-4 sm:px-6 py-20 sm:py-28">
-        <div className="max-w-5xl mx-auto">
-          <div className="relative overflow-hidden bg-gradient-to-br from-emerald-700 via-emerald-800 to-emerald-900 rounded-3xl px-8 sm:px-14 py-16 sm:py-20 text-center shadow-2xl shadow-emerald-900/30">
-            {/* Animated shine */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer pointer-events-none" />
-            {/* Glow */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(52,211,153,0.15),transparent)] pointer-events-none" />
-            {/* Dot grid */}
-            <div
-              className="absolute inset-0 opacity-[0.06] pointer-events-none"
-              style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
-            />
-            {/* Top shine line */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-300/40 to-transparent" />
+      <section className="py-20 px-4 sm:px-6 bg-emerald-700 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:48px_48px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-emerald-500/30 rounded-full blur-[80px]" />
 
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-600/30 mb-7">
-                <Shield className="w-3 h-3 text-emerald-300" />
-                <span className="poppins-semibold text-[10px] text-emerald-200/80 uppercase tracking-[0.16em]">Inspection-Ready in 48 Hours</span>
-              </div>
-
-              <h2 className="poppins-bold text-[34px] sm:text-[48px] text-white leading-[1.05] tracking-tight mb-5">
-                Not sure where<br />you stand?
-              </h2>
-
-              <p className="poppins-regular text-[16px] text-emerald-100/60 mb-10 max-w-md mx-auto leading-relaxed">
-                3 minutes. Duty of Care, clinical waste and Simpler Recycling covered. Full waste compliance picture — free.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
-                <button
-                  onClick={() => router.push("/quiz")}
-                  className="group inline-flex items-center justify-center gap-2.5 bg-white text-emerald-800 hover:bg-emerald-50 poppins-bold text-[14px] px-8 py-4 rounded-xl transition-all duration-200 active:scale-95 shadow-xl shadow-emerald-900/20 w-full sm:w-auto"
-                >
-                  Free Waste Compliance Check
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                </button>
-                <button
-                  onClick={() => router.push("/services")}
-                  className="inline-flex items-center justify-center gap-2 border border-emerald-500/40 hover:border-emerald-400/60 bg-emerald-700/30 hover:bg-emerald-700/50 text-emerald-100 poppins-semibold text-[14px] px-8 py-4 rounded-xl transition-all duration-200 active:scale-95 w-full sm:w-auto"
-                >
-                  View Our Services
-                </button>
-              </div>
-
-              <p className="mt-8 poppins-regular text-[11px] text-emerald-300/40">
-                No card required · Instant results · Trusted by care homes and agencies across the UK
-              </p>
-            </div>
+        <div className="max-w-3xl mx-auto relative z-10 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 mb-6">
+            <Shield className="w-3.5 h-3.5 text-emerald-200" />
+            <span className="poppins-semibold text-[11px] text-emerald-100 uppercase tracking-[0.15em]">Inspection-Ready in 48 Hours</span>
           </div>
+
+          <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5 leading-tight">
+            Not sure where you stand?
+          </h2>
+
+          <p className="poppins-regular text-emerald-100 text-lg mb-9 max-w-xl mx-auto leading-relaxed">
+            3 minutes. Duty of Care, clinical waste and Simpler Recycling covered. Full compliance picture — free.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <button
+              onClick={() => router.push("/quiz")}
+              className="group inline-flex items-center justify-center gap-2.5 bg-white hover:bg-emerald-50 text-emerald-700 poppins-bold text-sm px-7 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-lg"
+            >
+              Free Waste Compliance Check
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </button>
+            <button
+              onClick={() => router.push("/services")}
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 text-white poppins-semibold text-sm px-7 py-3.5 rounded-xl transition-all duration-200 active:scale-95"
+            >
+              View Our Services
+            </button>
+          </div>
+
+          <p className="mt-8 poppins-regular text-[11px] text-emerald-300/60">
+            No card required · Instant results · Trusted by regulated businesses across the UK
+          </p>
         </div>
       </section>
 

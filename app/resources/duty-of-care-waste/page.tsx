@@ -666,7 +666,7 @@ export default function DutyOfCareWaste() {
                   size="lg"
                   className="bg-white text-emerald-700 hover:bg-emerald-50 poppins-semibold shadow-xl w-full sm:w-auto"
                 >
-                  Book Compliance Audit (£295)
+                  Book a Compliance Audit
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
                 <p className="poppins-regular text-sm mt-4 text-emerald-50">
@@ -713,7 +713,7 @@ export default function DutyOfCareWaste() {
                 </div>
 
                 <div className="bg-emerald-50 rounded-xl p-5 border-2 border-emerald-300">
-                  <h3 className="poppins-semibold text-lg text-emerald-900 mb-4">Milestone Compliance Duty of Care Audit (£295):</h3>
+                  <h3 className="poppins-semibold text-lg text-emerald-900 mb-4">Millstone Compliance Duty of Care Audit:</h3>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
                       <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" />
@@ -771,7 +771,6 @@ export default function DutyOfCareWaste() {
                   <p className="poppins-regular text-emerald-800 text-sm">Peace of mind: <strong>Priceless</strong></p>
                 </div>
                 <div className="bg-white rounded-lg p-4">
-                  <p className="poppins-semibold text-emerald-900 text-lg mb-1">Investment: £295</p>
                   <p className="poppins-bold text-emerald-700 text-xl">ROI: 2.7X minimum (if only avoiding one fixed penalty)</p>
                 </div>
               </div>
@@ -860,12 +859,12 @@ export default function DutyOfCareWaste() {
                     size="lg"
                     className="bg-white/20 hover:bg-white/30 text-white border-2 border-white/60 poppins-semibold shadow-xl text-base px-7 py-5"
                   >
-                    Book Your £295 Audit
+                    Book Your Audit
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </div>
                 <p className="poppins-regular text-sm mt-4 text-emerald-50">
-                  Gap Analyser is free · Audit from £295 · No hidden costs
+                  Gap Analyser is free · Fixed-fee audit · No hidden costs
                 </p>
               </div>
             </div>

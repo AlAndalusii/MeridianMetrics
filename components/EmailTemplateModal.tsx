@@ -23,36 +23,26 @@ export function EmailTemplateModal({ isOpen, onClose }: EmailTemplateModalProps)
 
   const generateEmailTemplate = () => {
     const currentDate = new Date().toLocaleDateString('en-GB')
-    const subject = "PPT Compliance Consultation Request"
-    
+    const subject = "Compliance Audit Enquiry"
+
     const body = `Dear Millstone Compliance Team,
 
-I hope this email finds you well. I am writing to request information about your PPT compliance services and would like to schedule a consultation to discuss my business's packaging tax obligations.
+I am writing to enquire about booking a compliance audit for my organisation.
 
-**Business Information:**
-• Company: ${companyName || '[Your Company Name]'}
+**Our Details:**
+• Organisation: ${companyName || '[Your Organisation Name]'}
 • Contact: ${contactName || '[Your Name]'}
 • Phone: ${phoneNumber || '[Your Phone Number]'}
 
-**Consultation Request:**
-${selectedDate && selectedTime ? `• Preferred Date: ${selectedDate} at ${selectedTime}` : '• Please suggest available dates and times for a consultation'}
+**Preferred Appointment:**
+${selectedDate && selectedTime ? `• Date: ${selectedDate} at ${selectedTime}` : '• Please suggest your available dates and times'}
 
-**Areas of Interest:**
-• PPT compliance assessment
-• Documentation review and organisation
-• Ongoing compliance monitoring
-• HMRC audit preparation
-
-${additionalNotes ? `**Additional Information:**
+${additionalNotes ? `**Additional Notes:**
 ${additionalNotes}
 
-` : ''}I would appreciate the opportunity to discuss how your services can help ensure our business remains compliant with UK packaging tax regulations.
+` : ''}Please let me know the next steps to get our audit booked.
 
-Please let me know your availability and the next steps for scheduling a consultation.
-
-Thank you for your time and consideration.
-
-Best regards,
+Thank you,
 ${contactName || '[Your Name]'}
 
 ---
@@ -103,8 +93,8 @@ ${currentDate}`
                   <Mail className="w-5 h-5 text-emerald-600" />
                 </div>
                 <div>
-                  <h3 className="poppins-semibold text-lg text-emerald-900">Email Template</h3>
-                  <p className="text-sm text-emerald-600">Professional inquiry template ready to send</p>
+                  <h3 className="poppins-semibold text-lg text-emerald-900">Book a Compliance Audit</h3>
+                  <p className="text-sm text-emerald-600">Fill in your details and send directly to us</p>
                 </div>
               </div>
               <button
@@ -198,7 +188,7 @@ ${currentDate}`
                   <div className="space-y-3">
                     <div>
                       <label className="text-xs font-medium text-emerald-600 uppercase tracking-wide">Subject</label>
-                      <p className="text-sm text-emerald-900 font-medium">PPT Compliance Consultation Request</p>
+                      <p className="text-sm text-emerald-900 font-medium">Compliance Audit Enquiry</p>
                     </div>
                     <div>
                       <label className="text-xs font-medium text-emerald-600 uppercase tracking-wide">To</label>

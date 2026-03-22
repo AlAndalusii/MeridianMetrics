@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="pt-12 pb-8">
           
           {/* Navigation Section */}
-          <div className="py-8 grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-12">
+          <div className="py-8 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-12">
             
             {/* Services */}
             <div>
@@ -177,7 +177,7 @@ export default function Footer() {
               </div>
               
               {/* Badges */}
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">
                   <Award className="h-3 w-3 text-emerald-600" />
                   <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">UK Compliant</span>

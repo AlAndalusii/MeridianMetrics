@@ -499,12 +499,8 @@ export default function SimplerRecyclingResultsPage() {
                 </Button>
               </div>
 
-              {/* Option 2 — £295 Audit */}
+              {/* Option 2 — Audit */}
               <div className="border-2 border-green-100 rounded-2xl p-6 hover:border-green-300 transition-all flex flex-col">
-                <div className="text-center mb-4">
-                  <div className="poppins-bold text-3xl text-green-900 mb-1">£295</div>
-                  <div className="poppins-medium text-xs text-green-600 uppercase tracking-wide">One-time</div>
-                </div>
                 <h3 className="poppins-bold text-base text-green-900 mb-2">Compliance Audit</h3>
                 <ul className="space-y-1.5 mb-5 flex-1">
                   {["90-min on-site assessment", "Written report in 24 hours", "Penalty risk calculation", "Action plan included"].map((f, i) => (
@@ -521,12 +517,8 @@ export default function SimplerRecyclingResultsPage() {
                 </Button>
               </div>
 
-              {/* Option 3 — £495 Audit + Support */}
+              {/* Option 3 — Audit + Support */}
               <div className="border-2 border-green-100 rounded-2xl p-6 hover:border-green-300 transition-all flex flex-col">
-                <div className="text-center mb-4">
-                  <div className="poppins-bold text-3xl text-green-900 mb-1">£495</div>
-                  <div className="poppins-medium text-xs text-green-600 uppercase tracking-wide">One-time</div>
-                </div>
                 <h3 className="poppins-bold text-base text-green-900 mb-2">Audit + Support</h3>
                 <ul className="space-y-1.5 mb-5 flex-1">
                   {["Everything in Audit", "30-day email & phone support", "Help sourcing contractors", "Follow-up compliance check"].map((f, i) => (

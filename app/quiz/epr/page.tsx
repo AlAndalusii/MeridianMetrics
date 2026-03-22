@@ -167,7 +167,7 @@ const questions: Question[] = [
       { label: "Upcoming deadline - need urgent help", value: "deadline" },
       { label: "Just want peace of mind we're compliant", value: "peace_of_mind" },
     ],
-    whyMatters: "This helps us recommend the right service tier - audit (£295), fee review (£795), or managed compliance (£499/month).",
+    whyMatters: "This helps us recommend the right service tier — audit, fee review, or managed compliance.",
   },
 ]
 

@@ -565,7 +565,7 @@ export default function PlasticPackagingTax2027() {
                     <span className="poppins-bold text-white text-xs">2</span>
                   </div>
                   <div>
-                    <p className="poppins-semibold text-white mb-0.5">Book a £295 Plastic Packaging Tax Audit</p>
+                    <p className="poppins-semibold text-white mb-0.5">Book a Plastic Packaging Tax Audit</p>
                     <p className="text-emerald-200">Calculate exact recycled content under new rules, identify compliance gaps, find supplier alternatives, and prepare documentation systems.</p>
                   </div>
                 </div>

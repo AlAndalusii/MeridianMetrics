@@ -17,24 +17,18 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "UK Waste Compliance for Care Homes & Agencies | Independent Audits",
+  title: "Waste Compliance Audits for UK Businesses | Millstone Compliance",
   description:
-    "Millstone Compliance provides independent waste compliance audits for UK care homes, children's homes and estate agents. Duty of Care, clinical waste, Simpler Recycling. 48hr reports. Fixed-fee, no hidden costs.",
+    "Independent waste compliance audits for UK SMEs. Duty of Care, Simpler Recycling, clinical waste & more. Fixed-fee, 48hr reports, no hidden costs.",
   keywords: [
     "waste compliance UK",
-    "care home waste compliance",
-    "clinical waste compliance",
+    "UK business waste compliance",
+    "SME waste compliance",
+    "waste compliance audit",
     "duty of care waste",
     "simpler recycling compliance",
+    "clinical waste compliance",
     "waste transfer notes",
-    "waste compliance audit",
-    "HMO waste compliance",
-    "children's home waste compliance",
-    "estate agent waste compliance",
-    "CQC waste compliance",
-    "Ofsted waste compliance",
-    "HTM 07-01 compliance",
-    "clinical waste audit",
     "environmental compliance UK",
     "waste carrier registration",
     "hazardous waste compliance",
@@ -44,7 +38,13 @@ export const metadata: Metadata = {
     "waste compliance certificate",
     "independent waste auditor",
     "48hr compliance report",
-    "waste compliance care homes UK"
+    "small business waste compliance UK",
+    "waste audit UK",
+    "waste regulations UK businesses",
+    "care home waste compliance",
+    "HMO waste compliance",
+    "HTM 07-01 compliance",
+    "CQC waste compliance"
   ],
   generator: 'v0.app',
   appleWebApp: {
@@ -56,16 +56,16 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "UK Waste Compliance for Care Homes & Agencies | Independent Audits",
-    description: "Millstone Compliance provides independent waste compliance audits for UK care homes, children's homes and estate agents. Duty of Care, clinical waste, Simpler Recycling. 48hr reports. Fixed-fee, no hidden costs.",
+    title: "Waste Compliance Audits for UK Businesses | Millstone Compliance",
+    description: "Independent waste compliance audits for UK SMEs. Duty of Care, Simpler Recycling, clinical waste & more. Fixed-fee, 48hr reports, no hidden costs.",
     type: "website",
     locale: "en_GB",
     siteName: "Millstone Compliance",
   },
   twitter: {
     card: "summary_large_image",
-    title: "UK Waste Compliance for Care Homes & Agencies | Independent Audits",
-    description: "Millstone Compliance provides independent waste compliance audits for UK care homes, children's homes and estate agents. Duty of Care, clinical waste, Simpler Recycling. 48hr reports. Fixed-fee, no hidden costs.",
+    title: "Waste Compliance Audits for UK Businesses | Millstone Compliance",
+    description: "Independent waste compliance audits for UK SMEs. Duty of Care, Simpler Recycling, clinical waste & more. Fixed-fee, 48hr reports, no hidden costs.",
   },
 }
 

@@ -5,7 +5,7 @@ import Link from "next/link"
 import {
   ArrowRight, ArrowUpRight, ClipboardCheck, Recycle,
   ListChecks, FileCheck, Leaf, Trash2, Truck, Heart,
-  Clock, Zap, BookOpen, Shield, BadgeCheck, Sparkles,
+  Clock, Zap, BookOpen, Shield, BadgeCheck, Sparkles, Warehouse,
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import Footer from "@/components/Footer"
@@ -108,6 +108,16 @@ const articles: {
     topics: ["Legal Requirements", "WTN", "Carrier Licences"],
     category: "duty-of-care",
     readTime: "10 min",
+  },
+  {
+    title: "Waste Duty of Care & Simpler Recycling: A Practical Guide for Warehouses",
+    description: "Legal obligations, waste segregation setup, and how to choose authorised contractors — a plain-English guide for warehouse operators.",
+    icon: Warehouse,
+    href: "/resources/warehouse-waste-guide",
+    badge: "Essential",
+    topics: ["Warehouses", "Duty of Care", "Simpler Recycling"],
+    category: "duty-of-care",
+    readTime: "12 min",
   },
   {
     title: "Waste Documentation: Complete UK Guide",

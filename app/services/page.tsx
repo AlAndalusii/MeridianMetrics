@@ -104,9 +104,9 @@ const usedBy = [
 ]
 
 const sectors = [
-  "Care Homes", "Children's Homes", "HMO Properties",
-  "Offices", "Warehouses", "Retail Operations",
-  "Letting Agents", "Estate Agents", "Multi-Site Portfolios",
+  "Care Homes", "UK Property Sector", "HMO Properties",
+  "Offices", "Warehouses", "Food & beverage manufacturing",
+  "Hospitality", "Logistics", "Multi-Site Portfolios",
 ]
 
 /* ─── Sector accordion items ─────────────────────────────────────────────── */
@@ -114,9 +114,9 @@ const sectorAccordions = [
   {
     id: "hmo",
     icon: Home,
-    eyebrow: "HMO Landlords & Letting Agents",
-    headline: "Avoid Fines & Licence Revocation",
-    sub: "Simpler Recycling makes you personally liable for your tenants' waste mistakes. One failed inspection can trigger a fine and a licence review.",
+    eyebrow: "UK Property Sector",
+    headline: "Avoid Fines & Keep Your Licences",
+    sub: "Simpler Recycling makes landlords personally liable for tenants' waste mistakes. One failed inspection can trigger a fine and a licence review.",
     bullets: [
       "Bin setup verified against Simpler Recycling requirements",
       "Waste Transfer Notes and carrier licences checked",
@@ -126,7 +126,7 @@ const sectorAccordions = [
     ],
     cta: "View HMO Compliance Checklist",
     ctaHref: "/resources/hmo-waste-compliance-checklist",
-    secondaryCta: "Book an HMO Audit",
+    secondaryCta: "Book a Property Audit — from £400",
     pal: {
       eyebrow: "#b45309",
       bg: "linear-gradient(135deg,rgba(255,251,235,0.65) 0%,rgba(255,255,255,0.98) 100%)",
@@ -141,9 +141,9 @@ const sectorAccordions = [
   {
     id: "carehomes",
     icon: Heart,
-    eyebrow: "Care Homes & Children's Homes",
+    eyebrow: "Care Homes",
     headline: "New Rules. Real Fines. One Audit.",
-    sub: "CQC, Ofsted and the Environment Agency all scrutinise waste. Clinical waste, Simpler Recycling and Duty of Care must all be correct — simultaneously.",
+    sub: "CQC and the Environment Agency both scrutinise waste in care homes. Clinical waste, Simpler Recycling and Duty of Care must all be correct — simultaneously.",
     bullets: [
       "Clinical waste segregation and HTM 07-01 compliance",
       "All waste streams checked against EA and CQC requirements",
@@ -247,6 +247,33 @@ const sectorAccordions = [
     },
   },
   {
+    id: "manufacturers",
+    icon: Package,
+    eyebrow: "Food & beverage manufacturing",
+    headline: "Food, Textiles, Packaging & Light assembly",
+    sub: "Non-hazardous manufacturers face real waste compliance obligations. Packaging waste, food waste, and Duty of Care all apply — and EPR may too if you exceed 50 tonnes.",
+    bullets: [
+      "Packaging waste obligations checked (EPR if >50 tonnes)",
+      "General waste Duty of Care and carrier licences audited",
+      "Food waste separation verified against Simpler Recycling",
+      "Dry recyclables (plastic film, cardboard) streams reviewed",
+      "48-hour report with clear action plan for operations teams",
+    ],
+    cta: null,
+    ctaHref: null,
+    secondaryCta: "Book a Manufacturer Audit",
+    pal: {
+      eyebrow: "#0f766e",
+      bg: "linear-gradient(135deg,rgba(204,251,241,0.55) 0%,rgba(255,255,255,0.98) 100%)",
+      bar: "linear-gradient(to bottom,#2dd4bf,#0f766e)",
+      iconBg: "#ccfbf1", iconColor: "#0f766e",
+      pill: "#ccfbf1", pillText: "#134e4a",
+      divider: "#5eead4",
+      checkBg: "#f0fdfa", checkColor: "#0d9488",
+      ctaBg: "#0f766e",
+    },
+  },
+  {
     id: "other",
     icon: Sparkles,
     eyebrow: "Every Other Regulated Business",
@@ -313,7 +340,7 @@ export default function ServicesPage() {
             style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(12px)" }}
           >
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Independent Compliance Audits · UK</span>
+            <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Waste & Recycling Compliance Specialists · UK</span>
           </div>
 
           {/* Headline */}
@@ -331,7 +358,7 @@ export default function ServicesPage() {
             className="poppins-regular text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-700 delay-200"
             style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(16px)" }}
           >
-            Independent waste compliance audits for UK businesses of every type — remotely or on-site, with a signed written report within 48 hours.
+            Unbiased waste and recycling compliance audits for UK businesses — remote or on-site, with fixed-fee pricing and a 48-hour signed report.
           </p>
 
           {/* CTAs */}
@@ -373,7 +400,7 @@ export default function ServicesPage() {
         <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-0">
           {[
             { val: 48,  suf: "hr", label: "Report turnaround" },
-            { val: 100, suf: "%",  label: "Audit pass rate" },
+            { val: 100, suf: "%",  label: "Inspection-ready reports" },
             { val: 6,   suf: "",   label: "Legislation areas" },
             { val: 0,   suf: "",   label: "Clients ever fined" },
           ].map((s, i) => (
@@ -1000,9 +1027,9 @@ export default function ServicesPage() {
             style={{ opacity: whoRef.visible ? 1 : 0, transform: whoRef.visible ? "none" : "translateY(12px)" }}
           >
             <Lock className="w-5 h-5 text-emerald-600 mx-auto mb-3" />
-            <p className="poppins-bold text-slate-900 text-base mb-2">Fully independent. Always.</p>
+            <p className="poppins-bold text-slate-900 text-base mb-2">Unbiased advice. Always.</p>
             <p className="poppins-regular text-slate-500 text-sm max-w-lg mx-auto leading-relaxed">
-              We sell no bins, no collections and no contracts. Our only product is honest compliance advice. You use our report to manage your own contractors, satisfy regulators, and govern your business — entirely on your own terms.
+              We sell no bins, collections or contracts. Our only product is unbiased compliance advice. You use our report to manage contractors, satisfy regulators, and run your business — entirely on your own terms.
             </p>
           </div>
         </div>

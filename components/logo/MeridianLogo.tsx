@@ -353,7 +353,7 @@ export const MillstoneLogo: React.FC<LogoProps> = ({
                   Millstone Compliance
                 </span>
                 <span className="poppins-medium text-[10px] sm:text-xs text-emerald-600 tracking-widest uppercase mt-0.5 sm:mt-1 truncate">
-                  Your Regulatory Advisors
+                  Your Compliance Partners
                 </span>
               </div>
             )}
@@ -370,7 +370,7 @@ export const MillstoneLogo: React.FC<LogoProps> = ({
                   Millstone Compliance
                 </span>
                 <span className="poppins-medium text-[10px] sm:text-xs text-emerald-600 tracking-widest uppercase mt-0.5 sm:mt-1 truncate">
-                  Your Regulatory Advisors
+                  Your Compliance Partners
                 </span>
               </div>
             )}
@@ -388,7 +388,7 @@ export const MillstoneLogo: React.FC<LogoProps> = ({
                   Millstone Compliance
                 </span>
                 <span className="poppins-medium text-[10px] sm:text-xs text-emerald-600 tracking-widest uppercase mt-0.5 sm:mt-1 truncate">
-                  Your Regulatory Advisors
+                  Your Compliance Partners
                 </span>
               </div>
             )}

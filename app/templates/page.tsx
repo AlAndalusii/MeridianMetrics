@@ -32,11 +32,11 @@ import Footer from "@/components/Footer"
 // ─── Hero animated checklist mockup ──────────────────────────────────────────
 
 const heroCheckItems = [
-  { q: "Four waste streams provided?",             risk: "HIGH",   answer: true  },
+  { q: "Duty of Care transfer notes in place?",    risk: "HIGH",   answer: true  },
   { q: "EA-licensed contractor documented?",       risk: "HIGH",   answer: false },
-  { q: "Written instructions issued to tenants?",  risk: "HIGH",   answer: true  },
+  { q: "Waste streams correctly separated?",       risk: "HIGH",   answer: true  },
   { q: "Waste Management Plan in place?",          risk: "HIGH",   answer: false },
-  { q: "Bin area has clear vehicle access?",       risk: "MEDIUM", answer: true  },
+  { q: "Bin area clearly labelled?",               risk: "MEDIUM", answer: true  },
   { q: "6-month inspection log maintained?",       risk: "HIGH",   answer: false },
 ]
 
@@ -67,7 +67,7 @@ function HeroChecklistMockup() {
             <div className="w-5 h-5 rounded-md bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
               <ClipboardCheck className="w-3 h-3 text-emerald-400" />
             </div>
-            <span className="poppins-semibold text-[10px] text-white/60 uppercase tracking-widest">HMO Compliance Checklist</span>
+            <span className="poppins-semibold text-[10px] text-white/60 uppercase tracking-widest">Waste Compliance Checklist</span>
           </div>
           <div className="relative flex items-center justify-between mt-2">
             <div className="flex gap-3">
@@ -137,11 +137,11 @@ const products = [
     badge: "Quick Start",
     badgeColor: "bg-slate-100 text-slate-600 border border-slate-200",
     tag: null,
-    title: "HMO Tenant Waste Instructions Pack",
+    title: "Waste Stream Instructions Pack",
     price: "£27",
     priceNote: "One-time · Instant download",
     description:
-      "Ready-to-print A4 sheets that tell your tenants exactly what goes in each bin — installed in 30 minutes.",
+      "Ready-to-print A4 sheets that tell staff or occupants exactly what goes in each bin — installed in 30 minutes.",
     icon: Printer,
     iconBg: "bg-slate-100",
     iconColor: "text-slate-600",
@@ -154,14 +154,14 @@ const products = [
       "Laminated format & sizing guide",
     ],
     fileTypes: ["PDF", "Word"],
-    subject: "HMO Tenant Waste Instructions Pack — £27",
+    subject: "Waste Stream Instructions Pack — £27",
   },
   {
     id: "checklist",
     badge: "Most Popular",
     badgeColor: "bg-emerald-700 text-white border border-emerald-600",
     tag: "Best Value",
-    title: "HMO Compliance Checklist",
+    title: "Waste Compliance Checklist",
     price: "£47",
     priceNote: "One-time · Instant download",
     description:
@@ -175,41 +175,41 @@ const products = [
       "20-question self-assessment across 5 risk sections",
       "Traffic-light scoring — HIGH / MEDIUM per gap",
       "Gap identification worksheet",
-      "Council communication scripts (3 templates)",
+      "Regulator communication scripts (3 templates)",
     ],
     fileTypes: ["PDF", "Word"],
-    subject: "HMO Compliance Checklist — £47",
+    subject: "Waste Compliance Checklist — £47",
   },
   {
     id: "plan",
     badge: "Complete Pack",
     badgeColor: "bg-amber-50 text-amber-700 border border-amber-300",
     tag: null,
-    title: "HMO Waste Management Plan Template",
+    title: "Waste Management Plan Template",
     price: "£97",
     priceNote: "One-time · Instant download",
     description:
-      "The full council-submission ready document package. Everything needed to demonstrate long-term compliance.",
+      "The full regulator-submission ready document package. Everything needed to demonstrate long-term compliance.",
     icon: FileSpreadsheet,
     iconBg: "bg-amber-50",
     iconColor: "text-amber-600",
     borderColor: "border-amber-300",
     ctaStyle: "bg-emerald-700 hover:bg-emerald-800 text-white",
     includes: [
-      "Editable Word doc — property, waste streams, contractor",
+      "Editable Word doc — site details, waste streams, contractor",
       "6-month monitoring & inspection log",
-      "Excel bin capacity calculator (tenants × volume)",
-      "Complaint response letter templates (3 scenarios)",
+      "Excel waste volume calculator (capacity × collections)",
+      "Regulator response letter templates (3 scenarios)",
     ],
     fileTypes: ["PDF", "Word", "Excel"],
-    subject: "HMO Waste Management Plan Template — £97",
+    subject: "Waste Management Plan Template — £97",
   },
 ]
 
 const faqs = [
   {
     q: "What Format Do I Receive The Templates In?",
-    a: "All templates come as both PDF (for printing/sharing) and editable Microsoft Word or Excel files. Customise them with your property details, branding, and contractor information.",
+    a: "All templates come as both PDF (for printing/sharing) and editable Microsoft Word or Excel files. Customise them with your business details, branding, and contractor information.",
   },
   {
     q: "How Quickly Will I Receive My Download?",
@@ -220,8 +220,8 @@ const faqs = [
     a: "Yes. All templates reflect the Simpler Recycling legislation as enacted from 31 March 2026, including four-stream separation requirements and EA carrier registration obligations.",
   },
   {
-    q: "Can I Use These Templates For Multiple Properties?",
-    a: "Yes — each purchase covers unlimited properties under your ownership or management. Editable fields allow you to customise for each address.",
+    q: "Can I Use These Templates For Multiple Sites?",
+    a: "Yes — each purchase covers unlimited sites under your ownership or management. Editable fields allow you to customise for each address or location.",
   },
   {
     q: "Do These Replace A Professional Audit?",
@@ -318,7 +318,7 @@ export default function TemplatesPage() {
             <div className="hidden lg:flex flex-col items-center gap-6">
               <HeroChecklistMockup />
               <p className="poppins-regular text-xs text-slate-400 text-center">
-                Live preview of the HMO Compliance Checklist · traffic-light scoring shown
+                Live preview of the Waste Compliance Checklist · traffic-light scoring shown
               </p>
             </div>
           </div>
@@ -330,7 +330,7 @@ export default function TemplatesPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <p className="poppins-medium text-xs text-emerald-700 uppercase tracking-widest mb-3">
-              Three Templates. Every Scenario Covered.
+              Three Templates. Every Business Covered.
             </p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900 tracking-tight">
               Choose Your Pack
@@ -457,12 +457,12 @@ export default function TemplatesPage() {
                 Why These Templates Exist
               </p>
               <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900 tracking-tight mb-6 leading-snug">
-                Most Landlords Fail
+                Most Businesses Fail
                 <br />
                 <span className="text-emerald-700">On Paperwork, Not Bins.</span>
               </h2>
               <p className="poppins-regular text-base text-slate-600 leading-relaxed mb-5">
-                EA inspectors don't just look at your bins — they ask for written evidence. Signed tenant instructions. Contractor registration numbers. A management plan. Most landlords have none of it.
+                EA inspectors don't just look at your bins — they ask for written evidence. Signed instructions. Contractor registration numbers. A management plan. Most businesses have none of it.
               </p>
               <p className="poppins-regular text-base text-slate-600 leading-relaxed mb-8">
                 These templates mean when an inspector turns up, you hand them a folder. Not a blank look.
@@ -488,7 +488,7 @@ export default function TemplatesPage() {
               {[
                 {
                   stat: "£5,000",
-                  label: "Maximum fine for non-compliant HMO",
+                  label: "Maximum fine for non-compliant waste management",
                   color: "bg-red-50 border-red-100",
                   textColor: "text-red-700",
                   icon: AlertTriangle,
@@ -550,7 +550,7 @@ export default function TemplatesPage() {
               {
                 icon: Printer,
                 title: "Print & Laminate In Minutes",
-                body: "The Instructions Pack uses clear icons and plain English. Tenants understand it on day one — no briefing needed.",
+                body: "The Instructions Pack uses clear icons and plain English. Staff and occupants understand it from day one — no briefing needed.",
               },
               {
                 icon: ClipboardCheck,
@@ -559,8 +559,8 @@ export default function TemplatesPage() {
               },
               {
                 icon: FileSpreadsheet,
-                title: "Council-Submission Ready",
-                body: "The Management Plan is structured as councils request: property section, waste streams, contractor details, monitoring log.",
+                title: "Regulator-Submission Ready",
+                body: "The Management Plan is structured as councils and the EA expect: site details, waste streams, contractor records, monitoring log.",
               },
             ].map(({ icon: Icon, title, body }) => (
               <div

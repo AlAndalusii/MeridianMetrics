@@ -49,7 +49,7 @@ export default function AboutPage() {
               About Millstone Compliance
             </h1>
             <p className="poppins-regular text-xl text-emerald-700">
-              Independent waste compliance for regulated businesses across the UK
+              Waste & Recycling Compliance Specialists for UK businesses
             </p>
           </div>
       </div>
@@ -67,13 +67,13 @@ export default function AboutPage() {
                 <h2 className="poppins-bold text-3xl text-emerald-900">Who We Are</h2>
               </div>
               <p className="poppins-regular text-base text-emerald-700 leading-relaxed mb-6">
-                We help UK businesses stay on top of waste regulations — from care homes and children's homes to landlords, agents and commercial premises. Our focus: clear advice on what you need to do, with no confusing jargon.
+                We help UK businesses stay on top of waste regulations — from care homes and property landlords to hospitality, logistics and food & beverage manufacturing. Our focus: clear advice on what to do, with no confusing jargon.
               </p>
               <div className="space-y-3">
                 {[
                   "UK government regulatory experience",
                   "Cambridge sustainability trained",
-                  "Independent waste compliance experts"
+                  "Waste & Recycling Compliance Specialists"
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
@@ -307,7 +307,7 @@ export default function AboutPage() {
               </h2>
               
               <p className="poppins-regular text-base sm:text-lg text-emerald-50 max-w-2xl mx-auto text-center mb-10 leading-relaxed">
-                Our free 3-minute check finds waste compliance gaps and tells you exactly what to fix — before a council, CQC or Ofsted visit does
+                Our free 3-minute check finds waste compliance gaps and tells you exactly what to fix — before a council or EA inspection does
               </p>
 
               {/* Action Buttons */}

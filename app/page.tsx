@@ -179,7 +179,7 @@ const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: stri
     <div className="flex flex-col">
         <span className="poppins-bold text-xl sm:text-2xl md:text-3xl text-emerald-800 tracking-tight leading-none">Millstone Compliance</span>
         <span className="poppins-medium text-[10px] sm:text-xs text-emerald-600 tracking-widest uppercase mt-1">
-          EPR • PPT • PRN Experts
+          Waste & Recycling Compliance Specialists
         </span>
     </div>
   </div>
@@ -332,12 +332,12 @@ export default function MillstoneComplianceWebsite() {
               </div>
 
               <h1 className="poppins-bold text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight mb-5">
-                <span className="text-slate-900 block">Independent Waste Compliance Audits.</span>
-                <span className="text-emerald-700 block">48hr Reports</span>
+                <span className="text-slate-900 block">Waste & Recycling Compliance Sorted.</span>
+                <span className="text-emerald-700 block">48-Hour Reports</span>
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
-                We audit regulated businesses before councils and inspectors arrive. Prevent fines, enforcement notices and the cost of reactive compliance.
+                Pass inspections and avoid fines before councils arrive. Unbiased waste and recycling audits with fixed-fee pricing and 48-hour delivery.
               </p>
 
               {/* Primary CTAs */}
@@ -346,20 +346,20 @@ export default function MillstoneComplianceWebsite() {
                   onClick={() => setShowEmailTemplate(true)}
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-sm hover:shadow-md"
                 >
-                  Book a Compliance Audit <ArrowRight className="w-4 h-4" />
+                  Book Your Audit Now <ArrowRight className="w-4 h-4" />
                 </button>
                 <Link
                   href="/quiz"
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95"
                 >
-                  Free Waste Risk Check
+                  Free Compliance Check
                 </Link>
               </div>
 
               {/* Also serving */}
               <p className="text-xs text-slate-400 poppins-regular mb-5">
                 Serving:{" "}
-                <span className="text-slate-600 poppins-medium">Care Homes · Children's Homes · Landlords · Agents</span>
+                <span className="text-slate-600 poppins-medium">Care Homes · UK Property Sector · Food & beverage manufacturing</span>
               </p>
 
               {/* Trust signals */}
@@ -557,16 +557,16 @@ export default function MillstoneComplianceWebsite() {
               </h2>
 
               <p className="poppins-regular text-emerald-700/65 text-base sm:text-lg leading-relaxed max-w-md mb-10">
-                Independent. Site-specific. Plain English. Every audit delivers the same uncompromising standard — because your inspection readiness is not something to guess at.
+                Unbiased. Site-specific. Plain English. Every audit delivers the same uncompromising standard — because your inspection readiness is not something to guess at.
               </p>
 
               {/* Outcome pills row */}
               <div className="flex flex-wrap gap-2">
                 {[
-                  { label: '100% pass rate', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
+                  { label: 'Audit-Ready Reports', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
                   { label: '48hr turnaround', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
                   { label: 'Fixed Fee', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
-                  { label: 'CQC · Ofsted · EA', color: 'bg-emerald-900 border-emerald-900 text-emerald-100' },
+                  { label: 'CQC · EA · Councils', color: 'bg-emerald-900 border-emerald-900 text-emerald-100' },
                 ].map(({ label, color }) => (
                   <span key={label} className={`inline-flex items-center px-3.5 py-1.5 rounded-full border text-xs poppins-medium ${color}`}>
                     {label}
@@ -718,7 +718,7 @@ export default function MillstoneComplianceWebsite() {
             
             {/* Enhanced Description */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4">
-              Our free 3-minute check finds waste compliance gaps in your business (Duty of Care, Simpler Recycling and clinical waste). Most care homes and agencies have risks they don&apos;t see — this shows you exactly where you stand.
+              Our free 3-minute check finds waste compliance gaps in your business — Duty of Care, Simpler Recycling and clinical waste. Most businesses have risks they don&apos;t see. This shows you exactly where you stand.
             </p>
             
             {/* Stats Bar - New Addition */}
@@ -1269,7 +1269,7 @@ export default function MillstoneComplianceWebsite() {
         </div>
       </section>
 
-      {/* HMO Simpler Recycling Section */}
+      {/* Simpler Recycling Section */}
       <section className="py-14 sm:py-20 bg-white border-t border-slate-100" aria-labelledby="recycling-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
@@ -1296,14 +1296,14 @@ export default function MillstoneComplianceWebsite() {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-50 border border-red-200 rounded-full mb-5">
                 <AlertTriangle className="w-3.5 h-3.5 text-red-500 flex-shrink-0" />
-                <span className="text-xs poppins-semibold text-red-700">HMO Landlords — Action Required</span>
+                <span className="text-xs poppins-semibold text-red-700">UK Businesses — Deadline Passed</span>
               </div>
               <h2 id="recycling-heading" className="poppins-bold text-3xl sm:text-4xl text-slate-900 tracking-tight leading-tight mb-4">
                 Simpler Recycling —{" "}
-                <span className="text-red-600">Your Tenants&apos; Bins Are Your Liability</span>
+                <span className="text-red-600">Now Law for Every UK Business</span>
               </h2>
               <p className="poppins-regular text-slate-500 text-base leading-relaxed mb-6 max-w-md">
-                Cross-contamination by your tenants counts as a management failure. That&rsquo;s a £5,000 fine and an HMO licence review — even if you didn&rsquo;t touch a single bin.
+                The 31 March 2026 deadline has passed. Every UK business must now separate dry recyclables, food waste and general waste. Missing bins or wrong contractors means fines and enforcement notices.
               </p>
 
               {/* Quick book CTA */}
@@ -1314,7 +1314,7 @@ export default function MillstoneComplianceWebsite() {
                 >
                   <Calendar className="w-4 h-4" /> Book a Free Call
                 </button>
-                <Link href="/services#simpler-recycling" className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white border border-slate-200 hover:border-emerald-300 text-slate-700 hover:text-emerald-700 px-5 py-3 rounded-xl transition-all duration-200 active:scale-95">
+                <Link href="/services" className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white border border-slate-200 hover:border-emerald-300 text-slate-700 hover:text-emerald-700 px-5 py-3 rounded-xl transition-all duration-200 active:scale-95">
                   See How We Help <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -1336,9 +1336,9 @@ export default function MillstoneComplianceWebsite() {
                 <div className="bg-slate-800 px-4 py-3 flex items-center justify-between border-b border-slate-700">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                    <span className="text-xs poppins-semibold text-white">HMO Compliance Scan</span>
+                    <span className="text-xs poppins-semibold text-white">Waste Compliance Scan</span>
                   </div>
-                  <span className="text-[10px] text-slate-400 poppins-regular">14 Laburnum Close — 6 tenants</span>
+                  <span className="text-[10px] text-slate-400 poppins-regular">Example business — 3 waste streams</span>
                 </div>
 
                 {/* Bin rows */}
@@ -1401,9 +1401,9 @@ export default function MillstoneComplianceWebsite() {
           {/* 3 feature cards */}
           <div className="grid sm:grid-cols-3 gap-4 pt-4 pb-2">
             {[
-              { icon: Target, title: "Check Your Setup", desc: "We visit, count your bins, and verify your contractor. Written report in 48 hours.", tag: "Fixed Fee", tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200" },
-              { icon: Trash2, title: "14-Day 3-Bin Fix", desc: "Dry recyclables, food waste, general waste. We scope the right setup for your property.", tag: "Ready in 7 Days", tagColor: "bg-blue-50 text-blue-700 border-blue-200" },
-              { icon: ClipboardCheck, title: "Inspection Ready", desc: "Labelled bins, contractor records, written proof. Hand it over the moment an inspector arrives.", tag: "Zero Fines", tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200" },
+              { icon: Target, title: "Check Your Setup", desc: "We review your bins, contractor records and waste streams. Written report delivered in 48 hours.", tag: "Fixed Fee", tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200" },
+              { icon: Trash2, title: "Find the Gaps", desc: "Dry recyclables, food waste, general waste — we identify exactly what's missing and what to fix.", tag: "Clear Action Plan", tagColor: "bg-blue-50 text-blue-700 border-blue-200" },
+              { icon: ClipboardCheck, title: "Inspection Ready", desc: "Labelled bins, contractor records, written proof. Hand it over the moment an inspector arrives.", tag: "EA & CQC Ready", tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200" },
             ].map((card) => (
               <div key={card.title} className="bg-[#f8faf9] border border-slate-200 rounded-xl p-5 hover:border-emerald-200 hover:shadow-[0_4px_20px_rgba(6,95,70,0.08)] transition-all duration-200">
                 <div className="flex items-center gap-2 mb-3">
@@ -1840,7 +1840,7 @@ export default function MillstoneComplianceWebsite() {
                 },
                 {
                   question: "What types of organisations do you work with?",
-                  answer: "We work with any regulated business that handles waste: care homes, children's homes, HMO landlords, letting agents, estate agents, multi-site portfolios and commercial premises. If you have a waste obligation, we can audit it."
+                  answer: "We work with any business that handles waste: care homes, the UK property sector, hospitality, logistics, food & beverage manufacturing, offices and multi-site portfolios. If you have a waste obligation, we can audit it."
                 },
                 {
                   question: "What does a compliance audit actually cover?",
@@ -1855,8 +1855,8 @@ export default function MillstoneComplianceWebsite() {
                   answer: "You get a signed PDF report within 48 hours of the assessment, ready to show any inspector or regulator. If we miss the deadline, your next audit is free."
                 },
                 {
-                  question: "Are you independent, or do you sell bins and contracts?",
-                  answer: "Completely independent. We don't sell bins, collections or contractor deals. Our only job is to give you an honest audit and a clear report — you decide what to do with your contractors afterwards."
+                  question: "Do you sell bins, collections or contracts?",
+                  answer: "No. We provide unbiased compliance advice only. We don't sell bins, collections or contractor deals. Our job is to give you an honest audit and a clear report — you decide what to do with your contractors afterwards."
                 }
               ].map((item, index) => (
                   <div

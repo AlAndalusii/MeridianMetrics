@@ -87,20 +87,20 @@ const legislation = [
 ]
 
 const auditSteps = [
-  { num: "01", icon: Search,       title: "Scope & Brief",          body: "We agree the site type, waste streams, and any known concerns. Remote clients send documentation ahead; on-site clients book a visit. No long onboarding — we move in 48 hours." },
-  { num: "02", icon: ClipboardCheck, title: "Documentation Review", body: "Every Waste Transfer Note, consignment record, carrier licence, and waste management policy is checked for completeness and legal compliance." },
-  { num: "03", icon: Eye,          title: "Inspection",             body: "On-site: we inspect waste stores, label legibility, bin placement, and interview staff. Remote: we review photos, policies, and contractor evidence." },
-  { num: "04", icon: AlertTriangle, title: "Gap Analysis",          body: "Every finding is RAG-rated — Red (urgent), Amber (action required), Green (compliant). We identify the root cause, not just the symptom." },
-  { num: "05", icon: FileCheck,    title: "Written Report — 48hr",  body: "A signed PDF with a RAG summary, specific recommendations, and suggested actions — ready to hand to a CQC inspector, EA officer, or your board." },
+  { num: "01", icon: Search,       title: "Scope & Brief",          body: "We agree the site type, waste streams, and any known issues. Remote clients send records in advance; on-site clients book a visit. No drawn-out onboarding — we move within 48 hours." },
+  { num: "02", icon: ClipboardCheck, title: "Records Review",       body: "Every Waste Transfer Note, consignment record, carrier licence, and waste policy is checked for accuracy, completeness, and day-to-day compliance." },
+  { num: "03", icon: Eye,          title: "Site Review",            body: "On-site: we review waste areas, labels, bin placement, and staff practice. Remote: we assess photos, records, policies, and contractor evidence." },
+  { num: "04", icon: AlertTriangle, title: "Gap Review",            body: "Every finding is RAG-rated — Red (urgent), Amber (needs action), Green (working). We identify what is wrong and why it needs fixing." },
+  { num: "05", icon: FileCheck,    title: "Written Report — 48hr",  body: "A signed PDF with a RAG summary, clear recommendations, and practical actions — ready for internal review, regulator questions, or management sign-off." },
 ]
 
 const usedBy = [
-  { icon: Stethoscope,     label: "CQC Inspections" },
-  { icon: Leaf,            label: "EA Enquiries" },
-  { icon: LayoutDashboard, label: "Internal Governance" },
-  { icon: GraduationCap,   label: "Ofsted Scrutiny" },
-  { icon: Truck,           label: "Pre-Acceptance" },
-  { icon: BarChart3,       label: "Board Reporting" },
+  { icon: BarChart3,       label: "Cost Reviews" },
+  { icon: BadgeCheck,      label: "Contractor Checks" },
+  { icon: LayoutDashboard, label: "Internal Reviews" },
+  { icon: Shield,          label: "Site Readiness" },
+  { icon: AlertTriangle,   label: "Risk Tracking" },
+  { icon: GraduationCap,   label: "Board Updates" },
 ]
 
 const sectors = [
@@ -115,14 +115,14 @@ const sectorAccordions = [
     id: "hmo",
     icon: Home,
     eyebrow: "UK Property Sector",
-    headline: "Avoid Fines & Keep Your Licences",
-    sub: "Simpler Recycling makes landlords personally liable for tenants' waste mistakes. One failed inspection can trigger a fine and a licence review.",
+    headline: "Reduce Waste Risk Across Managed Properties",
+    sub: "Poor bin setups, weak tenant guidance, and missing paperwork can lead to avoidable cost and compliance problems across managed property portfolios.",
     bullets: [
-      "Bin setup verified against Simpler Recycling requirements",
+      "Bin setup reviewed against current waste rules",
       "Waste Transfer Notes and carrier licences checked",
-      "Written tenant instructions reviewed and templated",
-      "Council collection contracts confirmed",
-      "48-hour inspection-ready written report",
+      "Tenant guidance and site instructions reviewed",
+      "Collection arrangements and contractor setup assessed",
+      "48-hour written report with clear next steps",
     ],
     cta: "View HMO Compliance Checklist",
     ctaHref: "/resources/hmo-waste-compliance-checklist",
@@ -142,14 +142,14 @@ const sectorAccordions = [
     id: "carehomes",
     icon: Heart,
     eyebrow: "Care Homes",
-    headline: "New Rules. Real Fines. One Audit.",
-    sub: "CQC and the Environment Agency both scrutinise waste in care homes. Clinical waste, Simpler Recycling and Duty of Care must all be correct — simultaneously.",
+    headline: "Control Waste Costs. Reduce Compliance Risk.",
+    sub: "Care providers need waste systems that work day to day — with clear records, practical processes, and the right contractor setup in place.",
     bullets: [
-      "Clinical waste segregation and HTM 07-01 compliance",
-      "All waste streams checked against EA and CQC requirements",
-      "Contractor licences, consignment notes and manifests reviewed",
-      "Waste Management Plan assessed or created",
-      "48-hour signed report accepted by CQC and EA",
+      "Waste streams and segregation reviewed",
+      "Waste records and supporting paperwork checked",
+      "Contractor licences and collection arrangements reviewed",
+      "Waste management process assessed for gaps",
+      "48-hour written report with action plan",
     ],
     cta: "View Care Home Compliance Checklist",
     ctaHref: "/resources/care-home-waste-compliance-checklist",
@@ -169,14 +169,14 @@ const sectorAccordions = [
     id: "hospitality",
     icon: UtensilsCrossed,
     eyebrow: "Hospitality",
-    headline: "Hotels, Restaurants, Pubs & Cafes",
-    sub: "Food businesses are among the most exposed under Simpler Recycling. Mandatory food waste separation, correct bin labelling, and Duty of Care documentation are all legally required.",
+    headline: "Cut Waste Spend Across Busy Sites",
+    sub: "Food businesses often lose money through poor segregation, weak storage, and contractor setups that no longer match the way the site actually runs.",
     bullets: [
-      "Food waste stream verified against Simpler Recycling rules",
-      "Separate dry recycling and residual waste streams checked",
-      "Duty of Care transfer notes and carrier licences audited",
-      "Grease trap and specialist waste contractor records reviewed",
-      "48-hour written report ready for council or EA inspection",
+      "Food and general waste streams reviewed",
+      "Dry recycling and residual setup checked",
+      "Duty of Care paperwork and carrier checks completed",
+      "Specialist waste arrangements reviewed where needed",
+      "48-hour written report with practical actions",
     ],
     cta: null,
     ctaHref: null,
@@ -196,14 +196,14 @@ const sectorAccordions = [
     id: "logistics",
     icon: Package,
     eyebrow: "Logistics & Warehousing",
-    headline: "Distribution Centres & Fulfilment Operations",
-    sub: "High-volume waste producers face the greatest Duty of Care exposure. Packaging waste, mixed streams, and multiple contractor relationships all create compliance risk that's easily missed.",
+    headline: "Reduce Cost Across High-Volume Waste Streams",
+    sub: "Busy operational sites can carry hidden waste costs through mixed streams, poor segregation, and weak contractor control across multiple collections.",
     bullets: [
-      "All waste streams classified and mapped to correct treatment routes",
-      "Packaging waste obligations assessed under EPR rules",
-      "Every contractor cross-checked against EA public register",
-      "Waste Transfer Notes audited for completeness and accuracy",
-      "48-hour report with prioritised gap list for operations teams",
+      "Waste streams mapped to current handling routes",
+      "Packaging and recovery obligations reviewed",
+      "Contractors checked against public registers",
+      "Waste records checked for gaps and errors",
+      "48-hour report with prioritised actions for site teams",
     ],
     cta: null,
     ctaHref: null,
@@ -223,14 +223,14 @@ const sectorAccordions = [
     id: "construction",
     icon: HardHat,
     eyebrow: "Construction",
-    headline: "Housebuilders, Contractors & Developers",
-    sub: "Construction sites generate controlled, hazardous, and inert waste — all under different legal regimes. A single mislabelled skip or unregistered carrier can trigger EA enforcement.",
+    headline: "Control Waste Risk On Active Sites",
+    sub: "Construction sites generate multiple waste streams with different handling requirements. Weak controls can create avoidable cost, delay, and compliance issues.",
     bullets: [
-      "Controlled waste classification and treatment routes verified",
-      "Hazardous waste consignment notes and pre-acceptance audited",
-      "Skip hire and waste carrier EA registrations confirmed",
-      "Site waste management documentation reviewed",
-      "48-hour report ready for principal contractor or client",
+      "Waste streams and treatment routes reviewed",
+      "Hazardous records checked where applicable",
+      "Skip hire and contractor registrations confirmed",
+      "Site waste paperwork and controls assessed",
+      "48-hour written report for contractor review",
     ],
     cta: null,
     ctaHref: null,
@@ -249,15 +249,15 @@ const sectorAccordions = [
   {
     id: "manufacturers",
     icon: Package,
-    eyebrow: "Food & beverage manufacturing",
-    headline: "Food, Textiles, Packaging & Light assembly",
-    sub: "Non-hazardous manufacturers face real waste compliance obligations. Packaging waste, food waste, and Duty of Care all apply — and EPR may too if you exceed 50 tonnes.",
+    eyebrow: "Food & Beverage Manufacturing",
+    headline: "Find Waste Savings In Daily Operations",
+    sub: "Manufacturers often carry avoidable waste costs through poor segregation, weak contractor terms, and packaging or food waste streams that are not being managed well.",
     bullets: [
-      "Packaging waste obligations checked (EPR if >50 tonnes)",
-      "General waste Duty of Care and carrier licences audited",
-      "Food waste separation verified against Simpler Recycling",
-      "Dry recyclables (plastic film, cardboard) streams reviewed",
-      "48-hour report with clear action plan for operations teams",
+      "Packaging and waste obligations reviewed",
+      "General waste records and carrier checks completed",
+      "Food waste separation and handling assessed",
+      "Dry recyclable streams reviewed for improvement",
+      "48-hour report with clear action plan for operations",
     ],
     cta: null,
     ctaHref: null,
@@ -278,13 +278,13 @@ const sectorAccordions = [
     icon: Sparkles,
     eyebrow: "Every Other Regulated Business",
     headline: "Don't See Your Sector? We Still Cover You.",
-    sub: "UK waste law applies to every business that produces waste — regardless of sector. If you have a Duty of Care obligation, contractor relationships, or waste streams to manage, we can audit it. Get in touch and we'll scope it for you.",
+    sub: "Waste rules apply to every business that produces waste. If you have waste contractors, records, or site processes to manage, we can audit them.",
     bullets: [
       "Offices, retail, education, healthcare, manufacturing",
-      "Any business with a waste contractor relationship",
+      "Any business with waste contractors or collections",
       "Multi-site portfolios across mixed sectors",
-      "Any organisation facing EA, council or regulator scrutiny",
-      "Fixed-fee quote agreed before we start — no surprises",
+      "Any organisation managing cost and compliance risk",
+      "Fixed-fee quote agreed before we start",
     ],
     cta: null,
     ctaHref: null,
@@ -340,7 +340,7 @@ export default function ServicesPage() {
             style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(12px)" }}
           >
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Waste & Recycling Compliance Specialists · UK</span>
+            <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Waste Cost & Compliance Audits · UK</span>
           </div>
 
           {/* Headline */}
@@ -358,7 +358,7 @@ export default function ServicesPage() {
             className="poppins-regular text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-700 delay-200"
             style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(16px)" }}
           >
-            Unbiased waste and recycling compliance audits for UK businesses — remote or on-site, with fixed-fee pricing and a 48-hour signed report.
+            Independent waste cost and compliance audits for UK businesses — remote or on-site, with fixed-fee pricing and a 48-hour written report.
           </p>
 
           {/* CTAs */}
@@ -377,7 +377,7 @@ export default function ServicesPage() {
               href="/quiz"
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 poppins-semibold text-sm rounded-xl transition-all duration-300"
             >
-              Free Risk Check
+              Free Cost Check
             </Link>
           </div>
 
@@ -399,10 +399,10 @@ export default function ServicesPage() {
       <section className="py-12 px-6 bg-white border-y border-slate-100">
         <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-0">
           {[
-            { val: 48,  suf: "hr", label: "Report turnaround" },
-            { val: 100, suf: "%",  label: "Inspection-ready reports" },
-            { val: 6,   suf: "",   label: "Legislation areas" },
-            { val: 0,   suf: "",   label: "Clients ever fined" },
+            { val: 48,  suf: "hr", label: "Report Turnaround" },
+            { val: 100, suf: "%",  label: "Clear Written Reports" },
+            { val: 6,   suf: "",   label: "Key Risk Areas" },
+            { val: 0,   suf: "",   label: "Contracts To Sell" },
           ].map((s, i) => (
             <div key={s.label} className={`text-center px-4 ${i > 0 ? "border-l border-slate-100" : ""}`}>
               <p className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-emerald-700 tabular-nums">
@@ -435,13 +435,13 @@ export default function ServicesPage() {
               <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Your sector</span>
             </div>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              We audit every{" "}
+              We Audit Waste Costs And Compliance{" "}
               <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
-                regulated sector.
+                Across UK Business Sectors.
               </span>
             </h2>
             <p className="poppins-regular text-slate-500 text-base mt-3 max-w-xl mx-auto leading-relaxed">
-              Select your sector to see exactly what we check — and how we protect you.
+              Select your sector to see what we review — and where we help you reduce cost and risk.
             </p>
             {/* Accent divider */}
             <div className="mt-6 flex justify-center gap-1.5">
@@ -659,7 +659,7 @@ export default function ServicesPage() {
           >
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">The legal framework</p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              We audit against six areas of UK law.
+              We Audit Against Six Areas Of UK Law.
             </h2>
           </div>
 
@@ -741,7 +741,7 @@ export default function ServicesPage() {
           >
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">The audit process</p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              Five steps. Zero ambiguity.
+              Five Steps. Clear From Start.
             </h2>
           </div>
 
@@ -807,7 +807,7 @@ export default function ServicesPage() {
           >
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Delivery methods</p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              Two ways to audit. Same rigour.
+              Two Ways To Audit. Same Standard.
             </h2>
           </div>
 
@@ -842,7 +842,7 @@ export default function ServicesPage() {
                   </div>
                   <h3 className="poppins-bold text-lg text-slate-900 mb-4">How it works</h3>
                   <div className="space-y-3">
-                    {["You submit documentation, policies, and contractor records","We review all materials against applicable legislation","Written RAG report delivered within 48 hours","No travel required — nationwide coverage from day one"].map((t) => (
+                    {["You send records, policies, and contractor documents","We review everything against the relevant waste rules","Written RAG report delivered within 48 hours","No travel needed — nationwide coverage from day one"].map((t) => (
                       <div key={t} className="flex gap-3">
                         <CheckCircle className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
                         <p className="poppins-regular text-sm text-slate-600 leading-snug">{t}</p>
@@ -856,7 +856,7 @@ export default function ServicesPage() {
                   </div>
                   <h3 className="poppins-bold text-lg text-white mb-4">Best suited for</h3>
                   <div className="space-y-3">
-                    {["Multi-site portfolios needing simultaneous coverage","Documentation and policy-focused audits","Pre-inspection compliance reviews","Businesses with strong internal evidence already assembled"].map((t) => (
+                    {["Multi-site portfolios needing fast coverage","Record and policy-led audit reviews","Pre-visit compliance or cost reviews","Businesses with good internal records already in place"].map((t) => (
                       <div key={t} className="flex gap-3">
                         <CheckCircle className="w-4 h-4 text-emerald-200 flex-shrink-0 mt-0.5" />
                         <p className="poppins-regular text-sm text-white/80 leading-snug">{t}</p>
@@ -910,7 +910,7 @@ export default function ServicesPage() {
           >
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">What you receive</p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              A signed report. Within 48 hours.
+              A Signed Report. Within 48 Hours.
             </h2>
           </div>
 
@@ -996,7 +996,7 @@ export default function ServicesPage() {
             style={{ opacity: whoRef.visible ? 1 : 0, transform: whoRef.visible ? "none" : "translateY(20px)" }}
           >
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">How clients use the report</p>
-            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">One report. Six use cases.</h2>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">One Report. Six Use Cases.</h2>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
@@ -1027,9 +1027,9 @@ export default function ServicesPage() {
             style={{ opacity: whoRef.visible ? 1 : 0, transform: whoRef.visible ? "none" : "translateY(12px)" }}
           >
             <Lock className="w-5 h-5 text-emerald-600 mx-auto mb-3" />
-            <p className="poppins-bold text-slate-900 text-base mb-2">Unbiased advice. Always.</p>
+            <p className="poppins-bold text-slate-900 text-base mb-2">Independent advice. Always.</p>
             <p className="poppins-regular text-slate-500 text-sm max-w-lg mx-auto leading-relaxed">
-              We sell no bins, collections or contracts. Our only product is unbiased compliance advice. You use our report to manage contractors, satisfy regulators, and run your business — entirely on your own terms.
+              We do not sell bins, collections, or waste contracts. Our only service is independent audit advice. You use our report to reduce costs, review contractors, tighten records, and run your business on your own terms.
             </p>
           </div>
         </div>
@@ -1047,8 +1047,8 @@ export default function ServicesPage() {
             </div>
             <div className="flex-1 text-center sm:text-left">
               <p className="poppins-semibold text-xs text-amber-600 uppercase tracking-wider mb-1">Templates</p>
-              <h3 className="poppins-bold text-xl text-slate-900 mb-1">Need documentation to start?</h3>
-              <p className="poppins-regular text-sm text-slate-500">Download ready-made waste management plans, tenant instruction letters, and compliance checklists — instantly usable on any device.</p>
+              <h3 className="poppins-bold text-xl text-slate-900 mb-1">Need paperwork to get started?</h3>
+              <p className="poppins-regular text-sm text-slate-500">Download ready-made waste logs, action plans, and compliance checklists — instantly usable on any device.</p>
             </div>
             <Link
               href="/templates"
@@ -1067,10 +1067,10 @@ export default function ServicesPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-emerald-500/30 rounded-full blur-[80px]" />
         <div className="max-w-3xl mx-auto relative z-10 text-center">
           <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5 leading-tight">
-            Ready to know where you actually stand?
+            Ready To Know Where You Actually Stand?
           </h2>
           <p className="poppins-regular text-emerald-100 text-lg mb-9 max-w-xl mx-auto">
-            Book an audit or run a free risk check. We'll tell you exactly what's compliant, what isn't, and what to do next.
+            Book an audit or run a free check. We&apos;ll show you what is working, what is not, and what to do next.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
@@ -1085,7 +1085,7 @@ export default function ServicesPage() {
               href="/quiz"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 poppins-semibold text-sm rounded-xl transition-all duration-300"
             >
-              Free Risk Check
+              Free Cost Check
               <ChevronRight className="w-4 h-4" />
             </Link>
           </div>

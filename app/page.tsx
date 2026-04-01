@@ -328,16 +328,16 @@ export default function MillstoneComplianceWebsite() {
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-xs poppins-semibold text-emerald-700 mb-5">
                 <BadgeCheck className="w-3.5 h-3.5 text-emerald-600" />
-                UK Waste &amp; Recycling Compliance
+                UK Waste Cost &amp; Compliance Audits
               </div>
 
               <h1 className="poppins-bold text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight mb-5">
-                <span className="text-slate-900 block">Waste & Recycling Compliance Sorted.</span>
+                <span className="text-slate-900 block">Reduce Waste Spend Fast.</span>
                 <span className="text-emerald-700 block">48-Hour Reports</span>
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
-                Pass inspections and avoid fines before councils arrive. Unbiased waste and recycling audits with fixed-fee pricing and 48-hour delivery.
+                Spot overspending, tighten compliance, and improve waste performance with independent fixed-fee audits and clear 48-hour action reports.
               </p>
 
               {/* Primary CTAs */}
@@ -352,14 +352,14 @@ export default function MillstoneComplianceWebsite() {
                   href="/quiz"
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95"
                 >
-                  Free Compliance Check
+                  Free Savings Check
                 </Link>
               </div>
 
               {/* Also serving */}
               <p className="text-xs text-slate-400 poppins-regular mb-5">
                 Serving:{" "}
-                <span className="text-slate-600 poppins-medium">Care Homes · UK Property Sector · Food & beverage manufacturing</span>
+                <span className="text-slate-600 poppins-medium">Care Homes · UK Property Sector · Food & Beverage Manufacturing</span>
               </p>
 
               {/* Trust signals */}
@@ -550,23 +550,23 @@ export default function MillstoneComplianceWebsite() {
               </div>
 
               <h2 className="poppins-bold text-3xl sm:text-4xl md:text-[2.75rem] text-emerald-950 leading-[1.1] mb-6">
-                You&apos;ll know exactly where you stand{' '}
+                Know exactly where you stand{' '}
                 <em className="not-italic bg-gradient-to-r from-emerald-700 to-emerald-500 bg-clip-text text-transparent">
-                  before the inspector arrives.
+                  before it escalates.
                 </em>
               </h2>
 
               <p className="poppins-regular text-emerald-700/65 text-base sm:text-lg leading-relaxed max-w-md mb-10">
-                Unbiased. Site-specific. Plain English. Every audit delivers the same uncompromising standard — because your inspection readiness is not something to guess at.
+                Independent. Site-specific. Plain English. Every audit delivers the same practical standard — because waste costs, weak documentation, and compliance gaps should never be left to guesswork.
               </p>
 
               {/* Outcome pills row */}
               <div className="flex flex-wrap gap-2">
                 {[
-                  { label: 'Audit-Ready Reports', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
+                  { label: 'Action-Focused Reports', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
                   { label: '48hr turnaround', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
                   { label: 'Fixed Fee', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
-                  { label: 'CQC · EA · Councils', color: 'bg-emerald-900 border-emerald-900 text-emerald-100' },
+                  { label: 'EA · Councils · Regulators', color: 'bg-emerald-900 border-emerald-900 text-emerald-100' },
                 ].map(({ label, color }) => (
                   <span key={label} className={`inline-flex items-center px-3.5 py-1.5 rounded-full border text-xs poppins-medium ${color}`}>
                     {label}
@@ -583,23 +583,23 @@ export default function MillstoneComplianceWebsite() {
               {[
                 {
                   num: '01',
-                  title: 'Written Gap Report',
-                  desc: 'Site-specific. Regulatory citations included. Delivered in 48 hours — not a template, not a checklist.',
+                  title: 'Written Findings Report',
+                  desc: 'Site-specific. Clear risks, overspend points, and compliance gaps identified. Delivered in 48 hours — not a template, not a checklist.',
                 },
                 {
                   num: '02',
                   title: 'Prioritised Action Plan',
-                  desc: 'Ranked by risk. What to fix first, by when, and who is responsible. No ambiguity.',
+                  desc: 'Ranked by risk and savings opportunity. What to fix first, what to change next, and where waste costs can be reduced.',
                 },
                 {
                   num: '03',
-                  title: 'Inspection-Ready Templates',
-                  desc: 'WTN, clinical waste log, staff training records — formatted for CQC, Ofsted and EA standards.',
+                  title: 'Audit-Ready Templates',
+                  desc: 'Waste transfer notes, internal logs, and record-keeping templates — formatted to support inspections, reviews, and day-to-day compliance.',
                 },
                 {
                   num: '04',
                   title: '30-Day Expert Access',
-                  desc: 'Direct line to your specialist. Unlimited questions. There when you need us — no clock running.',
+                  desc: 'Direct line to your consultant. Unlimited questions. Practical support when you need it — with no clock running.',
                 },
               ].map((item, i, arr) => (
                 <div
@@ -1835,28 +1835,24 @@ export default function MillstoneComplianceWebsite() {
               <div className="space-y-6">
               {[
                 {
-                  question: "How do I know if my organisation is at risk of a waste compliance fine?",
-                  answer: "If you can't immediately produce Waste Transfer Notes, confirm your carrier's licence, or show your bin setup meets current Simpler Recycling rules — you're at risk. Our free Waste Risk Check takes five minutes and tells you exactly where you stand."
+                  question: "How do I know if we need an audit?",
+                  answer: "If you're unsure about your waste costs, paperwork, contractor checks, or bin setup, you likely need one."
                 },
                 {
-                  question: "What types of organisations do you work with?",
-                  answer: "We work with any business that handles waste: care homes, the UK property sector, hospitality, logistics, food & beverage manufacturing, offices and multi-site portfolios. If you have a waste obligation, we can audit it."
+                  question: "What does the audit cover?",
+                  answer: "We review your waste setup, records, contractor details, and key compliance risks."
                 },
                 {
-                  question: "What does a compliance audit actually cover?",
-                  answer: "We review your waste streams, bin setup, Duty of Care documentation, contractor licences and Waste Transfer Notes. You get a signed PDF report within 48 hours, with a prioritised action list you can hand to an inspector the same day."
+                  question: "Can you help us save money too?",
+                  answer: "Yes. We look for overspending, poor segregation, weak contractor setup, and wasted spend."
                 },
                 {
-                  question: "What do your compliance audits cost?",
-                  answer: "All audits are priced upfront on a fixed‑fee basis, so you know the total cost before we start. Get in touch for a quote tailored to your site or portfolio."
+                  question: "Do you sell bins, collections or waste contracts?",
+                  answer: "No. We stay independent and only provide audits, findings, and practical recommendations."
                 },
                 {
-                  question: "When will I have something I can show a council, CQC, Ofsted or the EA?",
-                  answer: "You get a signed PDF report within 48 hours of the assessment, ready to show any inspector or regulator. If we miss the deadline, your next audit is free."
-                },
-                {
-                  question: "Do you sell bins, collections or contracts?",
-                  answer: "No. We provide unbiased compliance advice only. We don't sell bins, collections or contractor deals. Our job is to give you an honest audit and a clear report — you decide what to do with your contractors afterwards."
+                  question: "How quickly do we get the report?",
+                  answer: "Your written report is delivered within 48 hours of the audit."
                 }
               ].map((item, index) => (
                   <div

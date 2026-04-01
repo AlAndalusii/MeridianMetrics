@@ -218,7 +218,7 @@ const services = [
   {
     icon: ScanSearch,
     title: "Compliance Audits",
-    body: "We assess your position, identify every gap, and deliver a written action plan — within 48 hours.",
+    body: "We review your setup, find weak spots, and show where costs and compliance risks can be reduced — within 48 hours.",
     href: "/services",
     icon_color: "text-emerald-600",
     icon_bg: "bg-emerald-50",
@@ -227,7 +227,7 @@ const services = [
   {
     icon: FolderOpen,
     title: "Documentation",
-    body: "We produce, organise, and maintain every regulatory record you are legally required to hold.",
+    body: "We organise the key records your business needs to keep waste costs controlled and paperwork in order.",
     href: "/services/documentation",
     icon_color: "text-sky-600",
     icon_bg: "bg-sky-50",
@@ -236,7 +236,7 @@ const services = [
   {
     icon: Layers,
     title: "Templates",
-    body: "Professionally written, council-ready documents — editable in Word within minutes of purchase.",
+    body: "Professionally written, ready-to-use documents — editable in Word and easy to put into practice.",
     href: "/templates",
     icon_color: "text-amber-600",
     icon_bg: "bg-amber-50",
@@ -245,7 +245,7 @@ const services = [
   {
     icon: Headphones,
     title: "Ongoing Support",
-    body: "Regulatory changes tracked. Records kept current. Expert advice available same-day by email.",
+    body: "Waste changes tracked. Records kept current. Practical help available the same day by email.",
     href: "/support",
     icon_color: "text-violet-600",
     icon_bg: "bg-violet-50",
@@ -257,20 +257,20 @@ const services = [
 
 const faqs = [
   {
-    q: "What Does A Compliance Audit Actually Cover?",
-    a: "We review your waste duty of care records, clinical waste documentation, Simpler Recycling compliance, and — where applicable — your HMO waste management plan. You receive a written report showing exactly where you stand and what needs fixing.",
+    q: "What Does A Waste Audit Actually Cover?",
+    a: "We review your waste setup, records, contractor details, and key compliance risks. You get a clear written report within 48 hours showing what is working and what to fix.",
   },
   {
-    q: "How Long Before I Have Proper Documentation In Place?",
-    a: "Most documentation is produced within 2–3 working days. Urgent cases can be turned around faster. We handle everything — you review and sign.",
+    q: "How Quickly Will I Get My Report?",
+    a: "Your written report is delivered within 48 hours of the audit.",
   },
   {
-    q: "What Happens If I Already Have An Enforcement Notice?",
-    a: "Contact us the same day. We work with businesses after EA notices, HMRC compliance checks, and council licensing concerns. Acting quickly is critical — we know what regulators expect to see.",
+    q: "Can You Help Us Cut Waste Costs?",
+    a: "Yes. We look for overspending, poor segregation, weak contractor terms, and waste streams that are not being managed well.",
   },
   {
-    q: "Do You Work With Both HMO Landlords And Businesses?",
-    a: "Yes. We support HMO landlords (waste plans, tenant instructions, licensing compliance) and businesses of all sizes (waste duty of care records, clinical waste management, Simpler Recycling evidence). Same team, tailored approach.",
+    q: "Do You Work With Both Property And Businesses?",
+    a: "Yes. We audit care homes, property portfolios, hospitality, logistics, manufacturing, and most other business sectors.",
   },
 ]
 
@@ -317,14 +317,14 @@ export default function SupportPage() {
               </div>
 
               <h1 className="poppins-bold text-5xl lg:text-6xl xl:text-[4.5rem] text-slate-900 leading-[1.05] tracking-tight mb-6">
-                Compliance
+                Cost &amp; Compliance
                 <br />
-                <span className="text-emerald-700">Made Simple.</span>
+                <span className="bg-gradient-to-r from-emerald-700 to-emerald-500 bg-clip-text text-transparent">Made Simple.</span>
               </h1>
 
               <p className="poppins-regular text-lg text-slate-600 leading-relaxed mb-10 max-w-lg">
-                Waste duty of care, clinical waste, and HMO compliance — audited, documented, and maintained.
-                We protect UK businesses from fines, prosecution, and licence loss.
+                Waste costs, duty of care, and waste records — reviewed, improved, and kept under control.
+                We help UK businesses cut costs, reduce risk, and stay organised.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
@@ -357,10 +357,13 @@ export default function SupportPage() {
       <section className="py-12 bg-white border-y border-slate-100">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            <StatCounter target={48} suffix="h" label="Avg Audit Turnaround" />
-            <StatCounter target={3} label="Waste Frameworks Covered" />
-            <StatCounter target={5000} suffix="+" label="Max Fine Prevented (£)" />
-            <StatCounter target={100} suffix="%" label="Audit-Ready Records" />
+            <StatCounter target={48} suffix="h" label="Avg Report Turnaround" />
+            <StatCounter target={3} label="Key Waste Areas Covered" />
+            <div className="text-center">
+              <p className="poppins-bold text-4xl lg:text-5xl text-slate-900">Cost</p>
+              <p className="poppins-regular text-sm text-slate-500 mt-1">Saving Opportunities Found</p>
+            </div>
+            <StatCounter target={100} suffix="%" label="Clear Written Reports" />
           </div>
         </div>
       </section>
@@ -371,7 +374,7 @@ export default function SupportPage() {
           <div className="text-center mb-12">
             <p className="poppins-medium text-xs text-emerald-700 uppercase tracking-widest mb-3">What We Do</p>
             <h2 className="poppins-bold text-4xl lg:text-5xl text-slate-900 tracking-tight">
-              Four Ways We Protect
+              Four Ways We Help
               <span className="text-emerald-700"> Your Business.</span>
             </h2>
           </div>
@@ -457,20 +460,19 @@ export default function SupportPage() {
             <div>
               <p className="poppins-medium text-xs text-emerald-700 uppercase tracking-widest mb-4">Full Visibility</p>
               <h2 className="poppins-bold text-4xl lg:text-5xl text-slate-900 tracking-tight mb-5 leading-[1.1]">
-                Know Your
-                <span className="text-emerald-700"> Compliance Score.</span>
+                Know Where
+                <span className="bg-gradient-to-r from-emerald-700 to-emerald-500 bg-clip-text text-transparent"> You Stand.</span>
               </h2>
               <p className="poppins-regular text-lg text-slate-600 leading-relaxed mb-7">
-                We give every client a clear view of their compliance position across waste duty of care, clinical waste, and Simpler Recycling —
-                and we keep it current as legislation changes.
+                We give every client a view of their waste costs, records, and compliance position — and help keep everything on track as rules change.
               </p>
 
               <div className="space-y-3 mb-8">
                 {[
-                  { icon: Target,     text: "Gap Analysis Across Duty of Care, Clinical Waste & Simpler Recycling" },
-                  { icon: TrendingUp, text: "Continuous Monitoring As Regulations Evolve" },
-                  { icon: Clock,      text: "48-Hour Turnaround On All Compliance Audits" },
-                  { icon: Lock,       text: "Written Evidence That Holds Up Under Regulatory Scrutiny" },
+                  { icon: Target,     text: "Gap analysis across waste costs, records, and legal duties" },
+                  { icon: TrendingUp, text: "Ongoing review as waste rules evolve" },
+                  { icon: Clock,      text: "48-hour turnaround on all audit reports" },
+                  { icon: Lock,       text: "Clear written evidence you can actually use" },
                 ].map(({ icon: Icon, text }) => (
                   <div key={text} className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0">
@@ -502,7 +504,7 @@ export default function SupportPage() {
               Reach Us Directly.
             </h2>
             <p className="poppins-regular text-lg text-slate-500 mt-3">
-              No bots. No queues. A compliance professional responds — same day.
+              No bots. No call centres. A real person replies the same day.
             </p>
           </div>
 
@@ -564,8 +566,8 @@ export default function SupportPage() {
                   </div>
                   <p className="poppins-bold text-[10px] uppercase tracking-widest text-amber-600">Free Assessment</p>
                 </div>
-                <p className="poppins-bold text-sm text-slate-900 mb-1">3-Minute Quiz</p>
-                <p className="poppins-regular text-xs text-slate-500 mb-6">Instant Compliance Score</p>
+                <p className="poppins-bold text-sm text-slate-900 mb-1">3-Minute Check</p>
+                <p className="poppins-regular text-xs text-slate-500 mb-6">Instant Cost &amp; Risk View</p>
                 <span className="inline-flex items-center gap-2 poppins-semibold text-sm text-amber-600 group-hover:gap-3 transition-all">
                   Start Assessment
                   <ArrowRight className="w-4 h-4" />
@@ -595,10 +597,10 @@ export default function SupportPage() {
             <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
               <div>
                 <p className="poppins-bold text-2xl sm:text-3xl text-white leading-snug mb-2">
-                  Let's Make You Fully Compliant.
+                  Let&apos;s Get Your Waste Setup Under Control.
                 </p>
                 <p className="poppins-regular text-emerald-200 text-sm leading-relaxed">
-                  Email us your situation. We will tell you exactly what you need to do — within hours.
+                  Email us your situation. We will tell you what is working, what is not, and what to do next — within hours.
                 </p>
               </div>
               <a

@@ -49,7 +49,7 @@ export default function AboutPage() {
               About Millstone Compliance
             </h1>
             <p className="poppins-regular text-xl text-emerald-700">
-              Waste & Recycling Compliance Specialists for UK businesses
+              Independent Waste Cost & Compliance Audits for UK businesses
             </p>
           </div>
       </div>
@@ -67,13 +67,13 @@ export default function AboutPage() {
                 <h2 className="poppins-bold text-3xl text-emerald-900">Who We Are</h2>
               </div>
               <p className="poppins-regular text-base text-emerald-700 leading-relaxed mb-6">
-                We help UK businesses stay on top of waste regulations — from care homes and property landlords to hospitality, logistics and food & beverage manufacturing. Our focus: clear advice on what to do, with no confusing jargon.
+                We help UK businesses cut waste costs and stay on top of waste rules — from property and hospitality to care, logistics and manufacturing. Our focus is simple: clear advice, practical actions, and no confusing jargon.
               </p>
               <div className="space-y-3">
                 {[
-                  "UK government regulatory experience",
+                  "UK government systems experience",
                   "Cambridge sustainability trained",
-                  "Waste & Recycling Compliance Specialists"
+                  "Independent Waste Audit Specialists"
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
@@ -93,13 +93,13 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h3 className="poppins-semibold text-sm text-emerald-900">Credentials</h3>
-                    <p className="text-xs text-emerald-600">Verified Experience</p>
+                    <p className="text-xs text-emerald-600">Relevant Experience</p>
                   </div>
                 </div>
                 <div className="space-y-3">
                   <div className="bg-emerald-50 rounded-lg p-3 border border-emerald-100">
                     <p className="text-xs poppins-medium text-emerald-900 mb-1">UK Government</p>
-                    <p className="text-xs text-emerald-600">Tax Systems Experience</p>
+                    <p className="text-xs text-emerald-600">Systems Background</p>
                   </div>
                   <div className="bg-emerald-50 rounded-lg p-3 border border-emerald-100">
                     <p className="text-xs poppins-medium text-emerald-900 mb-1">Cambridge CISL</p>
@@ -137,7 +137,7 @@ export default function AboutPage() {
               What We Do
             </h2>
             <p className="poppins-regular text-lg text-emerald-700 max-w-xl mx-auto">
-              We help UK businesses stay compliant with waste regulations — whoever you are, wherever you operate
+              We help UK businesses reduce waste costs, tighten paperwork, and stay in control of compliance — wherever you operate.
             </p>
           </div>
 
@@ -151,17 +151,17 @@ export default function AboutPage() {
               {
                 icon: Brain,
                 title: "Find gaps",
-                description: "Show you what's missing or wrong"
+                description: "See what's missing, weak, or costing too much"
               },
               {
                 icon: Settings,
                 title: "Fix it",
-                description: "Get your paperwork in order"
+                description: "Get clear actions and stronger records"
               },
               {
                 icon: Users,
-                title: "Stay safe",
-                description: "Keep track of new rules"
+                title: "Stay ready",
+                description: "Keep on top of changes and risks"
               }
             ].map((item, index) => (
               <div key={index} className="text-center">
@@ -212,11 +212,11 @@ export default function AboutPage() {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-emerald-700">Clinical Waste Records</span>
-                    <Clock className="w-4 h-4 text-amber-500" />
+                    <span className="text-xs text-emerald-700">Waste Records</span>
+                    <CheckCircle className="w-4 h-4 text-green-500" />
                   </div>
                   <div className="w-full bg-emerald-100 rounded-full h-2">
-                    <div className="bg-gradient-to-r from-amber-500 to-amber-600 h-2 rounded-full transition-all duration-1000" style={{width: '60%'}}></div>
+                    <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 h-2 rounded-full transition-all duration-1000" style={{width: '88%'}}></div>
                   </div>
                 </div>
               </div>
@@ -249,7 +249,7 @@ export default function AboutPage() {
                 <h2 className="poppins-bold text-3xl text-emerald-900">Our Approach</h2>
               </div>
               <p className="poppins-regular text-base text-emerald-700 leading-relaxed mb-6">
-                Our assessment checks 15+ compliance areas in 3 minutes. You get immediate feedback showing what's solid and what needs attention.
+                Our assessment checks key cost and compliance areas in 3 minutes. You get instant feedback showing what is working, what needs fixing, and where waste costs may be reduced.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -303,11 +303,11 @@ export default function AboutPage() {
             <div className="relative z-10">
               {/* Heading */}
               <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-white mb-4 text-center tracking-tight">
-                Ready to get compliant?
+                Ready to cut waste costs and reduce risk?
               </h2>
-              
+
               <p className="poppins-regular text-base sm:text-lg text-emerald-50 max-w-2xl mx-auto text-center mb-10 leading-relaxed">
-                Our free 3-minute check finds waste compliance gaps and tells you exactly what to fix — before a council or EA inspection does
+                Our free 3-minute check finds waste cost and compliance gaps and shows you exactly what to fix — before they turn into bigger problems.
               </p>
 
               {/* Action Buttons */}
@@ -348,7 +348,7 @@ export default function AboutPage() {
                   <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover/feature:bg-white/20 transition-colors">
                     <CheckCircle2 className="w-5 h-5" />
                   </div>
-                  <span className="poppins-medium text-sm">UK COMPLIANT</span>
+                  <span className="poppins-medium text-sm">UK FOCUSED</span>
                 </div>
 
                 <div className="w-px h-6 bg-white/30 hidden sm:block"></div>
@@ -366,7 +366,7 @@ export default function AboutPage() {
           {/* Trust indicator */}
           <div className="text-center mt-8 animate-fade-in">
             <p className="poppins-regular text-sm text-emerald-600">
-              Trusted by regulated businesses across the UK
+              Trusted by businesses across the UK
             </p>
           </div>
         </div>

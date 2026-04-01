@@ -89,6 +89,17 @@ const articles: {
   featured?: boolean
 }[] = [
   {
+    title: "How Businesses Can Save Money On Waste",
+    description: "Waste costs more than the bin bill. Practical steps to reduce waste spend, improve records, and stay compliant — with no jargon.",
+    icon: Sparkles,
+    href: "/resources/how-businesses-save-money-on-waste",
+    badge: "New",
+    topics: ["Cost Savings", "Waste Records", "Compliance"],
+    category: "duty-of-care",
+    readTime: "5 min",
+    featured: true,
+  },
+  {
     title: "Care Home Waste Compliance Checklist",
     description: "Free 16-question checklist for care home managers. Covers clinical waste, Simpler Recycling, HTM 07-01 and CQC requirements — with free PDF download.",
     icon: Heart,

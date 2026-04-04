@@ -66,7 +66,7 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2.5">
                 {[
-                  { label: "HMO Waste Checklist", href: "/resources/hmo-waste-compliance-checklist" },
+                  { label: "Partner Site Check", href: "/resources/partner-check" },
                   { label: "Documentation Guide", href: "/resources/waste-packaging-documentation" },
                   { label: "Care Home Checklist", href: "/resources/care-home-waste-compliance-checklist" },
                   { label: "All Resources", href: "/resources" }

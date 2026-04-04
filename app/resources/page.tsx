@@ -6,6 +6,7 @@ import {
   ArrowRight, ArrowUpRight, ClipboardCheck, Recycle,
   ListChecks, FileCheck, Leaf, Trash2, Truck, Heart,
   Clock, Zap, BookOpen, Shield, BadgeCheck, Sparkles, Warehouse,
+  PoundSterling,
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import Footer from "@/components/Footer"
@@ -592,6 +593,54 @@ export default function ResourcesPage() {
                 </Link>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Partner Check ────────────────────────────────────────── */}
+      <section className="px-4 sm:px-6 py-16 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-gradient-to-br from-emerald-900 to-emerald-800 rounded-3xl p-8 sm:p-12 overflow-hidden relative">
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none rounded-3xl" />
+            <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-8">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-4">
+                  <BadgeCheck className="w-4 h-4 text-emerald-300" />
+                  <span className="text-xs poppins-semibold text-emerald-300 uppercase tracking-widest">
+                    For Partners Only
+                  </span>
+                </div>
+                <h2 className="poppins-bold text-2xl sm:text-3xl text-white mb-3 leading-tight">
+                  On-Site Partner Check —{" "}
+                  <span className="text-emerald-300">earn £150 per referral</span>
+                </h2>
+                <p className="text-emerald-100 text-sm leading-relaxed max-w-lg mb-5">
+                  Walk through any client site, answer 5 quick questions, and send us the results in one tap.
+                  If the client books a compliance audit, you earn £150. No cap, no complicated sign-up.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    { icon: Zap, label: "Under 2 minutes" },
+                    { icon: PoundSterling, label: "£150 per audit booked" },
+                    { icon: Shield, label: "No login needed" },
+                  ].map(({ icon: Icon, label }) => (
+                    <div key={label} className="flex items-center gap-2 text-emerald-200 text-sm">
+                      <Icon className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <span>{label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="w-full lg:w-auto shrink-0">
+                <Link
+                  href="/resources/partner-check"
+                  className="w-full lg:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-emerald-50 text-emerald-900 poppins-bold text-sm px-7 py-3.5 rounded-xl shadow-md transition-all duration-200 active:scale-95"
+                >
+                  Open Partner Check
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

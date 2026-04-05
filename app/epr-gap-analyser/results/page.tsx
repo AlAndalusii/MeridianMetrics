@@ -193,6 +193,14 @@ function ResultsContent() {
     setTimeout(() => leadFormRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100)
   }
 
+  const handleResend = () => {
+    localStorage.removeItem("epr_gap_analyser_lead_submitted")
+    setSubmitted(false)
+    setLeadForm({ name: "", email: "", company: "", phone: "", gdprConsent: false })
+    setShowLeadForm(true)
+    setTimeout(() => leadFormRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100)
+  }
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center">
@@ -444,12 +452,26 @@ function ResultsContent() {
               </div>
               <h3 className="poppins-bold text-xl text-blue-900 mb-2">Results sent to your inbox!</h3>
               <p className="poppins-regular text-gray-600 text-sm mb-6">Check your email for your personalised EPR compliance report. Our team will be in touch shortly.</p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-5">
                 <Button onClick={() => setShowCalendly(true)} className="poppins-semibold bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 px-6 rounded-2xl hover:shadow-lg hover:shadow-blue-500/20">
                   <Calendar className="w-4 h-4 mr-2" />
                   {isHighPriority ? "Book Compliance Audit" : "Book Free Consultation"}
                 </Button>
                 <Link href="/"><Button variant="outline" className="poppins-semibold border-2 border-blue-200 text-blue-700 hover:bg-blue-50 py-4 px-6 rounded-2xl w-full sm:w-auto">Back to Home</Button></Link>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 border-t border-blue-100">
+                <button
+                  onClick={handleResend}
+                  className="text-sm poppins-medium text-blue-700 hover:text-blue-900 hover:underline transition-colors flex items-center gap-1.5"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  Send to a different email
+                </button>
+                <span className="hidden sm:block text-gray-300">·</span>
+                <Link href="/epr-gap-analyser" className="text-sm poppins-medium text-gray-500 hover:text-gray-700 hover:underline transition-colors flex items-center gap-1.5">
+                  <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+                  Change my answers
+                </Link>
               </div>
             </div>
           ) : (

@@ -213,6 +213,14 @@ function ResultsContent() {
     setTimeout(() => leadFormRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100)
   }
 
+  const handleResend = () => {
+    localStorage.removeItem("ppt_gap_analyzer_lead_submitted")
+    setSubmitted(false)
+    setLeadForm({ name: "", email: "", company: "", phone: "", gdprConsent: false })
+    setShowLeadForm(true)
+    setTimeout(() => leadFormRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100)
+  }
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 flex items-center justify-center">
@@ -522,7 +530,7 @@ function ResultsContent() {
               </div>
               <h3 className="poppins-bold text-xl text-emerald-900 mb-2">Results sent to your inbox!</h3>
               <p className="poppins-regular text-gray-600 text-sm mb-6">Check your email for your personalised PPT compliance report. Our team will be in touch shortly.</p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-5">
                 <Button
                   onClick={() => setShowCalendly(true)}
                   className="poppins-semibold bg-gradient-to-r from-emerald-600 to-green-600 text-white py-4 px-6 rounded-2xl hover:shadow-lg hover:shadow-emerald-500/20"
@@ -534,6 +542,20 @@ function ResultsContent() {
                   <Button variant="outline" className="poppins-semibold border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 py-4 px-6 rounded-2xl w-full sm:w-auto">
                     Back to Home
                   </Button>
+                </Link>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 border-t border-emerald-100">
+                <button
+                  onClick={handleResend}
+                  className="text-sm poppins-medium text-emerald-700 hover:text-emerald-900 hover:underline transition-colors flex items-center gap-1.5"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  Send to a different email
+                </button>
+                <span className="hidden sm:block text-gray-300">·</span>
+                <Link href="/ppt-gap-analyser" className="text-sm poppins-medium text-gray-500 hover:text-gray-700 hover:underline transition-colors flex items-center gap-1.5">
+                  <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+                  Change my answers
                 </Link>
               </div>
             </div>

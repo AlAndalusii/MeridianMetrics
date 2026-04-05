@@ -119,6 +119,14 @@ function ResultsContent() {
     }
   }
 
+  const handleResend = () => {
+    localStorage.removeItem("doc_gap_analyzer_lead_submitted")
+    setSubmitted(false)
+    setLeadForm({ name: "", email: "", company: "", phone: "", gdprConsent: false })
+    setShowLeadForm(true)
+    setTimeout(() => leadFormRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100)
+  }
+
   if (isLoading) return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 flex items-center justify-center">
       <div className="text-center">
@@ -292,7 +300,7 @@ function ResultsContent() {
               <p className="poppins-regular text-emerald-200/70 mb-8 max-w-md mx-auto">
                 We'll have your personalised Duty of Care report with you within one business day. In the meantime, book a free 15-minute call.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
                 <Button onClick={() => setShowCalendly(true)}
                   className="bg-white text-emerald-800 hover:bg-emerald-50 poppins-bold px-8 py-4 rounded-xl">
                   Book Free Call <ArrowRight className="ml-2 w-4 h-4" />
@@ -301,6 +309,20 @@ function ResultsContent() {
                   <Button className="bg-emerald-700/50 hover:bg-emerald-700 text-white border border-emerald-600/40 poppins-semibold px-8 py-4 rounded-xl">
                     Read More Guides
                   </Button>
+                </Link>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-5 border-t border-emerald-700/40">
+                <button
+                  onClick={handleResend}
+                  className="text-sm poppins-medium text-emerald-300 hover:text-white hover:underline transition-colors flex items-center gap-1.5"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  Send to a different email
+                </button>
+                <span className="hidden sm:block text-emerald-700">·</span>
+                <Link href="/duty-of-care-analyser" className="text-sm poppins-medium text-emerald-400 hover:text-emerald-200 hover:underline transition-colors flex items-center gap-1.5">
+                  <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+                  Change my answers
                 </Link>
               </div>
             </div>

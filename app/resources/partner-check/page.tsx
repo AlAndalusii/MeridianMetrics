@@ -403,6 +403,7 @@ function ResultsView({
   const [partnerPhone, setPartnerPhone] = useState("")
   const [partnerEmail, setPartnerEmail] = useState("")
   const [partnerCompany, setPartnerCompany] = useState("")
+  const [gdprConsent, setGdprConsent] = useState(false)
   const [submitState, setSubmitState] = useState<SubmitState>("idle")
   const [errorMsg, setErrorMsg] = useState("")
 
@@ -419,7 +420,18 @@ function ResultsView({
     partnerName.trim() !== "" &&
     partnerPhone.trim() !== "" &&
     partnerEmail.trim() !== "" &&
-    partnerEmail.includes("@")
+    partnerEmail.includes("@") &&
+    gdprConsent
+
+  function handleResend() {
+    setSubmitState("idle")
+    setPartnerName("")
+    setPartnerPhone("")
+    setPartnerEmail("")
+    setPartnerCompany("")
+    setGdprConsent(false)
+    setErrorMsg("")
+  }
 
   async function handleSubmit() {
     if (!canSubmit) return
@@ -596,6 +608,28 @@ function ResultsView({
                   className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-slate-800 text-sm poppins-regular placeholder:text-slate-400"
                 />
               </div>
+
+              {/* GDPR consent */}
+              <label className={`flex items-start gap-3 p-4 rounded-2xl border-2 cursor-pointer transition-all ${
+                gdprConsent ? "border-emerald-300 bg-emerald-50" : "border-slate-200 bg-slate-50 hover:border-emerald-200"
+              }`}>
+                <div
+                  onClick={() => setGdprConsent(!gdprConsent)}
+                  className={`flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center mt-0.5 transition-all ${
+                    gdprConsent ? "border-emerald-500 bg-emerald-500" : "border-slate-300 bg-white"
+                  }`}
+                >
+                  {gdprConsent && (
+                    <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
+                </div>
+                <span className="poppins-regular text-xs text-slate-600 leading-relaxed">
+                  I consent to Millstone Compliance processing my details and the site check results to follow up with me about this visit. I can request removal at any time.{" "}
+                  <Link href="/privacy" className="text-emerald-600 hover:underline">Privacy Policy</Link>
+                </span>
+              </label>
             </div>
 
             {submitState === "error" && (
@@ -642,7 +676,7 @@ function ResultsView({
             <p className="text-emerald-700 text-sm leading-relaxed mb-5">
               If you need to reach us sooner, give us a call or drop us a message.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mb-5">
               <a
                 href={CONTACT_INFO.tel}
                 className="flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-600 text-white poppins-semibold py-3 px-5 rounded-xl text-sm transition-all active:scale-95"
@@ -657,6 +691,23 @@ function ResultsView({
                 <Mail className="w-4 h-4" />
                 {CONTACT_INFO.email}
               </a>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 border-t border-emerald-200">
+              <button
+                onClick={handleResend}
+                className="text-sm poppins-medium text-emerald-700 hover:text-emerald-900 hover:underline transition-colors flex items-center gap-1.5"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                Send with different details
+              </button>
+              <span className="hidden sm:block text-emerald-300">·</span>
+              <button
+                onClick={onReset}
+                className="text-sm poppins-medium text-slate-500 hover:text-slate-700 hover:underline transition-colors flex items-center gap-1.5"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                Change my answers
+              </button>
             </div>
           </div>
         )}

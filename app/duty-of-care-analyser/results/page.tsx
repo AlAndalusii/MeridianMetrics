@@ -11,8 +11,8 @@ import {
   Download, Phone, Lock, Star,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
-import { CalendlyModal } from "@/components/CalendlyWidget"
 import ErrorBoundary from "@/components/ErrorBoundary"
+import { useBooking } from "@/components/BookingProvider"
 
 interface GapItem { title: string; description: string; risk: string }
 interface ScoreResult { score: number; topGaps: GapItem[]; urgencyLevel: "High" | "Medium" | "Low" }
@@ -55,6 +55,7 @@ function CircularScore({ score, color, animate }: { score: number; color: string
 }
 
 function ResultsContent() {
+  const { openBooking } = useBooking()
   const router = useRouter()
   const [result,        setResult]        = useState<ScoreResult | null>(null)
   const [isLoading,     setIsLoading]     = useState(true)
@@ -65,7 +66,6 @@ function ResultsContent() {
   const [submitted,     setSubmitted]     = useState(false)
   const [submitError,   setSubmitError]   = useState("")
   const [animateScore,  setAnimateScore]  = useState(false)
-  const [showCalendly,  setShowCalendly]  = useState(false)
   const leadFormRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -225,7 +225,7 @@ function ResultsContent() {
                     className="bg-white text-emerald-800 hover:bg-emerald-50 poppins-bold text-base px-8 py-5 rounded-2xl w-full sm:w-auto shadow-xl">
                     Get My Free Report <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
-                  <button onClick={() => setShowCalendly(true)}
+                  <button onClick={() => openBooking()}
                     className="mt-4 block mx-auto poppins-medium text-sm text-emerald-400 hover:text-emerald-200 underline transition-colors">
                     Or book a free 15-min call instead
                   </button>
@@ -301,7 +301,7 @@ function ResultsContent() {
                 We'll have your personalised Duty of Care report with you within one business day. In the meantime, book a free 15-minute call.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-                <Button onClick={() => setShowCalendly(true)}
+                <Button onClick={() => openBooking()}
                   className="bg-white text-emerald-800 hover:bg-emerald-50 poppins-bold px-8 py-4 rounded-xl">
                   Book Free Call <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
@@ -343,12 +343,12 @@ function ResultsContent() {
           </div>
         </div>
       </div>
-
-      <CalendlyModal isOpen={showCalendly} onClose={() => setShowCalendly(false)} />
-    </div>
+      </div>
   )
 }
 
 export default function DutyOfCareResultsPage() {
+  const { openBooking } = useBooking()
+
   return <ErrorBoundary><ResultsContent /></ErrorBoundary>
 }

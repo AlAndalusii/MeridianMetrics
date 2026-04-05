@@ -39,7 +39,7 @@ import {
 } from "lucide-react"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
-import { EmailTemplateModal } from "@/components/EmailTemplateModal"
+import { useBooking } from "@/components/BookingProvider"
 
 /* ─── Intersection observer hook ─────────────────────────────────────────── */
 function useReveal(threshold = 0.12) {
@@ -126,7 +126,7 @@ const sectorAccordions = [
     ],
     cta: "View HMO Compliance Checklist",
     ctaHref: "/resources/hmo-waste-compliance-checklist",
-    secondaryCta: "Book a Property Audit — from £400",
+    secondaryCta: "Book a Property Audit",
     pal: {
       eyebrow: "#b45309",
       bg: "linear-gradient(135deg,rgba(255,251,235,0.65) 0%,rgba(255,255,255,0.98) 100%)",
@@ -303,7 +303,8 @@ const sectorAccordions = [
 ]
 
 export default function ServicesPage() {
-  const [showEmail, setShowEmail] = useState(false)
+    const { openBooking } = useBooking()
+
   const [activeStep, setActiveStep] = useState(0)
   const [deliveryMode, setDeliveryMode] = useState<"remote" | "onsite">("remote")
   const [openAccordion, setOpenAccordion] = useState<string | null>(null)
@@ -314,8 +315,9 @@ export default function ServicesPage() {
   const processRef = useReveal(0.1)
   const deliveryRef = useReveal(0.1)
   const reportRef = useReveal(0.1)
-  const whoRef   = useReveal(0.1)
-  const tplRef   = useReveal(0.1)
+  const whoRef    = useReveal(0.1)
+  const pricingRef = useReveal(0.1)
+  const tplRef    = useReveal(0.1)
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
@@ -367,7 +369,7 @@ export default function ServicesPage() {
             style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(12px)" }}
           >
             <button
-              onClick={() => setShowEmail(true)}
+              onClick={() => openBooking("snapshot")}
               className="group inline-flex items-center gap-2 px-7 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white poppins-bold text-sm rounded-xl shadow-lg hover:shadow-emerald-700/20 transition-all duration-300 active:scale-95"
             >
               Book an Audit
@@ -628,7 +630,7 @@ export default function ServicesPage() {
                             </Link>
                           )}
                           <button
-                            onClick={() => setShowEmail(true)}
+                            onClick={() => openBooking("snapshot")}
                             className="inline-flex items-center justify-center gap-2 px-4 py-3 poppins-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 hover:brightness-110"
                             style={
                               item.cta
@@ -1035,6 +1037,167 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* ── HOW WE CAN HELP — PRICING ─────────────────────────────────────── */}
+      <section className="py-24 px-6 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+        <div ref={pricingRef.ref} className="max-w-5xl mx-auto">
+
+          {/* Section heading */}
+          <div
+            className="text-center mb-14 transition-all duration-700"
+            style={{ opacity: pricingRef.visible ? 1 : 0, transform: pricingRef.visible ? "none" : "translateY(24px)" }}
+          >
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Pricing</p>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900 mb-3">How We Work</h2>
+            <p className="poppins-regular text-slate-500 text-base max-w-xl mx-auto">
+              Three fixed-price options. Zero long-term contracts. No hidden fees. Choose the level of support you need right now.
+            </p>
+          </div>
+
+          {/* Cards */}
+          <div className="grid sm:grid-cols-3 gap-5 items-stretch">
+
+            {/* FREE — Discovery Call */}
+            <div
+              className="relative rounded-2xl border border-slate-200 bg-white p-7 flex flex-col transition-all duration-700 hover:shadow-[0_8px_32px_rgba(16,185,129,0.10)] hover:-translate-y-0.5"
+              style={{
+                opacity: pricingRef.visible ? 1 : 0,
+                transform: pricingRef.visible ? "translateY(0)" : "translateY(32px)",
+                transitionDelay: "0ms",
+              }}
+            >
+              <div className="mb-5">
+                <span className="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-500 poppins-semibold text-xs uppercase tracking-wider mb-4">Free</span>
+                <p className="poppins-bold text-4xl text-slate-900 leading-none mb-1">£0</p>
+                <p className="poppins-semibold text-slate-700 text-base mt-2">Discovery Call</p>
+                <p className="poppins-regular text-slate-400 text-xs mt-1">15 minutes · No obligation</p>
+              </div>
+
+              <div className="flex-1 space-y-3 mb-7">
+                {[
+                  "15-minute call to understand your setup",
+                  "We explain your next steps",
+                  "No obligation",
+                ].map((f) => (
+                  <div key={f} className="flex items-start gap-2.5">
+                    <div className="w-4 h-4 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-2.5 h-2.5 text-emerald-500" />
+                    </div>
+                    <span className="poppins-regular text-sm text-slate-600 leading-snug">{f}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                onClick={() => openBooking("snapshot")}
+                className="w-full py-3 rounded-xl border border-emerald-300 text-emerald-700 poppins-semibold text-sm hover:bg-emerald-50 transition-all duration-200 active:scale-[0.98]"
+              >
+                Book Free Call
+              </button>
+            </div>
+
+            {/* £195 — Compliance Snapshot (FEATURED) */}
+            <div
+              className="relative rounded-2xl bg-emerald-700 p-7 flex flex-col shadow-[0_16px_48px_rgba(6,95,70,0.28)] transition-all duration-700 hover:-translate-y-1 hover:shadow-[0_24px_64px_rgba(6,95,70,0.35)]"
+              style={{
+                opacity: pricingRef.visible ? 1 : 0,
+                transform: pricingRef.visible ? "translateY(-8px)" : "translateY(24px)",
+                transitionDelay: "120ms",
+              }}
+            >
+              {/* Popular badge */}
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                <span className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-amber-400 text-amber-900 poppins-bold text-xs shadow-md whitespace-nowrap">
+                  <Zap className="w-3 h-3" />
+                  Most popular
+                </span>
+              </div>
+
+              <div className="mb-5">
+                <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-emerald-100 poppins-semibold text-xs uppercase tracking-wider mb-4">Paid</span>
+                <p className="poppins-bold text-4xl text-white leading-none mb-1">£195</p>
+                <p className="poppins-semibold text-emerald-100 text-base mt-2">Compliance Snapshot</p>
+                <p className="poppins-regular text-emerald-300 text-xs mt-1">Remote · Report in 48 hours</p>
+              </div>
+
+              <div className="flex-1 space-y-3 mb-7">
+                {[
+                  "Quick remote review of your setup",
+                  "We find 3–5 key risks",
+                  "Simple report in 48 hours",
+                  "Clear actions to fix issues",
+                ].map((f) => (
+                  <div key={f} className="flex items-start gap-2.5">
+                    <div className="w-4 h-4 rounded-full bg-white/10 border border-emerald-300/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-2.5 h-2.5 text-emerald-300" />
+                    </div>
+                    <span className="poppins-regular text-sm text-emerald-50 leading-snug">{f}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                onClick={() => openBooking("snapshot")}
+                className="w-full py-3 rounded-xl bg-white text-emerald-700 poppins-bold text-sm hover:bg-emerald-50 transition-all duration-200 active:scale-[0.98] shadow-lg shadow-emerald-900/20"
+              >
+                Book Snapshot
+              </button>
+            </div>
+
+            {/* £495 — Compliance Setup Pack */}
+            <div
+              className="relative rounded-2xl border border-slate-200 bg-white p-7 flex flex-col transition-all duration-700 hover:shadow-[0_8px_32px_rgba(16,185,129,0.10)] hover:-translate-y-0.5"
+              style={{
+                opacity: pricingRef.visible ? 1 : 0,
+                transform: pricingRef.visible ? "translateY(0)" : "translateY(32px)",
+                transitionDelay: "240ms",
+              }}
+            >
+              <div className="mb-5">
+                <span className="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-500 poppins-semibold text-xs uppercase tracking-wider mb-4">Full service</span>
+                <p className="poppins-bold text-4xl text-slate-900 leading-none mb-1">£495</p>
+                <p className="poppins-semibold text-slate-700 text-base mt-2">Compliance Setup Pack</p>
+                <p className="poppins-regular text-slate-400 text-xs mt-1">Remote · Everything in Snapshot</p>
+              </div>
+
+              <div className="flex-1 space-y-3 mb-7">
+                {[
+                  "Everything in the Snapshot",
+                  "We create your key documents",
+                  "Simple templates for your team",
+                  "One call to guide you",
+                  "One follow-up check",
+                ].map((f) => (
+                  <div key={f} className="flex items-start gap-2.5">
+                    <div className="w-4 h-4 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-2.5 h-2.5 text-emerald-500" />
+                    </div>
+                    <span className="poppins-regular text-sm text-slate-600 leading-snug">{f}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                onClick={() => openBooking("snapshot")}
+                className="w-full py-3 rounded-xl border border-emerald-300 text-emerald-700 poppins-semibold text-sm hover:bg-emerald-50 transition-all duration-200 active:scale-[0.98]"
+              >
+                See Full Setup
+              </button>
+            </div>
+
+          </div>
+
+          {/* Reassurance line */}
+          <div
+            className="mt-10 text-center transition-all duration-700 delay-300"
+            style={{ opacity: pricingRef.visible ? 1 : 0, transform: pricingRef.visible ? "none" : "translateY(12px)" }}
+          >
+            <p className="poppins-regular text-slate-400 text-sm">
+              All prices are fixed fee. No hidden costs. We confirm your quote before starting.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ── TEMPLATES CTA ──────────────────────────────────────────────────── */}
       <section className="py-16 px-6 bg-gradient-to-b from-amber-50/60 to-white">
         <div ref={tplRef.ref} className="max-w-4xl mx-auto">
@@ -1074,7 +1237,7 @@ export default function ServicesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
-              onClick={() => setShowEmail(true)}
+              onClick={() => openBooking("snapshot")}
               className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white hover:bg-emerald-50 text-emerald-700 poppins-bold text-sm rounded-xl transition-all duration-300 shadow-lg active:scale-95"
             >
               <Mail className="w-4 h-4" />
@@ -1104,8 +1267,6 @@ export default function ServicesPage() {
           100% { background-position: -200% 0; }
         }
       ` }} />
-
-      <EmailTemplateModal isOpen={showEmail} onClose={() => setShowEmail(false)} />
-    </div>
+      </div>
   )
 }

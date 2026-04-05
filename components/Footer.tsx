@@ -39,8 +39,8 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {[
                   { label: "Compliance Services", href: "/services" },
+                  { label: "Cut Waste Costs 20–40%", href: "/waste-cost-savings" },
                   { label: "Documentation", href: "/services/documentation" },
-                  { label: "Templates", href: "/templates" },
                   { label: "Support", href: "/support" }
                 ].map((item, index) => (
                   <li key={index}>
@@ -96,7 +96,7 @@ export default function Footer() {
                 {[
                   { label: "About Us", href: "/about" },
                   { label: "Our Services", href: "/services" },
-                  { label: "Templates", href: "/templates" },
+                  { label: "Cut Waste Costs", href: "/waste-cost-savings" },
                   { label: "Privacy Policy", href: "/privacy" }
                 ].map((item, index) => (
                   <li key={index}>

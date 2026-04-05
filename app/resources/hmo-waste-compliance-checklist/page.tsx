@@ -9,12 +9,12 @@ import {
   Trash2, Home, ClipboardList, BadgeAlert,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
-import { CalendlyModal } from "@/components/CalendlyWidget"
 import { MobileMenu } from "@/components/MobileMenu"
 import Footer from "@/components/Footer"
+import { useBooking } from "@/components/BookingProvider"
 
 export default function HmoWasteChecklistPage() {
-  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
+  const { openBooking } = useBooking()
 
   const checklist = [
     { q: "Does your property have a separate food waste bin?",                                          risk: "HIGH" },
@@ -47,7 +47,7 @@ export default function HmoWasteChecklistPage() {
             </Link>
             <div className="flex items-center gap-2 sm:gap-3">
               <Button
-                onClick={() => setShowCalendlyModal(true)}
+                onClick={() => openBooking()}
                 className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px]"
               >
                 BOOK COMPLIANCE REVIEW
@@ -108,7 +108,7 @@ export default function HmoWasteChecklistPage() {
                 Download Free Checklist — PDF
               </a>
               <Button
-                onClick={() => setShowCalendlyModal(true)}
+                onClick={() => openBooking()}
                 variant="outline"
                 className="border-white/30 text-white hover:bg-white/10 poppins-semibold px-7 py-3.5 rounded-xl text-sm bg-transparent min-h-[44px]"
               >
@@ -324,7 +324,7 @@ export default function HmoWasteChecklistPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
               <Button
-                onClick={() => setShowCalendlyModal(true)}
+                onClick={() => openBooking()}
                 size="lg"
                 className="bg-emerald-700 hover:bg-emerald-800 text-white poppins-bold shadow-lg px-8"
               >
@@ -364,11 +364,6 @@ export default function HmoWasteChecklistPage() {
       </main>
 
       <Footer />
-
-      <CalendlyModal
-        isOpen={showCalendlyModal}
-        onClose={() => setShowCalendlyModal(false)}
-      />
-    </div>
+      </div>
   )
 }

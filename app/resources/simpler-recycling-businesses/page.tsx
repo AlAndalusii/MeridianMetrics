@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, CheckCircle, AlertCircle, Calendar, Trash2, FileCheck, Users, Building, Coffee, Utensils, AlertTriangle, ArrowRight, BarChart3, Zap,
   BadgeCheck } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
-import { CalendlyModal } from "@/components/CalendlyWidget"
 import { MobileMenu } from "@/components/MobileMenu"
+import { useBooking } from "@/components/BookingProvider"
 
 export default function SimplerRecyclingBusinesses() {
-  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
+  const { openBooking } = useBooking()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50">
@@ -23,7 +23,7 @@ export default function SimplerRecyclingBusinesses() {
             </Link>
             <div className="flex items-center gap-2 sm:gap-3">
               <Button 
-                onClick={() => setShowCalendlyModal(true)}
+                onClick={() => openBooking()}
                 className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px]"
               >
                 <span className="hidden xs:inline">BOOK COMPLIANCE REVIEW</span>
@@ -215,7 +215,7 @@ export default function SimplerRecyclingBusinesses() {
                   <strong>Real example:</strong> A 25-employee warehouse received a £200 fixed penalty for missing food waste bins, plus £450 in rejected collection fees when they tried to put food waste in general waste. A compliance audit would have cost a fraction of the fine.
                 </p>
                 <Button
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                   size="lg"
                   className="bg-white text-red-700 hover:bg-red-50 poppins-semibold shadow-xl w-full sm:w-auto"
                 >
@@ -590,7 +590,7 @@ export default function SimplerRecyclingBusinesses() {
                   </div>
                 </div>
                 <Button
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                   className="w-full poppins-bold bg-white text-emerald-800 hover:bg-emerald-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all group"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
@@ -743,7 +743,7 @@ export default function SimplerRecyclingBusinesses() {
                     </Button>
                   </Link>
                   <Button
-                    onClick={() => setShowCalendlyModal(true)}
+                    onClick={() => openBooking()}
                     size="lg"
                     className="bg-white/20 hover:bg-white/30 text-white border-2 border-white/60 poppins-semibold shadow-xl text-base px-7 py-5"
                   >
@@ -803,10 +803,6 @@ export default function SimplerRecyclingBusinesses() {
       </article>
 
       {/* Calendly Modal */}
-      <CalendlyModal
-        isOpen={showCalendlyModal}
-        onClose={() => setShowCalendlyModal(false)}
-      />
-    </div>
+      </div>
   )
 }

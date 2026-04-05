@@ -5,7 +5,7 @@ import Link from "next/link"
 import { CheckCircle, XCircle, ArrowRight, Calendar } from "lucide-react"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
-import { CalendlyModal } from "@/components/CalendlyWidget"
+import { useBooking } from "@/components/BookingProvider"
 
 // ─── Scan data ────────────────────────────────────────────────────────────────
 const scanItems = [
@@ -139,10 +139,11 @@ const checkCards = [
 ]
 
 export default function CareHomesPage() {
+    const { openBooking } = useBooking()
+
   const [mounted, setMounted] = useState(false)
   const [scoreWidth, setScoreWidth] = useState(0)
   const [activeStep, setActiveStep] = useState(0)
-  const [calendlyOpen, setCalendlyOpen] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -186,7 +187,7 @@ export default function CareHomesPage() {
 
               <div className="flex flex-col sm:flex-row gap-3 mb-10">
                 <button
-                  onClick={() => setCalendlyOpen(true)}
+                  onClick={() => openBooking()}
                   className="group inline-flex items-center justify-center gap-2.5 bg-emerald-700 hover:bg-emerald-800 text-white poppins-bold text-sm px-7 py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg shadow-emerald-700/20"
                 >
                   <Calendar className="w-4 h-4" />
@@ -463,7 +464,7 @@ export default function CareHomesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
-              onClick={() => setCalendlyOpen(true)}
+              onClick={() => openBooking()}
               className="group inline-flex items-center justify-center gap-2.5 bg-white hover:bg-emerald-50 text-emerald-800 poppins-bold text-sm px-8 py-4 rounded-2xl transition-all duration-200 active:scale-95 shadow-xl shadow-black/20"
             >
               <Calendar className="w-4 h-4" />
@@ -482,7 +483,6 @@ export default function CareHomesPage() {
       </section>
 
       <Footer />
-      <CalendlyModal isOpen={calendlyOpen} onClose={() => setCalendlyOpen(false)} />
-    </div>
+      </div>
   )
 }

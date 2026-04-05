@@ -24,8 +24,8 @@ import {
   TrendingUp,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
-import { CalendlyModal } from "@/components/CalendlyWidget"
 import ErrorBoundary from "@/components/ErrorBoundary"
+import { useBooking } from "@/components/BookingProvider"
 
 interface GapItem {
   title: string
@@ -115,6 +115,7 @@ function CircularScore({ score, color, animate }: { score: number; color: string
 }
 
 function ResultsContent() {
+  const { openBooking } = useBooking()
   const router = useRouter()
   const [result, setResult] = useState<ScoreResult | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -125,7 +126,6 @@ function ResultsContent() {
   const [submitted, setSubmitted] = useState(false)
   const [submitError, setSubmitError] = useState("")
   const [animateScore, setAnimateScore] = useState(false)
-  const [showCalendly, setShowCalendly] = useState(false)
   const leadFormRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -259,7 +259,7 @@ function ResultsContent() {
               <span className="text-sm poppins-medium text-green-700 hidden sm:block">Gap Analyser Results</span>
             </div>
             <Button
-              onClick={() => setShowCalendly(true)}
+              onClick={() => openBooking()}
               size="sm"
               className="poppins-semibold bg-gradient-to-r from-green-600 to-emerald-600 text-white hidden sm:flex items-center gap-1.5 hover:shadow-lg hover:shadow-green-500/20"
             >
@@ -328,7 +328,7 @@ function ResultsContent() {
               </div>
             </div>
             <Button
-              onClick={() => setShowCalendly(true)}
+              onClick={() => openBooking()}
               className="w-full poppins-bold py-5 text-base bg-white text-red-700 hover:bg-red-50 rounded-2xl transition-all hover:shadow-lg group"
             >
               <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
@@ -347,7 +347,7 @@ function ResultsContent() {
               </div>
             </div>
             <Button
-              onClick={() => setShowCalendly(true)}
+              onClick={() => openBooking()}
               className="w-full poppins-bold py-5 text-base bg-white text-green-700 hover:bg-green-50 rounded-2xl transition-all hover:shadow-lg group"
             >
               <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
@@ -438,7 +438,7 @@ function ResultsContent() {
               <p className="poppins-regular text-gray-600 text-sm mb-6">Check your email for your personalised compliance report. Our team will be in touch shortly.</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center mb-5">
                 <Button
-                  onClick={() => setShowCalendly(true)}
+                  onClick={() => openBooking()}
                   className="poppins-semibold bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 px-6 rounded-2xl hover:shadow-lg hover:shadow-green-500/20"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
@@ -634,12 +634,13 @@ function ResultsContent() {
       </div>
 
       {/* Calendly Modal */}
-      <CalendlyModal isOpen={showCalendly} onClose={() => setShowCalendly(false)} />
-    </div>
+      </div>
   )
 }
 
 export default function GapAnalyzerResultsPage() {
+  const { openBooking } = useBooking()
+
   return (
     <ErrorBoundary>
       <ResultsContent />

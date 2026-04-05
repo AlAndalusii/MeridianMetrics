@@ -52,10 +52,9 @@ import { CONTACT_INFO } from "@/lib/constants"
 import { MobileMenu } from "@/components/MobileMenu"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
+import { useBooking } from "@/components/BookingProvider"
 
-// Defer heavy modal bundles — loaded only when first opened
-const CalendlyModal = dynamic(() => import("@/components/CalendlyWidget").then(m => ({ default: m.CalendlyModal })), { ssr: false })
-const EmailTemplateModal = dynamic(() => import("@/components/EmailTemplateModal").then(m => ({ default: m.EmailTemplateModal })), { ssr: false })
+
 
 // Fortune 500 Premium Logo Component - World-Class Design
 const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: string }) => (
@@ -187,11 +186,12 @@ const MillstoneComplianceLogo = ({ className = "w-12 h-12" }: { className?: stri
 
 export default function MillstoneComplianceWebsite() {
   const router = useRouter()
+    const { openBooking } = useBooking()
+
   const [isVisible, setIsVisible] = useState(true)
   const [activeStep, setActiveStep] = useState(0)
   const [showCallPopup, setShowCallPopup] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
-  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
   const [showEmailTemplate, setShowEmailTemplate] = useState(false)
   const [dashboardMetrics, setDashboardMetrics] = useState({
     pptLiability: 0,
@@ -1309,7 +1309,7 @@ export default function MillstoneComplianceWebsite() {
               {/* Quick book CTA */}
               <div className="flex flex-wrap gap-3 mb-6">
                 <button
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white px-5 py-3 rounded-xl transition-all duration-200 active:scale-95 shadow-sm"
                 >
                   <Calendar className="w-4 h-4" /> Book a Free Call
@@ -1384,7 +1384,7 @@ export default function MillstoneComplianceWebsite() {
                   <div className="flex items-center justify-between">
                     <p className="text-[10px] text-amber-400/80 poppins-regular">⚠ 1 issue — food waste bin required</p>
                     <button
-                      onClick={() => setShowCalendlyModal(true)}
+                      onClick={() => openBooking()}
                       className="text-[10px] poppins-semibold text-emerald-400 hover:text-emerald-300 underline transition-colors"
                     >
                       Fix this →
@@ -1898,7 +1898,7 @@ export default function MillstoneComplianceWebsite() {
               </Button>
               <Button
                 size="lg"
-                onClick={() => setShowCalendlyModal(true)}
+                onClick={() => openBooking()}
                 className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-500 sm:hover:scale-105 group/button relative overflow-hidden w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 min-h-[54px] text-sm sm:text-base"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
@@ -1983,7 +1983,7 @@ export default function MillstoneComplianceWebsite() {
                 <Button
                   size="lg"
                   className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-500 sm:hover:scale-105 group/button w-full relative overflow-hidden py-5 sm:py-6 min-h-[54px]"
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
                   <span className="relative z-10 flex items-center justify-center text-sm sm:text-base">
@@ -2018,16 +2018,7 @@ export default function MillstoneComplianceWebsite() {
       <Footer />
 
       {/* Calendly Modal */}
-      <CalendlyModal 
-        isOpen={showCalendlyModal} 
-        onClose={() => setShowCalendlyModal(false)} 
-      />
-
       {/* Email Template Modal */}
-      <EmailTemplateModal 
-        isOpen={showEmailTemplate} 
-        onClose={() => setShowEmailTemplate(false)} 
-      />
-    </div>
+      </div>
   )
 }

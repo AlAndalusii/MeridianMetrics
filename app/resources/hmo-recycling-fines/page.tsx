@@ -9,11 +9,11 @@ import {
   BadgeAlert, XCircle, ClipboardList, Banknote,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
-import { CalendlyModal } from "@/components/CalendlyWidget"
 import { MobileMenu } from "@/components/MobileMenu"
+import { useBooking } from "@/components/BookingProvider"
 
 export default function HmoRecyclingFinesPage() {
-  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
+  const { openBooking } = useBooking()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50">
@@ -26,7 +26,7 @@ export default function HmoRecyclingFinesPage() {
             </Link>
             <div className="flex items-center gap-2 sm:gap-3">
               <Button
-                onClick={() => setShowCalendlyModal(true)}
+                onClick={() => openBooking()}
                 className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px]"
               >
                 BOOK COMPLIANCE REVIEW
@@ -394,7 +394,7 @@ export default function HmoRecyclingFinesPage() {
                   31 March 2026 is weeks away. Our HMO Waste Audit gives you a property-by-property assessment, bin specifications, tenant templates, and ongoing monitoring — before enforcement begins.
                 </p>
                 <Button
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                   size="lg"
                   className="bg-white text-red-700 hover:bg-red-50 poppins-semibold shadow-xl"
                 >
@@ -627,7 +627,7 @@ export default function HmoRecyclingFinesPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button
-                    onClick={() => setShowCalendlyModal(true)}
+                    onClick={() => openBooking()}
                     size="lg"
                     className="bg-white text-emerald-800 hover:bg-emerald-50 poppins-bold shadow-xl"
                   >
@@ -635,7 +635,7 @@ export default function HmoRecyclingFinesPage() {
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                   <Button
-                    onClick={() => setShowCalendlyModal(true)}
+                    onClick={() => openBooking()}
                     size="lg"
                     className="bg-white/20 hover:bg-white/30 text-white border-2 border-white/60 poppins-semibold shadow-xl"
                   >
@@ -676,11 +676,6 @@ export default function HmoRecyclingFinesPage() {
           </div>
         </div>
       </article>
-
-      <CalendlyModal
-        isOpen={showCalendlyModal}
-        onClose={() => setShowCalendlyModal(false)}
-      />
-    </div>
+      </div>
   )
 }

@@ -2,8 +2,8 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Poppins } from "next/font/google"
 import "./globals.css"
-import CalendlyWidget from "@/components/CalendlyWidget"
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer"
+import { BookingProvider } from "@/components/BookingProvider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -95,8 +95,9 @@ export default function RootLayout({
       </head>
       <body className={poppins.className}>
         <PerformanceOptimizer />
-        {children}
-        <CalendlyWidget />
+        <BookingProvider>
+          {children}
+        </BookingProvider>
       </body>
     </html>
   )

@@ -24,8 +24,8 @@ import {
   TrendingUp,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
-import { CalendlyModal } from "@/components/CalendlyWidget"
 import ErrorBoundary from "@/components/ErrorBoundary"
+import { useBooking } from "@/components/BookingProvider"
 
 interface GapItem {
   title: string
@@ -115,6 +115,7 @@ function CircularScore({ score, color, animate }: { score: number; color: string
 }
 
 function ResultsContent() {
+  const { openBooking } = useBooking()
   const router = useRouter()
   const [result, setResult] = useState<ScoreResult | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -125,7 +126,6 @@ function ResultsContent() {
   const [submitted, setSubmitted] = useState(false)
   const [submitError, setSubmitError] = useState("")
   const [animateScore, setAnimateScore] = useState(false)
-  const [showCalendly, setShowCalendly] = useState(false)
   const leadFormRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -258,7 +258,7 @@ function ResultsContent() {
               <span className="text-sm poppins-medium text-emerald-700 hidden sm:block">PPT Gap Analyser Results</span>
             </div>
             <Button
-              onClick={() => setShowCalendly(true)}
+              onClick={() => openBooking()}
               size="sm"
               className="poppins-semibold bg-gradient-to-r from-emerald-600 to-green-600 text-white hidden sm:flex items-center gap-1.5 hover:shadow-lg hover:shadow-emerald-500/20"
             >
@@ -327,7 +327,7 @@ function ResultsContent() {
               </div>
             </div>
             <Button
-              onClick={() => setShowCalendly(true)}
+              onClick={() => openBooking()}
               className="w-full poppins-bold py-5 text-base bg-white text-red-700 hover:bg-red-50 rounded-2xl transition-all hover:shadow-lg group"
             >
               <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
@@ -346,7 +346,7 @@ function ResultsContent() {
               </div>
             </div>
             <Button
-              onClick={() => setShowCalendly(true)}
+              onClick={() => openBooking()}
               className="w-full poppins-bold py-5 text-base bg-white text-emerald-700 hover:bg-emerald-50 rounded-2xl transition-all hover:shadow-lg group"
             >
               <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
@@ -381,7 +381,7 @@ function ResultsContent() {
               ))}
             </ul>
             <Button
-              onClick={() => setShowCalendly(true)}
+              onClick={() => openBooking()}
               className="w-full poppins-bold py-4 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-2xl hover:shadow-lg hover:shadow-emerald-500/20 transition-all"
             >
               Book Free Call
@@ -413,7 +413,7 @@ function ResultsContent() {
                 ))}
               </ul>
               <Button
-                onClick={() => setShowCalendly(true)}
+                onClick={() => openBooking()}
                 variant="outline"
                 className="w-full poppins-semibold border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 rounded-xl py-3"
               >
@@ -443,7 +443,7 @@ function ResultsContent() {
                 ))}
               </ul>
               <button
-                onClick={() => setShowCalendly(true)}
+                onClick={() => openBooking()}
                 className="w-full text-center text-sm poppins-semibold text-emerald-600 hover:text-emerald-800 hover:underline transition-colors py-2"
               >
                 See Full Setup Option →
@@ -532,7 +532,7 @@ function ResultsContent() {
               <p className="poppins-regular text-gray-600 text-sm mb-6">Check your email for your personalised PPT compliance report. Our team will be in touch shortly.</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center mb-5">
                 <Button
-                  onClick={() => setShowCalendly(true)}
+                  onClick={() => openBooking()}
                   className="poppins-semibold bg-gradient-to-r from-emerald-600 to-green-600 text-white py-4 px-6 rounded-2xl hover:shadow-lg hover:shadow-emerald-500/20"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
@@ -728,12 +728,13 @@ function ResultsContent() {
       </div>
 
       {/* Calendly Modal */}
-      <CalendlyModal isOpen={showCalendly} onClose={() => setShowCalendly(false)} />
-    </div>
+      </div>
   )
 }
 
 export default function PPTGapAnalyzerResultsPage() {
+  const { openBooking } = useBooking()
+
   return (
     <ErrorBoundary>
       <ResultsContent />

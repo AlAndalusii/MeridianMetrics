@@ -9,11 +9,11 @@ import {
   BadgeCheck, ShieldAlert, BarChart3, Package,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
-import { CalendlyModal } from "@/components/CalendlyWidget"
 import { MobileMenu } from "@/components/MobileMenu"
+import { useBooking } from "@/components/BookingProvider"
 
 export default function WarehouseWasteGuide() {
-  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
+  const { openBooking } = useBooking()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50">
@@ -26,7 +26,7 @@ export default function WarehouseWasteGuide() {
             </Link>
             <div className="flex items-center gap-2 sm:gap-3">
               <Button
-                onClick={() => setShowCalendlyModal(true)}
+                onClick={() => openBooking()}
                 className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px]"
               >
                 BOOK COMPLIANCE AUDIT
@@ -350,7 +350,7 @@ export default function WarehouseWasteGuide() {
                   </p>
                 </div>
                 <Button
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                   className="flex-shrink-0 bg-white text-emerald-800 hover:bg-emerald-50 poppins-semibold px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 whitespace-nowrap"
                 >
                   Book a Free Audit
@@ -363,13 +363,6 @@ export default function WarehouseWasteGuide() {
         </div>
       </article>
 
-      {/* Calendly Modal */}
-      {showCalendlyModal && (
-        <CalendlyModal
-          isOpen={showCalendlyModal}
-          onClose={() => setShowCalendlyModal(false)}
-        />
-      )}
     </div>
   )
 }

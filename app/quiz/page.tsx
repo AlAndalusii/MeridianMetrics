@@ -15,7 +15,7 @@ import {
   BadgeCheck
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
-import { CalendlyModal } from "@/components/CalendlyWidget"
+import { useBooking } from "@/components/BookingProvider"
 
 const quizOptions = [
   {
@@ -119,7 +119,7 @@ const colorClasses = {
 }
 
 export default function QuizSelectorPage() {
-  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
+  const { openBooking } = useBooking()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50">
@@ -256,7 +256,7 @@ export default function QuizSelectorPage() {
                 Book a free 15-minute consultation and we'll help you understand your compliance obligations
               </p>
               <Button
-                onClick={() => setShowCalendlyModal(true)}
+                onClick={() => openBooking()}
                 className="poppins-semibold bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg"
               >
                 Book Free Consultation
@@ -267,10 +267,6 @@ export default function QuizSelectorPage() {
       </div>
 
       {/* Calendly Modal */}
-      <CalendlyModal 
-        isOpen={showCalendlyModal} 
-        onClose={() => setShowCalendlyModal(false)} 
-      />
-    </div>
+      </div>
   )
 }

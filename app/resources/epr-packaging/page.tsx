@@ -23,11 +23,11 @@ import {
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { MobileMenu } from "@/components/MobileMenu"
-import { CalendlyModal } from "@/components/CalendlyWidget"
 import Footer from "@/components/Footer"
+import { useBooking } from "@/components/BookingProvider"
 
 export default function EPRPackagingGuide() {
-  const [showCalendly, setShowCalendly] = useState(false)
+  const { openBooking } = useBooking()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
@@ -512,7 +512,7 @@ export default function EPRPackagingGuide() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
                   <button
-                    onClick={() => setShowCalendly(true)}
+                    onClick={() => openBooking()}
                     className="inline-flex items-center justify-center gap-2 poppins-bold bg-white text-blue-800 hover:bg-blue-50 px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 group text-base"
                   >
                     <Calendar className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -538,8 +538,6 @@ export default function EPRPackagingGuide() {
       </article>
 
       <Footer />
-
-      <CalendlyModal isOpen={showCalendly} onClose={() => setShowCalendly(false)} />
-    </div>
+      </div>
   )
 }

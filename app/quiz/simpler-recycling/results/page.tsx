@@ -19,16 +19,17 @@ import {
   Loader2,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
-import { CalendlyModal } from "@/components/CalendlyWidget"
+import { useBooking } from "@/components/BookingProvider"
 
 export default function SimplerRecyclingResultsPage() {
   const router = useRouter()
+    const { openBooking } = useBooking()
+
   const [score, setScore] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [animatedScore, setAnimatedScore] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [userInfo, setUserInfo] = useState({ name: "", email: "", company: "", phone: "" })
-  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
   const [emailSending, setEmailSending] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
   const [emailError, setEmailError] = useState("")
@@ -449,7 +450,7 @@ export default function SimplerRecyclingResultsPage() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                onClick={() => setShowCalendlyModal(true)}
+                onClick={() => openBooking()}
                 className="flex-1 poppins-semibold bg-white text-green-700 hover:bg-green-50 py-6 text-lg rounded-2xl shadow-lg"
               >
                 Book Free Call
@@ -492,7 +493,7 @@ export default function SimplerRecyclingResultsPage() {
                   ))}
                 </ul>
                 <Button
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                   className="w-full poppins-semibold bg-green-600 hover:bg-green-700 text-white rounded-xl py-3"
                 >
                   Book Free Call
@@ -510,7 +511,7 @@ export default function SimplerRecyclingResultsPage() {
                   ))}
                 </ul>
                 <Button
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                   className="w-full poppins-medium bg-white border-2 border-green-600 text-green-700 hover:bg-green-50 rounded-xl py-3"
                 >
                   Book Audit
@@ -528,7 +529,7 @@ export default function SimplerRecyclingResultsPage() {
                   ))}
                 </ul>
                 <Button
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                   className="w-full poppins-medium bg-white border-2 border-green-200 text-green-700 hover:bg-green-50 rounded-xl py-3 text-sm"
                 >
                   See Setup Option
@@ -550,7 +551,7 @@ export default function SimplerRecyclingResultsPage() {
                     The deadline passed on 31 March 2025. The Environment Agency can issue compliance notices and charge £118/hour for regulatory work. You need to fix this immediately.
                   </p>
                   <Button
-                    onClick={() => setShowCalendlyModal(true)}
+                    onClick={() => openBooking()}
                     className="poppins-semibold bg-red-600 hover:bg-red-700 text-white px-6 py-4 rounded-xl"
                   >
                     <Phone className="w-5 h-5 mr-2" />
@@ -608,7 +609,7 @@ export default function SimplerRecyclingResultsPage() {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button 
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                   className="poppins-semibold bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg rounded-2xl"
                 >
                   <Phone className="w-5 h-5 mr-2" />
@@ -651,10 +652,6 @@ export default function SimplerRecyclingResultsPage() {
       </div>
 
       {/* Calendly Modal */}
-      <CalendlyModal 
-        isOpen={showCalendlyModal} 
-        onClose={() => setShowCalendlyModal(false)} 
-      />
-    </div>
+      </div>
   )
 }

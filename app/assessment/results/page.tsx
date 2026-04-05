@@ -22,7 +22,7 @@ import {
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import { CONTACT_INFO } from "@/lib/constants"
-import { CalendlyModal } from "@/components/CalendlyWidget"
+import { useBooking } from "@/components/BookingProvider"
 
 interface Gap {
   title: string
@@ -32,7 +32,8 @@ interface Gap {
 
 export default function ResultsPage() {
   const router = useRouter()
-  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
+    const { openBooking } = useBooking()
+
   const [score, setScore] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [animatedScore, setAnimatedScore] = useState(0)
@@ -631,7 +632,7 @@ export default function ResultsPage() {
                   
                   <Button
                     size="lg"
-                    onClick={() => setShowCalendlyModal(true)}
+                    onClick={() => openBooking()}
                     className="poppins-semibold bg-emerald-800 text-white hover:bg-emerald-900 active:scale-95 border-2 border-white/20 shadow-xl transition-all duration-300 sm:hover:scale-105 group w-full py-5 sm:py-6 text-sm sm:text-base min-h-[54px]"
                   >
                     <span className="flex items-center justify-center">
@@ -723,7 +724,7 @@ export default function ResultsPage() {
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                   className="poppins-semibold bg-white border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50 active:scale-95 w-full sm:w-auto text-sm px-8 py-4 min-h-[54px] shadow-lg hover:shadow-xl transition-all"
                 >
                   <Phone className="w-4 h-4 mr-2" />
@@ -739,11 +740,7 @@ export default function ResultsPage() {
       </div>
 
       {/* Calendly Modal */}
-      <CalendlyModal 
-        isOpen={showCalendlyModal} 
-        onClose={() => setShowCalendlyModal(false)} 
-      />
-    </div>
+      </div>
   )
 }
 

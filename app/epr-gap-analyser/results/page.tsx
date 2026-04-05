@@ -24,8 +24,8 @@ import {
   TrendingUp,
 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
-import { CalendlyModal } from "@/components/CalendlyWidget"
 import ErrorBoundary from "@/components/ErrorBoundary"
+import { useBooking } from "@/components/BookingProvider"
 
 interface GapItem {
   title: string
@@ -101,6 +101,7 @@ function CircularScore({ score, color, animate }: { score: number; color: string
 }
 
 function ResultsContent() {
+  const { openBooking } = useBooking()
   const router = useRouter()
   const [result, setResult] = useState<ScoreResult | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -111,7 +112,6 @@ function ResultsContent() {
   const [submitted, setSubmitted] = useState(false)
   const [submitError, setSubmitError] = useState("")
   const [animateScore, setAnimateScore] = useState(false)
-  const [showCalendly, setShowCalendly] = useState(false)
   const leadFormRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -237,7 +237,7 @@ function ResultsContent() {
               <span className="text-sm poppins-medium text-blue-700 hidden sm:block">EPR Gap Analyser Results</span>
             </div>
             <Button
-              onClick={() => setShowCalendly(true)}
+              onClick={() => openBooking()}
               size="sm"
               className="poppins-semibold bg-gradient-to-r from-blue-600 to-indigo-600 text-white hidden sm:flex items-center gap-1.5 hover:shadow-lg hover:shadow-blue-500/20"
             >
@@ -301,7 +301,7 @@ function ResultsContent() {
                 <p className="poppins-regular text-sm text-red-200">Non-registration or incorrect EPR submissions can result in enforcement notices, unlimited fines, and criminal prosecution. The Environment Agency is actively auditing.</p>
               </div>
             </div>
-            <Button onClick={() => setShowCalendly(true)} className="w-full poppins-bold py-5 text-base bg-white text-red-700 hover:bg-red-50 rounded-2xl transition-all hover:shadow-lg group">
+            <Button onClick={() => openBooking()} className="w-full poppins-bold py-5 text-base bg-white text-red-700 hover:bg-red-50 rounded-2xl transition-all hover:shadow-lg group">
               <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               BOOK YOUR COMPLIANCE AUDIT
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -317,7 +317,7 @@ function ResultsContent() {
                 <p className="poppins-regular text-sm text-blue-200">A short consultation will help you address remaining gaps, verify you&apos;re not overpaying EPR fees, and ensure you&apos;re fully protected.</p>
               </div>
             </div>
-            <Button onClick={() => setShowCalendly(true)} className="w-full poppins-bold py-5 text-base bg-white text-blue-700 hover:bg-blue-50 rounded-2xl transition-all hover:shadow-lg group">
+            <Button onClick={() => openBooking()} className="w-full poppins-bold py-5 text-base bg-white text-blue-700 hover:bg-blue-50 rounded-2xl transition-all hover:shadow-lg group">
               <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               GET YOUR FREE CONSULTATION
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -344,7 +344,7 @@ function ResultsContent() {
                 </li>
               ))}
             </ul>
-            <Button onClick={() => setShowCalendly(true)} className="w-full poppins-bold py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl hover:shadow-lg hover:shadow-blue-500/20 transition-all">
+            <Button onClick={() => openBooking()} className="w-full poppins-bold py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl hover:shadow-lg hover:shadow-blue-500/20 transition-all">
               Book Free Call
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
@@ -361,7 +361,7 @@ function ResultsContent() {
                   </li>
                 ))}
               </ul>
-              <Button onClick={() => setShowCalendly(true)} variant="outline" className="w-full poppins-semibold border-2 border-blue-200 text-blue-700 hover:bg-blue-50 rounded-xl py-3">Book Audit</Button>
+              <Button onClick={() => openBooking()} variant="outline" className="w-full poppins-semibold border-2 border-blue-200 text-blue-700 hover:bg-blue-50 rounded-xl py-3">Book Audit</Button>
             </div>
 
             <div className="border border-gray-200 rounded-2xl p-5 bg-white">
@@ -374,7 +374,7 @@ function ResultsContent() {
                   </li>
                 ))}
               </ul>
-              <button onClick={() => setShowCalendly(true)} className="w-full text-center text-sm poppins-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors py-2">
+              <button onClick={() => openBooking()} className="w-full text-center text-sm poppins-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors py-2">
                 See Full Setup Option →
               </button>
             </div>
@@ -453,7 +453,7 @@ function ResultsContent() {
               <h3 className="poppins-bold text-xl text-blue-900 mb-2">Results sent to your inbox!</h3>
               <p className="poppins-regular text-gray-600 text-sm mb-6">Check your email for your personalised EPR compliance report. Our team will be in touch shortly.</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center mb-5">
-                <Button onClick={() => setShowCalendly(true)} className="poppins-semibold bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 px-6 rounded-2xl hover:shadow-lg hover:shadow-blue-500/20">
+                <Button onClick={() => openBooking()} className="poppins-semibold bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 px-6 rounded-2xl hover:shadow-lg hover:shadow-blue-500/20">
                   <Calendar className="w-4 h-4 mr-2" />
                   {isHighPriority ? "Book Compliance Audit" : "Book Free Consultation"}
                 </Button>
@@ -607,13 +607,13 @@ function ResultsContent() {
           </div>
         </div>
       </div>
-
-      <CalendlyModal isOpen={showCalendly} onClose={() => setShowCalendly(false)} />
-    </div>
+      </div>
   )
 }
 
 export default function EPRGapAnalyserResultsPage() {
+  const { openBooking } = useBooking()
+
   return (
     <ErrorBoundary>
       <ResultsContent />

@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, CheckCircle, AlertCircle,
   BadgeCheck, FileText, Users, Scale, AlertTriangle, ArrowRight, XCircle, Clock, Building, Trash2, FileCheck, Lock, BarChart3 } from "lucide-react"
 import { MillstoneLogo } from "@/components/logo/MeridianLogo"
-import { CalendlyModal } from "@/components/CalendlyWidget"
 import { MobileMenu } from "@/components/MobileMenu"
+import { useBooking } from "@/components/BookingProvider"
 
 export default function DutyOfCareWaste() {
-  const [showCalendlyModal, setShowCalendlyModal] = useState(false)
+  const { openBooking } = useBooking()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50">
@@ -23,7 +23,7 @@ export default function DutyOfCareWaste() {
             </Link>
             <div className="flex items-center gap-2 sm:gap-3">
               <Button 
-                onClick={() => setShowCalendlyModal(true)}
+                onClick={() => openBooking()}
                 className="hidden lg:flex poppins-semibold bg-emerald-700 hover:bg-emerald-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 min-h-[44px]"
               >
                 <span className="hidden xs:inline">BOOK COMPLIANCE AUDIT</span>
@@ -428,7 +428,7 @@ export default function DutyOfCareWaste() {
                 </div>
 
                 <Button
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                   size="lg"
                   className="bg-white text-red-700 hover:bg-red-50 poppins-semibold shadow-xl w-full sm:w-auto"
                 >
@@ -662,7 +662,7 @@ export default function DutyOfCareWaste() {
                 </div>
 
                 <Button
-                  onClick={() => setShowCalendlyModal(true)}
+                  onClick={() => openBooking()}
                   size="lg"
                   className="bg-white text-emerald-700 hover:bg-emerald-50 poppins-semibold shadow-xl w-full sm:w-auto"
                 >
@@ -855,7 +855,7 @@ export default function DutyOfCareWaste() {
                     </Button>
                   </Link>
                   <Button
-                    onClick={() => setShowCalendlyModal(true)}
+                    onClick={() => openBooking()}
                     size="lg"
                     className="bg-white/20 hover:bg-white/30 text-white border-2 border-white/60 poppins-semibold shadow-xl text-base px-7 py-5"
                   >
@@ -915,10 +915,6 @@ export default function DutyOfCareWaste() {
       </article>
 
       {/* Calendly Modal */}
-      <CalendlyModal
-        isOpen={showCalendlyModal}
-        onClose={() => setShowCalendlyModal(false)}
-      />
-    </div>
+      </div>
   )
 }

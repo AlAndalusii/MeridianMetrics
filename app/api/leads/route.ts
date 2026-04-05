@@ -306,24 +306,28 @@ export async function POST(request: Request) {
 
     const resend = getResendClient()
 
-    const batchResult = await resend.batch.send([
-      {
-        from: 'Millstone Compliance <onboarding@mail.millstonecompliance.com>',
-        to: [businessEmail],
-        subject: meta.businessSubject(name, company, score, urgencyLevel),
-        html: businessEmailHtml,
-      },
-      {
-        from: 'Millstone Compliance <onboarding@mail.millstonecompliance.com>',
-        to: [email],
-        subject: meta.userSubject,
-        html: userEmailHtml,
-      },
-    ])
+    const result1 = await resend.emails.send({
+      from: 'Millstone Compliance <onboarding@mail.millstonecompliance.com>',
+      to: [businessEmail],
+      subject: meta.businessSubject(name, company, score, urgencyLevel),
+      html: businessEmailHtml,
+    })
 
-    if (batchResult.error) {
-      console.error('Resend error:', batchResult.error)
-      return NextResponse.json({ error: 'Failed to send emails', details: batchResult.error }, { status: 500 })
+    if (result1.error) {
+      console.error('Resend error:', result1.error)
+      return NextResponse.json({ error: 'Failed to send emails', details: result1.error }, { status: 500 })
+    }
+
+    const result2 = await resend.emails.send({
+      from: 'Millstone Compliance <onboarding@mail.millstonecompliance.com>',
+      to: [email],
+      subject: meta.userSubject,
+      html: userEmailHtml,
+    })
+
+    if (result2.error) {
+      console.error('Resend error:', result2.error)
+      return NextResponse.json({ error: 'Failed to send emails', details: result2.error }, { status: 500 })
     }
 
     return NextResponse.json({ success: true, message: 'Lead captured and emails sent' })

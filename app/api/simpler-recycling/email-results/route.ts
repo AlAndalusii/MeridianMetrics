@@ -510,26 +510,28 @@ export async function POST(request: Request) {
 
     const urgencyLabel = riskLevel.color === 'red' ? '🔴 URGENT' : riskLevel.color === 'amber' ? '🟡 GAPS' : '🟢 OK';
 
-    const batchResult = await resend.batch.send([
-      // User copy
-      {
-        from: 'Millstone Compliance <onboarding@mail.millstonecompliance.com>',
-        to: [userInfo.email],
-        subject: `Your Simpler Recycling Compliance Report — ${score}/100 · ${riskLevel.level}`,
-        html,
-      },
-      // Internal copy
-      {
-        from: 'Millstone Compliance <onboarding@mail.millstonecompliance.com>',
-        to: [businessEmail],
-        subject: `${urgencyLabel} Quiz Lead: ${userInfo.name} (${userInfo.company}) — ${score}/100`,
-        html: `<p><strong>Name:</strong> ${userInfo.name}<br><strong>Email:</strong> ${userInfo.email}<br><strong>Company:</strong> ${userInfo.company}<br><strong>Phone:</strong> ${userInfo.phone || '—'}<br><strong>Score:</strong> ${score}/100 (${riskLevel.level})</p><hr>${html}`,
-      },
-    ]);
+    const result1 = await resend.emails.send({
+      from: 'Millstone Compliance <onboarding@mail.millstonecompliance.com>',
+      to: [userInfo.email],
+      subject: `Your Simpler Recycling Compliance Report — ${score}/100 · ${riskLevel.level}`,
+      html,
+    });
 
-    if (batchResult.error) {
-      console.error('Resend error:', batchResult.error);
-      return NextResponse.json({ error: 'Failed to send email', details: batchResult.error }, { status: 500 });
+    if (result1.error) {
+      console.error('Resend error:', result1.error);
+      return NextResponse.json({ error: 'Failed to send email', details: result1.error }, { status: 500 });
+    }
+
+    const result2 = await resend.emails.send({
+      from: 'Millstone Compliance <onboarding@mail.millstonecompliance.com>',
+      to: [businessEmail],
+      subject: `${urgencyLabel} Quiz Lead: ${userInfo.name} (${userInfo.company}) — ${score}/100`,
+      html: `<p><strong>Name:</strong> ${userInfo.name}<br><strong>Email:</strong> ${userInfo.email}<br><strong>Company:</strong> ${userInfo.company}<br><strong>Phone:</strong> ${userInfo.phone || '—'}<br><strong>Score:</strong> ${score}/100 (${riskLevel.level})</p><hr>${html}`,
+    });
+
+    if (result2.error) {
+      console.error('Resend error:', result2.error);
+      return NextResponse.json({ error: 'Failed to send email', details: result2.error }, { status: 500 });
     }
 
     return NextResponse.json({ success: true, message: 'Email sent successfully' });

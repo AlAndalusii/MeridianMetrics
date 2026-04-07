@@ -97,8 +97,18 @@ const articles: {
     badge: "New",
     topics: ["Cost Savings", "Waste Records", "Compliance"],
     category: "duty-of-care",
-    readTime: "5 min",
+    readTime: "12 min",
     featured: true,
+  },
+  {
+    title: "Why Waste Is Costing Your Care Home More Than It Should",
+    description: "Most care homes overpay for waste without knowing it. Wrong bags, wrong contracts and poor segregation add up — here is what an independent audit finds and fixes.",
+    icon: PoundSterling,
+    href: "/resources/care-home-waste-costs",
+    badge: "New",
+    topics: ["Cost Savings", "Clinical Waste", "Audit"],
+    category: "care-homes",
+    readTime: "10 min",
   },
   {
     title: "Care Home Waste Compliance Checklist",
@@ -109,7 +119,6 @@ const articles: {
     topics: ["Care Homes", "Clinical Waste", "CQC Ready"],
     category: "care-homes",
     readTime: "5 min",
-    featured: true,
   },
   {
     title: "Waste Duty of Care: Complete UK Compliance Guide",
@@ -612,17 +621,17 @@ export default function ResourcesPage() {
                 </div>
                 <h2 className="poppins-bold text-2xl sm:text-3xl text-white mb-3 leading-tight">
                   On-Site Partner Check —{" "}
-                  <span className="text-emerald-300">earn £150 per referral</span>
+                  <span className="text-emerald-300">earn a referral reward</span>
                 </h2>
                 <p className="text-emerald-100 text-sm leading-relaxed max-w-lg mb-5">
                   Walk through any client site, answer 5 quick questions, and send us the results in one tap.
-                  If the client books a compliance audit, you earn £150. No cap, no complicated sign-up.
+                  Partners earn a reward for every audit booked — get in touch to find out more.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   {[
                     { icon: Zap, label: "Under 2 minutes" },
-                    { icon: PoundSterling, label: "£150 per audit booked" },
                     { icon: Shield, label: "No login needed" },
+                    { icon: BadgeCheck, label: "Contact us to learn more" },
                   ].map(({ icon: Icon, label }) => (
                     <div key={label} className="flex items-center gap-2 text-emerald-200 text-sm">
                       <Icon className="w-4 h-4 text-emerald-400 shrink-0" />

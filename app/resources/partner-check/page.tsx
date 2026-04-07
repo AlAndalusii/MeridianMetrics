@@ -261,7 +261,7 @@ function LandingView({ onStart }: { onStart: () => void }) {
                 <div className="mt-6 inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2">
                   <PoundSterling className="w-4 h-4 text-emerald-300" />
                   <span className="text-xs poppins-semibold text-emerald-200">
-                    Partners receive £150 per booked audit as a thank-you for working with us
+                    Partners earn a referral reward — contact us to find out more
                   </span>
                 </div>
               </div>

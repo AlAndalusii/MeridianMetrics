@@ -111,6 +111,16 @@ const articles: {
     readTime: "10 min",
   },
   {
+    title: "Clinical Waste Quick Check",
+    description: "Five yes/no questions that instantly reveal hidden compliance gaps and unnecessary spend in your clinical waste contract — with email results.",
+    icon: Zap,
+    href: "/resources/clinical-waste-quick-check",
+    badge: "Free Checklist",
+    topics: ["Clinical Waste", "Cost Savings", "Care Homes"],
+    category: "care-homes",
+    readTime: "2 min",
+  },
+  {
     title: "Care Home Waste Compliance Checklist",
     description: "Free 16-question checklist for care home managers. Covers clinical waste, Simpler Recycling, HTM 07-01 and CQC requirements — with free PDF download.",
     icon: Heart,
@@ -219,6 +229,14 @@ const tools = [
     icon: ClipboardCheck,
     tag: "All Waste Regulations · Free",
     num: "02",
+  },
+  {
+    label: "Clinical Waste Quick Check",
+    description: "Five yes/no questions reveal hidden gaps and unnecessary spend in your care home's clinical waste contract.",
+    href: "/resources/clinical-waste-quick-check",
+    icon: Zap,
+    tag: "Care Homes · Clinical Waste · Free",
+    num: "03",
   },
 ]
 

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clinical Waste Compliance Checklist — Millstone Compliance</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0a1628;
+      --forest:     #064e3b;
+      --green:      #065f46;
+      --mint:       #10b981;
+      --sage-bg:    #f0f4f0;
+      --card-bg:    #ffffff;
+      --border:     #d1fae5;
+      --red:        #dc2626;
+      --red-bg:     #fef2f2;
+      --text-dark:  #0f172a;
+      --text-mid:   #374151;
+      --text-light: #6b7280;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--sage-bg);
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Page wrapper ── */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 4px 40px rgba(6,79,58,.10), 0 1px 6px rgba(0,0,0,.06);
+      width: 100%;
+      max-width: 620px;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--navy);
+      padding: 28px 32px 24px;
+      text-align: center;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .logo-name {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .logo-sub {
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--mint);
+      font-weight: 500;
+    }
+
+    .header-eyebrow {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--mint);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .header-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+      letter-spacing: -.01em;
+    }
+
+    .header-title span {
+      color: var(--mint);
+    }
+
+    .header-sub {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 3px;
+      background: linear-gradient(90deg, var(--forest), var(--mint), var(--forest));
+    }
+
+    /* ── Body ── */
+    .body {
+      padding: 24px 32px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--mint);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    /* ── Question rows ── */
+    .question {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: border-color .2s;
+      overflow: hidden;
+    }
+
+    .question.answered-no  { border-color: #fca5a5; }
+    .question.answered-yes { border-color: #6ee7b7; }
+
+    .q-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+    }
+
+    .q-num {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--forest);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+    }
+
+    .question.answered-no  .q-num { background: var(--red); }
+    .question.answered-yes .q-num { background: var(--mint); color: #064e3b; }
+
+    .q-text {
+      flex: 1;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+
+    /* ── Toggle ── */
+    .toggle-wrap {
+      flex-shrink: 0;
+      display: flex;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .toggle-btn {
+      padding: 6px 13px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      color: #9ca3af;
+      transition: background .18s, color .18s;
+      line-height: 1;
+    }
+
+    .toggle-btn.yes.active {
+      background: var(--mint);
+      color: #064e3b;
+    }
+
+    .toggle-btn.no.active {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .toggle-btn:not(.active):hover {
+      background: #f3f4f6;
+      color: var(--text-dark);
+    }
+
+    /* ── Warning banner ── */
+    .warning {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      background: var(--red-bg);
+      border-top: 1px solid #fecaca;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--red);
+    }
+
+    .warning.visible { display: flex; }
+
+    .warning-icon {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ── Results box ── */
+    .results {
+      margin-top: 18px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: #f9fefb;
+      padding: 16px 20px;
+      text-align: center;
+    }
+
+    .results-count {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--forest);
+      line-height: 1;
+    }
+
+    .results-label {
+      font-size: 12px;
+      color: var(--text-mid);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .results-msg {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    .results-msg strong { color: var(--text-dark); }
+
+    /* ── CTA ── */
+    .cta-btn {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      padding: 15px 20px;
+      background: var(--forest);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      line-height: 1.2;
+    }
+
+    .cta-btn:hover {
+      background: var(--green);
+      transform: translateY(-1px);
+    }
+
+    .cta-arrow {
+      margin-left: 6px;
+      font-size: 16px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--navy);
+      padding: 18px 32px;
+      text-align: center;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      color: #94a3b8;
+    }
+
+    .footer-icon {
+      width: 13px;
+      height: 13px;
+      opacity: .7;
+    }
+
+    .footer-item a {
+      color: var(--mint);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-item a:hover { text-decoration: underline; }
+
+    .footer-copy {
+      margin-top: 10px;
+      font-size: 10.5px;
+      color: #475569;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 500px) {
+      .body { padding: 20px 18px; }
+      .header { padding: 22px 18px 18px; }
+      .footer { padding: 16px 18px; }
+      .header-title { font-size: 18px; }
+      .q-text { font-size: 12.5px; }
+      .toggle-btn { padding: 6px 10px; font-size: 11px; }
+      .footer-grid { gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="card">
+
+    <!-- ── Header ── -->
+    <div class="header">
+      <div class="logo-row">
+        <!-- Millstone Compliance logo mark (inline SVG) -->
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" width="42" height="42">
+          <path d="M30 4 L50 16 L50 44 L30 56 L10 44 L10 16 Z"
+                fill="url(#hg)" stroke="#10b981" stroke-width="1.5" filter="url(#hs)"/>
+          <path d="M30 12 L44 22 L44 42 L30 52 L16 42 L16 22 Z"
+                fill="none" stroke="#34d399" stroke-width=".8" opacity=".5"/>
+          <g transform="translate(30,30)">
+            <path d="M-12 -11 L-12 11 M-12 -11 L-2 5 M-2 5 L8 -11 M8 -11 L8 11"
+                  stroke="#34d399" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="-2" cy="5" r="1.4" fill="#6ee7b7"/>
+          </g>
+          <g opacity=".45">
+            <path d="M12 12 L16 12 L16 16" stroke="#10b981" stroke-width="1.1" stroke-linecap="round"/>
+            <path d="M48 12 L44 12 L44 16" stroke="#10b981" stroke-width="1.1" stroke-linecap="round"/>
+            <path d="M12 48 L16 48 L16 44" stroke="#10b981" stroke-width="1.1" stroke-linecap="round"/>
+            <path d="M48 48 L44 48 L44 44" stroke="#10b981" stroke-width="1.1" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#064e3b" stop-opacity=".95"/>
+              <stop offset="100%" stop-color="#047857" stop-opacity=".85"/>
+            </linearGradient>
+            <filter id="hs" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#10b981" flood-opacity=".25"/>
+            </filter>
+          </defs>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-name">Millstone Compliance</span>
+          <span class="logo-sub">Waste &amp; Regulatory Specialists</span>
+        </div>
+      </div>
+
+      <div class="header-eyebrow">Clinical Waste · Care Homes · UK</div>
+      <div class="header-title">Is Your Waste Contract<br><span>Costing You Too Much?</span></div>
+      <div class="header-sub">Answer 5 quick questions to reveal hidden compliance gaps.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ── Body ── -->
+    <div class="body">
+      <div class="section-label">Your 5-Point Compliance Check</div>
+
+      <!-- Q1 -->
+      <div class="question" id="q1">
+        <div class="q-row">
+          <div class="q-num">1</div>
+          <div class="q-text">Do you know your current cost per tonne for clinical waste collection?</div>
+          <div class="toggle-wrap">
+            <button class="toggle-btn yes" onclick="answer(1,'yes')">YES</button>
+            <button class="toggle-btn no"  onclick="answer(1,'no')">NO</button>
+          </div>
+        </div>
+        <div class="warning" id="w1">
+          <svg class="warning-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+          </svg>
+          This is costing you money. — Most care homes overpay by 20–40% without benchmarking.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question" id="q2">
+        <div class="q-row">
+          <div class="q-num">2</div>
+          <div class="q-text">Is your offensive waste collected separately from infectious clinical waste?</div>
+          <div class="toggle-wrap">
+            <button class="toggle-btn yes" onclick="answer(2,'yes')">YES</button>
+            <button class="toggle-btn no"  onclick="answer(2,'no')">NO</button>
+          </div>
+        </div>
+        <div class="warning" id="w2">
+          <svg class="warning-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+          </svg>
+          This is costing you money. — Mixing streams means paying infectious disposal rates for cheaper waste.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question" id="q3">
+        <div class="q-row">
+          <div class="q-num">3</div>
+          <div class="q-text">Has someone independent reviewed your contractor rates in the last 12 months?</div>
+          <div class="toggle-wrap">
+            <button class="toggle-btn yes" onclick="answer(3,'yes')">YES</button>
+            <button class="toggle-btn no"  onclick="answer(3,'no')">NO</button>
+          </div>
+        </div>
+        <div class="warning" id="w3">
+          <svg class="warning-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+          </svg>
+          This is costing you money. — Unreviewed contracts drift well above market rate year on year.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question" id="q4">
+        <div class="q-row">
+          <div class="q-num">4</div>
+          <div class="q-text">Does your collection frequency match your actual waste output week to week?</div>
+          <div class="toggle-wrap">
+            <button class="toggle-btn yes" onclick="answer(4,'yes')">YES</button>
+            <button class="toggle-btn no"  onclick="answer(4,'no')">NO</button>
+          </div>
+        </div>
+        <div class="warning" id="w4">
+          <svg class="warning-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+          </svg>
+          This is costing you money. — Over-collection is one of the most common unnecessary charges we find.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question" id="q5">
+        <div class="q-row">
+          <div class="q-num">5</div>
+          <div class="q-text">Do you hold a current pre-acceptance audit document from your contractor?</div>
+          <div class="toggle-wrap">
+            <button class="toggle-btn yes" onclick="answer(5,'yes')">YES</button>
+            <button class="toggle-btn no"  onclick="answer(5,'no')">NO</button>
+          </div>
+        </div>
+        <div class="warning" id="w5">
+          <svg class="warning-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+          </svg>
+          This is costing you money. — Missing documentation puts your CQC rating and licence at risk.
+        </div>
+      </div>
+
+      <!-- ── Results ── -->
+      <div class="results" id="results">
+        <div class="results-count" id="gap-count">—</div>
+        <div class="results-label" id="gap-label">Answer the questions above to see your gap score</div>
+        <div class="results-msg" id="gap-msg"></div>
+      </div>
+
+      <a class="cta-btn" href="https://millstonecompliance.com" target="_blank" rel="noopener">
+        Get Your Free Savings Check <span class="cta-arrow">→</span>
+      </a>
+    </div>
+
+    <!-- ── Footer ── -->
+    <div class="footer">
+      <div class="footer-grid">
+        <div class="footer-item">
+          <svg class="footer-icon" viewBox="0 0 20 20" fill="#10b981">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+          </svg>
+          <a href="mailto:info@millstonecompliance.com">info@millstonecompliance.com</a>
+        </div>
+        <div class="footer-item">
+          <svg class="footer-icon" viewBox="0 0 20 20" fill="#10b981">
+            <path fill-rule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16A8 8 0 0010 2zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clip-rule="evenodd"/>
+          </svg>
+          <a href="https://millstonecompliance.com" target="_blank" rel="noopener">millstonecompliance.com</a>
+        </div>
+        <div class="footer-item">
+          <svg class="footer-icon" viewBox="0 0 20 20" fill="#10b981">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+          </svg>
+          <span>0800 XXX XXXX</span>
+        </div>
+      </div>
+      <div class="footer-copy">© 2025 Millstone Compliance Ltd · Registered in England &amp; Wales · Waste &amp; Regulatory Specialists</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const answers = {};
+
+  const msgs = [
+    { gaps: 0, label: "gaps identified", msg: "<strong>Excellent — you're fully compliant.</strong> Keep your records current and review annually to maintain best practice." },
+    { gaps: 1, label: "gap identified",  msg: "<strong>One area needs attention.</strong> A quick review could eliminate unnecessary spend and strengthen your compliance position." },
+    { gaps: 2, label: "gaps identified", msg: "<strong>Two gaps found.</strong> These are common but fixable. An independent review typically finds savings within weeks." },
+    { gaps: 3, label: "gaps identified", msg: "<strong>Three gaps — significant risk.</strong> Care homes at this level often overpay by £3,000+ per year. Let's fix that." },
+    { gaps: 4, label: "gaps identified", msg: "<strong>Four gaps — high exposure.</strong> You're very likely overpaying and carrying compliance risk. Get a free check today." },
+    { gaps: 5, label: "gaps identified", msg: "<strong>Five gaps — urgent action needed.</strong> You are almost certainly overpaying and at risk of regulatory issues. Contact us now." },
+  ];
+
+  function answer(n, val) {
+    answers[n] = val;
+
+    const el = document.getElementById('q' + n);
+    const warn = document.getElementById('w' + n);
+    const btns = el.querySelectorAll('.toggle-btn');
+
+    btns.forEach(b => b.classList.remove('active'));
+    el.querySelector('.toggle-btn.' + val).classList.add('active');
+
+    if (val === 'no') {
+      el.classList.add('answered-no');
+      el.classList.remove('answered-yes');
+      warn.classList.add('visible');
+    } else {
+      el.classList.add('answered-yes');
+      el.classList.remove('answered-no');
+      warn.classList.remove('visible');
+    }
+
+    updateResults();
+  }
+
+  function updateResults() {
+    const total = Object.keys(answers).length;
+    if (total === 0) return;
+
+    const gaps = Object.values(answers).filter(v => v === 'no').length;
+    const data = msgs[gaps];
+
+    document.getElementById('gap-count').textContent = gaps;
+    document.getElementById('gap-label').textContent =
+      total < 5
+        ? `gap${gaps !== 1 ? 's' : ''} so far · ${5 - total} question${5 - total !== 1 ? 's' : ''} remaining`
+        : `gap${gaps !== 1 ? 's' : ''} identified out of 5`;
+
+    document.getElementById('gap-msg').innerHTML = total === 5 ? data.msg : '';
+
+    const countEl = document.getElementById('gap-count');
+    countEl.style.color = gaps === 0 ? 'var(--mint)' : gaps <= 2 ? '#d97706' : 'var(--red)';
+  }
+</script>
+</body>
+</html>

@@ -6,6 +6,11 @@ const __dirname = path.dirname(__filename)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async rewrites() {
+    return [
+      { source: '/cleans', destination: '/cleans/index.html' },
+    ]
+  },
   async redirects() {
     return [
       // Packaging pages → nearest waste equivalent (permanent: false preserves old pages)

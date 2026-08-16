@@ -328,16 +328,16 @@ export default function MillstoneComplianceWebsite() {
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-xs poppins-semibold text-emerald-700 mb-5">
                 <BadgeCheck className="w-3.5 h-3.5 text-emerald-600" />
-                UK Waste Cost &amp; Compliance Audits
+                Cost &amp; Compliance for Food Businesses
               </div>
 
               <h1 className="poppins-bold text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight mb-5">
-                <span className="text-slate-900 block">Reduce Waste Spend Fast.</span>
-                <span className="text-emerald-700 block">48-Hour Reports</span>
+                <span className="text-slate-900 block">Cut Costs. Stay Compliant.</span>
+                <span className="text-emerald-700 block">Fast.</span>
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
-                Spot overspending, tighten compliance, and improve waste performance with independent fixed-fee audits and clear 48-hour action reports.
+                We review what you're paying for waste, cooking oil, grease and utilities — and tell you within 48 hours what's costing you money or putting you at risk.
               </p>
 
               {/* Primary CTAs */}
@@ -346,28 +346,27 @@ export default function MillstoneComplianceWebsite() {
                   onClick={() => setShowEmailTemplate(true)}
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-sm hover:shadow-md"
                 >
-                  Book Your Audit Now <ArrowRight className="w-4 h-4" />
+                  Send Us Your Invoice <ArrowRight className="w-4 h-4" />
                 </button>
                 <Link
                   href="/quiz"
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95"
                 >
-                  Free Savings Check
+                  Free Compliance Check
                 </Link>
               </div>
 
               {/* Also serving */}
               <p className="text-xs text-slate-400 poppins-regular mb-5">
-                Serving:{" "}
-                <span className="text-slate-600 poppins-medium">Care Homes · UK Property Sector · Food & Beverage Manufacturing</span>
+                <span className="text-slate-600 poppins-medium">For independent restaurants, takeaways and food businesses</span>
               </p>
 
               {/* Trust signals */}
               <div className="flex flex-wrap gap-4">
                 {[
-                  "Independent Experts",
-                  "Remote Nationwide",
-                  "48hr Reports",
+                  "Independent",
+                  "No Bins to Sell",
+                  "West Midlands Based",
                 ].map((t) => (
                   <div key={t} className="flex items-center gap-1.5 text-xs text-emerald-700 poppins-medium">
                     <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
@@ -386,12 +385,9 @@ export default function MillstoneComplianceWebsite() {
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="poppins-semibold text-lg text-emerald-900 flex items-center">
                       <Recycle className="w-4 h-4 mr-2 text-emerald-600" />
-                      Waste &amp; Compliance Tracker
+                      What We Typically Find
                     </h3>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                      <span className="poppins-medium text-xs text-green-700">Live Data</span>
-                    </div>
+                    <span className="poppins-medium text-[10px] text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">Illustrative example</span>
                   </div>
 
                   {/* Top KPI cards */}
@@ -399,132 +395,80 @@ export default function MillstoneComplianceWebsite() {
                     <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-3 border border-slate-200">
                       <div className="flex items-center justify-between mb-1">
                         <Trash2 className="w-4 h-4 text-slate-500" />
-                        <span className="poppins-bold text-base text-slate-700">↓ 12%</span>
+                        <span className="poppins-bold text-base text-slate-700">12–22%</span>
                       </div>
-                      <p className="poppins-medium text-[10px] text-slate-600">General Waste</p>
-                      <p className="text-[9px] text-slate-400 mt-0.5">vs last quarter</p>
+                      <p className="poppins-medium text-[10px] text-slate-600">Fuel surcharge</p>
+                      <p className="text-[9px] text-slate-400 mt-0.5">added by national carriers</p>
                     </div>
 
                     <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
                       <div className="flex items-center justify-between mb-1">
                         <Recycle className="w-4 h-4 text-green-600" />
-                        <span className="poppins-bold text-base text-green-700">73%</span>
+                        <span className="poppins-bold text-base text-green-700">65kg</span>
                       </div>
-                      <p className="poppins-medium text-[10px] text-green-600">Recycling Rate</p>
-                      <p className="text-[9px] text-green-500 mt-0.5">Target: 75%</p>
+                      <p className="poppins-medium text-[10px] text-green-600">Weight allowance</p>
+                      <p className="text-[9px] text-green-500 mt-0.5">before penalty charges</p>
                     </div>
 
                     <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-3 border border-emerald-200">
                       <div className="flex items-center justify-between mb-1">
                         <Shield className="w-4 h-4 text-emerald-600" />
-                        <span className="poppins-bold text-base text-emerald-700">91%</span>
+                        <span className="poppins-bold text-base text-emerald-700">£300–900</span>
                       </div>
-                      <p className="poppins-medium text-[10px] text-emerald-600">Compliance Score</p>
-                      <p className="text-[9px] text-emerald-500 mt-0.5">Audit-ready</p>
+                      <p className="poppins-medium text-[10px] text-emerald-600">Annual overcharge</p>
+                      <p className="text-[9px] text-emerald-500 mt-0.5">found per site</p>
                     </div>
                   </div>
 
-                  {/* Waste Stream Breakdown */}
+                  {/* Where We Look */}
                   <div className="bg-white rounded-xl p-3 border border-gray-200 mb-3">
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="poppins-semibold text-xs text-gray-800">Waste Stream Breakdown</h4>
-                      <span className="poppins-medium text-[10px] text-gray-500">This month</span>
+                    <div className="mb-2">
+                      <h4 className="poppins-semibold text-xs text-gray-800">Where We Look</h4>
                     </div>
                     <div className="space-y-2">
-                      <div className="bg-slate-50 rounded-lg p-2 border border-slate-200">
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] text-slate-700 font-semibold">General Waste</span>
-                          <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full">18 collections</span>
-                        </div>
-                        <div className="w-full bg-slate-100 rounded-full h-1.5">
-                          <div className="bg-slate-400 h-1.5 rounded-full" style={{width: '27%'}}></div>
-                        </div>
-                        <span className="text-[9px] text-slate-500 mt-0.5">4.2 tonnes • landfill route</span>
-                      </div>
-
-                      <div className="bg-green-50 rounded-lg p-2 border border-green-200">
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] text-green-700 font-semibold">Dry Recyclables</span>
-                          <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">24 collections</span>
-                        </div>
-                        <div className="w-full bg-green-100 rounded-full h-1.5">
-                          <div className="bg-green-500 h-1.5 rounded-full" style={{width: '49%'}}></div>
-                        </div>
-                        <span className="text-[9px] text-green-600 mt-0.5">7.6 tonnes • paper, plastic, cans</span>
-                      </div>
-
                       <div className="bg-amber-50 rounded-lg p-2 border border-amber-200">
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] text-amber-700 font-semibold">Food Waste</span>
-                          <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full">Weekly</span>
-                        </div>
-                        <div className="w-full bg-amber-100 rounded-full h-1.5">
-                          <div className="bg-amber-500 h-1.5 rounded-full" style={{width: '24%'}}></div>
-                        </div>
-                        <span className="text-[9px] text-amber-600 mt-0.5">3.7 tonnes • AD facility</span>
+                        <span className="text-[10px] text-amber-700 font-semibold block">Cooking Oil</span>
+                        <span className="text-[9px] text-amber-600">Are you being paid for it, or paying to lose it?</span>
+                      </div>
+
+                      <div className="bg-red-50 rounded-lg p-2 border border-red-200">
+                        <span className="text-[10px] text-red-700 font-semibold block">Grease &amp; FOG</span>
+                        <span className="text-[9px] text-red-600">Criminal liability under the Water Industry Act 1991</span>
+                      </div>
+
+                      <div className="bg-slate-50 rounded-lg p-2 border border-slate-200">
+                        <span className="text-[10px] text-slate-700 font-semibold block">General Waste</span>
+                        <span className="text-[9px] text-slate-500">Fuel surcharges, weight penalties, phantom lifts</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Compliance Status + Actions */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="space-y-1.5">
-                      <div className="flex items-center justify-between bg-emerald-50 rounded-lg p-1.5 border border-emerald-200">
-                        <div className="flex items-center space-x-1.5">
-                          <BadgeCheck className="w-3 h-3 text-emerald-600" />
-                          <span className="poppins-medium text-[10px] text-emerald-700">Simpler Recycling</span>
-                        </div>
-                        <span className="text-[9px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full">Setup</span>
+                  {/* Status chips */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between bg-emerald-50 rounded-lg p-1.5 border border-emerald-200">
+                      <div className="flex items-center space-x-1.5">
+                        <BadgeCheck className="w-3 h-3 text-emerald-600" />
+                        <span className="poppins-medium text-[10px] text-emerald-700">Simpler Recycling</span>
                       </div>
-                      <div className="flex items-center justify-between bg-blue-50 rounded-lg p-1.5 border border-blue-200">
-                        <div className="flex items-center space-x-1.5">
-                          <FileCheck className="w-3 h-3 text-blue-600" />
-                          <span className="poppins-medium text-[10px] text-blue-700">Contractor</span>
-                        </div>
-                        <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">Audited</span>
-                      </div>
-                      <div className="flex items-center justify-between bg-green-50 rounded-lg p-1.5 border border-green-200">
-                        <div className="flex items-center space-x-1.5">
-                          <ClipboardCheck className="w-3 h-3 text-green-600" />
-                          <span className="poppins-medium text-[10px] text-green-700">Bin Labelling</span>
-                        </div>
-                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">Compliant</span>
-                      </div>
+                      <span className="text-[9px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full">Check available</span>
                     </div>
-
-                    <div className="space-y-1.5">
-                      <div className="flex items-center justify-between bg-green-50 rounded-lg p-1.5 border border-green-200">
-                        <div className="flex items-center space-x-1.5">
-                          <TrendingUp className="w-3 h-3 text-green-600" />
-                          <span className="poppins-medium text-[10px] text-green-700">CO₂ Saved</span>
-                        </div>
-                        <span className="text-[9px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">4.2t</span>
+                    <div className="flex items-center justify-between bg-blue-50 rounded-lg p-1.5 border border-blue-200">
+                      <div className="flex items-center space-x-1.5">
+                        <FileCheck className="w-3 h-3 text-blue-600" />
+                        <span className="poppins-medium text-[10px] text-blue-700">Contractor Review</span>
                       </div>
-                      <div className="flex items-center justify-between bg-slate-50 rounded-lg p-1.5 border border-slate-200">
-                        <div className="flex items-center space-x-1.5">
-                          <Archive className="w-3 h-3 text-slate-500" />
-                          <span className="poppins-medium text-[10px] text-slate-600">Collections Logged</span>
-                        </div>
-                        <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full">48</span>
+                      <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">Available</span>
+                    </div>
+                    <div className="flex items-center justify-between bg-slate-50 rounded-lg p-1.5 border border-slate-200">
+                      <div className="flex items-center space-x-1.5">
+                        <Calendar className="w-3 h-3 text-slate-500" />
+                        <span className="poppins-medium text-[10px] text-slate-600">Digital Waste Tracking</span>
                       </div>
-                      <div className="flex items-center justify-between bg-amber-50 rounded-lg p-1.5 border border-amber-200">
-                        <div className="flex items-center space-x-1.5">
-                          <Calendar className="w-3 h-3 text-amber-600" />
-                          <span className="poppins-medium text-[10px] text-amber-700">Next Audit</span>
-                        </div>
-                        <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full">Mar 31</span>
-                      </div>
+                      <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full">Oct 2026</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Floating Compliance Score Indicator */}
-                <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full animate-bounce delay-1000 flex items-center justify-center shadow-lg">
-                  <div className="text-center">
-                    <span className="poppins-bold text-white text-[11px] block">91%</span>
-                    <span className="poppins-medium text-white text-[7px]">Ready</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -546,27 +490,27 @@ export default function MillstoneComplianceWebsite() {
             <div className="lg:pr-16 pb-12 lg:pb-0">
               <div className="flex items-center gap-3 mb-8">
                 <div className="h-px w-8 bg-emerald-400" />
-                <span className="poppins-semibold text-[11px] text-emerald-600 uppercase tracking-[0.22em]">What every client receives</span>
+                <span className="poppins-semibold text-[11px] text-emerald-600 uppercase tracking-[0.22em]">What we actually do</span>
               </div>
 
               <h2 className="poppins-bold text-3xl sm:text-4xl md:text-[2.75rem] text-emerald-950 leading-[1.1] mb-6">
-                Know exactly where you stand{' '}
+                Find out what&apos;s costing you{' '}
                 <em className="not-italic bg-gradient-to-r from-emerald-700 to-emerald-500 bg-clip-text text-transparent">
-                  before it escalates.
+                  before it costs you more.
                 </em>
               </h2>
 
               <p className="poppins-regular text-emerald-700/65 text-base sm:text-lg leading-relaxed max-w-md mb-10">
-                Independent. Site-specific. Plain English. Every audit delivers the same practical standard — because waste costs, weak documentation, and compliance gaps should never be left to guesswork.
+                Independent. Site-specific. Plain English. Every review looks at what you&apos;re paying for waste, oil, grease and utilities — because costs and compliance gaps should never be left to guesswork.
               </p>
 
               {/* Outcome pills row */}
               <div className="flex flex-wrap gap-2">
                 {[
-                  { label: 'Action-Focused Reports', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
-                  { label: '48hr turnaround', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
-                  { label: 'Fixed Fee', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
-                  { label: 'EA · Councils · Regulators', color: 'bg-emerald-900 border-emerald-900 text-emerald-100' },
+                  { label: 'Clear Findings', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
+                  { label: '48hr Turnaround', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
+                  { label: 'No Charge', color: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
+                  { label: 'Waste · Oil · Grease · Utilities', color: 'bg-emerald-900 border-emerald-900 text-emerald-100' },
                 ].map(({ label, color }) => (
                   <span key={label} className={`inline-flex items-center px-3.5 py-1.5 rounded-full border text-xs poppins-medium ${color}`}>
                     {label}
@@ -583,23 +527,23 @@ export default function MillstoneComplianceWebsite() {
               {[
                 {
                   num: '01',
-                  title: 'Written Findings Report',
-                  desc: 'Site-specific. Clear risks, overspend points, and compliance gaps identified. Delivered in 48 hours — not a template, not a checklist.',
+                  title: 'Written Findings',
+                  desc: 'What we find. Clear, specific overspend and compliance risks on your account — sent back to you in 48 hours, in plain English.',
                 },
                 {
                   num: '02',
-                  title: 'Prioritised Action Plan',
-                  desc: 'Ranked by risk and savings opportunity. What to fix first, what to change next, and where waste costs can be reduced.',
+                  title: 'What To Do Next',
+                  desc: 'Ranked by savings and risk. What to fix first, what to switch, and what\'s worth a second look.',
                 },
                 {
                   num: '03',
-                  title: 'Audit-Ready Templates',
-                  desc: 'Waste transfer notes, internal logs, and record-keeping templates — formatted to support inspections, reviews, and day-to-day compliance.',
+                  title: 'The Right Contacts',
+                  desc: 'Licensed carriers, oil collectors and drainage specialists we trust — matched to what your kitchen actually needs.',
                 },
                 {
                   num: '04',
-                  title: '30-Day Expert Access',
-                  desc: 'Direct line to your consultant. Unlimited questions. Practical support when you need it — with no clock running.',
+                  title: 'Direct Access',
+                  desc: 'A direct line to me. No call centre, no ticket system — WhatsApp or call whenever something comes up.',
                 },
               ].map((item, i, arr) => (
                 <div
@@ -718,7 +662,7 @@ export default function MillstoneComplianceWebsite() {
             
             {/* Enhanced Description */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4">
-              Our free 3-minute check finds waste compliance gaps in your business — Duty of Care, Simpler Recycling and clinical waste. Most businesses have risks they don&apos;t see. This shows you exactly where you stand.
+              Our free 3-minute check finds cost and compliance gaps in your business — waste, cooking oil, grease and Duty of Care. Most food businesses have risks they don&apos;t see. This shows you exactly where you stand.
             </p>
             
             {/* Stats Bar - New Addition */}
@@ -748,15 +692,15 @@ export default function MillstoneComplianceWebsite() {
               label: "Waste — Service 1",
               badge: "Duty of Care",
               title: "Duty of Care Audit",
-              description: "We check your waste contracts, carrier licences and transfer notes, and flag missing records or risky contractors. You get a clear action list so the EA or council can't catch you out.",
+              description: "We check your waste contracts, carrier licences and transfer notes, and flag missing records or risky contractors. You get a clear action list so you know exactly where you stand.",
               highlight: true,
             },
             {
               icon: FileCheck,
               label: "Waste — Service 2",
-              badge: "Clinical",
-              title: "Clinical Waste Check",
-              description: "We review how you store and segregate clinical waste, sharps and medicines, and confirm your contractor paperwork. Designed for CQC and Ofsted registered services needing assurance.",
+              badge: "Cooking Oil",
+              title: "Cooking Oil Check",
+              description: "We check what you're currently paying for oil collection — or whether you should be getting paid instead. Designed for kitchens with fryers wanting to stop losing money.",
               highlight: false,
             },
             {
@@ -764,7 +708,7 @@ export default function MillstoneComplianceWebsite() {
               label: "Waste — Service 3",
               badge: "Simpler Recycling",
               title: "Simpler Recycling Check",
-              description: "Deadline passed 31 March 2026. All UK businesses must now separate key waste streams. We review your bins, labels and contracts, and tell you exactly what to fix to be compliant.",
+              description: "Deadline passed 31 March 2025 for businesses with 10+ staff. We review your bins, labels and contracts, and tell you exactly what to fix to be compliant.",
               highlight: false,
             },
           ].map((item, index) => (
@@ -895,21 +839,21 @@ export default function MillstoneComplianceWebsite() {
             <div className="inline-flex items-center px-5 sm:px-7 py-2.5 sm:py-3 rounded-2xl bg-gradient-to-r from-emerald-50 via-emerald-100/80 to-emerald-50 backdrop-blur-xl border border-emerald-200/70 shadow-[0_8px_32px_rgba(16,185,129,0.15)] mb-6 sm:mb-8 md:mb-10 group-hover/regulations:scale-105 transition-all duration-700 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-100/0 via-white/50 to-emerald-100/0 animate-shine"></div>
               <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3 animate-pulse relative z-10"></div>
-              <span className="poppins-semibold text-xs sm:text-sm text-emerald-900 tracking-wide uppercase relative z-10">UK Compliance Framework</span>
+              <span className="poppins-semibold text-xs sm:text-sm text-emerald-900 tracking-wide uppercase relative z-10">For Food Businesses</span>
             </div>
             
             {/* Main Headline - matching site typography */}
             <h2 id="regulations-heading" className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-5 sm:mb-7 md:mb-9 text-emerald-900 tracking-tight relative animate-fade-in-up leading-[1.1]">
               Waste Regulations
               <span className="block mt-2 sm:mt-3 leading-tight pb-2 sm:pb-3 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
-                Simplified
+                That Apply To You
               </span>
             </h2>
             
             {/* Subheadline */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4 animate-fade-in-up delay-100">
-              Navigate complex UK waste legislation with clarity. From hazardous waste to digital tracking, 
-              <span className="poppins-semibold text-emerald-800"> every regulation explained</span>.
+              The four areas food businesses are most likely to get wrong —
+              <span className="poppins-semibold text-emerald-800"> and what the law actually requires.</span>
             </p>
           </div>
 
@@ -932,33 +876,33 @@ export default function MillstoneComplianceWebsite() {
                 
                 {/* Title */}
                 <h3 className="poppins-bold text-2xl sm:text-3xl text-amber-900 mb-4 group-hover/reg:text-amber-800 transition-colors duration-300">
-                  Hazardous Waste
+                  Grease &amp; FOG
                 </h3>
-                
+
                 {/* Description */}
                 <p className="text-amber-800 poppins-regular text-base leading-relaxed mb-6">
-                  Strict documentation requirements for dangerous materials. Legal compliance isn't optional.
+                  Fat, oil and grease from kitchens cause blocked drains. If a blockage is traced back to you, prosecution under the Water Industry Act 1991 isn&apos;t just possible — it&apos;s straightforward.
                 </p>
-                
+
                 {/* Requirements List */}
                 <div className="space-y-3 mb-8">
                   <div className="flex items-start gap-3 bg-amber-50/50 p-3 rounded-lg border border-amber-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <FileText className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-amber-900 text-sm poppins-medium">Consignment notes for every movement</span>
+                    <span className="text-amber-900 text-sm poppins-medium">Grease trap maintenance records required</span>
                   </div>
                   <div className="flex items-start gap-3 bg-amber-50/50 p-3 rounded-lg border border-amber-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Archive className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-amber-900 text-sm poppins-medium">3-year record retention mandatory</span>
+                    <span className="text-amber-900 text-sm poppins-medium">Licensed contractor for FOG removal</span>
                   </div>
                   <div className="flex items-start gap-3 bg-amber-50/50 p-3 rounded-lg border border-amber-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <ClipboardCheck className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-amber-900 text-sm poppins-medium">Pre-acceptance audits required</span>
+                    <span className="text-amber-900 text-sm poppins-medium">Drain blockage liability sits with you</span>
                   </div>
                 </div>
                 
@@ -1002,7 +946,7 @@ export default function MillstoneComplianceWebsite() {
                 </h3>
                 
                 <p className="text-green-800 poppins-regular text-base leading-relaxed mb-6">
-                  EPA 1990 Section 34 establishes your fundamental responsibilities. The bedrock of waste compliance.
+                  EPA 1990 Section 34. Every business that produces waste has a legal duty to ensure it&apos;s handled correctly from the moment it leaves your site.
                 </p>
                 
                 <div className="space-y-3 mb-8">
@@ -1145,35 +1089,35 @@ export default function MillstoneComplianceWebsite() {
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-rose-100 to-rose-200 border border-rose-300 flex items-center justify-center group-hover/reg:scale-110 group-hover/reg:rotate-3 transition-all duration-500 shadow-lg">
                     <Activity className="w-7 h-7 text-rose-700" />
                   </div>
-                  <Badge className="bg-rose-100 text-rose-700 border-rose-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">Healthcare</Badge>
+                  <Badge className="bg-rose-100 text-rose-700 border-rose-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">March 2025</Badge>
                 </div>
-                
+
                 <h3 className="poppins-bold text-2xl sm:text-3xl text-rose-900 mb-4 group-hover/reg:text-rose-800 transition-colors duration-300">
-                  Clinical Waste
+                  Simpler Recycling
                 </h3>
-                
+
                 <p className="text-rose-800 poppins-regular text-base leading-relaxed mb-6">
-                  HTM 07-01 sets the standard for healthcare waste management. Stringent protocols protect public health.
+                  Businesses with 10 or more employees had to separate food, dry recyclables and residual waste from 31 March 2025. Under 10 staff: deadline is 31 March 2027.
                 </p>
-                
+
                 <div className="space-y-3 mb-8">
                   <div className="flex items-start gap-3 bg-rose-50/50 p-3 rounded-lg border border-rose-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <BadgeCheck className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-rose-900 text-sm poppins-medium">HTM 07-01 compliance mandatory</span>
+                    <span className="text-rose-900 text-sm poppins-medium">Food waste separated from general waste</span>
                   </div>
                   <div className="flex items-start gap-3 bg-rose-50/50 p-3 rounded-lg border border-rose-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Eye className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-rose-900 text-sm poppins-medium">Segregation and colour-coding</span>
+                    <span className="text-rose-900 text-sm poppins-medium">Dry recyclables in a separate stream</span>
                   </div>
                   <div className="flex items-start gap-3 bg-rose-50/50 p-3 rounded-lg border border-rose-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Lock className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-rose-900 text-sm poppins-medium">Secure storage and disposal</span>
+                    <span className="text-rose-900 text-sm poppins-medium">Correct containers and labelling required</span>
                   </div>
                 </div>
                 
@@ -1594,16 +1538,16 @@ export default function MillstoneComplianceWebsite() {
               <div className="text-center">
                 <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full bg-emerald-50/80 backdrop-blur-xl border border-emerald-100/50 mb-4 sm:mb-5 animate-fade-in">
                   <GraduationCap className="w-3 sm:w-4 h-3 sm:h-4 text-emerald-600 mr-2" />
-                  <span className="poppins-medium text-[10px] sm:text-xs text-emerald-800 tracking-wide uppercase">World-Class Expertise</span>
+                  <span className="poppins-medium text-[10px] sm:text-xs text-emerald-800 tracking-wide uppercase">Independent &amp; Hands-On</span>
                 </div>
                 <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-emerald-900 mb-3 sm:mb-4 animate-fade-in-up">
-                  Expert-Led
+                  Practical
                   <span className="block mt-1 bg-gradient-to-r from-emerald-600 via-emerald-500 to-green-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
                     Waste Compliance
                   </span>
                 </h2>
                 <p className="poppins-regular text-base sm:text-lg text-emerald-700 max-w-xl mx-auto leading-relaxed animate-fade-in-up">
-                  We help UK regulated businesses stay compliant, avoid fines, and pass inspections — without the stress of figuring it out alone.
+                  We help independent food businesses stay compliant, cut waste costs, and avoid fines — without the stress of figuring it out alone.
                 </p>
               </div>
 
@@ -1614,8 +1558,8 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                     <span className="text-[10px] text-green-700 poppins-semibold uppercase tracking-wider">Status</span>
                   </div>
-                  <p className="poppins-bold text-emerald-900 text-2xl mb-0.5">100%</p>
-                  <p className="poppins-medium text-emerald-700 text-[11px]">Audit Pass Rate</p>
+                  <p className="poppins-bold text-emerald-900 text-2xl mb-0.5">48hr</p>
+                  <p className="poppins-medium text-emerald-700 text-[11px]">Turnaround</p>
                   <div className="mt-2.5 w-full h-1 bg-emerald-50 rounded-full">
                     <div className="h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full w-full"></div>
                   </div>
@@ -1628,10 +1572,10 @@ export default function MillstoneComplianceWebsite() {
           {/* What we cover pills */}
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 animate-fade-in-up">
             {[
-              "Duty of Care",
-              "Clinical Waste",
-              "Waste Documentation",
-              "Bin Separation Rules",
+              "Waste",
+              "Cooking Oil",
+              "Grease & FOG",
+              "Utilities",
             ].map((label) => (
               <div key={label} className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/70 backdrop-blur-xl border border-emerald-100/60 rounded-full shadow-sm hover:shadow-md hover:border-emerald-200/70 transition-all duration-300">
                 <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse flex-shrink-0"></div>
@@ -1643,10 +1587,10 @@ export default function MillstoneComplianceWebsite() {
           {/* Stats row */}
           <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-12 mb-8 sm:mb-10 animate-fade-in-up">
             {[
-              { value: "100%", label: "Audit Pass Rate" },
-              { value: "4", label: "Areas We Cover" },
-              { value: "Gov't", label: "Insider Experience" },
-              { value: "Zero", label: "Clients Ever Fined" },
+              { value: "4", label: "Areas We Review" },
+              { value: "48hr", label: "Turnaround On Every Review" },
+              { value: "1-1", label: "Direct Access, No Call Centre" },
+              { value: "£0", label: "Cost For Your First Review" },
             ].map((stat, i) => (
               <React.Fragment key={i}>
                 {i > 0 && <div className="w-px h-9 bg-emerald-100 hidden sm:block"></div>}
@@ -1672,7 +1616,7 @@ export default function MillstoneComplianceWebsite() {
                 </div>
 
                 <h3 className="poppins-bold text-xl sm:text-2xl text-emerald-900 mb-4 leading-tight">
-                  We handle the waste rules so you don&apos;t have to.
+                  We check the details so you don&apos;t have to.
                 </h3>
 
                 <p className="poppins-regular text-emerald-700 text-sm sm:text-sm leading-relaxed mb-4">
@@ -1680,16 +1624,16 @@ export default function MillstoneComplianceWebsite() {
                 </p>
 
                 <p className="poppins-regular text-emerald-600 text-sm leading-relaxed mb-5">
-                  We&apos;ve worked alongside the systems that enforce these rules. We know what inspectors look for — and we make sure your service always has the right evidence, in the right place, before they ever come knocking.
+                  We spend our time on the phone with carriers, collectors and specialists so you don&apos;t have to. We know what a fair rate looks like, what documentation you&apos;re missing, and where the risk actually sits.
                 </p>
 
                 {/* What we handle */}
                 <div className="space-y-2.5">
                   {[
-                    "We review your waste setup and keep your documentation accurate",
-                    "We identify your risks and give you clear, practical actions",
-                    "We confirm your contractors and licences keep you legal",
-                    "We make sure your workplace waste separation is fully compliant",
+                    "We review what you're paying for waste, oil, grease and utilities",
+                    "We identify overcharges and compliance risks in plain English",
+                    "We check your contractors and licences are legitimate",
+                    "We connect you to specialists we trust — no obligation",
                   ].map((item) => (
                     <div key={item} className="flex items-start gap-2.5">
                       <div className="w-4 h-4 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -1704,16 +1648,29 @@ export default function MillstoneComplianceWebsite() {
               {/* Footer: founder + About Us button */}
               <div className="mt-6 pt-5 border-t border-emerald-100/60 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div>
-                  <p className="poppins-semibold text-emerald-900 text-sm">Founder &amp; Principal Consultant</p>
-                  <p className="poppins-regular text-emerald-500 text-xs mt-0.5">UK Health &amp; Waste Compliance Specialist</p>
+                  <p className="poppins-semibold text-emerald-900 text-sm">Founder</p>
+                  <p className="poppins-regular text-emerald-500 text-xs mt-0.5">Waste Cost &amp; Compliance Advisor</p>
                 </div>
-                <Link
-                  href="/about"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white poppins-semibold text-xs rounded-xl transition-all duration-300 hover:shadow-[0_4px_16px_rgba(6,95,70,0.30)] group/btn flex-shrink-0 w-fit"
-                >
-                  Meet the Team
-                  <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform duration-300" />
-                </Link>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <a
+                    href="https://www.linkedin.com/in/zak-millstone"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#0A66C2] hover:bg-[#004182] text-white poppins-semibold text-xs rounded-xl transition-all duration-300 hover:shadow-[0_4px_16px_rgba(10,102,194,0.35)]"
+                  >
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                  </a>
+                  <Link
+                    href="/about"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white poppins-semibold text-xs rounded-xl transition-all duration-300 hover:shadow-[0_4px_16px_rgba(6,95,70,0.30)] group/btn w-fit"
+                  >
+                    About Zak
+                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform duration-300" />
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -1729,7 +1686,7 @@ export default function MillstoneComplianceWebsite() {
                 </div>
                 <div className="relative flex-1 min-w-0">
                   <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Cambridge Institute for Sustainability Leadership</h4>
-                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">We studied how health and waste regulations work in practice — not just in theory — so we can translate the law into plain steps your team can follow.</p>
+                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">Certificate in Circular Economy — the foundation for how we think about waste as a cost, not just a compliance box to tick.</p>
                 </div>
               </div>
 
@@ -1741,8 +1698,8 @@ export default function MillstoneComplianceWebsite() {
                   <Image src="/Screenshot 2025-08-31 at 21.43.30.png" alt="HMRC" width={36} height={36} loading="lazy" className="object-contain w-full h-full group-hover/item:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="relative flex-1 min-w-0">
-                  <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Regulatory Systems Background</h4>
-                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">Our background in public sector systems means we understand how enforcement operates — and exactly what documentation your service needs in place before an inspection ever happens.</p>
+                  <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Public Sector Background</h4>
+                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">Experience working within government systems — HMRC and the Office of the Public Guardian — gives us a working understanding of how process, documentation and accountability work in regulated environments.</p>
                 </div>
               </div>
 
@@ -1755,8 +1712,8 @@ export default function MillstoneComplianceWebsite() {
                   <Target className="w-5 h-5 text-white" />
                 </div>
                 <div className="relative flex-1 min-w-0">
-                  <h4 className="poppins-semibold text-white text-sm mb-1.5">Built on Solid Foundations</h4>
-                  <p className="poppins-regular text-emerald-100/90 text-sm leading-relaxed">Every engagement produces documentation built to withstand scrutiny — written reports, clear gap analysis, and action plans shaped around what councils, CQC, Ofsted and the EA actually want to see.</p>
+                  <h4 className="poppins-semibold text-white text-sm mb-1.5">Built on Real Numbers</h4>
+                  <p className="poppins-regular text-emerald-100/90 text-sm leading-relaxed">Every review is based on actual carrier rates we&apos;ve gathered directly — not templates. Written reports, clear findings, and next steps shaped around what a fair waste contract should look like.</p>
                 </div>
               </div>
 
@@ -1812,22 +1769,21 @@ export default function MillstoneComplianceWebsite() {
             <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/80 mb-6 sm:mb-8 group-hover/cta:scale-105 transition-all duration-500 relative">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-200/0 via-emerald-200/30 to-emerald-200/0 animate-shine"></div>
               <BadgeCheck className="w-4 sm:w-5 h-4 sm:h-5 text-emerald-600 mr-2 animate-pulse" />
-              <span className="poppins-medium text-xs sm:text-sm text-emerald-800">UK Waste Compliance</span>
+              <span className="poppins-medium text-xs sm:text-sm text-emerald-800">For Food Businesses</span>
             </div>
 
             {/* Enhanced headline with animated gradient */}
             <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-6 text-emerald-900 tracking-tight relative animate-fade-in-up">
-              <span className="inline-block">Stay</span>{" "}
+              <span className="inline-block">Know where</span>{" "}
               <span className="inline-block bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-[length:200%_100%] animate-gradient-x bg-clip-text text-transparent">
-                Inspection-Ready,
-              </span>{" "}
-              <span className="inline-block">Always</span>
+                you stand.
+              </span>
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-emerald-300/0 via-emerald-400/50 to-emerald-300/0 animate-pulse"></div>
             </h2>
 
             {/* Enhanced description with fade-in animation */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 leading-relaxed animate-fade-in-up delay-100 px-4">
-              We handle waste compliance for regulated businesses across the UK — so you avoid fines, failed inspections and licence issues.
+              We review what food businesses pay for waste, oil, grease and utilities — and tell you in 48 hours what&apos;s costing you money or putting you at risk.
             </p>
 
             {/* Premium FAQ Section */}
@@ -1835,24 +1791,24 @@ export default function MillstoneComplianceWebsite() {
               <div className="space-y-6">
               {[
                 {
-                  question: "How do I know if we need an audit?",
-                  answer: "If you're unsure about your waste costs, paperwork, contractor checks, or bin setup, you likely need one."
+                  question: "Do I need a review?",
+                  answer: "If you're not sure what you're paying for waste, oil or grease — or whether your paperwork is in order — you probably do. It's free, so there's no reason not to find out."
                 },
                 {
-                  question: "What does the audit cover?",
-                  answer: "We review your waste setup, records, contractor details, and key compliance risks."
+                  question: "What do you actually look at?",
+                  answer: "We look at what you're paying for waste, cooking oil, grease and utilities — and check your paperwork and contractors are in order. Everything that could be costing you money or creating a risk."
                 },
                 {
-                  question: "Can you help us save money too?",
-                  answer: "Yes. We look for overspending, poor segregation, weak contractor setup, and wasted spend."
+                  question: "Can you save me money?",
+                  answer: "That's the main reason people come to us. Most food businesses are overpaying for waste or oil collection and don't know it. We tell you exactly where the money is going."
                 },
                 {
-                  question: "Do you sell bins, collections or waste contracts?",
-                  answer: "No. We stay independent and only provide audits, findings, and practical recommendations."
+                  question: "Do you sell waste services?",
+                  answer: "No. We're completely independent. We find the problems — you decide what to do about them. We don't sell bins, collections or contracts."
                 },
                 {
-                  question: "How quickly do we get the report?",
-                  answer: "Your written report is delivered within 48 hours of the audit."
+                  question: "How fast do you turn it around?",
+                  answer: "Within 48 hours of receiving your invoice or information. You get a written report in plain English — not a template."
                 }
               ].map((item, index) => (
                   <div
@@ -1892,18 +1848,18 @@ export default function MillstoneComplianceWebsite() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
                 <span className="relative z-10 flex items-center">
-                  START YOUR FREE ASSESSMENT
+                  START FREE COMPLIANCE CHECK
                   <ArrowRight className="ml-2 h-5 w-5 group-hover/button:translate-x-1 transition-transform duration-500" />
                 </span>
               </Button>
               <Button
                 size="lg"
-                onClick={() => openBooking()}
+                onClick={() => setShowEmailTemplate(true)}
                 className="poppins-semibold bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white border-0 shadow-xl hover:shadow-emerald-500/25 transition-all duration-500 sm:hover:scale-105 group/button relative overflow-hidden w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 min-h-[54px] text-sm sm:text-base"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
                 <span className="relative z-10 flex items-center">
-                  BOOK A WASTE COMPLIANCE REVIEW
+                  SEND US YOUR INVOICE
                   <ArrowRight className="ml-2 h-5 w-5 group-hover/button:translate-x-1 transition-transform duration-500" />
                 </span>
               </Button>

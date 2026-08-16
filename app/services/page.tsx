@@ -25,11 +25,8 @@ import {
   Search,
   Lock,
   Home,
-  Heart,
-  Stethoscope,
+  Droplets,
   Leaf,
-  LayoutDashboard,
-  GraduationCap,
   Truck,
   BarChart3,
   UtensilsCrossed,
@@ -80,8 +77,8 @@ function Counter({ target, suffix = "", duration = 1800 }: { target: number; suf
 const legislation = [
   { code: "EPA 1990",  name: "Duty of Care",          icon: Shield,        accent: "from-emerald-500 to-emerald-700", glow: "rgba(16,185,129,0.15)", desc: "Every business must manage its waste responsibly. We verify transfer notes, carrier licences, and chain of custody." },
   { code: "SR 2026",   name: "Simpler Recycling",     icon: Leaf,          accent: "from-teal-500 to-emerald-600",   glow: "rgba(20,184,166,0.15)", desc: "Mandatory food, dry recyclable and residual separation for all UK businesses. We verify bin setup, labelling and collection contracts." },
-  { code: "HTM 07-01", name: "Clinical Waste",        icon: Stethoscope,   accent: "from-emerald-600 to-teal-700",   glow: "rgba(16,185,129,0.15)", desc: "Healthcare-specific guidance covering segregation, colour-coding, storage and consignment notes for infectious and hazardous clinical waste." },
-  { code: "HWR 2005",  name: "Hazardous Waste",       icon: AlertTriangle, accent: "from-amber-500 to-orange-600",   glow: "rgba(245,158,11,0.15)", desc: "Pre-acceptance procedures, consignment note trails and disposal site authorisation checks for any business producing hazardous waste." },
+  { code: "WIA 1991",  name: "Grease & FOG",          icon: Droplets,      accent: "from-emerald-600 to-teal-700",   glow: "rgba(16,185,129,0.15)", desc: "Discharging fats, oils and grease to sewer is a criminal offence under Section 111. We check grease trap maintenance records and contractor arrangements." },
+  { code: "HWTE Reg",  name: "Digital Waste Tracking", icon: Wifi,         accent: "from-amber-500 to-orange-600",   glow: "rgba(245,158,11,0.15)", desc: "Mandatory from October 2026. Paper waste records are replaced by digital tracking. We assess readiness and identify what needs to be in place." },
   { code: "CWR 2012",  name: "Controlled Waste",      icon: Trash2,        accent: "from-emerald-500 to-green-700",  glow: "rgba(16,185,129,0.15)", desc: "Classification and handling rules for household, industrial and commercial waste — ensuring the right treatment route for every stream." },
   { code: "EA Reg",    name: "Carrier Registration",  icon: BadgeCheck,    accent: "from-teal-400 to-emerald-600",   glow: "rgba(20,184,166,0.15)", desc: "We cross-check every contractor against the Environment Agency's public register to confirm they are legally authorised to carry your waste." },
 ]
@@ -97,36 +94,36 @@ const auditSteps = [
 const usedBy = [
   { icon: BarChart3,       label: "Cost Reviews" },
   { icon: BadgeCheck,      label: "Contractor Checks" },
-  { icon: LayoutDashboard, label: "Internal Reviews" },
+  { icon: FileCheck,       label: "Duty of Care Check" },
   { icon: Shield,          label: "Site Readiness" },
   { icon: AlertTriangle,   label: "Risk Tracking" },
-  { icon: GraduationCap,   label: "Board Updates" },
+  { icon: Wifi,            label: "Digital Tracking Prep" },
 ]
 
 const sectors = [
-  "Care Homes", "UK Property Sector", "HMO Properties",
-  "Offices", "Warehouses", "Food & beverage manufacturing",
-  "Hospitality", "Logistics", "Multi-Site Portfolios",
+  "Restaurants", "Takeaways", "Independent Cafes",
+  "Hospitality", "Dark Kitchens", "Street Food & Events",
+  "Food Manufacturing", "Multi-Site Food Groups",
 ]
 
 /* ─── Sector accordion items ─────────────────────────────────────────────── */
 const sectorAccordions = [
   {
-    id: "hmo",
-    icon: Home,
-    eyebrow: "UK Property Sector",
-    headline: "Reduce Waste Risk Across Managed Properties",
-    sub: "Poor bin setups, weak tenant guidance, and missing paperwork can lead to avoidable cost and compliance problems across managed property portfolios.",
+    id: "restaurants",
+    icon: UtensilsCrossed,
+    eyebrow: "Restaurants & Takeaways",
+    headline: "Cut Costs. Stay on the Right Side of the Law.",
+    sub: "Most independent restaurants and takeaways are overpaying for waste, cooking oil or grease management — and carrying compliance risks they don't know about.",
     bullets: [
-      "Bin setup reviewed against current waste rules",
-      "Waste Transfer Notes and carrier licences checked",
-      "Tenant guidance and site instructions reviewed",
-      "Collection arrangements and contractor setup assessed",
+      "Waste collection costs and contractor terms reviewed",
+      "Cooking oil and grease removal arrangements checked",
+      "Duty of Care paperwork and carrier licences verified",
+      "Simpler Recycling bin setup and separation assessed",
       "48-hour written report with clear next steps",
     ],
-    cta: "View HMO Compliance Checklist",
-    ctaHref: "/resources/hmo-waste-compliance-checklist",
-    secondaryCta: "Book a Property Audit",
+    cta: null,
+    ctaHref: null,
+    secondaryCta: "Send Us Your Invoice",
     pal: {
       eyebrow: "#b45309",
       bg: "linear-gradient(135deg,rgba(255,251,235,0.65) 0%,rgba(255,255,255,0.98) 100%)",
@@ -139,21 +136,21 @@ const sectorAccordions = [
     },
   },
   {
-    id: "carehomes",
-    icon: Heart,
-    eyebrow: "Care Homes",
-    headline: "Control Waste Costs. Reduce Compliance Risk.",
-    sub: "Care providers need waste systems that work day to day — with clear records, practical processes, and the right contractor setup in place.",
+    id: "cafes",
+    icon: Home,
+    eyebrow: "Independent Cafes",
+    headline: "Find What Your Café Is Overpaying For.",
+    sub: "Small food businesses often have the worst waste contractor terms — high fuel surcharges, low weight allowances, and auto-renewals nobody reads.",
     bullets: [
-      "Waste streams and segregation reviewed",
-      "Waste records and supporting paperwork checked",
-      "Contractor licences and collection arrangements reviewed",
-      "Waste management process assessed for gaps",
-      "48-hour written report with action plan",
+      "Waste collection frequency and contract terms reviewed",
+      "Cooking oil and food waste arrangements assessed",
+      "Carrier licences and contractor registrations checked",
+      "Bin setup reviewed against Simpler Recycling rules",
+      "48-hour written report with specific actions",
     ],
-    cta: "View Care Home Compliance Checklist",
-    ctaHref: "/resources/care-home-waste-compliance-checklist",
-    secondaryCta: "Book a Care Home Audit",
+    cta: null,
+    ctaHref: null,
+    secondaryCta: "Send Us Your Invoice",
     pal: {
       eyebrow: "#be185d",
       bg: "linear-gradient(135deg,rgba(255,228,230,0.55) 0%,rgba(255,255,255,0.98) 100%)",
@@ -167,20 +164,20 @@ const sectorAccordions = [
   },
   {
     id: "hospitality",
-    icon: UtensilsCrossed,
+    icon: Sparkles,
     eyebrow: "Hospitality",
-    headline: "Cut Waste Spend Across Busy Sites",
-    sub: "Food businesses often lose money through poor segregation, weak storage, and contractor setups that no longer match the way the site actually runs.",
+    headline: "Complex Kitchens. Hidden Costs.",
+    sub: "Hotels, restaurants and venues often have the most complex waste setups — multiple streams, multiple contractors, and hidden costs across every collection.",
     bullets: [
-      "Food and general waste streams reviewed",
-      "Dry recycling and residual setup checked",
-      "Duty of Care paperwork and carrier checks completed",
-      "Specialist waste arrangements reviewed where needed",
+      "Food waste, cooking oil and general waste streams reviewed",
+      "Grease management and FOG compliance checked",
+      "All contractor licences and collection terms reviewed",
+      "Simpler Recycling setup assessed across all waste types",
       "48-hour written report with practical actions",
     ],
     cta: null,
     ctaHref: null,
-    secondaryCta: "Book a Hospitality Audit",
+    secondaryCta: "Send Us Your Invoice",
     pal: {
       eyebrow: "#c2410c",
       bg: "linear-gradient(135deg,rgba(255,237,213,0.6) 0%,rgba(255,255,255,0.98) 100%)",
@@ -193,21 +190,21 @@ const sectorAccordions = [
     },
   },
   {
-    id: "logistics",
+    id: "darkkitchens",
     icon: Package,
-    eyebrow: "Logistics & Warehousing",
-    headline: "Reduce Cost Across High-Volume Waste Streams",
-    sub: "Busy operational sites can carry hidden waste costs through mixed streams, poor segregation, and weak contractor control across multiple collections.",
+    eyebrow: "Dark Kitchens",
+    headline: "High Volume. High Risk. Low Oversight.",
+    sub: "Delivery-only kitchens run busy, high-temperature operations with no front-of-house — which often means waste and compliance are the last thing anyone looks at.",
     bullets: [
-      "Waste streams mapped to current handling routes",
-      "Packaging and recovery obligations reviewed",
-      "Contractors checked against public registers",
-      "Waste records checked for gaps and errors",
-      "48-hour report with prioritised actions for site teams",
+      "Cooking oil volume and collection costs reviewed",
+      "Grease trap and FOG management assessed",
+      "Waste carrier licences and Duty of Care records checked",
+      "Digital Waste Tracking readiness assessed for October 2026",
+      "48-hour written report with priority actions",
     ],
     cta: null,
     ctaHref: null,
-    secondaryCta: "Book a Logistics Audit",
+    secondaryCta: "Send Us Your Invoice",
     pal: {
       eyebrow: "#1d4ed8",
       bg: "linear-gradient(135deg,rgba(219,234,254,0.55) 0%,rgba(255,255,255,0.98) 100%)",
@@ -220,21 +217,21 @@ const sectorAccordions = [
     },
   },
   {
-    id: "construction",
-    icon: HardHat,
-    eyebrow: "Construction",
-    headline: "Control Waste Risk On Active Sites",
-    sub: "Construction sites generate multiple waste streams with different handling requirements. Weak controls can create avoidable cost, delay, and compliance issues.",
+    id: "streetfood",
+    icon: Truck,
+    eyebrow: "Street Food & Events",
+    headline: "Compliance Doesn't Stop When the Site Does.",
+    sub: "Street food operators and event caterers move between venues — but waste rules follow the business, not the postcode.",
     bullets: [
-      "Waste streams and treatment routes reviewed",
-      "Hazardous records checked where applicable",
-      "Skip hire and contractor registrations confirmed",
-      "Site waste paperwork and controls assessed",
-      "48-hour written report for contractor review",
+      "Mobile and temporary kitchen waste arrangements reviewed",
+      "Cooking oil and grease compliance checked",
+      "Carrier registrations and waste records assessed",
+      "Duty of Care requirements for non-fixed premises explained",
+      "48-hour written report with clear guidance",
     ],
     cta: null,
     ctaHref: null,
-    secondaryCta: "Book a Construction Audit",
+    secondaryCta: "Send Us Your Invoice",
     pal: {
       eyebrow: "#854d0e",
       bg: "linear-gradient(135deg,rgba(254,249,195,0.6) 0%,rgba(255,255,255,0.98) 100%)",
@@ -248,20 +245,20 @@ const sectorAccordions = [
   },
   {
     id: "manufacturers",
-    icon: Package,
-    eyebrow: "Food & Beverage Manufacturing",
-    headline: "Find Waste Savings In Daily Operations",
-    sub: "Manufacturers often carry avoidable waste costs through poor segregation, weak contractor terms, and packaging or food waste streams that are not being managed well.",
+    icon: HardHat,
+    eyebrow: "Food Manufacturing",
+    headline: "Find Waste Savings In Your Daily Operations.",
+    sub: "Food manufacturers produce high volumes of food waste, packaging waste and cooking byproducts — often with weak contractor terms and missing paperwork across multiple streams.",
     bullets: [
-      "Packaging and waste obligations reviewed",
-      "General waste records and carrier checks completed",
-      "Food waste separation and handling assessed",
-      "Dry recyclable streams reviewed for improvement",
-      "48-hour report with clear action plan for operations",
+      "Food waste and cooking oil disposal costs reviewed",
+      "Packaging and general waste streams mapped and assessed",
+      "Contractor licences and carrier registrations checked",
+      "Digital Waste Tracking preparation for October 2026",
+      "48-hour report with clear action plan for site teams",
     ],
     cta: null,
     ctaHref: null,
-    secondaryCta: "Book a Manufacturer Audit",
+    secondaryCta: "Send Us Your Invoice",
     pal: {
       eyebrow: "#0f766e",
       bg: "linear-gradient(135deg,rgba(204,251,241,0.55) 0%,rgba(255,255,255,0.98) 100%)",
@@ -276,19 +273,19 @@ const sectorAccordions = [
   {
     id: "other",
     icon: Sparkles,
-    eyebrow: "Every Other Regulated Business",
-    headline: "Don't See Your Sector? We Still Cover You.",
-    sub: "Waste rules apply to every business that produces waste. If you have waste contractors, records, or site processes to manage, we can audit them.",
+    eyebrow: "Every Food Business",
+    headline: "Don't See Your Setup? We Still Cover It.",
+    sub: "Waste rules apply to every business that produces waste. If you have a commercial kitchen, we can review what you're paying and where you stand.",
     bullets: [
-      "Offices, retail, education, healthcare, manufacturing",
-      "Any business with waste contractors or collections",
-      "Multi-site portfolios across mixed sectors",
-      "Any organisation managing cost and compliance risk",
-      "Fixed-fee quote agreed before we start",
+      "Any food business with a commercial kitchen",
+      "Waste, cooking oil or grease management review",
+      "Utility and energy contract review",
+      "Duty of Care and compliance assessment",
+      "Fixed-price quote agreed before we start",
     ],
     cta: null,
     ctaHref: null,
-    secondaryCta: "Discuss Your Requirements",
+    secondaryCta: "Send Us Your Invoice",
     pal: {
       eyebrow: "#047857",
       bg: "linear-gradient(135deg,rgba(209,250,229,0.55) 0%,rgba(255,255,255,0.98) 100%)",
@@ -342,7 +339,7 @@ export default function ServicesPage() {
             style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(12px)" }}
           >
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Waste Cost & Compliance Audits · UK</span>
+            <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Kitchen Cost & Compliance · West Midlands</span>
           </div>
 
           {/* Headline */}
@@ -360,7 +357,7 @@ export default function ServicesPage() {
             className="poppins-regular text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-700 delay-200"
             style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(16px)" }}
           >
-            Independent waste cost and compliance audits for UK businesses — remote or on-site, with fixed-fee pricing and a 48-hour written report.
+            Independent cost and compliance reviews for food businesses — waste, cooking oil, grease and utilities — with a 48-hour written report.
           </p>
 
           {/* CTAs */}
@@ -372,14 +369,14 @@ export default function ServicesPage() {
               onClick={() => openBooking("snapshot")}
               className="group inline-flex items-center gap-2 px-7 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white poppins-bold text-sm rounded-xl shadow-lg hover:shadow-emerald-700/20 transition-all duration-300 active:scale-95"
             >
-              Book an Audit
+              Send Us Your Invoice
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </button>
             <Link
               href="/quiz"
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 poppins-semibold text-sm rounded-xl transition-all duration-300"
             >
-              Free Cost Check
+              Free Compliance Check
             </Link>
           </div>
 
@@ -402,9 +399,9 @@ export default function ServicesPage() {
         <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-0">
           {[
             { val: 48,  suf: "hr", label: "Report Turnaround" },
-            { val: 100, suf: "%",  label: "Clear Written Reports" },
-            { val: 6,   suf: "",   label: "Key Risk Areas" },
-            { val: 0,   suf: "",   label: "Contracts To Sell" },
+            { val: 5,   suf: "",   label: "Areas We Review" },
+            { val: 22,  suf: "%",  label: "Max Fuel Surcharge Found" },
+            { val: 0,   suf: "",   label: "Contracts We Sell" },
           ].map((s, i) => (
             <div key={s.label} className={`text-center px-4 ${i > 0 ? "border-l border-slate-100" : ""}`}>
               <p className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-emerald-700 tabular-nums">
@@ -437,13 +434,13 @@ export default function ServicesPage() {
               <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Your sector</span>
             </div>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              We Audit Waste Costs And Compliance{" "}
+              We Review Costs And Compliance{" "}
               <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
-                Across UK Business Sectors.
+                For Every Type of Food Business.
               </span>
             </h2>
             <p className="poppins-regular text-slate-500 text-base mt-3 max-w-xl mx-auto leading-relaxed">
-              Select your sector to see what we review — and where we help you reduce cost and risk.
+              Select your type of operation to see what we review — and where we typically find cost and compliance gaps.
             </p>
             {/* Accent divider */}
             <div className="mt-6 flex justify-center gap-1.5">
@@ -661,7 +658,7 @@ export default function ServicesPage() {
           >
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">The legal framework</p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              We Audit Against Six Areas Of UK Law.
+              Six Areas of Law That Apply To Your Kitchen.
             </h2>
           </div>
 
@@ -844,7 +841,7 @@ export default function ServicesPage() {
                   </div>
                   <h3 className="poppins-bold text-lg text-slate-900 mb-4">How it works</h3>
                   <div className="space-y-3">
-                    {["You send records, policies, and contractor documents","We review everything against the relevant waste rules","Written RAG report delivered within 48 hours","No travel needed — nationwide coverage from day one"].map((t) => (
+                    {["Send your invoice or contractor documents by WhatsApp or email","We review costs, records and compliance in full","Written report delivered within 48 hours","No travel needed — covering Birmingham and the West Midlands"].map((t) => (
                       <div key={t} className="flex gap-3">
                         <CheckCircle className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
                         <p className="poppins-regular text-sm text-slate-600 leading-snug">{t}</p>
@@ -858,7 +855,7 @@ export default function ServicesPage() {
                   </div>
                   <h3 className="poppins-bold text-lg text-white mb-4">Best suited for</h3>
                   <div className="space-y-3">
-                    {["Multi-site portfolios needing fast coverage","Record and policy-led audit reviews","Pre-visit compliance or cost reviews","Businesses with good internal records already in place"].map((t) => (
+                    {["Independent kitchens with an invoice to share","Businesses wanting a cost or compliance check fast","Any kitchen unsure what they're paying or what the risk is","Owners who want answers without disrupting the operation"].map((t) => (
                       <div key={t} className="flex gap-3">
                         <CheckCircle className="w-4 h-4 text-emerald-200 flex-shrink-0 mt-0.5" />
                         <p className="poppins-regular text-sm text-white/80 leading-snug">{t}</p>
@@ -875,7 +872,7 @@ export default function ServicesPage() {
                   </div>
                   <h3 className="poppins-bold text-lg text-slate-900 mb-4">How it works</h3>
                   <div className="space-y-3">
-                    {["Auditor attends site and inspects all waste storage areas","Bin setup, labelling, and separation verified physically","Staff are interviewed on waste handling procedures","Photographic evidence captured and included in report"].map((t) => (
+                    {["We attend the kitchen and inspect waste storage areas","Bin setup, labelling and separation checked in person","Grease trap access and maintenance records reviewed on-site","Photographic evidence included in the written report"].map((t) => (
                       <div key={t} className="flex gap-3">
                         <CheckCircle className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
                         <p className="poppins-regular text-sm text-slate-600 leading-snug">{t}</p>
@@ -889,7 +886,7 @@ export default function ServicesPage() {
                   </div>
                   <h3 className="poppins-bold text-lg text-white mb-4">Best suited for</h3>
                   <div className="space-y-3">
-                    {["Care homes, clinical environments and regulated premises","Sites with complex or high-risk waste streams","Pre-CQC, pre-EA or pre-Ofsted inspection preparation","Businesses where physical evidence is critical"].map((t) => (
+                    {["Dark kitchens and high-volume operations","Sites with complex or high-risk grease arrangements","Kitchens preparing for an EA or council inspection","Businesses where physical evidence of compliance is needed"].map((t) => (
                       <div key={t} className="flex gap-3">
                         <CheckCircle className="w-4 h-4 text-emerald-200 flex-shrink-0 mt-0.5" />
                         <p className="poppins-regular text-sm text-white/80 leading-snug">{t}</p>
@@ -934,12 +931,12 @@ export default function ServicesPage() {
                 <p className="poppins-semibold text-slate-400 text-xs uppercase tracking-widest mb-3">RAG Status Summary</p>
                 <div className="space-y-3">
                   {[
-                    { label: "Waste Transfer Notes", status: "green", pct: 100 },
-                    { label: "Carrier Registration",  status: "green", pct: 100 },
-                    { label: "Clinical Waste Records", status: "amber", pct: 60 },
+                    { label: "Waste Transfer Notes",    status: "green", pct: 100 },
+                    { label: "Carrier Registration",   status: "green", pct: 100 },
+                    { label: "Grease Trap Records",    status: "amber", pct: 55 },
                     { label: "Bin Labelling",          status: "red",   pct: 25 },
                     { label: "Segregation Setup",      status: "amber", pct: 70 },
-                    { label: "Consignment Notes",      status: "green", pct: 90 },
+                    { label: "Cooking Oil Contractor", status: "green", pct: 90 },
                   ].map((row) => (
                     <div key={row.label}>
                       <div className="flex justify-between items-center mb-1">
@@ -970,7 +967,7 @@ export default function ServicesPage() {
                 { icon: FileCheck,    title: "RAG-Rated Findings",         desc: "Every item is Red (urgent), Amber (action required), or Green (compliant). No ambiguity about priority." },
                 { icon: Search,      title: "Root Cause, Not Symptoms",    desc: "We identify why a gap exists — expired licence, missing form, wrong container — so the fix is obvious." },
                 { icon: ClipboardCheck, title: "Specific Recommendations", desc: "Each finding includes a named action, a suggested timeline, and the legislation it relates to." },
-                { icon: Shield,      title: "Regulator-Ready Format",      desc: "Accepted by CQC, Ofsted, the Environment Agency and councils as evidence of due diligence." },
+                { icon: Shield,      title: "Regulator-Ready Format",      desc: "Accepted by the Environment Agency and local councils as evidence of due diligence and Duty of Care." },
               ].map((item) => {
                 const Icon = item.icon
                 return (
@@ -997,8 +994,8 @@ export default function ServicesPage() {
             className="text-center mb-12 transition-all duration-700"
             style={{ opacity: whoRef.visible ? 1 : 0, transform: whoRef.visible ? "none" : "translateY(20px)" }}
           >
-            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">How clients use the report</p>
-            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">One Report. Six Use Cases.</h2>
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">How owners use the report</p>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">One Report. Six Things It Does.</h2>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
@@ -1031,7 +1028,7 @@ export default function ServicesPage() {
             <Lock className="w-5 h-5 text-emerald-600 mx-auto mb-3" />
             <p className="poppins-bold text-slate-900 text-base mb-2">Independent advice. Always.</p>
             <p className="poppins-regular text-slate-500 text-sm max-w-lg mx-auto leading-relaxed">
-              We do not sell bins, collections, or waste contracts. Our only service is independent audit advice. You use our report to reduce costs, review contractors, tighten records, and run your business on your own terms.
+              We do not sell bins, collections, or waste contracts. Our only service is independent advice for food businesses. You use our report to reduce costs, review contractors, tighten records, and run your kitchen on your own terms.
             </p>
           </div>
         </div>
@@ -1049,7 +1046,7 @@ export default function ServicesPage() {
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Pricing</p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900 mb-3">How We Work</h2>
             <p className="poppins-regular text-slate-500 text-base max-w-xl mx-auto">
-              Three fixed-price options. Zero long-term contracts. No hidden fees. Choose the level of support you need right now.
+              Three options. Zero long-term contracts. No hidden fees. Start with the free review — no obligation, 48 hours.
             </p>
           </div>
 
@@ -1068,15 +1065,15 @@ export default function ServicesPage() {
               <div className="mb-5">
                 <span className="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-500 poppins-semibold text-xs uppercase tracking-wider mb-4">Free</span>
                 <p className="poppins-bold text-4xl text-slate-900 leading-none mb-1">£0</p>
-                <p className="poppins-semibold text-slate-700 text-base mt-2">Discovery Call</p>
-                <p className="poppins-regular text-slate-400 text-xs mt-1">15 minutes · No obligation</p>
+                <p className="poppins-semibold text-slate-700 text-base mt-2">Free First Review</p>
+                <p className="poppins-regular text-slate-400 text-xs mt-1">48hr written findings · No obligation</p>
               </div>
 
               <div className="flex-1 space-y-3 mb-7">
                 {[
-                  "15-minute call to understand your setup",
-                  "We explain your next steps",
-                  "No obligation",
+                  "Send us an invoice or describe your setup",
+                  "We review and come back within 48 hours",
+                  "No obligation — no charge",
                 ].map((f) => (
                   <div key={f} className="flex items-start gap-2.5">
                     <div className="w-4 h-4 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -1091,7 +1088,7 @@ export default function ServicesPage() {
                 onClick={() => openBooking("snapshot")}
                 className="w-full py-3 rounded-xl border border-emerald-300 text-emerald-700 poppins-semibold text-sm hover:bg-emerald-50 transition-all duration-200 active:scale-[0.98]"
               >
-                Book Free Call
+                Send Us Your Invoice
               </button>
             </div>
 
@@ -1115,16 +1112,16 @@ export default function ServicesPage() {
               <div className="mb-5">
                 <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-emerald-100 poppins-semibold text-xs uppercase tracking-wider mb-4">Paid</span>
                 <p className="poppins-bold text-4xl text-white leading-none mb-1">£195</p>
-                <p className="poppins-semibold text-emerald-100 text-base mt-2">Compliance Snapshot</p>
-                <p className="poppins-regular text-emerald-300 text-xs mt-1">Remote · Report in 48 hours</p>
+                <p className="poppins-semibold text-emerald-100 text-base mt-2">Kitchen Cost Review</p>
+                <p className="poppins-regular text-emerald-300 text-xs mt-1">Remote · Written report in 48 hours</p>
               </div>
 
               <div className="flex-1 space-y-3 mb-7">
                 {[
-                  "Quick remote review of your setup",
-                  "We find 3–5 key risks",
-                  "Simple report in 48 hours",
-                  "Clear actions to fix issues",
+                  "Full review of waste, oil, grease or utilities",
+                  "We find cost and compliance gaps",
+                  "Plain English report in 48 hours",
+                  "Clear actions with no jargon",
                 ].map((f) => (
                   <div key={f} className="flex items-start gap-2.5">
                     <div className="w-4 h-4 rounded-full bg-white/10 border border-emerald-300/50 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -1139,7 +1136,7 @@ export default function ServicesPage() {
                 onClick={() => openBooking("snapshot")}
                 className="w-full py-3 rounded-xl bg-white text-emerald-700 poppins-bold text-sm hover:bg-emerald-50 transition-all duration-200 active:scale-[0.98] shadow-lg shadow-emerald-900/20"
               >
-                Book Snapshot
+                Get Cost Review
               </button>
             </div>
 
@@ -1155,17 +1152,17 @@ export default function ServicesPage() {
               <div className="mb-5">
                 <span className="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-500 poppins-semibold text-xs uppercase tracking-wider mb-4">Full service</span>
                 <p className="poppins-bold text-4xl text-slate-900 leading-none mb-1">£495</p>
-                <p className="poppins-semibold text-slate-700 text-base mt-2">Compliance Setup Pack</p>
-                <p className="poppins-regular text-slate-400 text-xs mt-1">Remote · Everything in Snapshot</p>
+                <p className="poppins-semibold text-slate-700 text-base mt-2">Full Compliance Setup</p>
+                <p className="poppins-regular text-slate-400 text-xs mt-1">Remote · Everything in the Cost Review</p>
               </div>
 
               <div className="flex-1 space-y-3 mb-7">
                 {[
-                  "Everything in the Snapshot",
-                  "We create your key documents",
-                  "Simple templates for your team",
-                  "One call to guide you",
-                  "One follow-up check",
+                  "Everything in the Cost Review",
+                  "We create your key compliance documents",
+                  "Simple templates for your kitchen",
+                  "One direct call to guide you through it",
+                  "One follow-up check included",
                 ].map((f) => (
                   <div key={f} className="flex items-start gap-2.5">
                     <div className="w-4 h-4 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -1180,7 +1177,7 @@ export default function ServicesPage() {
                 onClick={() => openBooking("snapshot")}
                 className="w-full py-3 rounded-xl border border-emerald-300 text-emerald-700 poppins-semibold text-sm hover:bg-emerald-50 transition-all duration-200 active:scale-[0.98]"
               >
-                See Full Setup
+                Get Full Setup
               </button>
             </div>
 
@@ -1211,7 +1208,7 @@ export default function ServicesPage() {
             <div className="flex-1 text-center sm:text-left">
               <p className="poppins-semibold text-xs text-amber-600 uppercase tracking-wider mb-1">Templates</p>
               <h3 className="poppins-bold text-xl text-slate-900 mb-1">Need paperwork to get started?</h3>
-              <p className="poppins-regular text-sm text-slate-500">Download ready-made waste logs, action plans, and compliance checklists — instantly usable on any device.</p>
+              <p className="poppins-regular text-sm text-slate-500">Download ready-made waste logs, Duty of Care records, and compliance checklists built for commercial kitchens.</p>
             </div>
             <Link
               href="/templates"
@@ -1230,10 +1227,10 @@ export default function ServicesPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-emerald-500/30 rounded-full blur-[80px]" />
         <div className="max-w-3xl mx-auto relative z-10 text-center">
           <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5 leading-tight">
-            Ready To Know Where You Actually Stand?
+            Ready To Find Out What Your Kitchen Is Paying?
           </h2>
           <p className="poppins-regular text-emerald-100 text-lg mb-9 max-w-xl mx-auto">
-            Book an audit or run a free check. We&apos;ll show you what is working, what is not, and what to do next.
+            Send us your invoice or run a free check. We&apos;ll come back within 48 hours with what we find — no charge for the first review.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
@@ -1241,14 +1238,14 @@ export default function ServicesPage() {
               className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white hover:bg-emerald-50 text-emerald-700 poppins-bold text-sm rounded-xl transition-all duration-300 shadow-lg active:scale-95"
             >
               <Mail className="w-4 h-4" />
-              Book an Audit
+              Send Us Your Invoice
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </button>
             <Link
               href="/quiz"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 poppins-semibold text-sm rounded-xl transition-all duration-300"
             >
-              Free Cost Check
+              Free Compliance Check
               <ChevronRight className="w-4 h-4" />
             </Link>
           </div>

@@ -5,11 +5,15 @@ import {
   CheckCircle,
   Phone,
   Mail,
-  Droplets,
-  Trash2,
-  Zap,
-  Wifi,
-  Flame,
+  Armchair,
+  Sofa,
+  AlertTriangle,
+  Recycle,
+  FileText,
+  Camera,
+  Search,
+  Truck,
+  FileCheck,
 } from "lucide-react"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
@@ -20,63 +24,78 @@ const WhatsAppIcon = () => (
   </svg>
 )
 
-const overheads = [
+const areas = [
   {
-    icon: Flame,
-    title: "Cooking Oil",
-    sub: "Clean fryer oil is a commodity — you should be paid for collection, not paying.",
-    dot: "bg-amber-400",
-    iconBg: "bg-amber-50 text-amber-600",
-    bg: "bg-amber-50/60",
-    border: "border-amber-100",
-  },
-  {
-    icon: Droplets,
-    title: "Grease & FOG",
-    sub: "Criminal liability under Section 111, Water Industry Act 1991. Severn Trent inspecting.",
-    dot: "bg-red-400",
-    iconBg: "bg-red-50 text-red-600",
-    bg: "bg-red-50/40",
-    border: "border-red-100",
-  },
-  {
-    icon: Trash2,
-    title: "Waste Collection",
-    sub: "12–22% fuel surcharges. 65kg weight limits. Auto-renewals nobody reads.",
+    icon: Armchair,
+    title: "Old Furniture",
+    sub: "Beds, sofas, wardrobes — most landlords don't know what needs a licensed carrier.",
     dot: "bg-slate-400",
     iconBg: "bg-slate-50 text-slate-600",
     bg: "bg-slate-50/60",
     border: "border-slate-100",
   },
   {
-    icon: Zap,
-    title: "Water & Energy",
-    sub: "Commercial contracts that renew at higher rates every year and never get reviewed.",
-    dot: "bg-blue-400",
-    iconBg: "bg-blue-50 text-blue-600",
-    bg: "bg-blue-50/40",
-    border: "border-blue-100",
+    icon: Sofa,
+    title: "Sofas & Seating",
+    sub: "Must be incinerated, not reused — Environment Agency rules on POPs.",
+    dot: "bg-amber-400",
+    iconBg: "bg-amber-50 text-amber-600",
+    bg: "bg-amber-50/60",
+    border: "border-amber-100",
   },
   {
-    icon: Wifi,
-    title: "Digital Waste Tracking",
-    sub: "Mandatory from October 2026. Most kitchens are not prepared.",
+    icon: AlertTriangle,
+    title: "Fly-Tipping Risk",
+    sub: "£1,000 on the spot, unlimited in court, if it's traced back to you.",
+    dot: "bg-red-400",
+    iconBg: "bg-red-50 text-red-600",
+    bg: "bg-red-50/40",
+    border: "border-red-100",
+  },
+  {
+    icon: Recycle,
+    title: "HMO Recycling",
+    sub: "Separate bins required for food, recycling and general waste.",
     dot: "bg-emerald-500",
     iconBg: "bg-emerald-50 text-emerald-600",
     bg: "bg-emerald-50/40",
     border: "border-emerald-100",
   },
+  {
+    icon: FileText,
+    title: "The Paperwork",
+    sub: "Transfer notes and records must be kept for two years.",
+    dot: "bg-blue-400",
+    iconBg: "bg-blue-50 text-blue-600",
+    bg: "bg-blue-50/40",
+    border: "border-blue-100",
+  },
+]
+
+const heroSteps = [
+  { icon: Camera,    title: "Photographed", sub: "You send a few photos" },
+  { icon: Search,    title: "Sorted",       sub: "Reusable vs genuine waste" },
+  { icon: Truck,     title: "Cleared",      sub: "Usually within days" },
+  { icon: FileCheck, title: "Documented",   sub: "Transfer note & photos" },
 ]
 
 export default function AboutPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [activeItem, setActiveItem] = useState(0)
+  const [heroStep, setHeroStep] = useState(0)
 
   useEffect(() => {
     setIsVisible(true)
     const interval = setInterval(() => {
-      setActiveItem((prev) => (prev + 1) % overheads.length)
+      setActiveItem((prev) => (prev + 1) % areas.length)
     }, 2200)
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroStep((prev) => (prev + 1) % heroSteps.length)
+    }, 1900)
     return () => clearInterval(interval)
   }, [])
 
@@ -85,44 +104,111 @@ export default function AboutPage() {
       <Navigation />
 
       {/* ── HERO ─────────────────────────────────────────── */}
-      <section className="pt-32 pb-24 px-4 sm:px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_30%,rgba(209,250,229,0.5)_0%,transparent_70%)] pointer-events-none" />
+      <section className="pt-32 sm:pt-36 pb-20 sm:pb-24 px-4 sm:px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_78%_18%,rgba(209,250,229,0.45)_0%,transparent_70%)] pointer-events-none" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.015)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none" />
 
-        <div className={`max-w-4xl mx-auto relative z-10 text-center transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 border border-emerald-100 rounded-full mb-8 shadow-sm">
-            <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-            <span className="poppins-medium text-[11px] text-emerald-700 tracking-widest uppercase">Birmingham & West Midlands · Independent</span>
-          </div>
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className={`grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
 
-          <h1 className="poppins-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-emerald-900 leading-[1.0] tracking-tight mb-5">
-            Not a consultant.
-            <span className="block bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
-              Not an auditor.
-            </span>
-          </h1>
+            {/* Left — refined editorial text */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/80 border border-emerald-100 rounded-full mb-7 shadow-sm">
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                <span className="poppins-medium text-[10px] text-emerald-700 tracking-[0.18em] uppercase">Birmingham &amp; West Midlands · Independent</span>
+              </div>
 
-          <p className="poppins-regular text-lg sm:text-xl text-emerald-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-            The person a commercial kitchen calls when they need the boring stuff sorted — costs reviewed, paperwork in order, risks understood.
-          </p>
+              <div className="flex items-start gap-4 sm:gap-5 mb-6">
+                <div className="w-7 h-px bg-emerald-300 mt-3.5 sm:mt-4 flex-shrink-0 hidden sm:block" />
+                <h1 className="poppins-semibold text-3xl sm:text-4xl md:text-[2.75rem] text-emerald-900 leading-[1.15] tracking-tight">
+                  Not a man with a van.
+                  <span className="block text-emerald-600">Not a scrap dealer.</span>
+                </h1>
+              </div>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-3">
-            <a
-              href="https://wa.me/447762270113"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#25D366] hover:bg-[#1ebe5d] text-white poppins-semibold text-sm rounded-xl transition-all duration-200 shadow-sm hover:shadow-md active:scale-95"
-            >
-              <WhatsAppIcon />
-              WhatsApp Us
-            </a>
-            <a
-              href="tel:+447762270113"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold text-sm rounded-xl transition-all duration-200 shadow-sm hover:shadow-md active:scale-95"
-            >
-              <Phone className="w-4 h-4" />
-              07762 270 113
-            </a>
+              <p className="poppins-regular text-base sm:text-lg text-emerald-700/75 max-w-md mb-9 leading-relaxed sm:pl-12">
+                The person a landlord calls when a property needs clearing — junk sorted, paperwork in order, fines avoided.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-5 sm:pl-12">
+                <a
+                  href="https://wa.me/447762270113"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold text-[13px] rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-95"
+                >
+                  <WhatsAppIcon />
+                  WhatsApp Us
+                </a>
+                <a
+                  href="tel:+447762270113"
+                  className="group inline-flex items-center gap-2 poppins-semibold text-[13px] text-emerald-700 hover:text-emerald-800 transition-colors duration-200"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  07762 270 113
+                  <span className="w-0 group-hover:w-4 h-px bg-emerald-600 transition-all duration-300" />
+                </a>
+              </div>
+            </div>
+
+            {/* Right — animated process card */}
+            <div className="relative hidden lg:block">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_50%,rgba(209,250,229,0.4)_0%,transparent_70%)] pointer-events-none rounded-3xl" />
+
+              <div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-emerald-100 shadow-2xl p-7 sm:p-8 relative">
+                <div className="flex items-center justify-between mb-7">
+                  <div>
+                    <p className="poppins-semibold text-[11px] text-emerald-900 uppercase tracking-[0.15em]">How We Work</p>
+                    <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Every clearance, same standard</p>
+                  </div>
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 rounded-full border border-emerald-100">
+                    <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                    <span className="poppins-semibold text-[10px] text-emerald-600">Live</span>
+                  </div>
+                </div>
+
+                <div className="relative pl-1">
+                  <div className="absolute left-[19px] top-1 bottom-1 w-px bg-emerald-100" />
+                  <div className="space-y-5">
+                    {heroSteps.map((step, i) => {
+                      const Icon = step.icon
+                      const isActive = heroStep === i
+                      return (
+                        <div key={step.title} className="relative flex items-start gap-4">
+                          <div
+                            className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 border-2 transition-all duration-500 ${
+                              isActive
+                                ? "bg-emerald-700 border-emerald-700 scale-110 shadow-lg shadow-emerald-700/20"
+                                : "bg-white border-emerald-200"
+                            }`}
+                          >
+                            <Icon className={`w-4 h-4 transition-colors duration-500 ${isActive ? "text-white" : "text-emerald-400"}`} />
+                          </div>
+                          <div className={`pt-2 transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-50"}`}>
+                            <p className={`poppins-semibold text-sm transition-colors duration-500 ${isActive ? "text-emerald-900" : "text-emerald-700"}`}>
+                              {step.title}
+                            </p>
+                            <p className="poppins-regular text-xs text-emerald-500 mt-0.5">{step.sub}</p>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                <div className="mt-7 pt-5 border-t border-emerald-50 flex items-center gap-2">
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                  <p className="poppins-regular text-[10px] text-emerald-400">Free quote from photos · 48hr turnaround</p>
+                </div>
+              </div>
+
+              {/* Floating stat */}
+              <div className="absolute -top-4 -left-2 sm:-left-4 bg-white/95 backdrop-blur-xl rounded-2xl border border-emerald-100 px-4 py-2.5 shadow-xl animate-float-slow">
+                <p className="poppins-bold text-lg text-emerald-900 leading-none">100%</p>
+                <p className="poppins-regular text-[9px] text-emerald-500 mt-0.5">Licensed disposal</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -141,26 +227,26 @@ export default function AboutPage() {
               </div>
 
               <h2 className="poppins-bold text-4xl sm:text-5xl text-emerald-900 mb-6 leading-tight">
-                One premises.<br />
+                One clearance.<br />
                 <span className="bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
-                  Five overheads.
+                  Every risk covered.
                 </span>
               </h2>
 
               <p className="poppins-regular text-base sm:text-lg text-emerald-700 leading-relaxed mb-5">
-                Millstone Compliance manages the cost and compliance of everything that flows in and out of independent commercial kitchens across Birmingham and the West Midlands.
+                Millstone Compliance clears void properties for landlords, HMOs and letting agents across Birmingham and the West Midlands — sorting what leaves safely, and proving it.
               </p>
 
               <p className="poppins-regular text-sm sm:text-base text-emerald-600 leading-relaxed mb-6">
-                A commercial kitchen has fryers burning energy, water going in, grease and oil coming out, waste going in bins, and compliance requirements on top. The owner is running service — not managing suppliers. Nobody has ever reviewed any of it.
+                A void property has furniture to shift, sofas that can&apos;t just go to landfill, items worth checking before they&apos;re binned, and paperwork that needs to exist if a council ever asks. Most landlords handle this alone, under time pressure, without checking any of it.
               </p>
 
               <p className="poppins-semibold text-sm text-emerald-900 leading-relaxed">
-                That&apos;s what we are. Five overheads. One premises. One owner. One conversation.
+                That&apos;s what we are. Every risk covered. One property. One landlord. One phone call.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                {["Independent", "No Bins to Sell", "West Midlands Based", "48hr Turnaround"].map((t) => (
+                {["Registered", "Licensed Partners", "Birmingham Based", "48hr Turnaround"].map((t) => (
                   <span key={t} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 border border-emerald-100 rounded-full text-xs text-emerald-700 poppins-medium">
                     <CheckCircle className="w-3 h-3 text-emerald-500" />
                     {t}
@@ -169,7 +255,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Animated Kitchen Overhead Panel */}
+            {/* Animated Clearance Risk Panel */}
             <div className="relative">
               {/* Background glow */}
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_50%,rgba(209,250,229,0.4)_0%,transparent_70%)] pointer-events-none rounded-3xl" />
@@ -179,7 +265,7 @@ export default function AboutPage() {
                 <div className="flex items-center justify-between mb-6">
                   <div>
                     <h3 className="poppins-bold text-sm text-emerald-900">What we manage</h3>
-                    <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Independent commercial kitchens</p>
+                    <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Independent property clearance</p>
                   </div>
                   <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 rounded-full border border-emerald-100">
                     <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
@@ -187,9 +273,9 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                {/* Five animated overhead cards */}
+                {/* Five animated area cards */}
                 <div className="space-y-2">
-                  {overheads.map((item, i) => {
+                  {areas.map((item, i) => {
                     const Icon = item.icon
                     const isActive = activeItem === i
                     return (
@@ -222,14 +308,14 @@ export default function AboutPage() {
                   <div className="w-4 h-4 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0">
                     <CheckCircle className="w-2.5 h-2.5 text-emerald-500" />
                   </div>
-                  <p className="poppins-regular text-[10px] text-emerald-400">First review at no cost · 48hr written findings</p>
+                  <p className="poppins-regular text-[10px] text-emerald-400">Free quote from photos · 48hr turnaround</p>
                 </div>
               </div>
 
               {/* Floating stat */}
               <div className="absolute -bottom-4 -right-2 sm:-right-4 bg-white/95 backdrop-blur-xl rounded-2xl border border-emerald-100 px-4 py-3 shadow-xl animate-float-slow">
                 <p className="poppins-bold text-xl text-emerald-900 leading-none">£0</p>
-                <p className="poppins-regular text-[10px] text-emerald-500 mt-0.5">First review</p>
+                <p className="poppins-regular text-[10px] text-emerald-500 mt-0.5">For a quote</p>
               </div>
             </div>
 
@@ -247,13 +333,13 @@ export default function AboutPage() {
               <span className="poppins-medium text-[10px] text-emerald-700 uppercase tracking-wider">The five things</span>
             </div>
             <h2 className="poppins-bold text-4xl sm:text-5xl text-emerald-900 mb-3 leading-tight">
-              Everything a kitchen pays for.<br />
+              Everything left behind.<br />
               <span className="bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
-                None of it reviewed.
+                None of it your risk.
               </span>
             </h2>
             <p className="poppins-regular text-base text-emerald-600 max-w-lg mx-auto">
-              Until now. Here&apos;s what we look at — and what we typically find.
+              Until now. Here&apos;s what we look for — and what we typically find.
             </p>
           </div>
 
@@ -261,38 +347,38 @@ export default function AboutPage() {
             {[
               {
                 num: "01",
-                icon: Flame,
-                title: "Cooking Oil",
-                body: "Clean fryer oil is a commodity. Licensed collectors pay for it. Most kitchens are either paying to have it removed or handing it to someone informal for nothing.",
-                accent: "amber",
-              },
-              {
-                num: "02",
-                icon: Droplets,
-                title: "Grease & FOG",
-                body: "Discharging fats to sewer is a criminal offence under Section 111 of the Water Industry Act 1991. Fines run to £50,000. Severn Trent are actively inspecting.",
-                accent: "red",
-              },
-              {
-                num: "03",
-                icon: Trash2,
-                title: "Waste Collection",
-                body: "Nationals add 12–22% fuel surcharges local carriers don't. Weight allowances as low as 65kg. Auto-renewals nobody reads.",
+                icon: Armchair,
+                title: "Old Furniture",
+                body: "Beds, sofas, wardrobes and appliances. Most landlords don't know what needs a licensed carrier and what can go to charity.",
                 accent: "slate",
               },
               {
+                num: "02",
+                icon: Sofa,
+                title: "Sofas & Seating",
+                body: "Upholstered seating almost always counts as waste under Environment Agency POPs rules — it must be incinerated, not reused or resold.",
+                accent: "amber",
+              },
+              {
+                num: "03",
+                icon: AlertTriangle,
+                title: "Fly-Tipping Risk",
+                body: "A £1,000 fixed penalty on the spot, unlimited in court, if a dumped load is traced back to you as the landlord.",
+                accent: "red",
+              },
+              {
                 num: "04",
-                icon: Zap,
-                title: "Water & Energy",
-                body: "Commercial contracts that renew at higher rates every year and never get reviewed. Fryers and extraction are enormous consumers.",
-                accent: "blue",
+                icon: Recycle,
+                title: "HMO Recycling",
+                body: "New rules mean separate bins for food, recycling and general waste — or a compliance notice from the council.",
+                accent: "emerald",
               },
               {
                 num: "05",
-                icon: Wifi,
-                title: "Digital Waste Tracking",
-                body: "Mandatory October 2026. Electronic records replace paper. Most independent kitchens have no system in place and no plan to get one.",
-                accent: "emerald",
+                icon: FileText,
+                title: "The Paperwork",
+                body: "Transfer notes and Duty of Care records must be kept for two years. No paperwork, no defence.",
+                accent: "blue",
               },
               {
                 num: null,
@@ -306,8 +392,8 @@ export default function AboutPage() {
               item.cta ? (
                 <div key={i} className="bg-emerald-700 rounded-2xl p-6 sm:p-7 flex flex-col justify-between">
                   <div>
-                    <p className="poppins-bold text-2xl text-white mb-3 leading-tight">Ready to find out what yours look like?</p>
-                    <p className="poppins-regular text-sm text-emerald-200 leading-relaxed mb-6">Send us an invoice. We&apos;ll come back within 48 hours.</p>
+                    <p className="poppins-bold text-2xl text-white mb-3 leading-tight">Ready to get your property cleared?</p>
+                    <p className="poppins-regular text-sm text-emerald-200 leading-relaxed mb-6">Send us a few photos. We&apos;ll come back within 48 hours.</p>
                   </div>
                   <div className="space-y-2">
                     <a
@@ -361,9 +447,9 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-3 gap-4">
             {[
-              { num: "01", title: "Send us your invoice", desc: "Share your waste, oil or utilities invoice. That's all we need to get started." },
-              { num: "02", title: "We review everything", desc: "We check your costs, contractors and compliance — and find what's costing you money or creating risk." },
-              { num: "03", title: "You get a clear report", desc: "Within 48 hours. Written in plain English — what we found and what to do about it." },
+              { num: "01", title: "Send us a few photos", desc: "Show us what needs clearing. That's all we need to get started." },
+              { num: "02", title: "We quote and clear it", desc: "Furniture and rubbish sorted, removed and disposed of properly — usually within days." },
+              { num: "03", title: "You get the paperwork", desc: "Transfer notes, photos and a reuse report. Proof it was done right." },
             ].map((item) => (
               <div key={item.num} className="group bg-emerald-50/50 rounded-2xl p-6 border border-emerald-100 hover:border-emerald-200 transition-all duration-300">
                 <span className="poppins-bold text-4xl text-emerald-200 block mb-4 group-hover:text-emerald-300 transition-colors duration-300">{item.num}</span>
@@ -380,8 +466,8 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-emerald-100 rounded-2xl border border-emerald-100 overflow-hidden bg-white">
             {[
-              { value: "£0", label: "Your first review" },
-              { value: "48hr", label: "Report turnaround" },
+              { value: "£0", label: "Your first quote" },
+              { value: "48hr", label: "Quote turnaround" },
               { value: "5", label: "Areas we cover" },
               { value: "1-1", label: "Direct access" },
             ].map((stat, i) => (
@@ -438,7 +524,7 @@ export default function AboutPage() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-4">
-            {["Independent", "No Bins to Sell", "West Midlands Based", "48hr Turnaround"].map((t) => (
+            {["Registered", "Licensed Partners", "Birmingham Based", "48hr Turnaround"].map((t) => (
               <span key={t} className="inline-flex items-center gap-1.5 text-xs text-emerald-500 poppins-medium">
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
                 {t}

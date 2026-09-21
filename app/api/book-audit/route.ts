@@ -42,16 +42,18 @@ function formatTime(timeStr?: string): string {
 }
 
 function serviceLabel(serviceType?: string): string {
-  return serviceType === 'discovery' ? 'Discovery Call — FREE'
-    : serviceType === 'snapshot'  ? 'Compliance Snapshot — £195'
-    : serviceType === 'setup'     ? 'Compliance Setup Pack — £495'
+  return serviceType === 'discovery'   ? 'Discovery Call — FREE'
+    : serviceType === 'snapshot'    ? 'Compliance Snapshot — £195'
+    : serviceType === 'setup'       ? 'Compliance Setup Pack — £495'
+    : serviceType === 'waste-audit' ? 'Free Waste Contract Audit'
     : 'Audit Booking'
 }
 
 function serviceShort(serviceType?: string): string {
-  return serviceType === 'discovery' ? 'Discovery Call'
-    : serviceType === 'snapshot'  ? 'Compliance Snapshot'
-    : serviceType === 'setup'     ? 'Compliance Setup Pack'
+  return serviceType === 'discovery'   ? 'Discovery Call'
+    : serviceType === 'snapshot'    ? 'Compliance Snapshot'
+    : serviceType === 'setup'       ? 'Compliance Setup Pack'
+    : serviceType === 'waste-audit' ? 'Waste Contract Audit'
     : 'Audit Booking'
 }
 

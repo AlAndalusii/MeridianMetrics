@@ -359,7 +359,7 @@ export const MillstoneLogo: React.FC<LogoProps> = ({
             )}
           </div>
         )
-        
+
       case 'horizontal':
         return (
           <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
@@ -376,7 +376,7 @@ export const MillstoneLogo: React.FC<LogoProps> = ({
             )}
           </div>
         )
-        
+
       case 'full':
       default:
         return (

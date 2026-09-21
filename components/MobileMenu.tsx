@@ -146,16 +146,16 @@ export const MobileMenu = memo(function MobileMenu() {
             )
           })}
 
-          {/* Free Assessment CTA */}
+          {/* Free Waste Audit CTA */}
           <div className="pt-3">
             <Link
-              href="/quiz"
+              href="/waste-contract-audit"
               onClick={handleClose}
               className="flex items-center justify-center gap-2 px-4 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold text-sm active:opacity-90 transition-all shadow-sm"
               style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}
             >
               <ClipboardCheck className="w-5 h-5" />
-              Start Free Assessment
+              Free Waste Audit
             </Link>
           </div>
 

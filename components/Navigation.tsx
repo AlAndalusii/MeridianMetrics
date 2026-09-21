@@ -44,7 +44,7 @@ export function Navigation() {
           {/* Right: CTA + Mobile hamburger */}
           <div className="flex items-center gap-2.5">
             <Link
-              href="/quiz"
+              href="/waste-contract-audit"
               className="
                 hidden lg:inline-flex items-center
                 poppins-semibold text-[13px] tracking-wide
@@ -56,7 +56,7 @@ export function Navigation() {
                 whitespace-nowrap
               "
             >
-              Start Free Assessment
+              Free Waste Audit
             </Link>
 
             <MobileMenu />

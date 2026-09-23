@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Send Us Your Waste Bill | Free First Check | Millstone Compliance',
+  title: 'Send Us Your Waste Bill | Free First Check | Millstone',
   description: 'Send us your waste bill and we will check every line. A quick check of one quarter, or a thorough 12-month audit. Or ask us to call you.',
   openGraph: {
     title: 'Send Us Your Waste Bill',

@@ -17,34 +17,22 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Waste Compliance Audits for UK Businesses | Millstone Compliance",
+  title: "Waste Bill Checks for Birmingham Businesses | Millstone",
   description:
-    "Independent waste compliance audits for UK SMEs. Duty of Care, Simpler Recycling, clinical waste & more. Fixed-fee, 48hr reports, no hidden costs.",
+    "We check your business waste bill, find what you're overpaying for and move you to a better deal. Then we watch your renewal date. Free first check.",
   keywords: [
-    "waste compliance UK",
-    "UK business waste compliance",
-    "SME waste compliance",
-    "waste compliance audit",
-    "duty of care waste",
-    "simpler recycling compliance",
-    "clinical waste compliance",
+    "waste bill audit Birmingham",
+    "business waste bill check",
+    "cheaper bin collection Birmingham",
+    "commercial waste contract review",
+    "waste contract auto renewal",
+    "business waste collection Birmingham",
+    "trade waste prices Birmingham",
+    "waste broker Birmingham",
+    "restaurant waste collection Birmingham",
+    "office waste collection Birmingham",
+    "simpler recycling England",
     "waste transfer notes",
-    "environmental compliance UK",
-    "waste carrier registration",
-    "hazardous waste compliance",
-    "waste consignment notes",
-    "EA enforcement waste",
-    "simpler recycling 2026",
-    "waste compliance certificate",
-    "independent waste auditor",
-    "48hr compliance report",
-    "small business waste compliance UK",
-    "waste audit UK",
-    "waste regulations UK businesses",
-    "care home waste compliance",
-    "HMO waste compliance",
-    "HTM 07-01 compliance",
-    "CQC waste compliance"
   ],
   generator: 'v0.app',
   appleWebApp: {
@@ -56,16 +44,16 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Waste Compliance Audits for UK Businesses | Millstone Compliance",
-    description: "Independent waste compliance audits for UK SMEs. Duty of Care, Simpler Recycling, clinical waste & more. Fixed-fee, 48hr reports, no hidden costs.",
+    title: "Waste Bill Checks for Birmingham Businesses | Millstone",
+    description: "We check your business waste bill, find what you're overpaying for and move you to a better deal. Then we watch your renewal date. Free first check.",
     type: "website",
     locale: "en_GB",
     siteName: "Millstone Compliance",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Waste Compliance Audits for UK Businesses | Millstone Compliance",
-    description: "Independent waste compliance audits for UK SMEs. Duty of Care, Simpler Recycling, clinical waste & more. Fixed-fee, 48hr reports, no hidden costs.",
+    title: "Waste Bill Checks for Birmingham Businesses | Millstone",
+    description: "We check your business waste bill, find what you're overpaying for and move you to a better deal. Then we watch your renewal date. Free first check.",
   },
 }
 

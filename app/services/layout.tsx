@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Waste Bill Audits & Better Bin Deals | Birmingham Businesses',
-  description: 'We check your waste bill, get you a better deal and watch your renewal date. For Birmingham cafés, shops, hotels, offices and property managers. Free first bill check.',
+  description: 'We check your waste bill, get you a better deal and watch your renewal date. For Birmingham cafés, shops, hotels, offices and property managers.',
   keywords: [
     'waste audit UK',
     'waste compliance audit',

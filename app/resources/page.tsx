@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import {
   ArrowRight, ArrowUpRight, ClipboardCheck, Recycle,
-  ListChecks, FileCheck, Leaf, Trash2, Truck, Heart,
+  ListChecks, FileCheck, Leaf, Trash2, Truck, Heart, Home,
   Clock, Zap, BookOpen, Shield, BadgeCheck, Sparkles, Warehouse,
   PoundSterling,
 } from "lucide-react"
@@ -98,7 +98,6 @@ const articles: {
     topics: ["Cost Savings", "Waste Records", "Compliance"],
     category: "duty-of-care",
     readTime: "12 min",
-    featured: true,
   },
   {
     title: "Why Waste Is Costing Your Care Home More Than It Should",
@@ -201,14 +200,15 @@ const articles: {
     readTime: "18 min",
   },
   {
-    title: "Landlord Fly-Tipping Fines Hit Record Highs",
-    description: "1.15M incidents in 2023/24. Landlords face £600 fines for using unlicensed waste carriers — here's how to stay clean.",
+    title: "A Tenant Left Stuff Behind. Now What?",
+    description: "When a tenant moves out, old beds, bags and rubbish often stay behind. Here's how to clear it the right way, with the right people and the right papers.",
     icon: Truck,
     href: "/resources/landlord-fly-tipping-fines",
-    badge: "New",
-    topics: ["Fly-Tipping", "Carrier Licence", "£600 Fine"],
+    badge: "For Landlords",
+    topics: ["Move-Outs", "Clearances", "Right Papers"],
     category: "hmo",
     readTime: "20 min",
+    featured: true,
   },
 ]
 
@@ -354,7 +354,7 @@ export default function ResourcesPage() {
                 </div>
 
                 <p className="poppins-semibold text-[10px] text-emerald-600 uppercase tracking-[0.18em] mb-3">
-                  Care Homes
+                  For Landlords
                 </p>
 
                 <h2 className="poppins-bold text-[26px] sm:text-[32px] lg:text-[36px] text-slate-900 leading-[1.1] tracking-tight mb-4 group-hover:text-emerald-800 transition-colors duration-300">
@@ -387,10 +387,10 @@ export default function ResourcesPage() {
               />
               <div className="relative z-10 flex flex-col items-center gap-4">
                 <div className="w-16 h-16 rounded-2xl bg-white border border-emerald-200 shadow-sm flex items-center justify-center">
-                  <Heart className="w-8 h-8 text-emerald-600" strokeWidth={1.5} />
+                  <Home className="w-8 h-8 text-emerald-600" strokeWidth={1.5} />
                 </div>
                 <div className="space-y-2 w-full">
-                  {["CQC Ready", "HTM 07-01", "Clinical Waste", "Simpler Recycling"].map((tag) => (
+                  {["Old furniture", "Bags and rubbish", "Licensed people", "The right papers"].map((tag) => (
                     <div key={tag} className="flex items-center gap-2.5 bg-white rounded-xl px-4 py-2.5 border border-emerald-200 shadow-sm">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                       <span className="poppins-medium text-[12px] text-emerald-700">{tag}</span>
@@ -463,10 +463,10 @@ export default function ResourcesPage() {
               >
                 <div className="flex items-center gap-4">
                   <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <Heart className="w-4 h-4 text-emerald-600" />
+                    <Home className="w-4 h-4 text-emerald-600" />
                   </div>
                   <div>
-                    <span className="poppins-semibold text-[10px] text-emerald-600 uppercase tracking-[0.14em]">Featured · Care Homes</span>
+                    <span className="poppins-semibold text-[10px] text-emerald-600 uppercase tracking-[0.14em]">Featured · Landlords</span>
                     <p className="poppins-bold text-[14px] text-emerald-900 mt-0.5">{featured.title}</p>
                   </div>
                 </div>

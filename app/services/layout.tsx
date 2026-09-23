@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Waste Cost & Compliance Audits UK | Fixed-Fee, 48-Hour Reports',
-  description: 'Independent waste cost and compliance audits for UK businesses. Remote or on-site. Fixed-fee pricing. Written report within 48 hours. Care homes, property, hospitality, logistics, manufacturing and more.',
+  title: 'Waste Bill Audits & Better Bin Deals | Birmingham Businesses',
+  description: 'We check your waste bill, get you a better deal and watch your renewal date. For Birmingham cafés, shops, hotels, offices and property managers. Free first bill check.',
   keywords: [
     'waste audit UK',
     'waste compliance audit',
@@ -11,25 +11,25 @@ export const metadata: Metadata = {
     'waste compliance UK',
     'waste audit fixed fee',
     '48 hour waste report',
-    'independent waste audit',
-    'UK waste compliance specialists',
-    'care home waste audit',
+    'waste bill audit Birmingham',
+    'business waste contract Birmingham',
+    'cheaper bin collection Birmingham',
     'property waste compliance',
     'waste contractor check',
     'waste transfer note audit',
     'waste records review',
   ],
   openGraph: {
-    title: 'Waste Cost & Compliance Audits UK | Fixed-Fee, 48-Hour Reports',
-    description: 'Independent waste cost and compliance audits for UK businesses. Remote or on-site. Fixed-fee. Written report in 48 hours.',
+    title: 'Waste Bill Audits & Better Bin Deals | Birmingham Businesses',
+    description: 'We check your waste bill, get you a better deal and watch your renewal date. Free first bill check for Birmingham businesses.',
     type: 'website',
     locale: 'en_GB',
     siteName: 'Millstone Compliance',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Waste Cost & Compliance Audits UK | Fixed-Fee, 48-Hour Reports',
-    description: 'Independent waste cost and compliance audits for UK businesses. Remote or on-site. Fixed-fee. Written report in 48 hours.',
+    title: 'Waste Bill Audits & Better Bin Deals | Birmingham Businesses',
+    description: 'We check your waste bill, get you a better deal and watch your renewal date. Free first bill check for Birmingham businesses.',
   },
   alternates: {
     canonical: 'https://millstonecompliance.com/services',

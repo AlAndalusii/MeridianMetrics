@@ -5,10 +5,10 @@ import {
   CheckCircle,
   Phone,
   Mail,
-  Armchair,
-  Sofa,
+  Receipt,
+  Trash2,
+  CalendarClock,
   AlertTriangle,
-  Recycle,
   FileText,
   Camera,
   Search,
@@ -26,18 +26,18 @@ const WhatsAppIcon = () => (
 
 const areas = [
   {
-    icon: Armchair,
-    title: "Old Furniture",
-    sub: "Beds, sofas, wardrobes — most landlords don't know what needs a licensed carrier.",
+    icon: Receipt,
+    title: "Your Bills",
+    sub: "Every charge checked against your contract and what really gets collected.",
     dot: "bg-slate-400",
     iconBg: "bg-slate-50 text-slate-600",
     bg: "bg-slate-50/60",
     border: "border-slate-100",
   },
   {
-    icon: Sofa,
-    title: "Sofas & Seating",
-    sub: "Must be incinerated, not reused — Environment Agency rules on POPs.",
+    icon: Trash2,
+    title: "Bin Sizes",
+    sub: "Paying to empty big bins that go out half full? We spot it fast.",
     dot: "bg-amber-400",
     iconBg: "bg-amber-50 text-amber-600",
     bg: "bg-amber-50/60",
@@ -45,17 +45,17 @@ const areas = [
   },
   {
     icon: AlertTriangle,
-    title: "Fly-Tipping Risk",
-    sub: "£1,000 on the spot, unlimited in court, if it's traced back to you.",
+    title: "Surprise Charges",
+    sub: "Extra fees with no photo or proof. We ask for it before you pay.",
     dot: "bg-red-400",
     iconBg: "bg-red-50 text-red-600",
     bg: "bg-red-50/40",
     border: "border-red-100",
   },
   {
-    icon: Recycle,
-    title: "HMO Recycling",
-    sub: "Separate bins required for food, recycling and general waste.",
+    icon: CalendarClock,
+    title: "Auto-Renewals",
+    sub: "We log your notice period so the deal never rolls over quietly.",
     dot: "bg-emerald-500",
     iconBg: "bg-emerald-50 text-emerald-600",
     bg: "bg-emerald-50/40",
@@ -64,7 +64,7 @@ const areas = [
   {
     icon: FileText,
     title: "The Paperwork",
-    sub: "Transfer notes and records must be kept for two years.",
+    sub: "Waste transfer notes must be kept for two years. We check yours.",
     dot: "bg-blue-400",
     iconBg: "bg-blue-50 text-blue-600",
     bg: "bg-blue-50/40",
@@ -73,10 +73,10 @@ const areas = [
 ]
 
 const heroSteps = [
-  { icon: Camera,    title: "Photographed", sub: "You send a few photos" },
-  { icon: Search,    title: "Sorted",       sub: "Reusable vs genuine waste" },
-  { icon: Truck,     title: "Cleared",      sub: "Usually within days" },
-  { icon: FileCheck, title: "Documented",   sub: "Transfer note & photos" },
+  { icon: Camera,    title: "Sent",         sub: "You send us your bin bill" },
+  { icon: Search,    title: "Checked",      sub: "Line by line, with your contract" },
+  { icon: Truck,     title: "Switched",     sub: "To a better deal, if there is one" },
+  { icon: FileCheck, title: "Watched",      sub: "Renewal date logged for you" },
 ]
 
 export default function AboutPage() {
@@ -115,19 +115,19 @@ export default function AboutPage() {
             <div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/80 border border-emerald-100 rounded-full mb-7 shadow-sm">
                 <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                <span className="poppins-medium text-[10px] text-emerald-700 tracking-[0.18em] uppercase">Birmingham &amp; West Midlands · Independent</span>
+                <span className="poppins-medium text-[10px] text-emerald-700 tracking-[0.18em] uppercase">Birmingham &amp; West Midlands · Local</span>
               </div>
 
               <div className="flex items-start gap-4 sm:gap-5 mb-6">
                 <div className="w-7 h-px bg-emerald-300 mt-3.5 sm:mt-4 flex-shrink-0 hidden sm:block" />
                 <h1 className="poppins-semibold text-3xl sm:text-4xl md:text-[2.75rem] text-emerald-900 leading-[1.15] tracking-tight">
-                  Not a man with a van.
-                  <span className="block text-emerald-600">Not a scrap dealer.</span>
+                  No call centre.
+                  <span className="block text-emerald-600">No small print.</span>
                 </h1>
               </div>
 
               <p className="poppins-regular text-base sm:text-lg text-emerald-700/75 max-w-md mb-9 leading-relaxed sm:pl-12">
-                The person a landlord calls when a property needs clearing — junk sorted, paperwork in order, fines avoided.
+                The person a Birmingham business calls when the waste bill looks wrong. Checked, fixed, and kept fixed.
               </p>
 
               <div className="flex flex-wrap items-center gap-5 sm:pl-12">
@@ -159,7 +159,7 @@ export default function AboutPage() {
                 <div className="flex items-center justify-between mb-7">
                   <div>
                     <p className="poppins-semibold text-[11px] text-emerald-900 uppercase tracking-[0.15em]">How We Work</p>
-                    <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Every clearance, same standard</p>
+                    <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Every bill, same standard</p>
                   </div>
                   <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 rounded-full border border-emerald-100">
                     <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
@@ -198,14 +198,14 @@ export default function AboutPage() {
 
                 <div className="mt-7 pt-5 border-t border-emerald-50 flex items-center gap-2">
                   <CheckCircle className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                  <p className="poppins-regular text-[10px] text-emerald-400">Free quote from photos · 48hr turnaround</p>
+                  <p className="poppins-regular text-[10px] text-emerald-400">Free bill check · 48hr written report</p>
                 </div>
               </div>
 
               {/* Floating stat */}
               <div className="absolute -top-4 -left-2 sm:-left-4 bg-white/95 backdrop-blur-xl rounded-2xl border border-emerald-100 px-4 py-2.5 shadow-xl animate-float-slow">
-                <p className="poppins-bold text-lg text-emerald-900 leading-none">100%</p>
-                <p className="poppins-regular text-[9px] text-emerald-500 mt-0.5">Licensed disposal</p>
+                <p className="poppins-bold text-lg text-emerald-900 leading-none">£0</p>
+                <p className="poppins-regular text-[9px] text-emerald-500 mt-0.5">First bill check</p>
               </div>
             </div>
 
@@ -227,26 +227,26 @@ export default function AboutPage() {
               </div>
 
               <h2 className="poppins-bold text-4xl sm:text-5xl text-emerald-900 mb-6 leading-tight">
-                One clearance.<br />
+                One bill.<br />
                 <span className="bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
-                  Every risk covered.
+                  Every line checked.
                 </span>
               </h2>
 
               <p className="poppins-regular text-base sm:text-lg text-emerald-700 leading-relaxed mb-5">
-                Millstone Compliance clears void properties for landlords, HMOs and letting agents across Birmingham and the West Midlands — sorting what leaves safely, and proving it.
+                Millstone Compliance is a new Birmingham business. I started it to help local firms stop overpaying for waste and finally understand their contracts.
               </p>
 
               <p className="poppins-regular text-sm sm:text-base text-emerald-600 leading-relaxed mb-6">
-                A void property has furniture to shift, sofas that can&apos;t just go to landfill, items worth checking before they&apos;re binned, and paperwork that needs to exist if a council ever asks. Most landlords handle this alone, under time pressure, without checking any of it.
+                I&apos;m Zak. I hold a Certificate in Circular Economy from the Cambridge Institute for Sustainability Leadership, and I worked at HMRC and the Office of the Public Guardian. There I learned to read rules, check records and spot numbers that don&apos;t add up.
               </p>
 
               <p className="poppins-semibold text-sm text-emerald-900 leading-relaxed">
-                That&apos;s what we are. Every risk covered. One property. One landlord. One phone call.
+                Local. Plain English. A direct line to me. Always upfront about how I get paid.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                {["Registered", "Licensed Partners", "Birmingham Based", "48hr Turnaround"].map((t) => (
+                {["Registered", "Licensed Collectors", "Birmingham Based", "48hr Report"].map((t) => (
                   <span key={t} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 border border-emerald-100 rounded-full text-xs text-emerald-700 poppins-medium">
                     <CheckCircle className="w-3 h-3 text-emerald-500" />
                     {t}
@@ -265,7 +265,7 @@ export default function AboutPage() {
                 <div className="flex items-center justify-between mb-6">
                   <div>
                     <h3 className="poppins-bold text-sm text-emerald-900">What we manage</h3>
-                    <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Independent property clearance</p>
+                    <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Waste bill and contract checks</p>
                   </div>
                   <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 rounded-full border border-emerald-100">
                     <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
@@ -308,14 +308,14 @@ export default function AboutPage() {
                   <div className="w-4 h-4 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0">
                     <CheckCircle className="w-2.5 h-2.5 text-emerald-500" />
                   </div>
-                  <p className="poppins-regular text-[10px] text-emerald-400">Free quote from photos · 48hr turnaround</p>
+                  <p className="poppins-regular text-[10px] text-emerald-400">Free bill check · 48hr written report</p>
                 </div>
               </div>
 
               {/* Floating stat */}
               <div className="absolute -bottom-4 -right-2 sm:-right-4 bg-white/95 backdrop-blur-xl rounded-2xl border border-emerald-100 px-4 py-3 shadow-xl animate-float-slow">
                 <p className="poppins-bold text-xl text-emerald-900 leading-none">£0</p>
-                <p className="poppins-regular text-[10px] text-emerald-500 mt-0.5">For a quote</p>
+                <p className="poppins-regular text-[10px] text-emerald-500 mt-0.5">To start</p>
               </div>
             </div>
 
@@ -330,16 +330,16 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full mb-5">
-              <span className="poppins-medium text-[10px] text-emerald-700 uppercase tracking-wider">The five things</span>
+              <span className="poppins-medium text-[10px] text-emerald-700 uppercase tracking-wider">The five checks</span>
             </div>
             <h2 className="poppins-bold text-4xl sm:text-5xl text-emerald-900 mb-3 leading-tight">
-              Everything left behind.<br />
+              Everything on your bill.<br />
               <span className="bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
-                None of it your risk.
+                Nothing you don&apos;t owe.
               </span>
             </h2>
             <p className="poppins-regular text-base text-emerald-600 max-w-lg mx-auto">
-              Until now. Here&apos;s what we look for — and what we typically find.
+              Here&apos;s what we look at on every bill, and why it matters.
             </p>
           </div>
 
@@ -347,37 +347,37 @@ export default function AboutPage() {
             {[
               {
                 num: "01",
-                icon: Armchair,
-                title: "Old Furniture",
-                body: "Beds, sofas, wardrobes and appliances. Most landlords don't know what needs a licensed carrier and what can go to charity.",
+                icon: Receipt,
+                title: "Your Bills",
+                body: "We check every charge against your contract and what really gets collected. If you're paying for it, you should be getting it.",
                 accent: "slate",
               },
               {
                 num: "02",
-                icon: Sofa,
-                title: "Sofas & Seating",
-                body: "Upholstered seating almost always counts as waste under Environment Agency POPs rules — it must be incinerated, not reused or resold.",
+                icon: Trash2,
+                title: "Bin Sizes",
+                body: "Big bins cost more to empty. If yours go out half full, you may be paying for space you don't use. We check what fits.",
                 accent: "amber",
               },
               {
                 num: "03",
                 icon: AlertTriangle,
-                title: "Fly-Tipping Risk",
-                body: "A £1,000 fixed penalty on the spot, unlimited in court, if a dumped load is traced back to you as the landlord.",
+                title: "Surprise Charges",
+                body: "Extra fees for wrong items in a bin, or lifts that never happened. You should always get proof, like a photo.",
                 accent: "red",
               },
               {
                 num: "04",
-                icon: Recycle,
-                title: "HMO Recycling",
-                body: "New rules mean separate bins for food, recycling and general waste — or a compliance notice from the council.",
+                icon: CalendarClock,
+                title: "Auto-Renewals",
+                body: "Many waste deals roll over on their own, often with a price rise. We log your notice date so you get to choose.",
                 accent: "emerald",
               },
               {
                 num: "05",
                 icon: FileText,
                 title: "The Paperwork",
-                body: "Transfer notes and Duty of Care records must be kept for two years. No paperwork, no defence.",
+                body: "Waste transfer notes must be kept for two years. We check you have them, and that your collector is licensed.",
                 accent: "blue",
               },
               {
@@ -392,8 +392,8 @@ export default function AboutPage() {
               item.cta ? (
                 <div key={i} className="bg-emerald-700 rounded-2xl p-6 sm:p-7 flex flex-col justify-between">
                   <div>
-                    <p className="poppins-bold text-2xl text-white mb-3 leading-tight">Ready to get your property cleared?</p>
-                    <p className="poppins-regular text-sm text-emerald-200 leading-relaxed mb-6">Send us a few photos. We&apos;ll come back within 48 hours.</p>
+                    <p className="poppins-bold text-2xl text-white mb-3 leading-tight">Ready to check your waste bill?</p>
+                    <p className="poppins-regular text-sm text-emerald-200 leading-relaxed mb-6">Send us your latest bill. We&apos;ll come back within 48 hours.</p>
                   </div>
                   <div className="space-y-2">
                     <a
@@ -447,9 +447,9 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-3 gap-4">
             {[
-              { num: "01", title: "Send us a few photos", desc: "Show us what needs clearing. That's all we need to get started." },
-              { num: "02", title: "We quote and clear it", desc: "Furniture and rubbish sorted, removed and disposed of properly — usually within days." },
-              { num: "03", title: "You get the paperwork", desc: "Transfer notes, photos and a reuse report. Proof it was done right." },
+              { num: "01", title: "Send us your bill", desc: "A photo or PDF of your latest waste bill. That's all we need to start." },
+              { num: "02", title: "We check and report", desc: "Every line checked against your contract. A written report within 48 hours." },
+              { num: "03", title: "We fix and watch it", desc: "A better deal if there is one, and your renewal date logged for you." },
             ].map((item) => (
               <div key={item.num} className="group bg-emerald-50/50 rounded-2xl p-6 border border-emerald-100 hover:border-emerald-200 transition-all duration-300">
                 <span className="poppins-bold text-4xl text-emerald-200 block mb-4 group-hover:text-emerald-300 transition-colors duration-300">{item.num}</span>
@@ -466,9 +466,9 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-emerald-100 rounded-2xl border border-emerald-100 overflow-hidden bg-white">
             {[
-              { value: "£0", label: "Your first quote" },
-              { value: "48hr", label: "Quote turnaround" },
-              { value: "5", label: "Areas we cover" },
+              { value: "£0", label: "Your first check" },
+              { value: "48hr", label: "Report turnaround" },
+              { value: "5", label: "Things we check" },
               { value: "1-1", label: "Direct access" },
             ].map((stat, i) => (
               <div key={i} className="hover:bg-emerald-50/50 px-6 py-8 text-center transition-colors duration-300">
@@ -494,7 +494,7 @@ export default function AboutPage() {
             Ready to talk?
           </h2>
           <p className="poppins-regular text-lg text-emerald-600 mb-10">
-            WhatsApp or call — same day response.
+            WhatsApp or call. You&apos;ll talk to me.
           </p>
 
           <a
@@ -524,7 +524,7 @@ export default function AboutPage() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-4">
-            {["Registered", "Licensed Partners", "Birmingham Based", "48hr Turnaround"].map((t) => (
+            {["Registered", "Licensed Collectors", "Birmingham Based", "48hr Report"].map((t) => (
               <span key={t} className="inline-flex items-center gap-1.5 text-xs text-emerald-500 poppins-medium">
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
                 {t}

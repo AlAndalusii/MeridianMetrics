@@ -52,6 +52,8 @@ import { MobileMenu } from "@/components/MobileMenu"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
 import { useBooking } from "@/components/BookingProvider"
+import { HeroBillCheck } from "@/components/home/HeroBillCheck"
+import { HealthCheckSection } from "@/components/home/HealthCheckSection"
 
 
 
@@ -330,9 +332,16 @@ export default function MillstoneComplianceWebsite() {
               </div>
 
               <h1 className="poppins-bold text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight mb-5">
-                <span className="text-slate-900 block">Stop Paying</span>
-                <span className="text-slate-900 block">Too Much for</span>
-                <span className="text-emerald-700 block">Your Bins.</span>
+                <span className="block overflow-hidden pb-1"><span className="text-slate-900 block hero-rise" style={{ animationDelay: "0ms" }}>Stop Paying</span></span>
+                <span className="block overflow-hidden pb-1"><span className="text-slate-900 block hero-rise" style={{ animationDelay: "120ms" }}>Too Much for</span></span>
+                <span className="block overflow-hidden pb-2">
+                  <span className="relative inline-block text-emerald-700 hero-rise" style={{ animationDelay: "240ms" }}>
+                    Your Bins.
+                    <svg className="absolute left-0 -bottom-1.5 w-full h-3 text-emerald-400" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
+                      <path d="M2 9 C 50 3, 110 3, 198 7" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="hero-underline" />
+                    </svg>
+                  </span>
+                </span>
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
@@ -375,107 +384,11 @@ export default function MillstoneComplianceWebsite() {
               </div>
             </div>
 
-            {/* Business Waste & Compliance Dashboard — hidden on tiny phones */}
+            {/* Live bill check — shows what we do at a glance */}
             <div
-              className={`hidden xs:block transition-all duration-200 delay-75 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} mt-8 lg:mt-0`}
+              className={`hidden xs:block transition-all duration-700 delay-150 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} mt-8 lg:mt-0`}
             >
-              <div className="relative">
-                <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-4 sm:p-6 border border-emerald-200 shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 lg:hover:scale-105">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="poppins-semibold text-lg text-emerald-900 flex items-center">
-                      <AlertTriangle className="w-4 h-4 mr-2 text-emerald-600" />
-                      What Mistakes Can Cost
-                    </h3>
-                    <a
-                      href="https://www.gov.uk/guidance/waste-duty-of-care-code-of-practice"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="poppins-medium text-[10px] text-slate-400 bg-slate-100 hover:bg-slate-200 hover:text-slate-600 px-2 py-0.5 rounded-full transition-colors"
-                    >
-                      Source: GOV.UK rules
-                    </a>
-                  </div>
-
-                  {/* Top KPI cards */}
-                  <div className="grid grid-cols-3 gap-3 mb-4">
-                    <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-3 border border-amber-200">
-                      <div className="flex items-center justify-between mb-1">
-                        <AlertTriangle className="w-4 h-4 text-amber-600" />
-                        <span className="poppins-bold text-base text-amber-700">£300</span>
-                      </div>
-                      <p className="poppins-medium text-[10px] text-amber-700">Missing papers fine</p>
-                      <p className="text-[9px] text-amber-500 mt-0.5">on the spot, from the council</p>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-3 border border-red-200">
-                      <div className="flex items-center justify-between mb-1">
-                        <XCircle className="w-4 h-4 text-red-600" />
-                        <span className="poppins-bold text-base text-red-700">No limit</span>
-                      </div>
-                      <p className="poppins-medium text-[10px] text-red-700">Fine in court</p>
-                      <p className="text-[9px] text-red-500 mt-0.5">if it goes to court</p>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-3 border border-emerald-200">
-                      <div className="flex items-center justify-between mb-1">
-                        <FileText className="w-4 h-4 text-emerald-600" />
-                        <span className="poppins-bold text-base text-emerald-700">2 years</span>
-                      </div>
-                      <p className="poppins-medium text-[10px] text-emerald-600">Keep your papers</p>
-                      <p className="text-[9px] text-emerald-500 mt-0.5">the law says so</p>
-                    </div>
-                  </div>
-
-                  {/* What We Sort */}
-                  <div className="bg-white rounded-xl p-3 border border-gray-200 mb-3">
-                    <div className="mb-2">
-                      <h4 className="poppins-semibold text-xs text-gray-800">What We Check</h4>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="bg-slate-50 rounded-lg p-2 border border-slate-200">
-                        <span className="text-[10px] text-slate-700 font-semibold block">Your Bills</span>
-                        <span className="text-[9px] text-slate-500">Every charge checked against what you really get.</span>
-                      </div>
-
-                      <div className="bg-emerald-50 rounded-lg p-2 border border-emerald-200">
-                        <span className="text-[10px] text-emerald-700 font-semibold block">Right Bins</span>
-                        <span className="text-[9px] text-emerald-600">Paying to empty half-full bins? We spot it fast.</span>
-                      </div>
-
-                      <div className="bg-blue-50 rounded-lg p-2 border border-blue-200">
-                        <span className="text-[10px] text-blue-700 font-semibold block">Your Contract</span>
-                        <span className="text-[9px] text-blue-600">Hidden fees, price rises and sneaky auto-renewals.</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Status chips */}
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between bg-slate-50 rounded-lg p-1.5 border border-slate-200">
-                      <div className="flex items-center space-x-1.5">
-                        <FileCheck className="w-3 h-3 text-slate-500" />
-                        <span className="poppins-medium text-[10px] text-slate-600">Free Bill Check</span>
-                      </div>
-                      <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full">Free</span>
-                    </div>
-                    <div className="flex items-center justify-between bg-blue-50 rounded-lg p-1.5 border border-blue-200">
-                      <div className="flex items-center space-x-1.5">
-                        <Eye className="w-3 h-3 text-blue-600" />
-                        <span className="poppins-medium text-[10px] text-blue-700">Better Deal Quotes</span>
-                      </div>
-                      <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">Always</span>
-                    </div>
-                    <div className="flex items-center justify-between bg-emerald-50 rounded-lg p-1.5 border border-emerald-200">
-                      <div className="flex items-center space-x-1.5">
-                        <Recycle className="w-3 h-3 text-emerald-600" />
-                        <span className="poppins-medium text-[10px] text-emerald-700">Renewal Date Reminders</span>
-                      </div>
-                      <span className="text-[9px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full">Every year</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
+              <HeroBillCheck />
             </div>
           </div>
         </div>
@@ -577,215 +490,8 @@ export default function MillstoneComplianceWebsite() {
         </div>
       </section>
 
-      {/* Intelligence Assessment Section - World-Class Consultancy Design */}
-      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-emerald-50 via-white to-emerald-50 relative overflow-hidden group/assessment" aria-labelledby="assessment-heading">
-        {/* Sophisticated background elements matching site theme */}
-        <div className="absolute inset-0">
-          {/* Animated gradient orbs - emerald theme */}
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-emerald-200/20 via-green-100/10 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
-          <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-gradient-to-tl from-emerald-300/15 via-emerald-100/10 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-          
-          {/* Premium radial gradient */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.05)_0%,transparent_70%)] animate-pulse-slow"></div>
-          
-          {/* Conic gradient for depth */}
-          <div className="absolute top-0 w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,rgba(6,95,70,0.02)_0deg,rgba(16,185,129,0.02)_120deg,rgba(6,95,70,0.02)_240deg)] animate-spin-slower"></div>
-          
-          {/* Shimmer effect */}
-          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:20px_20px] animate-shimmer"></div>
-          
-          {/* Scanning line effect */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent animate-scan"></div>
-          </div>
-        </div>
-
-        {/* Floating Data Visualization Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Geometric accent shapes - emerald theme */}
-          <div className="absolute top-1/3 left-[15%] w-20 h-20 opacity-30">
-            <div className="absolute inset-0 border-2 border-emerald-300 rounded-lg animate-spin-slow"></div>
-            <div className="absolute inset-2 border-2 border-green-300 rounded-lg animate-spin-slow-reverse"></div>
-          </div>
-          
-          <div className="absolute bottom-1/4 right-[12%] w-24 h-24 opacity-20">
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/40 to-green-200/40 rounded-full blur-xl animate-pulse-slow"></div>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          {/* Premium Header */}
-          <div className="text-center mb-12 sm:mb-16 md:mb-20">
-            {/* Alert Badge - Enhanced */}
-            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-amber-50 via-amber-100/80 to-amber-50 backdrop-blur-xl border border-amber-200/60 shadow-[0_8px_32px_rgba(251,191,36,0.15)] mb-6 sm:mb-8 md:mb-10 group-hover/assessment:scale-105 transition-all duration-700 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-amber-100/0 via-white/40 to-amber-100/0 animate-shine"></div>
-              <div className="absolute inset-0 animate-pulse-slow">
-                <div className="absolute inset-0 rounded-xl sm:rounded-2xl border border-amber-300/30"></div>
-              </div>
-              <AlertTriangle className="w-4 sm:w-5 h-4 sm:h-5 text-amber-600 mr-2 sm:mr-3 animate-pulse relative z-10" />
-              <span className="poppins-semibold text-xs sm:text-sm text-amber-900 tracking-wide uppercase relative z-10">Free Bill Check</span>
-              <div className="ml-2 sm:ml-3 px-2 py-1 bg-amber-200/50 rounded-full relative z-10">
-                <span className="text-[10px] sm:text-xs text-amber-900 font-bold">3 MIN</span>
-              </div>
-            </div>
-
-            {/* Headline - Ultra Premium */}
-            <h2 id="assessment-heading" className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-4 sm:mb-6 md:mb-8 text-emerald-900 tracking-tight relative animate-fade-in-up leading-[1.1]">
-              Your Free Waste Contract
-              <span className="block mt-2 sm:mt-3 leading-tight pb-2 sm:pb-3 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
-                Health Check
-              </span>
-              {/* Animated underline */}
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
-                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-              </div>
-            </h2>
-
-            {/* Enhanced Description */}
-            <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4">
-              Our free 3-minute check shows if your waste contract works for you: the price, the bins, the paperwork and the renewal date. Many businesses never look closely. This shows you exactly where you stand.
-            </p>
-            
-            {/* Stats Bar - New Addition */}
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-6 sm:mt-8">
-              <div className="group/stat text-center">
-                <div className="text-2xl sm:text-3xl poppins-bold text-emerald-600 group-hover/stat:scale-110 transition-transform duration-300">4</div>
-                <div className="text-[10px] sm:text-xs text-emerald-600 poppins-medium uppercase tracking-wide mt-1">Check Areas</div>
-              </div>
-              <div className="w-px h-10 sm:h-12 bg-emerald-200"></div>
-              <div className="group/stat text-center">
-                <div className="text-2xl sm:text-3xl poppins-bold text-emerald-600 group-hover/stat:scale-110 transition-transform duration-300">10</div>
-                <div className="text-[10px] sm:text-xs text-emerald-600 poppins-medium uppercase tracking-wide mt-1">Questions</div>
-              </div>
-              <div className="w-px h-10 sm:h-12 bg-emerald-200"></div>
-              <div className="group/stat text-center">
-                <div className="text-2xl sm:text-3xl poppins-bold text-emerald-600 group-hover/stat:scale-110 transition-transform duration-300">3</div>
-                <div className="text-[10px] sm:text-xs text-emerald-600 poppins-medium uppercase tracking-wide mt-1">Minutes</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Assessment Areas - Enhanced Cards */}
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-12 sm:mb-14 md:mb-16">
-          {[
-            {
-              icon: Building,
-              label: "Waste — Service 1",
-              badge: "Contract Audit",
-              title: "Waste Bill Audit",
-              href: "/services#bill-audit",
-              description: "We check your bills against your contract and what really gets collected. Wrong bin sizes, lifts that never happened, charges with no proof: we find them and put them on one clear list.",
-              highlight: true,
-            },
-            {
-              icon: DollarSign,
-              label: "Waste — Service 2",
-              badge: "Free Check",
-              title: "Am I Overpaying?",
-              href: "/services#better-deals",
-              description: "We compare your waste contract with prices from other licensed Birmingham collectors, for free. If there's a better deal, we'll show you and handle the switch.",
-              highlight: false,
-            },
-            {
-              icon: Recycle,
-              label: "Waste — Service 3",
-              badge: "Renewals",
-              title: "Contract & Renewal Watch",
-              href: "/services#renewal-watch",
-              description: "Waste contracts often roll over quietly with a price rise. We track your dates, warn you in time, and check your price every year.",
-              highlight: false,
-            },
-          ].map((item, index) => (
-            <div
-              key={index}
-              className={`rounded-2xl overflow-hidden transition-all duration-300 ${
-                item.highlight
-                  ? "border border-emerald-400/40 shadow-[0_4px_32px_rgba(6,95,70,0.18)] bg-emerald-950"
-                  : "border border-slate-200/80 shadow-[0_2px_16px_rgba(6,95,70,0.06)] bg-white hover:shadow-[0_6px_32px_rgba(6,95,70,0.10)] hover:border-emerald-200"
-              }`}
-            >
-              <div className={`h-1 w-full ${item.highlight ? "bg-gradient-to-r from-emerald-400 to-emerald-300" : "bg-gradient-to-r from-emerald-600/40 to-emerald-500/20"}`} />
-              <div className="p-6">
-                <div className="flex items-start gap-3 mb-4">
-                  <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${item.highlight ? "bg-emerald-400/20 border border-emerald-400/30" : "bg-emerald-700"}`}>
-                    <item.icon className={`w-5 h-5 ${item.highlight ? "text-emerald-300" : "text-white"}`} />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <span className={`text-[10px] poppins-semibold uppercase tracking-widest ${item.highlight ? "text-emerald-400/60" : "text-slate-400"}`}>{item.label}</span>
-                      <span className={`text-[10px] poppins-semibold px-2 py-0.5 rounded-full border ${item.highlight ? "bg-emerald-400/15 text-emerald-300 border-emerald-400/30" : "bg-emerald-50 text-emerald-700 border-emerald-200"}`}>{item.badge}</span>
-                    </div>
-                    <h3 className={`poppins-bold text-base leading-tight ${item.highlight ? "text-white" : "text-slate-900"}`}>{item.title}</h3>
-                  </div>
-                </div>
-                <p className={`poppins-regular text-sm leading-relaxed ${item.highlight ? "text-emerald-100/70" : "text-slate-600"}`}>{item.description}</p>
-              </div>
-              <div className={`px-6 py-3 border-t ${item.highlight ? "bg-emerald-900/40 border-emerald-700/40" : "bg-slate-50 border-slate-100"}`}>
-                <Link href={item.href} className={`inline-flex items-center gap-1.5 text-xs poppins-semibold transition-colors ${item.highlight ? "text-emerald-300 hover:text-emerald-200" : "text-emerald-700 hover:text-emerald-800"}`}>
-                  Learn more <ArrowRight className="w-3 h-3" />
-                </Link>
-              </div>
-            </div>
-          ))}
-          </div>
-
-          {/* Premium CTA Section */}
-          <div className="text-center relative">
-            {/* Decorative elements */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-r from-emerald-200/10 via-green-200/10 to-emerald-200/10 rounded-full blur-3xl pointer-events-none"></div>
-            
-            <div className="relative">
-              {/* Main CTA Button */}
-              <Button
-                size="lg"
-                onClick={() => router.push("/quiz")}
-                className="poppins-semibold bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-600 bg-[length:200%_100%] hover:bg-[length:100%_100%] active:scale-95 text-white border-0 shadow-[0_20px_60px_rgba(6,95,70,0.25)] hover:shadow-[0_25px_70px_rgba(6,95,70,0.35)] transition-all duration-700 sm:hover:scale-105 group/cta px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg relative overflow-hidden animate-fade-in-up delay-300 w-full sm:w-auto min-h-[54px]"
-              >
-                {/* Button shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine"></div>
-                
-                {/* Button content */}
-                <span className="relative z-10 flex items-center">
-                  <span className="mr-3">START YOUR FREE CHECK</span>
-                  <ArrowRight className="h-6 w-6 group-hover/cta:translate-x-2 transition-transform duration-500" />
-                </span>
-                
-                {/* Animated border */}
-                <div className="absolute inset-0 rounded-lg opacity-0 group-hover/cta:opacity-100 transition-opacity duration-500">
-                  <div className="absolute inset-0 rounded-lg border-2 border-white/20 animate-pulse-slow"></div>
-                </div>
-              </Button>
-              
-              {/* Trust indicators */}
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-6 text-xs sm:text-sm text-emerald-600 animate-fade-in-up delay-400">
-                <div className="flex items-center gap-2 group/trust">
-                  <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center border border-emerald-200 group-hover/trust:scale-110 transition-transform duration-300">
-                    <Clock className="w-3 h-3 text-emerald-600" />
-                  </div>
-                  <span className="poppins-medium">3 minutes</span>
-                </div>
-                <div className="w-px h-4 bg-emerald-200"></div>
-                <div className="flex items-center gap-2 group/trust">
-                  <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center border border-emerald-200 group-hover/trust:scale-110 transition-transform duration-300">
-                    <BadgeCheck className="w-3 h-3 text-emerald-600" />
-                  </div>
-                  <span className="poppins-medium">No card required</span>
-                </div>
-                <div className="w-px h-4 bg-emerald-200"></div>
-                <div className="flex items-center gap-2 group/trust">
-                  <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center border border-emerald-200 group-hover/trust:scale-110 transition-transform duration-300">
-                    <TrendingUp className="w-3 h-3 text-emerald-600" />
-                  </div>
-                  <span className="poppins-medium">Instant results</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Free Waste Contract Health Check */}
+      <HealthCheckSection />
 
       {/* Waste Regulations Section - Matching Site Design */}
       <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-white via-emerald-50/30 to-white relative overflow-hidden group/regulations" aria-labelledby="regulations-heading">

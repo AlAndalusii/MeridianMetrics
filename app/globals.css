@@ -957,3 +957,24 @@ p, span, li {
     animation: none !important;
   }
 }
+
+/* Homepage hero headline */
+@keyframes heroRise {
+  0%   { transform: translateY(105%); opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+@keyframes heroUnderline {
+  to { stroke-dashoffset: 0; }
+}
+.hero-rise {
+  animation: heroRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-underline {
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  animation: heroUnderline 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.8s forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise { animation: none; }
+  .hero-underline { animation: none; stroke-dashoffset: 0; }
+}

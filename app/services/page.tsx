@@ -5,22 +5,30 @@ import Link from "next/link"
 import {
   ArrowRight,
   CheckCircle,
-  FileText,
   Lock,
-  Home,
   Truck,
   Sparkles,
   Sofa,
   Recycle,
-  Scale,
-  Search,
-  CalendarClock,
   BedDouble,
   Tv,
   Lamp,
   Package,
   Trash2,
   Phone,
+  Receipt,
+  KeyRound,
+  Handshake,
+  Zap,
+  Sprout,
+  Droplets,
+  HardHat,
+  BadgeCheck,
+  ShieldCheck,
+  History,
+  Users,
+  MessageSquare,
+  Wallet,
 } from "lucide-react"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
@@ -44,31 +52,97 @@ function useReveal(threshold = 0.12) {
 }
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
-const auditChecks = [
-  "Wrong bin sizes spotted",
-  "Missed lifts found",
-  "Charges with no proof flagged",
+type Action = { kind: "link"; href: string } | { kind: "booking" }
+
+const services: {
+  id: string
+  num: string
+  icon: React.ElementType
+  forWho: string
+  chip: string
+  title: string
+  what: string
+  points: string[]
+  paid: string
+  cta: string
+  action: Action
+  featured?: boolean
+}[] = [
+  {
+    id: "small-businesses",
+    num: "01",
+    icon: Receipt,
+    forWho: "Small businesses",
+    chip: "I'm a small business",
+    title: "Waste Bill Check",
+    what: "I check your waste bill line by line, find you a better deal, and watch your renewal date.",
+    points: [
+      "Every charge checked against your contract",
+      "A better deal from a licensed collector",
+      "Renewal date logged, so it never rolls over",
+    ],
+    paid: "No saving, no fee.",
+    cta: "Send Us Your Bill",
+    action: { kind: "link", href: "/send-your-bill" },
+  },
+  {
+    id: "landlords",
+    num: "02",
+    icon: KeyRound,
+    forWho: "Letting agents & landlords",
+    chip: "I'm an agent or landlord",
+    title: "Vetted Contractors",
+    what: "Your backup when your usual contractor is booked. One call, and I send someone I've checked.",
+    points: [
+      "EPC and retrofit, damp and mould",
+      "Electrical, gas and fire safety",
+      "Property clearances between tenants",
+    ],
+    paid: "Free to you. The contractor pays us.",
+    cta: "Tell Us What You Need",
+    action: { kind: "booking" },
+    featured: true,
+  },
+  {
+    id: "partners",
+    num: "03",
+    icon: Handshake,
+    forWho: "Waste firms & contractors",
+    chip: "I'm a waste firm",
+    title: "New Local Work",
+    what: "Introductions to builders, agents and businesses who need you again and again.",
+    points: [
+      "Pass my five checks once",
+      "Get introduced to local customers",
+      "Steady work, not one-off leads",
+    ],
+    paid: "First introduction free, then an agreed fee.",
+    cta: "Become a Partner",
+    action: { kind: "booking" },
+  },
 ]
 
-const dealChecks = [
-  "Prices from licensed collectors",
-  "You choose, we do the work",
-  "We sort the switch for you",
-]
-
-const renewalChecks = [
-  "Renewal date and notice period logged",
-  "A reminder before it's too late",
-  "Your price checked every year",
-]
-
-const everythingElse = [
-  { icon: Home,     label: "Clearances" },
-  { icon: Sparkles, label: "Cleaning" },
+const alsoAvailable = [
+  { icon: Zap,      label: "Urgent Clearances" },
   { icon: Truck,    label: "Skips" },
   { icon: Recycle,  label: "Recycling" },
-  { icon: FileText, label: "Shredding" },
-  { icon: Sofa,     label: "Furniture" },
+  { icon: Sprout,   label: "Japanese Knotweed" },
+  { icon: Droplets, label: "Drains" },
+  { icon: HardHat,  label: "Asbestos" },
+]
+
+const vetting = [
+  { icon: BadgeCheck,    label: "Registration" },
+  { icon: ShieldCheck,   label: "Insurance" },
+  { icon: History,       label: "Company history" },
+  { icon: Users,         label: "References" },
+  { icon: MessageSquare, label: "Feedback after every job" },
+]
+
+const paidLines = [
+  { who: "Small businesses", how: "No saving, no fee." },
+  { who: "Letting agents & landlords", how: "Free to you. The contractor pays us." },
+  { who: "Waste firms & contractors", how: "First introduction free, then an agreed fee." },
 ]
 
 /* ─── Clearance scene: a room empties onto a van, then the proof ticks in ── */
@@ -227,237 +301,243 @@ function ClearanceScene({ active }: { active: boolean }) {
   )
 }
 
-export default function ServicesPage() {
-    const { openBooking } = useBooking()
+/* ─── Service card with a soft light that follows the mouse ───────────────── */
+function ServiceCard({
+  s,
+  index,
+  run,
+  onBook,
+}: {
+  s: (typeof services)[number]
+  index: number
+  run: boolean
+  onBook: () => void
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const Icon = s.icon
+  const onMove = (e: React.MouseEvent) => {
+    const el = ref.current
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    el.style.setProperty("--mx", `${e.clientX - r.left}px`)
+    el.style.setProperty("--my", `${e.clientY - r.top}px`)
+  }
 
-  const hero      = useReveal(0.05)
-  const twoSvcRef = useReveal(0.1)
-  const whoRef    = useReveal(0.1)
-  const clearRef  = useReveal(0.15)
-  const paidRef   = useReveal(0.1)
+  const btnClass = s.featured
+    ? "bg-emerald-700 hover:bg-emerald-800 text-white shadow-[0_14px_30px_-10px_rgba(6,95,70,0.55)]"
+    : "bg-white hover:bg-emerald-50 text-emerald-800 border border-emerald-200 hover:border-emerald-300"
+
+  const button =
+    s.action.kind === "link" ? (
+      <Link href={s.action.href} className={`sv-btn group/btn relative overflow-hidden w-full inline-flex items-center justify-center gap-2 py-3.5 poppins-semibold text-sm rounded-xl transition-all duration-300 active:scale-[0.98] ${btnClass}`}>
+        {s.cta}
+        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+      </Link>
+    ) : (
+      <button onClick={onBook} className={`sv-btn group/btn relative overflow-hidden w-full inline-flex items-center justify-center gap-2 py-3.5 poppins-semibold text-sm rounded-xl transition-all duration-300 active:scale-[0.98] ${btnClass}`}>
+        {s.cta}
+        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+      </button>
+    )
+
+  return (
+    <div
+      ref={ref}
+      id={s.id}
+      onMouseMove={onMove}
+      className={`sv-card group relative flex flex-col rounded-[1.75rem] bg-white p-7 sm:p-8 overflow-hidden scroll-mt-28 transition-all duration-700 hover:-translate-y-1 ${
+        s.featured
+          ? "border-2 border-emerald-300 shadow-[0_24px_60px_-24px_rgba(6,95,70,0.35)]"
+          : "border border-slate-200 shadow-[0_2px_16px_rgba(6,95,70,0.05)] hover:border-emerald-200 hover:shadow-[0_20px_50px_-20px_rgba(6,95,70,0.25)]"
+      } ${run ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      style={{ transitionDelay: run ? `${150 + index * 130}ms` : "0ms" }}
+    >
+      {s.featured && (
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-emerald-600 to-emerald-400" />
+      )}
+
+      {/* Top row */}
+      <div className="flex items-center justify-between mb-7">
+        <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:border-emerald-700 transition-colors duration-500">
+          <Icon className="w-5 h-5 text-emerald-700 group-hover:text-white transition-colors duration-500" />
+        </div>
+        <span className="poppins-bold text-3xl text-emerald-100 group-hover:text-emerald-200 transition-colors duration-500 tabular-nums">{s.num}</span>
+      </div>
+
+      {/* Who + what */}
+      <p className="poppins-semibold text-[11px] uppercase tracking-[0.2em] text-emerald-600 mb-2">For {s.forWho}</p>
+      <h3 className="poppins-bold text-2xl text-slate-900 mb-3 leading-tight">{s.title}</h3>
+      <p className="poppins-regular text-[15px] text-slate-600 leading-relaxed mb-6">{s.what}</p>
+
+      {/* Points */}
+      <div className="space-y-2.5 mb-7 flex-1">
+        {s.points.map((p, i) => (
+          <div
+            key={p}
+            className={`flex items-start gap-2.5 transition-all duration-500 ${run ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"}`}
+            style={{ transitionDelay: run ? `${500 + index * 130 + i * 90}ms` : "0ms" }}
+          >
+            <div className="w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 mt-px">
+              <CheckCircle className="w-3 h-3 text-emerald-600" />
+            </div>
+            <span className="poppins-regular text-sm text-slate-700 leading-snug">{p}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* How I'm paid */}
+      <div className="flex items-center gap-3 rounded-xl bg-emerald-50/70 border border-emerald-100 px-3.5 py-3 mb-5">
+        <Wallet className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+        <div className="min-w-0">
+          <p className="poppins-medium text-[10px] uppercase tracking-[0.18em] text-emerald-600/80 leading-none">How we&apos;re paid</p>
+          <p className="poppins-semibold text-[13px] text-emerald-900 leading-snug mt-1">{s.paid}</p>
+        </div>
+      </div>
+
+      {button}
+    </div>
+  )
+}
+
+/* ─── Vetting strip: a line fills and each check lights up in turn ───────── */
+function VettingStrip({ run }: { run: boolean }) {
+  return (
+    <div className="relative">
+      {/* Track + fill (desktop) */}
+      <div className="hidden sm:block absolute top-7 left-[10%] right-[10%] h-px bg-emerald-100" />
+      <div
+        className="hidden sm:block absolute top-7 left-[10%] h-px bg-gradient-to-r from-emerald-400 to-emerald-600 transition-all ease-out"
+        style={{ width: run ? "80%" : "0%", transitionDuration: "1800ms", transitionDelay: "200ms" }}
+      />
+      <div className="relative grid grid-cols-2 sm:grid-cols-5 gap-y-8 gap-x-4">
+        {vetting.map((v, i) => {
+          const Icon = v.icon
+          return (
+            <div
+              key={v.label}
+              className={`flex flex-col items-center text-center transition-all duration-700 ${i === vetting.length - 1 ? "col-span-2 sm:col-span-1" : ""} ${run ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              style={{ transitionDelay: run ? `${300 + i * 300}ms` : "0ms" }}
+            >
+              <div className="relative">
+                <div className={`absolute inset-0 rounded-2xl bg-emerald-400/30 ${run ? "sv-ping" : ""}`} style={{ animationDelay: `${300 + i * 300}ms` }} />
+                <div className="relative w-14 h-14 rounded-2xl bg-white border border-emerald-200 shadow-[0_8px_24px_-8px_rgba(16,185,129,0.4)] flex items-center justify-center">
+                  <Icon className="w-6 h-6 text-emerald-700" />
+                </div>
+                <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-emerald-700 border-2 border-white text-white text-[10px] poppins-bold flex items-center justify-center">
+                  {i + 1}
+                </span>
+              </div>
+              <p className="poppins-semibold text-sm text-slate-800 mt-4 leading-tight max-w-[140px]">{v.label}</p>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+export default function ServicesPage() {
+  const { openBooking } = useBooking()
+
+  const hero     = useReveal(0.05)
+  const cardsRef = useReveal(0.1)
+  const alsoRef  = useReveal(0.1)
+  const clearRef = useReveal(0.15)
+  const vetRef   = useReveal(0.2)
+  const paidRef  = useReveal(0.2)
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       <Navigation />
 
       {/* ── HERO ───────────────────────────────────────────────────────────── */}
-      <section className="relative pt-32 pb-20 px-6 bg-gradient-to-b from-emerald-50 via-white to-white overflow-hidden">
+      <section className="relative pt-32 pb-16 px-4 sm:px-6 bg-gradient-to-b from-emerald-50 via-white to-white overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_30%,black_30%,transparent_100%)] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[340px] bg-emerald-100/60 rounded-full blur-[90px] pointer-events-none" />
+        <div className="sv-sweep absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/60 to-transparent skew-x-[-20deg] pointer-events-none" />
 
-        {/* Subtle grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.04)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
-
-        {/* Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-emerald-100/60 rounded-full blur-[80px] pointer-events-none" />
-
-        <div
-          ref={hero.ref}
-          className="max-w-5xl mx-auto relative z-10 text-center"
-        >
-          {/* Badge */}
-          <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-200 shadow-sm mb-7 transition-all duration-700"
-            style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(12px)" }}
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Waste Help for Birmingham Businesses</span>
+        <div ref={hero.ref} className={`max-w-5xl mx-auto relative z-10 text-center ${hero.visible ? "sv-in" : ""}`}>
+          <div className="sv-fade inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-emerald-200 shadow-sm mb-7" style={{ animationDelay: "0ms" }}>
+            <span className="relative flex w-2 h-2">
+              <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-50" />
+              <span className="relative w-2 h-2 rounded-full bg-emerald-500" />
+            </span>
+            <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Services · Birmingham</span>
           </div>
 
-          {/* Headline */}
-          <h1
-            className="poppins-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight text-slate-900 mb-10 transition-all duration-700 delay-100"
-            style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(20px)" }}
-          >
-            We cut your waste bill.<br />
-            <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent bg-[length:200%_100%] animate-[gradientX_3s_ease_infinite]">
-              And sort everything else.
+          <h1 className="poppins-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-slate-900 mb-6">
+            <span className="block">
+              {["Businesses.", "Landlords."].map((w, i) => (
+                <React.Fragment key={w}>
+                  <span className="sv-word inline-block" style={{ animationDelay: `${120 + i * 110}ms` }}>{w}</span>{" "}
+                </React.Fragment>
+              ))}
+            </span>
+            <span
+              className="sv-word sv-shine inline-block pb-1 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent"
+              style={{ animationDelay: "360ms" }}
+            >
+              Waste firms.
             </span>
           </h1>
 
-          {/* CTA */}
-          <div
-            className="flex flex-col sm:flex-row gap-3 justify-center items-center transition-all duration-700 delay-300"
-            style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(12px)" }}
-          >
-            <Link
-              href="/send-your-bill"
-              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white poppins-bold text-sm rounded-xl shadow-lg hover:shadow-emerald-700/20 transition-all duration-300 active:scale-95"
-            >
-              Send Us Your Bill
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
+          <p className="sv-fade poppins-regular text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-9" style={{ animationDelay: "560ms" }}>
+            One call for vetted waste and compliance help in Birmingham.
+          </p>
+
+          {/* Find your section */}
+          <div className="sv-fade flex flex-wrap justify-center gap-2.5" style={{ animationDelay: "720ms" }}>
+            {services.map((s) => {
+              const Icon = s.icon
+              return (
+                <a
+                  key={s.id}
+                  href={`#${s.id}`}
+                  className="group inline-flex items-center gap-2 pl-2 pr-4 py-2 rounded-full bg-white border border-slate-200 hover:border-emerald-300 hover:shadow-[0_8px_20px_-8px_rgba(6,95,70,0.3)] transition-all duration-300"
+                >
+                  <span className="w-7 h-7 rounded-full bg-emerald-50 group-hover:bg-emerald-700 flex items-center justify-center transition-colors duration-300">
+                    <Icon className="w-3.5 h-3.5 text-emerald-700 group-hover:text-white transition-colors duration-300" />
+                  </span>
+                  <span className="poppins-semibold text-sm text-slate-700 group-hover:text-emerald-800">{s.chip}</span>
+                </a>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* ── THREE CORE SERVICES ───────────────────────────────────────────── */}
-      <section className="py-24 px-6 bg-gradient-to-b from-white via-emerald-50/40 to-white relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-emerald-100/50 rounded-full blur-[100px] pointer-events-none" />
-
-        <div ref={twoSvcRef.ref} className="max-w-6xl mx-auto relative z-10">
-          <div
-            className="text-center mb-14 transition-all duration-700"
-            style={{ opacity: twoSvcRef.visible ? 1 : 0, transform: twoSvcRef.visible ? "none" : "translateY(20px)" }}
-          >
-            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">What we do</p>
-            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              Three Ways{" "}
-              <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
-                We Save You Money.
-              </span>
-            </h2>
-            <p className="poppins-regular text-slate-500 text-base mt-3 max-w-xl mx-auto leading-relaxed">
-              Start with a free bill check. Then we get you a better deal, and keep it that way.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5 items-stretch">
-
-            {/* Service 01 — Bill Audit */}
-            <div
-              id="bill-audit"
-              className="group relative bg-white rounded-2xl border border-slate-100 p-7 flex flex-col hover:shadow-[0_8px_32px_rgba(16,185,129,0.10)] hover:border-emerald-200 transition-all duration-500 scroll-mt-28"
-              style={{
-                opacity: twoSvcRef.visible ? 1 : 0,
-                transform: twoSvcRef.visible ? "none" : "translateY(24px)",
-                transitionDelay: "0ms",
-              }}
-            >
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-11 h-11 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-700 transition-colors duration-300">
-                  <Search className="w-5 h-5 text-emerald-600 group-hover:text-white transition-colors duration-300" />
-                </div>
-                <span className="poppins-semibold text-[10px] text-emerald-500 uppercase tracking-widest">Service 01</span>
-              </div>
-
-              <h3 className="poppins-bold text-lg text-slate-900 mb-2">Bill Audit</h3>
-              <p className="poppins-regular text-sm text-slate-500 leading-relaxed mb-5">
-                We check every line of your waste bill against your contract and what really gets collected.
-              </p>
-
-              <div className="space-y-2 mb-7 flex-1">
-                {auditChecks.map((c) => (
-                  <div key={c} className="flex items-start gap-2">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-xs text-slate-600 poppins-regular leading-snug">{c}</span>
-                  </div>
-                ))}
-              </div>
-
-              <Link
-                href="/send-your-bill"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold text-sm rounded-xl transition-all duration-200 active:scale-[0.98]"
-              >
-                Send Us Your Bill
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-
-            {/* Service 02 — Better Deals */}
-            <div
-              id="better-deals"
-              className="group relative bg-white rounded-2xl border-2 border-emerald-200 p-7 flex flex-col shadow-[0_8px_40px_rgba(16,185,129,0.14)] hover:shadow-[0_12px_48px_rgba(16,185,129,0.2)] transition-all duration-500 scroll-mt-28"
-              style={{
-                opacity: twoSvcRef.visible ? 1 : 0,
-                transform: twoSvcRef.visible ? "none" : "translateY(24px)",
-                transitionDelay: "120ms",
-              }}
-            >
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-11 h-11 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-700 transition-colors duration-300">
-                  <Scale className="w-5 h-5 text-emerald-600 group-hover:text-white transition-colors duration-300" />
-                </div>
-                <span className="poppins-semibold text-[10px] text-emerald-500 uppercase tracking-widest">Service 02</span>
-              </div>
-
-              <h3 className="poppins-bold text-lg text-slate-900 mb-2">Better Deals</h3>
-              <p className="poppins-regular text-sm text-slate-500 leading-relaxed mb-5">
-                We get prices from licensed Birmingham collectors and show you the best one.
-              </p>
-
-              <div className="space-y-2 mb-7 flex-1">
-                {dealChecks.map((c) => (
-                  <div key={c} className="flex items-start gap-2">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-xs text-slate-600 poppins-regular leading-snug">{c}</span>
-                  </div>
-                ))}
-              </div>
-
-              <Link
-                href="/waste-contract-audit"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold text-sm rounded-xl transition-all duration-200 active:scale-[0.98]"
-              >
-                Get Better Prices
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-
-            {/* Service 03 — Renewal Watch */}
-            <div
-              id="renewal-watch"
-              className="group relative bg-white rounded-2xl border border-slate-100 p-7 flex flex-col hover:shadow-[0_8px_32px_rgba(16,185,129,0.10)] hover:border-emerald-200 transition-all duration-500 scroll-mt-28"
-              style={{
-                opacity: twoSvcRef.visible ? 1 : 0,
-                transform: twoSvcRef.visible ? "none" : "translateY(24px)",
-                transitionDelay: "240ms",
-              }}
-            >
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-11 h-11 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-700 transition-colors duration-300">
-                  <CalendarClock className="w-5 h-5 text-emerald-600 group-hover:text-white transition-colors duration-300" />
-                </div>
-                <span className="poppins-semibold text-[10px] text-emerald-500 uppercase tracking-widest">Service 03</span>
-              </div>
-
-              <h3 className="poppins-bold text-lg text-slate-900 mb-2">Renewal Watch</h3>
-              <p className="poppins-regular text-sm text-slate-500 leading-relaxed mb-5">
-                We track your contract dates, so it never rolls over onto a bad deal without you knowing.
-              </p>
-
-              <div className="space-y-2 mb-7 flex-1">
-                {renewalChecks.map((c) => (
-                  <div key={c} className="flex items-start gap-2">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-xs text-slate-600 poppins-regular leading-snug">{c}</span>
-                  </div>
-                ))}
-              </div>
-
-              <button
-                onClick={() => openBooking("discovery")}
-                className="w-full inline-flex items-center justify-center gap-2 py-3 bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-300 poppins-semibold text-sm rounded-xl transition-all duration-200 active:scale-[0.98]"
-              >
-                Book a 15-Min Call
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-
-          </div>
+      {/* ── THREE SERVICES ─────────────────────────────────────────────────── */}
+      <section className="pt-8 pb-24 px-4 sm:px-6 relative overflow-hidden">
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-emerald-100/40 rounded-full blur-[110px] pointer-events-none" />
+        <div ref={cardsRef.ref} className="max-w-6xl mx-auto relative z-10 grid md:grid-cols-3 gap-5 items-stretch">
+          {services.map((s, i) => (
+            <ServiceCard key={s.id} s={s} index={i} run={cardsRef.visible} onBook={() => openBooking("discovery")} />
+          ))}
         </div>
       </section>
 
-      {/* ── EVERYTHING ELSE + HOW WE GET PAID ─────────────────────────────── */}
-      <section className="py-20 px-6 bg-white">
-        <div ref={whoRef.ref} className="max-w-5xl mx-auto">
+      {/* ── ALSO AVAILABLE ─────────────────────────────────────────────────── */}
+      <section className="py-20 px-4 sm:px-6 bg-white">
+        <div ref={alsoRef.ref} className="max-w-5xl mx-auto">
           <div
             className="text-center mb-12 transition-all duration-700"
-            style={{ opacity: whoRef.visible ? 1 : 0, transform: whoRef.visible ? "none" : "translateY(20px)" }}
+            style={{ opacity: alsoRef.visible ? 1 : 0, transform: alsoRef.visible ? "none" : "translateY(20px)" }}
           >
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Also available</p>
-            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">Everything Else, Sorted.</h2>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">When it can&apos;t wait.</h2>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
-            {everythingElse.map((item, i) => {
+            {alsoAvailable.map((item, i) => {
               const Icon = item.icon
               return (
                 <div
                   key={item.label}
-                  className="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-slate-100 hover:border-emerald-200 hover:shadow-[0_4px_24px_rgba(16,185,129,0.08)] transition-all duration-300 text-center"
+                  className="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-slate-100 hover:border-emerald-200 hover:shadow-[0_4px_24px_rgba(16,185,129,0.08)] hover:-translate-y-0.5 transition-all duration-300 text-center"
                   style={{
-                    opacity: whoRef.visible ? 1 : 0,
-                    transform: whoRef.visible ? "none" : "translateY(16px)",
-                    transitionDelay: `${i * 60}ms`,
+                    opacity: alsoRef.visible ? 1 : 0,
+                    transform: alsoRef.visible ? undefined : "translateY(16px)",
+                    transitionDelay: alsoRef.visible ? `${i * 60}ms` : "0ms",
                     transitionDuration: "500ms",
                   }}
                 >
@@ -471,30 +551,26 @@ export default function ServicesPage() {
           </div>
 
           <p
-            className="poppins-regular text-slate-500 text-base text-center transition-all duration-700 delay-300"
-            style={{ opacity: whoRef.visible ? 1 : 0 }}
+            className="poppins-regular text-slate-500 text-base text-center max-w-xl mx-auto leading-relaxed transition-all duration-700 delay-300"
+            style={{ opacity: alsoRef.visible ? 1 : 0 }}
           >
-            One call. A checked, licensed partner. Photos and paperwork.
+            Knotweed, drains or asbestos holding up a house sale? I find a specialist fast, so the survey can move on.
           </p>
-
         </div>
       </section>
 
-
-      {/* ── NEED A HAND? CLEARANCES ───────────────────────────────────────── */}
-      <section id="clearances" className="py-24 px-6 bg-gradient-to-b from-white via-emerald-50/40 to-white relative overflow-hidden scroll-mt-28">
+      {/* ── CLEARANCES ─────────────────────────────────────────────────────── */}
+      <section id="clearances" className="py-24 px-4 sm:px-6 bg-gradient-to-b from-white via-emerald-50/40 to-white relative overflow-hidden scroll-mt-28">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-emerald-100/50 rounded-full blur-[100px] pointer-events-none" />
 
         <div ref={clearRef.ref} className="max-w-6xl mx-auto relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
-          {/* Words */}
           <div
             className="transition-all duration-700"
             style={{ opacity: clearRef.visible ? 1 : 0, transform: clearRef.visible ? "none" : "translateY(20px)" }}
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-200 shadow-sm mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Need a hand?</span>
+              <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Clearances</span>
             </div>
 
             <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-slate-900 leading-[1.05] tracking-tight mb-5">
@@ -504,13 +580,13 @@ export default function ServicesPage() {
               </span>
             </h2>
 
-            <p className="poppins-regular text-base sm:text-lg text-slate-500 leading-relaxed max-w-md mb-8">
-              A tenant moved out. A shop is closing. A room is full of old things. You make one call. We send a checked, licensed partner. You get photos and the right papers.
+            <p className="poppins-regular text-base sm:text-lg text-slate-500 leading-relaxed max-w-md mb-7">
+              A tenant moved out. A shop is closing. One call, and a checked partner clears it.
             </p>
 
             <div className="max-w-md mb-8">
               {[
-                { num: "01", title: "You send a few photos", desc: "Show us what needs to go. That's all we need." },
+                { num: "01", title: "You send a few photos", desc: "Show us what needs to go." },
                 { num: "02", title: "We send a checked partner", desc: "Licensed, vetted and booked for you." },
                 { num: "03", title: "It's gone. You get proof.", desc: "Before and after photos, plus the waste papers." },
               ].map((step, i, arr) => (
@@ -521,14 +597,6 @@ export default function ServicesPage() {
                     <p className="poppins-regular text-sm text-slate-500 leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap gap-2 mb-8">
-              {["Landlords", "Letting agents", "Property managers", "Shops & offices"].map((who) => (
-                <span key={who} className="px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-500 text-xs poppins-medium shadow-sm">
-                  {who}
-                </span>
               ))}
             </div>
 
@@ -550,29 +618,67 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          {/* Animated scene */}
           <div
             className="transition-all duration-700 delay-150"
             style={{ opacity: clearRef.visible ? 1 : 0, transform: clearRef.visible ? "none" : "translateY(24px)" }}
           >
             <ClearanceScene active={clearRef.visible} />
           </div>
+        </div>
+      </section>
 
+      {/* ── HOW WE VET PARTNERS ────────────────────────────────────────────── */}
+      <section className="py-20 px-4 sm:px-6 bg-white">
+        <div ref={vetRef.ref} className="max-w-5xl mx-auto">
+          <div
+            className="text-center mb-14 transition-all duration-700"
+            style={{ opacity: vetRef.visible ? 1 : 0, transform: vetRef.visible ? "none" : "translateY(20px)" }}
+          >
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">How we vet partners</p>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
+              Five checks.{" "}
+              <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Every partner.</span>
+            </h2>
+          </div>
+          <VettingStrip run={vetRef.visible} />
         </div>
       </section>
 
       {/* ── HOW WE GET PAID ────────────────────────────────────────────────── */}
-      <section className="pt-8 pb-24 px-6 bg-white">
-        <div ref={paidRef.ref} className="max-w-5xl mx-auto">
+      <section className="pt-4 pb-24 px-4 sm:px-6 bg-white">
+        <div ref={paidRef.ref} className="max-w-4xl mx-auto">
           <div
-            className="p-7 rounded-2xl bg-slate-50 border border-slate-100 text-center transition-all duration-700 delay-400"
-            style={{ opacity: paidRef.visible ? 1 : 0, transform: paidRef.visible ? "none" : "translateY(12px)" }}
+            className="relative p-7 sm:p-9 rounded-[1.75rem] bg-gradient-to-br from-emerald-800 to-emerald-950 overflow-hidden shadow-[0_30px_70px_-30px_rgba(6,95,70,0.6)] transition-all duration-700"
+            style={{ opacity: paidRef.visible ? 1 : 0, transform: paidRef.visible ? "none" : "translateY(16px)" }}
           >
-            <Lock className="w-5 h-5 text-emerald-600 mx-auto mb-3" />
-            <p className="poppins-bold text-slate-900 text-base mb-2">How we get paid</p>
-            <p className="poppins-regular text-slate-500 text-sm max-w-lg mx-auto leading-relaxed">
-              Your first bill check is free. After that, either you pay a simple fee, or the collector you switch to pays us a small cut. We always tell you which one upfront. No surprises.
-            </p>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.1)_0%,transparent_60%)] pointer-events-none" />
+            <div className="relative">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center">
+                  <Lock className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <p className="poppins-bold text-white text-lg leading-tight">How we get paid</p>
+                  <p className="poppins-regular text-emerald-200/80 text-xs mt-0.5">Never hidden. Always told upfront.</p>
+                </div>
+              </div>
+              <div className="divide-y divide-white/10">
+                {paidLines.map((l, i) => (
+                  <div
+                    key={l.who}
+                    className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 py-3.5 transition-all duration-700"
+                    style={{
+                      opacity: paidRef.visible ? 1 : 0,
+                      transform: paidRef.visible ? "none" : "translateX(-8px)",
+                      transitionDelay: paidRef.visible ? `${250 + i * 120}ms` : "0ms",
+                    }}
+                  >
+                    <p className="poppins-medium text-sm text-emerald-200">{l.who}</p>
+                    <p className="poppins-semibold text-sm sm:text-base text-white">{l.how}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -580,11 +686,42 @@ export default function ServicesPage() {
       <Footer />
 
       <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes gradientX {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
+        @keyframes svWord {
+          0%   { opacity: 0; transform: translateY(0.45em); filter: blur(10px); }
+          100% { opacity: 1; transform: none; filter: blur(0); }
+        }
+        @keyframes svFade {
+          0%   { opacity: 0; transform: translateY(14px); }
+          100% { opacity: 1; transform: none; }
+        }
+        @keyframes svShine { to { background-position: -200% 0; } }
+        @keyframes svSweep { 0% { left: -35%; } 100% { left: 135%; } }
+        @keyframes svPing  { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(1.6); opacity: 0; } }
+
+        .sv-word, .sv-fade { opacity: 0; }
+        .sv-in .sv-word { animation: svWord 0.9s cubic-bezier(0.22,1,0.36,1) both; }
+        .sv-in .sv-fade { animation: svFade 0.8s cubic-bezier(0.22,1,0.36,1) both; }
+        .sv-in .sv-shine { animation: svWord 0.9s cubic-bezier(0.22,1,0.36,1) both, svShine 6s linear 1.6s infinite; }
+        .sv-sweep { animation: svSweep 10s ease-in-out infinite; }
+        .sv-ping { opacity: 0; animation: svPing 1s cubic-bezier(0,0,0.2,1) both; }
+
+        .sv-card::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 0%), rgba(16,185,129,0.09), transparent 60%);
+          opacity: 0;
+          transition: opacity 0.4s ease;
+          pointer-events: none;
+        }
+        .sv-card:hover::before { opacity: 1; }
+
+        @media (prefers-reduced-motion: reduce) {
+          .sv-word, .sv-fade { opacity: 1; }
+          .sv-in .sv-word, .sv-in .sv-fade, .sv-in .sv-shine, .sv-sweep, .sv-ping { animation: none !important; }
         }
       ` }} />
-      </div>
+    </div>
   )
 }

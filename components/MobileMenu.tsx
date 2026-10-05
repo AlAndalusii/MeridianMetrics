@@ -13,7 +13,7 @@ import { CONTACT_INFO } from "@/lib/constants"
 
 const navItems = [
   { href: "/",          label: "Home",      icon: Home },
-  { href: "/about",     label: "About Us",  icon: Info },
+  { href: "/about",     label: "Meet Zak",  icon: Info },
   { href: "/services",  label: "Services",  icon: Shield },
   { href: "/templates", label: "Templates", icon: FileText, badge: "From £27" },
   { href: "/care-homes", label: "Care Homes", icon: Building2 },

@@ -33,7 +33,7 @@ export function Navigation() {
           {/* Desktop nav links */}
           <div className="hidden lg:flex items-center gap-7">
             <Link href="/" className={linkClass("/")}>Home</Link>
-            <Link href="/about" className={linkClass("/about")}>About Us</Link>
+            <Link href="/about" className={linkClass("/about")}>Meet Zak</Link>
 
             {/* ── Services direct link ─────────────────────────────── */}
             <Link href="/services" className={linkClass("/services")}>Services</Link>

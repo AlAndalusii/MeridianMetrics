@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Waste Bill Audits & Better Bin Deals | Birmingham Businesses',
-  description: 'We check your waste bill, get you a better deal and watch your renewal date. For Birmingham cafés, shops, hotels, offices and property managers.',
+  title: 'Vetted Waste & Compliance Help | Birmingham Businesses, Landlords & Waste Firms',
+  description: 'One call for vetted waste and compliance help in Birmingham. Free waste bill checks, vetted contractors for landlords and agents, and new work for local waste firms.',
   keywords: [
     'waste audit UK',
     'waste compliance audit',
@@ -20,16 +20,16 @@ export const metadata: Metadata = {
     'waste records review',
   ],
   openGraph: {
-    title: 'Waste Bill Audits & Better Bin Deals | Birmingham Businesses',
-    description: 'We check your waste bill, get you a better deal and watch your renewal date. Free first bill check for Birmingham businesses.',
+    title: 'Vetted Waste & Compliance Help | Birmingham Businesses, Landlords & Waste Firms',
+    description: 'One call for vetted waste and compliance help in Birmingham. Free bill checks, vetted contractors and new work for waste firms.',
     type: 'website',
     locale: 'en_GB',
     siteName: 'Millstone Compliance',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Waste Bill Audits & Better Bin Deals | Birmingham Businesses',
-    description: 'We check your waste bill, get you a better deal and watch your renewal date. Free first bill check for Birmingham businesses.',
+    title: 'Vetted Waste & Compliance Help | Birmingham Businesses, Landlords & Waste Firms',
+    description: 'One call for vetted waste and compliance help in Birmingham. Free bill checks, vetted contractors and new work for waste firms.',
   },
   alternates: {
     canonical: 'https://millstonecompliance.com/services',

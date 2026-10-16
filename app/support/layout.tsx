@@ -1,31 +1,22 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Questions & Help | Digital Waste Tracking Made Simple | Millstone Compliance',
-  description: 'Straight answers on digital waste tracking for permitted sites: the two-working-day deadline, paper transfer notes, software, who is responsible, and what it costs.',
-  keywords: [
-    'digital waste tracking questions',
-    'digital waste tracking help',
-    'waste tracking deadline',
-    'do I still need waste transfer notes',
-    'digital waste tracking software',
-    'waste tracking for scrap yards',
-    'waste tracking for transfer stations',
-  ],
+  title: "Digital Waste Tracking Questions Answered | Millstone Compliance",
+  description: "Straight answers for permitted waste sites: the two-working-day deadline, paper transfer notes, software, who is responsible, and what it costs.",
+  keywords: ["do I still need waste transfer notes", "digital waste tracking questions"],
+  alternates: { canonical: "https://millstonecompliance.com/support" },
   openGraph: {
-    title: 'Questions & Help | Digital Waste Tracking Made Simple',
-    description: 'Straight answers on digital waste tracking for permitted sites, from Zak at Millstone Compliance.',
-    type: 'website',
-    locale: 'en_GB',
-    siteName: 'Millstone Compliance',
+    title: "Digital Waste Tracking Questions Answered | Millstone Compliance",
+    description: "Straight answers for permitted waste sites: the two-working-day deadline, paper transfer notes, software, who is responsible, and what it costs.",
+    url: "https://millstonecompliance.com/support",
+    type: "website",
+    locale: "en_GB",
+    siteName: "Millstone Compliance",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Questions & Help | Digital Waste Tracking Made Simple',
-    description: 'Straight answers on digital waste tracking for permitted sites, from Zak at Millstone Compliance.',
-  },
-  alternates: {
-    canonical: 'https://millstonecompliance.com/support',
+    card: "summary_large_image",
+    title: "Digital Waste Tracking Questions Answered | Millstone Compliance",
+    description: "Straight answers for permitted waste sites: the two-working-day deadline, paper transfer notes, software, who is responsible, and what it costs.",
   },
 }
 

@@ -150,6 +150,11 @@ export default function Footer() {
 
           </div>
 
+          {/* One-line identity, the same wording used on Google and LinkedIn */}
+          <p className="poppins-regular text-sm text-emerald-800/80 max-w-2xl mt-4">
+            Millstone Compliance: digital waste tracking reporting and compliance support for permitted waste sites, based in Birmingham.
+          </p>
+
           {/* Bottom Section - Minimalist Legal */}
           <div className="pt-8 border-t border-emerald-200/40 mt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">

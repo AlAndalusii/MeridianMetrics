@@ -4,12 +4,10 @@ import React, { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
-  ClipboardList,
-  Recycle,
-  Zap,
+  ClipboardCheck,
+  CalendarClock,
+  ListChecks,
   FileText,
-  Trash2,
-  HeartPulse,
   ArrowRight,
   Clock,
   BadgeCheck
@@ -19,64 +17,56 @@ import { useBooking } from "@/components/BookingProvider"
 
 const quizOptions = [
   {
-    id: "duty-of-care",
-    title: "Duty of Care - Gap Analyser",
-    description: "Compliance check for waste transfer notes, carrier licences and documentation — 10 questions, 0–100 score, personalised gap report.",
-    icon: ClipboardList,
+    id: "readiness",
+    title: "Readiness Check - Digital Waste Tracking",
+    description: "10 quick questions on registration, reporting, codes and deadlines. Find out if your site is reporting properly, or if loads are slipping through.",
+    icon: ClipboardCheck,
     color: "emerald",
     duration: "3 minutes",
     questions: "10 questions",
-    targetAudience: "Care homes, children's homes, estate agents and any business producing controlled waste",
-    link: "/duty-of-care-analyser",
+    targetAudience: "Permitted sites that receive waste: scrap yards, transfer stations, skip yards and recyclers",
+    link: "/free-check",
+    cta: "Start the Readiness Check",
     isActive: true,
   },
   {
-    id: "clinical-waste",
-    title: "Clinical Waste - Gap Analyser",
-    description: "HTM 07-01 and CQC/Ofsted compliance check covering segregation, sharps, consignment notes and staff training — 10 questions, 0–100 score.",
-    icon: HeartPulse,
-    color: "blue",
-    duration: "3 minutes",
-    questions: "10 questions",
-    targetAudience: "Care homes, children's homes, GP surgeries and any setting producing clinical or hazardous waste",
-    link: "/clinical-waste-analyser",
-    isActive: true,
-  },
-  {
-    id: "simpler-recycling",
-    title: "Simpler Recycling - Gap Analyser",
-    description: "AI-scored compliance check — 10 questions, 0–10 score, personalised gap report emailed instantly.",
-    icon: Trash2,
+    id: "deadline",
+    title: "Deadline Checker - Two Working Days",
+    description: "Tap the day a load arrives and see the day it must be reported by. Weekends are handled for you.",
+    icon: CalendarClock,
     color: "green",
-    duration: "3 minutes",
-    questions: "10 questions",
-    targetAudience: "Businesses with 10+ employees",
-    link: "/simpler-recycling-gap-analyser",
+    duration: "1 minute",
+    questions: "1 tap",
+    targetAudience: "Anyone at the site who reports loads to Defra",
+    link: "/waste-cost-savings",
+    cta: "Open the Deadline Checker",
     isActive: true,
   },
   {
-    id: "weee",
-    title: "WEEE - Waste Electronics Compliance",
-    description: "Selling electronics, light bulbs, or anything with a plug? You might need WEEE registration.",
-    icon: Zap,
-    color: "purple",
-    duration: "2 minutes",
-    questions: "10 questions",
-    targetAudience: "Manufacturers, importers, and sellers of electrical products",
-    link: "/quiz/weee",
-    isActive: false,
+    id: "codes",
+    title: "Codes Guide - EWC and R/D Codes",
+    description: "The EWC codes scrap and skip yards see most, and how to pick the right R or D code for each load.",
+    icon: ListChecks,
+    color: "blue",
+    duration: "5 minutes",
+    questions: "Plain English guide",
+    targetAudience: "Scrap yards, skip yards and transfer stations building a code template",
+    link: "/guides/ewc-codes-scrap-skip-yards",
+    cta: "Read the Codes Guide",
+    isActive: true,
   },
   {
-    id: "prn",
-    title: "PRN - Packaging Recovery Notes",
-    description: "Do you need to buy PRNs by January 31? Miss this deadline and face criminal prosecution.",
+    id: "paperwork",
+    title: "Paperwork Guide - Transfer Notes",
+    description: "Do you still need paper waste transfer notes? Yes. What still applies, what's new, and how to avoid doing the same job twice.",
     icon: FileText,
     color: "amber",
-    duration: "2 minutes",
-    questions: "10 questions",
-    targetAudience: "Businesses with 50+ tonnes packaging and £2M+ turnover",
-    link: "/quiz/prn",
-    isActive: false,
+    duration: "3 minutes",
+    questions: "Plain English guide",
+    targetAudience: "Site owners and office managers handling the paperwork",
+    link: "/guides/waste-transfer-notes",
+    cta: "Read the Paperwork Guide",
+    isActive: true,
   },
 ]
 
@@ -153,16 +143,16 @@ export default function QuizSelectorPage() {
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 mb-6">
               <BadgeCheck className="w-4 h-4 text-emerald-600 mr-2" />
               <span className="poppins-semibold text-sm text-emerald-700">
-                Millstone Compliance Assessments
+                Free Digital Waste Tracking Checks
               </span>
             </div>
             
             <h1 className="poppins-bold text-4xl sm:text-5xl md:text-6xl text-emerald-900 mb-6">
-              Which Waste Compliance Check Do You Need?
+              Is Your Site Ready for Digital Waste Tracking?
             </h1>
 
             <p className="poppins-regular text-lg sm:text-xl text-emerald-700 max-w-3xl mx-auto">
-              Take our free 3-minute assessment to get your compliance score and a personalised gap report
+              Free checks and plain answers for permitted waste sites. Start with the 3-minute readiness check.
             </p>
           </div>
 
@@ -228,7 +218,7 @@ export default function QuizSelectorPage() {
                         className={`w-full poppins-semibold ${colors.button} text-white shadow-md hover:shadow-lg transition-all duration-300 group py-6`}
                       >
                         <span className="flex items-center justify-center w-full">
-                          Start {quiz.title.split(" - ")[0]} Quiz
+                          {quiz.cta}
                           <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                         </span>
                       </Button>
@@ -250,16 +240,16 @@ export default function QuizSelectorPage() {
           <div className="bg-white rounded-2xl p-8 border-2 border-emerald-200 shadow-lg">
             <div className="text-center">
               <h3 className="poppins-bold text-2xl text-emerald-900 mb-4">
-                Not Sure Which Regulations Apply?
+                Rather Hand It Over?
               </h3>
               <p className="poppins-regular text-emerald-700 mb-6 max-w-2xl mx-auto">
-                Book a free 15-minute consultation and we'll help you understand your compliance obligations
+                Send me your tickets on WhatsApp and I&apos;ll report every load to Defra on time. Two weeks free, no card, no contract.
               </p>
               <Button
                 onClick={() => openBooking()}
                 className="poppins-semibold bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg"
               >
-                Book Free Consultation
+                Book a Free 15-Minute Call
               </Button>
             </div>
           </div>

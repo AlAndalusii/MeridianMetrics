@@ -126,7 +126,7 @@ export default function PrivacyPolicyPage() {
               <div className="space-y-3">
                 <div className="bg-emerald-50/50 p-4 rounded-lg border border-emerald-100">
                   <h3 className="text-emerald-900 font-semibold mb-1">Service Delivery</h3>
-                  <p className="text-sm">Providing waste compliance assessments, audit support, and related services</p>
+                  <p className="text-sm">Providing digital waste tracking reporting, checks, setup and related services</p>
                 </div>
                 
                 <div className="bg-emerald-50/50 p-4 rounded-lg border border-emerald-100">

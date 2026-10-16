@@ -1,14 +1,22 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Free Readiness Check: Is Your Site Ready for Digital Waste Tracking? | Millstone Compliance',
-  description: 'Answer 10 quick questions about registration, reporting, codes and deadlines. Find out if your site is reporting properly, or if loads are slipping through.',
+  title: "Free Digital Waste Tracking Readiness Check | Millstone Compliance",
+  description: "10 quick questions on registration, reporting, codes and deadlines. Find out if your permitted waste site is reporting every load properly. Free, 3 minutes.",
+  keywords: ["digital waste tracking readiness", "is my site ready for digital waste tracking"],
+  alternates: { canonical: "https://millstonecompliance.com/free-check" },
   openGraph: {
-    title: 'Free Readiness Check: Is Your Site Ready for Digital Waste Tracking?',
-    description: '10 quick questions, 3 minutes. For permitted waste sites.',
-    type: 'website',
-    locale: 'en_GB',
-    siteName: 'Millstone Compliance',
+    title: "Free Digital Waste Tracking Readiness Check | Millstone Compliance",
+    description: "10 quick questions on registration, reporting, codes and deadlines. Find out if your permitted waste site is reporting every load properly. Free, 3 minutes.",
+    url: "https://millstonecompliance.com/free-check",
+    type: "website",
+    locale: "en_GB",
+    siteName: "Millstone Compliance",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Digital Waste Tracking Readiness Check | Millstone Compliance",
+    description: "10 quick questions on registration, reporting, codes and deadlines. Find out if your permitted waste site is reporting every load properly. Free, 3 minutes.",
   },
 }
 

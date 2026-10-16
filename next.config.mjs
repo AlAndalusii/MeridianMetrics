@@ -11,6 +11,53 @@ const nextConfig = {
       { source: '/cleans', destination: '/cleans/index.html' },
     ]
   },
+  // Pages from the old offer that don't match the digital waste tracking plan.
+  // Kept online, but asked not to appear in Google so it sees one clear business.
+  async headers() {
+    const offPlan = [
+      '/care-homes',
+      '/templates',
+      '/templates/:path*',
+      '/assessment',
+      '/assessment/:path*',
+      '/quiz/epr',
+      '/quiz/epr/:path*',
+      '/quiz/simpler-recycling',
+      '/quiz/simpler-recycling/:path*',
+      '/clinical-waste-analyser',
+      '/clinical-waste-analyser/:path*',
+      '/duty-of-care-analyser',
+      '/duty-of-care-analyser/:path*',
+      '/simpler-recycling-gap-analyser',
+      '/simpler-recycling-gap-analyser/:path*',
+      '/print/:path*',
+      '/admin',
+      '/admin/:path*',
+      '/resources/care-home-waste-compliance-checklist',
+      '/resources/care-home-waste-costs',
+      '/resources/clinical-waste-quick-check',
+      '/resources/duty-of-care-waste',
+      '/resources/epr-packaging',
+      '/resources/hmo-recycling-fines',
+      '/resources/hmo-waste-compliance-checklist',
+      '/resources/how-businesses-save-money-on-waste',
+      '/resources/landlord-fly-tipping-fines',
+      '/resources/outsourced-compliance-team',
+      '/resources/partner-check',
+      '/resources/plastic-packaging-tax',
+      '/resources/plastic-packaging-tax-2027',
+      '/resources/plastic-packaging-tax-explained',
+      '/resources/ppt-hmrc-audit-mistakes',
+      '/resources/simpler-recycling-2025',
+      '/resources/simpler-recycling-businesses',
+      '/resources/warehouse-waste-guide',
+      '/resources/waste-packaging-documentation',
+    ]
+    return offPlan.map((source) => ({
+      source,
+      headers: [{ key: 'X-Robots-Tag', value: 'noindex, follow' }],
+    }))
+  },
   async redirects() {
     return [
       // Packaging pages → nearest waste equivalent (permanent: false preserves old pages)

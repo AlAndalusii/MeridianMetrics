@@ -98,6 +98,36 @@ const articles: {
     category: "waste-tracking",
     readTime: "3 min",
   },
+  {
+    title: "What Counts as Two Working Days?",
+    description: "Start the day after the waste arrives, skip weekends and bank holidays. Every day of the week, worked out for you.",
+    icon: Clock,
+    href: "/guides/two-working-days",
+    badge: "New",
+    topics: ["Deadlines", "Bank Holidays", "Examples"],
+    category: "waste-tracking",
+    readTime: "3 min",
+  },
+  {
+    title: "Do I Still Need Paper Transfer Notes?",
+    description: "Yes. Digital waste tracking sits on top of your paperwork. What still applies, what's new, and how to avoid doing it twice.",
+    icon: FileCheck,
+    href: "/guides/waste-transfer-notes",
+    badge: "New",
+    topics: ["Transfer Notes", "Paperwork", "Responsibility"],
+    category: "waste-tracking",
+    readTime: "3 min",
+  },
+  {
+    title: "Common EWC Codes for Scrap and Skip Yards",
+    description: "The codes small sites use most, and how R and D codes work. A starting point for your own code template.",
+    icon: ListChecks,
+    href: "/guides/ewc-codes-scrap-skip-yards",
+    badge: "New",
+    topics: ["EWC Codes", "R/D Codes", "Permit"],
+    category: "waste-tracking",
+    readTime: "5 min",
+  },
 ]
 
 /* ─── Tools ──────────────────────────────────────────────────── */
@@ -193,7 +223,7 @@ export default function ResourcesPage() {
               style={{ opacity: visible ? 1 : 0, transition: "opacity 0.55s ease 200ms" }}
             >
               {[
-                { value: "3",      label: "Free Guides" },
+                { value: "6",      label: "Free Guides" },
                 { value: "2",      label: "Free Tools" },
                 { value: "2 days", label: "Deadline Per Load" },
                 { value: "£0",     label: "To Get Started" },

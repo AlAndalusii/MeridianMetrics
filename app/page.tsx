@@ -353,17 +353,18 @@ export default function MillstoneComplianceWebsite() {
               {/* Primary CTAs */}
               <div className="flex flex-wrap gap-3 mb-5">
                 <Link
-                  href="/send-your-bill"
+                  href="/waste-contract-audit"
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-sm hover:shadow-md"
                 >
                   Start a Free Two-Week Trial <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link
-                  href="/about"
+                <button
+                  type="button"
+                  onClick={() => openBooking("discovery")}
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95"
                 >
                   Book a Free 15-Minute Call
-                </Link>
+                </button>
               </div>
 
               {/* Also serving */}
@@ -1089,7 +1090,7 @@ export default function MillstoneComplianceWebsite() {
                 </div>
               </div>
 
-              {/* Proven in live audits — dark */}
+              {/* Honest about how I am paid — dark */}
               <div className="group/item flex-1 bg-gradient-to-br from-emerald-700 to-emerald-900 rounded-2xl p-4 sm:p-5 shadow-[0_4px_24px_rgba(6,95,70,0.22)] hover:shadow-[0_8px_40px_rgba(6,95,70,0.34)] transition-all duration-500 flex items-start gap-4 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.06)_0%,transparent_60%)] pointer-events-none"></div>
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>

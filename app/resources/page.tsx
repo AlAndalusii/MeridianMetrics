@@ -13,7 +13,7 @@ import Footer from "@/components/Footer"
 import { Navigation } from "@/components/Navigation"
 
 /* ─── Types ──────────────────────────────────────────────────── */
-type Category = "all" | "duty-of-care" | "simpler-recycling" | "care-homes" | "hmo"
+type Category = "all" | "waste-tracking"
 
 /* ─── Category meta — all Tailwind classes in full for JIT ───── */
 const catMeta: Record<Category, {
@@ -34,37 +34,13 @@ const catMeta: Record<Category, {
     cardBar:      "bg-emerald-600",
     tagBg:        "bg-emerald-50", tagText: "text-emerald-700", ctaText: "text-emerald-700",
   },
-  "duty-of-care": {
-    label: "Duty of Care",
-    pillActive:   "bg-emerald-700 text-white shadow-sm",
-    pillInactive: "bg-white/60 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-900 border border-emerald-200",
-    dot:          "bg-emerald-600",
-    cardBar:      "bg-emerald-600",
-    tagBg:        "bg-emerald-50", tagText: "text-emerald-700", ctaText: "text-emerald-700",
-  },
-  "simpler-recycling": {
-    label: "Simpler Recycling",
-    pillActive:   "bg-green-700 text-white shadow-sm",
-    pillInactive: "bg-white/60 text-green-700 hover:bg-green-50 hover:text-green-900 border border-green-200",
-    dot:          "bg-green-600",
-    cardBar:      "bg-green-600",
-    tagBg:        "bg-green-50", tagText: "text-green-700", ctaText: "text-green-700",
-  },
-  "care-homes": {
-    label: "Care Homes",
+  "waste-tracking": {
+    label: "Digital Waste Tracking",
     pillActive:   "bg-emerald-800 text-white shadow-sm",
     pillInactive: "bg-white/60 text-emerald-800 hover:bg-emerald-50 hover:text-emerald-900 border border-emerald-200",
     dot:          "bg-emerald-500",
     cardBar:      "bg-emerald-500",
     tagBg:        "bg-emerald-50", tagText: "text-emerald-800", ctaText: "text-emerald-800",
-  },
-  hmo: {
-    label: "HMO & Estates",
-    pillActive:   "bg-amber-600 text-white shadow-sm",
-    pillInactive: "bg-white/60 text-amber-700 hover:bg-amber-50 hover:text-amber-900 border border-amber-200",
-    dot:          "bg-amber-500",
-    cardBar:      "bg-amber-500",
-    tagBg:        "bg-amber-50", tagText: "text-amber-700", ctaText: "text-amber-700",
   },
 }
 
@@ -75,9 +51,11 @@ const badgeStyles: Record<string, string> = {
   Popular:          "bg-emerald-50 text-emerald-700 border border-emerald-200",
   Template:         "bg-emerald-50 text-emerald-800 border border-emerald-200",
   New:              "bg-emerald-50 text-emerald-700 border border-emerald-200",
+  "Free Check":     "bg-emerald-50 text-emerald-700 border border-emerald-200",
+  "How It Works":   "bg-emerald-50 text-emerald-700 border border-emerald-200",
 }
 
-/* ─── Visible articles (waste-only) ─────────────────────────── */
+/* ─── Visible articles ──────────────────────────────────────── */
 const articles: {
   title: string
   description: string
@@ -90,153 +68,55 @@ const articles: {
   featured?: boolean
 }[] = [
   {
-    title: "How Businesses Can Save Money On Waste",
-    description: "Waste costs more than the bin bill. Practical steps to reduce waste spend, improve records, and stay compliant — with no jargon.",
-    icon: Sparkles,
-    href: "/resources/how-businesses-save-money-on-waste",
-    badge: "New",
-    topics: ["Cost Savings", "Waste Records", "Compliance"],
-    category: "duty-of-care",
-    readTime: "12 min",
-  },
-  {
-    title: "Why Waste Is Costing Your Care Home More Than It Should",
-    description: "Most care homes overpay for waste without knowing it. Wrong bags, wrong contracts and poor segregation add up — here is what an independent audit finds and fixes.",
-    icon: PoundSterling,
-    href: "/resources/care-home-waste-costs",
-    badge: "New",
-    topics: ["Cost Savings", "Clinical Waste", "Audit"],
-    category: "care-homes",
-    readTime: "10 min",
-  },
-  {
-    title: "Clinical Waste Quick Check",
-    description: "Five yes/no questions that instantly reveal hidden compliance gaps and unnecessary spend in your clinical waste contract — with email results.",
-    icon: Zap,
-    href: "/resources/clinical-waste-quick-check",
-    badge: "Free Checklist",
-    topics: ["Clinical Waste", "Cost Savings", "Care Homes"],
-    category: "care-homes",
-    readTime: "2 min",
-  },
-  {
-    title: "Care Home Waste Compliance Checklist",
-    description: "Free 16-question checklist for care home managers. Covers clinical waste, Simpler Recycling, HTM 07-01 and CQC requirements — with free PDF download.",
-    icon: Heart,
-    href: "/resources/care-home-waste-compliance-checklist",
-    badge: "Free Checklist",
-    topics: ["Care Homes", "Clinical Waste", "CQC Ready"],
-    category: "care-homes",
-    readTime: "5 min",
-  },
-  {
-    title: "Waste Duty of Care: Complete UK Compliance Guide",
-    description: "Legal requirements, Waste Transfer Notes, carrier verification, and how to avoid £300 fixed penalties before enforcement knocks.",
-    icon: ClipboardCheck,
-    href: "/resources/duty-of-care-waste",
-    badge: "Essential",
-    topics: ["Legal Requirements", "WTN", "Carrier Licences"],
-    category: "duty-of-care",
-    readTime: "10 min",
-  },
-  {
-    title: "Waste Duty of Care & Simpler Recycling: A Practical Guide for Warehouses",
-    description: "Legal obligations, waste segregation setup, and how to choose authorised contractors — a plain-English guide for warehouse operators.",
-    icon: Warehouse,
-    href: "/resources/warehouse-waste-guide",
-    badge: "Essential",
-    topics: ["Warehouses", "Duty of Care", "Simpler Recycling"],
-    category: "duty-of-care",
-    readTime: "12 min",
-  },
-  {
-    title: "Waste Documentation: Complete UK Guide",
-    description: "Every document legally required — Waste Transfer Notes, carrier licences, clinical waste consignment notes and Simpler Recycling records.",
-    icon: FileCheck,
-    href: "/resources/waste-packaging-documentation",
-    badge: "Essential",
-    topics: ["WTNs", "Carrier Licences", "Audit Trail"],
-    category: "duty-of-care",
-    readTime: "15 min",
-  },
-  {
-    title: "Two-Thirds of UK Businesses Aren't Ready for Simpler Recycling",
-    description: "64% missed the March 2025 deadline. What's required, enforcement risk, and how to get compliant in 60 days.",
-    icon: Leaf,
-    href: "/resources/simpler-recycling-2025",
-    badge: "Urgent",
-    topics: ["Readiness Check", "60-Day Plan", "Enforcement"],
-    category: "simpler-recycling",
-    readTime: "15 min",
-  },
-  {
-    title: "Simpler Recycling for Businesses: Complete 2025 Guide",
-    description: "Mandatory waste streams, 31 March 2026 deadline, EA enforcement and practical steps for your service.",
-    icon: Recycle,
-    href: "/resources/simpler-recycling-businesses",
-    badge: "Popular",
-    topics: ["Waste Streams", "Food Waste", "Regulations"],
-    category: "simpler-recycling",
-    readTime: "10 min",
-  },
-  {
-    title: "HMO Compliance Checklist",
-    description: "20-question pre-audit framework with traffic-light scoring across 5 risk sections. Know your gaps before the council does.",
-    icon: ListChecks,
-    href: "/templates/hmo-compliance-checklist",
-    badge: "Template",
-    topics: ["20 Questions", "Gap Analysis", "Pre-Audit"],
-    category: "hmo",
-    readTime: "Self-assess",
-  },
-  {
-    title: "HMO Landlords Face £5,000 Fines Under New Recycling Rules",
-    description: "Simpler Recycling now covers all HMOs. Landlords are legally liable — and council inspections have started.",
-    icon: Trash2,
-    href: "/resources/hmo-recycling-fines",
-    badge: "New",
-    topics: ["HMO Compliance", "£5K Fines", "Licence Risk"],
-    category: "hmo",
-    readTime: "18 min",
-  },
-  {
-    title: "A Tenant Left Stuff Behind. Now What?",
-    description: "When a tenant moves out, old beds, bags and rubbish often stay behind. Here's how to clear it the right way, with the right people and the right papers.",
+    title: "Digital Waste Tracking, Explained Simply",
+    description: "Who it affects, what you have to report, and the two-working-day deadline. With a deadline checker for every day of the week.",
     icon: Truck,
-    href: "/resources/landlord-fly-tipping-fines",
-    badge: "For Landlords",
-    topics: ["Move-Outs", "Clearances", "Right Papers"],
-    category: "hmo",
-    readTime: "20 min",
+    href: "/waste-cost-savings",
+    badge: "New",
+    topics: ["Two-Day Deadline", "Who's In", "October 2027"],
+    category: "waste-tracking",
+    readTime: "6 min",
     featured: true,
+  },
+  {
+    title: "What I Check On Every Load",
+    description: "Date, weight, EWC code, R/D code, who brought it, and your permit and deadline. The six checks before a load goes to Defra.",
+    icon: ListChecks,
+    href: "/what-we-check",
+    badge: "How It Works",
+    topics: ["EWC Codes", "R/D Codes", "Deadlines"],
+    category: "waste-tracking",
+    readTime: "4 min",
+  },
+  {
+    title: "Is Your Site Ready for Digital Waste Tracking?",
+    description: "10 quick questions about registration, reporting, codes and deadlines. Find out if loads are slipping through.",
+    icon: ClipboardCheck,
+    href: "/free-check",
+    badge: "Free Check",
+    topics: ["Registration", "Reporting", "Codes"],
+    category: "waste-tracking",
+    readTime: "3 min",
   },
 ]
 
-/* ─── Tools (waste-only) ─────────────────────────────────────── */
+/* ─── Tools ──────────────────────────────────────────────────── */
 const tools = [
   {
-    label: "Simpler Recycling Check",
-    description: "Instant compliance score showing which waste streams you're missing and your enforcement risk level.",
-    href: "/simpler-recycling-gap-analyser",
-    icon: Leaf,
-    tag: "Simpler Recycling · Free",
+    label: "Free Readiness Check",
+    description: "10 quick questions about registration, reporting, codes and deadlines. See where loads could slip through.",
+    href: "/free-check",
+    icon: ClipboardCheck,
+    tag: "Digital Waste Tracking · Free",
     num: "01",
   },
   {
-    label: "Waste Compliance Assessment",
-    description: "Duty of Care, clinical waste and Simpler Recycling — all three in one free 3-minute check.",
-    href: "/quiz",
-    icon: ClipboardCheck,
-    tag: "All Waste Regulations · Free",
+    label: "Deadline Checker",
+    description: "Tap the day a load arrives and see the day it must be reported by. Weekends handled for you.",
+    href: "/waste-cost-savings",
+    icon: Clock,
+    tag: "Two Working Days · Free",
     num: "02",
-  },
-  {
-    label: "Clinical Waste Quick Check",
-    description: "Five yes/no questions reveal hidden gaps and unnecessary spend in your care home's clinical waste contract.",
-    href: "/resources/clinical-waste-quick-check",
-    icon: Zap,
-    tag: "Care Homes · Clinical Waste · Free",
-    num: "03",
   },
 ]
 
@@ -285,7 +165,7 @@ export default function ResourcesPage() {
               style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(10px)", transition: "opacity 0.5s ease, transform 0.5s ease" }}
             >
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">UK Waste Compliance Intelligence</span>
+              <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Free Guides · Plain English</span>
             </div>
 
             {/* Headline */}
@@ -293,9 +173,9 @@ export default function ResourcesPage() {
               className="poppins-bold text-5xl sm:text-6xl md:text-7xl leading-[0.95] tracking-tight text-slate-900 mb-5"
               style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(16px)", transition: "opacity 0.55s ease 60ms, transform 0.55s ease 60ms" }}
             >
-              Waste{" "}
+              Straight{" "}
               <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
-                Intelligence.
+                Answers.
               </span>
             </h1>
 
@@ -304,7 +184,7 @@ export default function ResourcesPage() {
               className="poppins-regular text-lg sm:text-xl text-slate-500 max-w-xl leading-relaxed mb-10"
               style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(12px)", transition: "opacity 0.55s ease 120ms, transform 0.55s ease 120ms" }}
             >
-              Expert guides for UK businesses — plain English, inspection-ready, free.
+              Free guides and tools on digital waste tracking, for small permitted sites. No jargon.
             </p>
 
             {/* Stats strip */}
@@ -313,10 +193,10 @@ export default function ResourcesPage() {
               style={{ opacity: visible ? 1 : 0, transition: "opacity 0.55s ease 200ms" }}
             >
               {[
-                { value: "8",    label: "Free Guides" },
-                { value: "2",    label: "Free Tools" },
-                { value: "48hr", label: "Report Turnaround" },
-                { value: "£0",   label: "To Get Started" },
+                { value: "3",      label: "Free Guides" },
+                { value: "2",      label: "Free Tools" },
+                { value: "2 days", label: "Deadline Per Load" },
+                { value: "£0",     label: "To Get Started" },
               ].map((s, i) => (
                 <div key={i} className="flex flex-col">
                   <p className="poppins-bold text-3xl sm:text-4xl text-emerald-700 leading-none">{s.value}</p>
@@ -354,7 +234,7 @@ export default function ResourcesPage() {
                 </div>
 
                 <p className="poppins-semibold text-[10px] text-emerald-600 uppercase tracking-[0.18em] mb-3">
-                  For Landlords
+                  Start Here
                 </p>
 
                 <h2 className="poppins-bold text-[26px] sm:text-[32px] lg:text-[36px] text-slate-900 leading-[1.1] tracking-tight mb-4 group-hover:text-emerald-800 transition-colors duration-300">
@@ -387,10 +267,10 @@ export default function ResourcesPage() {
               />
               <div className="relative z-10 flex flex-col items-center gap-4">
                 <div className="w-16 h-16 rounded-2xl bg-white border border-emerald-200 shadow-sm flex items-center justify-center">
-                  <Home className="w-8 h-8 text-emerald-600" strokeWidth={1.5} />
+                  <Truck className="w-8 h-8 text-emerald-600" strokeWidth={1.5} />
                 </div>
                 <div className="space-y-2 w-full">
-                  {["Old furniture", "Bags and rubbish", "Licensed people", "The right papers"].map((tag) => (
+                  {["Every load", "Two working days", "Paper notes still kept", "Carriers from 2027"].map((tag) => (
                     <div key={tag} className="flex items-center gap-2.5 bg-white rounded-xl px-4 py-2.5 border border-emerald-200 shadow-sm">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                       <span className="poppins-medium text-[12px] text-emerald-700">{tag}</span>
@@ -463,10 +343,10 @@ export default function ResourcesPage() {
               >
                 <div className="flex items-center gap-4">
                   <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <Home className="w-4 h-4 text-emerald-600" />
+                    <Truck className="w-4 h-4 text-emerald-600" />
                   </div>
                   <div>
-                    <span className="poppins-semibold text-[10px] text-emerald-600 uppercase tracking-[0.14em]">Featured · Landlords</span>
+                    <span className="poppins-semibold text-[10px] text-emerald-600 uppercase tracking-[0.14em]">Featured · Start Here</span>
                     <p className="poppins-bold text-[14px] text-emerald-900 mt-0.5">{featured.title}</p>
                   </div>
                 </div>
@@ -579,7 +459,7 @@ export default function ResourcesPage() {
               </h2>
             </div>
             <p className="poppins-regular text-[13px] text-slate-400 max-w-xs sm:text-right leading-relaxed">
-              No card required. Instant results. Built for UK businesses of every type.
+              No card required. Instant results. Built for small permitted sites.
             </p>
           </div>
 
@@ -624,7 +504,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* ── Partner Check ────────────────────────────────────────── */}
+      {/* ── Ready for 2027 ───────────────────────────────────────── */}
       <section className="px-4 sm:px-6 py-16 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="bg-gradient-to-br from-emerald-900 to-emerald-800 rounded-3xl p-8 sm:p-12 overflow-hidden relative">
@@ -634,22 +514,22 @@ export default function ResourcesPage() {
                 <div className="flex items-center gap-2 mb-4">
                   <BadgeCheck className="w-4 h-4 text-emerald-300" />
                   <span className="text-xs poppins-semibold text-emerald-300 uppercase tracking-widest">
-                    For Partners Only
+                    For Carriers &amp; Brokers
                   </span>
                 </div>
                 <h2 className="poppins-bold text-2xl sm:text-3xl text-white mb-3 leading-tight">
-                  On-Site Partner Check —{" "}
-                  <span className="text-emerald-300">earn a referral reward</span>
+                  Ready for 2027 —{" "}
+                  <span className="text-emerald-300">join the list</span>
                 </h2>
                 <p className="text-emerald-100 text-sm leading-relaxed max-w-lg mb-5">
-                  Walk through any client site, answer 5 quick questions, and send us the results in one tap.
-                  Partners earn a reward for every audit booked — get in touch to find out more.
+                  Carriers, brokers and skip firms without a yard come into digital waste tracking from October 2027.
+                  Join the list and I&apos;ll keep you updated before you come into scope.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   {[
-                    { icon: Zap, label: "Under 2 minutes" },
-                    { icon: Shield, label: "No login needed" },
-                    { icon: BadgeCheck, label: "Contact us to learn more" },
+                    { icon: Zap, label: "Takes a minute" },
+                    { icon: Shield, label: "No obligation" },
+                    { icon: BadgeCheck, label: "Updates in plain English" },
                   ].map(({ icon: Icon, label }) => (
                     <div key={label} className="flex items-center gap-2 text-emerald-200 text-sm">
                       <Icon className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -660,10 +540,10 @@ export default function ResourcesPage() {
               </div>
               <div className="w-full lg:w-auto shrink-0">
                 <Link
-                  href="/resources/partner-check"
+                  href="/services#ready-2027"
                   className="w-full lg:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-emerald-50 text-emerald-900 poppins-bold text-sm px-7 py-3.5 rounded-xl shadow-md transition-all duration-200 active:scale-95"
                 >
-                  Open Partner Check
+                  Join the Ready for 2027 List
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -680,7 +560,7 @@ export default function ResourcesPage() {
         <div className="max-w-3xl mx-auto relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 mb-6">
             <Shield className="w-3.5 h-3.5 text-emerald-200" />
-            <span className="poppins-semibold text-[11px] text-emerald-100 uppercase tracking-[0.15em]">Inspection-Ready in 48 Hours</span>
+            <span className="poppins-semibold text-[11px] text-emerald-100 uppercase tracking-[0.15em]">Two Weeks Free · No Card</span>
           </div>
 
           <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5 leading-tight">
@@ -688,27 +568,27 @@ export default function ResourcesPage() {
           </h2>
 
           <p className="poppins-regular text-emerald-100 text-lg mb-9 max-w-xl mx-auto leading-relaxed">
-            3 minutes. Duty of Care, clinical waste and Simpler Recycling covered. Full compliance picture — free.
+            10 quick questions, 3 minutes. Find out if your site is reporting properly, or if loads are slipping through.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
-              onClick={() => router.push("/quiz")}
+              onClick={() => router.push("/free-check")}
               className="group inline-flex items-center justify-center gap-2.5 bg-white hover:bg-emerald-50 text-emerald-700 poppins-bold text-sm px-7 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-lg"
             >
-              Free Waste Compliance Check
+              Free Readiness Check
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </button>
             <button
               onClick={() => router.push("/services")}
               className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 text-white poppins-semibold text-sm px-7 py-3.5 rounded-xl transition-all duration-200 active:scale-95"
             >
-              View Our Services
+              See the Services
             </button>
           </div>
 
           <p className="mt-8 poppins-regular text-[11px] text-emerald-300/60">
-            No card required · Instant results · Trusted by regulated businesses across the UK
+            No card required · Instant results · Plain English
           </p>
         </div>
       </section>

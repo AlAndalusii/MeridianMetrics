@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'What We Check On Your Waste Bill | Millstone Compliance',
-  description: 'A simple guide to the six things we check on your waste bill: every charge, bin size, lifts, extra charges, price rises and your renewal date.',
+  title: 'What I Check On Every Load | Digital Waste Tracking | Millstone Compliance',
+  description: 'The six things I check on every load before it goes to Defra: date, weight, EWC code, R/D code, who brought it, and your permit and deadline.',
   openGraph: {
-    title: 'What We Check On Your Waste Bill',
-    description: 'Six simple checks that can stop you overpaying for your bins. For Birmingham businesses.',
+    title: 'What I Check On Every Load',
+    description: 'Six checks on every load, before the two-working-day deadline. For permitted waste sites.',
     type: 'website',
     locale: 'en_GB',
     siteName: 'Millstone Compliance',

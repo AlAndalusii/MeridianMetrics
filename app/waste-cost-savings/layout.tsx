@@ -2,23 +2,23 @@ import React from "react"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "How UK Businesses Cut Waste Costs 20–40% | Millstone Compliance",
+  title: "Digital Waste Tracking, Explained Simply | Millstone Compliance",
   description:
-    "Independent audit data shows UK businesses overpay by 20–40% on waste. See NHS clinical waste figures, £30K real savings cases, and how a £195 snapshot audit pays for itself in weeks.",
+    "A plain English guide to digital waste tracking for permitted sites: who it affects, what to report, the two-working-day deadline, and what happens in October 2027.",
   keywords: [
-    "UK waste cost savings",
-    "reduce waste costs UK",
-    "waste audit ROI",
-    "clinical waste misclassification",
-    "waste contractor overcharging",
-    "waste cost reduction UK",
-    "independent waste audit",
-    "waste spend analysis",
+    "digital waste tracking explained",
+    "digital waste tracking deadline",
+    "two working days waste reporting",
+    "Defra digital waste tracking",
+    "permitted site waste tracking",
+    "waste transfer notes digital tracking",
+    "EWC and R/D codes",
+    "waste tracking October 2027",
   ],
   openGraph: {
-    title: "How UK Businesses Cut Waste Costs 20–40%",
+    title: "Digital Waste Tracking, Explained Simply",
     description:
-      "NHS data, real case studies and sector cost tables. See exactly where waste spend leaks — and how to recover it.",
+      "Who it affects, what to report, and when. With a deadline checker for every day of the week.",
     type: "article",
   },
 }

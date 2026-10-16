@@ -15,8 +15,8 @@ const ALLOWED_TYPES = ['application/pdf', 'image/jpeg', 'image/png', 'image/heic
 type RequestKind = 'quarterly' | 'thorough' | 'callback'
 
 const KIND_LABEL: Record<RequestKind, string> = {
-  quarterly: 'Quick bill check (one quarter)',
-  thorough:  'Thorough audit (12 months)',
+  quarterly: 'Free two-week trial (tickets)',
+  thorough:  'DWT Health Check (sample week)',
   callback:  'Call me back',
 }
 
@@ -54,9 +54,9 @@ function buildBusinessEmail(r: BillRequest): string {
 
   const rows = `
     ${emailHeader({
-      eyebrow: 'New Bill Request',
+      eyebrow: 'New Tickets Request',
       title: KIND_LABEL[r.kind],
-      subtitle: 'Someone has sent their waste bill, or asked for a call, through the website.',
+      subtitle: 'Someone has sent tickets, or asked for a call, through the website.',
     })}
     <tr>
       <td style="background:#ffffff;padding:36px 44px 12px;">
@@ -82,19 +82,19 @@ function buildBusinessEmail(r: BillRequest): string {
       </td>
     </tr>
     ${emailFooter()}`
-  return wrapEmail('New Bill Request', rows)
+  return wrapEmail('New Tickets Request', rows)
 }
 
 function buildConfirmationEmail(r: BillRequest): string {
   const firstName = escapeHtml(r.name.split(' ')[0] || r.name)
   const body = r.kind === 'callback'
-    ? `Thanks for asking us to call. We&apos;ll ring you on <strong>${escapeHtml(r.phone)}</strong> to go through your waste bill together. It only takes about 15 minutes.`
-    : `Thanks for sending your bill. We&apos;ll check it line by line and send you a written report within 48 hours, in plain English.`
+    ? `Thanks for asking me to call. I&apos;ll ring you on <strong>${escapeHtml(r.phone)}</strong> to go through how your site reports now. It only takes about 15 minutes.`
+    : `Thanks for sending your tickets. I&apos;ll be in touch within one business day with your next steps, in plain English.`
 
   const rows = `
     ${emailHeader({
       eyebrow: 'Got it',
-      title: r.kind === 'callback' ? 'We&apos;ll call you soon' : 'Your bill is with us',
+      title: r.kind === 'callback' ? 'I&apos;ll call you soon' : 'Your tickets are with me',
       subtitle: KIND_LABEL[r.kind],
     })}
     <tr>
@@ -148,7 +148,7 @@ export async function POST(request: Request) {
     req.fileNames = files.map((f) => f.name)
 
     if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY.includes('xxxxxxxxx')) {
-      console.log('Bill request received (email not configured):', { ...req, notes: undefined })
+      console.log('Tickets request received (email not configured):', { ...req, notes: undefined })
       return NextResponse.json({ success: true })
     }
 
@@ -171,7 +171,7 @@ export async function POST(request: Request) {
           from: FROM,
           to: [req.email],
           replyTo: businessEmail,
-          subject: req.kind === 'callback' ? 'We’ll call you soon' : 'We’ve got your waste bill',
+          subject: req.kind === 'callback' ? 'I’ll call you soon' : 'I’ve got your tickets',
           html: buildConfirmationEmail(req),
         })
       )

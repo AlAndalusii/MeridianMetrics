@@ -5,10 +5,10 @@ import Link from "next/link"
 import {
   ArrowRight,
   ArrowLeft,
-  PoundSterling,
-  Trash2,
   FileCheck,
-  CalendarClock,
+  Truck,
+  ListChecks,
+  Timer,
   MessageCircle,
   CheckCircle,
   AlertTriangle,
@@ -25,13 +25,13 @@ const WHATSAPP_NUMBER = "447762270113"
 
 /* ─── The four areas and ten questions ────────────────────────────────────── */
 type Answer = "yes" | "no" | "unsure"
-type AreaId = "price" | "bins" | "paperwork" | "renewal"
+type AreaId = "registration" | "reporting" | "codes" | "deadlines"
 
 const areas: { id: AreaId; label: string; icon: React.ElementType }[] = [
-  { id: "price", label: "Price", icon: PoundSterling },
-  { id: "bins", label: "Bins", icon: Trash2 },
-  { id: "paperwork", label: "Paperwork", icon: FileCheck },
-  { id: "renewal", label: "Renewal", icon: CalendarClock },
+  { id: "registration", label: "Registration", icon: FileCheck },
+  { id: "reporting", label: "Reporting", icon: Truck },
+  { id: "codes", label: "Codes", icon: ListChecks },
+  { id: "deadlines", label: "Deadlines", icon: Timer },
 ]
 
 type Question = {
@@ -46,84 +46,84 @@ type Question = {
 
 const questions: Question[] = [
   {
-    area: "price",
-    q: "Has your bin bill gone up in the last year?",
-    why: "Prices can creep up a bit at a time.",
-    warn: "yes",
-    sign: "My bill has gone up",
-    check: "Put last year's bill next to this year's. Is the price for each bin empty higher? Your contract should say how much it can go up.",
-  },
-  {
-    area: "price",
-    q: "Do you know what you pay each time a bin is emptied?",
-    why: "This is the number that matters most.",
+    area: "registration",
+    q: "Is your site set up on Defra's digital waste tracking service?",
+    why: "You can't report a load until you're set up.",
     warn: "no",
-    sign: "I don't know my price per empty",
-    check: "Look for \"price per lift\" on your bill or contract. A lift is one bin being emptied. If you can't find it, ask your collector in writing.",
+    sign: "Site not set up yet",
+    check: "Ask whoever looks after your permit if the site is registered. If not, get it done before your next load comes in.",
   },
   {
-    area: "price",
-    q: "Are there charges on your bill you don't understand?",
-    why: "Odd names often hide extra fees.",
-    warn: "yes",
-    sign: "Charges I don't understand",
-    check: "Circle every line that isn't a bin empty or bin rent. Ask your collector what each one is for, and where it's in your contract.",
-  },
-  {
-    area: "bins",
-    q: "Are your bins often half empty when they get emptied?",
-    why: "Half-empty bins mean you pay for air.",
-    warn: "yes",
-    sign: "Bins are often half empty",
-    check: "Look inside your bins just before collection for two weeks. If they're half empty, a smaller bin or fewer empties could cost less.",
-  },
-  {
-    area: "bins",
-    q: "Does the number of bins on your bill match the bins you have?",
-    why: "Some bills charge for bins that aren't there.",
+    area: "registration",
+    q: "Do you know who at your site can log in and submit loads?",
+    why: "If only one person can, loads stop when they're off.",
     warn: "no",
-    sign: "Bins on my bill don't match",
-    check: "Count the bins outside. Then count the bins on your bill. They should be the same.",
+    sign: "Not sure who can submit",
+    check: "Write down who has a login. Make sure at least two people can submit, or someone outside the site does it for you.",
   },
   {
-    area: "bins",
-    q: "Have you ever been charged for an empty that didn't happen?",
-    why: "You should only pay for real empties.",
-    warn: "yes",
-    sign: "Charged for missed empties",
-    check: "For one month, write down each day your bins get emptied. Then match it to the empties on your bill.",
-  },
-  {
-    area: "paperwork",
-    q: "Have you been charged extra with no photo or proof?",
-    why: "Extra charges should always come with proof.",
-    warn: "yes",
-    sign: "Extra charges with no proof",
-    check: "For every extra charge (like wrong items in the bin), ask for the photo. No proof? Ask for the money back.",
-  },
-  {
-    area: "paperwork",
-    q: "Do you have a waste transfer note from your collector?",
-    why: "The law says you must keep one.",
+    area: "reporting",
+    q: "Is every load you receive being reported right now?",
+    why: "Every load counts, not just the big ones.",
     warn: "no",
-    sign: "No waste transfer note",
-    check: "It's a short note saying who takes your waste and where it goes. Ask your collector for it and keep it for 2 years.",
+    sign: "Not every load is reported",
+    check: "Pick one day last week. Count the tickets, then count the loads you reported for that day. The two numbers should match.",
   },
   {
-    area: "renewal",
-    q: "Do you know the date your contract ends?",
-    why: "Miss it, and you can get stuck for years.",
-    warn: "no",
-    sign: "I don't know my end date",
-    check: "Find the start date and length on page one of your contract. Put the end date in your phone now, with a reminder 3 months before.",
-  },
-  {
-    area: "renewal",
-    q: "Does your contract renew on its own if you don't cancel?",
-    why: "Auto-renewals often come with a price rise.",
+    area: "reporting",
+    q: "Does someone type each load in by hand from the paper ticket?",
+    why: "That's the same job twice, on every ticket.",
     warn: "yes",
-    sign: "Contract renews on its own",
-    check: "Search your contract for \"renew\" or \"rollover\". Note how many days' warning you must give to leave.",
+    sign: "Every load typed in twice",
+    check: "Time how long one load takes to enter. Times it by your loads a week. That's the admin you could hand over.",
+  },
+  {
+    area: "reporting",
+    q: "Do you still keep your paper waste transfer notes?",
+    why: "Digital tracking is extra. It doesn't replace them.",
+    warn: "no",
+    sign: "Paper notes not kept",
+    check: "Keep your transfer notes the way you always have. Digital waste tracking sits on top of your paperwork, not instead of it.",
+  },
+  {
+    area: "codes",
+    q: "Do you know the EWC codes for the waste you take in most?",
+    why: "Most sites use the same handful of codes.",
+    warn: "no",
+    sign: "Unsure of our EWC codes",
+    check: "Look at your last 20 tickets. List the waste types that keep coming up, and the six-digit EWC code for each one.",
+  },
+  {
+    area: "codes",
+    q: "Do you know which R or D code goes with each waste?",
+    why: "R means recovery. D means disposal.",
+    warn: "no",
+    sign: "Unsure of our R/D codes",
+    check: "For each waste on your list, write down what your site does with it. Then match it to the R or D code your permit uses.",
+  },
+  {
+    area: "codes",
+    q: "Have you checked your codes match what your permit allows?",
+    why: "A wrong code can mean a load your permit doesn't cover.",
+    warn: "no",
+    sign: "Codes not checked against permit",
+    check: "Put your permit next to your code list. Every EWC and R/D code you report should appear in your permit.",
+  },
+  {
+    area: "deadlines",
+    q: "Do you know the deadline for reporting each load?",
+    why: "It's two working days, and it's easy to miscount.",
+    warn: "no",
+    sign: "Unsure of the deadline",
+    check: "Count two working days from the day after the waste arrives. Weekends and bank holidays don't count. A Thursday load is due by the end of Monday.",
+  },
+  {
+    area: "deadlines",
+    q: "If someone is off sick or on holiday, do loads still go in on time?",
+    why: "Deadlines don't stop for holidays.",
+    warn: "no",
+    sign: "No cover when someone's off",
+    check: "Decide now who reports loads when the usual person is away, and make sure they can log in.",
   },
 ]
 
@@ -131,10 +131,10 @@ const isWarning = (q: Question, a?: Answer) => a === "unsure" || a === q.warn
 
 const verdictFor = (n: number) =>
   n <= 2
-    ? { label: "Looking healthy", note: "Only a few small things to keep an eye on.", tone: "emerald" as const }
+    ? { label: "Looking ready", note: "Only a few small things to tidy up.", tone: "emerald" as const }
     : n <= 5
-    ? { label: "Some warning signs", note: "There are a few places you could be losing money.", tone: "amber" as const }
-    : { label: "Time for a proper check", note: "Lots of signs you could be paying too much.", tone: "rose" as const }
+    ? { label: "A few gaps", note: "There are a few places where loads could slip through.", tone: "amber" as const }
+    : { label: "Time to get set up", note: "Several signs your site isn't ready yet.", tone: "rose" as const }
 
 const toneClasses = {
   emerald: { text: "text-emerald-700", bg: "bg-emerald-50", border: "border-emerald-200", stroke: "#059669" },
@@ -274,7 +274,7 @@ function Intro({ onStart }: { onStart: () => void }) {
     setTimeout(onStart, 520)
   }
 
-  const words = ["Is", "your", "waste", "deal"]
+  const words = ["Is", "your", "site", "ready"]
 
   return (
     <div className={`text-center transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] ${leaving ? "opacity-0 -translate-y-6 scale-[0.98] blur-sm" : ""}`}>
@@ -283,7 +283,7 @@ function Intro({ onStart }: { onStart: () => void }) {
           <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-50" />
           <span className="relative w-2 h-2 rounded-full bg-emerald-500" />
         </span>
-        <span className="poppins-semibold text-xs uppercase tracking-[0.18em] text-emerald-800">Free Waste Check</span>
+        <span className="poppins-semibold text-xs uppercase tracking-[0.18em] text-emerald-800">Free Readiness Check</span>
       </div>
 
       <h1 className="poppins-bold text-[2.6rem] sm:text-6xl md:text-7xl leading-[1.02] tracking-tight">
@@ -298,12 +298,12 @@ function Intro({ onStart }: { onStart: () => void }) {
           className="fc-word fc-shine inline-block pb-2 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent"
           style={{ animationDelay: "480ms" }}
         >
-          working for you?
+          for waste tracking?
         </span>
       </h1>
 
       <p className="fc-in poppins-regular text-lg sm:text-xl text-slate-600 leading-relaxed mt-6 max-w-xl mx-auto" style={{ animationDelay: "650ms" }}>
-        10 quick questions. See your warning signs, and learn how to check each one yourself.
+        10 quick questions, 3 minutes. Find out if your site is reporting properly, or if loads are slipping through.
       </p>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-10 max-w-2xl mx-auto">
@@ -478,12 +478,12 @@ function Result({
   const C = 2 * Math.PI * R
 
   const message = [
-    `Hi Zak, I just did the free waste check on your website.`,
+    `Hi Zak, I just did the free readiness check on your website.`,
     name && `Name: ${name}`,
-    business && `Business: ${business}`,
+    business && `Site: ${business}`,
     `Result: ${count} of ${questions.length} warning signs (${verdict.label})`,
     count > 0 && `\nMy warning signs:\n${flagged.map((q) => `• ${q.sign}`).join("\n")}`,
-    `\nCan you check my waste bill for me?`,
+    `\nCan you help my site with digital waste tracking?`,
   ]
     .filter(Boolean)
     .join("\n")
@@ -565,9 +565,9 @@ function Result({
       <div className="fc-in mt-5 rounded-[2rem] bg-emerald-900 p-6 sm:p-10 relative overflow-hidden" style={{ animationDelay: "120ms" }}>
         <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[radial-gradient(circle,rgba(52,211,153,0.35)_0%,transparent_70%)] pointer-events-none" />
         <div className="relative">
-          <h2 className="poppins-bold text-2xl sm:text-3xl text-white tracking-tight">Want us to check your bill?</h2>
+          <h2 className="poppins-bold text-2xl sm:text-3xl text-white tracking-tight">Want me to take a look?</h2>
           <p className="poppins-regular text-base sm:text-lg text-emerald-100/80 mt-2 max-w-xl">
-            Send us your result on WhatsApp. We&apos;ll look at your bill for free and tell you what we find.
+            Send me your result on WhatsApp. I&apos;ll tell you what I&apos;d fix first, and how a free two-week trial works.
           </p>
           <div className="grid sm:grid-cols-2 gap-3 mt-6">
             <label className="block">
@@ -580,11 +580,11 @@ function Result({
               />
             </label>
             <label className="block">
-              <span className="poppins-medium text-xs text-emerald-200/80">Business name (optional)</span>
+              <span className="poppins-medium text-xs text-emerald-200/80">Site name (optional)</span>
               <input
                 value={business}
                 onChange={(e) => setBusiness(e.target.value)}
-                placeholder="e.g. Corner Café"
+                placeholder="e.g. Northside Metals"
                 className="mt-1.5 w-full rounded-xl bg-white/10 border border-white/15 px-4 py-3 text-white placeholder:text-emerald-100/40 poppins-regular text-base outline-none focus:border-emerald-300 focus:bg-white/15 transition-colors"
               />
             </label>
@@ -628,8 +628,8 @@ function Result({
 
       {/* Bottom CTA */}
       <div className="fc-in mt-10 text-center" style={{ animationDelay: "300ms" }}>
-        <p className="poppins-semibold text-lg text-slate-900">Rather we did the checking?</p>
-        <p className="poppins-regular text-slate-500 mt-1">It&apos;s free. Most checks take us under 48 hours.</p>
+        <p className="poppins-semibold text-lg text-slate-900">Rather I did the reporting?</p>
+        <p className="poppins-regular text-slate-500 mt-1">Two weeks free. No card. No contract.</p>
         <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
           <WhatsAppButton className="w-full sm:w-auto" />
           <button
@@ -640,7 +640,7 @@ function Result({
           </button>
         </div>
         <Link href="/send-your-bill" className="inline-block mt-5 poppins-medium text-sm text-emerald-700 hover:text-emerald-800 underline underline-offset-4">
-          Or upload your bill instead
+          Or send me your tickets instead
         </Link>
       </div>
     </div>

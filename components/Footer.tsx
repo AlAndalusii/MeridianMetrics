@@ -38,9 +38,10 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2.5">
                 {[
-                  { label: "Compliance Services", href: "/services" },
-                  { label: "Documentation", href: "/services/documentation" },
-                  { label: "Support", href: "/support" }
+                  { label: "DWT Reporting", href: "/services#reporting" },
+                  { label: "DWT Health Check", href: "/services#health-check" },
+                  { label: "DWT Setup", href: "/services#setup" },
+                  { label: "Paperwork Support", href: "/services#paperwork" }
                 ].map((item, index) => (
                   <li key={index}>
                     <Link
@@ -65,9 +66,9 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2.5">
                 {[
-                  { label: "Partner Site Check", href: "/resources/partner-check" },
-                  { label: "Documentation Guide", href: "/resources/waste-packaging-documentation" },
-                  { label: "Care Home Checklist", href: "/resources/care-home-waste-compliance-checklist" },
+                  { label: "Free Readiness Check", href: "/free-check" },
+                  { label: "What I Check", href: "/what-we-check" },
+                  { label: "Digital Waste Tracking Guide", href: "/waste-cost-savings" },
                   { label: "All Resources", href: "/resources" }
                 ].map((item, index) => (
                   <li key={index}>
@@ -94,8 +95,8 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {[
                   { label: "Meet Zak", href: "/about" },
-                  { label: "Our Services", href: "/services" },
-                  { label: "Cut Waste Costs", href: "/waste-cost-savings" },
+                  { label: "Questions & Help", href: "/support" },
+                  { label: "Ready for 2027", href: "/services#ready-2027" },
                   { label: "Privacy Policy", href: "/privacy" }
                 ].map((item, index) => (
                   <li key={index}>
@@ -179,7 +180,7 @@ export default function Footer() {
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">
                   <Award className="h-3 w-3 text-emerald-600" />
-                  <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">UK Compliant</span>
+                  <span className="text-[10px] poppins-medium text-emerald-700 uppercase tracking-wide">Plain English</span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/60 backdrop-blur-sm">
                   <CheckCircle className="h-3 w-3 text-emerald-600" />

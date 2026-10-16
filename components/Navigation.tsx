@@ -38,6 +38,8 @@ export function Navigation() {
             {/* ── Services direct link ─────────────────────────────── */}
             <Link href="/services" className={linkClass("/services")}>Services</Link>
 
+            <Link href="/free-check" className={linkClass("/free-check")}>Free Check</Link>
+
             <Link href="/resources" className={linkClass("/resources")}>Resources</Link>
           </div>
 
@@ -56,7 +58,7 @@ export function Navigation() {
                 whitespace-nowrap
               "
             >
-              Free Waste Audit
+              Free Two-Week Trial
             </Link>
 
             <MobileMenu />

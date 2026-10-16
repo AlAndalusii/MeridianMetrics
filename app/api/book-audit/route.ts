@@ -42,19 +42,19 @@ function formatTime(timeStr?: string): string {
 }
 
 function serviceLabel(serviceType?: string): string {
-  return serviceType === 'discovery'   ? 'Discovery Call — FREE'
-    : serviceType === 'snapshot'    ? 'Compliance Snapshot — £195'
-    : serviceType === 'setup'       ? 'Compliance Setup Pack — £495'
-    : serviceType === 'waste-audit' ? 'Free Waste Contract Audit'
-    : 'Audit Booking'
+  return serviceType === 'discovery'   ? 'Free 15-Minute Call'
+    : serviceType === 'snapshot'    ? 'DWT Health Check — one-off fee, agreed upfront'
+    : serviceType === 'setup'       ? 'DWT Setup — one-off fee, agreed upfront'
+    : serviceType === 'trial' || serviceType === 'waste-audit' ? 'Free Two-Week Trial — DWT Reporting'
+    : 'Booking Request'
 }
 
 function serviceShort(serviceType?: string): string {
-  return serviceType === 'discovery'   ? 'Discovery Call'
-    : serviceType === 'snapshot'    ? 'Compliance Snapshot'
-    : serviceType === 'setup'       ? 'Compliance Setup Pack'
-    : serviceType === 'waste-audit' ? 'Waste Contract Audit'
-    : 'Audit Booking'
+  return serviceType === 'discovery'   ? 'Free 15-Minute Call'
+    : serviceType === 'snapshot'    ? 'DWT Health Check'
+    : serviceType === 'setup'       ? 'DWT Setup'
+    : serviceType === 'trial' || serviceType === 'waste-audit' ? 'Free Two-Week Trial'
+    : 'Booking Request'
 }
 
 /* ─── Business notification email ─────────────────────────────────────────── */
@@ -62,7 +62,7 @@ function buildBusinessEmail(p: BookingPayload): string {
   const rows = `
     ${emailHeader({
       eyebrow: 'New Booking Request',
-      title: 'Audit Booking Received',
+      title: 'New Booking Request',
       subtitle: 'A client has submitted a booking request via the website.',
     })}
 
@@ -143,7 +143,7 @@ function buildBusinessEmail(p: BookingPayload): string {
 
     ${emailFooter()}
   `
-  return wrapEmail('New Audit Booking', rows)
+  return wrapEmail('New Booking Request', rows)
 }
 
 /* ─── User confirmation email ──────────────────────────────────────────────── */
@@ -152,7 +152,7 @@ function buildConfirmationEmail(p: BookingPayload): string {
     ${emailHeader({
       eyebrow: 'Booking Confirmed',
       title: `We've Got Your Request, ${p.name.split(' ')[0]}`,
-      subtitle: 'Thank you for getting in touch. We will confirm your booking within one business day.',
+      subtitle: 'Thanks for getting in touch. I will confirm your booking within one business day.',
     })}
 
     <!-- WHAT HAPPENS NEXT -->
@@ -161,9 +161,9 @@ function buildConfirmationEmail(p: BookingPayload): string {
         <p style="margin:0 0 20px;font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:0.16em;text-transform:uppercase;font-family:${FONT};">What Happens Next</p>
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
           ${[
-            ['We review your request', 'We check your preferred date and time and confirm availability — usually within one business day.'],
-            ['We send you a confirmation', `A short email to confirm your ${serviceShort(p.serviceType)} and any next steps before we start.`],
-            ['We get started', 'On the day of your appointment, we work through your audit and deliver your written report within 48 hours.'],
+            ['I review your request', 'I check your preferred date and time and confirm, usually within one business day.'],
+            ['I send you a confirmation', `A short email to confirm your ${serviceShort(p.serviceType)} and any next steps before we start.`],
+            ['We get started', 'I set up your usual codes, then you send tickets on WhatsApp. Every Friday you get a confirmation of everything submitted.'],
           ].map(([title, desc], i) => `
           <tr>
             <td style="padding-bottom:12px;vertical-align:top;">
@@ -254,7 +254,7 @@ export async function POST(request: Request) {
     }
 
     if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY.includes('xxxxxxxxx')) {
-      console.log('Audit booking received (email not configured):', { name, email })
+      console.log('Booking request received (email not configured):', { name, email })
       return NextResponse.json({ success: true, message: 'Booking received (email not configured)' })
     }
 

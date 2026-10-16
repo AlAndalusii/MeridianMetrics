@@ -48,14 +48,14 @@ function useReveal(threshold = 0.12) {
   return { ref, visible }
 }
 
-/* ─── Hero animation: bill travels from you, to us, back as a report ─────── */
+/* ─── Hero animation: a ticket travels from you, to me, back as a confirmation ── */
 const journey = [
-  { icon: Camera, label: "You", sub: "Snap your bill" },
-  { icon: Search, label: "Us",  sub: "Check every line" },
-  { icon: FileCheck, label: "You", sub: "Get your report" },
+  { icon: Camera, label: "You", sub: "Snap the ticket" },
+  { icon: Search, label: "Me",  sub: "Enter and submit" },
+  { icon: FileCheck, label: "You", sub: "Friday confirmation" },
 ]
 
-const reportLines = ["Bin size checked", "Every lift checked", "Renewal date found"]
+const reportLines = ["Codes matched", "Submitted to Defra", "On your Friday list"]
 
 // Stages: 0 snap · 1 travelling · 2 checking · 3 travelling back · 4–6 report ticks · 7 hold
 const JOURNEY_STAGES = 8
@@ -89,7 +89,7 @@ function BillJourney() {
           </div>
           <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 rounded-full border border-emerald-100">
             <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-            <span className="poppins-semibold text-[10px] text-emerald-600">48hr report</span>
+            <span className="poppins-semibold text-[10px] text-emerald-600">Every load</span>
           </div>
         </div>
 
@@ -101,7 +101,7 @@ function BillJourney() {
             style={{ width: `${(packetPos / 100) * 66.66}%` }}
           />
 
-          {/* Travelling bill */}
+          {/* Travelling ticket */}
           <div
             className="absolute top-6 -translate-y-1/2 -translate-x-1/2 z-10 transition-all duration-700"
             style={{ left: `${16.66 + (packetPos / 100) * 66.66}%`, transitionTimingFunction: "cubic-bezier(0.65,0,0.35,1)" }}
@@ -137,9 +137,9 @@ function BillJourney() {
           </div>
         </div>
 
-        {/* Report */}
+        {/* Confirmation */}
         <div className="rounded-2xl bg-emerald-50/60 border border-emerald-100 p-4">
-          <p className="poppins-semibold text-[10px] text-emerald-700 uppercase tracking-[0.14em] mb-3">Your report</p>
+          <p className="poppins-semibold text-[10px] text-emerald-700 uppercase tracking-[0.14em] mb-3">Your confirmation</p>
           <div className="space-y-2">
             {reportLines.map((line, i) => {
               const done = i < ticks
@@ -159,8 +159,8 @@ function BillJourney() {
       </div>
 
       <div className="absolute -bottom-4 -left-2 sm:-left-4 bg-white/95 backdrop-blur-xl rounded-2xl border border-emerald-100 px-4 py-2.5 shadow-xl animate-float-slow">
-        <p className="poppins-bold text-sm text-emerald-900 leading-none">First check free</p>
-        <p className="poppins-regular text-[10px] text-emerald-500 mt-1">No card. No catch.</p>
+        <p className="poppins-bold text-sm text-emerald-900 leading-none">Two weeks free</p>
+        <p className="poppins-regular text-[10px] text-emerald-500 mt-1">No card. No contract.</p>
       </div>
     </div>
   )
@@ -168,14 +168,14 @@ function BillJourney() {
 
 /* ─── Steps ───────────────────────────────────────────────────────────────── */
 const steps = [
-  { icon: FileText, title: "Find your latest bill", desc: "Paper or PDF. The page that shows your bins, how often they're emptied, and the price." },
-  { icon: Camera,   title: "Take a photo or save the PDF", desc: "A clear phone photo is fine. Just make sure we can read the words." },
-  { icon: Send,     title: "Send it to us", desc: "Pick the way that's easiest for you.", methods: true },
-  { icon: FileCheck, title: "We check it and report back", desc: "You get a written report within 48 hours. Plain English. Clear next steps." },
+  { icon: FileText, title: "Grab your tickets", desc: "Weighbridge tickets and transfer notes. Paper is fine. The ones for the loads you took in." },
+  { icon: Camera,   title: "Take a photo", desc: "A clear phone photo is fine. Just make sure I can read the date, weight and waste." },
+  { icon: Send,     title: "Send them to me", desc: "Pick the way that's easiest for you.", methods: true },
+  { icon: FileCheck, title: "I enter and submit them", desc: "Every load goes in before the deadline. Every Friday, you get a list of everything submitted." },
 ]
 
 /* ─── Page ────────────────────────────────────────────────────────────────── */
-export default function SendYourBillPage() {
+export default function SendYourTicketsPage() {
   const hero = useReveal(0.05)
   const chooseRef = useReveal(0.15)
   const formRef = useReveal(0.1)
@@ -198,7 +198,7 @@ export default function SendYourBillPage() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  /* Bill form */
+  /* Tickets form */
   const [kind, setKind] = useState<CheckKind>("quarterly")
   const [files, setFiles] = useState<File[]>([])
   const [dragging, setDragging] = useState(false)
@@ -225,11 +225,11 @@ export default function SendYourBillPage() {
     document.getElementById("upload")?.scrollIntoView({ behavior: "smooth", block: "start" })
   }
 
-  const submitBill = async (e: React.FormEvent) => {
+  const submitTickets = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!name.trim() || !email.trim()) return
     if (totalBytes > MAX_TOTAL_BYTES) {
-      setError("Those files are too big together. Keep them under 4MB, or email them to us instead.")
+      setError("Those files are too big together. Keep them under 4MB, or WhatsApp them to me instead.")
       return
     }
     setSending(true)
@@ -300,18 +300,18 @@ export default function SendYourBillPage() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-200 shadow-sm mb-7">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Your first check is free</span>
+              <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Two weeks free · No card</span>
             </div>
 
             <h1 className="poppins-bold text-4xl sm:text-5xl md:text-6xl leading-[1.02] tracking-tight text-slate-900 mb-6">
-              Send us your bill.<br />
+              Send me your tickets.<br />
               <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
-                We&apos;ll do the rest.
+                I&apos;ll do the rest.
               </span>
             </h1>
 
             <p className="poppins-regular text-lg text-slate-500 max-w-md mb-9 leading-relaxed">
-              It takes two minutes. We check every line, and send you a plain English report within 48 hours.
+              Photos on WhatsApp, email or upload. I enter and submit every load to Defra before the deadline.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
@@ -345,7 +345,7 @@ export default function SendYourBillPage() {
       <section id="how" className="py-20 sm:py-28 px-6 scroll-mt-20">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">How to send it</p>
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">How to send them</p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
               Four small steps.{" "}
               <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">That&apos;s all.</span>
@@ -393,15 +393,15 @@ export default function SendYourBillPage() {
                             className="group flex flex-col gap-1 p-3.5 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all duration-300"
                           >
                             <Phone className="w-4 h-4 text-emerald-600 mb-1" />
-                            <span className="poppins-semibold text-xs text-slate-900">WhatsApp a photo</span>
+                            <span className="poppins-semibold text-xs text-slate-900">WhatsApp the photos</span>
                             <span className="poppins-regular text-[11px] text-slate-500">{CONTACT_INFO.phone}</span>
                           </a>
                           <a
-                            href={`${CONTACT_INFO.mailto}?subject=My waste bill`}
+                            href={`${CONTACT_INFO.mailto}?subject=My waste tickets`}
                             className="group flex flex-col gap-1 p-3.5 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all duration-300"
                           >
                             <Mail className="w-4 h-4 text-emerald-600 mb-1" />
-                            <span className="poppins-semibold text-xs text-slate-900">Email it</span>
+                            <span className="poppins-semibold text-xs text-slate-900">Email them</span>
                             <span className="poppins-regular text-[11px] text-slate-500 break-all">{CONTACT_INFO.email}</span>
                           </a>
                           <a
@@ -409,7 +409,7 @@ export default function SendYourBillPage() {
                             className="group flex flex-col gap-1 p-3.5 rounded-xl border border-emerald-200 bg-emerald-50/60 hover:bg-emerald-50 transition-all duration-300"
                           >
                             <Upload className="w-4 h-4 text-emerald-600 mb-1" />
-                            <span className="poppins-semibold text-xs text-slate-900">Upload it here</span>
+                            <span className="poppins-semibold text-xs text-slate-900">Upload them here</span>
                             <span className="poppins-regular text-[11px] text-slate-500">Takes a minute</span>
                           </a>
                         </div>
@@ -422,7 +422,7 @@ export default function SendYourBillPage() {
           </div>
 
           <p className="text-center poppins-regular text-sm text-slate-400 mt-10">
-            Tip: if you have your contract too, send it. It helps us check more.
+            Tip: WhatsApp is quickest. Most sites send photos as each lorry comes in.
           </p>
         </div>
       </section>
@@ -434,8 +434,8 @@ export default function SendYourBillPage() {
             className="text-center mb-12 transition-all duration-700"
             style={{ opacity: chooseRef.visible ? 1 : 0, transform: chooseRef.visible ? "none" : "translateY(20px)" }}
           >
-            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Choose your check</p>
-            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">Quick look, or the full picture?</h2>
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">What do you need?</p>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">Start reporting, or check what you&apos;ve done?</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-5">
@@ -444,19 +444,19 @@ export default function SendYourBillPage() {
                 id: "quarterly" as CheckKind,
                 icon: Zap,
                 tag: "Free",
-                title: "Quick Bill Check",
-                sub: "Send one quarter's bill",
-                desc: "Great for a first look. We check your latest bill and tell you what looks wrong.",
-                ticks: ["One bill, checked line by line", "Bin sizes and lifts looked at", "Report within 48 hours"],
+                title: "Free Two-Week Trial",
+                sub: "Send a few recent tickets",
+                desc: "I set up your usual codes, then report every load for two weeks. See it working before you pay.",
+                ticks: ["Your EWC and R/D codes mapped", "Every load entered and submitted", "A confirmation every Friday"],
               },
               {
                 id: "thorough" as CheckKind,
                 icon: CalendarRange,
                 tag: "Price agreed first",
-                title: "Thorough Audit",
-                sub: "Send 12 months of bills and your contract",
-                desc: "The full picture. Every bill, every lift and every price rise, checked against your contract.",
-                ticks: ["A whole year, side by side", "Every price rise checked", "Renewal date and notice period found"],
+                title: "DWT Health Check",
+                sub: "Send a sample week of tickets",
+                desc: "Already reporting yourself? I check a week of loads against your tickets and what you submitted.",
+                ticks: ["Did each load actually land?", "Are the codes right for your permit?", "A short written report with fixes"],
               },
             ].map((opt, i) => {
               const Icon = opt.icon
@@ -515,8 +515,8 @@ export default function SendYourBillPage() {
           style={{ opacity: formRef.visible ? 1 : 0, transform: formRef.visible ? "none" : "translateY(24px)" }}
         >
           <div className="text-center mb-10">
-            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Send it here</p>
-            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">Upload your bill.</h2>
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Send them here</p>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">Upload your tickets.</h2>
           </div>
 
           <div className="bg-white rounded-3xl border border-emerald-100 shadow-2xl p-6 sm:p-8">
@@ -530,14 +530,14 @@ export default function SendYourBillPage() {
                 </div>
                 <h3 className="poppins-bold text-2xl text-slate-900 mb-2">Got it. Thank you.</h3>
                 <p className="poppins-regular text-slate-500 max-w-sm mx-auto">
-                  We&apos;ll check your bill and send your report within 48 hours. Keep an eye on your email.
+                  I&apos;ll be in touch within one business day with your next steps. Keep an eye on your email.
                 </p>
               </div>
             ) : (
-              <form onSubmit={submitBill} className="space-y-5">
+              <form onSubmit={submitTickets} className="space-y-5">
                 {/* Kind toggle */}
                 <div className="grid grid-cols-2 gap-1 p-1 bg-slate-100 rounded-xl">
-                  {([["quarterly", "Quick Bill Check"], ["thorough", "Thorough Audit"]] as const).map(([id, label]) => (
+                  {([["quarterly", "Free Trial"], ["thorough", "Health Check"]] as const).map(([id, label]) => (
                     <button
                       key={id}
                       type="button"
@@ -551,7 +551,7 @@ export default function SendYourBillPage() {
                   ))}
                 </div>
                 <p className="poppins-regular text-xs text-slate-400 text-center -mt-2">
-                  {kind === "quarterly" ? "Send one quarter's bill." : "Send 12 months of bills, and your contract if you have it."}
+                  {kind === "quarterly" ? "Send a few recent tickets, so I can map your codes." : "Send a week of tickets, plus what you submitted if you have it."}
                 </p>
 
                 {/* Drop zone */}
@@ -575,7 +575,7 @@ export default function SendYourBillPage() {
                   <div className={`w-12 h-12 rounded-2xl bg-white border border-emerald-100 shadow-sm flex items-center justify-center mx-auto mb-3 transition-transform duration-300 ${dragging ? "-translate-y-1" : ""}`}>
                     <Upload className="w-5 h-5 text-emerald-600" />
                   </div>
-                  <p className="poppins-semibold text-sm text-slate-900">Drop your bill here, or tap to choose</p>
+                  <p className="poppins-semibold text-sm text-slate-900">Drop your tickets here, or tap to choose</p>
                   <p className="poppins-regular text-xs text-slate-400 mt-1">PDF or photo · Up to 4MB in total</p>
                 </div>
 
@@ -616,10 +616,10 @@ export default function SendYourBillPage() {
                   </div>
                   <div className="relative">
                     <Building2 className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                    <Input value={business} onChange={(e) => setBusiness(e.target.value)} placeholder="Business name" className="pl-10 h-12 rounded-xl" />
+                    <Input value={business} onChange={(e) => setBusiness(e.target.value)} placeholder="Site or business name" className="pl-10 h-12 rounded-xl" />
                   </div>
                 </div>
-                <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Anything we should know? (optional)" className="rounded-xl min-h-[90px]" />
+                <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Type of site, and roughly how many loads a week? (optional)" className="rounded-xl min-h-[90px]" />
 
                 {error && (
                   <p className="poppins-medium text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl px-4 py-3">{error}</p>
@@ -631,10 +631,10 @@ export default function SendYourBillPage() {
                   className="group w-full inline-flex items-center justify-center gap-2 py-4 bg-emerald-700 hover:bg-emerald-800 disabled:opacity-70 text-white poppins-bold text-sm rounded-xl shadow-lg hover:shadow-emerald-700/20 transition-all duration-300 active:scale-[0.99]"
                 >
                   {sending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-                  {sending ? "Sending..." : files.length ? "Send My Bill" : "Send My Details"}
+                  {sending ? "Sending..." : files.length ? "Send My Tickets" : "Send My Details"}
                 </button>
                 <p className="poppins-regular text-[11px] text-slate-400 text-center">
-                  No bill to hand? Send your details and we&apos;ll tell you what we need.
+                  No tickets to hand? Send your details and I&apos;ll tell you what I need.
                 </p>
               </form>
             )}
@@ -663,10 +663,10 @@ export default function SendYourBillPage() {
               Rather talk<br />it through?
             </h2>
             <p className="poppins-regular text-emerald-100 text-lg leading-relaxed max-w-md mb-6">
-              Leave your number. We&apos;ll call you and go through your bill together. About 15 minutes. No pressure.
+              Leave your number. I&apos;ll call you and go through how your site reports now. About 15 minutes. No pressure.
             </p>
             <a href={CONTACT_INFO.tel} className="inline-flex items-center gap-2 poppins-semibold text-white hover:text-emerald-100 transition-colors">
-              Or call us now: {CONTACT_INFO.phone}
+              Or call me now: {CONTACT_INFO.phone}
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
@@ -677,8 +677,8 @@ export default function SendYourBillPage() {
                 <div className="w-14 h-14 rounded-full bg-emerald-700 flex items-center justify-center mx-auto mb-5">
                   <CheckCircle className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="poppins-bold text-xl text-slate-900 mb-2">We&apos;ll call you soon.</h3>
-                <p className="poppins-regular text-sm text-slate-500">Have your latest bill close by if you can.</p>
+                <h3 className="poppins-bold text-xl text-slate-900 mb-2">I&apos;ll call you soon.</h3>
+                <p className="poppins-regular text-sm text-slate-500">Have a recent ticket close by if you can.</p>
               </div>
             ) : (
               <form onSubmit={submitCallback} className="space-y-4">
@@ -726,12 +726,12 @@ export default function SendYourBillPage() {
         </div>
       </section>
 
-      {/* ── WHAT WE CHECK LINK ─────────────────────────────────────────────── */}
+      {/* ── WHAT I CHECK LINK ──────────────────────────────────────────────── */}
       <section className="py-14 px-6 bg-white">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="poppins-regular text-slate-500 mb-3">Want to know what we look for first?</p>
+          <p className="poppins-regular text-slate-500 mb-3">Want to know what I do with each load?</p>
           <Link href="/what-we-check" className="inline-flex items-center gap-2 poppins-semibold text-emerald-700 hover:text-emerald-800 transition-colors">
-            See What We Check For
+            See What I Check
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

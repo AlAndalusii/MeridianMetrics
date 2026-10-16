@@ -12,9 +12,9 @@ interface EmailTemplateModalProps {
 }
 
 const services = [
-  { id: "discovery", label: "Discovery Call",        price: "FREE", desc: "15-min call to understand your setup" },
-  { id: "snapshot",  label: "Compliance Snapshot",   price: "£195", desc: "Quick remote review, report in 48hrs" },
-  { id: "setup",     label: "Compliance Setup Pack", price: "£495", desc: "Full documents, templates & follow-up" },
+  { id: "discovery", label: "Free 15-Minute Call", price: "FREE",    desc: "Questions, or start your two-week trial" },
+  { id: "snapshot",  label: "DWT Health Check",    price: "One-off", desc: "A sample week checked, with a short report" },
+  { id: "setup",     label: "DWT Setup",           price: "One-off", desc: "Registration, code template and a handover" },
 ] as const
 
 type ServiceId = typeof services[number]["id"]
@@ -109,7 +109,7 @@ export function EmailTemplateModal({ isOpen, onClose, defaultService }: EmailTem
             <div className="flex-shrink-0 bg-gradient-to-r from-emerald-700 to-emerald-600 px-5 py-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="poppins-bold text-white text-base leading-tight">Book an Audit</p>
+                  <p className="poppins-bold text-white text-base leading-tight">Book a Free Call</p>
                   <p className="text-emerald-200 text-xs poppins-regular mt-0.5">We&apos;ll be in touch within one business day</p>
                 </div>
                 <button
@@ -286,7 +286,7 @@ export function EmailTemplateModal({ isOpen, onClose, defaultService }: EmailTem
                     <Textarea
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
-                      placeholder="Anything we should know? Site type, waste streams, specific concerns… (optional)"
+                      placeholder="Anything I should know? Site type, loads per week, how you report now… (optional)"
                       rows={3}
                       className="border-slate-200 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm resize-none rounded-xl"
                     />

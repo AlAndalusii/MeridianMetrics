@@ -3,9 +3,9 @@
 import React, { useState } from "react"
 import {
   CheckCircle,
-  FileCheck,
-  Scale,
-  ShieldCheck,
+  Send,
+  ListChecks,
+  CalendarCheck,
   Loader2,
   User,
   Mail,
@@ -19,12 +19,12 @@ import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
 
 const checks = [
-  { icon: Scale,       title: "Fair Price Check",   desc: "We compare what you're paying against what similar properties actually pay." },
-  { icon: ShieldCheck,  title: "Carrier Licence Check", desc: "We confirm your carrier is registered with the Environment Agency." },
-  { icon: FileCheck,    title: "Paperwork Check",    desc: "We check your transfer notes and Duty of Care records are in order." },
+  { icon: ListChecks,    title: "Your Codes Set Up",   desc: "I map the EWC and R/D codes your site uses most, so every entry is fast." },
+  { icon: Send,          title: "Send Tickets on WhatsApp", desc: "Photos of weighbridge tickets and transfer notes. I enter and submit every load." },
+  { icon: CalendarCheck, title: "Friday Confirmation", desc: "Every Friday, a list of everything submitted. See it working before you pay." },
 ]
 
-export default function WasteContractAuditPage() {
+export default function FreeTrialPage() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
@@ -43,7 +43,7 @@ export default function WasteContractAuditPage() {
       const res = await fetch("/api/book-audit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, company, notes, serviceType: "waste-audit" }),
+        body: JSON.stringify({ name, email, phone, company, notes, serviceType: "trial" }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || "Submission failed")
@@ -70,16 +70,16 @@ export default function WasteContractAuditPage() {
             <div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/80 border border-emerald-100 rounded-full mb-6 shadow-sm">
                 <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                <span className="poppins-medium text-[10px] text-emerald-700 tracking-[0.18em] uppercase">Free · No Obligation</span>
+                <span className="poppins-medium text-[10px] text-emerald-700 tracking-[0.18em] uppercase">Two Weeks Free · No Card</span>
               </div>
 
               <h1 className="poppins-bold text-4xl sm:text-5xl text-emerald-900 leading-[1.1] tracking-tight mb-5">
-                Is Your Waste Contract{" "}
-                <span className="text-emerald-600">Fair?</span>
+                Try It Free{" "}
+                <span className="text-emerald-600">for Two Weeks.</span>
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-emerald-700/80 max-w-md mb-10 leading-relaxed">
-                Send us your current waste contract. We&apos;ll check the price, the carrier, and the paperwork — free, and with no obligation.
+                Send me your tickets on WhatsApp for two weeks. I&apos;ll report every load to Defra, so you see it working before you pay.
               </p>
 
               <div className="space-y-5 mb-10">
@@ -97,7 +97,7 @@ export default function WasteContractAuditPage() {
               </div>
 
               <div className="flex flex-wrap gap-4">
-                {["Registered", "Licensed Partners", "Birmingham Based", "48hr Turnaround"].map((t) => (
+                {["No Card", "No Contract", "Birmingham Based", "Direct Line"].map((t) => (
                   <span key={t} className="inline-flex items-center gap-1.5 text-xs text-emerald-600 poppins-medium">
                     <CheckCircle className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
                     {t}
@@ -116,14 +116,14 @@ export default function WasteContractAuditPage() {
                   <div>
                     <p className="poppins-bold text-emerald-900 text-lg">Request Sent</p>
                     <p className="poppins-regular text-emerald-600 text-sm mt-2 max-w-xs">
-                      We&apos;ve received your audit request and will be in touch at{" "}
-                      <span className="poppins-semibold break-all">{email}</span> within one business day.
+                      Thanks. I&apos;ll be in touch at{" "}
+                      <span className="poppins-semibold break-all">{email}</span> within one business day to set up your trial.
                     </p>
                   </div>
                 </div>
               ) : (
                 <>
-                  <p className="poppins-semibold text-[11px] text-emerald-400 uppercase tracking-widest mb-5">Free Waste Contract Audit</p>
+                  <p className="poppins-semibold text-[11px] text-emerald-400 uppercase tracking-widest mb-5">Start Your Free Two-Week Trial</p>
 
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid xs:grid-cols-2 gap-3">
@@ -143,7 +143,7 @@ export default function WasteContractAuditPage() {
                         <Input
                           value={company}
                           onChange={(e) => setCompany(e.target.value)}
-                          placeholder="Property / portfolio"
+                          placeholder="Site or company name"
                           className="pl-8 h-11 text-sm border-emerald-200 focus-visible:ring-emerald-400 rounded-xl"
                         />
                       </div>
@@ -181,7 +181,7 @@ export default function WasteContractAuditPage() {
                       <Textarea
                         value={notes}
                         onChange={(e) => setNotes(e.target.value)}
-                        placeholder="What would you like checked? e.g. current contract, carrier licence, HMO bins (optional)"
+                        placeholder="Type of site and roughly how many loads a week? e.g. scrap yard, 40 loads (optional)"
                         rows={3}
                         className="pl-8 pt-2.5 text-sm border-emerald-200 focus-visible:ring-emerald-400 rounded-xl resize-none"
                       />
@@ -203,11 +203,11 @@ export default function WasteContractAuditPage() {
                           <Loader2 className="w-4 h-4 animate-spin" /> Sending…
                         </>
                       ) : (
-                        "Send My Audit Request"
+                        "Start My Free Trial"
                       )}
                     </button>
                     <p className="text-center text-[11px] text-emerald-400 poppins-regular">
-                      We confirm by email within one business day. No obligation.
+                      I confirm by email within one business day. No card, no contract.
                     </p>
                   </form>
                 </>

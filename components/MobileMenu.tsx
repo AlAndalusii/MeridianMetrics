@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 import {
   Menu, X, Home, ClipboardCheck,
   Info, Shield, Mail, FileCheck, FileText, Phone,
-  Headphones, ArrowRight, Building2,
+  Headphones, ArrowRight,
 } from "lucide-react"
 import { CONTACT_INFO } from "@/lib/constants"
 
@@ -15,10 +15,9 @@ const navItems = [
   { href: "/",          label: "Home",      icon: Home },
   { href: "/about",     label: "Meet Zak",  icon: Info },
   { href: "/services",  label: "Services",  icon: Shield },
-  { href: "/templates", label: "Templates", icon: FileText, badge: "From £27" },
-  { href: "/care-homes", label: "Care Homes", icon: Building2 },
+  { href: "/free-check", label: "Free Readiness Check", icon: ClipboardCheck },
   { href: "/resources", label: "Resources", icon: FileCheck },
-  { href: "/support",   label: "Support",   icon: Headphones },
+  { href: "/support",   label: "Questions & Help", icon: Headphones },
 ]
 
 export const MobileMenu = memo(function MobileMenu() {
@@ -136,17 +135,12 @@ export const MobileMenu = memo(function MobileMenu() {
               >
                 <Icon className="w-5 h-5 flex-shrink-0" />
                 {item.label}
-                {"badge" in item && !active && (
-                  <span className="ml-auto text-[10px] poppins-medium bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">
-                    {item.badge}
-                  </span>
-                )}
                 {active && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-white/70" />}
               </Link>
             )
           })}
 
-          {/* Free Waste Audit CTA */}
+          {/* Free trial CTA */}
           <div className="pt-3">
             <Link
               href="/waste-contract-audit"
@@ -155,7 +149,7 @@ export const MobileMenu = memo(function MobileMenu() {
               style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}
             >
               <ClipboardCheck className="w-5 h-5" />
-              Free Waste Audit
+              Start a Free Two-Week Trial
             </Link>
           </div>
 

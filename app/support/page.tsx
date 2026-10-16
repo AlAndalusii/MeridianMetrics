@@ -12,12 +12,10 @@ import {
   TrendingUp,
   Clock,
   Lock,
-  Recycle,
-  HeartPulse,
-  Trash2,
-  ScanSearch,
-  FolderOpen,
-  Layers,
+  Send,
+  ClipboardCheck,
+  Wrench,
+  FileText,
   Headphones,
   ExternalLink,
   Zap,
@@ -76,27 +74,27 @@ function ServiceCardMockup() {
 
   const cards = [
     {
-      icon: Trash2,
-      title: "Duty of Care",
-      status: "Active",
-      items: ["WTN Records Current", "EA Carrier Verified", "EWC Codes Accurate"],
-      score: 94,
+      icon: Send,
+      title: "DWT Reporting",
+      status: "This week",
+      items: ["Tickets Received on WhatsApp", "Codes Matched to Template", "Submitted to Defra"],
+      score: 100,
       color: "#10b981",
     },
     {
-      icon: HeartPulse,
-      title: "Clinical Waste",
-      status: "Compliant",
-      items: ["HTM 07-01 Segregation", "Consignment Notes Filed", "CQC Inspection-Ready"],
-      score: 89,
+      icon: ClipboardCheck,
+      title: "DWT Health Check",
+      status: "Sample week",
+      items: ["Loads Matched to Tickets", "Codes Checked Against Permit", "Fixes Written Up"],
+      score: 75,
       color: "#0ea5e9",
     },
     {
-      icon: Recycle,
-      title: "Simpler Recycling",
-      status: "Registered",
-      items: ["4-Stream Separation", "Food Waste Collected", "Evidence Records Held"],
-      score: 92,
+      icon: Wrench,
+      title: "DWT Setup",
+      status: "Ready",
+      items: ["Defra Registration Done", "Code Template Built", "Weighbridge Handover Given"],
+      score: 100,
       color: "#a855f7",
     },
   ]
@@ -138,7 +136,7 @@ function ServiceCardMockup() {
           </div>
           <div className="text-right">
             <span className="poppins-bold text-2xl text-white">{card.score}%</span>
-            <p className="poppins-regular text-[10px] text-white/40">Compliance</p>
+            <p className="poppins-regular text-[10px] text-white/40">Done</p>
           </div>
         </div>
         <div className="relative h-1.5 bg-white/10 rounded-full mb-6 overflow-hidden">
@@ -156,7 +154,7 @@ function ServiceCardMockup() {
           ))}
         </div>
         <div className="relative flex items-center justify-between mt-6 pt-5 border-t border-white/8">
-          <span className="poppins-regular text-[10px] text-white/30">Managed By Millstone</span>
+          <span className="poppins-regular text-[10px] text-white/30">Example only</span>
           <span className="poppins-semibold text-[10px] text-white/50">Updated Today</span>
         </div>
       </div>
@@ -216,37 +214,37 @@ function StatCounter({ target, suffix = "", label }: { target: number; suffix?: 
 
 const services = [
   {
-    icon: ScanSearch,
-    title: "Compliance Audits",
-    body: "We review your setup, find weak spots, and show where costs and compliance risks can be reduced — within 48 hours.",
-    href: "/services",
+    icon: Send,
+    title: "DWT Reporting",
+    body: "Send tickets on WhatsApp. I enter and submit every load, and send a confirmation every Friday.",
+    href: "/services#reporting",
     icon_color: "text-emerald-600",
     icon_bg: "bg-emerald-50",
     accent: "from-emerald-400/20 to-transparent",
   },
   {
-    icon: FolderOpen,
-    title: "Documentation",
-    body: "We organise the key records your business needs to keep waste costs controlled and paperwork in order.",
-    href: "/services/documentation",
+    icon: ClipboardCheck,
+    title: "DWT Health Check",
+    body: "Already reporting yourself? I check a sample week against your tickets and write up the fixes.",
+    href: "/services#health-check",
     icon_color: "text-sky-600",
     icon_bg: "bg-sky-50",
     accent: "from-sky-400/20 to-transparent",
   },
   {
-    icon: Layers,
-    title: "Templates",
-    body: "Professionally written, ready-to-use documents — editable in Word and easy to put into practice.",
-    href: "/templates",
+    icon: Wrench,
+    title: "DWT Setup",
+    body: "Registration, a pre-filled code template, and a short handover for whoever runs the weighbridge.",
+    href: "/services#setup",
     icon_color: "text-amber-600",
     icon_bg: "bg-amber-50",
     accent: "from-amber-400/20 to-transparent",
   },
   {
-    icon: Headphones,
-    title: "Ongoing Support",
-    body: "Waste changes tracked. Records kept current. Practical help available the same day by email.",
-    href: "/support",
+    icon: FileText,
+    title: "Paperwork Support",
+    body: "Quarterly waste returns, and regular hauliers and customers set up before their first load.",
+    href: "/services#paperwork",
     icon_color: "text-violet-600",
     icon_bg: "bg-violet-50",
     accent: "from-violet-400/20 to-transparent",
@@ -257,20 +255,32 @@ const services = [
 
 const faqs = [
   {
-    q: "What Does A Waste Audit Actually Cover?",
-    a: "We review your waste setup, records, contractor details, and key compliance risks. You get a clear written report within 48 hours showing what is working and what to fix.",
+    q: "Do I Still Need Paper Transfer Notes?",
+    a: "Yes. Digital waste tracking is an extra record on top of your existing paperwork, not a replacement.",
   },
   {
-    q: "How Quickly Will I Get My Report?",
-    a: "Your written report is delivered within 48 hours of the audit.",
+    q: "What's The Deadline?",
+    a: "Two working days, counted from the day after the waste arrives. Weekends and bank holidays don't count. A load in on Thursday must be reported by the end of Monday.",
   },
   {
-    q: "Can You Help Us Cut Waste Costs?",
-    a: "Yes. We look for overspending, poor segregation, weak contractor terms, and waste streams that are not being managed well.",
+    q: "Do I Need Software?",
+    a: "Not right now. Defra's spreadsheet route is available. If you'd like software, I can help you choose it and set it up.",
   },
   {
-    q: "Do You Work With Both Property And Businesses?",
-    a: "Yes. We audit care homes, property portfolios, hospitality, logistics, manufacturing, and most other business sectors.",
+    q: "Who's Responsible If Something's Wrong?",
+    a: "You stay responsible for the information on your tickets. I'm responsible for entering and submitting it correctly and on time.",
+  },
+  {
+    q: "What Does It Cost?",
+    a: "Two weeks free, then a fixed monthly fee based on how many loads you take in, agreed upfront. The Health Check and Setup are one-off fees, also agreed upfront.",
+  },
+  {
+    q: "Which Sites Do You Work With?",
+    a: "Permitted sites receiving non-hazardous waste: scrap yards, transfer stations, skip yards, aggregate recyclers and similar.",
+  },
+  {
+    q: "I'm A Carrier Or Broker. Does This Affect Me?",
+    a: "From October 2027. Join the Ready for 2027 list and I'll keep you updated.",
   },
 ]
 
@@ -312,24 +322,24 @@ export default function SupportPage() {
               <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-emerald-200 bg-emerald-50 mb-8">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="poppins-medium text-xs text-emerald-700 tracking-wider uppercase">
-                  UK Compliance Specialists
+                  Questions &amp; Help
                 </span>
               </div>
 
               <h1 className="poppins-bold text-5xl lg:text-6xl xl:text-[4.5rem] text-slate-900 leading-[1.05] tracking-tight mb-6">
-                Cost &amp; Compliance
+                Waste Tracking
                 <br />
                 <span className="bg-gradient-to-r from-emerald-700 to-emerald-500 bg-clip-text text-transparent">Made Simple.</span>
               </h1>
 
               <p className="poppins-regular text-lg text-slate-600 leading-relaxed mb-10 max-w-lg">
-                Waste costs, duty of care, and waste records — reviewed, improved, and kept under control.
-                We help UK businesses cut costs, reduce risk, and stay organised.
+                Digital waste tracking for small permitted sites, in plain English.
+                Ask me anything, or find the straight answers below.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
-                  href="mailto:hello@millstonecompliance.com?subject=Support%20Enquiry"
+                  href="mailto:hello@millstonecompliance.com?subject=Digital%20Waste%20Tracking%20Question"
                   className="group inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white transition-all duration-200 active:scale-[0.98] shadow-lg shadow-emerald-700/20"
                 >
                   <Mail className="w-4 h-4" />
@@ -357,13 +367,13 @@ export default function SupportPage() {
       <section className="py-12 bg-white border-y border-slate-100">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            <StatCounter target={48} suffix="h" label="Avg Report Turnaround" />
-            <StatCounter target={3} label="Key Waste Areas Covered" />
+            <StatCounter target={2} label="Working Days Per Load" />
+            <StatCounter target={4} label="Services, Plus Free Intros" />
             <div className="text-center">
-              <p className="poppins-bold text-4xl lg:text-5xl text-slate-900">Cost</p>
-              <p className="poppins-regular text-sm text-slate-500 mt-1">Saving Opportunities Found</p>
+              <p className="poppins-bold text-4xl lg:text-5xl text-slate-900">Fri</p>
+              <p className="poppins-regular text-sm text-slate-500 mt-1">Weekly Confirmation</p>
             </div>
-            <StatCounter target={100} suffix="%" label="Clear Written Reports" />
+            <StatCounter target={1} suffix="-1" label="Direct Access, No Call Centre" />
           </div>
         </div>
       </section>
@@ -372,10 +382,10 @@ export default function SupportPage() {
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="poppins-medium text-xs text-emerald-700 uppercase tracking-widest mb-3">What We Do</p>
+            <p className="poppins-medium text-xs text-emerald-700 uppercase tracking-widest mb-3">What I Do</p>
             <h2 className="poppins-bold text-4xl lg:text-5xl text-slate-900 tracking-tight">
-              Four Ways We Help
-              <span className="text-emerald-700"> Your Business.</span>
+              Four Ways I Help
+              <span className="text-emerald-700"> Your Site.</span>
             </h2>
           </div>
 
@@ -417,8 +427,8 @@ export default function SupportPage() {
               {/* Header bar */}
               <div className="bg-emerald-700 px-8 py-5 flex items-center justify-between">
                 <div>
-                  <p className="poppins-bold text-[10px] text-emerald-200 uppercase tracking-widest">Compliance Overview</p>
-                  <p className="poppins-bold text-base text-white mt-0.5">Your Business · 2026</p>
+                  <p className="poppins-bold text-[10px] text-emerald-200 uppercase tracking-widest">Example Site</p>
+                  <p className="poppins-bold text-base text-white mt-0.5">This Week · Example Only</p>
                 </div>
                 <div className="flex items-center gap-2 bg-white/15 border border-white/20 px-3 py-1.5 rounded-full">
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
@@ -430,19 +440,19 @@ export default function SupportPage() {
               <div className="bg-white border-x border-b border-slate-100 p-8">
                 {/* Score rings */}
                 <div className="grid grid-cols-3 gap-4 mb-7 pb-7 border-b border-slate-100">
-                  <ScoreRing score={94} label="Duty of Care" color="#059669" />
-                  <ScoreRing score={89} label="Clinical" color="#0ea5e9" />
-                  <ScoreRing score={92} label="Recycling" color="#7c3aed" />
+                  <ScoreRing score={100} label="Loads Submitted" color="#059669" />
+                  <ScoreRing score={100} label="Codes Matched" color="#0ea5e9" />
+                  <ScoreRing score={100} label="Before Deadline" color="#7c3aed" />
                 </div>
 
                 {/* Activity log */}
                 <p className="poppins-semibold text-[10px] text-slate-400 uppercase tracking-widest mb-4">Recent Activity</p>
                 <div className="space-y-2.5">
                   {[
-                    { label: "Waste Transfer Notes Filed", time: "Today", dot: "#059669" },
-                    { label: "Clinical Waste Consignment Logged", time: "3 Days Ago", dot: "#0ea5e9" },
-                    { label: "HMO Waste Plan Updated", time: "1 Week Ago", dot: "#d97706" },
-                    { label: "Simpler Recycling Evidence Saved", time: "2 Weeks Ago", dot: "#7c3aed" },
+                    { label: "Friday Confirmation Sent", time: "Today", dot: "#059669" },
+                    { label: "Thursday's Loads Submitted", time: "Today", dot: "#0ea5e9" },
+                    { label: "New Haulier Set Up", time: "3 Days Ago", dot: "#d97706" },
+                    { label: "Code Template Updated", time: "1 Week Ago", dot: "#7c3aed" },
                   ].map(({ label, time, dot }) => (
                     <div key={label} className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
                       <div className="flex items-center gap-2.5">
@@ -464,15 +474,15 @@ export default function SupportPage() {
                 <span className="bg-gradient-to-r from-emerald-700 to-emerald-500 bg-clip-text text-transparent"> You Stand.</span>
               </h2>
               <p className="poppins-regular text-lg text-slate-600 leading-relaxed mb-7">
-                We give every client a view of their waste costs, records, and compliance position — and help keep everything on track as rules change.
+                Every Friday you get a list of everything submitted that week. So you always know where your site stands, without logging in.
               </p>
 
               <div className="space-y-3 mb-8">
                 {[
-                  { icon: Target,     text: "Gap analysis across waste costs, records, and legal duties" },
-                  { icon: TrendingUp, text: "Ongoing review as waste rules evolve" },
-                  { icon: Clock,      text: "48-hour turnaround on all audit reports" },
-                  { icon: Lock,       text: "Clear written evidence you can actually use" },
+                  { icon: Target,     text: "Every load matched to a ticket you sent" },
+                  { icon: TrendingUp, text: "Rule changes explained when they happen" },
+                  { icon: Clock,      text: "Every load in before the two-working-day deadline" },
+                  { icon: Lock,       text: "You stay responsible for what's on your tickets" },
                 ].map(({ icon: Icon, text }) => (
                   <div key={text} className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0">
@@ -484,10 +494,10 @@ export default function SupportPage() {
               </div>
 
               <Link
-                href="/quiz"
+                href="/free-check"
                 className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white transition-all duration-200 active:scale-95 shadow-sm"
               >
-                Start Free Assessment
+                Take the Free Readiness Check
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
             </div>
@@ -499,12 +509,12 @@ export default function SupportPage() {
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-10">
-            <p className="poppins-medium text-xs text-emerald-700 uppercase tracking-widest mb-3">Contact Us</p>
+            <p className="poppins-medium text-xs text-emerald-700 uppercase tracking-widest mb-3">Contact Me</p>
             <h2 className="poppins-bold text-4xl lg:text-5xl text-slate-900 tracking-tight">
-              Reach Us Directly.
+              Reach Me Directly.
             </h2>
             <p className="poppins-regular text-lg text-slate-500 mt-3">
-              No bots. No call centres. A real person replies the same day.
+              No bots. No call centre. You&apos;ll talk to me.
             </p>
           </div>
 
@@ -553,9 +563,9 @@ export default function SupportPage() {
               </div>
             </a>
 
-            {/* Free Assessment */}
+            {/* Free readiness check */}
             <a
-              href="/quiz"
+              href="/free-check"
               className="group relative block rounded-2xl overflow-hidden border-2 border-slate-200 bg-white hover:border-amber-500 hover:shadow-xl hover:shadow-amber-50 transition-all duration-300 hover:-translate-y-1"
             >
               <div className="h-1.5 bg-amber-500 w-full" />
@@ -564,12 +574,12 @@ export default function SupportPage() {
                   <div className="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center shadow-sm">
                     <Zap className="w-5 h-5 text-white" />
                   </div>
-                  <p className="poppins-bold text-[10px] uppercase tracking-widest text-amber-600">Free Assessment</p>
+                  <p className="poppins-bold text-[10px] uppercase tracking-widest text-amber-600">Free Readiness Check</p>
                 </div>
-                <p className="poppins-bold text-sm text-slate-900 mb-1">3-Minute Check</p>
-                <p className="poppins-regular text-xs text-slate-500 mb-6">Instant Cost &amp; Risk View</p>
+                <p className="poppins-bold text-sm text-slate-900 mb-1">10 Questions, 3 Minutes</p>
+                <p className="poppins-regular text-xs text-slate-500 mb-6">Is Your Site Ready?</p>
                 <span className="inline-flex items-center gap-2 poppins-semibold text-sm text-amber-600 group-hover:gap-3 transition-all">
-                  Start Assessment
+                  Start the Check
                   <ArrowRight className="w-4 h-4" />
                 </span>
               </div>
@@ -597,14 +607,14 @@ export default function SupportPage() {
             <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
               <div>
                 <p className="poppins-bold text-2xl sm:text-3xl text-white leading-snug mb-2">
-                  Let&apos;s Get Your Waste Setup Under Control.
+                  Let&apos;s Get Your Reporting Sorted.
                 </p>
                 <p className="poppins-regular text-emerald-200 text-sm leading-relaxed">
-                  Email us your situation. We will tell you what is working, what is not, and what to do next — within hours.
+                  Email me how your site reports now. I&apos;ll tell you what&apos;s working, what isn&apos;t, and what I&apos;d do next.
                 </p>
               </div>
               <a
-                href="mailto:hello@millstonecompliance.com?subject=Compliance%20Enquiry"
+                href="mailto:hello@millstonecompliance.com?subject=Digital%20Waste%20Tracking%20Enquiry"
                 className="flex-shrink-0 group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl poppins-semibold text-sm bg-white text-emerald-700 hover:bg-emerald-50 transition-all duration-200 active:scale-[0.98] shadow-lg shadow-emerald-900/20 whitespace-nowrap"
               >
                 <Mail className="w-4 h-4" />

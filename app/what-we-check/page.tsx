@@ -38,57 +38,57 @@ function useReveal(threshold = 0.12) {
 }
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
-const heroWords = ["bills", "bins", "lifts", "charges", "prices", "dates"]
+const heroWords = ["dates", "weights", "codes", "carriers", "permits", "deadlines"]
 
 const checks = [
   {
-    icon: Receipt,
-    title: "Every charge",
-    ask: "Is this in your contract?",
-    body: "Your bill has lots of small lines. We check each one is in your contract. If it isn't, you shouldn't pay it.",
-    line: { label: "Service charge", detail: "Every month" },
+    icon: CalendarClock,
+    title: "Date in",
+    ask: "When did it arrive?",
+    body: "The date the load came in starts the clock. I check it on every ticket, so the deadline is worked out right.",
+    line: { label: "Date received", detail: "Thursday" },
   },
   {
-    icon: Trash2,
-    title: "Bin size",
-    ask: "Is this bin too big?",
-    body: "Big bins cost more to empty. If yours go out half full, a smaller bin could cost you less.",
-    line: { label: "General waste bin", detail: "1100 litre" },
+    icon: Scale,
+    title: "Weight",
+    ask: "Does it match the ticket?",
+    body: "I take the weight straight from your weighbridge ticket. If a photo is hard to read, I ask you rather than guess.",
+    line: { label: "Net weight", detail: "From the weighbridge" },
+  },
+  {
+    icon: Receipt,
+    title: "EWC code",
+    ask: "What is the waste?",
+    body: "Every waste has a six-digit code. I use the template we set up together, so the same waste gets the same code.",
+    line: { label: "Waste code", detail: "17 04 05 · Iron and steel" },
+  },
+  {
+    icon: ListChecks,
+    title: "R or D code",
+    ask: "What happens to it next?",
+    body: "R means recovery, D means disposal. I match each load to what your site actually does with that waste.",
+    line: { label: "Treatment", detail: "R4 · Recycling of metals" },
   },
   {
     icon: Truck,
-    title: "Lifts",
-    ask: "Did every lift happen?",
-    body: "A lift is when your bin gets emptied. You should only pay for the ones that really happened.",
-    line: { label: "Collections", detail: "Lifts this quarter" },
+    title: "Who brought it",
+    ask: "Which carrier and customer?",
+    body: "Your regular hauliers and customers are set up in advance, so their details go in right every time.",
+    line: { label: "Carrier", detail: "Regular haulier" },
   },
   {
-    icon: Camera,
-    title: "Extra charges",
-    ask: "Where is the proof?",
-    body: "Some collectors charge extra if the wrong things go in a bin. You should always get proof, like a photo.",
-    line: { label: "Extra charge", detail: "Wrong items in bin" },
-  },
-  {
-    icon: TrendingUp,
-    title: "Price rises",
-    ask: "Is this rise allowed?",
-    body: "Some deals go up every year. We check each rise is one your contract really allows.",
-    line: { label: "Price change", detail: "Yearly rise" },
-  },
-  {
-    icon: CalendarClock,
-    title: "Renewal date",
-    ask: "When can you leave?",
-    body: "Many deals roll over on their own. We find your notice date, so you get to choose what happens next.",
-    line: { label: "Contract end", detail: "Rolls over on its own" },
+    icon: ShieldCheck,
+    title: "Permit and deadline",
+    ask: "Is it covered, and on time?",
+    body: "I check the codes sit inside your permit, then submit the load before the two-working-day deadline.",
+    line: { label: "Submitted", detail: "Before the deadline" },
   },
 ]
 
 const youGet = [
-  { icon: FileCheck,  title: "A written report", desc: "Within 48 hours. Plain English. No jargon." },
-  { icon: ListChecks, title: "A clear fix list",  desc: "What's wrong, and what we'll do about it." },
-  { icon: Scale,      title: "A better deal",     desc: "If there is one, we show you. You choose." },
+  { icon: FileCheck,  title: "Every load submitted", desc: "Entered and sent to Defra before the deadline." },
+  { icon: ListChecks, title: "A Friday confirmation", desc: "A list of everything submitted that week." },
+  { icon: Camera,     title: "A quick question",     desc: "If a photo is unclear, I ask. I never guess." },
 ]
 
 /* ─── Rotating word in the hero ───────────────────────────────────────────── */
@@ -111,7 +111,7 @@ function RotatingWord() {
   )
 }
 
-/* ─── The example bill that lights up as you scroll ───────────────────────── */
+/* ─── The example ticket that lights up as you scroll ─────────────────────── */
 function ExampleBill({ active, seen }: { active: number; seen: number }) {
   return (
     <div className="relative">
@@ -125,7 +125,7 @@ function ExampleBill({ active, seen }: { active: number; seen: number }) {
         <div className="px-6 pt-6 pb-4 border-b border-slate-100">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="poppins-semibold text-[11px] text-emerald-900 uppercase tracking-[0.15em]">Waste Bill</p>
+              <p className="poppins-semibold text-[11px] text-emerald-900 uppercase tracking-[0.15em]">Weighbridge Ticket</p>
               <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Example only</p>
             </div>
             <span className="poppins-semibold text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full tabular-nums">
@@ -188,7 +188,7 @@ function ExampleBill({ active, seen }: { active: number; seen: number }) {
               >
                 <c.icon className="w-4 h-4 text-emerald-200 flex-shrink-0" />
                 <p className="poppins-semibold text-sm text-white">
-                  <span className="text-emerald-300">We ask:</span> {c.ask}
+                  <span className="text-emerald-300">I ask:</span> {c.ask}
                 </p>
               </div>
             ))}
@@ -209,7 +209,7 @@ export default function WhatWeCheckPage() {
   const getRef = useReveal(0.15)
   const ctaRef = useReveal(0.2)
 
-  // Light up the bill line for whichever step sits in the middle of the screen
+  // Light up the ticket line for whichever step sits in the middle of the screen
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
@@ -248,14 +248,14 @@ export default function WhatWeCheckPage() {
             className="poppins-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-slate-900 mb-6 transition-all duration-700 delay-100"
             style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(20px)" }}
           >
-            We check your <RotatingWord />
+            I check the <RotatingWord />
           </h1>
 
           <p
             className="poppins-regular text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-700 delay-200"
             style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "none" : "translateY(16px)" }}
           >
-            Your waste bill has lots of small lines. Here are the six things we look at, and why each one can cost you money.
+            Every ticket you send me has a few key details. Here are the six things I check on every load before it goes to Defra.
           </p>
 
           <div
@@ -273,19 +273,19 @@ export default function WhatWeCheckPage() {
               href="/send-your-bill"
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 poppins-semibold text-sm rounded-xl transition-all duration-300"
             >
-              Send Us Your Bill
+              Send Me Your Tickets
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ── THE SIX CHECKS (scroll story) ──────────────────────────────────── */}
+      {/* ── THE SIX CHECKS ON EVERY LOAD (scroll story) ─────────────────────── */}
       <section id="checks" className="relative px-6 py-16 sm:py-24 scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 lg:mb-4">
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">The six checks</p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              Line by line.{" "}
+              Load by load.{" "}
               <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Nothing guessed.</span>
             </h2>
           </div>
@@ -313,7 +313,7 @@ export default function WhatWeCheckPage() {
                       <h3 className="poppins-bold text-2xl sm:text-3xl text-slate-900 mb-3">{c.title}</h3>
                       <p className="poppins-regular text-base sm:text-lg text-slate-500 leading-relaxed max-w-md mb-4">{c.body}</p>
                       <p className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-100 poppins-semibold text-xs text-emerald-800">
-                        <span className="text-emerald-500">We ask:</span> {c.ask}
+                        <span className="text-emerald-500">I ask:</span> {c.ask}
                       </p>
                     </div>
                   </div>
@@ -321,7 +321,7 @@ export default function WhatWeCheckPage() {
               })}
             </div>
 
-            {/* Sticky bill — desktop */}
+            {/* Sticky ticket — desktop */}
             <div className="hidden lg:block">
               <div className="sticky top-[calc(50vh-230px)]">
                 <ExampleBill active={active} seen={seen} />
@@ -331,8 +331,8 @@ export default function WhatWeCheckPage() {
 
           {/* Also checked */}
           <div className="mt-10 lg:mt-0 flex flex-wrap justify-center items-center gap-3">
-            <span className="poppins-medium text-sm text-slate-400">We also check:</span>
-            {["Your collector is licensed", "You have your waste papers"].map((t) => (
+            <span className="poppins-medium text-sm text-slate-400">Also covered:</span>
+            {["Your paper transfer notes still kept", "Rule changes, explained to you"].map((t) => (
               <span key={t} className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white border border-emerald-100 rounded-full text-xs text-emerald-700 poppins-medium shadow-sm">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
                 {t}
@@ -388,17 +388,17 @@ export default function WhatWeCheckPage() {
           style={{ opacity: ctaRef.visible ? 1 : 0, transform: ctaRef.visible ? "none" : "translateY(20px)" }}
         >
           <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5 leading-tight">
-            Want us to check yours?
+            Want me to report yours?
           </h2>
           <p className="poppins-regular text-emerald-100 text-lg mb-9 max-w-xl mx-auto">
-            Your first check is free. Send your bill, or let us call you and go through it together.
+            Two weeks free. Send me your tickets, or let me call you and go through how your site reports now.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/send-your-bill"
               className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white hover:bg-emerald-50 text-emerald-700 poppins-bold text-sm rounded-xl transition-all duration-300 shadow-lg active:scale-95"
             >
-              Send Us Your Bill
+              Send Me Your Tickets
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
             <Link

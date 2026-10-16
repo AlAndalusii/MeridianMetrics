@@ -32,51 +32,51 @@ import {
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
 
-const MAILTO = "mailto:hello@millstonecompliance.com?subject=Documentation%20Service%20Enquiry&body=Hi%20Millstone%20Compliance%2C%0A%0AI%27d%20like%20to%20learn%20more%20about%20your%20documentation%20services.%0A%0AMy%20details%3A%0AName%3A%20%0ACompany%3A%20%0APhone%3A%20%0A%0AThank%20you"
+const MAILTO = "mailto:hello@millstonecompliance.com?subject=Paperwork%20Support&body=Hi%20Zak%2C%0A%0AI%27d%20like%20to%20know%20more%20about%20Paperwork%20Support.%0A%0AMy%20details%3A%0AName%3A%20%0ASite%3A%20%0APhone%3A%20%0A%0AThanks"
 
 // ─── Document categories ──────────────────────────────────────────────────────
 
 const docCategories = [
   {
-    icon: Trash2,
-    label: "Waste Compliance",
+    icon: ClipboardList,
+    label: "Quarterly Returns",
     color: "emerald",
-    headline: "Waste Transfer Notes, Duty of Care Records & HMO Plans",
+    headline: "Quarterly Waste Returns, Prepared From Data I Already Hold",
     docs: [
-      "Waste Transfer Notes (WTN)",
-      "Consignment Notes for hazardous waste",
-      "HMO Waste Management Plan",
-      "Duty of Care evidence file",
-      "Waste contractor licence records",
-      "Simpler Recycling compliance pack",
+      "Loads in, totalled by waste type",
+      "EWC codes grouped the way the return asks",
+      "Weights pulled from your weighbridge tickets",
+      "Ready for you to check and submit",
+      "Matched against what went to Defra",
+      "Done every quarter, without chasing",
     ],
   },
   {
-    icon: HeartPulse,
-    label: "Clinical Waste",
+    icon: Users,
+    label: "Hauliers & Customers",
     color: "blue",
-    headline: "HTM 07-01 Records, Consignment Notes & CQC-Ready Files",
+    headline: "Your Regulars Set Up Before Their First Load",
     docs: [
-      "Clinical waste consignment notes",
-      "HTM 07-01 segregation records",
-      "Sharps management log",
-      "Contractor licence verification file",
-      "Waste disposal frequency log",
-      "CQC / Ofsted inspection-ready summary",
+      "Regular hauliers' details on file",
+      "Regular customers' details on file",
+      "The waste each one usually brings",
+      "Their usual EWC and R/D codes",
+      "New regulars added when they start",
+      "Fewer questions on busy days",
     ],
   },
   {
-    icon: Recycle,
-    label: "Simpler Recycling",
+    icon: Layers,
+    label: "Your DWT Records",
     color: "purple",
-    headline: "4-Stream Evidence, Collection Records & Staff Instructions",
+    headline: "Code Template, Weekly Lists and a Clear Paper Trail",
     docs: [
-      "Waste stream separation evidence",
-      "Food waste collection records",
-      "Recycling contractor verification",
-      "Staff instruction notices",
-      "Compliance monitoring log",
-      "Annual review documentation",
+      "Your code template, kept up to date",
+      "Every Friday confirmation, kept",
+      "Ticket photos matched to each load",
+      "Notes of anything I had to ask about",
+      "Rule changes explained in plain English",
+      "Easy to hand over if anyone asks",
     ],
   },
 ]
@@ -93,26 +93,26 @@ const steps = [
   {
     num: "01",
     icon: ScanLine,
-    title: "We Audit Your Current Position",
-    body: "We review what documentation you currently hold, identify the gaps, and map every record against your legal obligations — duty of care, clinical waste, or Simpler Recycling.",
+    title: "I Look At What You Already Do",
+    body: "Your returns, your regulars and your paperwork. I see what I can take off your plate, using the data I already hold.",
   },
   {
     num: "02",
-    icon: PenLine,
-    title: "We Draft Every Document",
-    body: "Our team produces every required document — written to the standard regulators expect. No templates for you to interpret. Finished files, ready to sign.",
+    icon: Users,
+    title: "I Set Up Your Regulars",
+    body: "Regular hauliers and customers go in before their first load, with the waste they usually bring and the right codes.",
   },
   {
     num: "03",
-    icon: Layers,
-    title: "We Organise Your Evidence File",
-    body: "Every document is filed in a logical, dated evidence structure. When an inspector asks for records, you hand them a folder. Not a confused inbox.",
+    icon: PenLine,
+    title: "I Prepare Your Returns",
+    body: "Quarterly waste returns built from the loads I have already reported. You check them, and you stay in control.",
   },
   {
     num: "04",
     icon: Calendar,
-    title: "We Keep It Current",
-    body: "Regulations change. Contractors change. We update your documentation as your business changes — so your records never fall out of compliance.",
+    title: "I Keep It Current",
+    body: "New hauliers, new waste types, new rules. I update your records as things change, and tell you what changed.",
   },
 ]
 
@@ -121,11 +121,11 @@ const steps = [
 function DocumentStack() {
   const [active, setActive] = useState(0)
   const docs = [
-    { label: "Waste Transfer Note", type: "WTN", color: "emerald" },
-    { label: "Clinical Waste Consignment Note", type: "CWN", color: "blue" },
-    { label: "HMO Waste Management Plan", type: "WMP", color: "amber" },
-    { label: "Simpler Recycling Evidence File", type: "SRE", color: "purple" },
-    { label: "Duty of Care Evidence File", type: "DOC", color: "rose" },
+    { label: "Quarterly Waste Return", type: "QWR", color: "emerald" },
+    { label: "Regular Haulier Details", type: "HAU", color: "blue" },
+    { label: "Regular Customer Details", type: "CUS", color: "amber" },
+    { label: "EWC & R/D Code Template", type: "TPL", color: "purple" },
+    { label: "Friday Confirmation", type: "FRI", color: "rose" },
   ]
   const typeColors: Record<string, string> = {
     emerald: "bg-emerald-600",
@@ -185,7 +185,7 @@ function DocumentStack() {
                 <span className="poppins-regular text-[10px] text-slate-400">Millstone Compliance</span>
                 <div className="flex items-center gap-1">
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  <span className="poppins-bold text-[10px] text-emerald-600">Compliant</span>
+                  <span className="poppins-bold text-[10px] text-emerald-600">Ready</span>
                 </div>
               </div>
             </div>
@@ -224,7 +224,7 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function DocumentationPage() {
+export default function PaperworkSupportPage() {
   return (
     <div className="min-h-screen bg-white text-slate-900">
       <Navigation />
@@ -242,18 +242,18 @@ export default function DocumentationPage() {
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 mb-8">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                <span className="poppins-medium text-sm text-emerald-700 tracking-wide">Documentation Services</span>
+                <span className="poppins-medium text-sm text-emerald-700 tracking-wide">Paperwork Support · Add-on</span>
               </div>
 
               <h1 className="poppins-bold text-5xl lg:text-6xl xl:text-7xl text-slate-900 leading-[1.05] tracking-tight mb-8">
-                Documents That
+                Less Paperwork.
                 <br />
-                <span className="text-emerald-700">Protect You.</span>
+                <span className="text-emerald-700">Same Data.</span>
               </h1>
 
               <p className="poppins-regular text-xl text-slate-500 leading-relaxed mb-10 max-w-lg">
-                Waste duty of care, clinical waste, and Simpler Recycling documentation — produced, organised, and maintained by our team.
-                Ready the moment an EA inspector, CQC, or council asks for it.
+                For sites I already report for. Quarterly waste returns and your regular hauliers and customers,
+                done from the data I already hold. No forms filled twice.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
@@ -262,7 +262,7 @@ export default function DocumentationPage() {
                   className="group inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl poppins-semibold text-sm bg-slate-900 hover:bg-slate-800 text-white transition-all duration-200 active:scale-[0.98] shadow-lg shadow-slate-900/20"
                 >
                   <Mail className="w-4 h-4" />
-                  Get Your Documents Sorted
+                  Ask About Paperwork Support
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </a>
                 <Link
@@ -281,9 +281,9 @@ export default function DocumentationPage() {
               {/* Stats row */}
               <div className="grid grid-cols-3 gap-4 w-full max-w-xs">
                 {[
-                  { stat: "3", label: "Regulation types covered" },
-                  { stat: "48h", label: "Typical turnaround" },
-                  { stat: "100%", label: "Audit-ready format" },
+                  { stat: "1", label: "Set of data, used twice" },
+                  { stat: "4", label: "Quarterly returns a year" },
+                  { stat: "1-1", label: "Direct line to me" },
                 ].map(({ stat, label }) => (
                   <div key={label} className="text-center">
                     <p className="poppins-bold text-2xl text-slate-900">{stat}</p>
@@ -302,24 +302,24 @@ export default function DocumentationPage() {
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <FadeIn>
-            <p className="poppins-medium text-sm text-emerald-400 tracking-widest uppercase mb-6">The Reality</p>
+            <p className="poppins-medium text-sm text-emerald-400 tracking-widest uppercase mb-6">The Problem</p>
             <h2 className="poppins-bold text-4xl lg:text-5xl xl:text-6xl text-white leading-[1.1] tracking-tight mb-8">
-              Most Businesses Have
+              The Same Data,
               <br />
-              <span className="text-emerald-400">Zero Documentation.</span>
+              <span className="text-emerald-400">Typed In Again.</span>
             </h2>
             <p className="poppins-regular text-lg text-white/50 leading-relaxed max-w-2xl mx-auto mb-12">
-              When an EA inspector arrives or CQC opens an inspection, they don't care what you intended to do. 
-              They look for dated, signed, structured records. Most businesses produce nothing — and pay for it.
+              Every load already goes on a ticket, a transfer note and now Defra&apos;s system.
+              Then the quarterly return asks for it all again. Once I hold your data, I can use it for both.
             </p>
           </FadeIn>
 
           <FadeIn delay={100}>
             <div className="grid sm:grid-cols-3 gap-6">
               {[
-                { stat: "£300", label: "Fixed penalty for missing Waste Transfer Notes", color: "text-red-400" },
-                { stat: "£5,000", label: "Maximum fine for HMO waste non-compliance", color: "text-amber-400" },
-                { stat: "Unlimited", label: "Court fine for duty of care record failures", color: "text-rose-400" },
+                { stat: "Ticket", label: "Written at the weighbridge for every load", color: "text-emerald-300" },
+                { stat: "2 days", label: "To report each load to Defra", color: "text-amber-300" },
+                { stat: "Quarterly", label: "Waste returns, built from the same loads", color: "text-teal-300" },
               ].map(({ stat, label, color }) => (
                 <div key={stat} className="rounded-2xl bg-white/5 border border-white/10 p-6">
                   <p className={`poppins-bold text-4xl ${color} mb-2`}>{stat}</p>
@@ -336,13 +336,13 @@ export default function DocumentationPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-20">
-              <p className="poppins-medium text-sm text-emerald-700 uppercase tracking-widest mb-4">What We Produce</p>
+              <p className="poppins-medium text-sm text-emerald-700 uppercase tracking-widest mb-4">What It Covers</p>
               <h2 className="poppins-bold text-4xl lg:text-5xl text-slate-900 tracking-tight mb-5">
-                Every Document,
-                <span className="text-emerald-700"> Every Regulation.</span>
+                Three Jobs,
+                <span className="text-emerald-700"> Off Your Plate.</span>
               </h2>
               <p className="poppins-regular text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">
-                Three waste compliance frameworks. Complete documentation for each.
+                Added to your monthly fee, or done per job. Agreed upfront.
               </p>
             </div>
           </FadeIn>
@@ -372,7 +372,7 @@ export default function DocumentationPage() {
                           href={MAILTO}
                           className="inline-flex items-center gap-2 poppins-semibold text-sm text-slate-700 hover:text-slate-900 transition-colors mt-6 group/link"
                         >
-                          Get These Documents
+                          Ask About This
                           <ArrowRight className="w-4 h-4 group-hover/link:translate-x-0.5 transition-transform" />
                         </a>
                       </div>
@@ -380,7 +380,7 @@ export default function DocumentationPage() {
                       {/* Right panel — doc list */}
                       <div className="p-8 lg:p-10">
                         <p className="poppins-semibold text-xs text-slate-400 uppercase tracking-widest mb-5">
-                          Documents Included
+                          What&apos;s Included
                         </p>
                         <div className="grid sm:grid-cols-2 gap-3">
                           {cat.docs.map((doc) => (
@@ -409,7 +409,7 @@ export default function DocumentationPage() {
             <div className="text-center mb-20">
               <p className="poppins-medium text-sm text-emerald-700 uppercase tracking-widest mb-4">The Process</p>
               <h2 className="poppins-bold text-4xl lg:text-5xl text-slate-900 tracking-tight">
-                From Gap To Done
+                How It Works
                 <span className="text-emerald-700"> In Four Steps.</span>
               </h2>
             </div>
@@ -441,30 +441,29 @@ export default function DocumentationPage() {
             <FadeIn>
               <div>
                 <p className="poppins-medium text-sm text-emerald-700 uppercase tracking-widest mb-4">
-                  Why It Matters
+                  Why It Helps
                 </p>
                 <h2 className="poppins-bold text-4xl lg:text-5xl text-slate-900 tracking-tight mb-7 leading-[1.1]">
-                  Records Are
+                  One Set of Data.
                   <br />
-                  Your Protection.
+                  Used Twice.
                 </h2>
                 <p className="poppins-regular text-lg text-slate-500 leading-relaxed mb-7">
-                  Across waste duty of care, clinical waste, and HMO obligations, regulators don't just inspect what you do —
-                  they inspect what you can demonstrate. Whether it's an EA site visit, a CQC inspection,
-                  or a council licensing review, the outcome turns on whether your records exist,
-                  are dated, and hold up to scrutiny.
+                  I already enter every load you take in. That same data is what your quarterly return
+                  is built from. So instead of someone in the office adding it all up again at the end of
+                  the quarter, I prepare it for you to check.
                 </p>
                 <p className="poppins-regular text-lg text-slate-500 leading-relaxed mb-10">
-                  We produce documentation built to withstand that scrutiny — covering every regulated
-                  activity your business is involved in, maintained as your circumstances change.
+                  You stay responsible for what goes in your return. I make sure the numbers match
+                  what was reported, and I explain anything that looks odd.
                 </p>
                 <div className="space-y-3">
                   {[
-                    "Covers duty of care, clinical waste, and Simpler Recycling obligations",
-                    "Each document references the relevant legislation",
-                    "Formatted to match what regulators expect to see",
-                    "Includes all required signatory and date fields",
-                    "Kept current as regulations and your business evolve",
+                    "Built from loads already reported to Defra",
+                    "Weights taken from your weighbridge tickets",
+                    "Codes match your template and your permit",
+                    "Regular hauliers and customers set up early",
+                    "Plain English notes on anything that changed",
                   ].map((point) => (
                     <div key={point} className="flex items-start gap-3">
                       <CheckCircle className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
@@ -485,11 +484,11 @@ export default function DocumentationPage() {
                   </p>
                   <div className="space-y-4">
                     {[
-                      { label: "Complete evidence file", sub: "Duty of care, clinical waste, and HMO records — organised and hand-over ready" },
-                      { label: "Finished, compliant documents", sub: "Produced and completed by us — not blank templates" },
-                      { label: "Legislation referenced throughout", sub: "Every document cites the rule it satisfies" },
-                      { label: "Ongoing maintenance included", sub: "We update your records when regulations or circumstances change" },
-                      { label: "Regulator-ready summary", sub: "One-page overview prepared for inspections and audits" },
+                      { label: "Quarterly returns, prepared", sub: "Totals by waste type and code, ready for you to check" },
+                      { label: "Regulars set up", sub: "Hauliers and customers on file before their first load" },
+                      { label: "Your code template, kept current", sub: "Updated when you take in a new type of waste" },
+                      { label: "Every Friday confirmation, kept", sub: "A clear record of what went in, and when" },
+                      { label: "A real person to ask", sub: "Questions answered by me, not a call centre" },
                     ].map(({ label, sub }) => (
                       <div key={label} className="flex items-start gap-3 p-4 bg-white/5 border border-white/8 rounded-2xl">
                         <div className="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -519,9 +518,9 @@ export default function DocumentationPage() {
           </FadeIn>
           <div className="grid sm:grid-cols-3 gap-5">
             {[
-              { title: "Waste Documentation Guide UK 2026", href: "/resources/waste-packaging-documentation", badge: "Guide", desc: "Every document you're legally required to hold — WTNs, consignment notes, and HMO plans." },
-              { title: "Waste Duty of Care Compliance",     href: "/resources/duty-of-care-waste",           badge: "Essential", desc: "Legal requirements, WTNs, and carrier verification explained." },
-              { title: "Care Home Waste Compliance",        href: "/resources/care-home-waste-compliance-checklist", badge: "Essential", desc: "CQC inspection-ready waste records for care homes across the UK." },
+              { title: "Digital Waste Tracking, Explained", href: "/waste-cost-savings", badge: "Guide", desc: "Who it affects, what to report, and the two-working-day deadline." },
+              { title: "What I Check On Every Load",       href: "/what-we-check",      badge: "How it works", desc: "Date, weight, codes, carrier, permit and deadline." },
+              { title: "Free Readiness Check",             href: "/free-check",         badge: "Free", desc: "10 quick questions. Is your site reporting properly?" },
             ].map(({ title, href, badge, desc }, idx) => (
               <FadeIn key={title} delay={idx * 80}>
                 <Link href={href} className="group block bg-white rounded-2xl border border-slate-100 p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
@@ -545,13 +544,13 @@ export default function DocumentationPage() {
         <FadeIn>
           <div className="relative z-10 max-w-2xl mx-auto px-6 text-center">
             <h2 className="poppins-bold text-5xl lg:text-6xl text-slate-900 tracking-tight mb-7 leading-[1.05]">
-              Let's Get Your
+              Less Typing.
               <br />
-              <span className="text-emerald-700">Records Right.</span>
+              <span className="text-emerald-700">Same Records.</span>
             </h2>
             <p className="poppins-regular text-lg text-slate-500 mb-10 leading-relaxed">
-              Tell us which regulations you're covered by and we'll scope your documentation 
-              requirements — no obligation, no sales call.
+              Already reporting with me? Ask about adding Paperwork Support.
+              New to Millstone? Start with a free two-week trial of reporting.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
@@ -559,14 +558,14 @@ export default function DocumentationPage() {
                 className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl poppins-semibold text-base bg-slate-900 hover:bg-slate-800 text-white transition-all duration-200 active:scale-[0.98] shadow-lg shadow-slate-900/20 w-full sm:w-auto justify-center"
               >
                 <Mail className="w-4 h-4" />
-                Start Your Documentation
+                Ask About Paperwork Support
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </a>
               <Link
-                href="/support"
+                href="/waste-contract-audit"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl poppins-semibold text-sm bg-white border border-slate-200 hover:border-slate-300 text-slate-700 transition-all duration-200 w-full sm:w-auto justify-center"
               >
-                Talk To Our Team
+                Start a Free Two-Week Trial
               </Link>
             </div>
           </div>

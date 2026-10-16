@@ -66,10 +66,10 @@ function CountUp({ to, run, delay = 0 }: { to: number; run: boolean; delay?: num
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 const areas = [
-  { icon: Truck, label: "Loads", note: "Is every load logged?" },
-  { icon: Timer, label: "Deadline", note: "In within two working days?" },
+  { icon: FileCheck, label: "Registration", note: "Set up with Defra?" },
+  { icon: Truck, label: "Reporting", note: "Is every load going in?" },
   { icon: ListChecks, label: "Codes", note: "EWC and R/D codes right?" },
-  { icon: FileCheck, label: "Paperwork", note: "Transfer notes in order?" },
+  { icon: Timer, label: "Deadlines", note: "In within two working days?" },
 ]
 
 const services = [
@@ -78,7 +78,7 @@ const services = [
     step: "01",
     badge: "Done For You",
     title: "Load Reporting",
-    href: "/services#bill-audit",
+    href: "/services#reporting",
     description: "Send photos of your tickets and transfer notes on WhatsApp. I enter and submit every load before the deadline.",
   },
   {
@@ -86,7 +86,7 @@ const services = [
     step: "02",
     badge: "Free",
     title: "Two-Week Trial",
-    href: "/services#better-deals",
+    href: "/services#reporting",
     description: "Try it free for two weeks. First I map the waste codes you use most, so every entry is fast and the same.",
   },
   {
@@ -94,7 +94,7 @@ const services = [
     step: "03",
     badge: "Fridays",
     title: "Weekly Confirmation",
-    href: "/services#renewal-watch",
+    href: "/services#how-it-works",
     description: "Every Friday you get a list of every load I submitted that week. Nothing to chase, nothing to guess.",
   },
 ]
@@ -293,7 +293,7 @@ export function HealthCheckSection() {
               </h2>
 
               <p className="hc-fade poppins-regular text-lg sm:text-xl text-slate-600 leading-relaxed mt-6 max-w-xl" style={{ animationDelay: "750ms" }}>
-                Answer 10 quick questions about digital waste tracking. See if your site is <span className="text-emerald-700 poppins-semibold">ready</span>, or where the <span className="text-rose-600 poppins-semibold">gaps</span> are.
+                10 quick questions, 3 minutes. Find out if your site is <span className="text-emerald-700 poppins-semibold">reporting properly</span>, or if loads are <span className="text-rose-600 poppins-semibold">slipping through</span>.
               </p>
 
               {/* Stats */}

@@ -17,9 +17,9 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Digital Waste Tracking, Done For You | Millstone Compliance",
+  title: "Every Load Reported, On Time | Digital Waste Tracking | Millstone",
   description:
-    "Permitted waste sites must report every load to Defra within two working days. Send me photos on WhatsApp and I submit every load for you. Free two-week trial.",
+    "Permitted waste sites must report every load to Defra within two working days. Send me your tickets on WhatsApp and I'll make sure every load is in on time. Two weeks free.",
   keywords: [
     "digital waste tracking",
     "digital waste tracking service",
@@ -44,16 +44,16 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Digital Waste Tracking, Done For You | Millstone Compliance",
-    description: "Permitted waste sites must report every load to Defra within two working days. Send me photos on WhatsApp and I submit every load for you. Free two-week trial.",
+    title: "Every Load Reported, On Time | Digital Waste Tracking | Millstone",
+    description: "Permitted waste sites must report every load to Defra within two working days. Send me your tickets on WhatsApp and I'll make sure every load is in on time. Two weeks free.",
     type: "website",
     locale: "en_GB",
     siteName: "Millstone Compliance",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digital Waste Tracking, Done For You | Millstone Compliance",
-    description: "Permitted waste sites must report every load to Defra within two working days. Send me photos on WhatsApp and I submit every load for you. Free two-week trial.",
+    title: "Every Load Reported, On Time | Digital Waste Tracking | Millstone",
+    description: "Permitted waste sites must report every load to Defra within two working days. Send me your tickets on WhatsApp and I'll make sure every load is in on time. Two weeks free.",
   },
 }
 

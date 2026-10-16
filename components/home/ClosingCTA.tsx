@@ -34,31 +34,39 @@ const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
 )
 
 const paths = [
-  { icon: Send, who: "Permitted site", what: "Free two-week trial", href: "/services#small-businesses" },
-  { icon: ListChecks, who: "Reporting already", what: "A reporting check", href: "/services#landlords" },
-  { icon: Truck, who: "Carrier or skip firm", what: "Ready for 2027", href: "/services#partners" },
+  { icon: Send, who: "Permitted site", what: "Reporting, done for you", href: "/services#reporting" },
+  { icon: ListChecks, who: "Reporting already", what: "A DWT Health Check", href: "/services#health-check" },
+  { icon: Truck, who: "Carrier or broker", what: "Ready for 2027 list", href: "/services#ready-2027" },
 ]
 
 const faqs = [
   {
-    q: "What do you actually do?",
-    a: "I report the loads your site receives to Defra's digital waste tracking service. You send photos on WhatsApp. I enter and submit each one within two working days.",
+    q: "Do I still need paper transfer notes?",
+    a: "Yes. Digital waste tracking is an extra record on top of your existing paperwork, not a replacement.",
   },
   {
-    q: "What is the deadline?",
-    a: "Each load must be reported within two working days, counted from the day after it arrives. Weekends and bank holidays don't count. Paper transfer notes still carry on too.",
+    q: "What's the deadline?",
+    a: "Two working days, counted from the day after the waste arrives. Weekends and bank holidays don't count. A load in on Thursday must be reported by the end of Monday.",
   },
   {
-    q: "How much does it cost?",
-    a: "A simple monthly fee, and I tell you what it is upfront on a free call. Start with a free two-week trial, so you see it working before you pay anything.",
+    q: "Do I need software?",
+    a: "Not right now. Defra's spreadsheet route is available. If you'd like software, I can help you choose it and set it up.",
   },
   {
-    q: "Who is responsible for what?",
-    a: "You're responsible for what's on the tickets and notes you send me. I'm responsible for entering and submitting them on time. Every Friday you get a confirmation.",
+    q: "Who's responsible if something's wrong?",
+    a: "You stay responsible for the information on your tickets. I'm responsible for entering and submitting it correctly and on time.",
   },
   {
-    q: "I'm a carrier or skip firm. Does this affect me?",
-    a: "Carriers, brokers and dealers come into the system from October 2027. Call or WhatsApp me and I'll help you get ready before then.",
+    q: "What does it cost?",
+    a: "Two weeks free, then a fixed monthly fee based on how many loads you take in, agreed upfront.",
+  },
+  {
+    q: "Which sites do you work with?",
+    a: "Permitted sites receiving non-hazardous waste: scrap yards, transfer stations, skip yards, aggregate recyclers and similar.",
+  },
+  {
+    q: "I'm a carrier or broker. Does this affect me?",
+    a: "From October 2027. Join the Ready for 2027 list and I'll keep you updated.",
   },
 ]
 
@@ -89,17 +97,17 @@ export function ClosingCTA() {
           </div>
 
           <h2 id="cta-heading" className="poppins-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-white">
-            <span className="cc-word inline-block" style={{ animationDelay: "120ms" }}>Send photos.</span>{" "}
+            <span className="cc-word inline-block" style={{ animationDelay: "120ms" }}>Two weeks free.</span>{" "}
             <span
               className="cc-word cc-shine inline-block pb-1 bg-gradient-to-r from-emerald-200 via-white to-emerald-200 bg-[length:200%_100%] bg-clip-text text-transparent"
               style={{ animationDelay: "300ms" }}
             >
-              Sorted.
+              No contract.
             </span>
           </h2>
 
           <p className="cc-fade poppins-regular text-lg sm:text-xl text-emerald-100/85 leading-relaxed mt-6 max-w-2xl mx-auto" style={{ animationDelay: "480ms" }}>
-            Load reporting, reporting checks and help with your paperwork. Try it free for two weeks and see it working before you pay.
+            No card needed. See if it saves you time before you pay anything.
           </p>
 
           {/* Pick your path */}
@@ -135,7 +143,7 @@ export function ClosingCTA() {
               className="group relative overflow-hidden inline-flex items-center justify-center gap-2.5 rounded-2xl bg-white px-8 py-4 poppins-semibold text-base text-emerald-900 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.45)] transition-all duration-300 hover:bg-emerald-50 active:scale-[0.98] min-h-[54px]"
             >
               <span className="cc-btn-shine absolute inset-y-0 -left-1/2 w-1/2 bg-gradient-to-r from-transparent via-emerald-200/50 to-transparent skew-x-[-20deg]" />
-              <span className="relative">Book a Free 15-Minute Call</span>
+              <span className="relative">Start a Free Trial</span>
               <ArrowRight className="relative w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
             <a

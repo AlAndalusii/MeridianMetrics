@@ -1,33 +1,24 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from "react"
-import Link from "next/link"
 import {
   ArrowRight,
   CheckCircle,
   Lock,
   Truck,
-  Sparkles,
-  Sofa,
-  Recycle,
-  BedDouble,
-  Tv,
-  Lamp,
-  Package,
-  Trash2,
-  Phone,
-  Receipt,
-  KeyRound,
+  Send,
+  ClipboardCheck,
+  Wrench,
+  FileText,
   Handshake,
-  Zap,
-  Sprout,
-  Droplets,
-  HardHat,
-  BadgeCheck,
-  ShieldCheck,
-  History,
-  Users,
-  MessageSquare,
+  Phone,
+  Recycle,
+  Warehouse,
+  Container,
+  Hammer,
+  Leaf,
+  Camera,
+  CalendarCheck,
   Wallet,
 } from "lucide-react"
 import { Navigation } from "@/components/Navigation"
@@ -51,118 +42,130 @@ function useReveal(threshold = 0.12) {
   return { ref, visible }
 }
 
-/* ─── Data ────────────────────────────────────────────────────────────────── */
-type Action = { kind: "link"; href: string } | { kind: "booking" }
+const WHATSAPP = "https://wa.me/447762270113"
+const READY_2027 = `${WHATSAPP}?text=${encodeURIComponent("Hi Zak, please add me to the Ready for 2027 list.")}`
 
+/* ─── Data ────────────────────────────────────────────────────────────────── */
 const services: {
   id: string
   num: string
   icon: React.ElementType
+  tag: string
   forWho: string
   chip: string
   title: string
   what: string
   points: string[]
-  paid: string
+  priced: string
   cta: string
-  action: Action
   featured?: boolean
 }[] = [
   {
-    id: "small-businesses",
+    id: "reporting",
     num: "01",
-    icon: Receipt,
-    forWho: "Small businesses",
-    chip: "I'm a small business",
-    title: "Waste Bill Check",
-    what: "I check your waste bill line by line, find you a better deal, and watch your renewal date.",
+    icon: Send,
+    tag: "Core",
+    forWho: "Small permitted sites",
+    chip: "Do it for me",
+    title: "DWT Reporting, Done For You",
+    what: "You send your tickets on WhatsApp. I enter and submit every load, and confirm it all on Friday.",
     points: [
-      "Every charge checked against your contract",
-      "A better deal from a licensed collector",
-      "Renewal date logged, so it never rolls over",
+      "A template set up with your usual EWC and R/D codes",
+      "Every load entered and submitted, aiming for one working day",
+      "Errors fixed, and a Friday confirmation of everything",
+      "Updates from me when the rules change",
     ],
-    paid: "No saving, no fee.",
-    cta: "Send Us Your Bill",
-    action: { kind: "link", href: "/send-your-bill" },
-  },
-  {
-    id: "landlords",
-    num: "02",
-    icon: KeyRound,
-    forWho: "Letting agents & landlords",
-    chip: "I'm an agent or landlord",
-    title: "Vetted Contractors",
-    what: "Your backup when your usual contractor is booked. One call, and I send someone I've checked.",
-    points: [
-      "EPC and retrofit, damp and mould",
-      "Electrical, gas and fire safety",
-      "Property clearances between tenants",
-    ],
-    paid: "Free to you. The contractor pays us.",
-    cta: "Tell Us What You Need",
-    action: { kind: "booking" },
+    priced: "Free two-week trial, then a fixed monthly fee based on your loads.",
+    cta: "Start a Free Two-Week Trial",
     featured: true,
   },
   {
-    id: "partners",
-    num: "03",
-    icon: Handshake,
-    forWho: "Waste firms & contractors",
-    chip: "I'm a waste firm",
-    title: "New Local Work",
-    what: "Introductions to builders, agents and businesses who need you again and again.",
+    id: "health-check",
+    num: "02",
+    icon: ClipboardCheck,
+    tag: "One-off",
+    forWho: "Sites already reporting",
+    chip: "Check my reporting",
+    title: "DWT Health Check",
+    what: "I check a sample week of your loads against your tickets, and tell you what to fix.",
     points: [
-      "Pass my five checks once",
-      "Get introduced to local customers",
-      "Steady work, not one-off leads",
+      "Did each load actually land?",
+      "Are the codes right, and do they match your permit?",
+      "A short written report with the fixes",
     ],
-    paid: "First introduction free, then an agreed fee.",
-    cta: "Become a Partner",
-    action: { kind: "booking" },
+    priced: "One-off fee, agreed upfront.",
+    cta: "Book a Health Check",
+  },
+  {
+    id: "setup",
+    num: "03",
+    icon: Wrench,
+    tag: "One-off",
+    forWho: "Sites doing it themselves",
+    chip: "Help me set up",
+    title: "DWT Setup",
+    what: "Want to do it yourself, but haven't started properly? I get you set up and ready.",
+    points: [
+      "Help with Defra registration and your API code",
+      "Spreadsheet or software: help choosing",
+      "A pre-filled code template for your site",
+      "A short handover for whoever runs the weighbridge",
+    ],
+    priced: "One-off fee, agreed upfront.",
+    cta: "Book a Setup Call",
+  },
+  {
+    id: "paperwork",
+    num: "04",
+    icon: FileText,
+    tag: "Add-on",
+    forWho: "Reporting clients",
+    chip: "Extra paperwork",
+    title: "Paperwork Support",
+    what: "Extra paperwork, done from the data I already hold for you. No forms filled twice.",
+    points: [
+      "Quarterly waste returns prepared for you",
+      "Regular hauliers and customers set up before their first load",
+    ],
+    priced: "Added to your monthly fee, or per job.",
+    cta: "Ask About Paperwork",
   },
 ]
 
-const alsoAvailable = [
-  { icon: Zap,      label: "Urgent Clearances" },
-  { icon: Truck,    label: "Skips" },
-  { icon: Recycle,  label: "Recycling" },
-  { icon: Sprout,   label: "Japanese Knotweed" },
-  { icon: Droplets, label: "Drains" },
-  { icon: HardHat,  label: "Asbestos" },
+const siteTypes = [
+  { icon: Recycle,   label: "Scrap and metal recyclers" },
+  { icon: Warehouse, label: "Waste transfer stations" },
+  { icon: Container, label: "Skip hire firms with a yard" },
+  { icon: Hammer,    label: "Aggregate and inert recyclers" },
+  { icon: Leaf,      label: "Wood and composting sites" },
 ]
 
-const vetting = [
-  { icon: BadgeCheck,    label: "Registration" },
-  { icon: ShieldCheck,   label: "Insurance" },
-  { icon: History,       label: "Company history" },
-  { icon: Users,         label: "References" },
-  { icon: MessageSquare, label: "Feedback after every job" },
+const priceLines = [
+  { who: "DWT Reporting, Done For You", how: "Two weeks free, then a fixed monthly fee" },
+  { who: "DWT Health Check", how: "One-off fee" },
+  { who: "DWT Setup", how: "One-off fee" },
+  { who: "Paperwork Support", how: "Added monthly, or per job" },
+  { who: "Introductions", how: "Free" },
 ]
 
-const paidLines = [
-  { who: "Small businesses", how: "No saving, no fee." },
-  { who: "Letting agents & landlords", how: "Free to you. The contractor pays us." },
-  { who: "Waste firms & contractors", how: "First introduction free, then an agreed fee." },
+/* ─── Ticket scene: a week's tickets arrive, get entered, then confirmed ─── */
+const tickets = [
+  { day: "Mon", label: "Steel" },
+  { day: "Mon", label: "Metals" },
+  { day: "Tue", label: "Rubble" },
+  { day: "Wed", label: "Wood" },
+  { day: "Thu", label: "Soil" },
+  { day: "Fri", label: "Metals" },
 ]
 
-/* ─── Clearance scene: a room empties onto a van, then the proof ticks in ── */
-const roomItems = [
-  { icon: Sofa,      label: "Sofa" },
-  { icon: BedDouble, label: "Bed" },
-  { icon: Tv,        label: "TV" },
-  { icon: Lamp,      label: "Lamp" },
-  { icon: Package,   label: "Boxes" },
-  { icon: Trash2,    label: "Bags" },
-]
+const proofRows = ["Read from your photo", "Matched to your codes", "Submitted to Defra", "On Friday's confirmation"]
 
-const proofRows = ["Before photos", "Cleared by a licensed partner", "After photos", "Waste transfer note"]
-
-// One tick = 650ms. Items leave on ticks 2–7, van drives off on 9, proof ticks in on 10–13.
+// One tick = 650ms. Tickets go in on ticks 2–7, the batch is sent on 9, proof ticks in on 10–13.
 const SCENE_TICKS = 16
-const VAN_LEAVES = 9
+const BATCH_SENT = 9
 const PROOF_STARTS = 10
 
-function ClearanceScene({ active }: { active: boolean }) {
+function TicketScene({ active }: { active: boolean }) {
   const [tick, setTick] = useState(0)
   const [cycle, setCycle] = useState(0)
 
@@ -184,11 +187,11 @@ function ClearanceScene({ active }: { active: boolean }) {
     return () => clearInterval(id)
   }, [active])
 
-  const isGone = (i: number) => tick >= i + 2
-  const loaded = roomItems.filter((_, i) => isGone(i)).length
-  const roomClear = loaded === roomItems.length
-  const vanGone = tick >= VAN_LEAVES
-  const status = tick < 2 ? "Full" : roomClear ? "Clear" : "Clearing"
+  const isIn = (i: number) => tick >= i + 2
+  const entered = tickets.filter((_, i) => isIn(i)).length
+  const allIn = entered === tickets.length
+  const sent = tick >= BATCH_SENT
+  const status = tick < 2 ? "New week" : allIn ? "All in" : "Entering"
 
   return (
     <div className="relative">
@@ -198,12 +201,12 @@ function ClearanceScene({ active }: { active: boolean }) {
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <div>
-            <p className="poppins-semibold text-[11px] text-emerald-900 uppercase tracking-[0.15em]">Clearance</p>
-            <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Example job</p>
+            <p className="poppins-semibold text-[11px] text-emerald-900 uppercase tracking-[0.15em]">Your week</p>
+            <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Example only</p>
           </div>
-          <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full border transition-colors duration-500 ${roomClear ? "bg-emerald-700 border-emerald-700" : "bg-emerald-50 border-emerald-100"}`}>
-            <div className={`w-1.5 h-1.5 rounded-full ${roomClear ? "bg-white" : "bg-emerald-500 animate-pulse"}`} />
-            <span className={`poppins-semibold text-[10px] ${roomClear ? "text-white" : "text-emerald-600"}`}>{status}</span>
+          <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full border transition-colors duration-500 ${allIn ? "bg-emerald-700 border-emerald-700" : "bg-emerald-50 border-emerald-100"}`}>
+            <div className={`w-1.5 h-1.5 rounded-full ${allIn ? "bg-white" : "bg-emerald-500 animate-pulse"}`} />
+            <span className={`poppins-semibold text-[10px] ${allIn ? "text-white" : "text-emerald-600"}`}>{status}</span>
           </div>
         </div>
 
@@ -211,21 +214,20 @@ function ClearanceScene({ active }: { active: boolean }) {
         <div className="w-full h-1 bg-emerald-50 rounded-full mb-4 overflow-hidden">
           <div
             className="h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full transition-all duration-700 ease-out"
-            style={{ width: `${(loaded / roomItems.length) * 100}%` }}
+            style={{ width: `${(entered / tickets.length) * 100}%` }}
           />
         </div>
 
-        {/* The room */}
+        {/* The tickets */}
         <div className="relative rounded-2xl bg-emerald-50/60 border border-emerald-100 p-3 mb-3 overflow-hidden">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
           <div className="relative grid grid-cols-3 gap-2">
-            {roomItems.map((item, i) => {
-              const Icon = item.icon
-              const gone = isGone(i)
+            {tickets.map((t, i) => {
+              const gone = isIn(i)
               return (
                 <div
-                  key={item.label}
-                  className="flex flex-col items-center gap-1.5 py-3 bg-white rounded-xl border border-emerald-100 shadow-sm"
+                  key={i}
+                  className="flex flex-col items-center gap-1 py-3 bg-white rounded-xl border border-emerald-100 shadow-sm"
                   style={{
                     opacity: gone ? 0 : 1,
                     transform: gone ? "translateY(120px) scale(0.35)" : "none",
@@ -234,8 +236,9 @@ function ClearanceScene({ active }: { active: boolean }) {
                       : "opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1)",
                   }}
                 >
-                  <Icon className="w-5 h-5 text-emerald-600" strokeWidth={1.75} />
-                  <span className="poppins-medium text-[10px] text-emerald-700">{item.label}</span>
+                  <FileText className="w-5 h-5 text-emerald-600" strokeWidth={1.75} />
+                  <span className="poppins-semibold text-[10px] text-emerald-800">{t.day}</span>
+                  <span className="poppins-regular text-[10px] text-emerald-600">{t.label}</span>
                 </div>
               )
             })}
@@ -244,33 +247,33 @@ function ClearanceScene({ active }: { active: boolean }) {
           {/* Clear stamp */}
           <div
             className="absolute inset-0 flex items-center justify-center pointer-events-none"
-            style={{ opacity: roomClear ? 1 : 0, transform: roomClear ? "scale(1)" : "scale(0.9)", transition: "all 0.6s cubic-bezier(0.22,1,0.36,1)" }}
+            style={{ opacity: allIn ? 1 : 0, transform: allIn ? "scale(1)" : "scale(0.9)", transition: "all 0.6s cubic-bezier(0.22,1,0.36,1)" }}
           >
             <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-emerald-200 shadow-md">
-              <Sparkles className="w-4 h-4 text-emerald-600" />
-              <span className="poppins-semibold text-xs text-emerald-800">Room clear</span>
+              <CheckCircle className="w-4 h-4 text-emerald-600" />
+              <span className="poppins-semibold text-xs text-emerald-800">Every ticket in</span>
             </div>
           </div>
         </div>
 
-        {/* Van lane */}
+        {/* Send lane */}
         <div className="relative h-14 rounded-xl bg-slate-50 border border-slate-100 mb-5 overflow-hidden">
           <div className="absolute left-0 right-0 bottom-3 border-t border-dashed border-slate-200" />
           <div
             key={cycle}
             className="absolute left-3 top-1/2 flex items-center gap-2"
             style={{
-              transform: `translateY(-50%) translateX(${vanGone ? "130%" : "0"})`,
-              opacity: vanGone ? 0 : 1,
+              transform: `translateY(-50%) translateX(${sent ? "130%" : "0"})`,
+              opacity: sent ? 0 : 1,
               transition: "transform 1.1s cubic-bezier(0.55,0,0.85,0.35), opacity 0.4s ease 0.7s",
             }}
           >
             <div className="w-9 h-9 rounded-lg bg-emerald-700 flex items-center justify-center shadow-md">
-              <Truck className="w-4 h-4 text-white" />
+              <Send className="w-4 h-4 text-white" />
             </div>
             <div>
-              <p className="poppins-semibold text-[11px] text-slate-800 leading-none">Licensed partner</p>
-              <p className="poppins-regular text-[10px] text-slate-400 mt-1 tabular-nums">{loaded} of {roomItems.length} loaded</p>
+              <p className="poppins-semibold text-[11px] text-slate-800 leading-none">Sent from WhatsApp</p>
+              <p className="poppins-regular text-[10px] text-slate-400 mt-1 tabular-nums">{entered} of {tickets.length} entered</p>
             </div>
           </div>
         </div>
@@ -294,8 +297,8 @@ function ClearanceScene({ active }: { active: boolean }) {
 
       {/* Floating chip */}
       <div className="absolute -bottom-4 -right-2 sm:-right-4 bg-white/95 backdrop-blur-xl rounded-2xl border border-emerald-100 px-4 py-2.5 shadow-xl animate-float-slow">
-        <p className="poppins-bold text-sm text-emerald-900 leading-none">One call</p>
-        <p className="poppins-regular text-[10px] text-emerald-500 mt-1">Photos + paperwork</p>
+        <p className="poppins-bold text-sm text-emerald-900 leading-none">2 working days</p>
+        <p className="poppins-regular text-[10px] text-emerald-500 mt-1">The legal deadline per load</p>
       </div>
     </div>
   )
@@ -327,19 +330,6 @@ function ServiceCard({
     ? "bg-emerald-700 hover:bg-emerald-800 text-white shadow-[0_14px_30px_-10px_rgba(6,95,70,0.55)]"
     : "bg-white hover:bg-emerald-50 text-emerald-800 border border-emerald-200 hover:border-emerald-300"
 
-  const button =
-    s.action.kind === "link" ? (
-      <Link href={s.action.href} className={`sv-btn group/btn relative overflow-hidden w-full inline-flex items-center justify-center gap-2 py-3.5 poppins-semibold text-sm rounded-xl transition-all duration-300 active:scale-[0.98] ${btnClass}`}>
-        {s.cta}
-        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-      </Link>
-    ) : (
-      <button onClick={onBook} className={`sv-btn group/btn relative overflow-hidden w-full inline-flex items-center justify-center gap-2 py-3.5 poppins-semibold text-sm rounded-xl transition-all duration-300 active:scale-[0.98] ${btnClass}`}>
-        {s.cta}
-        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-      </button>
-    )
-
   return (
     <div
       ref={ref}
@@ -358,8 +348,17 @@ function ServiceCard({
 
       {/* Top row */}
       <div className="flex items-center justify-between mb-7">
-        <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:border-emerald-700 transition-colors duration-500">
-          <Icon className="w-5 h-5 text-emerald-700 group-hover:text-white transition-colors duration-500" />
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-700 group-hover:border-emerald-700 transition-colors duration-500">
+            <Icon className="w-5 h-5 text-emerald-700 group-hover:text-white transition-colors duration-500" />
+          </div>
+          <span
+            className={`poppins-semibold text-[10px] uppercase tracking-[0.2em] rounded-full px-2.5 py-1 border ${
+              s.featured ? "bg-emerald-700 border-emerald-700 text-white" : "bg-emerald-50 border-emerald-100 text-emerald-700"
+            }`}
+          >
+            {s.tag}
+          </span>
         </div>
         <span className="poppins-bold text-3xl text-emerald-100 group-hover:text-emerald-200 transition-colors duration-500 tabular-nums">{s.num}</span>
       </div>
@@ -385,22 +384,28 @@ function ServiceCard({
         ))}
       </div>
 
-      {/* How I'm paid */}
+      {/* How it's priced */}
       <div className="flex items-center gap-3 rounded-xl bg-emerald-50/70 border border-emerald-100 px-3.5 py-3 mb-5">
         <Wallet className="w-4 h-4 text-emerald-600 flex-shrink-0" />
         <div className="min-w-0">
-          <p className="poppins-medium text-[10px] uppercase tracking-[0.18em] text-emerald-600/80 leading-none">How we&apos;re paid</p>
-          <p className="poppins-semibold text-[13px] text-emerald-900 leading-snug mt-1">{s.paid}</p>
+          <p className="poppins-medium text-[10px] uppercase tracking-[0.18em] text-emerald-600/80 leading-none">How it&apos;s priced</p>
+          <p className="poppins-semibold text-[13px] text-emerald-900 leading-snug mt-1">{s.priced}</p>
         </div>
       </div>
 
-      {button}
+      <button
+        onClick={onBook}
+        className={`sv-btn group/btn relative overflow-hidden w-full inline-flex items-center justify-center gap-2 py-3.5 poppins-semibold text-sm rounded-xl transition-all duration-300 active:scale-[0.98] ${btnClass}`}
+      >
+        {s.cta}
+        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+      </button>
     </div>
   )
 }
 
-/* ─── Vetting strip: a line fills and each check lights up in turn ───────── */
-function VettingStrip({ run }: { run: boolean }) {
+/* ─── Site type strip: a line fills and each site type lights up in turn ─── */
+function SiteTypeStrip({ run }: { run: boolean }) {
   return (
     <div className="relative">
       {/* Track + fill (desktop) */}
@@ -410,12 +415,12 @@ function VettingStrip({ run }: { run: boolean }) {
         style={{ width: run ? "80%" : "0%", transitionDuration: "1800ms", transitionDelay: "200ms" }}
       />
       <div className="relative grid grid-cols-2 sm:grid-cols-5 gap-y-8 gap-x-4">
-        {vetting.map((v, i) => {
+        {siteTypes.map((v, i) => {
           const Icon = v.icon
           return (
             <div
               key={v.label}
-              className={`flex flex-col items-center text-center transition-all duration-700 ${i === vetting.length - 1 ? "col-span-2 sm:col-span-1" : ""} ${run ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              className={`flex flex-col items-center text-center transition-all duration-700 ${i === siteTypes.length - 1 ? "col-span-2 sm:col-span-1" : ""} ${run ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
               style={{ transitionDelay: run ? `${300 + i * 300}ms` : "0ms" }}
             >
               <div className="relative">
@@ -423,9 +428,6 @@ function VettingStrip({ run }: { run: boolean }) {
                 <div className="relative w-14 h-14 rounded-2xl bg-white border border-emerald-200 shadow-[0_8px_24px_-8px_rgba(16,185,129,0.4)] flex items-center justify-center">
                   <Icon className="w-6 h-6 text-emerald-700" />
                 </div>
-                <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-emerald-700 border-2 border-white text-white text-[10px] poppins-bold flex items-center justify-center">
-                  {i + 1}
-                </span>
               </div>
               <p className="poppins-semibold text-sm text-slate-800 mt-4 leading-tight max-w-[140px]">{v.label}</p>
             </div>
@@ -441,9 +443,9 @@ export default function ServicesPage() {
 
   const hero     = useReveal(0.05)
   const cardsRef = useReveal(0.1)
-  const alsoRef  = useReveal(0.1)
-  const clearRef = useReveal(0.15)
-  const vetRef   = useReveal(0.2)
+  const howRef   = useReveal(0.15)
+  const extraRef = useReveal(0.1)
+  const whoRef   = useReveal(0.2)
   const paidRef  = useReveal(0.2)
 
   return (
@@ -462,12 +464,12 @@ export default function ServicesPage() {
               <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-50" />
               <span className="relative w-2 h-2 rounded-full bg-emerald-500" />
             </span>
-            <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Services · Birmingham</span>
+            <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Services · Digital Waste Tracking</span>
           </div>
 
           <h1 className="poppins-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-slate-900 mb-6">
             <span className="block">
-              {["Businesses.", "Landlords."].map((w, i) => (
+              {["Four", "services."].map((w, i) => (
                 <React.Fragment key={w}>
                   <span className="sv-word inline-block" style={{ animationDelay: `${120 + i * 110}ms` }}>{w}</span>{" "}
                 </React.Fragment>
@@ -477,15 +479,15 @@ export default function ServicesPage() {
               className="sv-word sv-shine inline-block pb-1 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent"
               style={{ animationDelay: "360ms" }}
             >
-              Waste firms.
+              One free extra.
             </span>
           </h1>
 
           <p className="sv-fade poppins-regular text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-9" style={{ animationDelay: "560ms" }}>
-            One call for vetted waste and compliance help in Birmingham.
+            Each one fits in a sentence. Start with a free two-week trial, then a fixed monthly fee agreed upfront.
           </p>
 
-          {/* Find your section */}
+          {/* Find your service */}
           <div className="sv-fade flex flex-wrap justify-center gap-2.5" style={{ animationDelay: "720ms" }}>
             {services.map((s) => {
               const Icon = s.icon
@@ -506,89 +508,46 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── THREE SERVICES ─────────────────────────────────────────────────── */}
+      {/* ── FOUR SERVICES ──────────────────────────────────────────────────── */}
       <section className="pt-8 pb-24 px-4 sm:px-6 relative overflow-hidden">
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-emerald-100/40 rounded-full blur-[110px] pointer-events-none" />
-        <div ref={cardsRef.ref} className="max-w-6xl mx-auto relative z-10 grid md:grid-cols-3 gap-5 items-stretch">
+        <div ref={cardsRef.ref} className="max-w-5xl mx-auto relative z-10 grid md:grid-cols-2 gap-5 items-stretch">
           {services.map((s, i) => (
             <ServiceCard key={s.id} s={s} index={i} run={cardsRef.visible} onBook={() => openBooking("discovery")} />
           ))}
         </div>
       </section>
 
-      {/* ── ALSO AVAILABLE ─────────────────────────────────────────────────── */}
-      <section className="py-20 px-4 sm:px-6 bg-white">
-        <div ref={alsoRef.ref} className="max-w-5xl mx-auto">
-          <div
-            className="text-center mb-12 transition-all duration-700"
-            style={{ opacity: alsoRef.visible ? 1 : 0, transform: alsoRef.visible ? "none" : "translateY(20px)" }}
-          >
-            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Also available</p>
-            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">When it can&apos;t wait.</h2>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
-            {alsoAvailable.map((item, i) => {
-              const Icon = item.icon
-              return (
-                <div
-                  key={item.label}
-                  className="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-slate-100 hover:border-emerald-200 hover:shadow-[0_4px_24px_rgba(16,185,129,0.08)] hover:-translate-y-0.5 transition-all duration-300 text-center"
-                  style={{
-                    opacity: alsoRef.visible ? 1 : 0,
-                    transform: alsoRef.visible ? undefined : "translateY(16px)",
-                    transitionDelay: alsoRef.visible ? `${i * 60}ms` : "0ms",
-                    transitionDuration: "500ms",
-                  }}
-                >
-                  <div className="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-700 flex items-center justify-center transition-all duration-300">
-                    <Icon className="w-5 h-5 text-emerald-600 group-hover:text-white transition-colors duration-300" />
-                  </div>
-                  <p className="poppins-semibold text-sm text-slate-700">{item.label}</p>
-                </div>
-              )
-            })}
-          </div>
-
-          <p
-            className="poppins-regular text-slate-500 text-base text-center max-w-xl mx-auto leading-relaxed transition-all duration-700 delay-300"
-            style={{ opacity: alsoRef.visible ? 1 : 0 }}
-          >
-            Knotweed, drains or asbestos holding up a house sale? I find a specialist fast, so the survey can move on.
-          </p>
-        </div>
-      </section>
-
-      {/* ── CLEARANCES ─────────────────────────────────────────────────────── */}
-      <section id="clearances" className="py-24 px-4 sm:px-6 bg-gradient-to-b from-white via-emerald-50/40 to-white relative overflow-hidden scroll-mt-28">
+      {/* ── HOW IT WORKS ───────────────────────────────────────────────────── */}
+      <section id="how-it-works" className="py-24 px-4 sm:px-6 bg-gradient-to-b from-white via-emerald-50/40 to-white relative overflow-hidden scroll-mt-28">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-emerald-100/50 rounded-full blur-[100px] pointer-events-none" />
 
-        <div ref={clearRef.ref} className="max-w-6xl mx-auto relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div ref={howRef.ref} className="max-w-6xl mx-auto relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div
             className="transition-all duration-700"
-            style={{ opacity: clearRef.visible ? 1 : 0, transform: clearRef.visible ? "none" : "translateY(20px)" }}
+            style={{ opacity: howRef.visible ? 1 : 0, transform: howRef.visible ? "none" : "translateY(20px)" }}
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-200 shadow-sm mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Clearances</span>
+              <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">How it works</span>
             </div>
 
             <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-slate-900 leading-[1.05] tracking-tight mb-5">
-              Got stuff to clear?<br />
+              Send the tickets.<br />
               <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
-                We&apos;ll sort it.
+                I&apos;ll do the rest.
               </span>
             </h2>
 
             <p className="poppins-regular text-base sm:text-lg text-slate-500 leading-relaxed max-w-md mb-7">
-              A tenant moved out. A shop is closing. One call, and a checked partner clears it.
+              A lorry comes in. You snap the ticket. That&apos;s your part done.
             </p>
 
-            <div className="max-w-md mb-8">
+            <div className="max-w-md mb-6">
               {[
-                { num: "01", title: "You send a few photos", desc: "Show us what needs to go." },
-                { num: "02", title: "We send a checked partner", desc: "Licensed, vetted and booked for you." },
-                { num: "03", title: "It's gone. You get proof.", desc: "Before and after photos, plus the waste papers." },
+                { num: "01", icon: Camera, title: "Send", desc: "WhatsApp me photos of your weighbridge tickets and transfer notes." },
+                { num: "02", icon: Send, title: "Submitted", desc: "I enter and submit every load before the deadline." },
+                { num: "03", icon: CalendarCheck, title: "Confirmed", desc: "Every Friday, you get a list of everything submitted." },
               ].map((step, i, arr) => (
                 <div key={step.num} className={`flex gap-5 py-4 ${i < arr.length - 1 ? "border-b border-emerald-100" : ""}`}>
                   <span className="poppins-bold text-xs text-emerald-400 tabular-nums mt-1 flex-shrink-0 w-6 text-right">{step.num}</span>
@@ -600,12 +559,24 @@ export default function ServicesPage() {
               ))}
             </div>
 
+            {/* You vs me */}
+            <div className="grid sm:grid-cols-2 gap-3 max-w-md mb-8">
+              <div className="rounded-2xl bg-white border border-emerald-100 px-4 py-3.5">
+                <p className="poppins-semibold text-[10px] uppercase tracking-[0.18em] text-emerald-600">What you do</p>
+                <p className="poppins-regular text-sm text-slate-600 leading-snug mt-1.5">Send clear photos. Keep the details on your tickets right.</p>
+              </div>
+              <div className="rounded-2xl bg-emerald-700 border border-emerald-700 px-4 py-3.5">
+                <p className="poppins-semibold text-[10px] uppercase tracking-[0.18em] text-emerald-200">What I do</p>
+                <p className="poppins-regular text-sm text-white leading-snug mt-1.5">Enter, submit and confirm every load, correctly and on time.</p>
+              </div>
+            </div>
+
             <div className="flex flex-wrap items-center gap-5">
               <button
                 onClick={() => openBooking("discovery")}
                 className="group inline-flex items-center gap-2 px-7 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white poppins-bold text-sm rounded-xl shadow-lg hover:shadow-emerald-700/20 transition-all duration-300 active:scale-95"
               >
-                Send Us a Few Photos
+                Start a Free Two-Week Trial
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
               <a
@@ -620,31 +591,101 @@ export default function ServicesPage() {
 
           <div
             className="transition-all duration-700 delay-150"
-            style={{ opacity: clearRef.visible ? 1 : 0, transform: clearRef.visible ? "none" : "translateY(24px)" }}
+            style={{ opacity: howRef.visible ? 1 : 0, transform: howRef.visible ? "none" : "translateY(24px)" }}
           >
-            <ClearanceScene active={clearRef.visible} />
+            <TicketScene active={howRef.visible} />
           </div>
         </div>
       </section>
 
-      {/* ── HOW WE VET PARTNERS ────────────────────────────────────────────── */}
+      {/* ── FREE EXTRA + READY FOR 2027 ────────────────────────────────────── */}
       <section className="py-20 px-4 sm:px-6 bg-white">
-        <div ref={vetRef.ref} className="max-w-5xl mx-auto">
+        <div ref={extraRef.ref} className="max-w-5xl mx-auto">
+          <div
+            className="text-center mb-12 transition-all duration-700"
+            style={{ opacity: extraRef.visible ? 1 : 0, transform: extraRef.visible ? "none" : "translateY(20px)" }}
+          >
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Also from me</p>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">One free extra. One list.</h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5">
+            {[
+              {
+                id: "introductions",
+                icon: Handshake,
+                tag: "Free",
+                title: "Introductions",
+                body: "Need a carrier, a yard or a builder? I'll introduce you to people I know. No charge, just ask.",
+                cta: "WhatsApp Zak",
+                href: WHATSAPP,
+              },
+              {
+                id: "ready-2027",
+                icon: Truck,
+                tag: "From Oct 2027",
+                title: "Ready for 2027",
+                body: "Carriers, brokers and skip firms without a yard come into the system from October 2027. Join the list and I'll keep you updated.",
+                cta: "Join the List",
+                href: READY_2027,
+              },
+            ].map((item, i) => {
+              const Icon = item.icon
+              return (
+                <div
+                  key={item.id}
+                  id={item.id}
+                  className="group flex flex-col p-7 sm:p-8 rounded-[1.75rem] border border-slate-200 hover:border-emerald-200 hover:shadow-[0_20px_50px_-20px_rgba(6,95,70,0.25)] hover:-translate-y-0.5 transition-all duration-500 scroll-mt-28"
+                  style={{
+                    opacity: extraRef.visible ? 1 : 0,
+                    transform: extraRef.visible ? undefined : "translateY(16px)",
+                    transitionDelay: extraRef.visible ? `${i * 120}ms` : "0ms",
+                  }}
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-700 flex items-center justify-center transition-all duration-300">
+                      <Icon className="w-5 h-5 text-emerald-600 group-hover:text-white transition-colors duration-300" />
+                    </div>
+                    <span className="poppins-semibold text-[10px] uppercase tracking-[0.2em] text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-full px-2.5 py-1">
+                      {item.tag}
+                    </span>
+                  </div>
+                  <h3 className="poppins-bold text-xl text-slate-900 mb-2">{item.title}</h3>
+                  <p className="poppins-regular text-[15px] text-slate-600 leading-relaxed mb-6 flex-1">{item.body}</p>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/btn inline-flex items-center gap-1.5 poppins-semibold text-sm text-emerald-700 hover:text-emerald-800"
+                  >
+                    {item.cta}
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  </a>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── WHO IT'S FOR ───────────────────────────────────────────────────── */}
+      <section className="py-20 px-4 sm:px-6 bg-white">
+        <div ref={whoRef.ref} className="max-w-5xl mx-auto">
           <div
             className="text-center mb-14 transition-all duration-700"
-            style={{ opacity: vetRef.visible ? 1 : 0, transform: vetRef.visible ? "none" : "translateY(20px)" }}
+            style={{ opacity: whoRef.visible ? 1 : 0, transform: whoRef.visible ? "none" : "translateY(20px)" }}
           >
-            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">How we vet partners</p>
+            <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Who it&apos;s for</p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              Five checks.{" "}
-              <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Every partner.</span>
+              Small permitted sites.{" "}
+              <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Non-hazardous waste.</span>
             </h2>
           </div>
-          <VettingStrip run={vetRef.visible} />
+          <SiteTypeStrip run={whoRef.visible} />
         </div>
       </section>
 
-      {/* ── HOW WE GET PAID ────────────────────────────────────────────────── */}
+      {/* ── HOW PRICING WORKS ──────────────────────────────────────────────── */}
       <section className="pt-4 pb-24 px-4 sm:px-6 bg-white">
         <div ref={paidRef.ref} className="max-w-4xl mx-auto">
           <div
@@ -658,12 +699,12 @@ export default function ServicesPage() {
                   <Lock className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <p className="poppins-bold text-white text-lg leading-tight">How we get paid</p>
-                  <p className="poppins-regular text-emerald-200/80 text-xs mt-0.5">Never hidden. Always told upfront.</p>
+                  <p className="poppins-bold text-white text-lg leading-tight">How pricing works</p>
+                  <p className="poppins-regular text-emerald-200/80 text-xs mt-0.5">Agreed upfront. No hidden extras.</p>
                 </div>
               </div>
               <div className="divide-y divide-white/10">
-                {paidLines.map((l, i) => (
+                {priceLines.map((l, i) => (
                   <div
                     key={l.who}
                     className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 py-3.5 transition-all duration-700"
@@ -677,6 +718,23 @@ export default function ServicesPage() {
                     <p className="poppins-semibold text-sm sm:text-base text-white">{l.how}</p>
                   </div>
                 ))}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 mt-7">
+                <button
+                  onClick={() => openBooking("discovery")}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-emerald-50 text-emerald-900 poppins-semibold text-sm transition-all duration-300 active:scale-[0.98]"
+                >
+                  Book a Free 15-Minute Call
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-white/25 bg-white/5 hover:bg-white/15 text-white poppins-semibold text-sm transition-all duration-300"
+                >
+                  WhatsApp Zak
+                </a>
               </div>
             </div>
           </div>

@@ -43,7 +43,7 @@ function useReveal<T extends HTMLElement>(threshold = 0.2) {
 const groups = [
   { icon: Recycle, label: "Scrap & Metal", sub: "Every weighbridge ticket, reported within two working days." },
   { icon: Warehouse, label: "Transfer Stations", sub: "Busy gate? Send photos as loads come in. I enter the lot." },
-  { icon: Container, label: "Skip Hire Yards", sub: "Your yard's loads reported now, and ready for October 2027." },
+  { icon: Container, label: "Skip Hire Yards", sub: "Skip firms with their own yard. Every load in, every working day." },
   { icon: Hammer, label: "Aggregates & Inert", sub: "Soil, stone and rubble loads, with the right codes every time." },
   { icon: Leaf, label: "Wood & Compost", sub: "Small site, same rules. I do the typing so you don't have to." },
 ]
@@ -299,11 +299,11 @@ export function FounderSection() {
               </h2>
 
               <p className="fs-fade poppins-regular text-lg sm:text-xl text-slate-700 leading-relaxed mt-7 max-w-xl" style={{ animationDelay: "600ms" }}>
-                Millstone Compliance is a new Birmingham business. I started it so small waste sites don&apos;t lose hours to the new digital waste tracking rules.
+                Your paper transfer notes haven&apos;t gone away. Now every load has to be reported to Defra as well. That&apos;s the same job twice, on every ticket.
               </p>
 
               <p className="fs-fade poppins-regular text-base text-slate-500 leading-relaxed mt-4 max-w-xl" style={{ animationDelay: "720ms" }}>
-                I&apos;m Zak. I worked at HMRC, so I&apos;m used to government reporting systems, hard deadlines and records that must be right. I also hold a Certificate in Circular Economy from the Cambridge Institute for Sustainability Leadership.
+                I&apos;m Zak. I worked at HMRC, where I learned how government reporting systems work, why deadlines matter, and how to keep records that add up. I also hold a Certificate in Circular Economy from the Cambridge Institute for Sustainability Leadership.
               </p>
 
               {/* Credentials */}
@@ -331,7 +331,7 @@ export function FounderSection() {
               {/* Promise */}
               <div className="fs-fade mt-8 pl-5 border-l-2 border-emerald-400 max-w-xl" style={{ animationDelay: "960ms" }}>
                 <p className="poppins-semibold text-base sm:text-lg text-emerald-900 leading-relaxed">
-                  Local. Plain English. A direct line to me. A simple monthly fee, told upfront.
+                  No call centre. A direct line to me. Plain English. One fixed monthly fee, no hidden extras.
                 </p>
                 <p className="poppins-medium text-sm text-emerald-600 mt-2">Zak, Founder</p>
               </div>

@@ -17,22 +17,22 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Waste Bill Checks for Birmingham Businesses | Millstone",
+  title: "Digital Waste Tracking, Done For You | Millstone Compliance",
   description:
-    "We check your business waste bill, find what you're overpaying for and move you to a better deal. Then we watch your renewal date. Free first check.",
+    "Permitted waste sites must report every load to Defra within two working days. Send me photos on WhatsApp and I submit every load for you. Free two-week trial.",
   keywords: [
-    "waste bill audit Birmingham",
-    "business waste bill check",
-    "cheaper bin collection Birmingham",
-    "commercial waste contract review",
-    "waste contract auto renewal",
-    "business waste collection Birmingham",
-    "trade waste prices Birmingham",
-    "waste broker Birmingham",
-    "restaurant waste collection Birmingham",
-    "office waste collection Birmingham",
-    "simpler recycling England",
+    "digital waste tracking",
+    "digital waste tracking service",
+    "Defra waste tracking reporting",
+    "waste tracking for permitted sites",
+    "waste tracking two working days",
+    "scrap metal yard waste tracking",
+    "waste transfer station reporting",
+    "skip hire waste tracking",
+    "EWC codes",
+    "quarterly waste returns",
     "waste transfer notes",
+    "waste tracking Birmingham",
   ],
   generator: 'v0.app',
   appleWebApp: {
@@ -44,16 +44,16 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Waste Bill Checks for Birmingham Businesses | Millstone",
-    description: "We check your business waste bill, find what you're overpaying for and move you to a better deal. Then we watch your renewal date. Free first check.",
+    title: "Digital Waste Tracking, Done For You | Millstone Compliance",
+    description: "Permitted waste sites must report every load to Defra within two working days. Send me photos on WhatsApp and I submit every load for you. Free two-week trial.",
     type: "website",
     locale: "en_GB",
     siteName: "Millstone Compliance",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Waste Bill Checks for Birmingham Businesses | Millstone",
-    description: "We check your business waste bill, find what you're overpaying for and move you to a better deal. Then we watch your renewal date. Free first check.",
+    title: "Digital Waste Tracking, Done For You | Millstone Compliance",
+    description: "Permitted waste sites must report every load to Defra within two working days. Send me photos on WhatsApp and I submit every load for you. Free two-week trial.",
   },
 }
 

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { ArrowRight, Phone, Plus, Receipt, KeyRound, Handshake, CheckCircle } from "lucide-react"
+import { ArrowRight, Phone, Plus, Send, ListChecks, Truck, CheckCircle } from "lucide-react"
 import { useBooking } from "@/components/BookingProvider"
 
 /* ─── Reveal once when scrolled into view ─────────────────────────────────── */
@@ -34,31 +34,31 @@ const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
 )
 
 const paths = [
-  { icon: Receipt, who: "Small business", what: "Free waste bill check", href: "/services#small-businesses" },
-  { icon: KeyRound, who: "Agent or landlord", what: "A vetted contractor", href: "/services#landlords" },
-  { icon: Handshake, who: "Waste firm", what: "New local work", href: "/services#partners" },
+  { icon: Send, who: "Permitted site", what: "Free two-week trial", href: "/services#small-businesses" },
+  { icon: ListChecks, who: "Reporting already", what: "A reporting check", href: "/services#landlords" },
+  { icon: Truck, who: "Carrier or skip firm", what: "Ready for 2027", href: "/services#partners" },
 ]
 
 const faqs = [
   {
-    q: "What can you help with?",
-    a: "Free waste bill checks for small businesses, vetted contractors for landlords and letting agents, and new customers for local waste firms. Plus urgent clearances and survey specialists.",
+    q: "What do you actually do?",
+    a: "I report the loads your site receives to Defra's digital waste tracking service. You send photos on WhatsApp. I enter and submit each one within two working days.",
   },
   {
-    q: "How do you check your partners?",
-    a: "Five checks: registration, insurance, company history, references, and your feedback after every job. If a partner slips, they come off my list.",
+    q: "What is the deadline?",
+    a: "Each load must be reported within two working days, counted from the day after it arrives. Weekends and bank holidays don't count. Paper transfer notes still carry on too.",
   },
   {
     q: "How much does it cost?",
-    a: "The bill check is free to start. If I find no saving, there's no fee. For other jobs, I tell you the price and how I'm paid before you agree to anything.",
+    a: "A simple monthly fee, and I tell you what it is upfront on a free call. Start with a free two-week trial, so you see it working before you pay anything.",
   },
   {
-    q: "How do you get paid?",
-    a: "Either you pay a simple fee, or the partner I send you to pays me a small cut. I always tell you which one upfront. No surprises.",
+    q: "Who is responsible for what?",
+    a: "You're responsible for what's on the tickets and notes you send me. I'm responsible for entering and submitting them on time. Every Friday you get a confirmation.",
   },
   {
-    q: "How fast can you help?",
-    a: "Call or WhatsApp and you'll talk to me. For urgent clearances I'll find a partner as fast as I can.",
+    q: "I'm a carrier or skip firm. Does this affect me?",
+    a: "Carriers, brokers and dealers come into the system from October 2027. Call or WhatsApp me and I'll help you get ready before then.",
   },
 ]
 
@@ -85,11 +85,11 @@ export function ClosingCTA() {
               <span className="absolute inset-0 rounded-full bg-emerald-300 animate-ping opacity-60" />
               <span className="relative w-2 h-2 rounded-full bg-emerald-300" />
             </span>
-            <span className="poppins-semibold text-xs uppercase tracking-[0.18em] text-emerald-100">For Birmingham businesses</span>
+            <span className="poppins-semibold text-xs uppercase tracking-[0.18em] text-emerald-100">Birmingham based · Direct line</span>
           </div>
 
           <h2 id="cta-heading" className="poppins-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-white">
-            <span className="cc-word inline-block" style={{ animationDelay: "120ms" }}>One call.</span>{" "}
+            <span className="cc-word inline-block" style={{ animationDelay: "120ms" }}>Send photos.</span>{" "}
             <span
               className="cc-word cc-shine inline-block pb-1 bg-gradient-to-r from-emerald-200 via-white to-emerald-200 bg-[length:200%_100%] bg-clip-text text-transparent"
               style={{ animationDelay: "300ms" }}
@@ -99,7 +99,7 @@ export function ClosingCTA() {
           </h2>
 
           <p className="cc-fade poppins-regular text-lg sm:text-xl text-emerald-100/85 leading-relaxed mt-6 max-w-2xl mx-auto" style={{ animationDelay: "480ms" }}>
-            Bill checks, vetted contractors and new customers for waste firms. Tell me what you need and I&apos;ll find someone I trust to do it.
+            Load reporting, reporting checks and help with your paperwork. Try it free for two weeks and see it working before you pay.
           </p>
 
           {/* Pick your path */}
@@ -135,7 +135,7 @@ export function ClosingCTA() {
               className="group relative overflow-hidden inline-flex items-center justify-center gap-2.5 rounded-2xl bg-white px-8 py-4 poppins-semibold text-base text-emerald-900 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.45)] transition-all duration-300 hover:bg-emerald-50 active:scale-[0.98] min-h-[54px]"
             >
               <span className="cc-btn-shine absolute inset-y-0 -left-1/2 w-1/2 bg-gradient-to-r from-transparent via-emerald-200/50 to-transparent skew-x-[-20deg]" />
-              <span className="relative">Book a Free 15-Min Call</span>
+              <span className="relative">Book a Free 15-Minute Call</span>
               <ArrowRight className="relative w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
             <a

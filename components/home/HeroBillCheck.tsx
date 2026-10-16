@@ -1,28 +1,25 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
-import { CheckCircle, AlertTriangle, Sparkles, CalendarClock, Scale } from "lucide-react"
+import { CheckCircle, Send, CalendarClock, ListChecks } from "lucide-react"
 
-/* ─── The example bill ────────────────────────────────────────────────────── */
+/* ─── The example week of loads ───────────────────────────────────────────── */
 type Line = {
   label: string
   detail: string
-  amount: number
-  save?: number
-  reason?: string
+  tonnes: number
+  done: string
 }
 
 const lines: Line[] = [
-  { label: "General waste bin", detail: "1100 litre · weekly", amount: 168 },
-  { label: "Lifts", detail: "13 this month", amount: 96, save: 32, reason: "Only 9 happened" },
-  { label: "Bin rental", detail: "2 bins", amount: 28 },
-  { label: "Extra charge", detail: "Wrong items in bin", amount: 45, save: 45, reason: "No photo proof" },
-  { label: "Price rise", detail: "+12% this year", amount: 40, save: 40, reason: "Not in your contract" },
+  { label: "Mon · Iron and steel", detail: "17 04 05 · R4", tonnes: 8.2, done: "Submitted Mon · due Wed" },
+  { label: "Tue · Mixed metals", detail: "17 04 07 · R4", tonnes: 3.6, done: "Submitted Tue · due Thu" },
+  { label: "Wed · Mixed builders' waste", detail: "17 09 04 · R13", tonnes: 6.1, done: "Submitted Thu · due Fri" },
+  { label: "Thu · Wood", detail: "17 02 01 · R3", tonnes: 4.4, done: "Submitted Thu · due Mon" },
+  { label: "Fri · Soil and stones", detail: "17 05 04 · R5", tonnes: 12.4, done: "Submitted Fri · due Tue" },
 ]
 
-const startTotal = lines.reduce((sum, l) => sum + l.amount, 0)
-
-// Phase 0 = bill lands, 1–5 = checking each line, 6 = better deal, 7 = hold
+// Phase 0 = week starts, 1–5 = submitting each load, 6 = all in, 7 = hold
 const INTRO = 1000
 const PER_LINE = 1100
 const RESULT = 1600
@@ -80,14 +77,11 @@ export function HeroBillCheck() {
   const checking = phase >= 1 && phase <= lines.length ? phase - 1 : -1
   const doneCount = Math.min(Math.max(phase - 1, 0), lines.length)
   const resolved = (i: number) => phase > i + 1
-  const monthlySave = lines.reduce((sum, l, i) => sum + (resolved(i) && l.save ? l.save : 0), 0)
-  const total = useTween(startTotal - monthlySave)
-  const save = useTween(monthlySave)
+  const submitted = useTween(doneCount, 400)
   const finished = phase > lines.length
-  const yearly = monthlySave * 12
 
   return (
-    <div ref={rootRef} className="relative" aria-label="Example: how we check a bin bill">
+    <div ref={rootRef} className="relative" aria-label="Example: a week of loads reported for a waste site">
       {/* Soft glow behind the card */}
       <div className="absolute -inset-8 bg-[radial-gradient(ellipse_60%_60%_at_50%_45%,rgba(16,185,129,0.18)_0%,transparent_70%)] pointer-events-none" />
 
@@ -99,7 +93,7 @@ export function HeroBillCheck() {
         <div className="px-5 sm:px-6 pt-5 pb-4 border-b border-slate-100">
           <div className="flex items-center justify-between mb-3">
             <div>
-              <p className="poppins-semibold text-[11px] text-emerald-900 uppercase tracking-[0.15em]">Your Bin Bill</p>
+              <p className="poppins-semibold text-[11px] text-emerald-900 uppercase tracking-[0.15em]">This Week&apos;s Loads</p>
               <p className="poppins-regular text-[10px] text-slate-400 mt-0.5">Example only</p>
             </div>
             <span
@@ -109,7 +103,7 @@ export function HeroBillCheck() {
                   : "text-emerald-700 bg-emerald-50 border-emerald-100"
               }`}
             >
-              {finished ? "Check done" : phase === 0 ? "Starting check" : `Checking ${doneCount + 1} of ${lines.length}`}
+              {finished ? "All submitted" : phase === 0 ? "New week" : `Entering ${doneCount + 1} of ${lines.length}`}
             </span>
           </div>
           <div className="w-full h-1 bg-emerald-50 rounded-full overflow-hidden">
@@ -120,9 +114,9 @@ export function HeroBillCheck() {
           </div>
         </div>
 
-        {/* Bill lines */}
+        {/* Loads */}
         <div className="relative px-3 sm:px-4 py-3 space-y-1.5">
-          {/* Scan line follows the line being checked */}
+          {/* Scan line follows the load being entered */}
           <div
             className="absolute left-0 right-0 h-14 bg-gradient-to-b from-transparent via-emerald-300/25 to-transparent pointer-events-none z-10 transition-all duration-700 ease-out"
             style={{
@@ -133,57 +127,37 @@ export function HeroBillCheck() {
           {lines.map((l, i) => {
             const isChecking = i === checking
             const isDone = resolved(i)
-            const isFlagged = isDone && !!l.save
             return (
               <div
                 key={l.label}
                 className={`relative flex items-center justify-between gap-3 px-3 sm:px-4 h-[3.375rem] rounded-xl border transition-all duration-500 ${
                   isChecking
                     ? "bg-emerald-50/80 border-emerald-300 scale-[1.02] shadow-[0_6px_24px_rgba(16,185,129,0.15)]"
-                    : isFlagged
-                    ? "bg-rose-50/70 border-rose-200"
                     : "bg-white border-slate-100"
                 }`}
               >
                 <div className="min-w-0">
-                  <p className={`poppins-semibold text-xs truncate ${isFlagged ? "text-rose-900" : "text-slate-800"}`}>{l.label}</p>
+                  <p className={`poppins-semibold text-xs truncate text-slate-800`}>{l.label}</p>
                   <p
                     className={`poppins-regular text-[10px] truncate mt-0.5 transition-colors duration-500 ${
-                      isFlagged ? "text-rose-600" : "text-slate-400"
+                      isDone ? "text-emerald-600" : "text-slate-400"
                     }`}
                   >
-                    {isFlagged ? l.reason : l.detail}
+                    {isDone ? l.done : l.detail}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-2.5 flex-shrink-0">
                   <div className="text-right leading-tight">
-                    <span
-                      className={`poppins-semibold text-xs tabular-nums relative transition-colors duration-500 ${
-                        isFlagged ? "text-rose-400" : "text-slate-700"
-                      }`}
-                    >
-                      £{l.amount}
-                      <span
-                        className="absolute left-0 right-0 top-1/2 h-px bg-rose-500 origin-left transition-transform duration-500"
-                        style={{ transform: isFlagged ? "scaleX(1)" : "scaleX(0)" }}
-                      />
+                    <span className="poppins-semibold text-xs tabular-nums text-slate-700">
+                      {l.tonnes.toFixed(1)} t
                     </span>
-                    {l.save && (
-                      <span
-                        className="block poppins-bold text-[10px] text-emerald-600 tabular-nums transition-all duration-500"
-                        style={{ opacity: isFlagged ? 1 : 0, transform: isFlagged ? "none" : "translateY(4px)" }}
-                      >
-                        −£{l.save}
-                      </span>
-                    )}
                   </div>
                   <div className="w-4 h-4 relative">
                     {isChecking && (
                       <span className="absolute inset-0 rounded-full border-2 border-emerald-200 border-t-emerald-600 animate-spin" />
                     )}
-                    {isDone && !l.save && <CheckCircle className="absolute inset-0 w-4 h-4 text-emerald-500 hbc-pop" />}
-                    {isFlagged && <AlertTriangle className="absolute inset-0 w-4 h-4 text-rose-500 hbc-pop" />}
+                    {isDone && <CheckCircle className="absolute inset-0 w-4 h-4 text-emerald-500 hbc-pop" />}
                     {!isChecking && !isDone && <span className="absolute inset-1 rounded-full bg-slate-100" />}
                   </div>
                 </div>
@@ -192,17 +166,17 @@ export function HeroBillCheck() {
           })}
         </div>
 
-        {/* Total */}
+        {/* Tally */}
         <div className="mx-3 sm:mx-4 mb-3 rounded-2xl bg-emerald-900 text-white px-4 sm:px-5 py-4 relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_20%,rgba(52,211,153,0.35)_0%,transparent_55%)] pointer-events-none" />
           <div className="relative flex items-end justify-between gap-3">
             <div>
-              <p className="poppins-medium text-[10px] uppercase tracking-[0.15em] text-emerald-300">You pay each month</p>
-              <p className="poppins-bold text-3xl tabular-nums leading-none mt-1.5">£{total}</p>
+              <p className="poppins-medium text-[10px] uppercase tracking-[0.15em] text-emerald-300">Submitted to Defra</p>
+              <p className="poppins-bold text-3xl tabular-nums leading-none mt-1.5">{submitted}/{lines.length}</p>
             </div>
             <div className="text-right">
-              <p className="poppins-medium text-[10px] uppercase tracking-[0.15em] text-emerald-300">You save</p>
-              <p className="poppins-bold text-xl text-emerald-300 tabular-nums leading-none mt-1.5">£{save}</p>
+              <p className="poppins-medium text-[10px] uppercase tracking-[0.15em] text-emerald-300">Missed deadlines</p>
+              <p className="poppins-bold text-xl text-emerald-300 tabular-nums leading-none mt-1.5">0</p>
             </div>
           </div>
         </div>
@@ -210,9 +184,9 @@ export function HeroBillCheck() {
         {/* Result chips */}
         <div className="px-3 sm:px-4 pb-4 grid grid-cols-3 gap-1.5">
           {[
-            { icon: Sparkles, text: `£${yearly.toLocaleString("en-GB")} a year back` },
-            { icon: Scale, text: "Better deal found" },
-            { icon: CalendarClock, text: "Renewal date watched" },
+            { icon: Send, text: "Sent from WhatsApp" },
+            { icon: ListChecks, text: "Codes mapped" },
+            { icon: CalendarClock, text: "Friday confirmation" },
           ].map((c, i) => (
             <div
               key={c.text}

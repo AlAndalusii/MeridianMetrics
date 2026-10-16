@@ -7,13 +7,12 @@ import {
   BadgeCheck,
   Clock,
   TrendingUp,
-  PoundSterling,
-  Trash2,
+  Truck,
+  Timer,
+  ListChecks,
   FileCheck,
-  CalendarClock,
-  Receipt,
-  Scale,
-  BellRing,
+  Send,
+  CalendarCheck,
 } from "lucide-react"
 
 /* ─── Reveal once when scrolled into view ─────────────────────────────────── */
@@ -67,40 +66,40 @@ function CountUp({ to, run, delay = 0 }: { to: number; run: boolean; delay?: num
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 const areas = [
-  { icon: PoundSterling, label: "Price", note: "Are you paying too much?" },
-  { icon: Trash2, label: "Bins", note: "Right size? Right number?" },
-  { icon: FileCheck, label: "Paperwork", note: "Is it all in order?" },
-  { icon: CalendarClock, label: "Renewal", note: "When can you leave?" },
+  { icon: Truck, label: "Loads", note: "Is every load logged?" },
+  { icon: Timer, label: "Deadline", note: "In within two working days?" },
+  { icon: ListChecks, label: "Codes", note: "EWC and R/D codes right?" },
+  { icon: FileCheck, label: "Paperwork", note: "Transfer notes in order?" },
 ]
 
 const services = [
   {
-    icon: Receipt,
+    icon: Send,
     step: "01",
-    badge: "Bill Audit",
-    title: "Waste Bill Audit",
+    badge: "Done For You",
+    title: "Load Reporting",
     href: "/services#bill-audit",
-    description: "We check every line of your bill. Wrong bins, missed lifts, charges with no proof. We find them all.",
+    description: "Send photos of your tickets and transfer notes on WhatsApp. I enter and submit every load before the deadline.",
   },
   {
-    icon: Scale,
+    icon: ListChecks,
     step: "02",
     badge: "Free",
-    title: "Am I Overpaying?",
+    title: "Two-Week Trial",
     href: "/services#better-deals",
-    description: "We compare your price with other licensed Birmingham collectors. Find a better deal? We do the switch.",
+    description: "Try it free for two weeks. First I map the waste codes you use most, so every entry is fast and the same.",
   },
   {
-    icon: BellRing,
+    icon: CalendarCheck,
     step: "03",
-    badge: "Renewals",
-    title: "Renewal Watch",
+    badge: "Fridays",
+    title: "Weekly Confirmation",
     href: "/services#renewal-watch",
-    description: "Contracts often roll over with a price rise. We track your dates and warn you in time.",
+    description: "Every Friday you get a list of every load I submitted that week. Nothing to chase, nothing to guess.",
   },
 ]
 
-const headlineTop = ["Your", "Free", "Waste", "Contract"]
+const headlineTop = ["Are", "You", "Ready", "For"]
 
 /* ─── The health ring: four arcs fill one by one ──────────────────────────── */
 function HealthRing({ run }: { run: boolean }) {
@@ -270,7 +269,7 @@ export function HealthCheckSection() {
                   <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-50" />
                   <span className="relative w-2 h-2 rounded-full bg-emerald-500" />
                 </span>
-                <span className="poppins-semibold text-xs uppercase tracking-[0.18em] text-emerald-800">Free Bill Check · 3 min</span>
+                <span className="poppins-semibold text-xs uppercase tracking-[0.18em] text-emerald-800">Free Readiness Check · 3 min</span>
               </div>
 
               <h2 id="assessment-heading" className="poppins-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-slate-900">
@@ -288,13 +287,13 @@ export function HealthCheckSection() {
                     className="hc-word hc-shine inline-block pb-1 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent"
                     style={{ animationDelay: "520ms" }}
                   >
-                    Health Check.
+                    Waste Tracking?
                   </span>
                 </span>
               </h2>
 
               <p className="hc-fade poppins-regular text-lg sm:text-xl text-slate-600 leading-relaxed mt-6 max-w-xl" style={{ animationDelay: "750ms" }}>
-                Answer 10 quick questions. We&apos;ll show you if your waste deal is working <span className="text-emerald-700 poppins-semibold">for</span> you, or <span className="text-rose-600 poppins-semibold">against</span> you.
+                Answer 10 quick questions about digital waste tracking. See if your site is <span className="text-emerald-700 poppins-semibold">ready</span>, or where the <span className="text-rose-600 poppins-semibold">gaps</span> are.
               </p>
 
               {/* Stats */}
@@ -320,7 +319,7 @@ export function HealthCheckSection() {
                   className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-2xl bg-emerald-700 px-8 py-4 whitespace-nowrap poppins-semibold text-base text-white shadow-[0_20px_50px_-12px_rgba(6,95,70,0.55)] transition-all duration-300 hover:bg-emerald-800 active:scale-[0.98] min-h-[54px]"
                 >
                   <span className="hc-btn-shine absolute inset-y-0 -left-1/2 w-1/2 bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-[-20deg]" />
-                  <span className="relative">Start Your Free Check</span>
+                  <span className="relative">Start the Free Check</span>
                   <ArrowRight className="relative w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-500 poppins-medium">

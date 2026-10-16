@@ -5,16 +5,16 @@ import Image from "next/image"
 import Link from "next/link"
 import {
   ArrowRight,
-  BadgeCheck,
-  Building,
+  CalendarCheck,
   CheckCircle,
-  KeyRound,
-  Receipt,
-  ShieldCheck,
-  Truck,
-  Zap,
+  Container,
+  Hammer,
+  Leaf,
   MapPin,
   Phone,
+  Recycle,
+  Send,
+  Warehouse,
 } from "lucide-react"
 
 /* ─── Reveal once when scrolled into view ─────────────────────────────────── */
@@ -41,21 +41,21 @@ function useReveal<T extends HTMLElement>(threshold = 0.2) {
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 const groups = [
-  { icon: Receipt, label: "Small Businesses", sub: "A free waste bill check. No saving, no fee." },
-  { icon: KeyRound, label: "Landlords", sub: "Vetted contractors for clearances, waste and compliance jobs." },
-  { icon: Building, label: "Letting Agents", sub: "One call for the jobs between tenants, done by people I trust." },
-  { icon: Truck, label: "Waste Firms", sub: "New local customers, once you pass my checks." },
-  { icon: Zap, label: "Urgent Jobs & Surveys", sub: "Urgent clearances and survey specialists, found fast." },
+  { icon: Recycle, label: "Scrap & Metal", sub: "Every weighbridge ticket, reported within two working days." },
+  { icon: Warehouse, label: "Transfer Stations", sub: "Busy gate? Send photos as loads come in. I enter the lot." },
+  { icon: Container, label: "Skip Hire Yards", sub: "Your yard's loads reported now, and ready for October 2027." },
+  { icon: Hammer, label: "Aggregates & Inert", sub: "Soil, stone and rubble loads, with the right codes every time." },
+  { icon: Leaf, label: "Wood & Compost", sub: "Small site, same rules. I do the typing so you don't have to." },
 ]
 
 const trust = [
-  { icon: BadgeCheck, label: "Vetted Partners" },
-  { icon: ShieldCheck, label: "Licensed & Insured" },
+  { icon: Send, label: "Done For You" },
+  { icon: CalendarCheck, label: "Friday Confirmation" },
   { icon: MapPin, label: "Birmingham Based" },
   { icon: Phone, label: "Direct Line" },
 ]
 
-// Hub geometry (SVG units). Five groups sit on a circle around Zak.
+// Hub geometry (SVG units). Five site types sit on a circle around Zak.
 const SIZE = 400
 const CX = SIZE / 2
 const CY = SIZE / 2
@@ -65,7 +65,7 @@ const nodes = groups.map((_, i) => {
   return { x: CX + R * Math.cos(a), y: CY + R * Math.sin(a) }
 })
 
-/* ─── The hub: one call in the middle, five groups around it ─────────────── */
+/* ─── The hub: Zak in the middle, five site types around it ──────────────── */
 function ConnectorHub({ run }: { run: boolean }) {
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -97,11 +97,11 @@ function ConnectorHub({ run }: { run: boolean }) {
         <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="poppins-bold text-sm text-emerald-900">Who I help</h3>
-            <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Waste and compliance, one call</p>
+            <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Small permitted waste sites</p>
           </div>
           <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 rounded-full border border-emerald-100">
             <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-            <span className="poppins-semibold text-[10px] text-emerald-600">5 groups</span>
+            <span className="poppins-semibold text-[10px] text-emerald-600">5 site types</span>
           </div>
         </div>
 
@@ -167,12 +167,12 @@ function ConnectorHub({ run }: { run: boolean }) {
               <span className="absolute inset-0 rounded-full bg-emerald-400/30 fs-ping" />
               <div className="relative w-[88px] h-[88px] sm:w-[104px] sm:h-[104px] rounded-full bg-gradient-to-br from-emerald-600 to-emerald-800 shadow-[0_16px_40px_-10px_rgba(6,95,70,0.6)] flex flex-col items-center justify-center text-center border-4 border-white">
                 <span className="poppins-bold text-white text-base sm:text-lg leading-none">Zak</span>
-                <span className="poppins-medium text-emerald-100 text-[9px] sm:text-[10px] mt-1 uppercase tracking-[0.15em]">One call</span>
+                <span className="poppins-medium text-emerald-100 text-[9px] sm:text-[10px] mt-1 uppercase tracking-[0.15em]">On time</span>
               </div>
             </div>
           </div>
 
-          {/* Group nodes */}
+          {/* Site type nodes */}
           {groups.map((g, i) => {
             const Icon = g.icon
             const on = i === active
@@ -216,7 +216,7 @@ function ConnectorHub({ run }: { run: boolean }) {
           })}
         </div>
 
-        {/* Active group read-out */}
+        {/* Active site type read-out */}
         <div className="mt-2 rounded-2xl bg-emerald-50/70 border border-emerald-100 p-4 min-h-[84px]">
           <div key={active} className="fs-swap flex items-start gap-3">
             <div className="w-9 h-9 rounded-xl bg-white border border-emerald-100 flex items-center justify-center flex-shrink-0">
@@ -242,7 +242,7 @@ function ConnectorHub({ run }: { run: boolean }) {
         {/* Footer note */}
         <div className="mt-4 pt-4 border-t border-emerald-50 flex items-center gap-2">
           <CheckCircle className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-          <p className="poppins-regular text-[11px] text-emerald-600/80">Free bill check · No saving, no fee</p>
+          <p className="poppins-regular text-[11px] text-emerald-600/80">Free two-week trial · See it working first</p>
         </div>
       </div>
 
@@ -280,7 +280,7 @@ export function FounderSection() {
 
               <h2 id="founder-heading" className="poppins-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-slate-900">
                 <span className="block">
-                  {["One", "call."].map((w, i) => (
+                  {["Send", "photos."].map((w, i) => (
                     <React.Fragment key={w}>
                       <span className="fs-word inline-block" style={{ animationDelay: `${120 + i * 90}ms` }}>
                         {w}
@@ -293,17 +293,17 @@ export function FounderSection() {
                     className="fs-word fs-shine inline-block pb-1 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent"
                     style={{ animationDelay: "360ms" }}
                   >
-                    People I&apos;ve checked.
+                    I&apos;ll report them.
                   </span>
                 </span>
               </h2>
 
               <p className="fs-fade poppins-regular text-lg sm:text-xl text-slate-700 leading-relaxed mt-7 max-w-xl" style={{ animationDelay: "600ms" }}>
-                Millstone Compliance is a new Birmingham business. I started it to make waste and compliance simple, using people I&apos;ve checked myself.
+                Millstone Compliance is a new Birmingham business. I started it so small waste sites don&apos;t lose hours to the new digital waste tracking rules.
               </p>
 
               <p className="fs-fade poppins-regular text-base text-slate-500 leading-relaxed mt-4 max-w-xl" style={{ animationDelay: "720ms" }}>
-                I&apos;m Zak. I hold a Certificate in Circular Economy from the Cambridge Institute for Sustainability Leadership, and I worked at HMRC. There I learned to read rules, check records and spot numbers that don&apos;t add up.
+                I&apos;m Zak. I worked at HMRC, so I&apos;m used to government reporting systems, hard deadlines and records that must be right. I also hold a Certificate in Circular Economy from the Cambridge Institute for Sustainability Leadership.
               </p>
 
               {/* Credentials */}
@@ -323,7 +323,7 @@ export function FounderSection() {
                   </div>
                   <div className="min-w-0">
                     <p className="poppins-semibold text-[13px] text-emerald-900 leading-tight">Worked at HMRC</p>
-                    <p className="poppins-regular text-[11px] text-emerald-600/80 leading-tight mt-0.5">Rules, records and numbers</p>
+                    <p className="poppins-regular text-[11px] text-emerald-600/80 leading-tight mt-0.5">Reporting, deadlines, records</p>
                   </div>
                 </div>
               </div>
@@ -331,7 +331,7 @@ export function FounderSection() {
               {/* Promise */}
               <div className="fs-fade mt-8 pl-5 border-l-2 border-emerald-400 max-w-xl" style={{ animationDelay: "960ms" }}>
                 <p className="poppins-semibold text-base sm:text-lg text-emerald-900 leading-relaxed">
-                  Local. Plain English. A direct line to me. Always upfront about how I get paid.
+                  Local. Plain English. A direct line to me. A simple monthly fee, told upfront.
                 </p>
                 <p className="poppins-medium text-sm text-emerald-600 mt-2">Zak, Founder</p>
               </div>
@@ -351,7 +351,7 @@ export function FounderSection() {
                   href="/about"
                   className="group inline-flex items-center gap-2 poppins-semibold text-sm text-emerald-700 hover:text-emerald-800"
                 >
-                  More about me and how I vet partners
+                  More about me and how I work
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>

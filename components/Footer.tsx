@@ -39,7 +39,6 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {[
                   { label: "Compliance Services", href: "/services" },
-                  { label: "Cut Waste Costs 20–40%", href: "/waste-cost-savings" },
                   { label: "Documentation", href: "/services/documentation" },
                   { label: "Support", href: "/support" }
                 ].map((item, index) => (

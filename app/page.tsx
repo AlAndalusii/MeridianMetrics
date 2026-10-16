@@ -330,15 +330,15 @@ export default function MillstoneComplianceWebsite() {
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-xs poppins-semibold text-emerald-700 mb-5">
                 <BadgeCheck className="w-3.5 h-3.5 text-emerald-600" />
-                Waste &amp; Compliance Help · Birmingham
+                Digital Waste Tracking · Birmingham
               </div>
 
               <h1 className="poppins-bold text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight mb-5">
-                <span className="block overflow-hidden pb-1"><span className="text-slate-900 block hero-rise" style={{ animationDelay: "0ms" }}>One Call for</span></span>
-                <span className="block overflow-hidden pb-1"><span className="text-slate-900 block hero-rise" style={{ animationDelay: "120ms" }}>Vetted Waste</span></span>
+                <span className="block overflow-hidden pb-1"><span className="text-slate-900 block hero-rise" style={{ animationDelay: "0ms" }}>Digital Waste</span></span>
+                <span className="block overflow-hidden pb-1"><span className="text-slate-900 block hero-rise" style={{ animationDelay: "120ms" }}>Tracking,</span></span>
                 <span className="block overflow-hidden pb-2">
                   <span className="relative inline-block text-emerald-700 hero-rise" style={{ animationDelay: "240ms" }}>
-                    &amp; Compliance Help.
+                    Done For You.
                     <svg className="absolute left-0 -bottom-1.5 w-full h-3 text-emerald-400" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
                       <path d="M2 9 C 50 3, 110 3, 198 7" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="hero-underline" />
                     </svg>
@@ -347,7 +347,7 @@ export default function MillstoneComplianceWebsite() {
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
-                I&apos;m Zak. I link Birmingham businesses, landlords and waste firms with licensed partners I&apos;ve checked myself. One call, and I sort the right person for the job.
+                I&apos;m Zak. Permitted waste sites now have to report every load to Defra within two working days. Send me photos on WhatsApp, and I&apos;ll do the rest.
               </p>
 
               {/* Primary CTAs */}
@@ -356,26 +356,26 @@ export default function MillstoneComplianceWebsite() {
                   href="/send-your-bill"
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-sm hover:shadow-md"
                 >
-                  Get a Free Bill Check <ArrowRight className="w-4 h-4" />
+                  Start a Free Two-Week Trial <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/about"
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-200 hover:border-emerald-300 px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95"
                 >
-                  How I Vet Partners
+                  Book a Free 15-Minute Call
                 </Link>
               </div>
 
               {/* Also serving */}
               <p className="text-xs text-slate-400 poppins-regular mb-5">
-                <span className="text-slate-600 poppins-medium">For small businesses, letting agents, landlords and waste firms</span>
+                <span className="text-slate-600 poppins-medium">For scrap yards, transfer stations, skip hire yards and recyclers</span>
               </p>
 
               {/* Trust signals */}
               <div className="flex flex-wrap gap-4">
                 {[
-                  "Vetted Partners",
-                  "Licensed &amp; Insured",
+                  "Done For You",
+                  "Friday Confirmation",
                   "Birmingham Based",
                 ].map((t) => (
                   <div key={t} className="flex items-center gap-1.5 text-xs text-emerald-700 poppins-medium">
@@ -386,7 +386,7 @@ export default function MillstoneComplianceWebsite() {
               </div>
             </div>
 
-            {/* Live bill check — shows what we do at a glance */}
+            {/* Example week of loads — shows what we do at a glance */}
             <div
               className={`hidden xs:block transition-all duration-700 delay-150 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} mt-8 lg:mt-0`}
             >
@@ -399,7 +399,7 @@ export default function MillstoneComplianceWebsite() {
       {/* Why I started + who I help */}
       <FounderSection />
 
-      {/* Free Waste Contract Health Check */}
+      {/* Free digital waste tracking readiness check */}
       <HealthCheckSection />
 
       {/* Who I Help Section - Matching Site Design */}
@@ -446,23 +446,23 @@ export default function MillstoneComplianceWebsite() {
             
             {/* Main Headline - matching site typography */}
             <h2 id="regulations-heading" className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-5 sm:mb-7 md:mb-9 text-emerald-900 tracking-tight relative animate-fade-in-up leading-[1.1]">
-              One Call,
+              Your Reporting,
               <span className="block mt-2 sm:mt-3 leading-tight pb-2 sm:pb-3 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
-                The Right Partner
+                Off Your Desk
               </span>
             </h2>
             
             {/* Subheadline */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4 animate-fade-in-up delay-100">
-              Three core services and two extras,
-              <span className="poppins-semibold text-emerald-800"> all done by partners I&apos;ve checked myself.</span>
+              One core service and three extras,
+              <span className="poppins-semibold text-emerald-800"> all done by me, not a call centre.</span>
             </p>
           </div>
 
           {/* Regulations Grid - Premium Cards matching site style */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             
-            {/* Small Businesses Card */}
+            {/* Load Reporting Card */}
             <div className="group/reg relative bg-white/80 backdrop-blur-xl border border-amber-200/50 rounded-2xl overflow-hidden hover:border-amber-400/60 transition-all duration-700 hover:shadow-[0_20px_60px_rgba(245,158,11,0.2)] animate-fade-in-up">
               {/* Card shine effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-amber-50/50 via-white/50 to-amber-50/50 opacity-0 group-hover/reg:opacity-100 transition-opacity duration-700"></div>
@@ -473,17 +473,17 @@ export default function MillstoneComplianceWebsite() {
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-100 to-amber-200 border border-amber-300 flex items-center justify-center group-hover/reg:scale-110 group-hover/reg:rotate-3 transition-all duration-500 shadow-lg">
                     <AlertTriangle className="w-7 h-7 text-amber-700" />
                   </div>
-                  <Badge className="bg-amber-100 text-amber-700 border-amber-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">Free</Badge>
+                  <Badge className="bg-amber-100 text-amber-700 border-amber-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">Core</Badge>
                 </div>
                 
                 {/* Title */}
                 <h3 className="poppins-bold text-2xl sm:text-3xl text-amber-900 mb-4 group-hover/reg:text-amber-800 transition-colors duration-300">
-                  Small Businesses
+                  Load Reporting
                 </h3>
 
                 {/* Description */}
                 <p className="text-amber-800 poppins-regular text-base leading-relaxed mb-6">
-                  A free waste bill check. I read every line and find where you&apos;re overpaying. No saving, no fee.
+                  Send photos on WhatsApp. I enter and submit every load to Defra before the two-day deadline. Try it free for two weeks.
                 </p>
 
                 {/* Requirements List */}
@@ -492,19 +492,19 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <FileText className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-amber-900 text-sm poppins-medium">Every charge checked against your contract</span>
+                    <span className="text-amber-900 text-sm poppins-medium">Weighbridge tickets and transfer notes</span>
                   </div>
                   <div className="flex items-start gap-3 bg-amber-50/50 p-3 rounded-lg border border-amber-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Archive className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-amber-900 text-sm poppins-medium">A better deal from a licensed collector</span>
+                    <span className="text-amber-900 text-sm poppins-medium">Your most-used codes mapped at setup</span>
                   </div>
                   <div className="flex items-start gap-3 bg-amber-50/50 p-3 rounded-lg border border-amber-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <ClipboardCheck className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-amber-900 text-sm poppins-medium">No saving found? You pay nothing</span>
+                    <span className="text-amber-900 text-sm poppins-medium">A confirmation every Friday</span>
                   </div>
                 </div>
                 
@@ -531,7 +531,7 @@ export default function MillstoneComplianceWebsite() {
               <div className="h-1.5 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400"></div>
             </div>
 
-            {/* Landlords & Agents Card */}
+            {/* Reporting Check Card */}
             <div className="group/reg relative bg-white/80 backdrop-blur-xl border border-green-200/50 rounded-2xl overflow-hidden hover:border-green-400/60 transition-all duration-700 hover:shadow-[0_20px_60px_rgba(34,197,94,0.2)] animate-fade-in-up delay-100">
               <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-white/50 to-green-50/50 opacity-0 group-hover/reg:opacity-100 transition-opacity duration-700"></div>
               
@@ -540,15 +540,15 @@ export default function MillstoneComplianceWebsite() {
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-100 to-green-200 border border-green-300 flex items-center justify-center group-hover/reg:scale-110 group-hover/reg:rotate-3 transition-all duration-500 shadow-lg">
                     <Book className="w-7 h-7 text-green-700" />
                   </div>
-                  <Badge className="bg-green-100 text-green-700 border-green-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">Vetted</Badge>
+                  <Badge className="bg-green-100 text-green-700 border-green-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">Check</Badge>
                 </div>
                 
                 <h3 className="poppins-bold text-2xl sm:text-3xl text-green-900 mb-4 group-hover/reg:text-green-800 transition-colors duration-300">
-                  Landlords &amp; Agents
+                  Reporting Check
                 </h3>
                 
                 <p className="text-green-800 poppins-regular text-base leading-relaxed mb-6">
-                  Vetted contractors for clearances, waste and compliance jobs. One call, and I find the right licensed partner.
+                  Already reporting yourself? I check that every load actually landed, and that the codes are right.
                 </p>
                 
                 <div className="space-y-3 mb-8">
@@ -556,19 +556,19 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <FileText className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-green-900 text-sm poppins-medium">Licensed and insured partners only</span>
+                    <span className="text-green-900 text-sm poppins-medium">Every load matched to a ticket</span>
                   </div>
                   <div className="flex items-start gap-3 bg-green-50/50 p-3 rounded-lg border border-green-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <CheckCircle className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-green-900 text-sm poppins-medium">Proper paperwork for every job</span>
+                    <span className="text-green-900 text-sm poppins-medium">EWC and R/D codes checked</span>
                   </div>
                   <div className="flex items-start gap-3 bg-green-50/50 p-3 rounded-lg border border-green-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Lock className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-green-900 text-sm poppins-medium">I follow up after every job</span>
+                    <span className="text-green-900 text-sm poppins-medium">A plain list of anything to fix</span>
                   </div>
                 </div>
                 
@@ -605,7 +605,7 @@ export default function MillstoneComplianceWebsite() {
               <div className="h-1.5 bg-gradient-to-r from-green-400 via-green-500 to-green-400"></div>
             </div>
 
-            {/* Local Waste Firms Card */}
+            {/* Paperwork & Setup Card */}
             <div className="group/reg relative bg-white/80 backdrop-blur-xl border border-emerald-200/50 rounded-2xl overflow-hidden hover:border-emerald-400/60 transition-all duration-700 hover:shadow-[0_20px_60px_rgba(16,185,129,0.2)] animate-fade-in-up delay-200">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-white/50 to-emerald-50/50 opacity-0 group-hover/reg:opacity-100 transition-opacity duration-700"></div>
               
@@ -614,15 +614,15 @@ export default function MillstoneComplianceWebsite() {
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-200 border border-emerald-300 flex items-center justify-center group-hover/reg:scale-110 group-hover/reg:rotate-3 transition-all duration-500 shadow-lg">
                     <Wifi className="w-7 h-7 text-emerald-700" />
                   </div>
-                  <Badge className="bg-emerald-100 text-emerald-700 border-emerald-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">Partners</Badge>
+                  <Badge className="bg-emerald-100 text-emerald-700 border-emerald-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">Extras</Badge>
                 </div>
                 
                 <h3 className="poppins-bold text-2xl sm:text-3xl text-emerald-900 mb-4 group-hover/reg:text-emerald-800 transition-colors duration-300">
-                  Local Waste Firms
+                  Paperwork &amp; Setup
                 </h3>
                 
                 <p className="text-emerald-800 poppins-regular text-base leading-relaxed mb-6">
-                  New customers from local businesses and landlords. Pass my checks and I send good work your way.
+                  Help with quarterly waste returns, and your regular hauliers and customers set up before their first load.
                 </p>
                 
                 <div className="space-y-3 mb-8">
@@ -630,19 +630,19 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Database className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-emerald-900 text-sm poppins-medium">Registered, licensed and insured</span>
+                    <span className="text-emerald-900 text-sm poppins-medium">Quarterly waste returns</span>
                   </div>
                   <div className="flex items-start gap-3 bg-emerald-50/50 p-3 rounded-lg border border-emerald-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Activity className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-emerald-900 text-sm poppins-medium">Good references and feedback</span>
+                    <span className="text-emerald-900 text-sm poppins-medium">Hauliers and customers set up</span>
                   </div>
                   <div className="flex items-start gap-3 bg-emerald-50/50 p-3 rounded-lg border border-emerald-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Calendar className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-emerald-900 text-sm poppins-medium">Steady, local work sent to you</span>
+                    <span className="text-emerald-900 text-sm poppins-medium">Free intros to carriers and builders I know</span>
                   </div>
                 </div>
                 
@@ -682,7 +682,7 @@ export default function MillstoneComplianceWebsite() {
               <div className="h-1.5 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400"></div>
             </div>
 
-            {/* Urgent Jobs & Surveys Card */}
+            {/* Ready for 2027 Card */}
             <div className="group/reg relative bg-white/80 backdrop-blur-xl border border-rose-200/50 rounded-2xl overflow-hidden hover:border-rose-400/60 transition-all duration-700 hover:shadow-[0_20px_60px_rgba(244,63,94,0.2)] animate-fade-in-up delay-300">
               <div className="absolute inset-0 bg-gradient-to-br from-rose-50/50 via-white/50 to-rose-50/50 opacity-0 group-hover/reg:opacity-100 transition-opacity duration-700"></div>
               
@@ -691,15 +691,15 @@ export default function MillstoneComplianceWebsite() {
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-rose-100 to-rose-200 border border-rose-300 flex items-center justify-center group-hover/reg:scale-110 group-hover/reg:rotate-3 transition-all duration-500 shadow-lg">
                     <Activity className="w-7 h-7 text-rose-700" />
                   </div>
-                  <Badge className="bg-rose-100 text-rose-700 border-rose-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">Extras</Badge>
+                  <Badge className="bg-rose-100 text-rose-700 border-rose-300 poppins-semibold text-xs px-3 py-1.5 shadow-sm">2027</Badge>
                 </div>
 
                 <h3 className="poppins-bold text-2xl sm:text-3xl text-rose-900 mb-4 group-hover/reg:text-rose-800 transition-colors duration-300">
-                  Urgent Jobs &amp; Surveys
+                  Ready for 2027
                 </h3>
 
                 <p className="text-rose-800 poppins-regular text-base leading-relaxed mb-6">
-                  When it can&apos;t wait. Urgent clearances and survey specialists, found fast from partners I trust.
+                  Carriers, brokers and skip firms join the system from October 2027. I&apos;ll help you get ready early.
                 </p>
 
                 <div className="space-y-3 mb-8">
@@ -707,19 +707,19 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <BadgeCheck className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-rose-900 text-sm poppins-medium">Urgent clearances, booked fast</span>
+                    <span className="text-rose-900 text-sm poppins-medium">What changes, in plain English</span>
                   </div>
                   <div className="flex items-start gap-3 bg-rose-50/50 p-3 rounded-lg border border-rose-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Eye className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-rose-900 text-sm poppins-medium">Survey specialists when you need one</span>
+                    <span className="text-rose-900 text-sm poppins-medium">Your codes and records set up</span>
                   </div>
                   <div className="flex items-start gap-3 bg-rose-50/50 p-3 rounded-lg border border-rose-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Lock className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-rose-900 text-sm poppins-medium">Same checks, same direct line</span>
+                    <span className="text-rose-900 text-sm poppins-medium">Same direct line to me</span>
                   </div>
                 </div>
                 
@@ -793,7 +793,7 @@ export default function MillstoneComplianceWebsite() {
             </div>
             <h2 className="poppins-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 text-emerald-900 tracking-tight">How We Work</h2>
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-3xl mx-auto leading-relaxed px-4">
-              No jargon. No long meetings. The same three steps, whatever you need.
+              No new software. No long meetings. The same three steps, every week.
             </p>
           </div>
 
@@ -807,23 +807,23 @@ export default function MillstoneComplianceWebsite() {
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 relative">
               {[
                 {
-                  step: "Tell Me",
-                  title: "Tell Me What You Need",
-                  description: "A quick call or WhatsApp. A bill check, a clearance, a survey or new customers.",
+                  step: "Send",
+                  title: "Send Me Your Tickets",
+                  description: "Snap your weighbridge tickets and transfer notes. Send them on WhatsApp as loads come in.",
                   icon: AlertTriangle,
                   accentColor: "emerald",
                 },
                 {
-                  step: "Matched",
-                  title: "I Match a Vetted Partner",
-                  description: "I pick a licensed partner who has passed all five of my checks, and tell you how I'm paid.",
+                  step: "Submitted",
+                  title: "I Report Every Load",
+                  description: "I enter each load and submit it to Defra's digital waste tracking within two working days.",
                   icon: Building,
                   accentColor: "green",
                 },
                 {
-                  step: "Follow Up",
-                  title: "I Follow Up",
-                  description: "After every job I check in with you. If it wasn't right, I sort it.",
+                  step: "Friday",
+                  title: "You Get a Confirmation",
+                  description: "Every Friday, a list of everything I submitted. If a ticket is missing, I ask.",
                   icon: CheckCircle,
                   accentColor: "blue",
                 },
@@ -927,13 +927,13 @@ export default function MillstoneComplianceWebsite() {
                   <span className="poppins-medium text-[10px] sm:text-xs text-emerald-800 tracking-wide uppercase">Local &amp; Hands-On</span>
                 </div>
                 <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-emerald-900 mb-3 sm:mb-4 animate-fade-in-up">
-                  Partners
+                  A Real Person,
                   <span className="block mt-1 bg-gradient-to-r from-emerald-600 via-emerald-500 to-green-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
-                    I&apos;ve Checked
+                    Not Software
                   </span>
                 </h2>
                 <p className="poppins-regular text-base sm:text-lg text-emerald-700 max-w-xl mx-auto leading-relaxed animate-fade-in-up">
-                  I help Birmingham businesses, landlords and waste firms find people they can trust, without the stress of checking everyone yourself.
+                  I help small waste sites keep up with digital waste tracking, without typing every load in twice.
                 </p>
               </div>
 
@@ -942,10 +942,10 @@ export default function MillstoneComplianceWebsite() {
                 <div className="w-40 bg-white/90 backdrop-blur-xl rounded-2xl border border-emerald-100/60 shadow-[0_8px_32px_rgba(6,95,70,0.10)] p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-[10px] text-green-700 poppins-semibold uppercase tracking-wider">Status</span>
+                    <span className="text-[10px] text-green-700 poppins-semibold uppercase tracking-wider">Deadline</span>
                   </div>
-                  <p className="poppins-bold text-emerald-900 text-2xl mb-0.5">5</p>
-                  <p className="poppins-medium text-emerald-700 text-[11px]">Checks per partner</p>
+                  <p className="poppins-bold text-emerald-900 text-2xl mb-0.5">2</p>
+                  <p className="poppins-medium text-emerald-700 text-[11px]">Working days per load</p>
                   <div className="mt-2.5 w-full h-1 bg-emerald-50 rounded-full">
                     <div className="h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full w-full"></div>
                   </div>
@@ -958,10 +958,10 @@ export default function MillstoneComplianceWebsite() {
           {/* What we cover pills */}
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 animate-fade-in-up">
             {[
-              "Bill Checks",
-              "Landlords",
-              "Waste Firms",
-              "Urgent Jobs",
+              "Load Reporting",
+              "Reporting Checks",
+              "Waste Returns",
+              "Ready for 2027",
             ].map((label) => (
               <div key={label} className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/70 backdrop-blur-xl border border-emerald-100/60 rounded-full shadow-sm hover:shadow-md hover:border-emerald-200/70 transition-all duration-300">
                 <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse flex-shrink-0"></div>
@@ -973,10 +973,10 @@ export default function MillstoneComplianceWebsite() {
           {/* Stats row */}
           <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-12 mb-8 sm:mb-10 animate-fade-in-up">
             {[
-              { value: "5", label: "Checks On Every Partner" },
-              { value: "1", label: "Call To Sort It" },
+              { value: "2", label: "Working Days Per Load" },
+              { value: "Fri", label: "Confirmation Every Week" },
               { value: "1-1", label: "Direct Access, No Call Centre" },
-              { value: "£0", label: "Bill Check If No Saving" },
+              { value: "2 wks", label: "Free Trial To Start" },
             ].map((stat, i) => (
               <React.Fragment key={i}>
                 {i > 0 && <div className="w-px h-9 bg-emerald-100 hidden sm:block"></div>}
@@ -1002,24 +1002,24 @@ export default function MillstoneComplianceWebsite() {
                 </div>
 
                 <h3 className="poppins-bold text-xl sm:text-2xl text-emerald-900 mb-4 leading-tight">
-                  I check the people so you don&apos;t have to.
+                  A bookkeeper for your waste reporting.
                 </h3>
 
                 <p className="poppins-regular text-emerald-700 text-sm sm:text-sm leading-relaxed mb-4">
-                  Finding a waste firm or contractor you can trust takes time. Is it licensed? Insured? Any good? You&apos;re busy running a business. I take it off your plate.
+                  Typing every load into a new system, on top of your transfer notes, takes hours. You&apos;ve got lorries to deal with. I take it off your plate.
                 </p>
 
                 <p className="poppins-regular text-emerald-600 text-sm leading-relaxed mb-5">
-                  I check every partner myself before I send them any work, and I ask you how it went after every job. If they slip, they&apos;re off my list.
+                  You stay responsible for what&apos;s on the tickets you send. I&apos;m responsible for entering them and getting them in on time.
                 </p>
 
                 {/* What we handle */}
                 <div className="space-y-2.5">
                   {[
-                    "Registration and licences checked",
-                    "Insurance checked",
-                    "Company history and references checked",
-                    "Your feedback after every job",
+                    "Every load submitted within two working days",
+                    "Your most-used codes mapped at setup",
+                    "A confirmation every Friday",
+                    "A real person to call when rules change",
                   ].map((item) => (
                     <div key={item} className="flex items-start gap-2.5">
                       <div className="w-4 h-4 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -1035,7 +1035,7 @@ export default function MillstoneComplianceWebsite() {
               <div className="mt-6 pt-5 border-t border-emerald-100/60 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div>
                   <p className="poppins-semibold text-emerald-900 text-sm">Founder</p>
-                  <p className="poppins-regular text-emerald-500 text-xs mt-0.5">Waste &amp; Compliance Connector</p>
+                  <p className="poppins-regular text-emerald-500 text-xs mt-0.5">Digital Waste Tracking Reporting</p>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
                   <a
@@ -1072,7 +1072,7 @@ export default function MillstoneComplianceWebsite() {
                 </div>
                 <div className="relative flex-1 min-w-0">
                   <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Cambridge Institute for Sustainability Leadership</h4>
-                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">Certificate in Circular Economy from the Cambridge Institute for Sustainability Leadership. It shapes how we see waste: as a cost you can cut, not just a box to tick.</p>
+                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">Certificate in Circular Economy from the Cambridge Institute for Sustainability Leadership. I know where your waste goes next, not just the forms.</p>
                 </div>
               </div>
 
@@ -1085,7 +1085,7 @@ export default function MillstoneComplianceWebsite() {
                 </div>
                 <div className="relative flex-1 min-w-0">
                   <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">Public Sector Background</h4>
-                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">Working at HMRC taught me how to read rules, check records and spot numbers that don&apos;t add up.</p>
+                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">At HMRC I worked with government reporting systems, hard deadlines and records that had to be right.</p>
                 </div>
               </div>
 
@@ -1099,7 +1099,7 @@ export default function MillstoneComplianceWebsite() {
                 </div>
                 <div className="relative flex-1 min-w-0">
                   <h4 className="poppins-semibold text-white text-sm mb-1.5">Honest About How I&apos;m Paid</h4>
-                  <p className="poppins-regular text-emerald-100/90 text-sm leading-relaxed">Either you pay a simple fee, or the partner I send you to pays me a small cut. I tell you which, upfront.</p>
+                  <p className="poppins-regular text-emerald-100/90 text-sm leading-relaxed">A simple monthly fee, told to you upfront. No hidden commissions. The first two weeks are free.</p>
                 </div>
               </div>
 
@@ -1112,7 +1112,7 @@ export default function MillstoneComplianceWebsite() {
                 </div>
                 <div className="relative flex-1 min-w-0">
                   <h4 className="poppins-semibold text-emerald-900 text-sm mb-1.5">We Speak Plain English</h4>
-                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">No jargon, no legal waffle. I tell you who I&apos;m sending, why I trust them and what happens next, in words that make sense.</p>
+                  <p className="poppins-regular text-emerald-600 text-sm leading-relaxed">No jargon, no legal waffle. I tell you what the rules mean for your site, and when they change, in words that make sense.</p>
                 </div>
               </div>
 
@@ -1172,14 +1172,14 @@ export default function MillstoneComplianceWebsite() {
 
                 {/* Headline - Minimal & Compelling */}
                 <h3 className="poppins-bold text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 tracking-tight text-emerald-900 leading-[1.1]">
-                  Need someone<br/>
-                  <span className="text-emerald-600">you can trust?</span>
+                  Tired of typing<br/>
+                  <span className="text-emerald-600">every load?</span>
                 </h3>
 
                 {/* Subheadline - Ultra concise */}
                 <p className="poppins-regular text-base sm:text-lg text-emerald-700 mb-6 sm:mb-8 leading-relaxed">
                   15-minute call. No obligation.<br/>
-                  <span className="text-emerald-600 poppins-medium">A vetted partner for the job.</span>
+                  <span className="text-emerald-600 poppins-medium">A real person, not a call centre.</span>
                 </p>
 
                 {/* Premium CTA Button */}
@@ -1190,7 +1190,7 @@ export default function MillstoneComplianceWebsite() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/50 to-emerald-600/0 animate-shine"></div>
                   <span className="relative z-10 flex items-center justify-center text-sm sm:text-base">
-                    Book a Free Call
+                    Book a Free 15-Minute Call
                     <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5 group-hover/button:translate-x-1 transition-transform duration-500" />
                   </span>
                 </Button>

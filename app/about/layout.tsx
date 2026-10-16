@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Meet Zak | Vetted Waste & Compliance Help in Birmingham | Millstone',
-  description: 'Meet Zak, founder of Millstone Compliance. One call for vetted waste and compliance help in Birmingham, with five checks on every partner and a direct line to Zak.',
+  title: 'Meet Zak | Digital Waste Tracking, Done For You | Millstone',
+  description: 'Meet Zak, founder of Millstone Compliance. Ex-HMRC, Birmingham based. I report every load for small permitted waste sites to Defra within two working days.',
   openGraph: {
-    title: 'Meet Zak | Vetted Waste & Compliance Help in Birmingham | Millstone',
-    description: 'Meet Zak, founder of Millstone Compliance. One call for vetted waste and compliance help in Birmingham, with five checks on every partner and a direct line to Zak.',
+    title: 'Meet Zak | Digital Waste Tracking, Done For You | Millstone',
+    description: 'Meet Zak, founder of Millstone Compliance. Ex-HMRC, Birmingham based. I report every load for small permitted waste sites to Defra within two working days.',
     type: 'website',
     locale: 'en_GB',
     siteName: 'Millstone Compliance',

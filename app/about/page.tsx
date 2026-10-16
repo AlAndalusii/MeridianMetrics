@@ -7,12 +7,12 @@ import {
   Phone,
   Mail,
   BadgeCheck,
-  ShieldCheck,
-  History,
-  Users,
-  MessageSquare,
-  Search,
-  Handshake,
+  Camera,
+  FileText,
+  ListChecks,
+  Send,
+  CalendarCheck,
+  Truck,
   Wallet,
   Landmark,
   GraduationCap,
@@ -91,7 +91,7 @@ const story = [
     icon: Landmark,
     tag: "Before",
     title: "I worked at HMRC",
-    body: "There I learned to read rules, check records and spot numbers that don't add up.",
+    body: "There I worked with government reporting systems, hard deadlines and records that had to be right.",
   },
   {
     icon: GraduationCap,
@@ -103,48 +103,48 @@ const story = [
     icon: Sparkles,
     tag: "Now",
     title: "I started Millstone",
-    body: "A new Birmingham business, to make waste and compliance simple, using people I've checked myself.",
+    body: "A new Birmingham business that reports every load for small waste sites, so they don't have to.",
   },
 ]
 
 const checks = [
   {
-    icon: BadgeCheck,
-    title: "Registration",
-    body: "Every partner must hold the right licence, like a waste carrier registration. I check it on the public register myself.",
+    icon: Camera,
+    title: "Photo Received",
+    body: "You send a photo of the weighbridge ticket or transfer note on WhatsApp. That's your part done.",
   },
   {
-    icon: ShieldCheck,
-    title: "Insurance",
-    body: "If something goes wrong on your job, you need to know it's covered. I check their insurance is in place and up to date.",
+    icon: FileText,
+    title: "Details Read",
+    body: "I read the date, the weight, the waste and who it came from. If anything is unclear, I ask you.",
   },
   {
-    icon: History,
-    title: "Company History",
-    body: "How long they've traded, and whether there are any red flags. I look at their company record before I send any work.",
+    icon: ListChecks,
+    title: "Codes Matched",
+    body: "I match the load to the EWC and R/D codes we mapped at setup, so every entry is done the same way.",
   },
   {
-    icon: Users,
-    title: "References",
-    body: "I speak to people they've worked for. A good firm is happy for you to ask, and a good reference tells you a lot.",
+    icon: Send,
+    title: "Submitted to Defra",
+    body: "I enter the load and submit it to the digital waste tracking service within two working days.",
   },
   {
-    icon: MessageSquare,
-    title: "Feedback After Every Job",
-    body: "The check doesn't stop. I ask you how it went after every job. If a partner slips, they come off my list.",
+    icon: CalendarCheck,
+    title: "Friday Confirmation",
+    body: "Every Friday you get a list of everything I submitted that week. Nothing to chase, nothing to guess.",
   },
 ]
 
 const steps = [
-  { icon: Phone, num: "01", title: "Tell me what you need", desc: "A bill check, a clearance, a survey or new customers. One call or WhatsApp." },
-  { icon: Search, num: "02", title: "I match a vetted partner", desc: "Someone who has passed all five of my checks. I tell you how I'm paid." },
-  { icon: Handshake, num: "03", title: "I follow up", desc: "After the job I check in with you. If it wasn't right, I sort it." },
+  { icon: Camera, num: "01", title: "Send me your tickets", desc: "Snap your weighbridge tickets and transfer notes. Send them on WhatsApp." },
+  { icon: Send, num: "02", title: "I report every load", desc: "Entered and submitted to Defra within two working days of arriving." },
+  { icon: CalendarCheck, num: "03", title: "You get a confirmation", desc: "Every Friday, a list of what I submitted. If a ticket is missing, I ask." },
 ]
 
-const trust = ["Vetted Partners", "Licensed & Insured", "Birmingham Based", "Direct Line"]
+const trust = ["Done For You", "Friday Confirmation", "Birmingham Based", "Direct Line"]
 
-/* ─── Partner file: the five checks tick in, then the partner is approved ── */
-const FILE_STEPS = checks.length + 3 // five ticks, then hold on "approved"
+/* ─── Load file: the five steps tick in, then the load is submitted ─────── */
+const FILE_STEPS = checks.length + 3 // five ticks, then hold on "submitted"
 
 function PartnerFile({ run, active, onPick }: { run: boolean; active: number; onPick: (i: number) => void }) {
   const approved = active >= checks.length
@@ -156,11 +156,11 @@ function PartnerFile({ run, active, onPick }: { run: boolean; active: number; on
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <div className="w-11 h-11 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center">
-              <Handshake className="w-5 h-5 text-emerald-700" />
+              <Truck className="w-5 h-5 text-emerald-700" />
             </div>
             <div>
-              <p className="poppins-semibold text-sm text-emerald-900 leading-tight">Partner file</p>
-              <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Example: local waste firm</p>
+              <p className="poppins-semibold text-sm text-emerald-900 leading-tight">Load file</p>
+              <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Example: one load of mixed metals</p>
             </div>
           </div>
           <div
@@ -170,7 +170,7 @@ function PartnerFile({ run, active, onPick }: { run: boolean; active: number; on
           >
             <div className={`w-1.5 h-1.5 rounded-full ${approved ? "bg-white" : "bg-emerald-500 animate-pulse"}`} />
             <span className={`poppins-semibold text-[10px] ${approved ? "text-white" : "text-emerald-600"}`}>
-              {approved ? "Approved" : "Checking"}
+              {approved ? "Submitted" : "In progress"}
             </span>
           </div>
         </div>
@@ -219,27 +219,27 @@ function PartnerFile({ run, active, onPick }: { run: boolean; active: number; on
                 {done ? (
                   <CheckCircle className="w-4 h-4 text-emerald-600 ab-pop" />
                 ) : now ? (
-                  <span className="poppins-medium text-[10px] text-emerald-600">Checking…</span>
+                  <span className="poppins-medium text-[10px] text-emerald-600">Working…</span>
                 ) : null}
               </button>
             )
           })}
         </div>
 
-        {/* Approved stamp */}
+        {/* Submitted stamp */}
         <div
           className="mt-5 flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-700 text-white transition-all duration-700"
           style={{ opacity: approved ? 1 : 0.15, transform: approved ? "scale(1)" : "scale(0.97)" }}
         >
           <BadgeCheck className="w-4 h-4" />
-          <span className="poppins-semibold text-sm">{approved ? "On my list. Ready for work." : "Not on my list yet"}</span>
+          <span className="poppins-semibold text-sm">{approved ? "Submitted on time. Confirmed Friday." : "Not submitted yet"}</span>
         </div>
       </div>
 
       {/* Floating stat */}
       <div className="absolute -bottom-4 -left-2 sm:-left-5 bg-white/95 backdrop-blur-xl rounded-2xl border border-emerald-100 px-4 py-3 shadow-xl animate-float-slow">
-        <p className="poppins-bold text-xl text-emerald-900 leading-none">5</p>
-        <p className="poppins-regular text-[10px] text-emerald-500 mt-1">Checks per partner</p>
+        <p className="poppins-bold text-xl text-emerald-900 leading-none">2</p>
+        <p className="poppins-regular text-[10px] text-emerald-500 mt-1">Working days per load</p>
       </div>
     </div>
   )
@@ -254,7 +254,7 @@ export default function MeetZakPage() {
   const numbersRef = useReveal<HTMLDivElement>(0.3)
   const contactRef = useReveal<HTMLDivElement>(0.2)
 
-  // Partner file cycles through the checks; hovering or clicking takes over.
+  // Load file cycles through the steps; hovering or clicking takes over.
   const [check, setCheck] = useState(0)
   const [hold, setHold] = useState(false)
   useEffect(() => {
@@ -314,7 +314,7 @@ export default function MeetZakPage() {
               </h1>
 
               <p className="ab-fade poppins-regular text-lg sm:text-xl text-slate-600 max-w-lg mt-7 leading-relaxed" style={{ animationDelay: "650ms" }}>
-                One call for vetted waste and compliance help in Birmingham. I find the right partner, and I&apos;ve checked them first.
+                Digital waste tracking, done for you. Send me photos on WhatsApp and I report every load to Defra on time.
               </p>
 
               <div className="ab-fade flex flex-wrap items-center gap-5 mt-9" style={{ animationDelay: "800ms" }}>
@@ -362,7 +362,7 @@ export default function MeetZakPage() {
                 <div className="mt-7 space-y-2.5">
                   {[
                     { img: "/University of Cambridge new Logo Vector.svg", alt: "University of Cambridge", title: "Cambridge Institute", sub: "Certificate in Circular Economy" },
-                    { img: "/Screenshot 2025-08-31 at 21.43.30.png", alt: "HMRC", title: "Worked at HMRC", sub: "Rules, records and numbers" },
+                    { img: "/Screenshot 2025-08-31 at 21.43.30.png", alt: "HMRC", title: "Worked at HMRC", sub: "Reporting, deadlines, records" },
                   ].map((c, i) => (
                     <div
                       key={c.title}
@@ -382,8 +382,8 @@ export default function MeetZakPage() {
 
                 <div className="mt-6 pt-5 border-t border-emerald-50 grid grid-cols-3 gap-3 text-center">
                   {[
-                    { v: "5", l: "Checks per partner" },
-                    { v: "1", l: "Call to sort it" },
+                    { v: "2", l: "Working days per load" },
+                    { v: "Fri", l: "Weekly confirmation" },
                     { v: "1-1", l: "Direct access" },
                   ].map((s) => (
                     <div key={s.l}>
@@ -416,21 +416,21 @@ export default function MeetZakPage() {
                 <span className="poppins-semibold text-[11px] text-emerald-600 uppercase tracking-[0.22em]">Why I started</span>
               </div>
               <h2 className="poppins-bold text-4xl sm:text-5xl text-slate-900 leading-[1.05] tracking-tight">
-                <span className="ab-word inline-block" style={{ animationDelay: "100ms" }}>One call.</span>
+                <span className="ab-word inline-block" style={{ animationDelay: "100ms" }}>Send photos.</span>
                 <br />
                 <span
                   className="ab-word inline-block pb-1 bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent"
                   style={{ animationDelay: "260ms" }}
                 >
-                  People I&apos;ve checked.
+                  I&apos;ll report them.
                 </span>
               </h2>
               <p className="ab-fade poppins-regular text-base sm:text-lg text-slate-600 leading-relaxed mt-6 max-w-md" style={{ animationDelay: "420ms" }}>
-                Millstone Compliance is a new Birmingham business. Finding someone you can trust takes time. So I do the checking, and you make one call.
+                Millstone Compliance is a new Birmingham business. The new rules mean more admin for small waste sites. So I do the typing, and you send photos.
               </p>
               <div className="ab-fade mt-7 pl-5 border-l-2 border-emerald-400 max-w-md" style={{ animationDelay: "540ms" }}>
                 <p className="poppins-semibold text-base text-emerald-900 leading-relaxed">
-                  Local. Plain English. A direct line to me. Always upfront about how I get paid.
+                  Local. Plain English. A direct line to me. A simple monthly fee, told upfront.
                 </p>
               </div>
             </div>
@@ -479,27 +479,27 @@ export default function MeetZakPage() {
         </div>
       </section>
 
-      {/* ── THE FIVE PARTNER CHECKS ──────────────────────── */}
+      {/* ── WHAT HAPPENS TO EVERY LOAD ───────────────────── */}
       <section className="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_70%_50%,rgba(209,250,229,0.35)_0%,transparent_70%)] pointer-events-none" />
 
         <div ref={checksRef.ref} className={`max-w-6xl mx-auto relative z-10 ${checksRef.visible ? "ab-in" : ""}`}>
           <div className="text-center mb-14">
             <div className="ab-fade inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full mb-5" style={{ animationDelay: "0ms" }}>
-              <span className="poppins-semibold text-[10px] text-emerald-700 uppercase tracking-[0.2em]">The five checks</span>
+              <span className="poppins-semibold text-[10px] text-emerald-700 uppercase tracking-[0.2em]">Every load</span>
             </div>
             <h2 className="poppins-bold text-4xl sm:text-5xl text-slate-900 leading-tight tracking-tight">
-              <span className="ab-word inline-block" style={{ animationDelay: "100ms" }}>Every partner checked.</span>
+              <span className="ab-word inline-block" style={{ animationDelay: "100ms" }}>Every load reported.</span>
               <br />
               <span
                 className="ab-word inline-block pb-1 bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent"
                 style={{ animationDelay: "260ms" }}
               >
-                Before they get any work.
+                Before the deadline.
               </span>
             </h2>
             <p className="ab-fade poppins-regular text-base sm:text-lg text-slate-600 max-w-lg mx-auto mt-4" style={{ animationDelay: "420ms" }}>
-              Here&apos;s what I check on every partner, and why it matters.
+              Here&apos;s what happens to every load you send me.
             </p>
           </div>
 
@@ -548,7 +548,7 @@ export default function MeetZakPage() {
               })}
             </div>
 
-            {/* Partner file */}
+            {/* Load file */}
             <div
               className={`transition-all duration-1000 delay-200 ${checksRef.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
@@ -614,9 +614,9 @@ export default function MeetZakPage() {
             className={`grid grid-cols-2 rounded-[1.75rem] border border-emerald-100 overflow-hidden bg-white transition-all duration-700 ${numbersRef.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
           >
             {[
-              { n: 5, pre: "", label: "Checks on every partner" },
-              { n: 1, pre: "", label: "Call to sort it" },
-              { n: 0, pre: "£", label: "Bill check if no saving" },
+              { n: 2, pre: "", label: "Working days per load" },
+              { n: 1, pre: "", label: "WhatsApp to send it" },
+              { n: 2, pre: "", label: "Weeks free to start" },
               { n: 1, pre: "1-", label: "Direct access" },
             ].map((s, i) => (
               <div
@@ -642,7 +642,7 @@ export default function MeetZakPage() {
               </div>
               <p className="poppins-bold text-2xl text-white mb-3 leading-tight">How I&apos;m paid</p>
               <p className="poppins-regular text-sm text-emerald-100/90 leading-relaxed">
-                Either you pay a simple fee, or the partner I send you to pays me a small cut. I tell you which one before you agree to anything. The bill check is free: no saving, no fee.
+                A simple monthly fee, and I tell you what it is before you agree to anything. No hidden commissions. Start with a free two-week trial and see it working first.
               </p>
             </div>
             <p className="relative poppins-semibold text-xs text-white/80 mt-6">No hidden fees. No surprises.</p>

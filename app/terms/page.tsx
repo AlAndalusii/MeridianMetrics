@@ -50,7 +50,7 @@ export default function TermsPage() {
             "DWT Reporting comes with a free two-week trial. No card and no contract are needed.",
             "During the trial we report your loads in the same way as for paying clients.",
             "At the end, we will confirm your monthly fee. Reporting only continues if you agree to it.",
-            "If you do not continue, we stop reporting and return or delete your records as set out in our Privacy Policy.",
+            "If you do not continue, we stop reporting and return or delete your records as set out in section 11.",
           ]}
         />
       </Section>
@@ -61,8 +61,8 @@ export default function TermsPage() {
             "Carry out the services with reasonable care and skill.",
             "Aim to submit each load within one working day of receiving a clear, complete ticket, so you stay inside Defra's two-working-day deadline.",
             "Tell you promptly if a ticket is unclear, a code looks wrong, or a submission fails.",
-            "Use your Defra account and API details only to report for your site, and keep them private.",
-            "Keep your information confidential and handle personal data as set out in our Privacy Policy.",
+            "Use the Defra access you give us only to report for your site, and keep it private.",
+            "Keep your information confidential and handle personal data as set out in section 11.",
           ]}
         />
       </Section>
@@ -77,7 +77,7 @@ export default function TermsPage() {
           items={[
             "Send us clear, complete and accurate tickets and notes as soon as each load arrives, ideally the same day.",
             "Confirm your usual EWC and R/D codes and tell us when your permit, site or regular hauliers change.",
-            "Give us the Defra access we need, and tell us if you change or withdraw it.",
+            "Give us the Defra access we need, set up in a way Defra allows, and tell us if you change or withdraw it.",
             "Check our Friday confirmation and tell us quickly if anything looks wrong.",
             "Only send us information you are allowed to share with us.",
             "Pay our invoices on time.",
@@ -132,27 +132,38 @@ export default function TermsPage() {
       <Section num={10} title="Using This Website">
         <H3>Information, not legal advice</H3>
         <p>
-          Our guides and checks explain digital waste tracking in plain English. Rules and Defra guidance change, so always check
-          official guidance and your permit before you act. We try to keep everything up to date but cannot promise it is
-          complete or current.
+          Our guides are general information. Rules change, so check official guidance and your permit before you act.
         </p>
         <H3>Our content</H3>
         <p>
-          The content, templates and design of this website belong to Millstone Compliance Ltd. You can read and share it for
-          your own business use, but you cannot copy or resell it. Templates we make for your site are yours to use for that site.
+          This website&apos;s content and design belong to us. Share it for your own business use, but don&apos;t copy or resell
+          it. Templates we make for your site are yours to use there.
         </p>
         <H3>Fair use</H3>
         <p>
-          Please do not misuse the website, for example by sending spam or harmful files through our forms, or trying to
-          disrupt the site. Links to other websites are for convenience and we are not responsible for their content.
+          Please don&apos;t misuse the site or its forms. We&apos;re not responsible for websites we link to.
         </p>
       </Section>
 
       <Section num={11} title="Personal Data">
         <p>
-          How we handle personal data, including the data in your waste records, is explained in our{" "}
-          <Link href="/privacy" className="underline decoration-emerald-300">Privacy Policy</Link>. How we use cookies is
-          explained in our <Link href="/cookies" className="underline decoration-emerald-300">Cookie Policy</Link>.
+          Your waste records include personal data, such as drivers&apos; and carriers&apos; details. For these, you are the
+          controller and we are your processor. We will:
+        </p>
+        <Bullets
+          items={[
+            "use it only to provide our services, on your written instructions;",
+            "keep it confidential and secure, and make sure anyone handling it is bound by confidentiality;",
+            "only use the tools we tell you about (such as WhatsApp and our email and storage providers), and stay responsible for them;",
+            "help you respond to data requests, and tell you without delay about any data breach;",
+            "give you the information you need to show we meet these terms;",
+            "delete or return it when the service ends, unless the law requires us to keep it.",
+          ]}
+        />
+        <p>
+          How we handle other personal data, and how we use cookies, is explained in our{" "}
+          <Link href="/privacy" className="underline decoration-emerald-300">Privacy Policy</Link> and{" "}
+          <Link href="/cookies" className="underline decoration-emerald-300">Cookie Policy</Link>.
         </p>
       </Section>
 

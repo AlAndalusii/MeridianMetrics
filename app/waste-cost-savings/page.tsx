@@ -200,24 +200,24 @@ export default function DigitalWasteTrackingGuidePage() {
             style={{ opacity: basics.visible ? 1 : 0, transform: basics.visible ? "none" : "translateY(20px)" }}
           >
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">The basics</p>
-            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">Who, what and when</h2>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">Who, What and When</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-5">
             {[
               {
                 icon: Building2,
-                title: "Who it's for now",
+                title: "Who It's for Now",
                 body: "Permitted sites in England and Wales that receive waste. Scrap yards, transfer stations, skip hire firms with their own yard, and recyclers.",
               },
               {
                 icon: Truck,
-                title: "What you report",
+                title: "What You Report",
                 body: "Every load your site receives goes to Defra's digital waste tracking service. Not just the big ones. Every load.",
               },
               {
                 icon: Timer,
-                title: "When it's due",
+                title: "When It's Due",
                 body: "Within two working days, counted from the day after the waste arrives. Weekends and bank holidays don't count.",
               },
             ].map((c, i) => (
@@ -257,8 +257,8 @@ export default function DigitalWasteTrackingGuidePage() {
 
           <div className="grid md:grid-cols-[1fr_auto_1fr] gap-5 items-stretch">
             {[
-              { title: "You still do", tone: "white", items: ["Keep waste transfer notes", "Weigh loads on your weighbridge", "Keep records your permit asks for", "Quarterly waste returns"] },
-              { title: "Now you also do", tone: "dark", items: ["Report every load received", "Use the right EWC and R/D codes", "Submit within two working days", "Keep it going when staff are off"] },
+              { title: "You Still Do", tone: "white", items: ["Keep waste transfer notes", "Weigh loads on your weighbridge", "Keep records your permit asks for", "Quarterly waste returns"] },
+              { title: "Now You Also Do", tone: "dark", items: ["Report every load received", "Use the right EWC and R/D codes", "Submit within two working days", "Keep it going when staff are off"] },
             ].map((col, i) => (
               <React.Fragment key={col.title}>
                 {i === 1 && (
@@ -306,8 +306,8 @@ export default function DigitalWasteTrackingGuidePage() {
           <div className="relative pl-10">
             <div className="absolute left-4 top-2 bottom-2 w-px bg-emerald-100" />
             {[
-              { icon: CalendarClock, date: "1 October 2026", title: "Permitted sites that receive waste", body: "Every load received must be reported within two working days. This is where your site is now.", now: true },
-              { icon: Truck, date: "October 2027", title: "Carriers, brokers and dealers", body: "Skip firms without a yard, hauliers and brokers come into the system. Join my Ready for 2027 list for updates.", now: false },
+              { icon: CalendarClock, date: "1 October 2026", title: "Permitted Sites That Receive Waste", body: "Every load received must be reported within two working days. This is where your site is now.", now: true },
+              { icon: Truck, date: "October 2027", title: "Carriers, Brokers and Dealers", body: "Skip firms without a yard, hauliers and brokers come into the system. Join my Ready for 2027 list for updates.", now: false },
             ].map((t, i) => (
               <div
                 key={t.date}
@@ -341,9 +341,9 @@ export default function DigitalWasteTrackingGuidePage() {
 
           <div className="grid md:grid-cols-3 gap-5">
             {[
-              { icon: Wrench, tag: "DWT Setup", title: "Do it yourself", body: "I get you registered, build your code template and show whoever runs the weighbridge what to do.", href: "/services#setup" },
-              { icon: ClipboardCheck, tag: "DWT Health Check", title: "Already doing it", body: "I check a sample week against your tickets. Did each load land? Are the codes right?", href: "/services#health-check" },
-              { icon: Send, tag: "Done For You", title: "Hand it over", body: "Send tickets on WhatsApp. I enter and submit every load, and confirm it all on Friday.", href: "/services#reporting", featured: true },
+              { icon: Wrench, tag: "DWT Setup", title: "Do It Yourself", body: "I get you registered, build your code template and show whoever runs the weighbridge what to do.", href: "/services#setup" },
+              { icon: ClipboardCheck, tag: "DWT Health Check", title: "Already Doing It", body: "I check a sample week against your tickets. Did each load land? Are the codes right?", href: "/services#health-check" },
+              { icon: Send, tag: "Done For You", title: "Hand It Over", body: "Send tickets on WhatsApp. I enter and submit every load, and confirm it all on Friday.", href: "/services#reporting", featured: true },
             ].map((o, i) => (
               <Link
                 key={o.title}
@@ -380,7 +380,7 @@ export default function DigitalWasteTrackingGuidePage() {
         >
           <p className="text-emerald-300 poppins-semibold text-xs uppercase tracking-[0.18em] mb-3">Start Today</p>
           <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5 leading-tight">
-            Two weeks free. No contract.
+            Two Weeks Free. No Contract.
           </h2>
           <p className="poppins-regular text-emerald-100/80 text-lg mb-9 max-w-xl mx-auto">
             Send me your tickets on WhatsApp, and I&apos;ll make sure every load is in on time. See it working before you pay.

@@ -99,7 +99,7 @@ const services = [
   },
 ]
 
-const headlineTop = ["Are", "You", "Ready", "For"]
+const headlineTop = ["Are", "You", "Ready", "for"]
 
 /* ─── The health ring: four arcs fill one by one ──────────────────────────── */
 function HealthRing({ run }: { run: boolean }) {

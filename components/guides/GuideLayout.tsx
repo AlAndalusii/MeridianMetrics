@@ -90,7 +90,7 @@ export function GuideLayout({
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.1)_0%,transparent_60%)] pointer-events-none" />
           <div className="relative">
             <p className="poppins-semibold text-xs uppercase tracking-[0.18em] text-emerald-300 mb-3">Want me to handle it?</p>
-            <h2 className="poppins-bold text-2xl sm:text-3xl text-white leading-tight mb-3">Start a free two-week trial.</h2>
+            <h2 className="poppins-bold text-2xl sm:text-3xl text-white leading-tight mb-3">Start a Free Two-Week Trial.</h2>
             <p className="poppins-regular text-emerald-100/85 leading-relaxed mb-7 max-w-xl">
               Send me your tickets on WhatsApp. I enter and submit every load to Defra before the deadline, and send you a confirmation every Friday.
             </p>

@@ -274,7 +274,7 @@ function Intro({ onStart }: { onStart: () => void }) {
     setTimeout(onStart, 520)
   }
 
-  const words = ["Is", "your", "site", "ready"]
+  const words = ["Is", "Your", "Site", "Ready"]
 
   return (
     <div className={`text-center transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] ${leaving ? "opacity-0 -translate-y-6 scale-[0.98] blur-sm" : ""}`}>
@@ -298,7 +298,7 @@ function Intro({ onStart }: { onStart: () => void }) {
           className="fc-word fc-shine inline-block pb-2 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent"
           style={{ animationDelay: "480ms" }}
         >
-          for waste tracking?
+          for Waste Tracking?
         </span>
       </h1>
 
@@ -565,7 +565,7 @@ function Result({
       <div className="fc-in mt-5 rounded-[2rem] bg-emerald-900 p-6 sm:p-10 relative overflow-hidden" style={{ animationDelay: "120ms" }}>
         <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[radial-gradient(circle,rgba(52,211,153,0.35)_0%,transparent_70%)] pointer-events-none" />
         <div className="relative">
-          <h2 className="poppins-bold text-2xl sm:text-3xl text-white tracking-tight">Want me to take a look?</h2>
+          <h2 className="poppins-bold text-2xl sm:text-3xl text-white tracking-tight">Want Me to Take a Look?</h2>
           <p className="poppins-regular text-base sm:text-lg text-emerald-100/80 mt-2 max-w-xl">
             Send me your result on WhatsApp. I&apos;ll tell you what I&apos;d fix first, and how a free two-week trial works.
           </p>

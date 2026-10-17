@@ -43,7 +43,7 @@ function useReveal(threshold = 0.12) {
 }
 
 const WHATSAPP = "https://wa.me/447762270113"
-const READY_2027 = `${WHATSAPP}?text=${encodeURIComponent("Hi Zak, please add me to the Ready for 2027 list.")}`
+const READY_2027 = "/carriers-and-brokers"
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 const services: {
@@ -67,7 +67,7 @@ const services: {
     tag: "Core",
     forWho: "Small permitted sites",
     chip: "Do it for me",
-    title: "DWT Reporting, Done For You",
+    title: "DWT Reporting, Done for You",
     what: "You send your tickets on WhatsApp. I enter and submit every load, and confirm it all on Friday.",
     points: [
       "A template set up with your usual EWC and R/D codes",
@@ -469,7 +469,7 @@ export default function ServicesPage() {
 
           <h1 className="poppins-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-slate-900 mb-6">
             <span className="block">
-              {["Four", "services."].map((w, i) => (
+              {["Four", "Services."].map((w, i) => (
                 <React.Fragment key={w}>
                   <span className="sv-word inline-block" style={{ animationDelay: `${120 + i * 110}ms` }}>{w}</span>{" "}
                 </React.Fragment>
@@ -479,7 +479,7 @@ export default function ServicesPage() {
               className="sv-word sv-shine inline-block pb-1 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent"
               style={{ animationDelay: "360ms" }}
             >
-              One free extra.
+              One Free Extra.
             </span>
           </h1>
 
@@ -533,9 +533,9 @@ export default function ServicesPage() {
             </div>
 
             <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-slate-900 leading-[1.05] tracking-tight mb-5">
-              Send the tickets.<br />
+              Send the Tickets.<br />
               <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
-                I&apos;ll do the rest.
+                I&apos;ll Do the Rest.
               </span>
             </h2>
 
@@ -606,7 +606,7 @@ export default function ServicesPage() {
             style={{ opacity: extraRef.visible ? 1 : 0, transform: extraRef.visible ? "none" : "translateY(20px)" }}
           >
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Also from me</p>
-            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">One free extra. One list.</h2>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">One Free Extra. One List.</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-5">
@@ -654,8 +654,7 @@ export default function ServicesPage() {
                   <p className="poppins-regular text-[15px] text-slate-600 leading-relaxed mb-6 flex-1">{item.body}</p>
                   <a
                     href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="group/btn inline-flex items-center gap-1.5 poppins-semibold text-sm text-emerald-700 hover:text-emerald-800"
                   >
                     {item.cta}
@@ -677,8 +676,8 @@ export default function ServicesPage() {
           >
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Who it&apos;s for</p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              Small permitted sites.{" "}
-              <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Non-hazardous waste.</span>
+              Small Permitted Sites.{" "}
+              <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Non-Hazardous Waste.</span>
             </h2>
           </div>
           <SiteTypeStrip run={whoRef.visible} />

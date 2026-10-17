@@ -93,7 +93,7 @@ const steps = [
   {
     num: "01",
     icon: ScanLine,
-    title: "I Look At What You Already Do",
+    title: "I Look at What You Already Do",
     body: "Your returns, your regulars and your paperwork. I see what I can take off your plate, using the data I already hold.",
   },
   {
@@ -410,7 +410,7 @@ export default function PaperworkSupportPage() {
               <p className="poppins-medium text-sm text-emerald-700 uppercase tracking-widest mb-4">The Process</p>
               <h2 className="poppins-bold text-4xl lg:text-5xl text-slate-900 tracking-tight">
                 How It Works
-                <span className="text-emerald-700"> In Four Steps.</span>
+                <span className="text-emerald-700"> in Four Steps.</span>
               </h2>
             </div>
           </FadeIn>
@@ -519,7 +519,7 @@ export default function PaperworkSupportPage() {
           <div className="grid sm:grid-cols-3 gap-5">
             {[
               { title: "Digital Waste Tracking, Explained", href: "/waste-cost-savings", badge: "Guide", desc: "Who it affects, what to report, and the two-working-day deadline." },
-              { title: "What I Check On Every Load",       href: "/what-we-check",      badge: "How it works", desc: "Date, weight, codes, carrier, permit and deadline." },
+              { title: "What I Check on Every Load",       href: "/what-we-check",      badge: "How it works", desc: "Date, weight, codes, carrier, permit and deadline." },
               { title: "Free Readiness Check",             href: "/free-check",         badge: "Free", desc: "10 quick questions. Is your site reporting properly?" },
             ].map(({ title, href, badge, desc }, idx) => (
               <FadeIn key={title} delay={idx * 80}>

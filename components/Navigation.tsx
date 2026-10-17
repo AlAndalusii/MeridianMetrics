@@ -40,6 +40,8 @@ export function Navigation() {
 
             <Link href="/free-check" className={linkClass("/free-check")}>Free Check</Link>
 
+            <Link href="/carriers-and-brokers" className={linkClass("/carriers-and-brokers")}>Carriers</Link>
+
             <Link href="/resources" className={linkClass("/resources")}>Resources</Link>
           </div>
 

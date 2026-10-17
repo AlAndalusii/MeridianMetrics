@@ -168,10 +168,10 @@ function BillJourney() {
 
 /* ─── Steps ───────────────────────────────────────────────────────────────── */
 const steps = [
-  { icon: FileText, title: "Grab your tickets", desc: "Weighbridge tickets and transfer notes. Paper is fine. The ones for the loads you took in." },
-  { icon: Camera,   title: "Take a photo", desc: "A clear phone photo is fine. Just make sure I can read the date, weight and waste." },
-  { icon: Send,     title: "Send them to me", desc: "Pick the way that's easiest for you.", methods: true },
-  { icon: FileCheck, title: "I enter and submit them", desc: "Every load goes in before the deadline. Every Friday, you get a list of everything submitted." },
+  { icon: FileText, title: "Grab Your Tickets", desc: "Weighbridge tickets and transfer notes. Paper is fine. The ones for the loads you took in." },
+  { icon: Camera,   title: "Take a Photo", desc: "A clear phone photo is fine. Just make sure I can read the date, weight and waste." },
+  { icon: Send,     title: "Send Them to Me", desc: "Pick the way that's easiest for you.", methods: true },
+  { icon: FileCheck, title: "I Enter and Submit Them", desc: "Every load goes in before the deadline. Every Friday, you get a list of everything submitted." },
 ]
 
 /* ─── Page ────────────────────────────────────────────────────────────────── */
@@ -304,9 +304,9 @@ export default function SendYourTicketsPage() {
             </div>
 
             <h1 className="poppins-bold text-4xl sm:text-5xl md:text-6xl leading-[1.02] tracking-tight text-slate-900 mb-6">
-              Send me your tickets.<br />
+              Send Me Your Tickets.<br />
               <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
-                I&apos;ll do the rest.
+                I&apos;ll Do the Rest.
               </span>
             </h1>
 
@@ -347,8 +347,8 @@ export default function SendYourTicketsPage() {
           <div className="text-center mb-14">
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">How to send them</p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              Four small steps.{" "}
-              <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">That&apos;s all.</span>
+              Four Small Steps.{" "}
+              <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">That&apos;s All.</span>
             </h2>
           </div>
 
@@ -435,7 +435,7 @@ export default function SendYourTicketsPage() {
             style={{ opacity: chooseRef.visible ? 1 : 0, transform: chooseRef.visible ? "none" : "translateY(20px)" }}
           >
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">What do you need?</p>
-            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">Start reporting, or check what you&apos;ve done?</h2>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">Start Reporting, or Check What You&apos;ve Done?</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-5">
@@ -516,7 +516,7 @@ export default function SendYourTicketsPage() {
         >
           <div className="text-center mb-10">
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Send them here</p>
-            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">Upload your tickets.</h2>
+            <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">Upload Your Tickets.</h2>
           </div>
 
           <div className="bg-white rounded-3xl border border-emerald-100 shadow-2xl p-6 sm:p-8">
@@ -528,7 +528,7 @@ export default function SendYourTicketsPage() {
                     <CheckCircle className="w-8 h-8 text-white" />
                   </div>
                 </div>
-                <h3 className="poppins-bold text-2xl text-slate-900 mb-2">Got it. Thank you.</h3>
+                <h3 className="poppins-bold text-2xl text-slate-900 mb-2">Got It. Thank You.</h3>
                 <p className="poppins-regular text-slate-500 max-w-sm mx-auto">
                   I&apos;ll be in touch within one business day with your next steps. Keep an eye on your email.
                 </p>
@@ -660,7 +660,7 @@ export default function SendYourTicketsPage() {
               </div>
             </div>
             <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-white leading-tight mb-5">
-              Rather talk<br />it through?
+              Rather Talk<br />It Through?
             </h2>
             <p className="poppins-regular text-emerald-100 text-lg leading-relaxed max-w-md mb-6">
               Leave your number. I&apos;ll call you and go through how your site reports now. About 15 minutes. No pressure.
@@ -677,7 +677,7 @@ export default function SendYourTicketsPage() {
                 <div className="w-14 h-14 rounded-full bg-emerald-700 flex items-center justify-center mx-auto mb-5">
                   <CheckCircle className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="poppins-bold text-xl text-slate-900 mb-2">I&apos;ll call you soon.</h3>
+                <h3 className="poppins-bold text-xl text-slate-900 mb-2">I&apos;ll Call You Soon.</h3>
                 <p className="poppins-regular text-sm text-slate-500">Have a recent ticket close by if you can.</p>
               </div>
             ) : (

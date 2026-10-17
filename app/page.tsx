@@ -335,7 +335,7 @@ export default function MillstoneComplianceWebsite() {
 
               <h1 className="poppins-bold text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight mb-5">
                 <span className="block overflow-hidden pb-1"><span className="text-slate-900 block hero-rise" style={{ animationDelay: "0ms" }}>Every Load</span></span>
-                <span className="block overflow-hidden pb-1"><span className="text-slate-900 block hero-rise" style={{ animationDelay: "120ms" }}>Reported, On Time.</span></span>
+                <span className="block overflow-hidden pb-1"><span className="text-slate-900 block hero-rise" style={{ animationDelay: "120ms" }}>Reported, on Time.</span></span>
                 <span className="block overflow-hidden pb-2">
                   <span className="relative inline-block text-emerald-700 hero-rise" style={{ animationDelay: "240ms" }}>
                     Without the Typing.
@@ -1003,7 +1003,7 @@ export default function MillstoneComplianceWebsite() {
                 </div>
 
                 <h3 className="poppins-bold text-xl sm:text-2xl text-emerald-900 mb-4 leading-tight">
-                  A bookkeeper for your waste reporting.
+                  A Bookkeeper for Your Waste Reporting.
                 </h3>
 
                 <p className="poppins-regular text-emerald-700 text-sm sm:text-sm leading-relaxed mb-4">
@@ -1173,8 +1173,8 @@ export default function MillstoneComplianceWebsite() {
 
                 {/* Headline - Minimal & Compelling */}
                 <h3 className="poppins-bold text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 tracking-tight text-emerald-900 leading-[1.1]">
-                  Tired of typing<br/>
-                  <span className="text-emerald-600">every load?</span>
+                  Tired of Typing<br/>
+                  <span className="text-emerald-600">Every Load?</span>
                 </h3>
 
                 {/* Subheadline - Ultra concise */}

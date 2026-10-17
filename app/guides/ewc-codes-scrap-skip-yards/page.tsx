@@ -4,11 +4,12 @@ import { GuideLayout, ShortAnswer, H2, P, Ticks } from "@/components/guides/Guid
 export const metadata: Metadata = {
   title: "Common EWC Codes for Scrap and Skip Yards | Millstone Compliance",
   description:
-    "A plain English list of the EWC codes scrap yards, skip yards and transfer stations see most often, plus how R and D codes work. Always check codes against your permit.",
+    "The EWC codes scrap yards, skip yards and transfer stations use most, plus how R and D codes work. A plain English list to check against your permit.",
   alternates: { canonical: "https://millstonecompliance.com/guides/ewc-codes-scrap-skip-yards" },
   openGraph: {
     title: "Common EWC Codes for Scrap and Skip Yards",
     description: "The codes small permitted sites use most, and how to pick the right R or D code.",
+    url: "https://millstonecompliance.com/guides/ewc-codes-scrap-skip-yards",
     type: "article",
     locale: "en_GB",
     siteName: "Millstone Compliance",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 
 const groups: { title: string; codes: [string, string][] }[] = [
   {
-    title: "Metals (scrap yards)",
+    title: "Metals (Scrap Yards)",
     codes: [
       ["17 04 05", "Iron and steel"],
       ["17 04 07", "Mixed metals"],
@@ -30,7 +31,7 @@ const groups: { title: string; codes: [string, string][] }[] = [
     ],
   },
   {
-    title: "Skip and builders' waste (skip yards, transfer stations)",
+    title: "Skip and Builders' Waste (Skip Yards, Transfer Stations)",
     codes: [
       ["17 09 04", "Mixed construction and demolition waste (non-hazardous)"],
       ["17 01 07", "Mixed concrete, bricks, tiles and ceramics (non-hazardous)"],
@@ -42,7 +43,7 @@ const groups: { title: string; codes: [string, string][] }[] = [
     ],
   },
   {
-    title: "Wood, green waste and packaging",
+    title: "Wood, Green Waste and Packaging",
     codes: [
       ["20 01 38", "Wood (from households and similar, non-hazardous)"],
       ["20 02 01", "Biodegradable waste (garden and park waste)"],
@@ -56,21 +57,21 @@ export default function EwcCodesGuide() {
   return (
     <GuideLayout
       eyebrow="Codes"
-      title="Common EWC codes for scrap and skip yards"
+      title="Common EWC Codes for Scrap and Skip Yards"
       intro="Most small sites use the same handful of codes every week. Here are the ones that come up most, in plain English, and how the R and D codes fit in."
       readTime="5 min read"
       related={[
-        { title: "What counts as two working days?", href: "/guides/two-working-days" },
-        { title: "Do I still need paper transfer notes?", href: "/guides/waste-transfer-notes" },
-        { title: "What I check on every load", href: "/what-we-check" },
-        { title: "Free readiness check", href: "/free-check" },
+        { title: "What Counts as Two Working Days?", href: "/guides/two-working-days" },
+        { title: "Do I Still Need Paper Transfer Notes?", href: "/guides/waste-transfer-notes" },
+        { title: "What I Check on Every Load", href: "/what-we-check" },
+        { title: "Free Readiness Check", href: "/free-check" },
       ]}
     >
       <ShortAnswer>
         An EWC code says what the waste is. An R or D code says what happens to it next. Every load you report needs both, and both should match what your permit allows.
       </ShortAnswer>
 
-      <H2>The codes yards see most</H2>
+      <H2>The Codes Yards See Most</H2>
       <P>
         This is a starting point, not a full list. Your permit is the final word on which codes your site can accept.
         Codes marked as hazardous in the full list are not covered here.
@@ -89,7 +90,7 @@ export default function EwcCodesGuide() {
         </div>
       ))}
 
-      <H2>R and D codes, simply</H2>
+      <H2>R and D Codes, Simply</H2>
       <P>R means recovery. D means disposal. The ones small sites use most:</P>
       <Ticks
         items={[
@@ -104,7 +105,7 @@ export default function EwcCodesGuide() {
         Pick the code for what your site actually does with that waste, as set out in your permit. The same waste can have a different R code at two different sites.
       </P>
 
-      <H2>Make it quick: a code template</H2>
+      <H2>Make It Quick: A Code Template</H2>
       <P>
         Look at your last 20 tickets and list the waste types that keep coming up. Write the EWC code and R or D code next to each, and check every one against your permit.
         That short list covers most of your loads, so each entry takes seconds and is done the same way every time.

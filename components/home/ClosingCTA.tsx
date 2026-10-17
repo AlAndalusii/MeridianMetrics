@@ -36,7 +36,7 @@ const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
 const paths = [
   { icon: Send, who: "Permitted site", what: "Reporting, done for you", href: "/services#reporting" },
   { icon: ListChecks, who: "Reporting already", what: "A DWT Health Check", href: "/services#health-check" },
-  { icon: Truck, who: "Carrier or broker", what: "Ready for 2027 list", href: "/services#ready-2027" },
+  { icon: Truck, who: "Carrier or broker", what: "Ready for 2027 list", href: "/carriers-and-brokers" },
 ]
 
 const faqs = [
@@ -97,12 +97,12 @@ export function ClosingCTA() {
           </div>
 
           <h2 id="cta-heading" className="poppins-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-white">
-            <span className="cc-word inline-block" style={{ animationDelay: "120ms" }}>Two weeks free.</span>{" "}
+            <span className="cc-word inline-block" style={{ animationDelay: "120ms" }}>Two Weeks Free.</span>{" "}
             <span
               className="cc-word cc-shine inline-block pb-1 bg-gradient-to-r from-emerald-200 via-white to-emerald-200 bg-[length:200%_100%] bg-clip-text text-transparent"
               style={{ animationDelay: "300ms" }}
             >
-              No contract.
+              No Contract.
             </span>
           </h2>
 
@@ -174,7 +174,7 @@ export function ClosingCTA() {
           className={`text-center mb-8 transition-all duration-700 ${faq.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
           <p className="poppins-semibold text-xs uppercase tracking-[0.2em] text-emerald-600">Questions</p>
-          <h3 className="poppins-bold text-3xl sm:text-4xl text-slate-900 mt-2 tracking-tight">Straight answers.</h3>
+          <h3 className="poppins-bold text-3xl sm:text-4xl text-slate-900 mt-2 tracking-tight">Straight Answers.</h3>
         </div>
         <div className="space-y-3">
           {faqs.map((f, i) => {

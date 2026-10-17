@@ -5,7 +5,6 @@ import Image from "next/image"
 import {
   CheckCircle,
   Phone,
-  Mail,
   BadgeCheck,
   Camera,
   FileText,
@@ -21,6 +20,7 @@ import {
 } from "lucide-react"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
+import QuickContact from "@/components/about/QuickContact"
 
 const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -90,19 +90,19 @@ const story = [
   {
     icon: Landmark,
     tag: "Before",
-    title: "I worked at HMRC",
+    title: "I Worked at HMRC",
     body: "There I worked with government reporting systems, hard deadlines and records that had to be right.",
   },
   {
     icon: GraduationCap,
     tag: "Learning",
-    title: "Cambridge certificate",
+    title: "Cambridge Certificate",
     body: "A Certificate in Circular Economy from the Cambridge Institute for Sustainability Leadership.",
   },
   {
     icon: Sparkles,
     tag: "Now",
-    title: "I started Millstone",
+    title: "I Started Millstone",
     body: "A new Birmingham business that reports every load for small waste sites, so they don't have to.",
   },
 ]
@@ -136,12 +136,11 @@ const checks = [
 ]
 
 const steps = [
-  { icon: Camera, num: "01", title: "Send me your tickets", desc: "Snap your weighbridge tickets and transfer notes. Send them on WhatsApp." },
-  { icon: Send, num: "02", title: "I report every load", desc: "Entered and submitted to Defra within two working days of arriving." },
-  { icon: CalendarCheck, num: "03", title: "You get a confirmation", desc: "Every Friday, a list of what I submitted. If a ticket is missing, I ask." },
+  { icon: Camera, num: "01", title: "Send Me Your Tickets", desc: "Snap your weighbridge tickets and transfer notes. Send them on WhatsApp." },
+  { icon: Send, num: "02", title: "I Report Every Load", desc: "Entered and submitted to Defra within two working days of arriving." },
+  { icon: CalendarCheck, num: "03", title: "You Get a Confirmation", desc: "Every Friday, a list of what I submitted. If a ticket is missing, I ask." },
 ]
 
-const trust = ["Done For You", "Friday Confirmation", "Birmingham Based", "Direct Line"]
 
 /* ─── Load file: the five steps tick in, then the load is submitted ─────── */
 const FILE_STEPS = checks.length + 3 // five ticks, then hold on "submitted"
@@ -252,7 +251,6 @@ export default function MeetZakPage() {
   const checksRef = useReveal<HTMLDivElement>(0.25)
   const stepsRef = useReveal<HTMLDivElement>(0.3)
   const numbersRef = useReveal<HTMLDivElement>(0.3)
-  const contactRef = useReveal<HTMLDivElement>(0.2)
 
   // Load file cycles through the steps; hovering or clicking takes over.
   const [check, setCheck] = useState(0)
@@ -297,7 +295,7 @@ export default function MeetZakPage() {
 
               <h1 className="poppins-bold text-5xl sm:text-6xl lg:text-7xl text-slate-900 leading-[1.02] tracking-tight">
                 <span className="block">
-                  {["No", "call", "centre."].map((w, i) => (
+                  {["No", "Call", "Centre."].map((w, i) => (
                     <React.Fragment key={w}>
                       <span className="ab-word inline-block" style={{ animationDelay: `${100 + i * 90}ms` }}>{w}</span>{" "}
                     </React.Fragment>
@@ -308,7 +306,7 @@ export default function MeetZakPage() {
                     className="ab-word ab-shine inline-block pb-1 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent"
                     style={{ animationDelay: "420ms" }}
                   >
-                    No small print.
+                    No Small Print.
                   </span>
                 </span>
               </h1>
@@ -416,13 +414,13 @@ export default function MeetZakPage() {
                 <span className="poppins-semibold text-[11px] text-emerald-600 uppercase tracking-[0.22em]">Why I started</span>
               </div>
               <h2 className="poppins-bold text-4xl sm:text-5xl text-slate-900 leading-[1.05] tracking-tight">
-                <span className="ab-word inline-block" style={{ animationDelay: "100ms" }}>Send photos.</span>
+                <span className="ab-word inline-block" style={{ animationDelay: "100ms" }}>Send Photos.</span>
                 <br />
                 <span
                   className="ab-word inline-block pb-1 bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent"
                   style={{ animationDelay: "260ms" }}
                 >
-                  I&apos;ll report them.
+                  I&apos;ll Report Them.
                 </span>
               </h2>
               <p className="ab-fade poppins-regular text-base sm:text-lg text-slate-600 leading-relaxed mt-6 max-w-md" style={{ animationDelay: "420ms" }}>
@@ -489,13 +487,13 @@ export default function MeetZakPage() {
               <span className="poppins-semibold text-[10px] text-emerald-700 uppercase tracking-[0.2em]">Every load</span>
             </div>
             <h2 className="poppins-bold text-4xl sm:text-5xl text-slate-900 leading-tight tracking-tight">
-              <span className="ab-word inline-block" style={{ animationDelay: "100ms" }}>Every load reported.</span>
+              <span className="ab-word inline-block" style={{ animationDelay: "100ms" }}>Every Load Reported.</span>
               <br />
               <span
                 className="ab-word inline-block pb-1 bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent"
                 style={{ animationDelay: "260ms" }}
               >
-                Before the deadline.
+                Before the Deadline.
               </span>
             </h2>
             <p className="ab-fade poppins-regular text-base sm:text-lg text-slate-600 max-w-lg mx-auto mt-4" style={{ animationDelay: "420ms" }}>
@@ -566,7 +564,7 @@ export default function MeetZakPage() {
               <span className="poppins-semibold text-[10px] text-emerald-700 uppercase tracking-[0.2em]">How it works</span>
             </div>
             <h2 className="ab-word poppins-bold text-3xl sm:text-4xl text-slate-900 leading-tight" style={{ animationDelay: "100ms" }}>
-              Three steps. No jargon.
+              Three Steps. No Jargon.
             </h2>
           </div>
 
@@ -650,60 +648,7 @@ export default function MeetZakPage() {
         </div>
       </section>
 
-      {/* ── CONTACT ──────────────────────────────────────── */}
-      <section className="py-28 sm:py-36 px-4 sm:px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_50%,rgba(209,250,229,0.5)_0%,transparent_70%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,black_20%,transparent_100%)] pointer-events-none" />
-
-        <div ref={contactRef.ref} className={`max-w-2xl mx-auto relative z-10 text-center ${contactRef.visible ? "ab-in" : ""}`}>
-          <div className="ab-fade inline-flex items-center gap-2 px-4 py-2 bg-white/80 border border-emerald-100 rounded-full mb-8 shadow-sm" style={{ animationDelay: "0ms" }}>
-            <span className="poppins-semibold text-[11px] text-emerald-700 uppercase tracking-widest">Get in touch</span>
-          </div>
-
-          <h2 className="ab-word poppins-bold text-5xl sm:text-6xl md:text-7xl text-slate-900 mb-4 leading-tight tracking-tight" style={{ animationDelay: "100ms" }}>
-            Ready to talk?
-          </h2>
-          <p className="ab-fade poppins-regular text-lg text-emerald-700 mb-10" style={{ animationDelay: "300ms" }}>
-            WhatsApp or call. You&apos;ll talk to me.
-          </p>
-
-          <a
-            href="tel:+447762270113"
-            className="ab-fade block poppins-bold text-4xl sm:text-5xl md:text-6xl text-emerald-900 hover:text-emerald-700 transition-colors duration-200 mb-10 tabular-nums"
-            style={{ animationDelay: "420ms" }}
-          >
-            07762 270 113
-          </a>
-
-          <div className="ab-fade flex flex-col sm:flex-row justify-center gap-3 mb-10" style={{ animationDelay: "540ms" }}>
-            <a
-              href="https://wa.me/447762270113"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#25D366] hover:bg-[#1ebe5d] text-white poppins-semibold text-sm rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
-            >
-              <WhatsAppIcon />
-              Message on WhatsApp
-            </a>
-            <a
-              href="mailto:hello@millstonecompliance.com"
-              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold text-sm rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
-            >
-              <Mail className="w-4 h-4" />
-              hello@millstonecompliance.com
-            </a>
-          </div>
-
-          <div className="ab-fade flex flex-wrap justify-center gap-4" style={{ animationDelay: "660ms" }}>
-            {trust.map((t) => (
-              <span key={t} className="inline-flex items-center gap-1.5 text-xs text-emerald-600 poppins-medium">
-                <CheckCircle className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      <QuickContact />
 
       <Footer />
 

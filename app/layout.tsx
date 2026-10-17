@@ -18,9 +18,9 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://millstonecompliance.com"),
-  title: "Digital Waste Tracking Reporting for Waste Sites | Millstone Compliance",
+  title: "Digital Waste Tracking Done for You | Millstone Compliance",
   description:
-    "Every load reported to Defra on time. Send your tickets on WhatsApp and we do the rest. Free two-week trial for permitted waste sites.",
+    "Send your weighbridge tickets on WhatsApp and we report every load to Defra's digital waste tracking on time. Free two-week trial for permitted waste sites.",
   keywords: [
     "digital waste tracking",
     "digital waste tracking help",
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Digital Waste Tracking Reporting for Waste Sites | Millstone Compliance",
-    description: "Every load reported to Defra on time. Send your tickets on WhatsApp and we do the rest. Free two-week trial for permitted waste sites.",
+    title: "Digital Waste Tracking Done for You | Millstone Compliance",
+    description: "Send your weighbridge tickets on WhatsApp and we report every load to Defra's digital waste tracking on time. Free two-week trial for permitted waste sites.",
     url: "https://millstonecompliance.com",
     type: "website",
     locale: "en_GB",
@@ -56,8 +56,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digital Waste Tracking Reporting for Waste Sites | Millstone Compliance",
-    description: "Every load reported to Defra on time. Send your tickets on WhatsApp and we do the rest. Free two-week trial for permitted waste sites.",
+    title: "Digital Waste Tracking Done for You | Millstone Compliance",
+    description: "Send your weighbridge tickets on WhatsApp and we report every load to Defra's digital waste tracking on time. Free two-week trial for permitted waste sites.",
   },
 }
 
@@ -73,12 +73,23 @@ const structuredData = {
       "@id": "https://millstonecompliance.com/#organization",
       name: "Millstone Compliance",
       legalName: "Millstone Compliance Ltd",
+      identifier: { "@type": "PropertyValue", propertyID: "Companies House number", value: "17417582" },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "82, Suite A James Carter Road",
+        addressLocality: "Mildenhall",
+        postalCode: "IP28 7DE",
+        addressCountry: "GB",
+      },
       url: "https://millstonecompliance.com",
       email: "hello@millstonecompliance.com",
       telephone: "+447762270113",
       description: IDENTITY,
       founder: { "@id": "https://millstonecompliance.com/#zak" },
-      sameAs: ["https://www.linkedin.com/in/zak-millstone"],
+      sameAs: [
+        "https://www.linkedin.com/in/zak-millstone",
+        "https://find-and-update.company-information.service.gov.uk/company/17417582",
+      ],
     },
     {
       "@type": "Person",

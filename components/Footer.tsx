@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import { Award, CheckCircle, Phone, Mail, MapPin } from "lucide-react"
-import { CONTACT_INFO } from "@/lib/constants"
+import { CONTACT_INFO, COMPANY } from "@/lib/constants"
 
 export default function Footer() {
   return (
@@ -96,7 +96,7 @@ export default function Footer() {
                 {[
                   { label: "Meet Zak", href: "/about" },
                   { label: "Questions & Help", href: "/support" },
-                  { label: "Ready for 2027", href: "/services#ready-2027" },
+                  { label: "Carriers & Brokers", href: "/carriers-and-brokers" },
                   { label: "Privacy Policy", href: "/privacy" }
                 ].map((item, index) => (
                   <li key={index}>
@@ -155,6 +155,11 @@ export default function Footer() {
             Millstone Compliance: digital waste tracking reporting and compliance support for permitted waste sites, based in Birmingham.
           </p>
 
+          {/* Company details, required on UK company websites */}
+          <p className="poppins-regular text-xs text-emerald-700/60 max-w-2xl mt-3">
+            {COMPANY.legalName}. Registered in {COMPANY.registeredIn}, company number {COMPANY.number}. Registered office: {COMPANY.registeredOffice}.
+          </p>
+
           {/* Bottom Section - Minimalist Legal */}
           <div className="pt-8 border-t border-emerald-200/40 mt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -162,13 +167,13 @@ export default function Footer() {
               {/* Copyright & Legal */}
               <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
                 <p className="text-emerald-700/60 text-xs poppins-regular">
-                  © {new Date().getFullYear()} Millstone Compliance
+                  © {new Date().getFullYear()} {COMPANY.legalName}
                 </p>
                 <div className="flex items-center gap-4">
                   {[
                     { label: "Privacy", href: "/privacy" },
-                    { label: "Terms", href: "/privacy" },
-                    { label: "Cookies", href: "/privacy" }
+                    { label: "Terms", href: "/terms" },
+                    { label: "Cookies", href: "/cookies" }
                   ].map((item, index) => (
                     <Link
                       key={index}

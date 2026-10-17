@@ -96,7 +96,7 @@ function ConnectorHub({ run }: { run: boolean }) {
         {/* Header */}
         <div className="flex items-center justify-between mb-2">
           <div>
-            <h3 className="poppins-bold text-sm text-emerald-900">Who I help</h3>
+            <h3 className="poppins-bold text-sm text-emerald-900">Who I Help</h3>
             <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Small permitted waste sites</p>
           </div>
           <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 rounded-full border border-emerald-100">
@@ -280,7 +280,7 @@ export function FounderSection() {
 
               <h2 id="founder-heading" className="poppins-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-slate-900">
                 <span className="block">
-                  {["Send", "photos."].map((w, i) => (
+                  {["Send", "Photos."].map((w, i) => (
                     <React.Fragment key={w}>
                       <span className="fs-word inline-block" style={{ animationDelay: `${120 + i * 90}ms` }}>
                         {w}
@@ -293,7 +293,7 @@ export function FounderSection() {
                     className="fs-word fs-shine inline-block pb-1 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent"
                     style={{ animationDelay: "360ms" }}
                   >
-                    I&apos;ll report them.
+                    I&apos;ll Report Them.
                   </span>
                 </span>
               </h2>

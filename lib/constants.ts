@@ -14,3 +14,13 @@ export const CONTACT_INFO = {
   tel: `tel:+447762270113`,
 } as const
 
+
+// Legal identity, as registered at Companies House
+export const COMPANY = {
+  legalName: "Millstone Compliance Ltd",
+  number: "17417582",
+  registeredIn: "England and Wales",
+  registeredOffice: "82, Suite A James Carter Road, Mildenhall, IP28 7DE, United Kingdom",
+  companiesHouseUrl: "https://find-and-update.company-information.service.gov.uk/company/17417582",
+  legalUpdated: "17 October 2026",
+} as const

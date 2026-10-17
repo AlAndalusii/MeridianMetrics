@@ -79,7 +79,7 @@ const articles: {
     featured: true,
   },
   {
-    title: "What I Check On Every Load",
+    title: "What I Check on Every Load",
     description: "Date, weight, EWC code, R/D code, who brought it, and your permit and deadline. The six checks before a load goes to Defra.",
     icon: ListChecks,
     href: "/what-we-check",
@@ -482,9 +482,9 @@ export default function ResourcesPage() {
                 <span className="poppins-semibold text-xs text-emerald-700 uppercase tracking-[0.15em]">Free Interactive Tools</span>
               </div>
               <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900 tracking-tight leading-tight">
-                Know where you stand{" "}
+                Know Where You Stand{" "}
                 <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
-                  in under 3 minutes.
+                  in Under 3 Minutes.
                 </span>
               </h2>
             </div>
@@ -549,7 +549,7 @@ export default function ResourcesPage() {
                 </div>
                 <h2 className="poppins-bold text-2xl sm:text-3xl text-white mb-3 leading-tight">
                   Ready for 2027 —{" "}
-                  <span className="text-emerald-300">join the list</span>
+                  <span className="text-emerald-300">Join the List</span>
                 </h2>
                 <p className="text-emerald-100 text-sm leading-relaxed max-w-lg mb-5">
                   Carriers, brokers and skip firms without a yard come into digital waste tracking from October 2027.
@@ -570,7 +570,7 @@ export default function ResourcesPage() {
               </div>
               <div className="w-full lg:w-auto shrink-0">
                 <Link
-                  href="/services#ready-2027"
+                  href="/carriers-and-brokers"
                   className="w-full lg:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-emerald-50 text-emerald-900 poppins-bold text-sm px-7 py-3.5 rounded-xl shadow-md transition-all duration-200 active:scale-95"
                 >
                   Join the Ready for 2027 List
@@ -594,7 +594,7 @@ export default function ResourcesPage() {
           </div>
 
           <h2 className="poppins-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5 leading-tight">
-            Not sure where you stand?
+            Not Sure Where You Stand?
           </h2>
 
           <p className="poppins-regular text-emerald-100 text-lg mb-9 max-w-xl mx-auto leading-relaxed">

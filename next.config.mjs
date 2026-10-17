@@ -6,72 +6,37 @@ const __dirname = path.dirname(__filename)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async rewrites() {
-    return [
-      { source: '/cleans', destination: '/cleans/index.html' },
-    ]
-  },
-  // Pages from the old offer that don't match the digital waste tracking plan.
-  // Kept online, but asked not to appear in Google so it sees one clear business.
-  async headers() {
-    const offPlan = [
-      '/care-homes',
-      '/templates',
-      '/templates/:path*',
-      '/assessment',
-      '/assessment/:path*',
-      '/quiz/epr',
-      '/quiz/epr/:path*',
-      '/quiz/simpler-recycling',
-      '/quiz/simpler-recycling/:path*',
-      '/clinical-waste-analyser',
-      '/clinical-waste-analyser/:path*',
-      '/duty-of-care-analyser',
-      '/duty-of-care-analyser/:path*',
-      '/simpler-recycling-gap-analyser',
-      '/simpler-recycling-gap-analyser/:path*',
-      '/print/:path*',
-      '/admin',
-      '/admin/:path*',
-      '/resources/care-home-waste-compliance-checklist',
-      '/resources/care-home-waste-costs',
-      '/resources/clinical-waste-quick-check',
-      '/resources/duty-of-care-waste',
-      '/resources/epr-packaging',
-      '/resources/hmo-recycling-fines',
-      '/resources/hmo-waste-compliance-checklist',
-      '/resources/how-businesses-save-money-on-waste',
-      '/resources/landlord-fly-tipping-fines',
-      '/resources/outsourced-compliance-team',
-      '/resources/partner-check',
-      '/resources/plastic-packaging-tax',
-      '/resources/plastic-packaging-tax-2027',
-      '/resources/plastic-packaging-tax-explained',
-      '/resources/ppt-hmrc-audit-mistakes',
-      '/resources/simpler-recycling-2025',
-      '/resources/simpler-recycling-businesses',
-      '/resources/warehouse-waste-guide',
-      '/resources/waste-packaging-documentation',
-    ]
-    return offPlan.map((source) => ({
-      source,
-      headers: [{ key: 'X-Robots-Tag', value: 'noindex, follow' }],
-    }))
-  },
+  // Old pages from previous offers were removed. Send old links to the closest current page.
   async redirects() {
     return [
-      // Packaging pages → nearest waste equivalent (permanent: false preserves old pages)
-      { source: '/resources/plastic-packaging-tax-explained', destination: '/resources/duty-of-care-waste',                      permanent: false },
-      { source: '/resources/plastic-packaging-tax',           destination: '/resources/waste-packaging-documentation',           permanent: false },
-      { source: '/resources/ppt-hmrc-audit-mistakes',         destination: '/resources/hmo-recycling-fines',                    permanent: false },
-      { source: '/resources/plastic-packaging-tax-2027',      destination: '/resources/simpler-recycling-businesses',           permanent: false },
-      { source: '/resources/epr-packaging',                   destination: '/resources/care-home-waste-compliance-checklist',   permanent: false },
-      { source: '/resources/outsourced-compliance-team',      destination: '/resources/duty-of-care-waste',                    permanent: false },
-      // Old packaging tools → new waste tools
-      { source: '/ppt-gap-analyser',                           destination: '/duty-of-care-analyser',                            permanent: false },
-      { source: '/ppt-gap-analyser/:path*',                    destination: '/duty-of-care-analyser',                            permanent: false },
-      { source: '/epr-gap-analyser',                           destination: '/clinical-waste-analyser',                          permanent: false },
-      { source: '/epr-gap-analyser/:path*',                    destination: '/clinical-waste-analyser',                          permanent: false },
+      { source: '/cleans', destination: '/', permanent: true },
+      { source: '/cleans/:path*', destination: '/', permanent: true },
+      { source: '/millstone-cleans.html', destination: '/', permanent: true },
+      { source: '/care-homes', destination: '/', permanent: true },
+      { source: '/templates', destination: '/services', permanent: true },
+      { source: '/templates/:path*', destination: '/services', permanent: true },
+      { source: '/assessment', destination: '/free-check', permanent: true },
+      { source: '/assessment/:path*', destination: '/free-check', permanent: true },
+      { source: '/quiz/epr', destination: '/quiz', permanent: true },
+      { source: '/quiz/epr/:path*', destination: '/quiz', permanent: true },
+      { source: '/quiz/simpler-recycling', destination: '/quiz', permanent: true },
+      { source: '/quiz/simpler-recycling/:path*', destination: '/quiz', permanent: true },
+      { source: '/clinical-waste-analyser', destination: '/free-check', permanent: true },
+      { source: '/clinical-waste-analyser/:path*', destination: '/free-check', permanent: true },
+      { source: '/duty-of-care-analyser', destination: '/free-check', permanent: true },
+      { source: '/duty-of-care-analyser/:path*', destination: '/free-check', permanent: true },
+      { source: '/simpler-recycling-gap-analyser', destination: '/free-check', permanent: true },
+      { source: '/simpler-recycling-gap-analyser/:path*', destination: '/free-check', permanent: true },
+      { source: '/ppt-gap-analyser', destination: '/free-check', permanent: true },
+      { source: '/ppt-gap-analyser/:path*', destination: '/free-check', permanent: true },
+      { source: '/epr-gap-analyser', destination: '/free-check', permanent: true },
+      { source: '/epr-gap-analyser/:path*', destination: '/free-check', permanent: true },
+      { source: '/print/:path*', destination: '/', permanent: true },
+      { source: '/admin', destination: '/', permanent: true },
+      { source: '/admin/:path*', destination: '/', permanent: true },
+      { source: '/resources/duty-of-care-waste', destination: '/guides/waste-transfer-notes', permanent: true },
+      { source: '/resources/waste-packaging-documentation', destination: '/guides/waste-transfer-notes', permanent: true },
+      { source: '/resources/:slug', destination: '/resources', permanent: true },
     ]
   },
   // Fix for multiple lockfiles warning

@@ -1,21 +1,8 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
-import {
-  ArrowRight,
-  CalendarCheck,
-  Car,
-  CheckCircle,
-  Factory,
-  Hammer,
-  Leaf,
-  MapPin,
-  Phone,
-  Recycle,
-  Send,
-} from "lucide-react"
+import { ArrowRight, Camera, Check, Clock, Compass, FileCheck } from "lucide-react"
 
 /* ─── Reveal once when scrolled into view ─────────────────────────────────── */
 function useReveal<T extends HTMLElement>(threshold = 0.2) {
@@ -40,34 +27,41 @@ function useReveal<T extends HTMLElement>(threshold = 0.2) {
 }
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
-const groups = [
-  { icon: Recycle, label: "Waste Sites", sub: "Scrap, transfer, skip, soil and wood yards. I take the double typing off you." },
-  { icon: Hammer, label: "Builders & Groundworks", sub: "Own yard or crusher? Your part-time waste person, without hiring one." },
-  { icon: Car, label: "Dismantlers & Garages", sub: "Dismantling permit? Every load reported on time, paperwork in order." },
-  { icon: Factory, label: "Manufacturers", sub: "Take waste in under a permit? I do the reporting, so your team doesn't." },
-  { icon: Leaf, label: "Farms & Landscapers", sub: "Digester, compost or tree waste under a permit. Every load in, on time." },
+// The admin that comes with a waste permit. Only the first job stays with the business.
+const jobs = [
+  { label: "Snap the ticket", stays: true },
+  { label: "Report the load to Defra" },
+  { label: "Fix any errors" },
+  { label: "Quarterly return" },
+  { label: "Records ready for the regulator" },
 ]
 
-const trust = [
-  { icon: Send, label: "Done For You" },
-  { icon: CalendarCheck, label: "Proof Every Friday" },
-  { icon: MapPin, label: "Birmingham Based" },
-  { icon: Phone, label: "Direct Line" },
+const promises = [
+  { icon: Clock, title: "On time", line: "Every load, every week." },
+  { icon: FileCheck, title: "Proven", line: "Proof every Friday." },
+  { icon: Compass, title: "Honest", line: "Not our lane? We'll say who to call." },
 ]
 
-// Hub geometry (SVG units). Five groups sit on a circle around Zak.
-const SIZE = 400
-const CX = SIZE / 2
-const CY = SIZE / 2
-const R = 148
-const nodes = groups.map((_, i) => {
-  const a = ((-90 + i * 72) * Math.PI) / 180
-  return { x: CX + R * Math.cos(a), y: CY + R * Math.sin(a) }
-})
+const sectors = [
+  "Scrap & metal",
+  "Transfer stations",
+  "Skip yards",
+  "Soil & aggregates",
+  "Wood recyclers",
+  "Builders & groundworks",
+  "Vehicle dismantlers",
+  "Garages",
+  "Manufacturers",
+  "Farms",
+  "Landscapers",
+  "Tree surgeons",
+]
 
-/* ─── The hub: Zak in the middle, five groups around it ───────────────────── */
-function ConnectorHub({ run }: { run: boolean }) {
-  const [active, setActive] = useState(0)
+const CYCLE = 4600
+
+/* ─── Who does the admin: today vs with Millstone ─────────────────────────── */
+function DeskScene({ run }: { run: boolean }) {
+  const [withUs, setWithUs] = useState(false)
   const [paused, setPaused] = useState(false)
   const [reduced, setReduced] = useState(false)
 
@@ -76,180 +70,127 @@ function ConnectorHub({ run }: { run: boolean }) {
   }, [])
 
   useEffect(() => {
-    if (!run || paused) return
-    const id = setInterval(() => setActive((a) => (a + 1) % groups.length), 2800)
-    return () => clearInterval(id)
-  }, [run, paused])
+    if (!run || paused || reduced) return
+    const id = setTimeout(() => setWithUs((w) => !w), CYCLE)
+    return () => clearTimeout(id)
+  }, [run, paused, reduced, withUs])
 
-  const current = groups[active]
-  const CurrentIcon = current.icon
+  const onDesk = withUs ? 1 : jobs.length
 
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_45%,rgba(167,243,208,0.5)_0%,transparent_70%)] pointer-events-none rounded-3xl" />
+    <div className="relative" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      <div className="absolute -inset-6 bg-[radial-gradient(ellipse_70%_70%_at_50%_50%,rgba(52,211,153,0.28)_0%,transparent_70%)] pointer-events-none" />
 
-      <div className="relative bg-white/80 backdrop-blur-xl rounded-[2rem] border border-emerald-100 shadow-[0_30px_80px_-30px_rgba(6,95,70,0.3)] p-5 sm:p-7">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-2">
-          <div>
-            <h3 className="poppins-bold text-sm text-emerald-900">Who I Help</h3>
-            <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Anyone with a waste permit</p>
-          </div>
-          <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 rounded-full border border-emerald-100">
-            <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-            <span className="poppins-semibold text-[10px] text-emerald-600">5 groups</span>
-          </div>
-        </div>
+      <div className="relative rounded-[2rem] bg-white/85 backdrop-blur-xl border border-emerald-100 shadow-[0_40px_90px_-35px_rgba(6,95,70,0.45)] p-5 sm:p-7 overflow-hidden">
+        {/* Light pass on every switch */}
+        <div key={String(withUs)} className="fm-pass absolute inset-x-0 -top-24 h-24 bg-gradient-to-b from-transparent via-emerald-200/40 to-transparent pointer-events-none" />
 
-        {/* Hub */}
-        <div className="relative aspect-square w-full max-w-[400px] mx-auto">
-          <svg viewBox={`0 0 ${SIZE} ${SIZE}`} className="absolute inset-0 w-full h-full" aria-hidden="true">
-            <defs>
-              <linearGradient id="fsLine" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#34d399" />
-                <stop offset="100%" stopColor="#047857" />
-              </linearGradient>
-              <radialGradient id="fsCore" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="rgba(52,211,153,0.35)" />
-                <stop offset="100%" stopColor="rgba(52,211,153,0)" />
-              </radialGradient>
-            </defs>
-
-            {/* Slow turning orbit */}
-            <g className="fs-spin" style={{ transformOrigin: `${CX}px ${CY}px` }}>
-              <circle cx={CX} cy={CY} r={R} fill="none" stroke="rgba(16,185,129,0.25)" strokeWidth="1" strokeDasharray="2 6" />
-            </g>
-            <circle cx={CX} cy={CY} r={R - 52} fill="none" stroke="rgba(16,185,129,0.1)" strokeWidth="1" />
-            <circle cx={CX} cy={CY} r="90" fill="url(#fsCore)" />
-
-            {/* Spokes draw in, the active one lights up */}
-            {nodes.map((n, i) => {
-              const len = R
-              const on = i === active
-              return (
-                <line
-                  key={i}
-                  x1={CX}
-                  y1={CY}
-                  x2={n.x}
-                  y2={n.y}
-                  stroke={on ? "url(#fsLine)" : "rgba(16,185,129,0.22)"}
-                  strokeWidth={on ? 2.5 : 1.25}
-                  strokeLinecap="round"
-                  strokeDasharray={len}
-                  strokeDashoffset={run ? 0 : len}
-                  style={{
-                    transition: `stroke-dashoffset 1s cubic-bezier(0.65,0,0.35,1) ${300 + i * 120}ms, stroke-width 0.5s ease`,
-                  }}
-                />
-              )
-            })}
-
-            {/* A pulse travels out along the active spoke */}
-            {run && !reduced && (
-              <circle key={active} r="5" fill="#10b981">
-                <animate attributeName="cx" from={CX} to={nodes[active].x} dur="1.1s" fill="freeze" />
-                <animate attributeName="cy" from={CY} to={nodes[active].y} dur="1.1s" fill="freeze" />
-                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.8;1" dur="1.1s" fill="freeze" />
-              </circle>
-            )}
-          </svg>
-
-          {/* Centre: Zak */}
-          <div
-            className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-1000 ${run ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}
-          >
-            <div className="relative">
-              <span className="absolute inset-0 rounded-full bg-emerald-400/30 fs-ping" />
-              <div className="relative w-[88px] h-[88px] sm:w-[104px] sm:h-[104px] rounded-full bg-gradient-to-br from-emerald-600 to-emerald-800 shadow-[0_16px_40px_-10px_rgba(6,95,70,0.6)] flex flex-col items-center justify-center text-center border-4 border-white">
-                <span className="poppins-bold text-white text-base sm:text-lg leading-none">Zak</span>
-                <span className="poppins-medium text-emerald-100 text-[9px] sm:text-[10px] mt-1 uppercase tracking-[0.15em]">On time</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Site type nodes */}
-          {groups.map((g, i) => {
-            const Icon = g.icon
-            const on = i === active
-            const n = nodes[i]
+        {/* Toggle */}
+        <div className="relative grid grid-cols-2 p-1 rounded-2xl bg-slate-100/80 border border-slate-200/70">
+          <span
+            className="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-xl bg-white shadow-[0_6px_16px_-6px_rgba(15,23,42,0.25)] transition-transform duration-500 fm-ease"
+            style={{ transform: withUs ? "translateX(100%)" : "none" }}
+          />
+          {["Today", "With Millstone"].map((t, i) => {
+            const on = (i === 1) === withUs
             return (
               <button
-                key={g.label}
+                key={t}
                 type="button"
-                onClick={() => setActive(i)}
-                onFocus={() => {
-                  setActive(i)
-                  setPaused(true)
-                }}
-                onBlur={() => setPaused(false)}
+                onClick={() => setWithUs(i === 1)}
                 aria-pressed={on}
-                className={`absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5 w-[84px] sm:w-[100px] focus:outline-none transition-all duration-700 ${run ? "opacity-100" : "opacity-0"}`}
-                style={{
-                  left: `${(n.x / SIZE) * 100}%`,
-                  top: `${(n.y / SIZE) * 100}%`,
-                  transitionDelay: run ? `${700 + i * 120}ms` : "0ms",
-                }}
+                className={`relative z-10 py-2.5 poppins-semibold text-[13px] transition-colors duration-300 ${on ? "text-emerald-900" : "text-slate-400 hover:text-slate-600"}`}
               >
-                <span
-                  className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center border transition-all duration-500 ${
-                    on
-                      ? "bg-emerald-700 border-emerald-700 text-white scale-110 shadow-[0_10px_24px_-6px_rgba(6,95,70,0.55)]"
-                      : "bg-white border-emerald-100 text-emerald-600 shadow-sm hover:border-emerald-300"
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                </span>
-                <span
-                  className={`poppins-semibold text-[10px] sm:text-[11px] leading-tight text-center transition-colors duration-500 ${
-                    on ? "text-emerald-900" : "text-emerald-700/60"
-                  }`}
-                >
-                  {g.label}
-                </span>
+                {t}
               </button>
             )
           })}
         </div>
 
-        {/* Active site type read-out */}
-        <div className="mt-2 rounded-2xl bg-emerald-50/70 border border-emerald-100 p-4 min-h-[84px]">
-          <div key={active} className="fs-swap flex items-start gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white border border-emerald-100 flex items-center justify-center flex-shrink-0">
-              <CurrentIcon className="w-4 h-4 text-emerald-700" />
-            </div>
-            <div className="min-w-0">
-              <p className="poppins-semibold text-sm text-emerald-900 leading-tight">{current.label}</p>
-              <p className="poppins-regular text-[13px] text-slate-600 leading-snug mt-1">{current.sub}</p>
+        {/* Timer */}
+        <div className="h-0.5 mt-3 rounded-full bg-emerald-50 overflow-hidden" aria-hidden="true">
+          {run && !paused && !reduced && (
+            <div key={String(withUs)} className="fm-timer h-full bg-gradient-to-r from-emerald-300 to-emerald-600" style={{ animationDuration: `${CYCLE}ms` }} />
+          )}
+        </div>
+
+        {/* Count */}
+        <div className="flex items-end justify-between mt-6 mb-5">
+          <div>
+            <p className="poppins-medium text-[10px] uppercase tracking-[0.22em] text-slate-400">On your desk</p>
+            <div className="flex items-baseline gap-2 mt-1.5">
+              <span key={onDesk} className="fm-num poppins-bold text-6xl sm:text-7xl leading-none tabular-nums text-slate-900">
+                {onDesk}
+              </span>
+              <span className="poppins-semibold text-sm text-slate-400">{onDesk === 1 ? "job" : "jobs"}</span>
             </div>
           </div>
-          <div className="flex gap-1.5 mt-4" aria-hidden="true">
-            {groups.map((g, i) => (
-              <div key={g.label} className="flex-1 h-1 rounded-full bg-emerald-100 overflow-hidden">
-                <div
-                  className={`h-full rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 ${i === active && !paused && !reduced ? "fs-fill" : ""}`}
-                  style={{ width: i < active || (i === active && (paused || reduced)) ? "100%" : i === active ? undefined : "0%" }}
-                />
+          <span
+            className={`poppins-semibold text-[11px] px-3 py-1.5 rounded-full border transition-all duration-500 ${
+              withUs ? "bg-emerald-700 border-emerald-700 text-white" : "bg-amber-50 border-amber-200 text-amber-700"
+            }`}
+          >
+            {withUs ? "Handled" : "Every load"}
+          </span>
+        </div>
+
+        {/* Jobs */}
+        <div className="space-y-2">
+          {jobs.map((j, i) => {
+            const ours = withUs && !j.stays
+            const delay = `${(withUs ? i : jobs.length - 1 - i) * 90}ms`
+            return (
+              <div
+                key={j.label}
+                className={`flex items-center justify-between gap-3 h-12 px-3.5 rounded-2xl border transition-all duration-500 ${
+                  ours
+                    ? "bg-emerald-50/80 border-emerald-200"
+                    : j.stays && withUs
+                      ? "bg-white border-emerald-300 shadow-[0_8px_22px_-10px_rgba(16,185,129,0.5)]"
+                      : "bg-white border-slate-200"
+                }`}
+                style={{ transitionDelay: delay }}
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <span
+                    className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
+                      ours ? "bg-emerald-600 text-white" : j.stays ? "bg-emerald-100 text-emerald-700" : "bg-slate-100 text-slate-400"
+                    }`}
+                    style={{ transitionDelay: delay }}
+                  >
+                    {j.stays ? <Camera className="w-3.5 h-3.5" /> : ours ? <Check className="w-3.5 h-3.5 fm-pop" key="c" /> : <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />}
+                  </span>
+                  <span
+                    className={`poppins-medium text-[13px] truncate transition-colors duration-500 ${ours ? "text-emerald-900/50 line-through decoration-emerald-300" : "text-slate-800"}`}
+                    style={{ transitionDelay: delay }}
+                  >
+                    {j.label}
+                  </span>
+                </div>
+
+                {/* Owner swaps from You to Millstone */}
+                <span className="relative h-6 w-[78px] overflow-hidden flex-shrink-0">
+                  <span
+                    className="absolute inset-0 flex items-center justify-center rounded-full bg-slate-100 poppins-semibold text-[10px] text-slate-500 transition-transform duration-500 fm-ease"
+                    style={{ transform: ours ? "translateY(-120%)" : "none", transitionDelay: delay }}
+                  >
+                    You
+                  </span>
+                  <span
+                    className="absolute inset-0 flex items-center justify-center rounded-full bg-emerald-700 poppins-semibold text-[10px] text-white transition-transform duration-500 fm-ease"
+                    style={{ transform: ours ? "none" : "translateY(120%)", transitionDelay: delay }}
+                  >
+                    Millstone
+                  </span>
+                </span>
               </div>
-            ))}
-          </div>
+            )
+          })}
         </div>
 
-        {/* Footer note */}
-        <div className="mt-4 pt-4 border-t border-emerald-50 flex items-center gap-2">
-          <CheckCircle className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-          <p className="poppins-regular text-[11px] text-emerald-600/80">Free two-week trial · See it working first</p>
-        </div>
-      </div>
-
-      {/* Floating stat */}
-      <div className="absolute -top-4 -right-2 sm:-right-5 bg-white/95 backdrop-blur-xl rounded-2xl border border-emerald-100 px-4 py-3 shadow-xl animate-float-slow">
-        <p className="poppins-bold text-xl text-emerald-900 leading-none">1-1</p>
-        <p className="poppins-regular text-[10px] text-emerald-500 mt-1">Direct access</p>
+        <p className="poppins-regular text-[11px] text-slate-400 mt-5 text-center">
+          Every load to Defra within two working days, since 1 October 2026.
+        </p>
       </div>
     </div>
   )
@@ -258,31 +199,31 @@ function ConnectorHub({ run }: { run: boolean }) {
 /* ─── Section ─────────────────────────────────────────────────────────────── */
 export function FounderSection() {
   const head = useReveal<HTMLDivElement>(0.25)
-  const hub = useReveal<HTMLDivElement>(0.3)
+  const scene = useReveal<HTMLDivElement>(0.3)
 
   return (
-    <section className="px-3 sm:px-6 py-10 sm:py-16" aria-labelledby="founder-heading">
+    <section className="px-3 sm:px-6 py-10 sm:py-16" aria-labelledby="why-heading">
       <div className="relative max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] bg-gradient-to-b from-white via-white to-emerald-50/60 border border-emerald-100 shadow-[0_30px_80px_-40px_rgba(6,95,70,0.25)] overflow-hidden isolate">
-        {/* Backdrop: fine grid, glow and a slow light sweep */}
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(16,185,129,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.06)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_70%_at_75%_40%,black_30%,transparent_100%)]" />
-        <div className="absolute -top-40 right-0 w-[700px] h-[500px] -z-10 bg-[radial-gradient(ellipse,rgba(167,243,208,0.4)_0%,transparent_65%)]" />
-        <div className="absolute -bottom-40 -left-20 w-[500px] h-[500px] -z-10 bg-[radial-gradient(circle,rgba(153,246,228,0.25)_0%,transparent_65%)]" />
-        <div className="fs-sweep absolute inset-y-0 -left-1/3 w-1/3 -z-10 bg-gradient-to-r from-transparent via-white/70 to-transparent skew-x-[-20deg]" />
+        {/* Backdrop: drifting aurora, fine grid, slow light sweep */}
+        <div className="fm-drift absolute -top-32 -right-24 w-[620px] h-[620px] -z-10 rounded-full bg-[radial-gradient(circle,rgba(110,231,183,0.35)_0%,transparent_65%)]" />
+        <div className="fm-drift-rev absolute -bottom-40 -left-24 w-[560px] h-[560px] -z-10 rounded-full bg-[radial-gradient(circle,rgba(153,246,228,0.3)_0%,transparent_65%)]" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(16,185,129,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.06)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_70%_at_70%_40%,black_30%,transparent_100%)]" />
+        <div className="fm-sweep absolute inset-y-0 -left-1/3 w-1/3 -z-10 bg-gradient-to-r from-transparent via-white/70 to-transparent skew-x-[-20deg]" />
 
-        <div className="px-5 sm:px-10 lg:px-16 py-14 sm:py-20 lg:py-24">
-          <div className="grid lg:grid-cols-[1.05fr_1fr] gap-14 lg:gap-16 items-center">
+        <div className="px-5 sm:px-10 lg:px-16 pt-14 sm:pt-20 lg:pt-24 pb-10 sm:pb-12">
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-14 lg:gap-20 items-center">
             {/* Words */}
-            <div ref={head.ref} className={head.visible ? "fs-in" : ""}>
-              <div className="fs-fade flex items-center gap-3 mb-8" style={{ animationDelay: "0ms" }}>
-                <div className="h-px w-8 bg-emerald-400" />
-                <span className="poppins-semibold text-[11px] text-emerald-600 uppercase tracking-[0.22em]">Why I started Millstone</span>
+            <div ref={head.ref} className={head.visible ? "fm-in" : ""}>
+              <div className="fm-fade flex items-center gap-3 mb-8" style={{ animationDelay: "0ms" }}>
+                <div className="fm-line h-px w-8 bg-emerald-400 origin-left" />
+                <span className="poppins-semibold text-[11px] text-emerald-600 uppercase tracking-[0.22em]">Why Millstone exists</span>
               </div>
 
-              <h2 id="founder-heading" className="poppins-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-slate-900">
+              <h2 id="why-heading" className="poppins-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-slate-900">
                 <span className="block">
-                  {["Send", "Photos."].map((w, i) => (
+                  {["Waste", "rules", "grew."].map((w, i) => (
                     <React.Fragment key={w}>
-                      <span className="fs-word inline-block" style={{ animationDelay: `${120 + i * 90}ms` }}>
+                      <span className="fm-word inline-block" style={{ animationDelay: `${120 + i * 90}ms` }}>
                         {w}
                       </span>{" "}
                     </React.Fragment>
@@ -290,114 +231,117 @@ export function FounderSection() {
                 </span>
                 <span className="block mt-1">
                   <span
-                    className="fs-word fs-shine inline-block pb-1 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent"
-                    style={{ animationDelay: "360ms" }}
+                    className="fm-word fm-shine inline-block pb-1 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent"
+                    style={{ animationDelay: "420ms" }}
                   >
-                    I&apos;ll Report Them.
+                    Your team didn&apos;t.
                   </span>
                 </span>
               </h2>
 
-              <p className="fs-fade poppins-regular text-lg sm:text-xl text-slate-700 leading-relaxed mt-7 max-w-xl" style={{ animationDelay: "600ms" }}>
-                Your paper transfer notes and quarterly returns haven&apos;t gone away. Now every load has to go to Defra as well. That&apos;s extra admin, on every ticket.
+              <p className="fm-fade poppins-regular text-lg sm:text-xl text-slate-600 leading-relaxed mt-7 max-w-md" style={{ animationDelay: "640ms" }}>
+                So we built Millstone: a waste person for every business with a permit, without hiring one.
               </p>
 
-              <p className="fs-fade poppins-regular text-base text-slate-500 leading-relaxed mt-4 max-w-xl" style={{ animationDelay: "720ms" }}>
-                I&apos;m Zak. I worked at HMRC, where I learned how government reporting systems work, why deadlines matter, and how to keep records that add up. I also hold a Certificate in Circular Economy from the Cambridge Institute for Sustainability Leadership.
-              </p>
-
-              {/* Credentials */}
-              <div className="fs-fade grid sm:grid-cols-2 gap-3 mt-8 max-w-xl" style={{ animationDelay: "840ms" }}>
-                <div className="flex items-center gap-3 rounded-2xl border border-emerald-100 bg-white/80 px-3.5 py-3 shadow-sm">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-emerald-100 flex items-center justify-center p-2 flex-shrink-0">
-                    <Image src="/University of Cambridge new Logo Vector.svg" alt="University of Cambridge" width={28} height={28} className="object-contain w-full h-full" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="poppins-semibold text-[13px] text-emerald-900 leading-tight">Cambridge Institute</p>
-                    <p className="poppins-regular text-[11px] text-emerald-600/80 leading-tight mt-0.5">Circular Economy certificate</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 rounded-2xl border border-emerald-100 bg-white/80 px-3.5 py-3 shadow-sm">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-emerald-100 flex items-center justify-center p-1.5 flex-shrink-0">
-                    <Image src="/Screenshot 2025-08-31 at 21.43.30.png" alt="HMRC" width={30} height={30} className="object-contain w-full h-full" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="poppins-semibold text-[13px] text-emerald-900 leading-tight">Worked at HMRC</p>
-                    <p className="poppins-regular text-[11px] text-emerald-600/80 leading-tight mt-0.5">Reporting, deadlines, records</p>
-                  </div>
-                </div>
+              {/* Promises */}
+              <div className="mt-10 space-y-3 max-w-md">
+                {promises.map((p, i) => {
+                  const Icon = p.icon
+                  return (
+                    <div
+                      key={p.title}
+                      className="fm-fade group flex items-center gap-4 rounded-2xl border border-emerald-100 bg-white/80 backdrop-blur px-4 py-3.5 shadow-sm hover:border-emerald-300 hover:shadow-[0_12px_30px_-14px_rgba(6,95,70,0.35)] hover:-translate-y-0.5 transition-all duration-300"
+                      style={{ animationDelay: `${800 + i * 130}ms` }}
+                    >
+                      <span className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-700 group-hover:border-emerald-700 transition-colors duration-300">
+                        <Icon className="w-[18px] h-[18px] text-emerald-700 group-hover:text-white transition-colors duration-300" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="poppins-bold text-[15px] text-slate-900 leading-tight">{p.title}</p>
+                        <p className="poppins-regular text-sm text-slate-500 leading-snug mt-0.5">{p.line}</p>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
 
-              {/* Promise */}
-              <div className="fs-fade mt-8 pl-5 border-l-2 border-emerald-400 max-w-xl" style={{ animationDelay: "960ms" }}>
-                <p className="poppins-semibold text-base sm:text-lg text-emerald-900 leading-relaxed">
-                  Every load reported on time. Proof every Friday. Not my lane? I&apos;ll tell you who to call.
-                </p>
-                <p className="poppins-medium text-sm text-emerald-600 mt-2">Zak, Founder</p>
-              </div>
-
-              {/* Trust chips */}
-              <div className="fs-fade flex flex-wrap gap-2 mt-8" style={{ animationDelay: "1080ms" }}>
-                {trust.map(({ icon: Icon, label }) => (
-                  <span key={label} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 border border-emerald-100 rounded-full text-xs text-emerald-800 poppins-medium">
-                    <Icon className="w-3.5 h-3.5 text-emerald-500" />
-                    {label}
-                  </span>
-                ))}
-              </div>
-
-              <div className="fs-fade mt-9" style={{ animationDelay: "1200ms" }}>
-                <Link
-                  href="/about"
-                  className="group inline-flex items-center gap-2 poppins-semibold text-sm text-emerald-700 hover:text-emerald-800"
-                >
-                  More about me and how I work
+              <div className="fm-fade mt-9" style={{ animationDelay: "1250ms" }}>
+                <Link href="/about" className="group inline-flex items-center gap-2 poppins-semibold text-sm text-emerald-700 hover:text-emerald-800">
+                  Meet the founder
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>
             </div>
 
-            {/* Hub */}
+            {/* Scene */}
             <div
-              ref={hub.ref}
-              className={`transition-all duration-1000 ease-out ${hub.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              ref={scene.ref}
+              className={`transition-all duration-1000 ease-out ${scene.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
-              <ConnectorHub run={hub.visible} />
+              <DeskScene run={scene.visible} />
+            </div>
+          </div>
+        </div>
+
+        {/* Who it's for: a slow ribbon of sectors */}
+        <div className="relative border-t border-emerald-100/80 bg-white/50 py-5">
+          <p className="sr-only">Built for: {sectors.join(", ")}</p>
+          <div className="flex items-center gap-6" aria-hidden="true">
+            <span className="hidden sm:block pl-10 lg:pl-16 poppins-semibold text-[11px] uppercase tracking-[0.22em] text-emerald-600 whitespace-nowrap">Built for</span>
+            <div className="relative flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
+              <div className="fm-track flex w-max gap-2.5">
+                {[...sectors, ...sectors].map((s, i) => (
+                  <span key={i} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-100 bg-white poppins-medium text-xs text-emerald-800 whitespace-nowrap">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    {s}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes fsWord {
+        @keyframes fmWord {
           0%   { opacity: 0; transform: translateY(0.45em); filter: blur(10px); }
           100% { opacity: 1; transform: none; filter: blur(0); }
         }
-        @keyframes fsFade {
+        @keyframes fmFade {
           0%   { opacity: 0; transform: translateY(14px); }
           100% { opacity: 1; transform: none; }
         }
-        @keyframes fsShine { to { background-position: -200% 0; } }
-        @keyframes fsSweep { 0% { left: -35%; } 100% { left: 135%; } }
-        @keyframes fsSpin  { to { transform: rotate(360deg); } }
-        @keyframes fsPing  { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.7); opacity: 0; } }
-        @keyframes fsFill  { from { width: 0%; } to { width: 100%; } }
-        @keyframes fsSwap  { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+        @keyframes fmLine  { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        @keyframes fmShine { to { background-position: -200% 0; } }
+        @keyframes fmSweep { 0% { left: -35%; } 100% { left: 135%; } }
+        @keyframes fmDrift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-40px, 30px) scale(1.08); } }
+        @keyframes fmPass  { from { transform: translateY(0); } to { transform: translateY(900px); } }
+        @keyframes fmTimer { from { width: 0%; } to { width: 100%; } }
+        @keyframes fmNum   { 0% { opacity: 0; transform: translateY(0.4em) scale(0.9); filter: blur(6px); } 100% { opacity: 1; transform: none; filter: blur(0); } }
+        @keyframes fmPop   { 0% { transform: scale(0.3); opacity: 0; } 70% { transform: scale(1.2); } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes fmScroll { to { transform: translateX(-50%); } }
 
-        .fs-word, .fs-fade { opacity: 0; }
-        .fs-in .fs-word { animation: fsWord 0.9s cubic-bezier(0.22,1,0.36,1) both; }
-        .fs-in .fs-fade { animation: fsFade 0.8s cubic-bezier(0.22,1,0.36,1) both; }
-        .fs-in .fs-shine { animation: fsWord 0.9s cubic-bezier(0.22,1,0.36,1) both, fsShine 6s linear 1.6s infinite; }
-        .fs-sweep { animation: fsSweep 10s ease-in-out infinite; }
-        .fs-spin { animation: fsSpin 80s linear infinite; }
-        .fs-ping { animation: fsPing 2.4s cubic-bezier(0,0,0.2,1) infinite; }
-        .fs-fill { animation: fsFill 2.8s linear both; }
-        .fs-swap { animation: fsSwap 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+        .fm-word, .fm-fade { opacity: 0; }
+        .fm-in .fm-word { animation: fmWord 0.9s cubic-bezier(0.22,1,0.36,1) both; }
+        .fm-in .fm-fade { animation: fmFade 0.8s cubic-bezier(0.22,1,0.36,1) both; }
+        .fm-in .fm-line { animation: fmLine 0.8s cubic-bezier(0.22,1,0.36,1) both; }
+        .fm-in .fm-shine { animation: fmWord 0.9s cubic-bezier(0.22,1,0.36,1) both, fmShine 6s linear 1.6s infinite; }
+        .fm-sweep { animation: fmSweep 10s ease-in-out infinite; }
+        .fm-drift { animation: fmDrift 16s ease-in-out infinite; }
+        .fm-drift-rev { animation: fmDrift 19s ease-in-out infinite reverse; }
+        .fm-pass { animation: fmPass 1.4s cubic-bezier(0.45,0,0.2,1) both; }
+        .fm-timer { animation-name: fmTimer; animation-timing-function: linear; animation-fill-mode: both; }
+        .fm-num { animation: fmNum 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+        .fm-pop { animation: fmPop 0.45s cubic-bezier(0.22,1,0.36,1) both; }
+        .fm-track { animation: fmScroll 45s linear infinite; }
+        .fm-track:hover { animation-play-state: paused; }
+        .fm-ease { transition-timing-function: cubic-bezier(0.22,1,0.36,1); }
 
         @media (prefers-reduced-motion: reduce) {
-          .fs-word, .fs-fade { opacity: 1; }
-          .fs-in .fs-word, .fs-in .fs-fade, .fs-in .fs-shine,
-          .fs-sweep, .fs-spin, .fs-ping, .fs-fill, .fs-swap { animation: none !important; }
+          .fm-word, .fm-fade { opacity: 1; }
+          .fm-in .fm-word, .fm-in .fm-fade, .fm-in .fm-line, .fm-in .fm-shine,
+          .fm-sweep, .fm-drift, .fm-drift-rev, .fm-pass, .fm-num, .fm-pop, .fm-track { animation: none !important; }
+          .fm-track { flex-wrap: wrap; width: auto; }
         }
       ` }} />
     </section>

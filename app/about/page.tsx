@@ -19,6 +19,7 @@ import {
   Sparkles,
 } from "lucide-react"
 import { Navigation } from "@/components/Navigation"
+import { MillstoneLogo } from "@/components/logo/MeridianLogo"
 import Footer from "@/components/Footer"
 import QuickContact from "@/components/about/QuickContact"
 
@@ -346,8 +347,8 @@ export default function MeetZakPage() {
                 <div className="flex items-center gap-4">
                   <div className="relative flex-shrink-0">
                     <span className="absolute inset-0 rounded-full bg-emerald-400/30 ab-ping" />
-                    <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-emerald-600 to-emerald-800 border-4 border-white shadow-lg flex items-center justify-center">
-                      <span className="poppins-bold text-white text-xl">Z</span>
+                    <div className="relative w-16 h-16 rounded-full bg-white border-4 border-white shadow-lg ring-1 ring-emerald-100 flex items-center justify-center">
+                      <MillstoneLogo variant="modern-icon" size="sm" className="!w-12 !h-12" />
                     </div>
                   </div>
                   <div>

@@ -4,35 +4,35 @@ import React, { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import {
   ArrowRight,
-  Check,
-  Truck,
+  ArrowUpRight,
   Camera,
+  CalendarCheck,
   CalendarClock,
-  FileCheck,
-  ListChecks,
+  Check,
+  Recycle,
   Scale,
+  ScanLine,
+  Send,
   ShieldCheck,
-  Phone,
-  Receipt,
+  Truck,
+  Package,
 } from "lucide-react"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
+import { useBooking } from "@/components/BookingProvider"
 
 /* ─── Motion helpers ──────────────────────────────────────────────────────── */
-const EASE = "cubic-bezier(0.22,1,0.36,1)"
-
 function prefersReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
 }
 
 /** Flips to true once the element scrolls into view. */
-function useInView<T extends HTMLElement>(threshold = 0.2) {
+function useInView<T extends HTMLElement>(threshold = 0.25) {
   const ref = useRef<T>(null)
   const [inView, setInView] = useState(false)
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    if (prefersReducedMotion()) { setInView(true); return }
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect() } },
       { threshold }
@@ -43,538 +43,462 @@ function useInView<T extends HTMLElement>(threshold = 0.2) {
   return { ref, inView }
 }
 
-/**
- * Writes a 0→1 scroll progress to the element as the CSS variable --p,
- * without re-rendering React. `start`/`end` are viewport fractions for the
- * element's top edge (1 = bottom of screen, 0 = top of screen).
- */
-function useScrollVar<T extends HTMLElement>(start = 1, end = 0.25) {
-  const ref = useRef<T>(null)
+/** Steps 0 → steps-1 and loops, once `run` is true. Reduced motion jumps to the end. */
+function useCycle(steps: number, ms: number, run: boolean, hold = 0) {
+  const [i, setI] = useState(0)
   useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    if (prefersReducedMotion()) { el.style.setProperty("--p", "1"); return }
-    let frame = 0
-    const update = () => {
-      frame = 0
-      const rect = el.getBoundingClientRect()
-      const vh = window.innerHeight
-      const p = (start * vh - rect.top) / ((start - end) * vh)
-      el.style.setProperty("--p", Math.min(1, Math.max(0, p)).toFixed(4))
-    }
-    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update) }
-    update()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    window.addEventListener("resize", onScroll)
-    return () => {
-      window.removeEventListener("scroll", onScroll)
-      window.removeEventListener("resize", onScroll)
-      if (frame) cancelAnimationFrame(frame)
-    }
-  }, [start, end])
-  return ref
+    if (!run) return
+    if (prefersReducedMotion()) { setI(steps - 1); return }
+    const wait = i === steps - 1 ? ms + hold : ms
+    const id = setTimeout(() => setI((n) => (n + 1) % steps), wait)
+    return () => clearTimeout(id)
+  }, [i, steps, ms, run, hold])
+  return [i, setI] as const
 }
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
-const heroWords = ["Dates", "Weights", "Codes", "Carriers", "Permits", "Deadlines"]
+const flow = [
+  { icon: Camera, title: "You snap it", cap: "A photo on WhatsApp" },
+  { icon: ScanLine, title: "I check it", cap: "Six checks, every load" },
+  { icon: Send, title: "I send it", cap: "To Defra, on time" },
+  { icon: CalendarCheck, title: "You get proof", cap: "Every Friday" },
+]
 
 const checks = [
-  {
-    icon: CalendarClock,
-    title: "Date In",
-    ask: "When did it arrive?",
-    body: "The date the load came in starts the clock. I check it on every ticket, so the deadline is worked out right.",
-    line: { label: "Date received", value: "Thu 15 Oct" },
-  },
-  {
-    icon: Scale,
-    title: "Weight",
-    ask: "Does it match the ticket?",
-    body: "I take the weight straight from your weighbridge ticket. If a photo is hard to read, I ask you rather than guess.",
-    line: { label: "Net weight", value: "8.42 t" },
-  },
-  {
-    icon: Receipt,
-    title: "EWC Code",
-    ask: "What is the waste?",
-    body: "Every waste has a six-digit code. I use the template we set up together, so the same waste gets the same code.",
-    line: { label: "Waste code", value: "17 04 05" },
-  },
-  {
-    icon: ListChecks,
-    title: "R or D Code",
-    ask: "What happens to it next?",
-    body: "R means recovery, D means disposal. I match each load to what your site actually does with that waste.",
-    line: { label: "Treatment", value: "R4" },
-  },
-  {
-    icon: Truck,
-    title: "Who Brought It",
-    ask: "Which carrier and customer?",
-    body: "Your regular hauliers and customers are set up in advance, so their details go in right every time.",
-    line: { label: "Carrier", value: "Regular haulier" },
-  },
-  {
-    icon: ShieldCheck,
-    title: "Permit and Deadline",
-    ask: "Is it covered, and on time?",
-    body: "I check the codes sit inside your permit, then submit the load before the two-working-day deadline.",
-    line: { label: "Submitted", value: "By end of Mon" },
-  },
+  { icon: CalendarClock, title: "Date", ask: "When did it arrive?", label: "Arrived", value: "Thu 15 Oct" },
+  { icon: Scale, title: "Weight", ask: "Matches the ticket?", label: "Weight", value: "8.42 t" },
+  { icon: Package, title: "Waste type", ask: "What is it?", label: "Waste", value: "Mixed metals" },
+  { icon: Recycle, title: "Next step", ask: "Recycled or disposed?", label: "Going to", value: "Recycling" },
+  { icon: Truck, title: "Carrier", ask: "Registration number there?", label: "Carrier", value: "Reg. no. on file" },
+  { icon: ShieldCheck, title: "Permit & deadline", ask: "Covered, and on time?", label: "Due", value: "End of Mon" },
 ]
 
-const youGet = [
-  { icon: FileCheck,  title: "Every Load Submitted",  desc: "Entered and sent to Defra before the deadline." },
-  { icon: ListChecks, title: "A Friday Confirmation", desc: "A list of everything submitted that week." },
-  { icon: Camera,     title: "A Quick Question",      desc: "If a photo is unclear, I ask. I never guess." },
-]
+const days = [
+  { d: "Thu", tag: "Load arrives", kind: "start" },
+  { d: "Fri", tag: "Day 1", kind: "count" },
+  { d: "Sat", tag: "Doesn't count", kind: "skip" },
+  { d: "Sun", tag: "Doesn't count", kind: "skip" },
+  { d: "Mon", tag: "Day 2 · Due", kind: "due" },
+] as const
 
-const statement =
-  "I never guess. If a photo is unclear, I ask. Every load is checked six ways, then sent to Defra before the deadline."
+const mine = ["Every load reported", "Errors fixed", "Proof every Friday", "Quarterly returns", "Records kept tidy"]
+const refer = ["Waste classification", "Permit changes", "Acting as your competent manager"]
 
-/* ─── Hero: rotating word in a masked slot ────────────────────────────────── */
-function RotatingWord() {
-  const [i, setI] = useState(0)
-  useEffect(() => {
-    if (prefersReducedMotion()) return
-    const id = setInterval(() => setI((n) => (n + 1) % heroWords.length), 2200)
-    return () => clearInterval(id)
-  }, [])
+/* ─── Shared section shell, matching the homepage cards ───────────────────── */
+function Panel({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <span className="relative inline-flex h-[1.25em] overflow-hidden align-bottom -mb-[0.13em]">
-      {/* Invisible longest word keeps the width steady */}
-      <span className="invisible">Deadlines.</span>
-      {heroWords.map((w, idx) => (
-        <span
-          key={w}
-          aria-hidden={idx !== i}
-          className="absolute inset-x-0 top-0 text-center bg-gradient-to-b from-emerald-500 to-emerald-700 bg-clip-text text-transparent"
-          style={{
-            transform: idx === i ? "translateY(0)" : idx === (i - 1 + heroWords.length) % heroWords.length ? "translateY(-105%)" : "translateY(105%)",
-            opacity: idx === i ? 1 : 0,
-            filter: idx === i ? "blur(0)" : "blur(6px)",
-            transition: `transform 0.9s ${EASE}, opacity 0.7s ${EASE}, filter 0.7s ${EASE}`,
-          }}
-        >
-          {w}.
-        </span>
-      ))}
-    </span>
+    <div className={`relative max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] border border-emerald-100 shadow-[0_30px_80px_-40px_rgba(6,95,70,0.25)] overflow-hidden isolate ${className}`}>
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(16,185,129,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.06)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_75%_70%_at_50%_30%,black_30%,transparent_100%)]" />
+      {children}
+    </div>
   )
 }
 
-/* ─── The ticket ──────────────────────────────────────────────────────────── */
-function Ticket({ active, seen, compact = false }: { active: number; seen: number; compact?: boolean }) {
-  const done = seen >= checks.length && active === checks.length - 1
+function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative rounded-[28px] bg-white/90 backdrop-blur-xl border border-slate-200/80 shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_40px_80px_-30px_rgba(15,23,42,0.25),0_12px_24px_-12px_rgba(15,23,42,0.08)] overflow-hidden">
-      {/* Header */}
-      <div className={`${compact ? "px-5 pt-5 pb-4" : "px-7 pt-7 pb-5"} border-b border-slate-100`}>
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="poppins-semibold text-[11px] text-slate-400 uppercase tracking-[0.2em]">Weighbridge Ticket</p>
-            <p className="poppins-bold text-lg text-slate-900 mt-1 tabular-nums">No. 004127</p>
-          </div>
-          <div
-            className="flex items-center gap-1.5 rounded-full px-3 py-1.5 poppins-semibold text-[11px] tabular-nums"
-            style={{
-              background: done ? "rgb(5 150 105)" : "rgb(241 245 249)",
-              color: done ? "white" : "rgb(71 85 105)",
-              transition: `background 0.6s ${EASE}, color 0.6s ${EASE}`,
-            }}
-          >
-            {done ? <Check className="w-3.5 h-3.5" /> : null}
-            {done ? "Ready to Submit" : `${seen} of ${checks.length} Checked`}
-          </div>
-        </div>
-        <div className="mt-5 h-[3px] w-full rounded-full bg-slate-100 overflow-hidden">
-          <div
-            className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600"
-            style={{ width: `${(seen / checks.length) * 100}%`, transition: `width 0.9s ${EASE}` }}
-          />
-        </div>
+    <div className="flex items-center gap-3 mb-5">
+      <div className="h-px w-8 bg-emerald-400" />
+      <span className="poppins-semibold text-[11px] text-emerald-600 uppercase tracking-[0.22em]">{children}</span>
+    </div>
+  )
+}
+
+/* ─── 1. The flow: snap → check → send → proof ────────────────────────────── */
+function Flow({ run }: { run: boolean }) {
+  const [step] = useCycle(flow.length, 1500, run, 1400)
+  const fill = (step / (flow.length - 1)) * 100
+
+  return (
+    <div className="relative">
+      {/* Track: horizontal on desktop, vertical on mobile */}
+      <div className="hidden sm:block absolute top-8 left-[12.5%] right-[12.5%] h-[3px] rounded-full bg-emerald-100">
+        <div className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-emerald-700 transition-all duration-700 wc-ease" style={{ width: `${fill}%` }} />
+        <div
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-emerald-600 shadow-[0_0_0_6px_rgba(16,185,129,0.18)] transition-all duration-700 wc-ease"
+          style={{ left: `${fill}%` }}
+        />
+      </div>
+      <div className="sm:hidden absolute left-8 top-8 bottom-8 w-[3px] -translate-x-1/2 rounded-full bg-emerald-100">
+        <div className="w-full rounded-full bg-gradient-to-b from-emerald-400 to-emerald-700 transition-all duration-700 wc-ease" style={{ height: `${fill}%` }} />
       </div>
 
-      {/* Lines */}
-      <ul className={compact ? "p-3" : "p-4"}>
-        {checks.map((c, i) => {
-          const isActive = i === active
-          const isSeen = i < seen
+      <div className="relative grid sm:grid-cols-4 gap-6 sm:gap-4">
+        {flow.map((f, i) => {
+          const Icon = f.icon
+          const on = i <= step
+          const now = i === step
           return (
-            <li
-              key={c.title}
-              className="relative flex items-center justify-between gap-4 rounded-2xl px-4 py-3.5"
-              style={{
-                background: isActive ? "rgb(236 253 245)" : "transparent",
-                transform: isActive ? "scale(1.015)" : "scale(1)",
-                transition: `background 0.6s ${EASE}, transform 0.6s ${EASE}`,
-              }}
-            >
-              <span className="poppins-medium text-[13px] text-slate-500">{c.line.label}</span>
-              <span className="flex items-center gap-3">
-                <span
-                  className="poppins-semibold text-[13px] tabular-nums"
-                  style={{ color: isSeen ? "rgb(15 23 42)" : "rgb(203 213 225)", transition: `color 0.6s ${EASE}` }}
+            <div key={f.title} className="flex sm:flex-col items-center sm:text-center gap-4 sm:gap-0">
+              <div className="relative flex-shrink-0">
+                {now && <span className="absolute inset-0 rounded-2xl bg-emerald-400/30 wc-ping" />}
+                <div
+                  className={`relative w-16 h-16 rounded-2xl border flex items-center justify-center transition-all duration-500 ${
+                    on
+                      ? "bg-emerald-700 border-emerald-700 text-white shadow-[0_14px_30px_-10px_rgba(6,95,70,0.6)]"
+                      : "bg-white border-emerald-100 text-emerald-300"
+                  } ${now ? "scale-110" : "scale-100"}`}
                 >
-                  {c.line.value}
-                </span>
-                <span
-                  className="flex h-5 w-5 items-center justify-center rounded-full"
-                  style={{
-                    background: isSeen ? "rgb(16 185 129)" : "rgb(241 245 249)",
-                    transform: isSeen ? "scale(1)" : "scale(0.8)",
-                    transition: `background 0.5s ${EASE}, transform 0.5s ${EASE}`,
-                  }}
-                >
-                  <Check className="w-3 h-3 text-white" strokeWidth={3} style={{ opacity: isSeen ? 1 : 0, transition: "opacity 0.4s" }} />
-                </span>
-              </span>
-            </li>
+                  <Icon className="w-6 h-6" />
+                </div>
+              </div>
+              <div className="sm:mt-5">
+                <p className={`poppins-bold text-base sm:text-lg transition-colors duration-500 ${on ? "text-slate-900" : "text-slate-400"}`}>{f.title}</p>
+                <p className="poppins-regular text-sm text-slate-500 mt-0.5">{f.cap}</p>
+              </div>
+            </div>
           )
         })}
-      </ul>
-
-      {/* The question */}
-      <div className={compact ? "px-3 pb-3" : "px-4 pb-4"}>
-        <div className="relative h-14 overflow-hidden rounded-2xl bg-slate-900">
-          {checks.map((c, i) => (
-            <div
-              key={c.ask}
-              className="absolute inset-0 flex items-center gap-3 px-5"
-              style={{
-                opacity: i === active ? 1 : 0,
-                transform: i === active ? "none" : i < active ? "translateY(-60%)" : "translateY(60%)",
-                filter: i === active ? "blur(0)" : "blur(4px)",
-                transition: `opacity 0.5s ${EASE}, transform 0.7s ${EASE}, filter 0.5s ${EASE}`,
-              }}
-            >
-              <c.icon className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-              <p className="poppins-medium text-sm text-white">
-                <span className="text-slate-400">I ask </span>{c.ask}
-              </p>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   )
 }
 
-/* ─── Statement that lights up word by word as you scroll ─────────────────── */
-function ScrollStatement() {
-  const ref = useScrollVar<HTMLParagraphElement>(0.85, 0.3)
-  const words = statement.split(" ")
+/* ─── 2. The scanner: one ticket, six checks ──────────────────────────────── */
+function Scanner({ run }: { run: boolean }) {
+  // 0–5 = checking that line, 6 = all done
+  const [step, setStep] = useCycle(checks.length + 1, 1300, run, 2200)
+  const done = step >= checks.length
+
   return (
-    <p
-      ref={ref}
-      className="poppins-bold text-3xl sm:text-5xl md:text-6xl leading-[1.12] tracking-tight text-slate-900 [--p:0]"
-    >
-      {words.map((w, i) => (
-        <span
-          key={i}
-          className="inline-block mr-[0.25em]"
-          style={{
-            // Each word fades in over its own slice of the scroll
-            opacity: `clamp(0.12, calc(var(--p) * ${words.length + 4} - ${i}), 1)`,
-          }}
-        >
-          {w}
-        </span>
-      ))}
-    </p>
+    <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-14 items-center">
+      {/* Ticket */}
+      <div className="relative">
+        <div className="absolute -inset-6 bg-[radial-gradient(ellipse_70%_70%_at_50%_50%,rgba(52,211,153,0.25)_0%,transparent_70%)] pointer-events-none" />
+        <div className="relative rounded-[1.75rem] bg-white border border-emerald-100 shadow-[0_40px_90px_-35px_rgba(6,95,70,0.45)] overflow-hidden">
+          <div className="flex items-center justify-between px-5 sm:px-6 pt-5 pb-4 border-b border-emerald-50">
+            <div>
+              <p className="poppins-semibold text-[10px] uppercase tracking-[0.2em] text-emerald-600">Ticket</p>
+              <p className="poppins-bold text-lg text-slate-900 tabular-nums leading-tight mt-0.5">No. 004127</p>
+            </div>
+            <span
+              className={`inline-flex items-center gap-1.5 poppins-semibold text-[11px] px-3 py-1.5 rounded-full border tabular-nums transition-all duration-500 ${
+                done ? "bg-emerald-700 border-emerald-700 text-white" : "bg-emerald-50 border-emerald-100 text-emerald-700"
+              }`}
+            >
+              {done && <Check className="w-3.5 h-3.5" />}
+              {done ? "Sent to Defra" : `${step} of ${checks.length} checked`}
+            </span>
+          </div>
+
+          <div className="relative p-3 sm:p-4 space-y-2">
+            {/* Scan beam */}
+            <div
+              className="absolute left-0 right-0 h-14 pointer-events-none z-10 bg-gradient-to-b from-transparent via-emerald-300/30 to-transparent transition-all duration-700 wc-ease"
+              style={{ top: `calc(0.5rem + ${Math.min(step, checks.length - 1)} * 3.5rem)`, opacity: done ? 0 : 1 }}
+            />
+            {checks.map((c, i) => {
+              const ok = i < step
+              const now = i === step
+              return (
+                <div
+                  key={c.title}
+                  className={`relative flex items-center justify-between gap-3 h-12 px-4 rounded-xl border transition-all duration-500 ${
+                    now ? "bg-emerald-50 border-emerald-300 scale-[1.02]" : ok ? "bg-white border-emerald-100" : "bg-white border-slate-100"
+                  }`}
+                >
+                  <span className="poppins-medium text-[13px] text-slate-500">{c.label}</span>
+                  <span className="flex items-center gap-2.5">
+                    <span className={`poppins-semibold text-[13px] tabular-nums transition-colors duration-500 ${ok || now ? "text-slate-900" : "text-slate-300"}`}>
+                      {c.value}
+                    </span>
+                    <span className={`w-5 h-5 rounded-full flex items-center justify-center transition-all duration-500 ${ok ? "bg-emerald-500 scale-100" : "bg-slate-100 scale-90"}`}>
+                      {ok ? <Check className="w-3 h-3 text-white wc-pop" strokeWidth={3} /> : now ? <span className="w-3 h-3 rounded-full border-2 border-emerald-200 border-t-emerald-600 animate-spin" /> : null}
+                    </span>
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+        <p className="text-center poppins-regular text-[11px] text-slate-400 mt-4">Example ticket</p>
+      </div>
+
+      {/* Six check tiles */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        {checks.map((c, i) => {
+          const Icon = c.icon
+          const now = i === step
+          const ok = i < step
+          return (
+            <button
+              key={c.title}
+              type="button"
+              onClick={() => setStep(i)}
+              className={`group text-left rounded-2xl border p-4 sm:p-5 transition-all duration-500 ${
+                now
+                  ? "bg-emerald-700 border-emerald-700 shadow-[0_20px_44px_-18px_rgba(6,95,70,0.7)] -translate-y-1"
+                  : ok
+                    ? "bg-white border-emerald-200"
+                    : "bg-white/70 border-slate-200 hover:border-emerald-200"
+              }`}
+            >
+              <div className="flex items-center justify-between mb-5">
+                <span className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-500 ${now ? "bg-white/15 text-white" : ok ? "bg-emerald-50 text-emerald-700" : "bg-slate-50 text-slate-400"}`}>
+                  <Icon className="w-[18px] h-[18px]" />
+                </span>
+                <span className={`poppins-semibold text-[11px] tabular-nums ${now ? "text-emerald-200" : "text-slate-300"}`}>0{i + 1}</span>
+              </div>
+              <p className={`poppins-bold text-[15px] leading-tight ${now ? "text-white" : "text-slate-900"}`}>{c.title}</p>
+              <p className={`poppins-regular text-[13px] leading-snug mt-1 ${now ? "text-emerald-100" : "text-slate-500"}`}>{c.ask}</p>
+            </button>
+          )
+        })}
+      </div>
+    </div>
   )
 }
 
-/* ─── Card with a soft light that follows the cursor ──────────────────────── */
-function SpotlightCard({ children, delay, show }: { children: React.ReactNode; delay: number; show: boolean }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const onMove = (e: React.MouseEvent) => {
-    const el = ref.current
-    if (!el) return
-    const r = el.getBoundingClientRect()
-    el.style.setProperty("--x", `${e.clientX - r.left}px`)
-    el.style.setProperty("--y", `${e.clientY - r.top}px`)
-  }
+/* ─── 3. The deadline, as a week ──────────────────────────────────────────── */
+function Deadline({ run }: { run: boolean }) {
+  const [step] = useCycle(days.length + 1, 900, run, 2600)
+
   return (
-    <div
-      ref={ref}
-      onMouseMove={onMove}
-      className="group relative overflow-hidden rounded-[28px] bg-white border border-slate-200/80 p-8 sm:p-9 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(6,95,70,0.35)]"
-      style={{
-        opacity: show ? 1 : 0,
-        transform: show ? undefined : "translateY(28px)",
-        transition: `opacity 0.9s ${EASE} ${delay}ms, transform 0.9s ${EASE} ${delay}ms, box-shadow 0.5s ${EASE}, translate 0.5s ${EASE}`,
-      }}
-    >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ background: "radial-gradient(360px circle at var(--x, 50%) var(--y, 50%), rgba(16,185,129,0.10), transparent 60%)" }}
-      />
-      <div className="relative">{children}</div>
+    <div>
+      <div className="grid grid-cols-5 gap-2 sm:gap-3">
+        {days.map((day, i) => {
+          const shown = i < step
+          const skip = day.kind === "skip"
+          const due = day.kind === "due"
+          return (
+            <div
+              key={day.d}
+              className={`relative rounded-2xl border px-2 sm:px-4 pt-4 pb-5 text-center transition-all duration-700 ${
+                !shown
+                  ? "bg-white/60 border-slate-100 opacity-40"
+                  : skip
+                    ? "border-slate-200 bg-[repeating-linear-gradient(135deg,#f8fafc_0_8px,#f1f5f9_8px_16px)]"
+                    : due
+                      ? "bg-emerald-700 border-emerald-700 shadow-[0_20px_44px_-18px_rgba(6,95,70,0.7)] -translate-y-1"
+                      : "bg-white border-emerald-200"
+              }`}
+            >
+              <p className={`poppins-bold text-lg sm:text-2xl ${due && shown ? "text-white" : skip ? "text-slate-400" : "text-slate-900"}`}>{day.d}</p>
+              <p className={`poppins-medium text-[10px] sm:text-xs leading-tight mt-1.5 ${due && shown ? "text-emerald-100" : skip ? "text-slate-400" : "text-emerald-700"}`}>
+                {day.tag}
+              </p>
+              {day.kind === "count" && shown && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-emerald-600 px-2 py-0.5 poppins-semibold text-[9px] sm:text-[10px] text-white wc-pop">
+                  I aim for here
+                </span>
+              )}
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Clock bar */}
+      <div className="relative mt-6 h-2 rounded-full bg-emerald-50 overflow-hidden">
+        <div
+          className="h-full rounded-full bg-gradient-to-r from-emerald-300 to-emerald-700 transition-all duration-700 wc-ease"
+          style={{ width: `${(Math.min(step, days.length) / days.length) * 100}%` }}
+        />
+      </div>
     </div>
   )
 }
 
 /* ─── Page ────────────────────────────────────────────────────────────────── */
 export default function WhatWeCheckPage() {
-  const [active, setActive] = useState(0)
-  const [seen, setSeen] = useState(1)
+  const { openBooking } = useBooking()
   const [loaded, setLoaded] = useState(false)
-  const stepRefs = useRef<(HTMLDivElement | null)[]>([])
-
-  const tiltRef = useScrollVar<HTMLDivElement>(1, 0.35)
-  const railRef = useScrollVar<HTMLDivElement>(0.5, -0.9)
-  const getRef = useInView<HTMLDivElement>(0.2)
-  const ctaRef = useInView<HTMLDivElement>(0.3)
+  const flowView = useInView<HTMLDivElement>(0.3)
+  const scanView = useInView<HTMLDivElement>(0.25)
+  const weekView = useInView<HTMLDivElement>(0.35)
+  const laneView = useInView<HTMLDivElement>(0.25)
+  const ctaView = useInView<HTMLDivElement>(0.3)
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setLoaded(true))
     return () => cancelAnimationFrame(id)
   }, [])
 
-  // Light up the ticket line for whichever step sits in the middle of the screen
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return
-          const i = Number((e.target as HTMLElement).dataset.index)
-          setActive(i)
-          setSeen((s) => Math.max(s, i + 1))
-        })
-      },
-      { rootMargin: "-45% 0px -45% 0px" }
-    )
-    stepRefs.current.forEach((el) => el && obs.observe(el))
-    return () => obs.disconnect()
-  }, [])
-
-  const rise = (delay: number): React.CSSProperties => ({
-    opacity: loaded ? 1 : 0,
-    transform: loaded ? "none" : "translateY(24px)",
-    filter: loaded ? "blur(0)" : "blur(8px)",
-    transition: `opacity 1.1s ${EASE} ${delay}ms, transform 1.1s ${EASE} ${delay}ms, filter 1.1s ${EASE} ${delay}ms`,
+  const rise = (delay: number, show = loaded): React.CSSProperties => ({
+    opacity: show ? 1 : 0,
+    transform: show ? "none" : "translateY(20px)",
+    filter: show ? "blur(0)" : "blur(8px)",
+    transition: `opacity 1s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 1s cubic-bezier(0.22,1,0.36,1) ${delay}ms, filter 1s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
   })
 
   return (
-    <div className="min-h-screen bg-white overflow-x-clip">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 overflow-x-clip">
       <Navigation />
 
-      {/* ── HERO ───────────────────────────────────────────────────────────── */}
-      <section className="relative pt-36 sm:pt-44 px-6 overflow-hidden">
-        <div className="pointer-events-none absolute left-1/2 top-24 -translate-x-1/2 h-[520px] w-[900px] max-w-[140vw] rounded-full bg-[radial-gradient(closest-side,rgba(167,243,208,0.55),transparent)] blur-2xl" />
+      {/* ── HERO + FLOW ────────────────────────────────────────────────────── */}
+      <section className="relative pt-28 sm:pt-32 px-3 sm:px-6 pb-8">
+        <Panel className="bg-gradient-to-b from-white via-white to-emerald-50/60">
+          <div className="wc-drift absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[520px] -z-10 bg-[radial-gradient(ellipse,rgba(167,243,208,0.5)_0%,transparent_65%)]" />
+          <div className="wc-sweep absolute inset-y-0 -left-1/3 w-1/3 -z-10 bg-gradient-to-r from-transparent via-white/70 to-transparent skew-x-[-20deg]" />
 
-        <div className="relative max-w-5xl mx-auto text-center">
-          <p className="poppins-semibold text-[13px] text-emerald-700 tracking-wide mb-6" style={rise(0)}>
-            What I Check
-          </p>
-
-          <h1 className="poppins-bold text-[2.9rem] leading-[1.04] sm:text-7xl md:text-[5.5rem] tracking-[-0.035em] text-slate-900">
-            <span className="block" style={rise(100)}>I Check the</span>
-            <span className="block" style={rise(220)}><RotatingWord /></span>
-          </h1>
-
-          <p className="poppins-regular text-lg sm:text-[1.35rem] text-slate-500 max-w-2xl mx-auto mt-8 leading-relaxed" style={rise(360)}>
-            Six simple checks on every load, before it goes to Defra. Nothing guessed. Nothing missed.
-          </p>
-
-          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center items-center" style={rise(480)}>
-            <Link
-              href="/send-your-bill"
-              className="group inline-flex items-center gap-2 rounded-full bg-slate-900 px-7 py-3.5 poppins-semibold text-sm text-white hover:bg-slate-800 transition-colors duration-300"
+          <div className="px-5 sm:px-10 lg:px-16 pt-14 sm:pt-20 pb-12 sm:pb-16 text-center">
+            <div
+              className="inline-flex items-center gap-2.5 rounded-full border border-emerald-200 bg-white/80 shadow-sm pl-2.5 pr-3.5 py-1.5 mb-7"
+              style={rise(0)}
             >
-              Send Me Your Tickets
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-            </Link>
-            <a
-              href="#checks"
-              className="group inline-flex items-center gap-1.5 px-5 py-3.5 poppins-semibold text-sm text-emerald-700 hover:text-emerald-800"
-            >
-              See the Six Checks
-              <ArrowRight className="w-4 h-4 rotate-90 transition-transform duration-300 group-hover:translate-y-0.5" />
-            </a>
-          </div>
-        </div>
-
-        {/* Ticket that tilts flat as you scroll */}
-        <div className="relative max-w-xl mx-auto mt-16 sm:mt-24 pb-24 sm:pb-32 [perspective:1600px]" style={rise(620)}>
-          <div
-            ref={tiltRef}
-            className="[--p:0] will-change-transform"
-            style={{
-              transform: "rotateX(calc((1 - var(--p)) * 24deg)) scale(calc(0.9 + var(--p) * 0.1)) translateY(calc((1 - var(--p)) * 40px))",
-              transformOrigin: "50% 100%",
-            }}
-          >
-            <Ticket active={checks.length - 1} seen={checks.length} />
-          </div>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white to-transparent" />
-        </div>
-      </section>
-
-      {/* ── THE SIX CHECKS (scroll story) ──────────────────────────────────── */}
-      <section id="checks" className="relative px-6 pb-24 sm:pb-32 scroll-mt-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="max-w-3xl mb-14 lg:mb-6">
-            <p className="poppins-semibold text-[13px] text-emerald-700 tracking-wide mb-4">The Six Checks</p>
-            <h2 className="poppins-bold text-4xl sm:text-6xl tracking-[-0.03em] leading-[1.05] text-slate-900">
-              Load by Load.{" "}
-              <span className="text-slate-400">Nothing Guessed.</span>
-            </h2>
-          </div>
-
-          <div className="grid lg:grid-cols-[1fr_1.05fr] gap-10 lg:gap-24">
-            {/* Steps with a progress rail */}
-            <div ref={railRef} className="relative [--p:0]">
-              <div className="hidden lg:block absolute left-0 top-[30vh] bottom-[30vh] w-px bg-slate-200">
-                <div className="absolute inset-x-0 top-0 bg-emerald-500 origin-top h-full" style={{ transform: "scaleY(var(--p))" }} />
-              </div>
-
-              {checks.map((c, i) => {
-                const Icon = c.icon
-                const isActive = i === active
-                return (
-                  <div
-                    key={c.title}
-                    ref={(el) => { stepRefs.current[i] = el }}
-                    data-index={i}
-                    className="lg:min-h-[64vh] flex items-center py-5 lg:py-0"
-                  >
-                    <div className="w-full lg:pl-12">
-                      <div className={`lg:transition-all lg:duration-700 ${isActive ? "lg:opacity-100 lg:translate-x-0" : "lg:opacity-30 lg:-translate-x-1"}`}>
-                        <div className="flex items-center gap-5 mb-5">
-                          <div
-                            className="relative z-10 w-12 h-12 rounded-2xl flex items-center justify-center"
-                            style={{
-                              background: isActive ? "rgb(15 23 42)" : "rgb(236 253 245)",
-                              transition: `background 0.6s ${EASE}`,
-                            }}
-                          >
-                            <Icon className="w-5 h-5" style={{ color: isActive ? "rgb(110 231 183)" : "rgb(5 150 105)", transition: `color 0.6s ${EASE}` }} />
-                          </div>
-                          <span className="poppins-semibold text-[13px] text-slate-400 tabular-nums">0{i + 1} / 06</span>
-                        </div>
-                        <h3 className="poppins-bold text-3xl sm:text-[2.6rem] tracking-[-0.02em] text-slate-900 mb-4">{c.title}</h3>
-                        <p className="poppins-regular text-lg text-slate-500 leading-relaxed max-w-md mb-5">{c.body}</p>
-                        <p className="inline-flex items-center gap-2 rounded-full bg-slate-50 border border-slate-200/80 px-4 py-2 poppins-medium text-sm text-slate-700">
-                          <span className="text-emerald-600">I ask</span> {c.ask}
-                        </p>
-
-                        {/* Mobile: the matching ticket line */}
-                        <div className="lg:hidden mt-5 flex items-center justify-between rounded-2xl border border-slate-200/80 bg-white px-4 py-3.5 shadow-sm">
-                          <span className="poppins-medium text-[13px] text-slate-500">{c.line.label}</span>
-                          <span className="flex items-center gap-2 poppins-semibold text-[13px] text-slate-900 tabular-nums">
-                            {c.line.value}
-                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500">
-                              <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                            </span>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-
-            {/* Sticky ticket — desktop */}
-            <div className="hidden lg:block">
-              <div className="sticky top-[calc(50vh-260px)]">
-                <Ticket active={active} seen={seen} />
-                <p className="mt-5 text-center poppins-regular text-[13px] text-slate-400">Example ticket. Your real ones are checked the same way.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── STATEMENT ──────────────────────────────────────────────────────── */}
-      <section className="px-6 py-28 sm:py-40 bg-slate-50/70 border-y border-slate-100">
-        <div className="max-w-5xl mx-auto">
-          <ScrollStatement />
-          <div className="mt-12 flex flex-wrap gap-3">
-            {["Paper transfer notes still kept", "Rule changes explained to you", "Two working days, every time"].map((t) => (
-              <span key={t} className="inline-flex items-center gap-2 rounded-full bg-white border border-slate-200/80 px-4 py-2 poppins-medium text-sm text-slate-600">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                {t}
+              <span className="relative flex w-2 h-2">
+                <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-50" />
+                <span className="relative w-2 h-2 rounded-full bg-emerald-500" />
               </span>
-            ))}
+              <span className="poppins-semibold text-xs uppercase tracking-[0.18em] text-emerald-800">How I work</span>
+            </div>
+
+            <h1 className="poppins-bold text-4xl sm:text-6xl lg:text-7xl leading-[1.04] tracking-tight text-slate-900">
+              <span className="block" style={rise(100)}>Every Load.</span>
+              <span
+                className="block pb-1 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent wc-shine"
+                style={rise(220)}
+              >
+                Checked, Then Sent.
+              </span>
+            </h1>
+
+            <p className="poppins-regular text-lg sm:text-xl text-slate-600 max-w-xl mx-auto mt-6 leading-relaxed" style={rise(340)}>
+              You send a photo. I check it six ways. Defra gets it on time.
+            </p>
+
+            <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center" style={rise(460)}>
+              <Link
+                href="/free-trial"
+                className="group relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 px-7 py-3.5 poppins-semibold text-sm text-white shadow-[0_16px_40px_-12px_rgba(6,95,70,0.55)] transition-all duration-300 active:scale-[0.98]"
+              >
+                <span className="wc-btn-shine absolute inset-y-0 -left-1/2 w-1/2 bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-[-20deg]" />
+                <span className="relative">Start a Free Two-Week Trial</span>
+                <ArrowRight className="relative w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+              <button
+                type="button"
+                onClick={() => openBooking("discovery")}
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-emerald-50 border border-emerald-200 hover:border-emerald-300 px-7 py-3.5 poppins-semibold text-sm text-emerald-700 transition-all duration-300 active:scale-[0.98]"
+              >
+                Book a Free 15-Minute Call
+              </button>
+            </div>
+
+            <div ref={flowView.ref} className="max-w-4xl mx-auto mt-16 sm:mt-20 text-left sm:text-center" style={rise(600)}>
+              <Flow run={flowView.inView} />
+            </div>
           </div>
-        </div>
+        </Panel>
       </section>
 
-      {/* ── WHAT YOU GET ───────────────────────────────────────────────────── */}
-      <section className="px-6 py-28 sm:py-36">
-        <div ref={getRef.ref} className="max-w-6xl mx-auto">
+      {/* ── THE SIX CHECKS ─────────────────────────────────────────────────── */}
+      <section id="checks" className="px-3 sm:px-6 py-8 scroll-mt-24">
+        <Panel className="bg-white">
+          <div ref={scanView.ref} className="px-5 sm:px-10 lg:px-16 py-14 sm:py-20">
+            <div className="max-w-2xl mb-10 sm:mb-14" style={rise(0, scanView.inView)}>
+              <Eyebrow>What I check</Eyebrow>
+              <h2 className="poppins-bold text-3xl sm:text-5xl tracking-tight leading-[1.05] text-slate-900">
+                Six Checks.{" "}
+                <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Every Load.</span>
+              </h2>
+              <p className="poppins-regular text-base sm:text-lg text-slate-500 mt-4">Unclear photo? I ask. I never guess.</p>
+            </div>
+            <div style={rise(150, scanView.inView)}>
+              <Scanner run={scanView.inView} />
+            </div>
+          </div>
+        </Panel>
+      </section>
+
+      {/* ── THE DEADLINE ───────────────────────────────────────────────────── */}
+      <section className="px-3 sm:px-6 py-8">
+        <Panel className="bg-gradient-to-b from-white to-emerald-50/50">
+          <div ref={weekView.ref} className="px-5 sm:px-10 lg:px-16 py-14 sm:py-20 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16 items-center">
+            <div style={rise(0, weekView.inView)}>
+              <Eyebrow>The deadline</Eyebrow>
+              <h2 className="poppins-bold text-3xl sm:text-5xl tracking-tight leading-[1.05] text-slate-900">
+                Two Working Days.
+              </h2>
+              <p className="poppins-regular text-base sm:text-lg text-slate-500 mt-4 max-w-sm">
+                Counted from the day after it arrives. Weekends and bank holidays don&apos;t count.
+              </p>
+            </div>
+            <div style={rise(150, weekView.inView)}>
+              <Deadline run={weekView.inView} />
+            </div>
+          </div>
+        </Panel>
+      </section>
+
+      {/* ── MY LANE ────────────────────────────────────────────────────────── */}
+      <section className="px-3 sm:px-6 py-8">
+        <div ref={laneView.ref} className="max-w-7xl mx-auto grid md:grid-cols-2 gap-4 sm:gap-5">
           <div
-            className="max-w-3xl mb-14"
-            style={{
-              opacity: getRef.inView ? 1 : 0,
-              transform: getRef.inView ? "none" : "translateY(24px)",
-              transition: `opacity 1s ${EASE}, transform 1s ${EASE}`,
-            }}
+            className="relative rounded-[2rem] bg-gradient-to-br from-emerald-700 to-emerald-900 p-7 sm:p-10 overflow-hidden shadow-[0_30px_70px_-30px_rgba(6,95,70,0.6)]"
+            style={rise(0, laneView.inView)}
           >
-            <p className="poppins-semibold text-[13px] text-emerald-700 tracking-wide mb-4">What You Get</p>
-            <h2 className="poppins-bold text-4xl sm:text-6xl tracking-[-0.03em] leading-[1.05] text-slate-900">
-              Three Things. <span className="text-slate-400">That&apos;s It.</span>
-            </h2>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.12)_0%,transparent_60%)] pointer-events-none" />
+            <p className="relative poppins-semibold text-[11px] uppercase tracking-[0.22em] text-emerald-200">In my lane</p>
+            <h3 className="relative poppins-bold text-2xl sm:text-3xl text-white mt-3 mb-7">I do this, every week.</h3>
+            <div className="relative space-y-2.5">
+              {mine.map((m, i) => (
+                <div
+                  key={m}
+                  className="flex items-center gap-3 rounded-xl bg-white/10 border border-white/10 px-4 py-3"
+                  style={rise(200 + i * 90, laneView.inView)}
+                >
+                  <span className="w-6 h-6 rounded-full bg-emerald-400 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3.5 h-3.5 text-emerald-950" strokeWidth={3} />
+                  </span>
+                  <span className="poppins-semibold text-sm text-white">{m}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5">
-            {youGet.map((item, i) => {
-              const Icon = item.icon
-              return (
-                <SpotlightCard key={item.title} delay={150 + i * 130} show={getRef.inView}>
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-50 group-hover:bg-slate-900 flex items-center justify-center mb-10 transition-colors duration-500">
-                    <Icon className="w-5 h-5 text-emerald-600 group-hover:text-emerald-300 transition-colors duration-500" />
-                  </div>
-                  <p className="poppins-semibold text-[13px] text-slate-400 tabular-nums mb-2">0{i + 1}</p>
-                  <h3 className="poppins-bold text-2xl tracking-[-0.01em] text-slate-900 mb-3">{item.title}</h3>
-                  <p className="poppins-regular text-base text-slate-500 leading-relaxed">{item.desc}</p>
-                </SpotlightCard>
-              )
-            })}
+          <div
+            className="relative rounded-[2rem] bg-white border-2 border-dashed border-emerald-200 p-7 sm:p-10"
+            style={rise(150, laneView.inView)}
+          >
+            <p className="poppins-semibold text-[11px] uppercase tracking-[0.22em] text-emerald-600">Not my lane</p>
+            <h3 className="poppins-bold text-2xl sm:text-3xl text-slate-900 mt-3 mb-7">Here&apos;s who to call.</h3>
+            <div className="space-y-2.5">
+              {refer.map((r, i) => (
+                <div
+                  key={r}
+                  className="flex items-center justify-between gap-3 rounded-xl bg-emerald-50/60 border border-emerald-100 px-4 py-3"
+                  style={rise(350 + i * 90, laneView.inView)}
+                >
+                  <span className="poppins-semibold text-sm text-slate-800">{r}</span>
+                  <ArrowUpRight className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                </div>
+              ))}
+            </div>
+            <p className="poppins-regular text-sm text-slate-500 mt-6">I&apos;ll introduce you to qualified experts I trust. Free.</p>
           </div>
         </div>
       </section>
 
       {/* ── CTA ────────────────────────────────────────────────────────────── */}
-      <section className="px-4 sm:px-6 pb-24">
+      <section className="px-3 sm:px-6 pt-8 pb-20">
         <div
-          ref={ctaRef.ref}
-          className="relative max-w-6xl mx-auto overflow-hidden rounded-[36px] bg-slate-950 px-6 py-24 sm:py-32 text-center"
-          style={{
-            opacity: ctaRef.inView ? 1 : 0,
-            transform: ctaRef.inView ? "none" : "translateY(32px) scale(0.98)",
-            transition: `opacity 1.1s ${EASE}, transform 1.1s ${EASE}`,
-          }}
+          ref={ctaView.ref}
+          className="relative max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] bg-gradient-to-br from-emerald-800 via-emerald-900 to-emerald-950 overflow-hidden isolate shadow-[0_40px_100px_-40px_rgba(6,95,70,0.7)] px-6 py-20 sm:py-28 text-center"
+          style={rise(0, ctaView.inView)}
         >
-          <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 h-[420px] w-[820px] max-w-[160%] rounded-full bg-[radial-gradient(closest-side,rgba(16,185,129,0.45),transparent)] wwc-glow" />
-          <div className="relative">
-            <h2 className="poppins-bold text-4xl sm:text-6xl md:text-7xl tracking-[-0.035em] leading-[1.04] text-white">
-              Want Me to
-              <br />
-              <span className="bg-gradient-to-r from-emerald-300 via-emerald-200 to-teal-300 bg-clip-text text-transparent">Report Yours?</span>
-            </h2>
-            <p className="poppins-regular text-lg sm:text-xl text-slate-400 max-w-xl mx-auto mt-7 leading-relaxed">
-              Two weeks free. Send me your tickets, or let me call you and go through how your site reports now.
-            </p>
-            <div className="mt-11 flex flex-col sm:flex-row gap-3 justify-center items-center">
-              <Link
-                href="/send-your-bill"
-                className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 poppins-semibold text-sm text-slate-900 hover:bg-emerald-50 transition-colors duration-300"
-              >
-                Send Me Your Tickets
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </Link>
-              <Link
-                href="/send-your-bill#call"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 poppins-semibold text-sm text-white hover:bg-white/10 transition-colors duration-300"
-              >
-                <Phone className="w-4 h-4" />
-                Call Me Instead
-              </Link>
-            </div>
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_0%,black_20%,transparent_100%)]" />
+          <div className="wc-glow absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] -z-10 bg-[radial-gradient(ellipse,rgba(52,211,153,0.35)_0%,transparent_65%)]" />
+
+          <h2 className="poppins-bold text-4xl sm:text-6xl tracking-tight leading-[1.04] text-white">
+            Want Me to{" "}
+            <span className="bg-gradient-to-r from-emerald-200 via-white to-emerald-200 bg-clip-text text-transparent">Check Yours?</span>
+          </h2>
+          <p className="poppins-regular text-lg text-emerald-100/85 max-w-md mx-auto mt-5">Two weeks free. No card. No contract.</p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
+            <Link
+              href="/free-trial"
+              className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-white hover:bg-emerald-50 px-8 py-4 poppins-semibold text-base text-emerald-900 transition-all duration-300 active:scale-[0.98]"
+            >
+              Start a Free Two-Week Trial
+              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+            <a
+              href="https://wa.me/447762270113"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/25 bg-white/5 hover:bg-white/15 px-7 py-4 poppins-semibold text-base text-white transition-all duration-300"
+            >
+              WhatsApp Zak
+            </a>
           </div>
         </div>
       </section>
@@ -582,13 +506,25 @@ export default function WhatWeCheckPage() {
       <Footer />
 
       <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes wwcGlow {
-          0%, 100% { opacity: 0.75; transform: translate(-50%, -50%) scale(1); }
-          50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.08); }
-        }
-        .wwc-glow { animation: wwcGlow 8s ease-in-out infinite; }
+        @keyframes wcShine { to { background-position: -200% 0; } }
+        @keyframes wcSweep { 0% { left: -35%; } 100% { left: 135%; } }
+        @keyframes wcDrift { 0%, 100% { transform: translate(-50%, 0) scale(1); } 50% { transform: translate(-50%, 24px) scale(1.06); } }
+        @keyframes wcGlow  { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
+        @keyframes wcBtn   { 0%, 60% { left: -50%; } 100% { left: 150%; } }
+        @keyframes wcPing  { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.5); opacity: 0; } }
+        @keyframes wcPop   { 0% { transform: scale(0.3); opacity: 0; } 70% { transform: scale(1.2); } 100% { transform: scale(1); opacity: 1; } }
+
+        .wc-ease { transition-timing-function: cubic-bezier(0.22,1,0.36,1); }
+        .wc-shine { animation: wcShine 6s linear 1.4s infinite; }
+        .wc-sweep { animation: wcSweep 10s ease-in-out infinite; }
+        .wc-drift { animation: wcDrift 14s ease-in-out infinite; }
+        .wc-glow { animation: wcGlow 8s ease-in-out infinite; }
+        .wc-btn-shine { animation: wcBtn 3.5s ease-in-out infinite; }
+        .wc-ping { animation: wcPing 1.4s cubic-bezier(0,0,0.2,1) infinite; }
+        .wc-pop { animation: wcPop 0.45s cubic-bezier(0.22,1,0.36,1) both; }
+
         @media (prefers-reduced-motion: reduce) {
-          .wwc-glow { animation: none; }
+          .wc-shine, .wc-sweep, .wc-drift, .wc-glow, .wc-btn-shine, .wc-ping, .wc-pop { animation: none !important; }
         }
       ` }} />
     </div>

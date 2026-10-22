@@ -152,7 +152,7 @@ export default function Footer() {
 
           {/* One-line identity, the same wording used on Google and LinkedIn */}
           <p className="poppins-regular text-sm text-emerald-800/80 max-w-2xl mt-4">
-            Millstone Compliance: digital waste tracking reporting and compliance support for permitted waste sites, based in Birmingham.
+            Millstone Compliance: waste reporting and admin support for businesses that hold a waste permit but don&apos;t have a waste team, based in Birmingham.
           </p>
 
           {/* Company details, required on UK company websites */}

@@ -44,8 +44,8 @@ const docCategories = [
     headline: "Quarterly Waste Returns, Prepared From Data I Already Hold",
     docs: [
       "Loads in, totalled by waste type",
-      "EWC codes grouped the way the return asks",
-      "Weights pulled from your weighbridge tickets",
+      "Waste types grouped the way the return asks",
+      "Weights pulled from your tickets",
       "Ready for you to check and submit",
       "Matched against what went to Defra",
       "Done every quarter, without chasing",
@@ -60,7 +60,7 @@ const docCategories = [
       "Regular hauliers' details on file",
       "Regular customers' details on file",
       "The waste each one usually brings",
-      "Their usual EWC and R/D codes",
+      "Their usual codes, set up once",
       "New regulars added when they start",
       "Fewer questions on busy days",
     ],
@@ -76,7 +76,7 @@ const docCategories = [
       "Ticket photos matched to each load",
       "Notes of anything I had to ask about",
       "Rule changes explained in plain English",
-      "Easy to hand over if anyone asks",
+      "Ready if the regulator asks",
     ],
   },
 ]
@@ -124,7 +124,7 @@ function DocumentStack() {
     { label: "Quarterly Waste Return", type: "QWR", color: "emerald" },
     { label: "Regular Haulier Details", type: "HAU", color: "blue" },
     { label: "Regular Customer Details", type: "CUS", color: "amber" },
-    { label: "EWC & R/D Code Template", type: "TPL", color: "purple" },
+    { label: "Waste Code Template", type: "TPL", color: "purple" },
     { label: "Friday Confirmation", type: "FRI", color: "rose" },
   ]
   const typeColors: Record<string, string> = {
@@ -317,7 +317,7 @@ export default function PaperworkSupportPage() {
           <FadeIn delay={100}>
             <div className="grid sm:grid-cols-3 gap-6">
               {[
-                { stat: "Ticket", label: "Written at the weighbridge for every load", color: "text-emerald-300" },
+                { stat: "Ticket", label: "Written for every load that comes in", color: "text-emerald-300" },
                 { stat: "2 days", label: "To report each load to Defra", color: "text-amber-300" },
                 { stat: "Quarterly", label: "Waste returns, built from the same loads", color: "text-teal-300" },
               ].map(({ stat, label, color }) => (
@@ -460,7 +460,7 @@ export default function PaperworkSupportPage() {
                 <div className="space-y-3">
                   {[
                     "Built from loads already reported to Defra",
-                    "Weights taken from your weighbridge tickets",
+                    "Weights taken from your tickets",
                     "Codes match your template and your permit",
                     "Regular hauliers and customers set up early",
                     "Plain English notes on anything that changed",
@@ -562,7 +562,7 @@ export default function PaperworkSupportPage() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </a>
               <Link
-                href="/waste-contract-audit"
+                href="/free-trial"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl poppins-semibold text-sm bg-white border border-slate-200 hover:border-slate-300 text-slate-700 transition-all duration-200 w-full sm:w-auto justify-center"
               >
                 Start a Free Two-Week Trial

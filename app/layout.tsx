@@ -18,9 +18,9 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://millstonecompliance.com"),
-  title: "Digital Waste Tracking Done for You | Millstone Compliance",
+  title: "Waste Reporting Support for Permit Holders | Millstone Compliance",
   description:
-    "Send your weighbridge tickets on WhatsApp and we report every load to Defra's digital waste tracking on time. Free two-week trial for permitted waste sites.",
+    "Got a waste permit but no waste team? Send your tickets on WhatsApp and every load goes to Defra on time, with proof every Friday. Free two-week trial.",
   keywords: [
     "digital waste tracking",
     "digital waste tracking help",
@@ -31,7 +31,8 @@ export const metadata: Metadata = {
     "waste tracking for scrap yards",
     "waste transfer station reporting",
     "skip yard waste tracking",
-    "EWC codes",
+    "waste permit reporting",
+    "waste admin support",
     "Millstone Compliance",
   ],
   alternates: { canonical: "https://millstonecompliance.com" },
@@ -47,8 +48,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Digital Waste Tracking Done for You | Millstone Compliance",
-    description: "Send your weighbridge tickets on WhatsApp and we report every load to Defra's digital waste tracking on time. Free two-week trial for permitted waste sites.",
+    title: "Waste Reporting Support for Permit Holders | Millstone Compliance",
+    description: "Got a waste permit but no waste team? Send your tickets on WhatsApp and every load goes to Defra on time, with proof every Friday. Free two-week trial.",
     url: "https://millstonecompliance.com",
     type: "website",
     locale: "en_GB",
@@ -56,14 +57,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digital Waste Tracking Done for You | Millstone Compliance",
-    description: "Send your weighbridge tickets on WhatsApp and we report every load to Defra's digital waste tracking on time. Free two-week trial for permitted waste sites.",
+    title: "Waste Reporting Support for Permit Holders | Millstone Compliance",
+    description: "Got a waste permit but no waste team? Send your tickets on WhatsApp and every load goes to Defra on time, with proof every Friday. Free two-week trial.",
   },
 }
 
 // One consistent identity for Google: who we are, what we do, who for, where.
 const IDENTITY =
-  "Millstone Compliance: digital waste tracking reporting and compliance support for permitted waste sites, based in Birmingham."
+  "Millstone Compliance: waste reporting and admin support for businesses that hold a waste permit but don't have a waste team, based in Birmingham."
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -122,7 +123,7 @@ const structuredData = {
         itemListElement: [
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "DWT Reporting", description: "Every load entered and submitted to Defra for you, with a Friday confirmation." } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "DWT Health Check", description: "A sample week of loads checked against your tickets and permit, with a short written report." } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "DWT Setup", description: "Help with Defra registration, a pre-filled code template and a weighbridge handover." } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "DWT Setup", description: "Defra registration prepared for you to sign off, a code template and a handover for whoever receives loads." } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "Paperwork Support", description: "Quarterly waste returns and regular hauliers and customers set up before their first load." } },
         ],
       },

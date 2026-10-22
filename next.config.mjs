@@ -9,6 +9,7 @@ const nextConfig = {
   // Old pages from previous offers were removed. Send old links to the closest current page.
   async redirects() {
     return [
+      { source: '/waste-contract-audit', destination: '/free-trial', permanent: true },
       { source: '/cleans', destination: '/', permanent: true },
       { source: '/cleans/:path*', destination: '/', permanent: true },
       { source: '/millstone-cleans.html', destination: '/', permanent: true },

@@ -48,7 +48,7 @@ export function Navigation() {
           {/* Right: CTA + Mobile hamburger */}
           <div className="flex items-center gap-2.5">
             <Link
-              href="/waste-contract-audit"
+              href="/free-trial"
               className="
                 hidden lg:inline-flex items-center
                 poppins-semibold text-[13px] tracking-wide

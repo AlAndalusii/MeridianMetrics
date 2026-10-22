@@ -34,7 +34,7 @@ const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
 )
 
 const paths = [
-  { icon: Send, who: "Permitted site", what: "Reporting, done for you", href: "/services#reporting" },
+  { icon: Send, who: "Got a waste permit", what: "Reporting, done for you", href: "/services#reporting" },
   { icon: ListChecks, who: "Reporting already", what: "A DWT Health Check", href: "/services#health-check" },
   { icon: Truck, who: "Carrier or broker", what: "Ready for 2027 list", href: "/carriers-and-brokers" },
 ]
@@ -42,7 +42,7 @@ const paths = [
 const faqs = [
   {
     q: "Do I still need paper transfer notes?",
-    a: "Yes. Digital waste tracking is an extra record on top of your existing paperwork, not a replacement.",
+    a: "Yes. Paper transfer notes and quarterly returns carry on. Digital waste tracking is extra admin on top, not a replacement.",
   },
   {
     q: "What's the deadline?",
@@ -50,7 +50,7 @@ const faqs = [
   },
   {
     q: "Do I need software?",
-    a: "Not right now. Defra's spreadsheet route is available. If you'd like software, I can help you choose it and set it up.",
+    a: "Not right now. Defra's spreadsheet route is available. If you'd like software, I'll help you pick whatever fits your site. I'm not tied to any provider.",
   },
   {
     q: "Who's responsible if something's wrong?",
@@ -58,11 +58,11 @@ const faqs = [
   },
   {
     q: "What does it cost?",
-    a: "Two weeks free, then a fixed monthly fee based on how many loads you take in, agreed upfront.",
+    a: "Start with a free two-week trial. On a free 15-minute call, we agree a fixed monthly fee before you pay anything.",
   },
   {
-    q: "Which sites do you work with?",
-    a: "Permitted sites receiving non-hazardous waste: scrap yards, transfer stations, skip yards, aggregate recyclers and similar.",
+    q: "Who do you work with?",
+    a: "Anyone with a waste permit (not just an exemption) who takes waste in: waste sites, builders with a yard, dismantlers, manufacturers, farms and landscapers.",
   },
   {
     q: "I'm a carrier or broker. Does this affect me?",
@@ -138,14 +138,14 @@ export function ClosingCTA() {
 
           {/* Main actions */}
           <div className="cc-fade flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 mt-10" style={{ animationDelay: "1000ms" }}>
-            <button
-              onClick={() => openBooking("discovery")}
+            <Link
+              href="/free-trial"
               className="group relative overflow-hidden inline-flex items-center justify-center gap-2.5 rounded-2xl bg-white px-8 py-4 poppins-semibold text-base text-emerald-900 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.45)] transition-all duration-300 hover:bg-emerald-50 active:scale-[0.98] min-h-[54px]"
             >
               <span className="cc-btn-shine absolute inset-y-0 -left-1/2 w-1/2 bg-gradient-to-r from-transparent via-emerald-200/50 to-transparent skew-x-[-20deg]" />
-              <span className="relative">Start a Free Trial</span>
+              <span className="relative">Start a Free Two-Week Trial</span>
               <ArrowRight className="relative w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
+            </Link>
             <a
               href="https://wa.me/447762270113"
               target="_blank"
@@ -162,7 +162,7 @@ export function ClosingCTA() {
               <Phone className="w-4 h-4" />
               07762 270 113
             </a>
-            <span className="inline-flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-emerald-300" />No obligation</span>
+            <button type="button" onClick={() => openBooking("discovery")} className="inline-flex items-center gap-1.5 hover:text-white transition-colors"><CheckCircle className="w-4 h-4 text-emerald-300" />Book a free 15-minute call</button>
             <span className="inline-flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-emerald-300" />You&apos;ll talk to me</span>
           </div>
         </div>

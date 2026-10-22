@@ -6,15 +6,15 @@ import Link from "next/link"
 import {
   ArrowRight,
   CalendarCheck,
+  Car,
   CheckCircle,
-  Container,
+  Factory,
   Hammer,
   Leaf,
   MapPin,
   Phone,
   Recycle,
   Send,
-  Warehouse,
 } from "lucide-react"
 
 /* ─── Reveal once when scrolled into view ─────────────────────────────────── */
@@ -41,21 +41,21 @@ function useReveal<T extends HTMLElement>(threshold = 0.2) {
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 const groups = [
-  { icon: Recycle, label: "Scrap & Metal", sub: "Every weighbridge ticket, reported within two working days." },
-  { icon: Warehouse, label: "Transfer Stations", sub: "Busy gate? Send photos as loads come in. I enter the lot." },
-  { icon: Container, label: "Skip Hire Yards", sub: "Skip firms with their own yard. Every load in, every working day." },
-  { icon: Hammer, label: "Aggregates & Inert", sub: "Soil, stone and rubble loads, with the right codes every time." },
-  { icon: Leaf, label: "Wood & Compost", sub: "Small site, same rules. I do the typing so you don't have to." },
+  { icon: Recycle, label: "Waste Sites", sub: "Scrap, transfer, skip, soil and wood yards. I take the double typing off you." },
+  { icon: Hammer, label: "Builders & Groundworks", sub: "Own yard or crusher? Your part-time waste person, without hiring one." },
+  { icon: Car, label: "Dismantlers & Garages", sub: "Dismantling permit? Every load reported on time, paperwork in order." },
+  { icon: Factory, label: "Manufacturers", sub: "Take waste in under a permit? I do the reporting, so your team doesn't." },
+  { icon: Leaf, label: "Farms & Landscapers", sub: "Digester, compost or tree waste under a permit. Every load in, on time." },
 ]
 
 const trust = [
   { icon: Send, label: "Done For You" },
-  { icon: CalendarCheck, label: "Friday Confirmation" },
+  { icon: CalendarCheck, label: "Proof Every Friday" },
   { icon: MapPin, label: "Birmingham Based" },
   { icon: Phone, label: "Direct Line" },
 ]
 
-// Hub geometry (SVG units). Five site types sit on a circle around Zak.
+// Hub geometry (SVG units). Five groups sit on a circle around Zak.
 const SIZE = 400
 const CX = SIZE / 2
 const CY = SIZE / 2
@@ -65,7 +65,7 @@ const nodes = groups.map((_, i) => {
   return { x: CX + R * Math.cos(a), y: CY + R * Math.sin(a) }
 })
 
-/* ─── The hub: Zak in the middle, five site types around it ──────────────── */
+/* ─── The hub: Zak in the middle, five groups around it ───────────────────── */
 function ConnectorHub({ run }: { run: boolean }) {
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -97,11 +97,11 @@ function ConnectorHub({ run }: { run: boolean }) {
         <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="poppins-bold text-sm text-emerald-900">Who I Help</h3>
-            <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Small permitted waste sites</p>
+            <p className="poppins-regular text-[11px] text-emerald-500 mt-0.5">Anyone with a waste permit</p>
           </div>
           <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 rounded-full border border-emerald-100">
             <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-            <span className="poppins-semibold text-[10px] text-emerald-600">5 site types</span>
+            <span className="poppins-semibold text-[10px] text-emerald-600">5 groups</span>
           </div>
         </div>
 
@@ -299,7 +299,7 @@ export function FounderSection() {
               </h2>
 
               <p className="fs-fade poppins-regular text-lg sm:text-xl text-slate-700 leading-relaxed mt-7 max-w-xl" style={{ animationDelay: "600ms" }}>
-                Your paper transfer notes haven&apos;t gone away. Now every load has to be reported to Defra as well. That&apos;s the same job twice, on every ticket.
+                Your paper transfer notes and quarterly returns haven&apos;t gone away. Now every load has to go to Defra as well. That&apos;s extra admin, on every ticket.
               </p>
 
               <p className="fs-fade poppins-regular text-base text-slate-500 leading-relaxed mt-4 max-w-xl" style={{ animationDelay: "720ms" }}>
@@ -331,7 +331,7 @@ export function FounderSection() {
               {/* Promise */}
               <div className="fs-fade mt-8 pl-5 border-l-2 border-emerald-400 max-w-xl" style={{ animationDelay: "960ms" }}>
                 <p className="poppins-semibold text-base sm:text-lg text-emerald-900 leading-relaxed">
-                  No call centre. A direct line to me. Plain English. One fixed monthly fee, no hidden extras.
+                  Every load reported on time. Proof every Friday. Not my lane? I&apos;ll tell you who to call.
                 </p>
                 <p className="poppins-medium text-sm text-emerald-600 mt-2">Zak, Founder</p>
               </div>

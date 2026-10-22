@@ -13,14 +13,15 @@ import {
   Handshake,
   Phone,
   Recycle,
-  Warehouse,
-  Container,
+  Car,
+  Factory,
   Hammer,
   Leaf,
   Camera,
   CalendarCheck,
   Wallet,
 } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
 import { useBooking } from "@/components/BookingProvider"
@@ -44,6 +45,7 @@ function useReveal(threshold = 0.12) {
 
 const WHATSAPP = "https://wa.me/447762270113"
 const READY_2027 = "/carriers-and-brokers"
+const FREE_TRIAL = "/free-trial"
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 const services: {
@@ -58,6 +60,7 @@ const services: {
   points: string[]
   priced: string
   cta: string
+  href?: string
   featured?: boolean
 }[] = [
   {
@@ -65,18 +68,19 @@ const services: {
     num: "01",
     icon: Send,
     tag: "Core",
-    forWho: "Small permitted sites",
+    forWho: "Waste permit holders",
     chip: "Do it for me",
     title: "DWT Reporting, Done for You",
-    what: "You send your tickets on WhatsApp. I enter and submit every load, and confirm it all on Friday.",
+    what: "You send your tickets on WhatsApp. I submit every load to Defra, fix any errors, and send proof on Friday.",
     points: [
-      "A template set up with your usual EWC and R/D codes",
-      "Every load entered and submitted, aiming for one working day",
+      "Your regular loads set up before we start",
+      "Every load submitted, aiming for one working day",
       "Errors fixed, and a Friday confirmation of everything",
       "Updates from me when the rules change",
     ],
-    priced: "Free two-week trial, then a fixed monthly fee based on your loads.",
+    priced: "Two weeks free first. Then we agree a fee on a free call.",
     cta: "Start a Free Two-Week Trial",
+    href: FREE_TRIAL,
     featured: true,
   },
   {
@@ -87,13 +91,13 @@ const services: {
     forWho: "Sites already reporting",
     chip: "Check my reporting",
     title: "DWT Health Check",
-    what: "I check a sample week of your loads against your tickets, and tell you what to fix.",
+    what: "I check a sample week of your loads against your tickets and permit, and tell you what to fix.",
     points: [
-      "Did each load actually land?",
-      "Are the codes right, and do they match your permit?",
+      "Did each load land, with the right dates?",
+      "Carrier registration numbers there, and right?",
       "A short written report with the fixes",
     ],
-    priced: "One-off fee, agreed upfront.",
+    priced: "One-off, agreed upfront on a free 15-minute call.",
     cta: "Book a Health Check",
   },
   {
@@ -101,17 +105,17 @@ const services: {
     num: "03",
     icon: Wrench,
     tag: "One-off",
-    forWho: "Sites doing it themselves",
+    forWho: "Businesses doing it themselves",
     chip: "Help me set up",
     title: "DWT Setup",
-    what: "Want to do it yourself, but haven't started properly? I get you set up and ready.",
+    what: "Doing it yourself? I prepare everything for your Defra registration. You sign it off.",
     points: [
-      "Help with Defra registration and your API code",
-      "Spreadsheet or software: help choosing",
+      "Defra registration prepared, ready for you to sign",
+      "Spreadsheet or software: help choosing what fits",
       "A pre-filled code template for your site",
-      "A short handover for whoever runs the weighbridge",
+      "A short handover for whoever receives loads",
     ],
-    priced: "One-off fee, agreed upfront.",
+    priced: "One-off, agreed upfront on a free 15-minute call.",
     cta: "Book a Setup Call",
   },
   {
@@ -122,7 +126,7 @@ const services: {
     forWho: "Reporting clients",
     chip: "Extra paperwork",
     title: "Paperwork Support",
-    what: "Extra paperwork, done from the data I already hold for you. No forms filled twice.",
+    what: "Quarterly returns and records, done from data I already hold. Ready if the regulator asks.",
     points: [
       "Quarterly waste returns prepared for you",
       "Regular hauliers and customers set up before their first load",
@@ -133,11 +137,11 @@ const services: {
 ]
 
 const siteTypes = [
-  { icon: Recycle,   label: "Scrap and metal recyclers" },
-  { icon: Warehouse, label: "Waste transfer stations" },
-  { icon: Container, label: "Skip hire firms with a yard" },
-  { icon: Hammer,    label: "Aggregate and inert recyclers" },
-  { icon: Leaf,      label: "Wood and composting sites" },
+  { icon: Recycle, label: "Scrap, transfer, skip, soil and wood sites" },
+  { icon: Hammer,  label: "Builders with a yard or crusher" },
+  { icon: Car,     label: "Vehicle dismantlers and garages" },
+  { icon: Factory, label: "Manufacturers taking waste in" },
+  { icon: Leaf,    label: "Farms, landscapers and tree surgeons" },
 ]
 
 const priceLines = [
@@ -440,6 +444,7 @@ function SiteTypeStrip({ run }: { run: boolean }) {
 
 export default function ServicesPage() {
   const { openBooking } = useBooking()
+  const router = useRouter()
 
   const hero     = useReveal(0.05)
   const cardsRef = useReveal(0.1)
@@ -469,7 +474,7 @@ export default function ServicesPage() {
 
           <h1 className="poppins-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-slate-900 mb-6">
             <span className="block">
-              {["Four", "Services."].map((w, i) => (
+              {["Report.", "Check."].map((w, i) => (
                 <React.Fragment key={w}>
                   <span className="sv-word inline-block" style={{ animationDelay: `${120 + i * 110}ms` }}>{w}</span>{" "}
                 </React.Fragment>
@@ -479,12 +484,12 @@ export default function ServicesPage() {
               className="sv-word sv-shine inline-block pb-1 bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent"
               style={{ animationDelay: "360ms" }}
             >
-              One Free Extra.
+              Keep It Tidy.
             </span>
           </h1>
 
           <p className="sv-fade poppins-regular text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-9" style={{ animationDelay: "560ms" }}>
-            Each one fits in a sentence. Start with a free two-week trial, then a fixed monthly fee agreed upfront.
+            Your waste person, for anyone with a permit but no waste team. Start with a free two-week trial.
           </p>
 
           {/* Find your service */}
@@ -508,12 +513,12 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── FOUR SERVICES ──────────────────────────────────────────────────── */}
+      {/* ── SERVICES ───────────────────────────────────────────────────────── */}
       <section className="pt-8 pb-24 px-4 sm:px-6 relative overflow-hidden">
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-emerald-100/40 rounded-full blur-[110px] pointer-events-none" />
         <div ref={cardsRef.ref} className="max-w-5xl mx-auto relative z-10 grid md:grid-cols-2 gap-5 items-stretch">
           {services.map((s, i) => (
-            <ServiceCard key={s.id} s={s} index={i} run={cardsRef.visible} onBook={() => openBooking("discovery")} />
+            <ServiceCard key={s.id} s={s} index={i} run={cardsRef.visible} onBook={() => (s.href ? router.push(s.href) : openBooking("discovery"))} />
           ))}
         </div>
       </section>
@@ -540,12 +545,12 @@ export default function ServicesPage() {
             </h2>
 
             <p className="poppins-regular text-base sm:text-lg text-slate-500 leading-relaxed max-w-md mb-7">
-              A lorry comes in. You snap the ticket. That&apos;s your part done.
+              A load comes in. You snap the ticket. That&apos;s your part done.
             </p>
 
             <div className="max-w-md mb-6">
               {[
-                { num: "01", icon: Camera, title: "Send", desc: "WhatsApp me photos of your weighbridge tickets and transfer notes." },
+                { num: "01", icon: Camera, title: "Send", desc: "WhatsApp me photos of your tickets and transfer notes as loads arrive." },
                 { num: "02", icon: Send, title: "Submitted", desc: "I enter and submit every load before the deadline." },
                 { num: "03", icon: CalendarCheck, title: "Confirmed", desc: "Every Friday, you get a list of everything submitted." },
               ].map((step, i, arr) => (
@@ -573,7 +578,7 @@ export default function ServicesPage() {
 
             <div className="flex flex-wrap items-center gap-5">
               <button
-                onClick={() => openBooking("discovery")}
+                onClick={() => router.push(FREE_TRIAL)}
                 className="group inline-flex items-center gap-2 px-7 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white poppins-bold text-sm rounded-xl shadow-lg hover:shadow-emerald-700/20 transition-all duration-300 active:scale-95"
               >
                 Start a Free Two-Week Trial
@@ -616,7 +621,7 @@ export default function ServicesPage() {
                 icon: Handshake,
                 tag: "Free",
                 title: "Introductions",
-                body: "Need a carrier, a yard or a builder? I'll introduce you to people I know. No charge, just ask.",
+                body: "Technical question, like classification or a permit change? I'll introduce you to qualified people I trust. Free.",
                 cta: "WhatsApp Zak",
                 href: WHATSAPP,
               },
@@ -676,8 +681,8 @@ export default function ServicesPage() {
           >
             <p className="text-emerald-600 poppins-semibold text-xs uppercase tracking-[0.18em] mb-2">Who it&apos;s for</p>
             <h2 className="poppins-bold text-3xl sm:text-4xl text-slate-900">
-              Small Permitted Sites.{" "}
-              <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Non-Hazardous Waste.</span>
+              Waste Sites.{" "}
+              <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">And Anyone With a Permit.</span>
             </h2>
           </div>
           <SiteTypeStrip run={whoRef.visible} />

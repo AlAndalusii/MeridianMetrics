@@ -1,13 +1,13 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Paperwork Support for Waste Sites | Millstone Compliance",
-  description: "An add-on for sites Millstone already reports for: quarterly waste returns prepared from data already held, and regular hauliers and customers set up early.",
+  title: "Waste Paperwork Support for Permit Holders | Millstone Compliance",
+  description: "For businesses Millstone already reports for: quarterly waste returns and records kept tidy from data already held, so you're ready if the regulator asks.",
   keywords: ["quarterly waste returns help", "waste site paperwork support"],
   alternates: { canonical: "https://millstonecompliance.com/services/documentation" },
   openGraph: {
-    title: "Paperwork Support for Waste Sites | Millstone Compliance",
-    description: "An add-on for sites Millstone already reports for: quarterly waste returns prepared from data already held, and regular hauliers and customers set up early.",
+    title: "Waste Paperwork Support for Permit Holders | Millstone Compliance",
+    description: "For businesses Millstone already reports for: quarterly waste returns and records kept tidy from data already held, so you're ready if the regulator asks.",
     url: "https://millstonecompliance.com/services/documentation",
     type: "website",
     locale: "en_GB",
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Paperwork Support for Waste Sites | Millstone Compliance",
-    description: "An add-on for sites Millstone already reports for: quarterly waste returns prepared from data already held, and regular hauliers and customers set up early.",
+    title: "Waste Paperwork Support for Permit Holders | Millstone Compliance",
+    description: "For businesses Millstone already reports for: quarterly waste returns and records kept tidy from data already held, so you're ready if the regulator asks.",
   },
 }
 

@@ -144,7 +144,7 @@ export const MobileMenu = memo(function MobileMenu() {
           {/* Free trial CTA */}
           <div className="pt-3">
             <Link
-              href="/waste-contract-audit"
+              href="/free-trial"
               onClick={handleClose}
               className="flex items-center justify-center gap-2 px-4 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white poppins-semibold text-sm active:opacity-90 transition-all shadow-sm"
               style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}

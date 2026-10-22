@@ -19,9 +19,9 @@ import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
 
 const checks = [
-  { icon: ListChecks,    title: "Your Codes Set Up",   desc: "I map the EWC and R/D codes your site uses most, so every entry is fast." },
-  { icon: Send,          title: "Send Tickets on WhatsApp", desc: "Photos of weighbridge tickets and transfer notes. I enter and submit every load." },
-  { icon: CalendarCheck, title: "Friday Confirmation", desc: "Every Friday, a list of everything submitted. See it working before you pay." },
+  { icon: ListChecks,    title: "Your Regular Loads Set Up", desc: "I set up the loads you take in most, so every entry is quick and right." },
+  { icon: Send,          title: "Send Tickets on WhatsApp", desc: "Photos of your tickets and transfer notes. I submit every load to Defra." },
+  { icon: CalendarCheck, title: "Proof Every Friday", desc: "A list of every load submitted that week. See it working before you pay." },
 ]
 
 export default function FreeTrialPage() {
@@ -79,7 +79,7 @@ export default function FreeTrialPage() {
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-emerald-700/80 max-w-md mb-10 leading-relaxed">
-                Send me your tickets on WhatsApp for two weeks. I&apos;ll report every load to Defra, so you see it working before you pay.
+                Got a waste permit (not just an exemption)? Send me your tickets on WhatsApp for two weeks. I&apos;ll report every load to Defra, on time.
               </p>
 
               <div className="space-y-5 mb-10">
@@ -181,7 +181,7 @@ export default function FreeTrialPage() {
                       <Textarea
                         value={notes}
                         onChange={(e) => setNotes(e.target.value)}
-                        placeholder="Type of site and roughly how many loads a week? e.g. scrap yard, 40 loads (optional)"
+                        placeholder="What does your business do, and roughly how many loads a week? e.g. groundworks yard, 20 loads (optional)"
                         rows={3}
                         className="pl-8 pt-2.5 text-sm border-emerald-200 focus-visible:ring-emerald-400 rounded-xl resize-none"
                       />

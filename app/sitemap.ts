@@ -26,7 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/waste-contract-audit`,
+      url: `${BASE_URL}/free-trial`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.9,

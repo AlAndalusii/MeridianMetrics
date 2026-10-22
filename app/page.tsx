@@ -330,7 +330,7 @@ export default function MillstoneComplianceWebsite() {
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-xs poppins-semibold text-emerald-700 mb-5">
                 <BadgeCheck className="w-3.5 h-3.5 text-emerald-600" />
-                Digital Waste Tracking · Birmingham
+                Your Waste Person · Birmingham
               </div>
 
               <h1 className="poppins-bold text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight mb-5">
@@ -347,13 +347,13 @@ export default function MillstoneComplianceWebsite() {
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
-                Since 1 October, permitted waste sites must report every load they receive to Defra within two working days. Send me your tickets on WhatsApp, and I&apos;ll make sure every load is in on time.
+                If you hold a waste permit (not just an exemption), every load you take in must now go to Defra within two working days. Send me your tickets on WhatsApp. I&apos;ll get every load in on time.
               </p>
 
               {/* Primary CTAs */}
               <div className="flex flex-wrap gap-3 mb-5">
                 <Link
-                  href="/waste-contract-audit"
+                  href="/free-trial"
                   className="inline-flex items-center gap-2 poppins-semibold text-sm bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3.5 rounded-xl transition-all duration-200 active:scale-95 shadow-sm hover:shadow-md"
                 >
                   Start a Free Two-Week Trial <ArrowRight className="w-4 h-4" />
@@ -369,14 +369,14 @@ export default function MillstoneComplianceWebsite() {
 
               {/* Also serving */}
               <p className="text-xs text-slate-400 poppins-regular mb-5">
-                <span className="text-slate-600 poppins-medium">For scrap yards, transfer stations, skip yards and inert, wood and compost sites</span>
+                <span className="text-slate-600 poppins-medium">For waste sites, and any business with a waste permit but no waste team</span>
               </p>
 
               {/* Trust signals */}
               <div className="flex flex-wrap gap-4">
                 {[
                   "Done For You",
-                  "Friday Confirmation",
+                  "Proof Every Friday",
                   "Birmingham Based",
                 ].map((t) => (
                   <div key={t} className="flex items-center gap-1.5 text-xs text-emerald-700 poppins-medium">
@@ -442,20 +442,20 @@ export default function MillstoneComplianceWebsite() {
             <div className="inline-flex items-center px-5 sm:px-7 py-2.5 sm:py-3 rounded-2xl bg-gradient-to-r from-emerald-50 via-emerald-100/80 to-emerald-50 backdrop-blur-xl border border-emerald-200/70 shadow-[0_8px_32px_rgba(16,185,129,0.15)] mb-6 sm:mb-8 md:mb-10 group-hover/regulations:scale-105 transition-all duration-700 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-100/0 via-white/50 to-emerald-100/0 animate-shine"></div>
               <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3 animate-pulse relative z-10"></div>
-              <span className="poppins-semibold text-xs sm:text-sm text-emerald-900 tracking-wide uppercase relative z-10">Who I Help</span>
+              <span className="poppins-semibold text-xs sm:text-sm text-emerald-900 tracking-wide uppercase relative z-10">What I Do</span>
             </div>
             
             {/* Main Headline - matching site typography */}
             <h2 id="regulations-heading" className="poppins-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-5 sm:mb-7 md:mb-9 text-emerald-900 tracking-tight relative animate-fade-in-up leading-[1.1]">
-              Four Services,
+              Report. Check.
               <span className="block mt-2 sm:mt-3 leading-tight pb-2 sm:pb-3 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient-x">
-                One Free Extra
+                Keep It Tidy.
               </span>
             </h2>
             
             {/* Subheadline */}
             <p className="poppins-regular text-base sm:text-lg md:text-xl text-emerald-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4 animate-fade-in-up delay-100">
-              Each small enough to explain in a sentence,
+              The admin side of your waste permit, done weekly,
               <span className="poppins-semibold text-emerald-800"> and all done by me, not a call centre.</span>
             </p>
           </div>
@@ -484,7 +484,7 @@ export default function MillstoneComplianceWebsite() {
 
                 {/* Description */}
                 <p className="text-amber-800 poppins-regular text-base leading-relaxed mb-6">
-                  Done for you. Send tickets on WhatsApp, and I enter and submit every load, aiming for one working day. Two weeks free.
+                  Done for you. Send tickets on WhatsApp, and I submit every load to Defra, aiming for one working day. Two weeks free.
                 </p>
 
                 {/* Requirements List */}
@@ -493,7 +493,7 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <FileText className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-amber-900 text-sm poppins-medium">Your usual EWC and R/D codes set up</span>
+                    <span className="text-amber-900 text-sm poppins-medium">Your regular loads set up first</span>
                   </div>
                   <div className="flex items-start gap-3 bg-amber-50/50 p-3 rounded-lg border border-amber-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
@@ -505,7 +505,7 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <ClipboardCheck className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-amber-900 text-sm poppins-medium">A confirmation every Friday</span>
+                    <span className="text-amber-900 text-sm poppins-medium">Proof of every load, every Friday</span>
                   </div>
                 </div>
                 
@@ -549,7 +549,7 @@ export default function MillstoneComplianceWebsite() {
                 </h3>
                 
                 <p className="text-green-800 poppins-regular text-base leading-relaxed mb-6">
-                  Already reporting yourself? I check a sample week against your tickets, and write up what to fix.
+                  Already reporting yourself? I check a sample week against your tickets and permit, and write up what to fix.
                 </p>
                 
                 <div className="space-y-3 mb-8">
@@ -563,7 +563,7 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <CheckCircle className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-green-900 text-sm poppins-medium">Codes right, and matching your permit?</span>
+                    <span className="text-green-900 text-sm poppins-medium">Carrier numbers and dates right?</span>
                   </div>
                   <div className="flex items-start gap-3 bg-green-50/50 p-3 rounded-lg border border-green-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
@@ -623,7 +623,7 @@ export default function MillstoneComplianceWebsite() {
                 </h3>
                 
                 <p className="text-emerald-800 poppins-regular text-base leading-relaxed mb-6">
-                  Want to do it yourself, but haven&apos;t started properly? I get you registered, set up and ready.
+                  Doing it yourself? I prepare your Defra registration for you to sign off, and get you set up.
                 </p>
                 
                 <div className="space-y-3 mb-8">
@@ -631,7 +631,7 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Database className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-emerald-900 text-sm poppins-medium">Defra registration and API code</span>
+                    <span className="text-emerald-900 text-sm poppins-medium">Defra registration, ready to sign</span>
                   </div>
                   <div className="flex items-start gap-3 bg-emerald-50/50 p-3 rounded-lg border border-emerald-100/50">
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
@@ -643,7 +643,7 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Calendar className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-emerald-900 text-sm poppins-medium">A handover for your weighbridge</span>
+                    <span className="text-emerald-900 text-sm poppins-medium">A handover for whoever takes loads in</span>
                   </div>
                 </div>
                 
@@ -700,7 +700,7 @@ export default function MillstoneComplianceWebsite() {
                 </h3>
 
                 <p className="text-rose-800 poppins-regular text-base leading-relaxed mb-6">
-                  For reporting clients. Extra paperwork done from data I already hold, plus free intros to people I know.
+                  For reporting clients. Quarterly returns kept tidy, so you&apos;re ready if the regulator asks. Plus free intros.
                 </p>
 
                 <div className="space-y-3 mb-8">
@@ -720,7 +720,7 @@ export default function MillstoneComplianceWebsite() {
                     <div className="w-5 h-5 rounded-full bg-emerald-500 border border-emerald-600 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <Lock className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-rose-900 text-sm poppins-medium">Free intros: yards, carriers, builders</span>
+                    <span className="text-rose-900 text-sm poppins-medium">Technical question? I&apos;ll refer you</span>
                   </div>
                 </div>
                 
@@ -810,7 +810,7 @@ export default function MillstoneComplianceWebsite() {
                 {
                   step: "Send",
                   title: "Send Me Your Tickets",
-                  description: "WhatsApp me photos of your weighbridge tickets and transfer notes.",
+                  description: "WhatsApp me photos of your tickets and transfer notes as loads come in.",
                   icon: AlertTriangle,
                   accentColor: "emerald",
                 },
@@ -823,7 +823,7 @@ export default function MillstoneComplianceWebsite() {
                 },
                 {
                   step: "Confirmed",
-                  title: "You Get a Confirmation",
+                  title: "You Get the Proof",
                   description: "Every Friday, you get a list of everything submitted.",
                   icon: CheckCircle,
                   accentColor: "blue",
@@ -934,7 +934,7 @@ export default function MillstoneComplianceWebsite() {
                   </span>
                 </h2>
                 <p className="poppins-regular text-base sm:text-lg text-emerald-700 max-w-xl mx-auto leading-relaxed animate-fade-in-up">
-                  Your paper transfer notes haven&apos;t gone away. Now every load goes to Defra too. That&apos;s the same job twice.
+                  Not a waste company. No bins, no vans. I do the reporting and paperwork, and say clearly what isn&apos;t my lane.
                 </p>
               </div>
 
@@ -959,10 +959,10 @@ export default function MillstoneComplianceWebsite() {
           {/* What we cover pills */}
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 animate-fade-in-up">
             {[
-              "DWT Reporting",
+              "Reporting",
               "Health Check",
-              "DWT Setup",
-              "Paperwork Support",
+              "Setup & Paperwork",
+              "Expert Referrals",
             ].map((label) => (
               <div key={label} className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/70 backdrop-blur-xl border border-emerald-100/60 rounded-full shadow-sm hover:shadow-md hover:border-emerald-200/70 transition-all duration-300">
                 <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse flex-shrink-0"></div>
@@ -975,7 +975,7 @@ export default function MillstoneComplianceWebsite() {
           <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-12 mb-8 sm:mb-10 animate-fade-in-up">
             {[
               { value: "2", label: "Working Days Per Load" },
-              { value: "Fri", label: "Confirmation Every Week" },
+              { value: "Fri", label: "Proof Every Week" },
               { value: "1-1", label: "Direct Access, No Call Centre" },
               { value: "2 wks", label: "Free Trial To Start" },
             ].map((stat, i) => (
@@ -1003,11 +1003,11 @@ export default function MillstoneComplianceWebsite() {
                 </div>
 
                 <h3 className="poppins-bold text-xl sm:text-2xl text-emerald-900 mb-4 leading-tight">
-                  A Bookkeeper for Your Waste Reporting.
+                  Your Waste Person, Without Hiring One.
                 </h3>
 
                 <p className="poppins-regular text-emerald-700 text-sm sm:text-sm leading-relaxed mb-4">
-                  Typing every load into a new system, on top of your transfer notes, takes hours. You&apos;ve got lorries to deal with. I take it off your plate.
+                  Typing every load into Defra, on top of your transfer notes, takes hours. You&apos;ve got a business to run. I take it off your plate.
                 </p>
 
                 <p className="poppins-regular text-emerald-600 text-sm leading-relaxed mb-5">
@@ -1018,9 +1018,9 @@ export default function MillstoneComplianceWebsite() {
                 <div className="space-y-2.5">
                   {[
                     "Every load submitted within two working days",
-                    "Your most-used codes mapped at setup",
-                    "A confirmation every Friday",
-                    "A real person to call when rules change",
+                    "Your regular loads set up at the start",
+                    "Proof of every load, every Friday",
+                    "Here's who to call, when it's not my lane",
                   ].map((item) => (
                     <div key={item} className="flex items-start gap-2.5">
                       <div className="w-4 h-4 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -1099,8 +1099,8 @@ export default function MillstoneComplianceWebsite() {
                   <Target className="w-5 h-5 text-white" />
                 </div>
                 <div className="relative flex-1 min-w-0">
-                  <h4 className="poppins-semibold text-white text-sm mb-1.5">Honest About How I&apos;m Paid</h4>
-                  <p className="poppins-regular text-emerald-100/90 text-sm leading-relaxed">One fixed monthly fee, agreed upfront. No hidden extras. The first two weeks are free.</p>
+                  <h4 className="poppins-semibold text-white text-sm mb-1.5">Honest About My Lane</h4>
+                  <p className="poppins-regular text-emerald-100/90 text-sm leading-relaxed">Reporting and paperwork, yes. Classification or permit changes? I&apos;ll refer you to experts I trust.</p>
                 </div>
               </div>
 
@@ -1173,8 +1173,8 @@ export default function MillstoneComplianceWebsite() {
 
                 {/* Headline - Minimal & Compelling */}
                 <h3 className="poppins-bold text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 tracking-tight text-emerald-900 leading-[1.1]">
-                  Tired of Typing<br/>
-                  <span className="text-emerald-600">Every Load?</span>
+                  Need a Waste<br/>
+                  <span className="text-emerald-600">Person?</span>
                 </h3>
 
                 {/* Subheadline - Ultra concise */}

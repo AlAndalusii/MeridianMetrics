@@ -68,7 +68,7 @@ function CountUp({ to, run, delay = 0 }: { to: number; run: boolean; delay?: num
 const areas = [
   { icon: FileCheck, label: "Registration", note: "Set up with Defra?" },
   { icon: Truck, label: "Reporting", note: "Is every load going in?" },
-  { icon: ListChecks, label: "Codes", note: "EWC and R/D codes right?" },
+  { icon: ListChecks, label: "Paperwork", note: "Carrier numbers and dates right?" },
   { icon: Timer, label: "Deadlines", note: "In within two working days?" },
 ]
 
@@ -86,14 +86,14 @@ const services = [
     step: "02",
     badge: "Free",
     title: "Two-Week Trial",
-    href: "/services#reporting",
-    description: "Try it free for two weeks. First I map the waste codes you use most, so every entry is fast and the same.",
+    href: "/free-trial",
+    description: "Try it free for two weeks. First I set up the loads you take in most, so every entry is quick and right.",
   },
   {
     icon: CalendarCheck,
     step: "03",
     badge: "Fridays",
-    title: "Weekly Confirmation",
+    title: "Proof Every Friday",
     href: "/services#how-it-works",
     description: "Every Friday you get a list of every load I submitted that week. Nothing to chase, nothing to guess.",
   },

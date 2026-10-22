@@ -29,7 +29,7 @@ export function PerformanceOptimizer() {
           '/free-check',
           '/about',
           '/support',
-          '/waste-contract-audit',
+          '/free-trial',
         ]
         criticalPages.forEach(page => {
           const link = document.createElement('link')

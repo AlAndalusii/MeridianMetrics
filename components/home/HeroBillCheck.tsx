@@ -12,11 +12,11 @@ type Line = {
 }
 
 const lines: Line[] = [
-  { label: "Mon · Iron and steel", detail: "17 04 05 · R4", tonnes: 8.2, done: "Submitted Mon · due Wed" },
-  { label: "Tue · Mixed metals", detail: "17 04 07 · R4", tonnes: 3.6, done: "Submitted Tue · due Thu" },
-  { label: "Wed · Mixed builders' waste", detail: "17 09 04 · R13", tonnes: 6.1, done: "Submitted Thu · due Fri" },
-  { label: "Thu · Wood", detail: "17 02 01 · R3", tonnes: 4.4, done: "Submitted Thu · due Mon" },
-  { label: "Fri · Soil and stones", detail: "17 05 04 · R5", tonnes: 12.4, done: "Submitted Fri · due Tue" },
+  { label: "Mon · Iron and steel", detail: "Ticket in · 08:12", tonnes: 8.2, done: "Submitted Mon · due Wed" },
+  { label: "Tue · Mixed metals", detail: "Ticket in · 10:40", tonnes: 3.6, done: "Submitted Tue · due Thu" },
+  { label: "Wed · Mixed builders' waste", detail: "Ticket in · 15:55", tonnes: 6.1, done: "Submitted Thu · due Fri" },
+  { label: "Thu · Wood", detail: "Ticket in · 09:05", tonnes: 4.4, done: "Submitted Thu · due Mon" },
+  { label: "Fri · Soil and stones", detail: "Ticket in · 11:30", tonnes: 12.4, done: "Submitted Fri · due Tue" },
 ]
 
 // Phase 0 = week starts, 1–5 = submitting each load, 6 = all in, 7 = hold
@@ -185,8 +185,8 @@ export function HeroBillCheck() {
         <div className="px-3 sm:px-4 pb-4 grid grid-cols-3 gap-1.5">
           {[
             { icon: Send, text: "Sent from WhatsApp" },
-            { icon: ListChecks, text: "Codes mapped" },
-            { icon: CalendarClock, text: "Friday confirmation" },
+            { icon: ListChecks, text: "Errors fixed" },
+            { icon: CalendarClock, text: "Proof on Friday" },
           ].map((c, i) => (
             <div
               key={c.text}

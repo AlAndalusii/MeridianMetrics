@@ -387,7 +387,7 @@ export default function DigitalWasteTrackingGuidePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/waste-contract-audit"
+              href="/free-trial"
               className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white hover:bg-emerald-50 text-emerald-900 poppins-bold text-sm rounded-xl transition-all duration-300 shadow-lg active:scale-95"
             >
               Start a Free Two-Week Trial

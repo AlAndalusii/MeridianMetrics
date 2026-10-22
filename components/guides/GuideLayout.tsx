@@ -96,7 +96,7 @@ export function GuideLayout({
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
-                href="/waste-contract-audit"
+                href="/free-trial"
                 className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-emerald-50 text-emerald-900 poppins-semibold text-sm transition-all duration-300"
               >
                 Start a Free Two-Week Trial

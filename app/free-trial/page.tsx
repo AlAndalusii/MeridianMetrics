@@ -20,7 +20,7 @@ import Footer from "@/components/Footer"
 
 const checks = [
   { icon: ListChecks,    title: "Your Regular Loads Set Up", desc: "I set up the loads you take in most, so every entry is quick and right." },
-  { icon: Send,          title: "Send Tickets on WhatsApp", desc: "Photos of your tickets and transfer notes. I submit every load to Defra." },
+  { icon: Send,          title: "Email Your Tickets", desc: "Photos of your tickets and transfer notes. I submit every load to Defra." },
   { icon: CalendarCheck, title: "Proof Every Friday", desc: "A list of every load submitted that week. See it working before you pay." },
 ]
 
@@ -79,7 +79,7 @@ export default function FreeTrialPage() {
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-emerald-700/80 max-w-md mb-10 leading-relaxed">
-                Got a waste permit (not just an exemption)? Send me your tickets on WhatsApp for two weeks. I&apos;ll report every load to Defra, on time.
+                Got a waste permit (not just an exemption)? Email me your tickets for two weeks. I&apos;ll report every load to Defra, on time.
               </p>
 
               <div className="space-y-5 mb-10">

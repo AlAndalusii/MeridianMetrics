@@ -9,7 +9,6 @@ import {
   Truck,
   ListChecks,
   Timer,
-  MessageCircle,
   CheckCircle,
   AlertTriangle,
   Search,
@@ -17,11 +16,12 @@ import {
   Clock,
   BadgeCheck,
   Lock,
+  Mail,
 } from "lucide-react"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
 
-const WHATSAPP_NUMBER = "447762270113"
+const EMAIL = "hello@millstonecompliance.com"
 
 /* ─── The four areas and ten questions ────────────────────────────────────── */
 type Answer = "yes" | "no" | "unsure"
@@ -487,17 +487,15 @@ function Result({
   ]
     .filter(Boolean)
     .join("\n")
-  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+  const mailHref = `mailto:${EMAIL}?subject=${encodeURIComponent("My readiness check result")}&body=${encodeURIComponent(message)}`
 
-  const WhatsAppButton = ({ className = "" }: { className?: string }) => (
+  const EmailButton = ({ className = "" }: { className?: string }) => (
     <a
-      href={waHref}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`group inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#25D366] hover:bg-[#1ebe5b] px-7 py-4 poppins-semibold text-base text-white shadow-[0_18px_40px_-12px_rgba(37,211,102,0.6)] transition-all duration-300 active:scale-[0.98] min-h-[56px] ${className}`}
+      href={mailHref}
+      className={`group inline-flex items-center justify-center gap-2.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 px-7 py-4 poppins-semibold text-base text-white shadow-[0_18px_40px_-12px_rgba(16,185,129,0.6)] transition-all duration-300 active:scale-[0.98] min-h-[56px] ${className}`}
     >
-      <MessageCircle className="w-5 h-5" />
-      Send My Results on WhatsApp
+      <Mail className="w-5 h-5" />
+      Email Me My Results
       <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
     </a>
   )
@@ -561,13 +559,13 @@ function Result({
         </div>
       </div>
 
-      {/* WhatsApp */}
+      {/* Email */}
       <div className="fc-in mt-5 rounded-[2rem] bg-emerald-900 p-6 sm:p-10 relative overflow-hidden" style={{ animationDelay: "120ms" }}>
         <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[radial-gradient(circle,rgba(52,211,153,0.35)_0%,transparent_70%)] pointer-events-none" />
         <div className="relative">
           <h2 className="poppins-bold text-2xl sm:text-3xl text-white tracking-tight">Want Me to Take a Look?</h2>
           <p className="poppins-regular text-base sm:text-lg text-emerald-100/80 mt-2 max-w-xl">
-            Send me your result on WhatsApp. I&apos;ll tell you what I&apos;d fix first, and how a free two-week trial works.
+            Email me your result. I&apos;ll tell you what I&apos;d fix first, and how a free two-week trial works.
           </p>
           <div className="grid sm:grid-cols-2 gap-3 mt-6">
             <label className="block">
@@ -589,8 +587,8 @@ function Result({
               />
             </label>
           </div>
-          <WhatsAppButton className="mt-6 w-full sm:w-auto" />
-          <p className="poppins-regular text-xs text-emerald-200/60 mt-3">Opens WhatsApp with your answers filled in. You can edit it before you send.</p>
+          <EmailButton className="mt-6 w-full sm:w-auto" />
+          <p className="poppins-regular text-xs text-emerald-200/60 mt-3">Opens your email with your answers filled in. You can edit it before you send.</p>
         </div>
       </div>
 
@@ -631,7 +629,7 @@ function Result({
         <p className="poppins-semibold text-lg text-slate-900">Rather I did the reporting?</p>
         <p className="poppins-regular text-slate-500 mt-1">Two weeks free. No card. No contract.</p>
         <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <WhatsAppButton className="w-full sm:w-auto" />
+          <EmailButton className="w-full sm:w-auto" />
           <button
             onClick={onRestart}
             className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white hover:border-emerald-300 px-6 py-4 poppins-semibold text-sm text-slate-700 transition-colors min-h-[56px] w-full sm:w-auto justify-center"

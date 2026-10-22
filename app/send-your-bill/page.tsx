@@ -26,7 +26,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { CONTACT_INFO } from "@/lib/constants"
 
-const WHATSAPP_URL = "https://wa.me/447762270113"
 const MAX_TOTAL_BYTES = 4 * 1024 * 1024
 
 type CheckKind = "quarterly" | "thorough"
@@ -229,7 +228,7 @@ export default function SendYourTicketsPage() {
     e.preventDefault()
     if (!name.trim() || !email.trim()) return
     if (totalBytes > MAX_TOTAL_BYTES) {
-      setError("Those files are too big together. Keep them under 4MB, or WhatsApp them to me instead.")
+      setError("Those files are too big together. Keep them under 4MB, or email them to me instead.")
       return
     }
     setSending(true)
@@ -311,7 +310,7 @@ export default function SendYourTicketsPage() {
             </h1>
 
             <p className="poppins-regular text-lg text-slate-500 max-w-md mb-9 leading-relaxed">
-              Photos on WhatsApp, email or upload. I enter and submit every load to Defra before the deadline.
+              Photos by email or upload. I enter and submit every load to Defra before the deadline.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
@@ -387,22 +386,20 @@ export default function SendYourTicketsPage() {
                       {step.methods && (
                         <div className="grid sm:grid-cols-3 gap-2.5 mt-5">
                           <a
-                            href={WHATSAPP_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group flex flex-col gap-1 p-3.5 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all duration-300"
-                          >
-                            <Phone className="w-4 h-4 text-emerald-600 mb-1" />
-                            <span className="poppins-semibold text-xs text-slate-900">WhatsApp the photos</span>
-                            <span className="poppins-regular text-[11px] text-slate-500">{CONTACT_INFO.phone}</span>
-                          </a>
-                          <a
                             href={`${CONTACT_INFO.mailto}?subject=My waste tickets`}
                             className="group flex flex-col gap-1 p-3.5 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all duration-300"
                           >
                             <Mail className="w-4 h-4 text-emerald-600 mb-1" />
                             <span className="poppins-semibold text-xs text-slate-900">Email them</span>
                             <span className="poppins-regular text-[11px] text-slate-500 break-all">{CONTACT_INFO.email}</span>
+                          </a>
+                          <a
+                            href={CONTACT_INFO.tel}
+                            className="group flex flex-col gap-1 p-3.5 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all duration-300"
+                          >
+                            <Phone className="w-4 h-4 text-emerald-600 mb-1" />
+                            <span className="poppins-semibold text-xs text-slate-900">Questions? Call me</span>
+                            <span className="poppins-regular text-[11px] text-slate-500">{CONTACT_INFO.phone}</span>
                           </a>
                           <a
                             href="#upload"
@@ -422,7 +419,7 @@ export default function SendYourTicketsPage() {
           </div>
 
           <p className="text-center poppins-regular text-sm text-slate-400 mt-10">
-            Tip: WhatsApp is quickest. Most sites send photos as each lorry comes in.
+            Tip: email is simplest. Most sites send photos as each load comes in.
           </p>
         </div>
       </section>

@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
             <><strong>Contact and booking forms:</strong> your name, business name, email, phone number, the service you are interested in, a preferred call time and your message.</>,
             <><strong>Send your tickets:</strong> photos or files of weighbridge tickets, waste transfer notes and similar documents, plus your contact details.</>,
             <><strong>Ready for 2027 list:</strong> your name, business, email, phone, whether you are a carrier, broker or dealer, your registration number (if given) and any notes.</>,
-            <><strong>WhatsApp, email and phone:</strong> the messages, photos and documents you send us, and notes of our calls.</>,
+            <><strong>Email and phone:</strong> the messages, photos and documents you send us, and notes of our calls.</>,
             <><strong>Client records:</strong> for clients, site and permit details, your usual EWC and R/D codes, Defra account and API details you share with us, and billing details.</>,
           ]}
         />
@@ -97,7 +97,6 @@ export default function PrivacyPolicyPage() {
           items={[
             <><strong>Defra and the environmental regulators</strong> (such as the Environment Agency), when we submit loads for you or where the law requires it.</>,
             <><strong>Resend</strong>, which sends our website form emails.</>,
-            <><strong>WhatsApp (Meta)</strong>, when you choose to send us tickets or messages on WhatsApp.</>,
             <><strong>Our website hosting provider</strong>, which runs the website and processes form submissions.</>,
             <><strong>Leadsy</strong>, a website visitor tool. See the <Link href="/cookies" className="underline decoration-emerald-300">Cookie Policy</Link>.</>,
             <><strong>Professional advisers</strong>, such as our accountant, insurer or solicitor.</>,

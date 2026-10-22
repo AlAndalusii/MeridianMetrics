@@ -54,7 +54,7 @@ export default function CookiePolicyPage() {
 
       <Section num={3} title="Links and Services Outside the Website">
         <p>
-          If you click to message us on WhatsApp, or follow a link to LinkedIn, Defra or GOV.UK, those services may set their
+          If you follow a link to LinkedIn, Defra or GOV.UK, those services may set their
           own cookies under their own policies. We do not control those cookies.
         </p>
       </Section>

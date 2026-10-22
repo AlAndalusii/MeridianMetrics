@@ -163,7 +163,7 @@ function buildConfirmationEmail(p: BookingPayload): string {
           ${[
             ['I review your request', 'I check your preferred date and time and confirm, usually within one business day.'],
             ['I send you a confirmation', `A short email to confirm your ${serviceShort(p.serviceType)} and any next steps before we start.`],
-            ['We get started', 'I set up your usual codes, then you send tickets on WhatsApp. Every Friday you get a confirmation of everything submitted.'],
+            ['We get started', 'I set up your regular loads, then you email your tickets. Every Friday you get a confirmation of everything submitted.'],
           ].map(([title, desc], i) => `
           <tr>
             <td style="padding-bottom:12px;vertical-align:top;">

@@ -184,7 +184,7 @@ export function HeroBillCheck() {
         {/* Result chips */}
         <div className="px-3 sm:px-4 pb-4 grid grid-cols-3 gap-1.5">
           {[
-            { icon: Send, text: "Sent from WhatsApp" },
+            { icon: Send, text: "Sent by email" },
             { icon: ListChecks, text: "Errors fixed" },
             { icon: CalendarClock, text: "Proof on Friday" },
           ].map((c, i) => (

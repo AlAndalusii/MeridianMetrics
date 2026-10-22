@@ -243,7 +243,7 @@ export default function QuizSelectorPage() {
                 Rather Hand It Over?
               </h3>
               <p className="poppins-regular text-emerald-700 mb-6 max-w-2xl mx-auto">
-                Send me your tickets on WhatsApp and I&apos;ll report every load to Defra on time. Two weeks free, no card, no contract.
+                Email me your tickets and I&apos;ll report every load to Defra on time. Two weeks free, no card, no contract.
               </p>
               <Button
                 onClick={() => openBooking()}

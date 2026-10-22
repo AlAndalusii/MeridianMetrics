@@ -5,6 +5,7 @@ import Link from "next/link"
 import {
   ArrowRight, CheckCircle, ChevronRight, CalendarClock, Truck, FileText,
   Send, ClipboardCheck, Wrench, Building2, Timer, Plus,
+  Mail,
 } from "lucide-react"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
@@ -343,7 +344,7 @@ export default function DigitalWasteTrackingGuidePage() {
             {[
               { icon: Wrench, tag: "DWT Setup", title: "Do It Yourself", body: "I get you registered, build your code template and show whoever runs the weighbridge what to do.", href: "/services#setup" },
               { icon: ClipboardCheck, tag: "DWT Health Check", title: "Already Doing It", body: "I check a sample week against your tickets. Did each load land? Are the codes right?", href: "/services#health-check" },
-              { icon: Send, tag: "Done For You", title: "Hand It Over", body: "Send tickets on WhatsApp. I enter and submit every load, and confirm it all on Friday.", href: "/services#reporting", featured: true },
+              { icon: Send, tag: "Done For You", title: "Hand It Over", body: "Email your tickets. I enter and submit every load, and confirm it all on Friday.", href: "/services#reporting", featured: true },
             ].map((o, i) => (
               <Link
                 key={o.title}
@@ -383,7 +384,7 @@ export default function DigitalWasteTrackingGuidePage() {
             Two Weeks Free. No Contract.
           </h2>
           <p className="poppins-regular text-emerald-100/80 text-lg mb-9 max-w-xl mx-auto">
-            Send me your tickets on WhatsApp, and I&apos;ll make sure every load is in on time. See it working before you pay.
+            Email me your tickets, and I&apos;ll make sure every load is in on time. See it working before you pay.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
@@ -394,13 +395,11 @@ export default function DigitalWasteTrackingGuidePage() {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
             <a
-              href="https://wa.me/447762270113"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:hello@millstonecompliance.com?subject=My%20waste%20tickets"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 poppins-semibold text-sm rounded-xl transition-all duration-300"
             >
-              <FileText className="w-4 h-4" />
-              WhatsApp Zak
+              <Mail className="w-4 h-4" />
+              Email Zak
             </a>
           </div>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-8">

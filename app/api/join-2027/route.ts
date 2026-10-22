@@ -137,12 +137,12 @@ export async function POST(request: Request) {
     const failed = results.find((r) => r.error)
     if (failed) {
       console.error('Resend error:', failed.error)
-      return NextResponse.json({ error: 'That didn’t send just now. Please try again, or WhatsApp me.' }, { status: 500 })
+      return NextResponse.json({ error: 'That didn’t send just now. Please try again, or email hello@millstonecompliance.com.' }, { status: 500 })
     }
 
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Join 2027 error:', error)
-    return NextResponse.json({ error: 'Something went wrong. Please try again, or WhatsApp me.' }, { status: 500 })
+    return NextResponse.json({ error: 'Something went wrong. Please try again, or email hello@millstonecompliance.com.' }, { status: 500 })
   }
 }

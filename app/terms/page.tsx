@@ -26,7 +26,7 @@ export default function TermsPage() {
       <Section num={2} title="Our Services">
         <div className="space-y-3">
           {[
-            ["DWT Reporting, Done for You", "You send us your weighbridge tickets and transfer notes, usually on WhatsApp. We enter and submit each load to Defra's digital waste tracking service for your site, fix errors we find, and send you a confirmation each Friday."],
+            ["DWT Reporting, Done for You", "You send us your weighbridge tickets and transfer notes, usually by email. We enter and submit each load to Defra's digital waste tracking service for your site, fix errors we find, and send you a confirmation each Friday."],
             ["DWT Health Check", "A one-off check of a sample week of your loads against your tickets and permit, with a short written report of what to fix."],
             ["DWT Setup", "One-off help to get you reporting yourself: Defra registration and API code, choosing a spreadsheet or software, a pre-filled code template and a handover for your weighbridge staff."],
             ["Paperwork Support", "An add-on for reporting clients: quarterly waste returns and setting up regular hauliers and customers, using data we already hold for you."],
@@ -154,7 +154,7 @@ export default function TermsPage() {
           items={[
             "use it only to provide our services, on your written instructions;",
             "keep it confidential and secure, and make sure anyone handling it is bound by confidentiality;",
-            "only use the tools we tell you about (such as WhatsApp and our email and storage providers), and stay responsible for them;",
+            "only use the tools we tell you about (such as our email and storage providers), and stay responsible for them;",
             "help you respond to data requests, and tell you without delay about any data breach;",
             "give you the information you need to show we meet these terms;",
             "delete or return it when the service ends, unless the law requires us to keep it.",

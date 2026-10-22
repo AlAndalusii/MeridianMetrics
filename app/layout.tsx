@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://millstonecompliance.com"),
   title: "Waste Reporting Support for Permit Holders | Millstone Compliance",
   description:
-    "Got a waste permit but no waste team? Send your tickets on WhatsApp and every load goes to Defra on time, with proof every Friday. Free two-week trial.",
+    "Got a waste permit but no waste team? Email your tickets and every load goes to Defra on time, with proof every Friday. Free two-week trial.",
   keywords: [
     "digital waste tracking",
     "digital waste tracking help",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Waste Reporting Support for Permit Holders | Millstone Compliance",
-    description: "Got a waste permit but no waste team? Send your tickets on WhatsApp and every load goes to Defra on time, with proof every Friday. Free two-week trial.",
+    description: "Got a waste permit but no waste team? Email your tickets and every load goes to Defra on time, with proof every Friday. Free two-week trial.",
     url: "https://millstonecompliance.com",
     type: "website",
     locale: "en_GB",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Waste Reporting Support for Permit Holders | Millstone Compliance",
-    description: "Got a waste permit but no waste team? Send your tickets on WhatsApp and every load goes to Defra on time, with proof every Friday. Free two-week trial.",
+    description: "Got a waste permit but no waste team? Email your tickets and every load goes to Defra on time, with proof every Friday. Free two-week trial.",
   },
 }
 

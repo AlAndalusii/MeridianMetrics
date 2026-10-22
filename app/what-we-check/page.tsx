@@ -58,7 +58,7 @@ function useCycle(steps: number, ms: number, run: boolean, hold = 0) {
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 const flow = [
-  { icon: Camera, title: "You snap it", cap: "A photo on WhatsApp" },
+  { icon: Camera, title: "You snap it", cap: "A photo by email" },
   { icon: ScanLine, title: "I check it", cap: "Six checks, every load" },
   { icon: Send, title: "I send it", cap: "To Defra, on time" },
   { icon: CalendarCheck, title: "You get proof", cap: "Every Friday" },
@@ -492,12 +492,10 @@ export default function WhatWeCheckPage() {
               <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <a
-              href="https://wa.me/447762270113"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:hello@millstonecompliance.com?subject=My%20waste%20tickets"
               className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/25 bg-white/5 hover:bg-white/15 px-7 py-4 poppins-semibold text-base text-white transition-all duration-300"
             >
-              WhatsApp Zak
+              Email Zak
             </a>
           </div>
         </div>

@@ -77,7 +77,7 @@ function ServiceCardMockup() {
       icon: Send,
       title: "DWT Reporting",
       status: "This week",
-      items: ["Tickets Received on WhatsApp", "Codes Matched to Template", "Submitted to Defra"],
+      items: ["Tickets Received by Email", "Codes Matched to Template", "Submitted to Defra"],
       score: 100,
       color: "#10b981",
     },
@@ -216,7 +216,7 @@ const services = [
   {
     icon: Send,
     title: "DWT Reporting",
-    body: "Send tickets on WhatsApp. I enter and submit every load, and send a confirmation every Friday.",
+    body: "Email your tickets. I enter and submit every load, and send a confirmation every Friday.",
     href: "/services#reporting",
     icon_color: "text-emerald-600",
     icon_bg: "bg-emerald-50",

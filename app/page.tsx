@@ -347,7 +347,7 @@ export default function MillstoneComplianceWebsite() {
               </h1>
 
               <p className="poppins-regular text-base sm:text-lg text-slate-600 mb-7 leading-relaxed max-w-xl">
-                If you hold a waste permit (not just an exemption), every load you take in must now go to Defra within two working days. Send me your tickets on WhatsApp. I&apos;ll get every load in on time.
+                If you hold a waste permit (not just an exemption), every load you take in must now go to Defra within two working days. Email me your tickets. I&apos;ll get every load in on time.
               </p>
 
               {/* Primary CTAs */}
@@ -484,7 +484,7 @@ export default function MillstoneComplianceWebsite() {
 
                 {/* Description */}
                 <p className="text-amber-800 poppins-regular text-base leading-relaxed mb-6">
-                  Done for you. Send tickets on WhatsApp, and I submit every load to Defra, aiming for one working day. Two weeks free.
+                  Done for you. Email your tickets, and I submit every load to Defra, aiming for one working day. Two weeks free.
                 </p>
 
                 {/* Requirements List */}
@@ -810,7 +810,7 @@ export default function MillstoneComplianceWebsite() {
                 {
                   step: "Send",
                   title: "Send Me Your Tickets",
-                  description: "WhatsApp me photos of your tickets and transfer notes as loads come in.",
+                  description: "Email me photos of your tickets and transfer notes as loads come in.",
                   icon: AlertTriangle,
                   accentColor: "emerald",
                 },

@@ -14,10 +14,10 @@ import {
   Route,
   Truck,
   Container,
-  MessageCircle,
   Bell,
   ClipboardCheck,
   Send,
+  Mail,
 } from "lucide-react"
 import { Navigation } from "@/components/Navigation"
 import Footer from "@/components/Footer"
@@ -82,7 +82,7 @@ const fadeUp = (show: boolean, delay = 0): React.CSSProperties => ({
 })
 
 /* ─── Data (from GOV.UK and the Environment Agency) ───────────────────────── */
-const WHATSAPP = "https://wa.me/447762270113"
+const EMAIL = "mailto:hello@millstonecompliance.com"
 const MANDATORY = new Date("2027-10-01T00:00:00+01:00")
 
 const timeline = [
@@ -576,15 +576,15 @@ export default function CarriersAndBrokersPage() {
                 <a href="tel:+447762270113" className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 hover:bg-white/[0.08] transition-colors duration-300">
                   <Phone className="w-5 h-5 text-emerald-400" />
                   <span>
-                    <span className="block poppins-regular text-xs text-slate-500">Call or WhatsApp Zak</span>
+                    <span className="block poppins-regular text-xs text-slate-500">Call Zak</span>
                     <span className="block poppins-semibold text-white tabular-nums">07762 270 113</span>
                   </span>
                 </a>
-                <a href={`${WHATSAPP}?text=${encodeURIComponent("Hi Zak, please add me to the Ready for 2027 list.")}`} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 hover:bg-white/[0.08] transition-colors duration-300">
-                  <MessageCircle className="w-5 h-5 text-emerald-400" />
+                <a href={`${EMAIL}?subject=${encodeURIComponent("Ready for 2027 list")}&body=${encodeURIComponent("Hi Zak, please add me to the Ready for 2027 list.")}`} className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 hover:bg-white/[0.08] transition-colors duration-300">
+                  <Mail className="w-5 h-5 text-emerald-400" />
                   <span>
                     <span className="block poppins-regular text-xs text-slate-500">Rather message?</span>
-                    <span className="block poppins-semibold text-white">Join on WhatsApp</span>
+                    <span className="block poppins-semibold text-white">Join by email</span>
                   </span>
                   <ArrowUpRight className="ml-auto w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
                 </a>

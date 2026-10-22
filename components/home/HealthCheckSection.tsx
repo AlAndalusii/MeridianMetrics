@@ -79,7 +79,7 @@ const services = [
     badge: "Done For You",
     title: "Load Reporting",
     href: "/services#reporting",
-    description: "Send photos of your tickets and transfer notes on WhatsApp. I enter and submit every load before the deadline.",
+    description: "Email photos of your tickets and transfer notes. I enter and submit every load before the deadline.",
   },
   {
     icon: ListChecks,

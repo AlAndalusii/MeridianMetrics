@@ -92,7 +92,7 @@ export function GuideLayout({
             <p className="poppins-semibold text-xs uppercase tracking-[0.18em] text-emerald-300 mb-3">Want me to handle it?</p>
             <h2 className="poppins-bold text-2xl sm:text-3xl text-white leading-tight mb-3">Start a Free Two-Week Trial.</h2>
             <p className="poppins-regular text-emerald-100/85 leading-relaxed mb-7 max-w-xl">
-              Send me your tickets on WhatsApp. I enter and submit every load to Defra before the deadline, and send you a confirmation every Friday.
+              Email me your tickets. I enter and submit every load to Defra before the deadline, and send you a confirmation every Friday.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
@@ -103,12 +103,10 @@ export function GuideLayout({
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <a
-                href="https://wa.me/447762270113"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:hello@millstonecompliance.com?subject=My%20waste%20tickets"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-white/25 bg-white/5 hover:bg-white/15 text-white poppins-semibold text-sm transition-all duration-300"
               >
-                WhatsApp Zak
+                Email Zak
               </a>
             </div>
           </div>

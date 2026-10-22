@@ -82,7 +82,7 @@ function buildConfirmationEmail(r: ContactRequest): string {
       <td style="background:#ffffff;padding:36px 44px;">
         <p style="margin:0 0 14px;font-size:16px;font-weight:600;color:#0f172a;font-family:${FONT};">Hi ${firstName},</p>
         <p style="margin:0 0 14px;font-size:15px;line-height:1.7;color:#334155;font-family:${FONT};">Thanks for your message. I&apos;ll reply personally, in plain English.</p>
-        <p style="margin:0;font-size:15px;line-height:1.7;color:#334155;font-family:${FONT};">If it&apos;s urgent, call or WhatsApp me on 07762 270 113.</p>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:#334155;font-family:${FONT};">If it&apos;s urgent, call me on 07762 270 113.</p>
       </td>
     </tr>
     ${emailFooter()}`
@@ -144,12 +144,12 @@ export async function POST(request: Request) {
     const failed = results.find((r) => r.error)
     if (failed) {
       console.error('Resend error:', failed.error)
-      return NextResponse.json({ error: 'That didn’t send just now. Please try again, or WhatsApp me.' }, { status: 500 })
+      return NextResponse.json({ error: 'That didn’t send just now. Please try again, or email hello@millstonecompliance.com.' }, { status: 500 })
     }
 
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Contact error:', error)
-    return NextResponse.json({ error: 'Something went wrong. Please try again, or WhatsApp me.' }, { status: 500 })
+    return NextResponse.json({ error: 'Something went wrong. Please try again, or email hello@millstonecompliance.com.' }, { status: 500 })
   }
 }

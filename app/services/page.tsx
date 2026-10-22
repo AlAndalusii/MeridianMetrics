@@ -43,7 +43,7 @@ function useReveal(threshold = 0.12) {
   return { ref, visible }
 }
 
-const WHATSAPP = "https://wa.me/447762270113"
+const EMAIL = "mailto:hello@millstonecompliance.com?subject=My%20waste%20tickets"
 const READY_2027 = "/carriers-and-brokers"
 const FREE_TRIAL = "/free-trial"
 
@@ -71,7 +71,7 @@ const services: {
     forWho: "Waste permit holders",
     chip: "Do it for me",
     title: "DWT Reporting, Done for You",
-    what: "You send your tickets on WhatsApp. I submit every load to Defra, fix any errors, and send proof on Friday.",
+    what: "You email your tickets. I submit every load to Defra, fix any errors, and send proof on Friday.",
     points: [
       "Your regular loads set up before we start",
       "Every load submitted, aiming for one working day",
@@ -276,7 +276,7 @@ function TicketScene({ active }: { active: boolean }) {
               <Send className="w-4 h-4 text-white" />
             </div>
             <div>
-              <p className="poppins-semibold text-[11px] text-slate-800 leading-none">Sent from WhatsApp</p>
+              <p className="poppins-semibold text-[11px] text-slate-800 leading-none">Sent by email</p>
               <p className="poppins-regular text-[10px] text-slate-400 mt-1 tabular-nums">{entered} of {tickets.length} entered</p>
             </div>
           </div>
@@ -550,7 +550,7 @@ export default function ServicesPage() {
 
             <div className="max-w-md mb-6">
               {[
-                { num: "01", icon: Camera, title: "Send", desc: "WhatsApp me photos of your tickets and transfer notes as loads arrive." },
+                { num: "01", icon: Camera, title: "Send", desc: "Email me photos of your tickets and transfer notes as loads arrive." },
                 { num: "02", icon: Send, title: "Submitted", desc: "I enter and submit every load before the deadline." },
                 { num: "03", icon: CalendarCheck, title: "Confirmed", desc: "Every Friday, you get a list of everything submitted." },
               ].map((step, i, arr) => (
@@ -622,8 +622,8 @@ export default function ServicesPage() {
                 tag: "Free",
                 title: "Introductions",
                 body: "Technical question, like classification or a permit change? I'll introduce you to qualified people I trust. Free.",
-                cta: "WhatsApp Zak",
-                href: WHATSAPP,
+                cta: "Email Zak",
+                href: EMAIL,
               },
               {
                 id: "ready-2027",
@@ -732,12 +732,10 @@ export default function ServicesPage() {
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={EMAIL}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-white/25 bg-white/5 hover:bg-white/15 text-white poppins-semibold text-sm transition-all duration-300"
                 >
-                  WhatsApp Zak
+                  Email Zak
                 </a>
               </div>
             </div>
